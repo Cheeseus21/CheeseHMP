@@ -1,0 +1,52 @@
+
+every_possible_country = {
+	limit = {
+			NOT = {
+				OR = { tag = GRE  tag = CHI tag = SWE tag = PER tag = BEL tag = AUS tag = DEN tag = DDR }
+			}
+		NOT = {
+			has_allowed_idea_with_traits = { idea = head_of_intelligence characters = yes }
+		}
+		is_dynamic_country = no
+	}
+	generate_character = {
+		token_base = generic_head_of_intelligence # token will be TAG_token_base
+		advisor = {
+			slot = political_advisor
+			traits = { head_of_intelligence }
+			available = {
+				has_intelligence_agency = yes
+			}
+		}
+		portraits = { 
+			army = { small = GFX_idea_generic_head_of_intelligence }
+		}
+	}
+}
+
+
+
+every_possible_country = {
+	limit = {
+		NOT = {
+			has_allowed_idea_with_traits = { idea = air_chief_ground_support_1 characters = yes }
+		}
+				NOT = {
+			has_allowed_idea_with_traits = { idea = air_chief_ground_support_2 characters = yes }
+		}
+				NOT = {
+			has_allowed_idea_with_traits = { idea = air_chief_ground_support_3 characters = yes }
+		}
+		is_dynamic_country = no
+	}
+	generate_character = {
+		token_base = generic_air_close_air_sup # token will be TAG_token_base
+		advisor = {
+			slot = air_chief
+			traits = { air_chief_ground_support_2 }
+		}
+		portraits = { 
+			army = { small = GFX_idea_generic_air_close_air_sup }
+		}
+	}
+}

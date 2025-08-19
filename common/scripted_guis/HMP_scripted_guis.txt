@@ -1,0 +1,1367 @@
+scripted_gui = {
+	construction_speed_view_opener_menu = {
+		context_type = player_context
+		
+		window_name = "cons_speed_opener_container"
+		parent_window_token = construction_tab
+
+		visible = {
+			is_ai = no
+		}
+		
+		ai_enabled = {
+			always = no
+		}
+		
+		effects = {
+			construction_speed_open_click = {
+				if = {
+					limit = { NOT = { has_country_flag = cons_speed_on } }
+					set_country_flag = cons_speed_on
+				}
+				else = { clr_country_flag = cons_speed_on }
+			}
+		}
+	}
+	
+	construction_speed_view_menu = {
+		context_type = player_context
+		
+		window_name = "cons_speed_container"
+		parent_window_token = construction_tab
+
+		visible = {
+			NOT = { has_country_flag = cons_speed_on }
+			is_ai = no
+		}
+		
+		ai_enabled = {
+			always = no
+		}
+	}
+	manhattan_bar_main_ui = {
+		context_type = decision_category
+		window_name = "manhattan_bar_main_view"
+		properties = {
+			manhattan_bar = {
+				frame = USA_manhattan
+			}
+		}
+
+	}
+	horst_trade_assistant = {
+			context_type = player_context 
+		window_name = "horst_trade_assistant_window"
+		visible = { always = no }
+		dynamic_lists = { 
+			horst_trade_assistant_resources_produced_list = {
+				array = resources_produced_array
+				value = v
+				index = i
+				change_scope = yes
+				entry_container = resources_produced_list
+			}
+		}	
+	}
+
+
+	horst_admiral_current_command_limit_used = {
+		context_type = player_context 
+		parent_window_name  = "navy_reserve_portrait_window" 
+		window_name = "horst_admiral_current_command_limit_used_window"
+		dynamic_lists = { 
+			admirals_leading_battlefleets_list = {
+				array = battle_admirals
+				value = v
+				index = i
+				change_scope = yes
+				entry_container = admirals_with_fleets_list
+			}
+		}
+properties = {
+			admiral_portrait  = {
+				image = "[GetAdmiralPortrait]"
+			}			
+}		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	sov_paranoia_system_ui = {
+		context_type = decision_category
+		window_name = "sov_paranoia_system_ui_window"
+
+		properties = {
+			paranoia_photo_zinovyev = {
+				frame = SOV_paranoia_photo_zinovyev
+			}
+
+			paranoia_photo_radek = {
+				frame = SOV_paranoia_photo_radek
+			}
+
+			paranoia_photo_bukharin = {
+				frame = SOV_paranoia_photo_bukharin
+			}
+
+			paranoia_photo_trotsky = {
+				frame = SOV_paranoia_photo_trotsky
+			}
+
+			paranoia_photo_tukhachevsky = {
+				frame = SOV_paranoia_photo_tukhachevsky
+			}
+
+			paranoia_photo_1 = {
+				frame = SOV_paranoia_generic_portraits_array^1
+			}
+
+			paranoia_photo_2 = {
+				frame = SOV_paranoia_generic_portraits_array^2
+			}
+
+			paranoia_photo_3 = {
+				frame = SOV_paranoia_generic_portraits_array^3
+			}
+
+			paranoia_photo_4 = {
+				frame = SOV_paranoia_generic_portraits_array^4
+			}
+
+			paranoia_photo_5 = {
+				frame = SOV_paranoia_generic_portraits_array^5
+			}
+
+			paranoia_photo_6 = {
+				frame = SOV_paranoia_generic_portraits_array^6
+			}
+
+			paranoia_photo_7 = {
+				frame = SOV_paranoia_generic_portraits_array^7
+			}
+
+			paranoia_photo_8 = {
+				frame = SOV_paranoia_generic_portraits_array^8
+			}
+
+			paranoia_photo_9 = {
+				frame = SOV_paranoia_generic_portraits_array^9
+			}
+
+			paranoia_photo_10 = {
+				frame = SOV_paranoia_generic_portraits_array^10
+			}
+
+			paranoia_photo_11 = {
+				frame = SOV_paranoia_generic_portraits_array^11
+			}
+
+			paranoia_photo_12 = {
+				frame = SOV_paranoia_generic_portraits_array^12
+			}
+
+			paranoia_main_paranoiameter = {
+				frame = SOV_paranoia_main_paranoiameter
+			}
+
+			paranoia_main_needle = {
+				frame = SOV_paranoia_main_paranoiameter
+			}
+		}
+	}
+
+	sov_propaganda_campaigns_ui = {
+		context_type = decision_category
+		window_name = "sov_propaganda_campaigns_ui_window"
+
+		properties = {
+			propaganda_poster_left = {
+				image = "[GetPropagandaLeftSlotAge]"
+				frame = SOV_poster_left_icon_frame
+			}
+
+			propaganda_poster_center = {
+				image = "[GetPropagandaCenterSlotAge]"
+				frame = SOV_poster_center_icon_frame
+			}
+			
+			propaganda_poster_right = {
+				image = "[GetPropagandaRightSlotAge]"
+				frame = SOV_poster_right_icon_frame
+			}
+		}
+	}
+
+
+
+
+	prca_propaganda_ui = {
+		context_type = decision_category
+		window_name = "prca_propaganda_ui_window"
+
+		# CAMPAIGNS
+		properties = {
+			propaganda_slot_1 = {
+				image = "[prca_tileset]"
+				frame = THIS.slot_1_frame
+			}
+			propaganda_slot_2 = {
+				image = "[prca_tileset]"
+				frame = THIS.slot_2_frame
+			}
+			propaganda_slot_3 = {
+				image = "[prca_tileset]"
+				frame = THIS.slot_3_frame
+			}
+		}
+
+		# DEPARTMENTS
+		properties = {
+			department_ico_1 = {
+				frame = THIS.department_ico_1_frame
+			}
+			department_ico_2 = {
+				frame = THIS.department_ico_2_frame
+			}
+			department_ico_3 = {
+				frame = THIS.department_ico_3_frame
+			}
+		}
+
+		# BUTTONS
+		properties = {
+			btn_preparation = {
+				frame = THIS.btn_preparation_frame?1
+			}
+			btn_campaigns = {
+				frame = THIS.btn_campaigns_frame?2
+			}
+		}
+
+		triggers = {
+            btn_show_campaigns_click_enabled = {
+                has_country_flag = show_leaflets
+			}
+			btn_show_leaflets_click_enabled = {
+                NOT = { has_country_flag = show_leaflets }
+			}
+        }
+
+		effects = {
+            btn_preparation_click = {
+                set_variable = { THIS.btn_preparation_frame = 1 }
+				set_variable = { THIS.btn_campaigns_frame = 2 }
+				clr_country_flag = campaigns_view
+            }
+            btn_campaigns_click = {
+				set_variable = { THIS.btn_preparation_frame = 2 }
+                set_variable = { THIS.btn_campaigns_frame = 1 }
+				set_country_flag = campaigns_view
+            }
+			btn_show_campaigns_click = {
+				clr_country_flag = show_leaflets
+				THIS_update_tileset = yes
+            }
+			btn_show_leaflets_click = {
+				set_country_flag = show_leaflets
+				THIS_update_tileset = yes
+            }
+        }
+	}
+
+
+	block_market = {
+		context_type = player_context
+		window_name = "block_market_window" 
+		parent_window_name = after_intel_agency_button
+		visible = { always = yes }
+	}
+	
+	
+	pause_is_blocked = {
+		context_type = player_context
+		window_name = "pause_block_window"
+		parent_window_name = time_control_window
+		visible = {
+		OR ={ 
+			AND = { SWE = { check_variable = { pause_blocker_variable = 2    } } NOT = { has_country_flag = host }     } 
+			AND = { SWE = { check_variable = { pause_blocker_variable = 3    } } NOT = { immune_to_pause_block = yes  }     } 
+		}
+		}
+	}
+	
+
+	sov_propaganda_campaigns_ui = {
+		context_type = decision_category
+		window_name = "sov_propaganda_campaigns_ui_window"
+
+		properties = {
+			propaganda_poster_left = {
+				image = "[GetPropagandaLeftSlotAge]"
+				frame = SOV_poster_left_icon_frame
+			}
+
+			propaganda_poster_center = {
+				image = "[GetPropagandaCenterSlotAge]"
+				frame = SOV_poster_center_icon_frame
+			}
+			
+			propaganda_poster_right = {
+				image = "[GetPropagandaRightSlotAge]"
+				frame = SOV_poster_right_icon_frame
+			}
+		}
+	}
+		sov_paranoia_system_ui = {
+		context_type = decision_category
+		window_name = "sov_paranoia_system_ui_window"
+
+		properties = {
+			paranoia_photo_zinovyev = {
+				frame = SOV_paranoia_photo_zinovyev
+			}
+
+			paranoia_photo_radek = {
+				frame = SOV_paranoia_photo_radek
+			}
+
+			paranoia_photo_bukharin = {
+				frame = SOV_paranoia_photo_bukharin
+			}
+
+			paranoia_photo_trotsky = {
+				frame = SOV_paranoia_photo_trotsky
+			}
+
+			paranoia_photo_tukhachevsky = {
+				frame = SOV_paranoia_photo_tukhachevsky
+			}
+
+			paranoia_photo_1 = {
+				frame = SOV_paranoia_generic_portraits_array^1
+			}
+
+			paranoia_photo_2 = {
+				frame = SOV_paranoia_generic_portraits_array^2
+			}
+
+			paranoia_photo_3 = {
+				frame = SOV_paranoia_generic_portraits_array^3
+			}
+
+			paranoia_photo_4 = {
+				frame = SOV_paranoia_generic_portraits_array^4
+			}
+
+			paranoia_photo_5 = {
+				frame = SOV_paranoia_generic_portraits_array^5
+			}
+
+			paranoia_photo_6 = {
+				frame = SOV_paranoia_generic_portraits_array^6
+			}
+
+			paranoia_photo_7 = {
+				frame = SOV_paranoia_generic_portraits_array^7
+			}
+
+			paranoia_photo_8 = {
+				frame = SOV_paranoia_generic_portraits_array^8
+			}
+
+			paranoia_photo_9 = {
+				frame = SOV_paranoia_generic_portraits_array^9
+			}
+
+			paranoia_photo_10 = {
+				frame = SOV_paranoia_generic_portraits_array^10
+			}
+
+			paranoia_photo_11 = {
+				frame = SOV_paranoia_generic_portraits_array^11
+			}
+
+			paranoia_photo_12 = {
+				frame = SOV_paranoia_generic_portraits_array^12
+			}
+
+			paranoia_main_paranoiameter = {
+				frame = SOV_paranoia_main_paranoiameter
+			}
+
+			paranoia_main_needle = {
+				frame = SOV_paranoia_main_paranoiameter
+			}
+		} 
+	}
+	
+HMP_soviet_lend_lease_system_ui = {
+		context_type = decision_category
+		visible = {   	}		 
+		effects = {
+			increase_ll_gun_click = { if = { limit = { has_equipment = { infantry_equipment > 25000   } has_equipment = { convoy > 4   } SOV_ll_check_trigger = yes }   hidden_effect= { HMP_guns_to_swe = yes } }	  }
+			increase_ll_arty_click = {	 if = { limit = {has_equipment = { artillery_equipment > 4000   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }  hidden_effect= { HMP_arty_to_swe = yes }   }	 }			
+			increase_ll_rarty_click = {	 if = { limit = {has_equipment = { rocket_artillery_equipment > 2500   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }   hidden_effect= { HMP_rarty_to_swe = yes }  }	 }
+			increase_ll_at_click = {	 if = { limit = {has_equipment = { anti_tank_equipment > 3000   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }   hidden_effect= { HMP_at_to_swe = yes } }	  }
+			increase_ll_aa_click = {	 if = { limit = {has_equipment = { anti_air_equipment > 3250   }  has_equipment = {  convoy > 4 } SOV_ll_check_trigger = yes }  hidden_effect= { HMP_aa_to_swe = yes } }	   }
+			increase_ll_sup_click = {	 if = { limit = {has_equipment = { support_equipment > 2857   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }  hidden_effect= { HMP_sup_to_swe = yes }  }	  }
+			
+			increase_ll_fighter_click = {	 if = { limit = {has_equipment = { small_plane_airframe > 250   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }  	 hidden_effect= { HMP_fighter_to_swe = yes }  } }
+			increase_ll_cas_click = {	 if = { limit = {has_equipment = { small_plane_cas_airframe > 250   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }  hidden_effect= { HMP_cas_to_swe = yes }  }	  }
+			increase_ll_mot_click = {	 if = { limit = {has_equipment = { motorized_equipment > 5000   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }  hidden_effect= { HMP_mot_to_swe = yes }   }	 }
+			increase_ll_mech_click = {	 if = { limit = {has_equipment = { mech_chassis > 1000   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }   hidden_effect= { HMP_mech_to_swe = yes } }	  }			
+			increase_ll_light_click = {	 if = { limit = {has_equipment = { light_tank_chassis > 400   }  has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes } hidden_effect= { HMP_light_to_swe = yes }  }	   }			
+			increase_ll_med_click = {	 if = { limit = { has_equipment = { medium_tank_chassis > 250   } has_equipment = { convoy > 4 } SOV_ll_check_trigger = yes }  hidden_effect= { HMP_med_to_swe = yes }   }	 }		
+
+			iran_go_to_click = { goto_state = 412 }
+			murmansk_go_to_click = { goto_state = 213 }
+			gib_go_to_click = { goto_state = 118 }
+			malta_go_to_click = { goto_state = 116 }
+			crimea_go_to_click = { goto_state = 137 }
+			hawaii_go_to_click = { goto_state = 416 }
+			vladivostok_go_to_click = { goto_state = 408 }
+
+		}
+
+		
+		
+		window_name = "HMP_soviet_lend_lease_system_ui_window"
+		properties = {
+			HMP_soviet_lend_lease_system_iran  = {
+				image = "[GetSovIran]"
+			}
+				HMP_soviet_lend_lease_system_murmansk  = {
+				image = "[GetSovArctic]"
+			}		   
+			HMP_soviet_lend_lease_system_gib  = {
+				image = "[GetSovMedGibraltar]"
+			}		
+			HMP_soviet_lend_lease_system_malta  = {
+				image = "[GetSovMedMalta]"
+			}					
+			HMP_soviet_lend_lease_system_crimea  = {
+				image = "[GetSovMedCrimea]"
+			}			
+			HMP_soviet_lend_lease_system_vladivostok  = {
+				image = "[GetSovVladivostok]"
+			}			
+			HMP_soviet_lend_lease_system_hawaii  = {
+				image = "[GetSovPacific]"
+			}		
+			HMP_soviet_lend_lease_system_okinawa  = {
+				image = "[GetSovOkinawa]"
+			}		
+			HMP_soviet_lend_lease_system_iwo_jima  = {
+				image = "[GetSovIwoJima]"
+			}		
+			HMP_soviet_lend_lease_system_marcus  = {
+				image = "[GetSovMarcus]"
+			}					
+			HMP_soviet_lend_lease_system_palau  = {
+				image = "[GetSovPalau]"
+			}				
+				HMP_soviet_lend_lease_system_singapore  = {
+				image = "[GetSovSingapore]"
+			}						  
+			HMP_soviet_lend_lease_system_hong_kong  = {
+				image = "[GetSovHongKong]"
+			}						  
+			HMP_soviet_lend_lease_system_saipan  = {
+				image = "[GetSovSaipan]"
+			}						  			
+		}
+	} 
+	
+		fuel_tool_topbar_win = { 
+		context_type = player_context
+		window_name = "fuel_tool_topbar_win"
+		parent_window_token = logistics_tab
+		visible = {
+			OR ={  tag = GER tag = ENG tag = JAP }
+		}
+
+		effects = {
+			fuel_value_button_click = {
+					if = {
+						limit = {
+							has_variable = show_fuel_system_window
+						}
+						clear_variable = show_fuel_system_window
+					}
+					else = {
+						set_variable = { show_fuel_system_window = 1 }
+					}
+			}
+		}
+
+		triggers = {
+			fuel_value_button_click_enabled = {
+				OR = { Tag = GER tag = ENG tag = JAP }
+			}
+			fuel_value_button_visible = {
+				OR = { Tag = GER tag = ENG tag = JAP }
+			}
+		}
+	}
+
+	fuel_system_window = {
+		context_type = player_context
+		parent_window_token = logistics_tab
+		window_name = "fuel_system_window"
+
+		visible = {
+			check_variable = { show_fuel_system_window > 0 }
+		}
+
+		effects = {
+			horsttool_helpbutton2_click = {		ROOT = { country_event = { id =  horsthelp.1 } }	     }
+			refresh_button_click =  {
+				fuel_system_refresh_list = yes
+			}
+			close_button_click = {
+				clear_variable = show_fuel_system_window
+			}
+		
+			increase_fuel_priority_click = {
+				for_each_loop = {
+				array = ROOT.faction_members_array
+				if={limit={var:v={tag=PREV}} 
+				set_temp_variable={new_index = i}
+				add_to_temp_variable={new_index=-1}
+				if={limit={check_variable={new_index >-1}}
+				remove_from_array = {
+				array = ROOT.faction_members_array
+				value = THIS
+				}
+				add_to_array={
+				array = ROOT.faction_members_array
+				value = THIS
+				index=new_index
+				}
+				}
+				set_temp_variable={break=1}
+			}
+			}}
+			decrease_fuel_priority_click = {
+				for_each_loop = {
+				array = ROOT.faction_members_array
+				if={limit={var:v={tag=PREV}} 
+				set_temp_variable={new_index = i}
+				add_to_temp_variable={new_index=1}
+				if={limit={check_variable={new_index <ROOT.faction_members_array^num}}
+				remove_from_array = {
+				array = ROOT.faction_members_array
+				value = THIS
+				}
+				add_to_array={
+				array = ROOT.faction_members_array
+				value = THIS
+				index=new_index
+				}
+				}
+				set_temp_variable={break=1}
+			}
+			}}
+			decrease_fuel_priority_shift_click = {
+			remove_from_array = {
+				array = ROOT.faction_members_array
+				value = THIS
+				}
+				add_to_array={
+				array = ROOT.faction_members_array
+				value = THIS
+				}
+			}
+			increase_fuel_priority_shift_click = {
+			remove_from_array = {
+				array = ROOT.faction_members_array
+				value = THIS
+				}
+				add_to_array={
+				array = ROOT.faction_members_array
+				value = THIS
+				index=0
+				}
+			}
+			increase_min_fuel_button_click={
+			add_to_variable={min_fuel=0.05}
+			clamp_variable={
+			var=min_fuel
+			min=0.00
+			max=0.95
+			}
+			}
+			decrease_min_fuel_button_click={
+			add_to_variable={min_fuel=-0.05}
+			clamp_variable={
+			var=min_fuel
+			min=0.00
+			max=0.95
+			}
+			}
+			increase_min_fuel_button_shift_click={
+			add_to_variable={min_fuel=0.1}
+			clamp_variable={
+			var=min_fuel
+			min=0.00
+			max=0.95
+			}
+			}
+			decrease_min_fuel_button_shift_click={
+			add_to_variable={min_fuel=-0.1}
+			clamp_variable={
+			var=min_fuel
+			min=0.00 
+			max=0.95
+			}
+			}		
+		}
+
+		triggers = {
+			no_faction_members_info_visible = {
+				check_variable = { ROOT.faction_members_array^num < 1 }
+			}
+
+
+		}
+		properties = {
+			fuel_bar = {
+				x = fuel_bar_fuel
+			}
+		}
+
+		dynamic_lists = {
+			fuel_faction_members_gridbox = {
+				array = faction_members_array
+				entry_container = fuel_faction_members_entry
+				change_scope = yes
+			}
+		}
+	}
+
+
+		###THIS BLOCK HAS HORST TOOL STUFF, TALK TO LENNARD ABOUT THIS AS HE MADE IT###
+
+		tool_open= {
+		context_type = player_context
+		window_name = "horsttool_open_container"
+		visible = {	has_country_flag = host	}
+		effects = {
+			tool_open_click = {
+				if = {
+					limit = { ROOT = { NOT = { has_country_flag = transfer_enabled } } }
+					ROOT = { set_country_flag = transfer_enabled }
+				}
+				else = {
+					ROOT = { clr_country_flag = transfer_enabled }
+				}
+			}
+		}
+		triggers = {
+			tool_open_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	
+	
+	st_country_powers = {	
+		context_type = selected_state_context	
+		window_name = "horsttool_container"	
+		visible = {
+			ROOT = {
+				has_country_flag = host
+				has_country_flag = transfer_enabled
+			}
+		}	
+		effects = {
+
+
+			observer_click = {
+				owner = { 				
+				set_temp_variable = { ROOT.marks = this}	var:marks = { news_event = { id = news.4004 } }	DDR = {change_tag_from =var:marks}
+				}			
+			}
+			change_host_nation_click = {
+				ROOT = { clr_country_flag = host		}
+				owner = { set_country_flag = host	news_event = { id = news.4005 }	  }
+			}
+			
+			addpp_click = {
+				owner={
+					set_temp_variable = { ROOT.marks = this}
+					var:marks = { add_political_power = 50 news_event = { id = news.4002 } }
+				}
+			}
+		
+			clear_all_markings_click = {
+				ROOT = {
+					for_each_scope_loop={
+						array=marked_states
+						clear_variable=mark_status
+					}
+					clear_array=marked_states
+				}
+			}
+			
+			add_cores_click = {
+				owner={
+					set_temp_variable = { ROOT.taker = this}
+					for_each_loop={
+						array=ROOT.marked_states
+						value=state
+						var:state={add_core_of=var:taker}
+					}
+					ROOT = {
+						for_each_scope_loop={
+							array=marked_states
+							clear_variable=mark_status
+						}
+						clear_array=marked_states
+						clear_variable=first_marked_state
+					}
+				}
+			}
+						fix_production_click = { owner = { news_event = { id = news.4003 } add_timed_idea = { idea = fix_production_idea days = 1 }}  }
+						fix_xp_click = { owner = { news_event = { id = news.4113 } army_experience = 25 }  }
+
+			award_states_click = {
+
+				owner={
+					news_event = { id = news.4006 }
+					for_each_loop={
+						array=ROOT.marked_states
+						value=state
+						transfer_state = state
+					}
+									for_each_loop={
+						array=ROOT.marked_states
+						value=state
+						var:state={add_core_of=var:taker}
+					}
+					ROOT = {
+						for_each_scope_loop={
+							array=marked_states
+							clear_variable=mark_status
+						}
+						clear_array=marked_states
+					}
+					
+				}
+			}
+			add_cheat_click = {
+				set_variable = { ROOT.taker = this}
+				var:taker = {
+				owner={set_variable={Root.target_country = this}
+					if={limit={check_variable={Root.selected_cheat=1}} generic_bonus_1 = yes }
+					if={limit={check_variable={Root.selected_cheat=2}} generic_bonus_3 = yes }
+					if={limit={check_variable={Root.selected_cheat=3}} generic_bonus_2y = yes }
+					if={limit={check_variable={Root.selected_cheat=4}} generic_bonus_999 = yes }
+					}
+				}
+				GER={
+					set_variable={this.target_country=Root.target_country}
+					set_variable={this.selected_cheat=Root.selected_cheat}
+					news_event={id=horsttool.1}
+				}
+				clear_variable = ROOT.taker
+			}
+			
+		
+				annex_country_click = {
+				
+				owner={ set_variable = { ROOT.taker = this}}
+				var:ROOT.marked_states^0={owner={set_variable={ROOT.target=this   } news_event = { id = news.4007 }  }}
+				if={	limit={check_variable={ROOT.target=ROOT.taker}}	}
+				else={
+					var:ROOT.target={
+						var:ROOT.taker={
+							every_state = { limit = { is_core_of = var:ROOT.target} add_core_of = var:ROOT.taker}
+							annex_country={	target=PREV	transfer_troops=yes	}
+							add_to_variable = { paratrooper_div_cap = PREV.paratrooper_div_cap }
+							}
+						}
+					}
+					
+				ROOT = {
+					for_each_scope_loop={
+						array=marked_states
+						clear_variable=mark_status
+					}
+					clear_array=marked_states
+					clear_variable=target
+					clear_variable=taker
+					clear_variable=first_marked_state
+				}
+				GER = { fuel_system_refresh_list = yes }
+				ENG = { fuel_system_refresh_list = yes }
+			}	
+			
+			
+			toogle_mark_click = {
+				if={
+					limit={check_variable={mark_status=0}}
+					set_variable={mark_status=2}
+					add_to_array={ROOT.marked_states=THIS}
+				}
+				else={clear_variable=mark_status
+					remove_from_array={ROOT.marked_states=THIS}}
+				set_variable={ROOT.first_marked_state=ROOT.marked_states^0}
+			}				
+						pingtool_click = {
+				HMP_anti_building_exploit_effect = yes
+			}
+			mill_add_click = { owner={ news_event = { id = horsttool.11 days = 0} add_offsite_building = { type = arms_factory level = 5 }	}	} 
+			civ_add_click = {   owner={ news_event = { id = horsttool.12 days = 0} add_offsite_building = { type = industrial_complex level = 1 }		} }
+
+			horsttool_helpbutton_click = { ROOT = { country_event = { id =  horsthelp.2 } } }
+			annex_override_click= { hidden_effect = { owner = { set_country_flag = { flag = annex_manual_override days = 30 value = 1    } } } }
+			pause_blocker_all_click = { SWE =  { clear_variable = pause_blocker_variable set_variable = { var = pause_blocker_variable value = 1 } } ROOT={clr_global_flag=blocking_pauses} }#ALL CAN PAUSE
+			pause_blocker_host_click = { SWE =  { clear_variable = pause_blocker_variable set_variable = { var = pause_blocker_variable value = 2 } } ROOT={clr_global_flag=blocking_pauses } } #ONLY HOST CAN USE PAUSE BUTTON
+			pause_blocker_major_click = {if={limit={ROOT={has_global_flag=blocking_pauses}} SWE =  { clear_variable = pause_blocker_variable set_variable = { var = pause_blocker_variable value = 3 } }  ROOT={clr_global_flag=blocking_pauses}} else = {ROOT={set_global_flag = blocking_pauses } } }#ONLY MAJORS CAN PAUSE
+						
+				cb_red_click ={if={limit={Root={has_global_flag=colorblindness}} set_variable={Root.selected_color=1} ROOT={clr_global_flag=colorblindness}} else={ROOT={set_global_flag=colorblindness}}	}
+				cb_orange_click={set_variable={Root.selected_color=2} ROOT={clr_global_flag=colorblindness}}
+				cb_yellow_click={set_variable={Root.selected_color=3} ROOT={clr_global_flag=colorblindness}}
+				cb_green_click={set_variable={Root.selected_color=4} ROOT={clr_global_flag=colorblindness}}
+				cb_blue_click={set_variable={Root.selected_color=5} ROOT={clr_global_flag=colorblindness}}
+				cb_purple_click={set_variable={Root.selected_color=6} ROOT={clr_global_flag=colorblindness}}
+				cb_pink_click={set_variable={Root.selected_color=7} ROOT={clr_global_flag=colorblindness}}
+				cb_teal_click={set_variable={Root.selected_color=8} ROOT={clr_global_flag=colorblindness}}
+				cb_remove_click={set_variable={Root.selected_color=9} ROOT={clr_global_flag=colorblindness}}
+
+			add_color_click = {
+				set_variable = { ROOT.taker = this}
+				var:taker = {
+				owner={set_variable={Root.target_country = this}
+					if={limit={check_variable={Root.selected_color=1}} set_cosmetic_tag = COLORBLIND_RED   }
+					if={limit={check_variable={Root.selected_color=2}} set_cosmetic_tag = COLORBLIND_ORANGE }
+					if={limit={check_variable={Root.selected_color=3}} set_cosmetic_tag = COLORBLIND_YELLOW }
+					if={limit={check_variable={Root.selected_color=4}} set_cosmetic_tag = COLORBLIND_GREEN }
+						if={limit={check_variable={Root.selected_color=5}} set_cosmetic_tag = COLORBLIND_BLUE }
+					if={limit={check_variable={Root.selected_color=6}} set_cosmetic_tag = COLORBLIND_PURPLE }
+					if={limit={check_variable={Root.selected_color=7}} set_cosmetic_tag = COLORBLIND_PINK }
+					if={limit={check_variable={Root.selected_color=8}} set_cosmetic_tag = COLORBLIND_TEAL }	
+					if={limit={check_variable={Root.selected_color=9}}
+					drop_cosmetic_tag = yes 
+
+					}	
+					}
+				}
+				GER={
+					set_variable={this.target_country=Root.target_country}
+					set_variable={this.selected_cheat=Root.selected_color}
+					news_event={id=horsttool.31} #change
+				}
+				clear_variable = ROOT.taker
+			}
+		
+		
+		
+			
+				cheat1_click={if={limit={Root={has_country_flag=cheating}} set_variable={Root.selected_cheat=1} ROOT={clr_country_flag=cheating}} else={ROOT={set_country_flag=cheating}}	}
+				cheat2_click={set_variable={Root.selected_cheat=2} ROOT={clr_country_flag=cheating}}
+				cheat3_click={set_variable={Root.selected_cheat=3} ROOT={clr_country_flag=cheating}}
+				cheat4_click={set_variable={Root.selected_cheat=4} ROOT={clr_country_flag=cheating}}
+			}
+			properties = {
+				toogle_mark={ frame = mark_status }
+			}
+		
+		triggers = {
+			observer_click_enabled = {owner = { is_ai=no}	}	
+			observer_visible = {	}		
+			add_cheat_click_enabled = {check_variable={Root.selected_cheat>0}}
+			
+				cb_red_visible ={	}
+				cb_orange_visible={ ROOT={has_global_flag=colorblindness}}
+				cb_yellow_visible={ROOT={has_global_flag=colorblindness}}
+				cb_green_visible={ROOT={has_global_flag=colorblindness}}
+				cb_blue_visible={ROOT={has_global_flag=colorblindness}}
+				cb_purple_visible={ROOT={has_global_flag=colorblindness}}
+				cb_pink_visible={ROOT={has_global_flag=colorblindness}}
+				cb_teal_visible={ROOT={has_global_flag=colorblindness}}
+				cb_remove_visible={ROOT={has_global_flag=colorblindness}}
+				
+				cb_red_text_visible ={	}
+				cb_orange_text_visible={ ROOT={has_global_flag=colorblindness}}
+				cb_yellow_text_visible={ ROOT={has_global_flag=colorblindness}}
+				cb_green_text_visible={ ROOT={has_global_flag=colorblindness}}
+				cb_blue_text_visible={ROOT={has_global_flag=colorblindness}}
+				cb_purple_text_visible={ROOT={has_global_flag=colorblindness}}
+				cb_pink_text_visible={ ROOT={has_global_flag=colorblindness}}
+				cb_teal_text_visible={ROOT={has_global_flag=colorblindness}}
+				cb_remove_text_visible={ROOT={has_global_flag=colorblindness}}
+			pause_blocker_all_visible ={ has_global_flag=blocking_pauses}
+			pause_blocker_major_visible ={ }
+			pause_blocker_host_visible ={has_global_flag=blocking_pauses }	
+			pause_blocker_all_text_visible ={ has_global_flag=blocking_pauses}
+			pause_blocker_major_text_visible ={ }
+			pause_blocker_host_text_visible ={has_global_flag=blocking_pauses }
+			cheat1_visible={}
+			annex_country_click_enabled = {	check_variable = { ROOT.marked_states^num > 0 }	}
+			cheat1_text_visible={}
+			cheat2_visible={ROOT={has_country_flag=cheating}}
+			cheat3_visible={ROOT={has_country_flag=cheating}}
+			cheat4_visible={ROOT={has_country_flag=cheating}}
+			cheat2_text_visible={ROOT={has_country_flag=cheating}}
+			cheat3_text_visible={ROOT={has_country_flag=cheating}}
+			award_states_click_enabled = {	check_variable = { ROOT.marked_states^num > 0 }	}
+			mill_add_click_enabled = {  	}
+			civ_add_click_enabled = {  	}
+			change_host_nation_click_enabled ={  }
+			fix_production_click_enabled ={  }
+			fix_xp_click_enabled ={  }
+			cheat4_text_visible={ROOT={has_country_flag=cheating}}
+			clear_all_markings_click_enabled = { check_variable = { ROOT.marked_states^num > 0 } }	
+			add_cores_click_enabled = { check_variable = { ROOT.marked_states^num > 0 }	}
+		}
+        
+	}
+	
+	
+			topbar_resource_toogle_window = {
+		context_type = player_context
+		window_name = "topbar_resource_toogle_window"
+		parent_window_token = trade_tab
+		effects = {
+		toogle_button_click={
+		if={limit={check_variable={resources_disabled=0}}
+		set_variable={resources_disabled=1}}
+		else={clear_variable=resources_disabled}
+		}
+		}
+
+	}
+		topbar_resource= {
+		context_type = player_context
+		window_name = "topbar_resource_container"
+		visible = {	check_variable={resources_disabled=0}	}
+	}
+	
+
+	JAP_propaganda_campaigns_ui = {
+		context_type = decision_category
+		window_name = "JAP_propaganda_campaigns_ui_window"
+		properties = {
+			propaganda_poster_JAP_left = {
+				image = "[GetJapPropagandaLeftSlotAge]"
+				frame = X_JAP_poster_left_icon_frame
+			}
+			propaganda_poster_JAP_center = {
+				image = "[GetJapPropagandaCenterSlotAge]"
+				frame = X_JAP_poster_center_icon_frame
+			}
+			propaganda_poster_JAP_right = {
+				image = "[GetJapPropagandaRightSlotAge]"
+				frame = X_JAP_poster_right_icon_frame
+			}
+		}
+	}
+
+	GER_propaganda_campaigns_ui = {
+		context_type = decision_category
+		window_name = "GER_propaganda_campaigns_ui_window"
+		properties = {
+			propaganda_poster_GER_left = {
+				image = "[GetGERPropagandaLeftSlotAge]"
+				frame = X_GER_poster_left_icon_frame
+			}
+			propaganda_poster_GER_center = {
+				image = "[GetGERPropagandaCenterSlotAge]"
+				frame = X_GER_poster_center_icon_frame
+			}
+			propaganda_poster_GER_right = {
+				image = "[GetGERPropagandaRightSlotAge]"
+				frame = X_GER_poster_right_icon_frame
+			}
+		}
+	}
+
+	USA_propaganda_campaigns_ui = {
+		context_type = decision_category
+		window_name = "USA_propaganda_campaigns_ui_window"
+		properties = {
+			propaganda_poster_USA_left = {
+				image = "[GetUSAPropagandaLeftSlotAge]"
+				frame = X_USA_poster_left_icon_frame
+			}
+			propaganda_poster_USA_center = {
+				image = "[GetUSAPropagandaCenterSlotAge]"
+				frame = X_USA_poster_center_icon_frame
+			}
+			propaganda_poster_USA_right = {
+				image = "[GetUSAPropagandaRightSlotAge]"
+				frame = X_USA_poster_right_icon_frame
+			}
+		}
+	}
+
+	ENG_propaganda_campaigns_ui = {
+		context_type = decision_category
+		window_name = "ENG_propaganda_campaigns_ui_window"
+		properties = {
+			propaganda_poster_ENG_left = {
+				image = "[GetENGPropagandaLeftSlotAge]"
+				frame = X_ENG_poster_left_icon_frame
+			}
+			propaganda_poster_ENG_center = {
+				image = "[GetENGPropagandaCenterSlotAge]"
+				frame = X_ENG_poster_center_icon_frame
+			}
+			propaganda_poster_ENG_right = {
+				image = "[GetENGPropagandaRightSlotAge]"
+				frame = X_ENG_poster_right_icon_frame
+			}
+		}
+	}
+
+	ITA_propaganda_campaigns_ui = {
+		context_type = decision_category
+		window_name = "ITA_propaganda_campaigns_ui_window"
+		properties = {
+			propaganda_poster_ITA_left = {
+				image = "[GetITAPropagandaLeftSlotAge]"
+				frame = X_ITA_poster_left_icon_frame
+			}
+			propaganda_poster_ITA_center = {
+				image = "[GetITAPropagandaCenterSlotAge]"
+				frame = X_ITA_poster_center_icon_frame
+			}
+			propaganda_poster_ITA_right = {
+				image = "[GetITAPropagandaRightSlotAge]"
+				frame = X_ITA_poster_right_icon_frame
+			}
+		}
+	}
+	
+		open_naval_calculator_production_button = {
+		context_type = player_context
+		window_name = "production_naval_calculator_open_button"
+		parent_window_token = production_tab
+
+		dirty = global.update_monie_ui
+
+		effects = {
+			open_naval_calculator_production_button_click = {
+				if = {
+					limit = { NOT = { has_country_flag = open_naval_cap_calculator } }
+					set_country_flag = open_naval_cap_calculator
+				}
+				else = {
+					clr_country_flag = open_naval_cap_calculator
+				}
+			}
+		}
+	}
+
+    # Naval Calculator Screen
+	calculator_tab = {
+		context_type = player_context
+		window_name = "calculator_tab"
+
+		dirty = global.update_monie_ui
+
+		visible = {
+			ROOT = {
+				OR = {
+					has_country_flag = open_naval_cap_calculator
+				}
+			}
+		}
+
+		triggers = {
+
+			# Destroyers
+			increase_destroyer_count_calculator_click_enabled = {
+				check_variable = { var = destroyer_count_calculator value = 0 compare = greater_than_or_equals }
+				check_variable = { var = destroyer_count_calculator value = 150 compare = less_than }
+			}
+
+			decrease_destroyer_count_calculator_click_enabled = {
+				check_variable = { var = destroyer_count_calculator value = 0 compare = greater_than }
+			}
+
+			# Light Cruisers
+			increase_light_cruiser_count_calculator_click_enabled = {
+				check_variable = { var = light_cruiser_count_calculator value = 0 compare = greater_than_or_equals }
+				check_variable = { var = light_cruiser_count_calculator value = 150 compare = less_than }
+			}
+
+			decrease_light_cruiser_count_calculator_click_enabled = {
+				check_variable = { var = light_cruiser_count_calculator value = 0 compare = greater_than }
+			}
+
+			# Heavy Cruisers
+			increase_heavy_cruiser_count_calculator_click_enabled = {
+				check_variable = { var = heavy_cruiser_count_calculator value = 0 compare = greater_than_or_equals }
+				check_variable = { var = heavy_cruiser_count_calculator value = 150 compare = less_than }
+			}
+
+			decrease_heavy_cruiser_count_calculator_click_enabled = {
+				check_variable = { var = heavy_cruiser_count_calculator value = 0 compare = greater_than }
+			}
+
+			# Battleships
+			increase_battleship_count_calculator_click_enabled = {
+				check_variable = { var = battleship_count_calculator value = 0 compare = greater_than_or_equals }
+				check_variable = { var = battleship_count_calculator value = 150 compare = less_than }
+			}
+			decrease_battleship_count_calculator_click_enabled = {
+				check_variable = { var = battleship_count_calculator value = 0 compare = greater_than }
+				check_variable = { var = battleship_count_calculator value = 150 compare = less_than_or_equals }
+			}
+
+			# Battlecruisers
+			increase_battlecruiser_count_calculator_click_enabled = {
+				check_variable = { var = battlecruiser_count_calculator value = 0 compare = greater_than_or_equals }
+				check_variable = { var = battlecruiser_count_calculator value = 150 compare = less_than }
+			}
+			decrease_battlecruiser_count_calculator_click_enabled = {
+				check_variable = { var = battlecruiser_count_calculator value = 0 compare = greater_than }
+				check_variable = { var = battlecruiser_count_calculator value = 150 compare = less_than_or_equals }
+			}
+
+			# Carriers
+			increase_carrier_count_calculator_click_enabled = {
+				check_variable = { var = carrier_count_calculator value = 0 compare = greater_than_or_equals }
+				check_variable = { var = carrier_count_calculator value = 150 compare = less_than }
+			}
+			decrease_carrier_count_calculator_click_enabled = {
+				check_variable = { var = carrier_count_calculator value = 0 compare = greater_than }
+				check_variable = { var = carrier_count_calculator value = 150 compare = less_than_or_equals }
+			}
+
+			# SHBB
+			increase_shbb_count_calculator_click_enabled = {
+				check_variable = { var = shbb_count_calculator value = 0 compare = greater_than_or_equals }
+				check_variable = { var = shbb_count_calculator value = 150 compare = less_than }
+			}
+			decrease_shbb_count_calculator_click_enabled = {
+				check_variable = { var = shbb_count_calculator value = 0 compare = greater_than }
+				check_variable = { var = shbb_count_calculator value = 150 compare = less_than_or_equals }
+			}
+
+		}
+
+		effects = {
+			close_naval_cap_calculator_click = {
+				clr_country_flag = open_naval_cap_calculator
+			}
+
+		  # Destroyer Increase/Decrease
+			increase_destroyer_count_calculator_click = {
+				add_to_variable = { destroyer_count_calculator = 1 }
+				add_to_variable = { destroyer_count_calculator_total = 1 }
+				clamp_variable = {
+					var = destroyer_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+
+			}
+			decrease_destroyer_count_calculator_click = {
+				subtract_from_variable = { destroyer_count_calculator = 1 }
+				subtract_from_variable = { destroyer_count_calculator_total = 1 }
+				clamp_variable = {
+					var = destroyer_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+
+		  # Light Cruiser Increase/Decrease
+			increase_light_cruiser_count_calculator_click = {
+				add_to_variable = { light_cruiser_count_calculator = 1 }
+				add_to_variable = { light_cruiser_count_calculator_total = 2 }
+				clamp_variable = {
+					var = light_cruiser_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+			decrease_light_cruiser_count_calculator_click = {
+				subtract_from_variable = { light_cruiser_count_calculator = 1 }
+				subtract_from_variable = { light_cruiser_count_calculator_total = 2 }
+				clamp_variable = {
+					var = light_cruiser_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+
+		  # Heavy Cruiser Increase/Decrease
+			increase_heavy_cruiser_count_calculator_click = {
+				add_to_variable = { heavy_cruiser_count_calculator = 1 }
+				add_to_variable = { heavy_cruiser_count_calculator_total = 2 }
+				clamp_variable = {
+					var = heavy_cruiser_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+			decrease_heavy_cruiser_count_calculator_click = {
+				subtract_from_variable = { heavy_cruiser_count_calculator = 1 }
+				subtract_from_variable = { heavy_cruiser_count_calculator_total = 2 }
+				clamp_variable = {
+					var = heavy_cruiser_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+
+		  # Battleship Increase/Decrease
+			increase_battleship_count_calculator_click = {
+				add_to_variable = { battleship_count_calculator = 1 }
+				add_to_variable = { battleship_count_calculator_total = 4 }
+				clamp_variable = {
+					var = battleship_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+			decrease_battleship_count_calculator_click = {
+				subtract_from_variable = { battleship_count_calculator = 1 }
+				subtract_from_variable = { battleship_count_calculator_total = 4 }
+				clamp_variable = {
+					var = battleship_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+
+		  # Battlecruiser Increase/Decrease
+			increase_battlecruiser_count_calculator_click = {
+				add_to_variable = { battlecruiser_count_calculator = 1 }
+				add_to_variable = { battlecruiser_count_calculator_total = 4 }
+				clamp_variable = {
+					var = battlecruiser_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+			decrease_battlecruiser_count_calculator_click = {
+				subtract_from_variable = { battlecruiser_count_calculator = 1 }
+				subtract_from_variable = { battlecruiser_count_calculator_total = 4 }
+				clamp_variable = {
+					var = battlecruiser_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+
+		  # Carrier Increase/Decrease
+			increase_carrier_count_calculator_click = {
+				add_to_variable = { carrier_count_calculator = 1 }
+				add_to_variable = { carrier_count_calculator_total = 6 }
+				clamp_variable = {
+					var = carrier_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+			decrease_carrier_count_calculator_click = {
+				subtract_from_variable = { carrier_count_calculator = 1 }
+				subtract_from_variable = { carrier_count_calculator_total = 6 }
+				clamp_variable = {
+					var = carrier_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+
+		  # SHBB Increase/Decrease
+			increase_shbb_count_calculator_click = {
+				add_to_variable = { shbb_count_calculator = 1 }
+				add_to_variable = { shbb_count_calculator_total = 6 }
+				clamp_variable = {
+					var = shbb_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+			decrease_shbb_count_calculator_click = {
+				subtract_from_variable = { shbb_count_calculator = 1 }
+				subtract_from_variable = { shbb_count_calculator_total = 6 }
+				clamp_variable = {
+					var = shbb_count_calculator
+					min = 0
+					max = 150
+				}
+				ingame_update_setup = yes
+				refresh_gui = yes
+				calculator_fleet_size = yes
+			}
+
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

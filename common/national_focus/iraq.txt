@@ -1,0 +1,448 @@
+focus_tree = {
+	id = iraq_focus_tree
+	country = {	
+	factor = 0 		
+	modifier = {
+			add = 10
+			tag = ALB
+		} 	   
+	}
+	default = no
+	reset_on_civilwar = no
+	
+	  					focus = {
+		id = IRQ_ita_revolution
+		icon = GFX_focus_befriend_italy
+		x = 4  
+		y = 0
+		cost = 5
+		available = {always = no }
+		available_if_capitulated = yes
+mutually_exclusive = { focus = IRQ_revolution }
+
+		completion_reward = { 
+		GER= { add_to_faction = ALB }
+				 add_ideas = Mahmud_Salman 
+		 add_ideas = Salah_ad_Din_al_Sabbagh 
+		 add_ideas = kamil_shabib
+			 add_ideas = Fahmi_Said 
+			the_golden_coup_has_been_launched = yes 
+		set_cosmetic_tag = ALB_IRQ 
+		 			if = { limit = {ALB ={ is_ai = yes } }
+			ITA = { activate_decision = ITA_end_iraq }
+		}
+			hidden_effect = {
+			give_resource_rights = { receiver = ITA state = 593 }
+			give_resource_rights = { receiver = ITA state = 592 }
+			give_resource_rights = { receiver = ITA state = 291 }
+			}
+		}
+	}		
+	
+	
+					focus = {
+		id = IRQ_revolution
+		icon = GFX_focus_attack_britain
+		x = 6  
+		y = 0
+		cost = 30
+		available_if_capitulated = yes
+		mutually_exclusive = { focus = IRQ_ita_revolution }
+		available = { is_ai = no }
+		select_effect = {
+			country_event = { id = iraq_hist.1 days = 150 } 
+		}
+		completion_reward = {
+		GER= { add_to_faction = ALB }
+		if = { limit = { ENG = { has_full_control_of_state = 291 } }
+		hidden_effect = { tp_divs_out_of_iraq = yes }
+		}
+			add_timed_idea = { idea = IRQ_the_revolution days = 90 }
+				 add_ideas = Mahmud_Salman 
+		 add_ideas = Salah_ad_Din_al_Sabbagh 
+		 add_ideas = kamil_shabib
+			 add_ideas = Fahmi_Said 
+		the_golden_coup_has_been_launched = yes 
+		set_cosmetic_tag = ALB_IRQ	
+		
+		if = { limit = {ALB ={ is_ai = yes } }
+			ITA = { activate_decision = ITA_end_iraq }
+		}
+	 			hidden_effect = {
+			give_resource_rights = { receiver = ITA state = 593 }
+			give_resource_rights = { receiver = ITA state = 592 }
+			give_resource_rights = { receiver = ITA state = 291 }
+			}
+		 
+
+		}
+	}		
+	
+			focus = {
+		id = IRQ_the_golden_square_coup
+		icon = GFX_focus_TUR_support_the_golden_square
+		x = -1  
+		y = 1
+		cost = 5
+ 		relative_position_id = IRQ_revolution
+		prerequisite = { focus = IRQ_revolution focus = IRQ_ita_revolution }
+		available_if_capitulated = yes
+		available = { 
+		any_country = { OR = { tag = ALB is_in_faction_with = ALB }  controls_state =  593 }
+		any_country = {  OR = { tag = ALB is_in_faction_with = ALB }  controls_state =  592 }
+		any_country = {  OR = { tag = ALB is_in_faction_with = ALB }  controls_state =  594 }
+		}
+		completion_reward = {
+		add_ideas = rashid_ali_algaylani
+		add_ideas = Nadi_al_Muthanna 
+		add_ideas = sami_shawkat
+		 transfer_state = 592  transfer_state = 593  transfer_state = 594   
+		hidden_effect ={
+		
+		GER ={ 
+				create_import = {
+    resource = oil
+    amount = 750
+    exporter = ITA
+}
+}
+		}
+					remove_country_leader_trait = anti_british_revolutionary
+			add_country_leader_trait = anti_british_revolutionary2
+
+		} 
+	}
+	
+	    focus = {
+		id = IRQ_retool_the_army
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = IRQ_the_golden_square_coup }
+		relative_position_id = IRQ_the_golden_square_coup
+		x = 2
+		y = 1
+		cost = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = IRQ_retool_the_army
+				uses = 2
+				bonus = 1
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				name = IRQ_retool_the_army
+				uses = 2
+				bonus = 1
+				category = artillery
+			}			
+		}
+	}
+    
+			focus = {
+		id = IRQ_army_doctrine
+		icon = GFX_focus_generic_military_mission
+		x = 5
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_the_golden_square_coup
+		prerequisite = { focus = IRQ_the_golden_square_coup }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = { id = iran.6 }
+		}
+	}
+				focus = {
+		id = IRQ_army_doctrine2
+		icon = GFX_focus_generic_military_academy 
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_army_doctrine
+		prerequisite = { focus = IRQ_army_doctrine }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 50
+		}
+	}  
+				focus = { 
+		id = IRQ_army_doctrine3
+		icon = GFX_goal_generic_military_sphere
+		x = 2
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_army_doctrine
+		prerequisite = { focus = IRQ_army_doctrine }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = IRQ_army_doctrine3
+				cost_reduction = 0.99
+				uses = 6
+				category = cat_mountaineers_doctrine
+			}
+		}
+	}
+					focus = {
+		id = IRQ_army_doctrine4
+		icon = GFX_focus_generic_little_entente
+		x = -2
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_army_doctrine
+		prerequisite = { focus = IRQ_army_doctrine }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = militarism_focus
+		}
+	}
+	
+						focus = {
+		id = IRQ_army_doctrine5
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_army_doctrine2
+		prerequisite = { focus = IRQ_army_doctrine2 }
+		available_if_capitulated = yes
+
+		completion_reward = {
+				remove_country_leader_trait = anti_british_revolutionary2
+			add_country_leader_trait = anti_british_revolutionary3
+		}
+	}
+		
+				focus = { 
+		id = IRQ_eco1
+		icon = GFX_goal_generic_production2
+		x = -5
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_the_golden_square_coup
+		prerequisite = { focus = IRQ_the_golden_square_coup }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MAN_national_defense_state
+		}
+	}	
+					focus = { 
+		id = IRQ_eco2
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 1
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_eco1
+		prerequisite = { focus = IRQ_eco1 focus = IRQ_eco3 }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			291 = { add_extra_state_shared_building_slots = 1 }
+			594 = { add_extra_state_shared_building_slots = 1 }
+			554 = { add_extra_state_shared_building_slots = 1 }
+			590 = { add_extra_state_shared_building_slots = 1 }
+			455 = { add_extra_state_shared_building_slots = 2 }
+			454 = { add_extra_state_shared_building_slots = 2 }
+			453 = { add_extra_state_shared_building_slots = 2 }
+			413 = { add_extra_state_shared_building_slots = 2 }
+			421 = { add_extra_state_shared_building_slots = 2 }
+		}
+	}		
+						focus = { 
+		id = IRQ_eco3
+		icon = GFX_focus_generic_annex_country_2
+		x = -3
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_the_golden_square_coup
+		bypass = { EFR = { is_ai = no } }
+		prerequisite = { focus = IRQ_the_golden_square_coup }
+		available =  { OR = { controls_state = 554 ITA = { controls_state = 554 }} }
+
+		completion_reward = {
+		590 = {
+		add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}	
+					add_building_construction = {
+					type = naval_base
+					province = 792
+					level = 5
+					instant_build = yes
+				}	
+		}
+			554 = {
+			add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}	
+				
+	
+			}
+						589 = {
+			add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}	
+				
+	
+			}
+		}
+	}		
+							focus = { 
+		id = IRQ_eco4
+		icon = GFX_focus_generic_air_defense
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_eco2
+		prerequisite = { focus = IRQ_eco2 }
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_state = { limit = { is_core_of = ALB }
+		add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}		
+	
+					focus = { 
+		id = IRQ_revolution2
+		icon = GFX_EGY_Coordinate_with_Al_Fatat
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_the_golden_square_coup
+		prerequisite = { focus = IRQ_the_golden_square_coup }
+		available_if_capitulated = yes
+		available =  { OR = { controls_state = 554 ITA = { controls_state = 554 }} }
+		bypass = { EFR = { is_ai = no } }
+		completion_reward = {
+		hidden_effect = { set_cosmetic_tag = ALB_IRQSYR } custom_effect_tooltip = "We will be known as Golden Square Iraq and Syria"
+			transfer_state = 554 add_state_core = 554 transfer_state = 589 add_state_core = 589 transfer_state = 590 add_state_core = 590 transfer_state = 591 add_state_core = 591
+								hidden_effect = {
+			give_resource_rights = { receiver = ITA state = 554 }
+			give_resource_rights = { receiver = ITA state = 589 }
+			give_resource_rights = { receiver = ITA state = 590 }
+			give_resource_rights = { receiver = ITA state = 591 }
+			}
+		}
+	}		
+	
+	
+						focus = {
+		id = IRQ_revolution3
+		icon = GFX_focus_generic_strike_at_democracy1
+		x = -1
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_revolution2 
+		prerequisite = { focus = IRQ_revolution2 }
+		available_if_capitulated = yes
+		available =  { OR = { controls_state = 455 ITA = { controls_state = 455 }} }
+
+		completion_reward = {
+			transfer_state = 455 add_state_core = 455
+					hidden_effect = {
+			give_resource_rights = { receiver = ITA state = 455 }
+			}
+		}
+	}	
+	
+						focus = {
+		id = IRQ_revolution4
+		icon = GFX_goal_generic_improve_relations	
+		x = 1
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_revolution2
+		prerequisite = { focus = IRQ_revolution2 }
+		available_if_capitulated = yes
+		available =  { OR = { controls_state = 454 ITA = { controls_state = 454 }} }
+
+		completion_reward = {
+				transfer_state = 454 add_state_core = 454	transfer_state = 453 add_state_core = 453
+									hidden_effect = {
+			give_resource_rights = { receiver = ITA state = 454 } give_resource_rights = { receiver = ITA state = 453 }
+			}
+		}
+	}	
+	
+	focus = {
+		id = IRQ_revolution5
+		icon = GFX_focus_generic_treaty
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_revolution4
+		prerequisite = { focus = IRQ_revolution3 focus = IRQ_revolution4 }
+		available_if_capitulated = yes
+		available =  { OR = { controls_state = 413 ITA = { controls_state = 413 }} }
+
+		completion_reward = {
+			transfer_state = 413 add_state_core = 413
+					hidden_effect = {
+			give_resource_rights = { receiver = ITA state = 413 } 
+			}			
+		}
+	}	
+	focus = {
+		id = IRQ_revolution6
+		icon = GFX_goal_generic_political_pressure
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_revolution3
+		prerequisite = { focus = IRQ_revolution3 focus = IRQ_revolution4 }
+		available_if_capitulated = yes
+		available =  { OR = { controls_state = 421 ITA = { controls_state = 421 }} }
+		completion_reward = {
+			transfer_state = 421 add_state_core = 421	
+	hidden_effect = {
+			give_resource_rights = { receiver = ITA state = 421 } 
+			}				
+		}
+	}	
+		focus = {
+		id = IRQ_revolution7
+		icon = GFX_IRQ_Home_of_Civilisation
+		x = 1
+		y = 1
+		cost = 5
+		relative_position_id = IRQ_revolution6
+		prerequisite = {  focus = IRQ_revolution6 } prerequisite = {  focus = IRQ_revolution5 } prerequisite = {  focus = IRQ_eco4 }  prerequisite = {  focus = IRQ_army_doctrine5 }   
+		#available = { always = no}
+		completion_reward = {
+			add_timed_idea = { idea = IRQ_empire days = 365 }
+			hidden_effect = {  set_cosmetic_tag = IRQ_ASSYRIA } custom_effect_tooltip = "We will be known as Assyrian State"
+		}
+	}	
+	
+}

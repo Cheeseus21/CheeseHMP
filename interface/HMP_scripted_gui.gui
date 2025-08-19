@@ -1,0 +1,4644 @@
+guiTypes = { 
+@POSTER_LEFT_X = 10
+@POSTER_CENTER_X = 170
+@POSTER_RIGHT_X = 325
+@BACKGROUND_X = -3 #Should be 0 but the UI moves to the right once after activating GUI or taking a dec
+@BACKGROUND_Y = 0
+@POSTERS_Y = 0
+@TEXT_LEFT_X = 15
+@TEXT_CENTER_X = 170
+@TEXT_RIGHT_X = 315
+@TEXTS_Y = 215
+containerWindowType = {
+			name = "fuel_tool_topbar_win"
+		buttonType ={
+			name ="fuel_value_button"
+			spriteType = "GFX_division_designer_button"
+			buttonFont = "hoi_18mbs"
+			buttonText = "Fuel Manager"
+			position = { x=270 y=12}
+			Orientation = "UPPER_LEFT"
+		}
+	}
+	
+	
+
+	containerWindowType = {
+		name = "fuel_system_window"
+		position = { x = -606 y = 0 }
+		show_position = { x = 0 y = 0 }
+		size = { width = 550 height = 79%% }
+		show_animation_type = accelerated
+		hide_animation_type = accelerated
+		animation_time = 300
+
+		show_sound = menu_open_window
+
+		background = {
+			name = "Background"
+			spriteType = "GFX_tiled_plain_bg"
+		}
+		
+		iconType = {
+			name = "title_bg"
+			spriteType = "GFX_header_bg"
+			position = { x = 5 y = 7 }
+		}
+		buttonType = {
+			name = "refresh_button"
+			spriteType = "GFX_button_123x34"
+			position = { x = 350 y =9 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = "Refresh List"
+		}
+		instantTextboxType = {
+			name = "title"
+			position = { x = 45 y = 8 }
+			font = "hoi_36header"
+			text = "Fuel Manager"
+			maxWidth = 280
+			maxHeight = 20
+			fixedsize = yes
+		}
+		buttonType = {
+			name = "close_button"
+			spriteType = "GFX_closebutton"
+			position = { x = -42 y = 9 }
+			clicksound = click_close
+			orientation = upper_right
+			shortcut = "ESCAPE"
+			pdx_tooltip = "DIPLOMACY_CLOSE"
+		}
+		
+
+		containerWindowType = {
+			name = "states_window"
+			#position = { x = 0 y = 41 }
+			position = { x = 0 y = 41 }
+			size = { width = 100%% height = 100%% }
+			margin = { left = 12 right = 23 top = 12 bottom = 12 }
+			verticalScrollbar = "right_vertical_slider"
+			background = {
+				name = "background"
+				spriteType = "GFX_tiled_window2_1b_border"
+			}
+		containerWindowType = {
+		name = "distribution"
+		position = { x = 0 y = 0 }
+		size = { width = 514 height = 40 }
+		buttonType = {
+			name = "entry_bg_button"
+			spriteType = "GFX_tiled_header_1"
+			position = { x = 0 y = 0 }
+			size = { x = 514 y = 50 }
+			pdx_tooltip = "FALLOUT_GO_TO_STATE_TT"
+			
+		}
+		buttonType = {
+            name = "horsttool_helpbutton2" 
+            position = {x=465 y=3}
+           spriteType = "GFX_horst_help"
+            scale = 0.75
+            pdx_tooltip = "HORST_HELP"
+           pdx_tooltip_delayed = "HOST_HELP_DELAYED"
+         }
+		instantTextboxType = {
+			name = "entry_name"
+			position = { x = 10 y = 5 }
+			text = "Settings"
+			font = "hoi_36header"
+			format = left
+			maxWidth = 410
+			multiline = no
+			alwaystransparent = yes
+		}
+		instantTextboxType = {
+			name = "entry_name2"
+			position = { x = 150 y = 15 }
+			text = "Required Fuel Reserves:"
+			font = "hoi_18mbs"
+			format = left
+			maxWidth = 410
+			multiline = no
+			alwaystransparent = yes
+		}	
+				
+		instantTextboxType = {
+			name = "value_box"
+			position = {x=350 y=15 }
+			font = "hoi_18mbs"
+			text = "[?min_fuel|G%0]"
+			maxWidth = 40
+			#only_numbers = yes
+		}
+		
+		buttonType = {
+			name = "increase_min_fuel_button"
+			quadTextureSprite ="GFX_zoom_in"
+			position = { x = 382 y = 13 }
+			scale = 1
+			clicksound = click_default
+		}
+		
+		buttonType = {
+			name = "decrease_min_fuel_button"
+			quadTextureSprite ="GFX_zoom_out"
+			position = { x = 318 y = 13 }
+			scale = 1
+			clicksound = click_default
+		}
+		
+	}
+			gridboxtype = {
+				name = "fuel_faction_members_gridbox"
+				position = { x = 0 y = 60 }
+				size = { width = 100%% height = 100%% }
+				slotsize = { width = 1 height = 1 }
+				add_horizontal = no
+				max_slots_horizontal = 1
+				format = "UPPER_LEFT"
+			}
+
+			instantTextboxType = {
+				name = "no_faction_members_info"
+				position = { x = 5 y = 100 }
+				text = "No Faction Members"
+				font = "hoi_24header"
+				format = center
+				maxWidth = 500
+				maxHeight = 100
+				fixedsize = yes
+			}
+		}
+	}
+
+	containerWindowType = {
+		name = "fuel_faction_members_entry"
+		position = { x = 0 y = 0 }
+		size = { width = 514 height = 40 }
+		buttonType = {
+			name = "entry_bg_button"
+			spriteType = "GFX_tiled_header_1"
+			position = { x = 0 y = 0 }
+			size = { x = 514 y = 40 }
+			pdx_tooltip = "FALLOUT_GO_TO_STATE_TT"
+		}		
+		  
+		iconType = { 
+			name = "fuel_bar_bg"
+			spriteType = "GFX_fuel_progress_bar_bg"
+			scale = 1.25
+			position = { x = 160 y = 12 }
+		}
+		
+				iconType = {
+			name = "fuel_icon"
+			spriteType = "GFX_fuel"
+			position = { x = 135 y = 12 }
+		}	
+		
+		containerWindowType = {
+			name = "fuel_bar_window"
+			position = { x = 160 y = 12 }
+			size = { width=110 height=21 }
+			orientation = upper_left
+			clipping = yes
+			
+			iconType = {
+				name = "fuel_bar"
+				spriteType = "GFX_fuel_progress_bar"
+				position = { x=0 y=-22 }
+				alwaystransparent = yes
+				scale = 1.25
+			}
+			
+		}
+
+		instantTextboxType = { 	     
+			name = "entry2_name" 
+			position = { x = 175 y = 13 }
+			text = "country_fuel_info_tt"  
+			font = "hoi_16mbs" 
+			format = left
+			maxWidth = 410
+			multiline = no
+			alwaystransparent = yes
+			  
+		}	
+		instantTextboxType = {
+			name = "entry_name"
+			position = { x = 10 y = 10 }
+			text = "country_fuel_name_tt"
+			font = "hoi_18mbs"
+			format = left
+			maxWidth = 410
+			multiline = no
+			alwaystransparent = yes
+		}		
+		instantTextboxType = {
+			name = "entry3_name"
+			position = { x = 408 y = 13 }
+			text = "country_train_info_tt" 
+			font = "hoi_16mbs"
+			format = left
+			maxWidth = 410
+			multiline = no
+			alwaystransparent = yes
+			 
+		}	
+
+
+
+		buttonType = {
+			name = "increase_fuel_priority"
+			position = { x = 275 y = 8 }
+			quadTextureSprite = "GFX_arrow_up_small"
+			pdx_tooltip = "PRODUCTION_INCREASE_PRIORITY_LABEL"
+			pdx_tooltip_delayed = "PRODUCTION_PRIORITY_DELAYED"
+			clicksound = click_default
+		}
+		
+		buttonType = {
+			name = "decrease_fuel_priority"
+			position = { x = 295 y = 8 }
+			quadTextureSprite = "GFX_arrow_down_small"
+			pdx_tooltip = "PRODUCTION_DECREASE_PRIORITY_LABEL"
+			pdx_tooltip_delayed = "PRODUCTION_PRIORITY_DELAYED"
+			clicksound = click_default
+		}
+		instantTextboxType = {
+			name = "value_box"
+			position = {x=348 y=10 }
+			font = "hoi_18mbs"
+			text = "[?min_fuel|G%0]"
+			maxWidth = 40
+		}
+		
+		buttonType = {
+			name = "increase_min_fuel_button"
+			quadTextureSprite ="GFX_zoom_in"
+			position = { x = 380 y = 8 }
+			scale = 1
+			clicksound = click_default
+		}
+		
+		buttonType = {
+			name = "decrease_min_fuel_button"
+			quadTextureSprite ="GFX_zoom_out"
+			position = { x = 318 y = 8 }
+			scale = 1
+			clicksound = click_default
+		}
+		
+	}
+	
+	
+	
+	 ##TOPBARRESOURCES
+	containerWindowType = {
+			name = "topbar_resource_toogle_window"
+		buttonType ={
+			name ="toogle_button"
+			#spriteType = "GFX_generic_text_bg_203"
+			spriteType = "GFX_division_designer_button"
+			#spriteType = "GFX_button_transparent"
+			buttonFont = "hoi_18mbs"
+			buttonText = "Topbar Resources"
+			#frame=0
+			#quadTextureSprite = "GFX_military_deployment_add_line_btn"
+			position = { x=270 y=12}
+			Orientation = "UPPER_LEFT"
+			#alwaystransparent = yes
+		}
+	}
+	containerWindowType = {
+		name = "topbar_resource_container"
+		position = { x = 0 y = 4 }
+		Orientation = UPPER_LEFT
+		iconType ={
+			name ="aluminium_value_bg"
+			spriteType = "GFX_generic_box_smallest"
+			position = { x=967 y=0 }#abstand jeweils 73
+			Orientation = "UPPER_LEFT"
+		}
+		
+		iconType = {
+			name = "aluminium_icon"
+			position = { x=967 y=1 }
+			spriteType = "GFX_resources_strip"
+			frame = 2
+			scale=0.9
+			#pdx_tooltip = "disable_resources"
+		}
+		
+		instantTextboxType = {
+			name = "aluminium_value"
+			position = { x = 980 y = 4 }#x = 995
+			textureFile = ""
+			font = "hoi_18mbs"
+			borderSize = {x = 0 y = 0}
+			text= [aluminium_text]
+			maxWidth = 57
+			maxHeight = 24
+			fixedsize = yes
+			format = center
+			#pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+					}
+	
+		
+		iconType ={
+			name ="rubber_value_bg"
+			spriteType = "GFX_generic_box_smallest"
+			position = { x=1039 y=0 }#abstand jeweils 73
+			Orientation = "UPPER_LEFT"
+		}
+		
+		iconType = {
+			name = "rubber_icon"
+			position = { x=1039 y=-1 }
+			spriteType = "GFX_resources_strip"
+			frame = 3
+			scale=1
+			pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+		}
+		instantTextboxType = {
+			name = "rubber_value"
+			position = { x = 1052 y = 4 }#x = 995
+			textureFile = ""
+			font = "hoi_18mbs"
+			borderSize = {x = 0 y = 0}
+			text= [rubber_text]
+			maxWidth = 57
+			maxHeight = 24
+			fixedsize = yes
+			format = center
+			#pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+					}
+		iconType ={
+			name ="tungsten_value_bg"
+			spriteType = "GFX_generic_box_smallest"
+			position = { x=1111 y=0 }#abstand jeweils 73
+			Orientation = "UPPER_LEFT"
+		}
+		
+		iconType = {
+			name = "tungsten_icon"
+			position = { x=1111 y=1 }
+			spriteType = "GFX_resources_strip"
+			frame = 4
+			scale=0.9
+			pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+		}
+		instantTextboxType = {
+			name = "tungsten_value"
+			position = { x = 1124 y = 4 }#x = 995
+			textureFile = ""
+			font = "hoi_18mbs"
+			borderSize = {x = 0 y = 0}
+			text= [tungsten_text]
+			maxWidth = 57
+			maxHeight = 24
+			fixedsize = yes
+			format = center
+			#pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+					}
+		#steel			
+		iconType ={
+			name ="steel_value_bg"
+			spriteType = "GFX_generic_box_smallest"
+			position = { x=1183 y=0 }#abstand jeweils 73
+			Orientation = "UPPER_LEFT"
+		}
+		
+		iconType = {
+			name = "steel_icon"
+			position = { x=1183 y=1 }
+			spriteType = "GFX_resources_strip"
+			frame = 5
+			scale=0.9
+			pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+		}
+		instantTextboxType = {
+			name = "steel_value"
+			position = { x = 1196 y = 4 }#x = 995
+			textureFile = ""
+			font = "hoi_18mbs"
+			borderSize = {x = 0 y = 0}
+			text= [steel_text]
+			maxWidth = 57
+			maxHeight = 24
+			fixedsize = yes
+			format = center
+			#pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+					}
+		iconType ={
+			name ="chromium_value_bg"
+			spriteType = "GFX_generic_box_smallest"
+			position = { x=1255 y=0 }#abstand jeweils 73
+			Orientation = "UPPER_LEFT"
+		}
+		
+		iconType = {
+			name = "chromium_icon"
+			position = { x=1255 y=1 }
+			spriteType = "GFX_resources_strip"
+			frame = 6
+			scale=0.9
+			pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+		}
+		instantTextboxType = {
+			name = "chromium_value"
+			position = { x = 1268 y = 4 }#x = 995
+			textureFile = ""
+			font = "hoi_18mbs"
+			borderSize = {x = 0 y = 0}
+			text= [chromium_text]
+			maxWidth = 57
+			maxHeight = 24
+			fixedsize = yes
+			format = center
+			#pdx_tooltip = "PRODUCTION_MATERIALS_tungsten"
+					}
+		
+						
+		}
+
+#######################
+	containerWindowType = {
+		name = "horsttool_open_container"
+		position = { x = -643 y = 4 }
+		Orientation = UPPER_RIGHT
+		buttonType = {
+			name = "tool_open"
+			#quadTextureSprite = "GFX_generic_bg"
+			quadTextureSprite = "GFX_generic_box_96"
+			position = { x = 0 y = 0 }
+			scale=1.1
+			pdx_tooltip = "[ST_TOOLTIP]"
+			clicksound = click_ok
+			oversound = ui_menu_over
+		}
+		
+		instantTextboxType = {
+			name = "title"
+			#position = {x=22 y=5}
+			position = {x=3 y=4}
+			font = "hoi_18mbs"
+			text = "[transfer_states_tooltip]"
+			maxWidth = 200
+			maxHeight = 23
+			format = left
+		}
+
+	}
+		
+	containerWindowType = { 
+		name = "horsttool_container"
+		position = {x=1200 y=20}
+		size = { width=650 height=550}
+		
+		fade_time = 300
+		fade_type = linear
+		moveable = yes
+		
+		background = {
+			name = "Background"
+			#spriteType = "GFX_generic_bg_307x113"
+		spriteType = "GFX_diplo_action_imp_relations_bg"
+		}
+		
+		
+		instantTextboxType = {
+			name = "why use lel lennard"
+			#position = {x=14 y=8}
+			position = {x=113.5 y=30}
+			font = "hoi_24header"
+			text = "why_use_lel_lennard_tt"
+			maxWidth = 300
+			maxHeight = 23
+			format = centre
+		}
+		
+#######################################################################
+
+
+		buttonType = {
+			name = "change_host_nation" 
+			position = {x=18 y=251}       
+			spriteType = "GFX_change_host_nation"
+            scale = 0.75
+			pdx_tooltip = "CHANGE_HOST_NATION_TT"
+			#pdx_tooltip_delayed = "CHANGE_HOST_NATION_TT_DELAYED"
+		}
+		buttonType = {
+			name = "add_cheat" 
+			position = {x=20 y=196}
+			spriteType = "GFX_horst_addcheat"
+            scale = 0.6
+			pdx_tooltip = "ADD_CHEAT"
+			pdx_tooltip_delayed = "ADD_CHEAT_DELAYED"
+		}
+		buttonType = {
+			name = "add_color"   
+			position = {x=210 y=255}
+			spriteType = "GFX_air_base_copy_btn" 
+            scale = 0.8
+			pdx_tooltip = "ADD_COLOR"
+			pdx_tooltip_delayed = "ADD_COLOR_DELAYED"
+		}
+				buttonType = {
+			name = "award_states" 
+			position = {x=250 y=190}	
+			spriteType = "GFX_global_diplorequest_icons"
+            		frame = 13
+			pdx_tooltip = "TRANSFER_STATES"
+			pdx_tooltip_delayed = "TRANSFER_STATES_DELAYED"
+		}
+		buttonType = {
+			name = "observer" 
+			position = {x=80 y=200}
+			spriteType = "GFX_observer_button"
+         	pdx_tooltip = "OBSERVER"
+			pdx_tooltip_delayed = "OBSERVER_DELAYED"
+			scale = 0.70
+		}
+		buttonType = {
+			name = "annex_country" 
+			position = {x=300 y=190}	
+			spriteType = "GFX_global_diplorequest_icons"
+            		frame = 2
+			pdx_tooltip = "ANNEX_COUNTRY"
+			pdx_tooltip_delayed = "ANNEX_COUNTRY_DELAYED"
+		}
+				buttonType = { 
+			name = "fix_production"  
+			position = {x=452 y=190}  	  
+			spriteType = "GFX_topbar_production_horst_tool"
+            		frame = 2
+			pdx_tooltip = "FIX_PRODUCTION_TT" 
+			pdx_tooltip_delayed = "FIX_PRODUCTION_TT_DELAYED"
+		}
+		buttonType = { 
+			name = "fix_xp"         
+			position = {x=401 y=190} 	    
+			spriteType = "GFX_endgame_army_button"
+			scale = 0.9
+            		#frame = 2    
+			pdx_tooltip = "FIX_XP_TT" 
+			pdx_tooltip_delayed = "FIX_XP_TT_DELAYED"
+		}
+		buttonType = {
+			name = "mill_add"	
+			position = {x=172 y=90}
+			spriteType = "GFX_horst_civ_plus"
+			pdx_tooltip = "MILADD"
+			pdx_tooltip_delayed = "MILADD_DELAYED"
+			scale = 0.95
+		}
+				buttonType = { 
+			name = "civ_add"	
+			position = {x=172 y=142}
+			spriteType = "GFX_horst_civ_pluss"
+			pdx_tooltip = "CIVADD"
+			pdx_tooltip_delayed = "CIVADD_DELAYED"
+			scale = 0.95
+		}
+		
+	 buttonType = {
+		name = "pingtool"	
+			position = {x=170 y=183}
+			spriteType = "GFX_focus_generic_refit_civilian_ships"
+		scale = 0.75
+			pdx_tooltip = "PINGTOOL"
+			pdx_tooltip_delayed = "PINGTOOL_DELAYED"
+		} 
+		buttonType = {
+			name = "addpp"	
+			position = {x=118 y=192}
+			spriteType = "GFX_horst_addpp"
+            scale=1
+			pdx_tooltip = "ADDPP"
+			pdx_tooltip_delayed = "ADDPP_DELAYED"
+		}
+####################################################################
+		buttonType = {
+            name = "horsttool_helpbutton" 
+            position = {x=460 y=250}
+           spriteType = "GFX_horst_help"
+            scale = 0.8
+            pdx_tooltip = "HORST_HELP"
+           pdx_tooltip_delayed = "HOST_HELP_DELAYED"
+         }
+####################################################################
+		buttonType = {
+			name = "cheat1"
+			position = {x=40 y=90}
+			spriteType = "GFX_generic_box_125"
+		}
+		buttonType = {
+			name = "cheat2"
+			position = {x=40 y=116}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+		buttonType = {
+			name = "cheat3"
+			position = {x=40 y=142}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+		buttonType = {
+			name = "cheat4"
+			position = {x=40 y=168}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+			
+		}
+		
+		buttonType = {
+			name = "pause_blocker_major"
+			position = {x=260 y=260}
+			spriteType = "GFX_generic_box_125"
+		}
+		instantTextboxType = {
+			name = "pause_blocker_major_text"
+			position = {x=265 y=265}
+			font = "hoi_18mbs"
+			text = "[pause_selected]"
+			maxWidth = 380
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+			buttonType = {
+			name = "pause_blocker_all"
+			position = {x=260 y=286}
+			spriteType = "GFX_generic_box_125"
+		}
+		instantTextboxType = {
+			name = "pause_blocker_all_text"
+			position = {x=265 y=291}
+			font = "hoi_18mbs"
+			text = "PAUSE1"
+			maxWidth = 380
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+						iconType = {
+			name = "pause_blocker_shield"
+			position = {x=390 y=253}
+			spriteType = "GFX_ability_jap_last_stand"
+			pdx_tooltip = "pause_blocker_shield_tt"
+			pdx_tooltip_delayed = "pause_blocker_shield_delayed_tt"
+
+			
+			scale = 1.3
+		}
+		buttonType = {   
+			name = "annex_override"
+			spriteType = "GFX_annex_override"
+			position = {x=428 y=255}
+			scale = 1.2
+			pdx_tooltip = "annex_override_tt"
+			pdx_tooltip_delayed = "annex_override_tt_delayed"
+		}
+		
+		
+		
+				buttonType = {
+			name = "pause_blocker_host"
+			position = {x=260 y=312}
+			spriteType = "GFX_generic_box_125"
+		}
+		instantTextboxType = {
+			name = "pause_blocker_host_text"
+			position = {x=265 y=317}
+			font = "hoi_18mbs"
+			text = "PAUSE2"
+			maxWidth = 380
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		
+		buttonType = {
+			name = "cb_red"
+			position = {x=80 y=260}
+			spriteType = "GFX_generic_box_125"
+		}
+		instantTextboxType = {
+			name = "cb_red_text"
+			position = {x=85 y=265}
+			font = "hoi_18mbs"
+			text = "[color_selected]"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		
+		buttonType = {
+			name = "cb_orange"
+			position = {x=80 y=286}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+				instantTextboxType = {
+			name = "cb_orange_text"
+			position = {x=85 y=291}
+			font = "hoi_18mbs"
+			text = "COLOR2"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		buttonType = {
+			name = "cb_yellow"
+			position = {x=80 y=312}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+						instantTextboxType = {
+			name = "cb_yellow_text"
+			position = {x=85 y=317}
+			font = "hoi_18mbs"
+			text = "COLOR3"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		buttonType = {
+			name = "cb_green"
+			position = {x=80 y=338}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+								instantTextboxType = {
+			name = "cb_green_text"
+			position = {x=85 y=343}
+			font = "hoi_18mbs"
+			text = "COLOR4"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+				buttonType = {
+			name = "cb_blue"
+			position = {x=80 y=364}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+										instantTextboxType = {
+			name = "cb_blue_text"
+			position = {x=85 y=369}
+			font = "hoi_18mbs"
+			text = "COLOR5"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		
+						buttonType = {
+			name = "cb_purple"
+			position = {x=80 y=390}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+												instantTextboxType = {
+			name = "cb_purple_text"
+			position = {x=85 y=395}
+			font = "hoi_18mbs"
+			text = "COLOR6"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		
+						buttonType = {
+			name = "cb_pink"
+			position = {x=80 y=416}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+														instantTextboxType = {
+			name = "cb_pink_text"
+			position = {x=85 y=421}
+			font = "hoi_18mbs"
+			text = "COLOR7"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+								buttonType = {
+			name = "cb_teal"
+			position = {x=80 y=442}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+															instantTextboxType = {
+			name = "cb_teal_text"
+			position = {x=85 y=447}
+			font = "hoi_18mbs"
+			text = "COLOR8"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}	
+									buttonType = {
+			name = "cb_remove"
+			position = {x=80 y=468}
+			spriteType = "GFX_generic_box_125"
+			scale= 1
+		}
+															instantTextboxType = {
+			name = "cb_remove_text"
+			position = {x=85 y=473}
+			font = "hoi_18mbs"
+			text = "COLOR9"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}	
+		
+		
+			buttonType = {
+			name = "add_cores" 
+			position = {x=350 y=190}	
+			spriteType = "GFX_global_diplorequest_icons"
+            		frame = 6
+			pdx_tooltip = "ADD_CORES"
+			pdx_tooltip_delayed = "ADD_CORES_DELAYED"
+		}
+		instantTextboxType = {
+			name = "cheat1_text"
+			position = {x=45 y=95}
+			font = "hoi_18mbs"
+			text = "[cheat_selected]"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		
+		instantTextboxType = {
+			name = "cheat2_text"
+			position = {x=45 y=121}
+			font = "hoi_18mbs"
+			text = "CHEAT2"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		
+		instantTextboxType = {
+			name = "cheat3_text"
+			position = {x=45 y=147}
+			font = "hoi_18mbs"
+			text = "CHEAT3"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+		
+		instantTextboxType = {
+			name = "cheat4_text"
+			position = {x=45 y=173}
+			font = "hoi_18mbs"
+			text = "CHEAT4"
+			maxWidth = 340
+			maxHeight = 23
+			format = left
+			alwaystransparent = yes
+		}
+				buttonType = {
+			name = "toogle_mark" 
+			position = {x=203 y=35}
+			spriteType = "GFX_button_123x34"
+			frame = 0
+			pdx_tooltip = "ST_STATE_MARK_FOR_TRANSFER"
+		}
+		
+####################################################################
+		containerWindowType = {
+		name = "st_state_manager_powers_container"
+		position = {x=230 y=100}
+		size = { width=600 height=300}
+
+		fade_time = 300
+		fade_type = linear 
+		moveable = no 
+		
+		background = {
+			name = "Background" 
+			spriteType = "GFX_BPT_areadef_conf_bg"
+		}
+
+		instantTextboxType = {
+			name = "title"  
+			position = {x=0 y=3}
+			Orientation = "Centre" 
+			font = "hoi_24header"
+			text = "st_state_id_tt"
+			maxWidth = 250
+			maxHeight = 23
+			format = centre
+		}
+		buttonType = {
+			name = "toogle_mark" 
+			position = {x=40 y=35}
+			text = "Mark"
+			font = "hoi_24header"
+			spriteType = "GFX_sort_button_100x29"
+			pdx_tooltip = "ST_STATE_MARK_FOR_TRANSFER"
+		}
+		buttonType = {
+			name = "clear_all_markings" 
+			position = {x=180 y=30}
+			spriteType = "GFX_global_alert_icons"
+            		frame = 38
+			pdx_tooltip = "CLEAR_ALL_MARKINGS"
+			pdx_tooltip_delayed = "CLEAR_ALL_MARKINGS_DELAYED"
+			scale = .85
+		}
+	}
+	}
+	containerWindowType = {
+		name = "pause_block_window"
+		size = { width = 160 height = 30 } 
+		position = { x=80 y =0 }  	 	
+		background = {
+			name = "Background"
+			spriteType = "GFX_tiled_window_transparent"
+		}
+	}
+	containerWindowType = {
+		name = "block_market_window"
+		size = { width = 56 height = 42 } 
+		position = { x=6 y =0 }  	 	
+		background = {
+			name = "Background"
+			spriteType = "GFX_tiled_window_transparent" 
+		}
+	}
+	
+		
+	containerWindowType = {    
+		name = "horst_trade_assistant_window"
+		size = { width = 320 height = 120 } 
+		position = { x=0 y =0 }  	 
+		fade_time = 300
+		fade_type = linear
+		show_sound = menu_open_window
+		click_to_front = yes
+		orientation = center
+		background = {
+			name = "Background"
+			spriteType = "GFX_tiled_window_transparent"
+		}
+	
+	containerWindowType = {
+		name = "horst_trade_assistant_resources_produced_list_container"
+		position = { x = 0 y = 0 }   
+		            size = { width = 444 height=324 }
+		Orientation = UPPER_LEFT
+		clipping=yes
+		background = {
+			name = "Background"
+			spriteType = "GFX_tiled_window2_1b_border" 
+			alwaystransparent=no
+		}
+		gridboxType = {
+            name ="horst_trade_assistant_resources_produced_list"
+                position = { x = 0 y = 0 }
+				size = { width = 442 height = 100%% }
+				slotsize = { width = 442 height = 1 } #if width or height is 1, it will use slot element's dimension
+				max_slots_horizontal = 1
+				add_horizontal = no
+            }
+	}
+	}
+	
+		containerWindowType = {
+		name = "resources_produced_list"
+		position = { x = 0 y = 0 }   
+		size = { width=444 height=324} 
+		Orientation = UPPER_LEFT
+		clipping=yes
+				background = {
+			name = "Background"		
+			quadTextureSprite = "GFX_tiled_plain_bg"
+		}
+			instantTextboxType = {
+			name = "resources_produced"
+			position = { x = 0 y = 0 }
+			text= [GetResourcesProduced]
+			font = "hoi_18mbs"   
+			format = left
+			maxWidth = 300 
+			maxHeight = 24
+			fixedsize = yes
+			}
+		}
+	
+
+	containerWindowType = {    
+		name = "horst_admiral_current_command_limit_used_window"
+		size = { width = 450 height = 1100 } 
+		position = { x=55 y =-260 }  	 
+		fade_time = 300
+		fade_type = linear
+		show_sound = menu_open_window
+		click_to_front = yes
+		orientation = center
+		background = {
+			name = "Background"
+			spriteType = "GFX_tiled_window_transparent"
+		}
+			
+		     containerWindowType = {
+            name = "admirals_leading_battlefleets_list_container"
+            position = { x=12 y =-2 }
+            size = { width = 444 height=324 }
+            margin = { top = 10 bottom = 10 }
+			Orientation = upper_left
+            verticalScrollbar = "right_vertical_slider"
+            
+            background = {
+                name = "Background"
+                quadTextureSprite ="GFX_tiled_window_transparent"
+            }
+            
+            gridboxType = {
+                name ="admirals_leading_battlefleets_list"
+                position = { x = 0 y = 0 }
+				size = { width = 442 height = 100%% }
+				slotsize = { width = 442 height = 1 } #if width or height is 1, it will use slot element's dimension
+				max_slots_horizontal = 1
+				add_horizontal = no
+            }
+        }
+
+	}
+	
+	containerWindowType = {
+		name = "admirals_with_fleets_list"
+		position = { x = 0 y = 0}	
+		size = { width = 422 height = 70 }
+		background = {
+			name = "Background"		
+			quadTextureSprite = "GFX_tiled_plain_bg"
+		}
+		instantTextBoxType = {
+			name = "pp" 
+			position = { x = 55 y = 5 }
+			font = "hoi_18mbs"  
+			text = "[GetAdmiralNameTitle]"
+			format = left
+			maxWidth = 300
+			maxHeight = 24
+			fixedsize = yes
+		}
+			instantTextBoxType = {
+			name = "pp2"
+			position = { x = 55 y = 25 }
+			font = "hoi_18mbs"  
+			text = "[GetShipCount]"
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes
+		}	
+
+		iconType = {    
+			name = "admiral_portrait"
+			position = { x = 8 y = 10 }    
+			scale = 0.25
+			pdx_tooltip = GetAdmiralPortrait_tt
+		}
+				instantTextBoxType = {
+			name = "name"
+			position = { x = 55 y = 45 }
+			font = "hoi_18mbs"
+			text = "[GetCommandLimit]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}
+						instantTextBoxType = {
+			name = "dd"
+			position = { x = 245 y = 5 }
+			font = "hoi_18mbs"
+			text = "DD: [?destroyer_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}
+							instantTextBoxType = {
+			name = "ss"
+			position = { x = 295 y = 5 }
+			font = "hoi_18mbs"
+			text = "SS: [?submarine_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}	
+								instantTextBoxType = {
+			name = "cl"
+			position = { x = 245 y = 20 }
+			font = "hoi_18mbs"
+			text = "CL: [?light_cruiser_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}
+									instantTextBoxType = {
+			name = "ca"
+			position = { x = 295 y = 20 }
+			font = "hoi_18mbs"
+			text = "CA: [?heavy_cruiser_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}	
+										instantTextBoxType = {
+			name = "bb"
+			position = { x = 245 y = 35 }
+			font = "hoi_18mbs"
+			text = "BB: [?battleship_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}
+									instantTextBoxType = {
+			name = "bc"
+			position = { x = 295 y = 35 }
+			font = "hoi_18mbs"
+			text = "BC: [?battlecruiser_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}	
+										instantTextBoxType = {
+			name = "cv"
+			position = { x = 245 y = 50 } 
+			font = "hoi_18mbs"
+			text = "CV: [?carrier_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}
+									instantTextBoxType = {
+			name = "shbb"
+			position = { x = 295 y = 50 }
+			font = "hoi_18mbs"
+			text = "SHBB: [?shbb_count]" 
+			format = left
+			maxWidth = 200
+			maxHeight = 24
+			fixedsize = yes		
+		}	
+		instantTextBoxType = {
+			name = "Capitals"
+			position = { x = 335 y = 5 }
+			font = "hoi_18mbs"
+			text = "Capitals: [?capital_count]" 
+			format = left
+			maxWidth = 100
+			maxHeight = 24
+			fixedsize = yes		
+		}
+		instantTextBoxType = {
+			name = "Screens Have"
+			position = { x = 335 y = 20 } 
+			font = "hoi_18mbs"
+			text = "Screens: [GetScreenCount]" 
+			format = left
+			maxWidth = 100
+			maxHeight = 24
+			fixedsize = yes		
+		}
+		instantTextBoxType = {
+			name = "Screens Needed"
+			position = { x = 335 y = 35 }
+			font = "hoi_18mbs"
+			text = "[GetScreensNeededCount]" 
+			format = left
+			maxWidth = 150
+			maxHeight = 24
+			fixedsize = yes		
+		}	
+	}
+	
+	
+	
+	
+		containerWindowType = {
+		name = "HMP_soviet_lend_lease_system_ui_window"
+		position = { x = 0 y = 0 }
+		size = { width = 100% height= 300 }
+  
+		iconType = {   
+			name = "HMP_soviet_lend_lease_system_iran"
+			position = { x = 15 y = 32 } 
+			scale = 0.2 
+			pdx_tooltip = GetSovSupplyRouteIran_tt
+		}
+		iconType = {   
+			name = "HMP_soviet_lend_lease_system_murmansk"
+			position = { x = 115 y = 38 }   
+			scale = 0.18 
+			pdx_tooltip = GetSovSupplyRouteMurmansk_tt
+		}
+
+		
+				iconType = {    
+			name = "HMP_soviet_lend_lease_system_gib"
+			position = { x = 210 y = 38 }    
+			scale = 0.27 
+			pdx_tooltip = GetSovSupplyRouteGibraltar_tt
+		}
+					iconType = {   
+			name = "HMP_soviet_lend_lease_system_malta"
+			position = { x = 242 y = 42 }   
+			scale = 0.22 
+			pdx_tooltip = GetSovSupplyRouteMalta_tt
+		}
+						iconType = {   
+			name = "HMP_soviet_lend_lease_system_crimea"
+			position = { x = 292 y = 42 }    
+			scale = 0.28 
+			pdx_tooltip = GetSovSupplyRouteCrimea_tt
+		}	
+									iconType = {   
+			name = "HMP_soviet_lend_lease_system_vladivostok"
+			position = { x = 340 y = 29 }       
+			scale = 0.65 
+			pdx_tooltip = GetSovSupplyRouteVladivostok_tt
+		}	
+		
+									iconType = {   
+			name = "HMP_soviet_lend_lease_system_hawaii"
+			position = { x = 348  y = 40 }       
+			scale = 0.6 
+			pdx_tooltip = GetSovSupplyRouteHawaii_tt
+		}				
+
+					
+			iconType = {   
+			name = "HMP_bg_for_ll_monthly"   
+			position = { x = 370  y = 168 }    
+			spriteType = GFX_generic_text_bg_108 			
+			#scale = 0.60
+			#pdx_tooltip = HMP_bg_for_ll_monthly_tt
+		}						
+		 
+		instantTextBoxType = {
+				name = "HMP_ll_monthly2"
+				position = { x = 376 y = 175 }  
+				maxHeight = 20 
+				maxWidth = 110
+				font = "hoi_16mbs"
+				format = left
+				text = GetCurrentLLMax2  
+		}	
+					iconType = {     
+			name = "HMP_bg_for_ll_monthly2" 
+			position = { x = 370  y = 193 }  
+			spriteType = GFX_generic_text_bg_108 			
+			#scale = 0.60 
+			#pdx_tooltip = HMP_bg_for_ll_monthly_tt
+		}			
+				instantTextBoxType = { 
+				name = "HMP_ll_monthly"
+				position = { x = 375 y = 200 }  
+				maxHeight = 20
+				maxWidth = 135
+				font = "hoi_16mbs" 
+				format = left
+				text = GetCurrentLLMax
+				pdx_tooltip = route_capacity_display_tt 
+		}	
+
+					iconType = {     
+			name = "HMP_bg_for_ll_monthly3" 
+			position = { x = 370  y = 144 }  
+			spriteType = GFX_generic_text_bg_108 			
+			#scale = 0.60 
+			#pdx_tooltip = HMP_bg_for_ll_monthly_tt
+		}		
+						instantTextBoxType = {
+				name = "HMP_ll_monthly3"
+				position = { x = 378 y = 149 }  
+				maxHeight = 20
+				maxWidth = 100  
+				font = "hoi_16mbs"
+				format = left
+				text = GetCurrentLLMax3  
+		}	
+							iconType = {     
+			name = "HMP_bg_for_ll_monthly4"  
+			position = { x = 370  y = 217 }  
+			spriteType = GFX_generic_text_bg_108 			
+			#scale = 0.60 
+			#pdx_tooltip = HMP_bg_for_ll_monthly_tt
+		}		
+						instantTextBoxType = {
+				name = "HMP_ll_monthly4"
+				position = { x = 378 y = 222 } 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = TotalConvoysSent  
+		}	 
+		iconType = {     
+			name = "HMP_eq_log" 
+			position = { x = 394  y = 247 }  
+			spriteType = GFX_equip_overview_button 	 		
+			scale = 1.5
+			pdx_tooltip = HMP_eq_log_button_tt
+		}		
+		buttonType = {
+			name = "iran_go_to"
+			#spriteType = "GFX_add_one"
+			spriteType = "GFX_button_transparent"
+			#frame = 1 
+			scale = 3.0         
+			position = { x = 10 y =35 }   
+			clicksound = click_default
+			#buttonFont = "hoi_18mbs"
+			#buttonText = ""
+		}	
+						buttonType = {
+			name = "hawaii_go_to"
+			#spriteType = "GFX_add_one"
+			spriteType = "GFX_button_transparent"
+			#frame = 1 
+			scale = 3.0         
+			position = { x = 358 y =35 }     
+			clicksound = click_default
+			#buttonFont = "hoi_18mbs"
+			#buttonText = ""
+		}	
+				buttonType = {
+			name = "murmansk_go_to"
+			#spriteType = "GFX_add_one" 
+			spriteType = "GFX_button_transparent"
+			#frame = 1 
+			scale = 3.0        
+			position = { x = 110 y =35 }   
+			clicksound = click_default
+			#buttonFont = "hoi_18mbs"
+			#buttonText = ""
+		}	
+						buttonType = {
+			name = "vladivostok_go_to"
+			#spriteType = "GFX_add_one"
+			spriteType = "GFX_button_transparent"
+			#frame = 1 
+			scale = 3.0        
+			position = { x = 435 y =35 }     
+			clicksound = click_default
+			#buttonFont = "hoi_18mbs"
+			#buttonText = ""
+		}	
+				buttonType = {
+			name = "gib_go_to"
+			#spriteType = "GFX_add_one"
+			spriteType = "GFX_button_transparent"
+			#frame = 1  
+			scale = 2.1        
+			position = { x = 200 y =40 }  
+			clicksound = click_default
+			#buttonFont = "hoi_18mbs"
+			#buttonText = ""
+		}	
+				buttonType = {
+			name = "crimea_go_to"
+			#spriteType = "GFX_add_one" 
+			spriteType = "GFX_button_transparent"
+			#frame = 1 
+			scale = 2.1        
+			position = { x = 301 y =42 }      
+			clicksound = click_default
+			#buttonFont = "hoi_18mbs"
+			#buttonText = ""
+		}			
+				buttonType = {
+			name = "malta_go_to"
+			#spriteType = "GFX_add_one"
+			spriteType = "GFX_button_transparent"
+			#frame = 1  
+			scale = 2       
+			position = { x = 243 y =40 }     
+			clicksound = click_default
+			#buttonFont = "hoi_18mbs"
+			#buttonText = ""
+		}	
+					
+		
+		
+		buttonType = {
+			name = "increase_ll_gun"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 150 y =145 } 
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+	
+			instantTextBoxType = {
+				name = "HMP_send_guns_plz"
+				position = { x = 0 y = 150 }   
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_guns_tt
+		}	
+	
+	
+		buttonType = {
+			name = "increase_ll_at"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 150 y =170 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+		instantTextBoxType = {
+				name = "HMP_send_at_plz"
+				position = { x = 0 y = 175 } 
+				maxHeight = 20
+				maxWidth = 160 
+				font = "hoi_16mbs"
+				format = left
+				text = send_at_tt  
+		}	
+		instantTextBoxType = {
+				name = "HMP_what_ll_color_mean"
+				position = { x = 0 y = 130 }  
+				maxHeight = 20
+				maxWidth = 400  
+				font = "hoi_16mbs"
+				format = left
+				text = what_ll_color_mean_tt 
+		}	
+		buttonType = {
+			name = "increase_ll_arty"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 150 y =195 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	  
+				instantTextBoxType = {
+				name = "HMP_send_arty_plz"
+				position = { x = 0 y = 200 } 
+				maxHeight = 20
+				maxWidth = 160 
+				font = "hoi_16mbs"
+				format = left
+				text = send_arty_tt
+		}	
+				buttonType = {
+			name = "increase_ll_aa"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 150 y =220 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""  
+		}	
+		instantTextBoxType = {
+				name = "HMP_send_aa_plz"
+				position = { x = 0 y = 225 } 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_aa_tt
+		}	
+					buttonType = {
+			name = "increase_ll_rarty"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 150 y =245 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+			instantTextBoxType = {
+				name = "HMP_send_rarty_plz"
+				position = { x = 0 y = 250 } 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_rarty_tt
+		}	  
+				buttonType = {
+			name = "increase_ll_sup"
+			spriteType = "GFX_add_one" 
+			#frame = 1
+			position = { x = 150 y =270 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+		instantTextBoxType = {
+				name = "HMP_send_sup_plz"
+				position = { x = 0 y = 275 } 
+				maxHeight = 20
+				maxWidth = 160 
+				font = "hoi_16mbs"
+				format = left
+				text = send_sup_tt
+		}	
+		
+				buttonType = {
+			name = "increase_ll_mot"
+			spriteType = "GFX_add_one"
+			#frame = 1 
+			position = { x = 330 y =145 }
+			clicksound = click_default 
+			buttonFont = "hoi_18mbs" 
+			buttonText = ""
+		}	 
+		instantTextBoxType = {
+				name = "HMP_send_mot_plz"
+				position = { x = 185 y = 150 } 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_mot_tt
+		}	
+
+		buttonType = {
+			name = "increase_ll_mech"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 330 y =170 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+		instantTextBoxType = {
+				name = "HMP_send_mech_plz"
+				position = { x = 185 y = 175 } 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_mech_tt
+		}	
+		buttonType = {
+			name = "increase_ll_med"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 330 y =195 }  
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+		instantTextBoxType = {
+				name = "HMP_send_med_plz"
+				position = { x = 185 y = 200 } 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_med_tt
+		}	
+		buttonType = {
+			name = "increase_ll_light"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 330 y =220 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+				instantTextBoxType = {
+				name = "HMP_send_light_plz"
+				position = { x = 185 y = 225 } 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_light_tt
+		}	
+		buttonType = {
+			name = "increase_ll_fighter"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 330 y =245 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+				instantTextBoxType = {
+				name = "HMP_send_fighters_plz"
+				position = { x = 185 y = 250} 
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_fighter_tt 
+		}	
+
+
+				buttonType = {  
+			name = "increase_ll_cas"
+			spriteType = "GFX_add_one"
+			#frame = 1
+			position = { x = 330 y =270 }
+			clicksound = click_default
+			buttonFont = "hoi_18mbs"
+			buttonText = ""
+		}	
+				instantTextBoxType = {
+				name = "HMP_send_cas_plz"  
+				position = { x = 185 y = 275 }  
+				maxHeight = 20
+				maxWidth = 150 
+				font = "hoi_16mbs"
+				format = left
+				text = send_cas_tt
+		}	
+		
+		instantTextBoxType = {
+				name = "HMP_persian_corridor_title"
+				position = { x = 10 y = 20 } 
+				maxHeight = 20
+				maxWidth = 140
+				font = "hoi_16mbs"
+				format = left
+				text = "[GetPersianCorridorNameColor]"
+				pdx_tooltip = persian_corridor_history
+		}	
+
+		
+		instantTextBoxType = {
+				name = "HMP_arctic_corridor_title"
+				position = { x = 115 y = 20 } 
+				maxHeight = 20
+				maxWidth = 140
+				font = "hoi_16mbs"
+				format = left
+				text = "[GetArcticCorridorNameColor]"
+				pdx_tooltip = arctic_corridor_history
+		}		
+
+				instantTextBoxType = {
+				name = "HMP_med_corridor_title"
+				position = { x = 225 y = 20 } 
+				maxHeight = 20
+				maxWidth = 180
+				font = "hoi_16mbs"
+				format = left
+				text = "[GetMedCorridorNameColor]"
+				pdx_tooltip = med_corridor_history
+		}		
+		
+
+				instantTextBoxType = {
+				name = "HMP_pacific_corridor_title"
+				position = { x = 370 y = 20 } 
+				maxHeight = 20
+				maxWidth = 140
+				font = "hoi_16mbs"
+				format = left
+				text = "[GetPacificCorridorNameColor]"
+				pdx_tooltip = pacific_corridor_history
+		}		
+		
+		
+		
+		instantTextBoxType = {
+				name = "HMP_supply_routes_title" 
+				position = { x = 45 y = 0 }
+				maxHeight = 24
+				maxWidth = 380
+				font = "hoi_24header"
+				format = center
+				text = "[Get_HMP_supply_routes]"
+				pdx_tooltip = HMP_supply_route_info
+		}				
+
+		
+		
+
+	}
+	
+	
+	
+
+
+	containerWindowType = {
+        name = "manhattan_bar_main_view"
+        position = { x= 0 y = 0 }
+        size = { width=100 height=100 }
+        clipping = no
+        
+		iconType = {
+			name = "manhattan_bar"
+			spriteType = "GFX_progress_bar_atomic"
+			position = { x = 20 y = 25 }
+		}
+		
+		instantTextboxType = {
+            name = "manhattan_bar_txt"
+            position = { x = 395 y = 25 }
+            font = "hoi_36header"
+            text = manhattan_bar_txt_tt
+            maxWidth = 100
+            maxHeight = 60
+            fixedsize = yes
+            format = center        
+            alwaystransparent = no
+        }
+
+    }
+	containerWindowType = {
+		name = "cons_speed_opener_container"
+		position = { x = -75 y = 200 }
+		size = { width = 677 height = 1330 }
+		
+		buttonType = {
+			name = "construction_speed_open"
+			quadTextureSprite = "GFX_cons_speed"
+			position = { x = 363 y = -196 } 
+			shortcut = "c"
+			pdx_tooltip = construction_speed_open_tt
+			clicksound = click_ok
+			oversound = ui_menu_over
+		}
+	}
+	
+	containerWindowType = {
+		name = "cons_speed_container"
+		position = { x = 50 y = 201 }  
+		size = { width = 677 height = 1330 }
+
+		instantTextBoxType = {
+			name = "infrastructure_speed"   
+			position = { x = 396 y = -80 }
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_infrastructure_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+		instantTextBoxType = {
+			name = "air_base_speed"   
+			position = { x = 442 y = -80 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_air_base_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		instantTextBoxType = {
+			name = "anti_air_building_speed"   
+			position = { x = 488 y = -80 }  
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_anti_air_building_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+		instantTextBoxType = {
+			name = "radar_station_speed"   
+			position = { x = 534 y = -80 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_radar_station_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+	
+		instantTextBoxType = {
+			name = "arms_factory_speed"   
+			position = { x = 396 y = 16 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_arms_factory_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+
+		instantTextBoxType = {
+			name = "industrial_complex_speed"   
+			position = { x = 442 y = 16 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_industrial_complex_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+		instantTextBoxType = {
+			name = "dockyard_speed"   
+			position = { x = 488 y = 16 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_dockyard_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+
+		instantTextBoxType = {
+			name = "synthetic_refinery_speed"   
+			position = { x = 534 y = 16 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_synthetic_refinery_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+		instantTextBoxType = {
+			name = "fuel_silo_speed"   
+			position = { x = 396 y = 60 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_fuel_silo_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+
+		instantTextBoxType = {
+			name = "rocket_site_speed"   
+			position = { x = 442 y = 60 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_rocket_site_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+		instantTextBoxType = {
+			name = "nuclear_reactor_speed"   
+			position = { x = 11396 y = 211 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_nuclear_reactor_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+		instantTextBoxType = {
+			name = "supply_node_speed"   
+			position = { x = 396 y = 154 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_supply_node_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+
+		instantTextBoxType = {
+			name = "rail_way_speed"   
+			position = { x = 442 y = 154 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_rail_way_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+
+		instantTextBoxType = {
+			name = "naval_base_speed"   
+			position = { x = 488 y = 154 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_naval_base_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+
+		instantTextBoxType = {
+			name = "bunker_speed"   
+			position = { x = 534 y = 154 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_bunker_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+		instantTextBoxType = {
+			name = "coastal_bunker_speed"   
+			position = { x = 396 y = 198 } 
+			font = "cg_16b"              
+			text = "[?modifier@production_speed_coastal_bunker_factor|%0=+]"	   
+			maxWidth = 50  
+			maxHeight = 20
+			format = right
+			alwaystransparent = yes
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	containerWindowType = {
+		name = "ITA_propaganda_campaigns_ui_window"
+		position = { x = 0 y = 0 }
+		size = { width = 100% height= 250 }
+
+		#BACKGROUND
+		iconType = {
+			name ="ITA_propaganda_bg"
+			spriteType = "GFX_X_ITA_propaganda_bg"
+						position = { x=@BACKGROUND_X y=@BACKGROUND_Y }
+		} 
+
+		#POSTER LEFT
+		iconType = {
+			name ="propaganda_poster_ITA_left"
+			position = { x=@POSTER_LEFT_X	 y=@POSTERS_Y }
+			pdx_tooltip = ITA_PROPAGANDA_CAMPAIGN_TT_LEFT
+		}
+		#Days remaining
+		instantTextBoxType = {
+			name ="poster_ITA_left_text"
+			position = { x = @TEXT_LEFT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "ITA_poster_left_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER CENTER
+		iconType = {
+			name ="propaganda_poster_ITA_center"
+			position = { x=@POSTER_CENTER_X	 y=@POSTERS_Y }
+			pdx_tooltip = ITA_PROPAGANDA_CAMPAIGN_TT_CENTER
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_ITA_center_text"
+			position = { x = @TEXT_CENTER_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "ITA_poster_center_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER RIGHT
+		iconType = {
+			name ="propaganda_poster_ITA_right"
+			position = { x=@POSTER_RIGHT_X	 y=@POSTERS_Y }
+			pdx_tooltip = JAP_PROPAGANDA_CAMPAIGN_TT_RIGHT
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_ITA_right_text"
+			position = { x = @TEXT_RIGHT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "ITA_poster_right_text"
+			format = center
+			maxWidth = 150
+		}
+}
+
+	containerWindowType = {
+		name = "JAP_propaganda_campaigns_ui_window"
+		position = { x = 0 y = 0 }
+		size = { width = 100% height= 250 }
+
+		#BACKGROUND
+		iconType = {
+			name ="JAP_propaganda_bg"
+			spriteType = "GFX_X_JAP_propaganda_bg"
+			position = { x=@BACKGROUND_X y=@BACKGROUND_Y }
+		}
+
+		#POSTER LEFT
+		iconType = {
+			name ="propaganda_poster_JAP_left"
+			position = { x=@POSTER_LEFT_X	 y=@POSTERS_Y }
+			pdx_tooltip = JAP_PROPAGANDA_CAMPAIGN_TT_LEFT
+		}
+		#Days remaining
+		instantTextBoxType = {
+			name ="poster_JAP_left_text"
+			position = { x = @TEXT_LEFT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "JAP_poster_left_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER CENTER
+		iconType = {
+			name ="propaganda_poster_JAP_center"
+			position = { x=@POSTER_CENTER_X	 y=@POSTERS_Y }
+			pdx_tooltip = JAP_PROPAGANDA_CAMPAIGN_TT_CENTER
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_JAP_center_text"
+			position = { x = @TEXT_CENTER_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "JAP_poster_center_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER RIGHT
+		iconType = {
+			name ="propaganda_poster_JAP_right"
+			position = { x=@POSTER_RIGHT_X	 y=@POSTERS_Y }
+			pdx_tooltip = JAP_PROPAGANDA_CAMPAIGN_TT_RIGHT
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_JAP_right_text"
+			position = { x = @TEXT_RIGHT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "JAP_poster_right_text"
+			format = center
+			maxWidth = 150
+		}
+	}
+
+
+	containerWindowType = {
+		name = "GER_propaganda_campaigns_ui_window"
+		position = { x = 0 y = 0 }
+		size = { width = 100% height= 250 }
+
+		#BACKGROUND
+		iconType = {
+			name ="GER_propaganda_bg"
+			spriteType = "GFX_X_GER_propaganda_bg"
+			position = { x=@BACKGROUND_X y=@BACKGROUND_Y }
+		}
+
+		#POSTER LEFT
+		iconType = {
+			name ="propaganda_poster_GER_left"
+			position = { x=@POSTER_LEFT_X	 y=@POSTERS_Y }
+			pdx_tooltip = GER_PROPAGANDA_CAMPAIGN_TT_LEFT
+		}
+		#Days remaining
+		instantTextBoxType = {
+			name ="poster_GER_left_text"
+			position = { x = @TEXT_LEFT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "GER_poster_left_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER CENTER
+		iconType = {
+			name ="propaganda_poster_GER_center"
+			position = { x=@POSTER_CENTER_X	 y=@POSTERS_Y }
+			pdx_tooltip = GER_PROPAGANDA_CAMPAIGN_TT_CENTER
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_GER_center_text"
+			position = { x = @TEXT_CENTER_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "GER_poster_center_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER RIGHT
+		iconType = {
+			name ="propaganda_poster_GER_right"
+			position = { x=@POSTER_RIGHT_X	 y=@POSTERS_Y }
+			pdx_tooltip = GER_PROPAGANDA_CAMPAIGN_TT_RIGHT
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_GER_right_text"
+			position = { x = @TEXT_RIGHT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "GER_poster_right_text"
+			format = center
+			maxWidth = 150
+		}
+	}
+
+
+	containerWindowType = {
+		name = "USA_propaganda_campaigns_ui_window"
+		position = { x = 0 y = 0 }
+		size = { width = 100% height= 250 }
+
+		#BACKGROUND
+		iconType = {
+			name ="USA_propaganda_bg"
+			spriteType = "GFX_X_USA_propaganda_bg"
+			position = { x=@BACKGROUND_X y=@BACKGROUND_Y }
+		}
+
+		#POSTER LEFT
+		iconType = {
+			name ="propaganda_poster_USA_left"
+			position = { x=@POSTER_LEFT_X	 y=@POSTERS_Y }
+			pdx_tooltip = USA_PROPAGANDA_CAMPAIGN_TT_LEFT
+		}
+		#Days remaining
+		instantTextBoxType = {
+			name ="poster_USA_left_text"
+			position = { x = @TEXT_LEFT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "USA_poster_left_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER CENTER
+		iconType = {
+			name ="propaganda_poster_USA_center"
+			position = { x=@POSTER_CENTER_X	 y=@POSTERS_Y }
+			pdx_tooltip = USA_PROPAGANDA_CAMPAIGN_TT_CENTER
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_USA_center_text"
+			position = { x = @TEXT_CENTER_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "USA_poster_center_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER RIGHT
+		iconType = {
+			name ="propaganda_poster_USA_right"
+			position = { x=@POSTER_RIGHT_X	 y=@POSTERS_Y }
+			pdx_tooltip = USA_PROPAGANDA_CAMPAIGN_TT_RIGHT
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_USA_right_text"
+			position = { x = @TEXT_RIGHT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "USA_poster_right_text"
+			format = center
+			maxWidth = 150
+		}
+	}
+
+
+	containerWindowType = {
+		name = "ENG_propaganda_campaigns_ui_window"
+		position = { x = 0 y = 0 }
+		size = { width = 100% height= 250 }
+
+		#BACKGROUND
+		iconType = {
+			name ="ENG_propaganda_bg"
+			spriteType = "GFX_X_ENG_propaganda_bg"
+			position = { x=@BACKGROUND_X y=@BACKGROUND_Y }
+		}
+
+		#POSTER LEFT
+		iconType = {
+			name ="propaganda_poster_ENG_left"
+			position = { x=@POSTER_LEFT_X	 y=@POSTERS_Y }
+			pdx_tooltip = ENG_PROPAGANDA_CAMPAIGN_TT_LEFT
+		}
+		#Days remaining
+		instantTextBoxType = {
+			name ="poster_ENG_left_text"
+			position = { x = @TEXT_LEFT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "ENG_poster_left_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER CENTER
+		iconType = {
+			name ="propaganda_poster_ENG_center"
+			position = { x=@POSTER_CENTER_X	 y=@POSTERS_Y }
+			pdx_tooltip = ENG_PROPAGANDA_CAMPAIGN_TT_CENTER
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_ENG_center_text"
+			position = { x = @TEXT_CENTER_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "ENG_poster_center_text"
+			format = center
+			maxWidth = 150
+		}
+
+		#POSTER RIGHT
+		iconType = {
+			name ="propaganda_poster_ENG_right"
+			position = { x=@POSTER_RIGHT_X	 y=@POSTERS_Y }
+			pdx_tooltip = ENG_PROPAGANDA_CAMPAIGN_TT_RIGHT
+		}
+		#Days Remaining
+		instantTextBoxType = {
+			name ="poster_ENG_right_text"
+			position = { x = @TEXT_RIGHT_X y = @TEXTS_Y }
+			font = "hoi_18mbs"
+			text = "ENG_poster_right_text"
+			format = center
+			maxWidth = 150
+		}
+	}
+	
+	
+	containerWindowType = {
+		name = "prca_propaganda_ui_window"
+		position = { x = 0 y = 0 }
+		size = { width = 490 height= 180 }
+	
+		containerWindowType = {
+			name = "prca_container"
+			position = { x= 6	 y = 12 }
+			size = { width = 490 height= 100% }
+			
+			iconType = {
+				name = "propaganda_slot_1"
+				position = { x= 0 y = 0 }
+			}
+			
+			iconType = {
+				name = "propaganda_slot_2"
+				position = { x= 125 y = 0 }
+			}
+			
+			iconType = {
+				name = "propaganda_slot_3"
+				position = { x= 250 y = 0 }
+			}
+		}
+		
+		containerWindowType = {
+			name = "btn_container"
+			position = { x= 390	 y = 0 }
+			size = { width = 100 height= 100% }
+			
+			containerWindowType = {
+				name = "token_container"
+				position = { x= 2	 y = 15 }
+				size = { width = 100 height= 16 }
+				
+				iconType ={
+					name ="token_bg"
+					spriteType = "GFX_generic_box_96"
+					position = { x = 0 y = 0 }
+					Orientation = "UPPER_LEFT"
+					pdx_tooltip = "prca_tokens_tt2"
+					pdx_tooltip_delayed = "prca_tokens_tt2_desc"
+				}
+			
+				iconType = {
+					name ="token_ico"
+					spriteType = "GFX_prca_token_ico"
+					position = { x= 6	 y = 0 }
+					alwaystransparent = yes
+				}
+					
+				instantTextBoxType = {
+					name ="token_txt"
+					position = { x= 30	 y = 4 }
+					font = "hoi_18mbs"
+					text = "prca_tokens"
+					format = center
+					maxWidth = 60
+					maxHeight = 16
+					fixedsize = yes
+					alwaystransparent = yes
+				}
+			}
+		
+			containerWindowType = {
+				name = "department_container"
+				position = { x= -2	 y = 44 }
+				size = { width = 100 height= 16 }
+				
+				iconType = {
+					name = "department_ico_1"
+					position = { x = 90 y = 0 }
+					quadTextureSprite = "GFX_prca_checkbox_department"
+					alwaystransparent = yes
+					frame = 1
+				}
+				
+				iconType = {
+					name = "department_ico_2"
+					position = { x = 77 y = 0 }
+					quadTextureSprite = "GFX_prca_checkbox_department"
+					alwaystransparent = yes
+					frame = 1
+				}
+				
+				iconType = {
+					name = "department_ico_3"
+					position = { x = 64 y = 0 }
+					quadTextureSprite = "GFX_prca_checkbox_department"
+					alwaystransparent = yes
+					frame = 1
+				}
+			}	
+	
+	
+			buttonType = {
+					name = "btn_preparation"
+					position = { x = 0 y = 115 }
+					quadTextureSprite = "GFX_sort_button_100x29_2"
+					font = "hoi_16mbs"
+					text = "prca_button_preparation"
+					tooltip = "prca_button_preparation_tt"
+					format = center
+			}
+			
+			buttonType = {
+					name = "btn_campaigns"
+					position = { x = 0 y = 145 }
+					quadTextureSprite = "GFX_sort_button_100x29_2"
+					font = "hoi_16mbs"
+					text = "prca_button_campaigns"
+					tooltip = "prca_button_campaigns_tt"
+					format = center
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		containerWindowType = {
+		name = "production_naval_calculator_open_button"
+		position = { x = 295 y = 187 }
+		buttonType = {
+			name = "open_naval_calculator_production_button"
+			spriteType = "GFX_NV_btn_composition_editor"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "OPEN_NAVAL_CALCULATOR_BUTTON"
+			pdx_tooltip_delayed = "OPEN_NAVAL_CALCULATOR_BUTTON_TT"
+			shortcut = "2"
+		}
+
+        instantTextBoxType = {
+			name = "naval_calculator_TITILE"
+			position = { x = -25 y = -30 }
+			font = "hoi_18mbs"
+			format = center
+			maxWidth = 80
+			maxHeight = 24
+			fixedsize = yes
+			text = "Naval"
+			pdx_tooltip = "OPEN_NAVAL_CALCULATOR_BUTTON"
+		}
+        instantTextBoxType = {
+			name = "naval_calculator_TITILE2"
+			position = { x = -25 y = -17 }
+			font = "hoi_18mbs"
+			format = center
+			maxWidth = 80
+			maxHeight = 24
+			fixedsize = yes
+			text = "Calculator"
+			pdx_tooltip = "OPEN_NAVAL_CALCULATOR_BUTTON"
+		}
+	}
+
+
+	# Calculator
+	containerWindowType = {
+		name = "calculator_tab"
+		position = { x = -400 y = -400 }
+		clipping = no
+		orientation = center
+		origo = center
+		moveable = yes
+
+		background = {
+			name = "Background"
+			spriteType = "GFX_naval_calculator_bg"
+		}
+
+        # Close Button
+		buttonType = {
+			name = "close_naval_cap_calculator"
+			position = { x = 300 y = 647 }
+			quadTextureSprite ="GFX_button_123x34"
+			buttonFont = "hoi_16mbs"
+			buttonText = "CLOSE"
+			shortcut = "ESCAPE"
+			Orientation = "LOWER_MIDDLE"
+			clicksound = click_close
+			pdx_tooltip = "CLOSE"
+		}
+
+        # Calculator Title
+		instantTextBoxType = {
+			name = "naval_calculator_TITILE"
+			position = { x = 220 y = 27 }
+			font = "hoi_30header"
+			format = center
+			maxWidth = 280
+			maxHeight = 24
+			fixedsize = yes
+			text = "NAVAL_CALCULATOR"
+			pdx_tooltip = "OPEN_NAVAL_CALCULATOR_BUTTON"
+		}
+
+        # Side Bar
+		containerWindowType = {
+			name = "naval_calculator_bar_totals"
+			position = { x = 565 y = 160 }
+
+			# Capital Ships
+			containerWindowType = {
+				name = "capital_ships_window"
+				position = { x = 0 y = 0 }
+				iconType = {
+					name ="capital_ships_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "capital_ships_TITLE"
+					position = { x = -11 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 95
+					maxHeight = 24
+					fixedsize = yes
+					text = "CAPITAL_SHIPS_TITLE"
+					pdx_tooltip = "PRODUCTIVITY_DESC"
+				}
+				instantTextBoxType = {
+					name = "capital_ships_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "NUM_CAPITAL_SHIPS_CALCULATOR"
+					pdx_tooltip = "NUM_CAPITAL_SHIPS_CALCULATOR_DESC"
+					pdx_tooltip_delayed = "NUM_CAPITAL_SHIPS_CALCULATOR_DELAYED_DESC"
+				}
+			}
+
+			# Screens
+			containerWindowType = {
+				name = "screens_have"
+				position = { x = 0 y = 60 }
+				iconType = {
+					name ="screens_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "screens_have_TITLE"
+					position = { x = -13 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 95
+					maxHeight = 24
+					fixedsize = yes
+					text = "SCREENS_HAVE_TITLE"
+					pdx_tooltip = "SCREENS_HAVE_DESC"
+				}
+				instantTextBoxType = {
+					name = "screens_have_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "NUM_SCREENS_CALCULATOR"
+					pdx_tooltip = "NUM_CAPITAL_SHIPS_CALCULATOR_DESC"
+					pdx_tooltip_delayed = "NUM_CAPITAL_SHIPS_CALCULATOR_DELAYED_DESC"
+				}
+			}
+
+			# Screens Needed
+			containerWindowType = {
+				name = "screens_needed"
+				position = { x = 0 y = 120 }
+				iconType = {
+					name ="screens_needed_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "screens_needed_TITLE"
+					position = { x = -28 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 120
+					maxHeight = 24
+					fixedsize = yes
+					text = "SCREENS_NEEDED_TITLE"
+					pdx_tooltip = "SCREENS_NEEDED_DESC"
+				}
+				instantTextBoxType = {
+					name = "screens_needed_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "NUM_SCREENS_NEEDED_CALCULATOR"
+					pdx_tooltip = "NUM_CAPITAL_SHIPS_CALCULATOR_DESC"
+					pdx_tooltip_delayed = "NUM_CAPITAL_SHIPS_CALCULATOR_DELAYED_DESC"
+				}
+				instantTextBoxType = {
+					name = "screens_needed_SUBTITLE1"
+					position = { x = -28 y = 26 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 120
+					maxHeight = 24
+					fixedsize = yes
+					text = "SCREENS_NEEDED_SUBTITLE1"
+					pdx_tooltip = "SCREENS_NEEDED_DESC"
+				}
+				instantTextBoxType = {
+					name = "screens_needed_SUBTITLE2"
+					position = { x = -28 y = 41 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 120
+					maxHeight = 24
+					fixedsize = yes
+					text = "SCREENS_NEEDED_SUBTITLE2"
+					pdx_tooltip = "SCREENS_NEEDED_DESC"
+				}
+			}
+
+            # Carriers
+			containerWindowType = {
+				name = "carriers"
+				position = { x = 0 y = 230 }
+				iconType = {
+					name ="screens_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "carriers_have_TITLE"
+					position = { x = -13 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 95
+					maxHeight = 24
+					fixedsize = yes
+					text = "CARRIERS_HAVE_TITLE"
+					pdx_tooltip = "CARRIERS_DESC"
+				}
+				instantTextBoxType = {
+					name = "carrier_haves_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "NUM_CARRIERS_HAVE_CALCULATOR"
+					pdx_tooltip = "NUM_CARRIERS_HAVE_CALCULATOR_DESC"
+					pdx_tooltip_delayed = "NUM_CARRIERS_HAVE_CALCULATOR_DELAYED_DESC"
+				}
+                instantTextBoxType = {
+					name = "carriers_needed_SUBTITLE1"
+					position = { x = -5 y = 26 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "CARRIERS_HAVE_SUBTITLE1"
+					pdx_tooltip = "CARRIERS_HAVE_DESC"
+				}
+				instantTextBoxType = {
+					name = "carriers_have_SUBTITLE2"
+					position = { x = -35 y = 41 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 140
+					maxHeight = 24
+					fixedsize = yes
+					text = "CARRIERS_HAVE_SUBTITLE2"
+					pdx_tooltip = "CARRIERS_HAVE_DESC"
+				}
+			}
+
+			# Heavys
+			containerWindowType = {
+				name = "heavys_have"
+				position = { x = 0 y = 320 }
+				iconType = {
+					name ="heavys_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "heavys_have_TITLE"
+					position = { x = -13 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 95
+					maxHeight = 24
+					fixedsize = yes
+					text = "HEAVYS_HAVE_TITLE"
+					pdx_tooltip = "HEAVYS_HAVE_DESC"
+				}
+				instantTextBoxType = {
+					name = "heavys_have_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "NUM_HEAVYS_CALCULATOR"
+					pdx_tooltip = "NUM_CAPITAL_SHIPS_CALCULATOR_DESC"
+					pdx_tooltip_delayed = "NUM_CAPITAL_SHIPS_CALCULATOR_DELAYED_DESC"
+				}
+			}
+
+			# Heavies Needed
+			containerWindowType = {
+				name = "heavys_needed"
+				position = { x = 0 y = 380 }
+				iconType = {
+					name ="heavys_needed_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "heavys_needed_TITLE"
+					position = { x = -28 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 120
+					maxHeight = 24
+					fixedsize = yes
+					text = "HEAVYS_NEEDED_TITLE"
+					pdx_tooltip = "HEAVYS_NEEDED_DESC"
+				}
+				instantTextBoxType = {
+					name = "heavys_needed_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "NUM_HEAVYS_NEEDED_CALCULATOR"
+					pdx_tooltip = "NUM_CAPITAL_SHIPS_CALCULATOR_DESC"
+					pdx_tooltip_delayed = "NUM_CAPITAL_SHIPS_CALCULATOR_DELAYED_DESC"
+				}
+				instantTextBoxType = {
+					name = "heavys_needed_SUBTITLE1"
+					position = { x = -28 y = 26 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 120
+					maxHeight = 24
+					fixedsize = yes
+					text = "HEAVYS_NEEDED_SUBTITLE1"
+					pdx_tooltip = "HEAVYS_NEEDED_DESC"
+				}
+				instantTextBoxType = {
+					name = "heavys_needed_SUBTITLE2"
+					position = { x = -28 y = 41 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 120
+					maxHeight = 24
+					fixedsize = yes
+					text = "HEAVYS_NEEDED_SUBTITLE2"
+					pdx_tooltip = "HEAVYS_NEEDED_DESC"
+				}
+			}
+
+		}
+
+        # Entry Backgrounds
+        containerWindowType = {
+            name = "entry_calculator_bg"
+            position = { x = 10 y = 10 }
+
+            buttonType = {
+                name = "ship"
+                position = {x=3 y=120}
+                spriteType ="GFX_trade_filter_btn_country"
+            }
+            buttonType = {
+                name = "quantity"
+                position = {x=175 y=120}
+                spriteType ="GFX_trade_filter_btn_export"
+            }
+            buttonType = {
+                name = "cost"
+                position = {x=274 y=120}
+                spriteType ="GFX_trade_filter_btn_delivered"
+            }
+            buttonType = {
+                name = "total"
+                position = {x=380 y=120}
+                spriteType ="GFX_trade_filter_btn_export"
+            }
+
+            containerWindowType = {
+                name = "destroyer_calculator_bg"
+                position = { x = 0 y = 150 }
+
+                background = {
+                    name = "Background"
+                    spriteType ="GFX_calculator_entry_bg"
+                }
+            }
+            containerWindowType = {
+                name = "light_cruiser_calculator_bg"
+                position = { x = 0 y = 200 }
+                background = {
+                    name = "Background"
+                    quadTextureSprite ="GFX_calculator_entry_bg"
+                }
+            }
+            containerWindowType = {
+                name = "heavy_cruiser_calculator_bg"
+                position = { x = 0 y = 250 }
+                background = {
+                    name = "Background"
+                    quadTextureSprite ="GFX_calculator_entry_bg"
+                }
+            }
+            containerWindowType = {
+                name = "battleship_calculator_bg"
+                position = { x = 0 y = 300 }
+                background = {
+                    name = "Background"
+                    quadTextureSprite ="GFX_calculator_entry_bg"
+                }
+            }
+            containerWindowType = {
+                name = "battlecruiser_calculator_bg"
+                position = { x = 0 y = 350 }
+                background = {
+                    name = "Background"
+                    quadTextureSprite ="GFX_calculator_entry_bg"
+                }
+            }
+            containerWindowType = {
+                name = "carrier_calculator_bg"
+                position = { x = 0 y = 400 }
+                background = {
+                    name = "Background"
+                    quadTextureSprite ="GFX_calculator_entry_bg"
+                }
+            }
+            containerWindowType = {
+                name = "shbb_calculator_bg"
+                position = { x = 0 y = 450 }
+                background = {
+                    name = "Background"
+                    quadTextureSprite ="GFX_calculator_entry_bg"
+                }
+            }
+
+        }
+
+        # Entry Values
+        containerWindowType = {
+			name = "ship_container"
+			position = { x = 190 y = 170 }
+
+            # Total Type Container
+            instantTextBoxType = {
+                name = "ship_type"
+                position = { x = -130 y = -35 }
+                font = "hoi_18mbs"
+                format = center
+                maxWidth = 80
+                maxHeight = 24
+                fixedsize = yes
+                text = "SHIP_TYPE_TITLE"
+            }
+
+            # Total Quantity Container
+            instantTextBoxType = {
+                name = "ship_quantity"
+                position = { x = 5 y = -35 }
+                font = "hoi_18mbs"
+                format = center
+                maxWidth = 80
+                maxHeight = 24
+                fixedsize = yes
+                text = "SHIP_QUANTITY_TITLE"
+            }
+
+            # Destroyers
+            containerWindowType = {
+                name = "destroyer_count_calculator"
+                position = { x = 0 y = 0 }
+
+                instantTextBoxType = {
+                    name = "destroyer_count_calculator_title"
+                    position = { x = -165 y = -10 }
+                    font = "hoi_18mbs"
+                    text = "DESTROYER_COUNT_CALCULATOR"
+                    format = left
+                    maxWidth = 150
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "DESTROYER_COUNT_CALCULATOR_TT"
+                }
+                iconType = {
+                    name = "ship_icon"
+                    position = {x=-50 y=15} # Y is centered in code
+                    spriteType = "GFX_unit_destroyer_icon_medium"
+                    centerposition = yes
+                    scale = 1.2
+                    alwaystransparent = yes
+                }
+                instantTextBoxType = {
+                    name = "destroyer_count_calculator"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?destroyer_count_calculator]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "DESTROYER_COUNT_CALCULATOR_TT"
+                }
+
+
+                containerWindowType = {
+                    name = "increase_destroyer_count_calculator"
+                    position = { x = 75 y = -3 }
+
+                    buttonType = {
+                        name = "increase_destroyer_count_calculator"
+                        spriteType = "GFX_small_plus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "increase_destroyer_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "increases_destroyer_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "increases_destroyer_count_calculator_delayed_tooltip"
+                    }
+                }
+                containerWindowType = {
+                    name = "decrease_destroyer_count_calculator"
+                    position = { x = 75 y = 12 }
+
+                    buttonType = {
+                        name = "decrease_destroyer_count_calculator"
+                        spriteType = "GFX_small_minus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "decrease_destroyer_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "decreases_destroyer_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "decreases_destroyer_count_calculator_delayed_tooltip"
+                    }
+                }
+            }
+            # Light cruisers
+            containerWindowType = {
+                name = "light_cruiser_count_calculator"
+                position = { x = 0 y = 50 }
+
+                instantTextBoxType = {
+                    name = "light_cruiser_count_calculator_title"
+                    position = { x = -165 y = -10 }
+                    font = "hoi_18mbs"
+                    text = "LIGHT_CRUISER_COUNT_CALCULATOR"
+                    format = left
+                    maxWidth = 150
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "LIGHT_CRUISER_COUNT_CALCULATOR_TT"
+                }
+                iconType = {
+                    name = "ship_icon"
+                    position = {x=-50 y=15} # Y is centered in code
+                    spriteType = "GFX_unit_light_cruiser_icon_medium"
+                    centerposition = yes
+                    scale = 1.2
+                    alwaystransparent = yes
+                }
+                instantTextBoxType = {
+                    name = "light_cruiser_count_calculator"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?light_cruiser_count_calculator]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "LIGHT_CRUISER_COUNT_CALCULATOR_TT"
+                }
+
+
+                containerWindowType = {
+                    name = "increase_light_cruiser_count_calculator"
+                    position = { x = 75 y = -3 }
+
+                    buttonType = {
+                        name = "increase_light_cruiser_count_calculator"
+                        spriteType = "GFX_small_plus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "increase_light_cruiser_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "increases_light_cruiser_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "increases_light_cruiser_count_calculator_delayed_tooltip"
+                    }
+                }
+                containerWindowType = {
+                    name = "decrease_light_cruiser_count_calculator"
+                    position = { x = 75 y = 12 }
+
+                    buttonType = {
+                        name = "decrease_light_cruiser_count_calculator"
+                        spriteType = "GFX_small_minus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "decrease_light_cruiser_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "decreases_light_cruiser_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "decreases_light_cruiser_count_calculator_delayed_tooltip"
+                    }
+                }
+            }
+
+            # Heavy cruisers
+            containerWindowType = {
+                name = "heavy_cruiser_count_calculator"
+                position = { x = 0 y = 100 }
+
+                instantTextBoxType = {
+                    name = "heavy_cruiser_count_calculator_title"
+                    position = { x = -165 y = -10 }
+                    font = "hoi_18mbs"
+                    text = "HEAVY_CRUISER_COUNT_CALCULATOR"
+                    format = left
+                    maxWidth = 150
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "HEAVY_CRUISER_COUNT_CALCULATOR_TT"
+                }
+                iconType = {
+                    name = "ship_icon"
+                    position = {x=-50 y=15} # Y is centered in code
+                    spriteType = "GFX_unit_heavy_cruiser_icon_medium"
+                    centerposition = yes
+                    scale = 1.1
+                    alwaystransparent = yes
+                }
+                instantTextBoxType = {
+                    name = "heavy_cruiser_count_calculator"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?heavy_cruiser_count_calculator]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "HEAVY_CRUISER_COUNT_CALCULATOR_TT"
+                }
+
+
+                containerWindowType = {
+                    name = "increase_heavy_cruiser_count_calculator"
+                    position = { x = 75 y = -3 }
+
+                    buttonType = {
+                        name = "increase_heavy_cruiser_count_calculator"
+                        spriteType = "GFX_small_plus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "increase_heavy_cruiser_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "increases_heavy_cruiser_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "increases_heavy_cruiser_count_calculator_delayed_tooltip"
+                    }
+                }
+                containerWindowType = {
+                    name = "decrease_heavy_cruiser_count_calculator"
+                    position = { x = 75 y = 12 }
+
+                    buttonType = {
+                        name = "decrease_heavy_cruiser_count_calculator"
+                        spriteType = "GFX_small_minus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "decrease_heavy_cruiser_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "decreases_heavy_cruiser_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "decreases_heavy_cruiser_count_calculator_delayed_tooltip"
+                    }
+                }
+            }
+
+            # Battleships
+            containerWindowType = {
+                name = "battleship_count_calculator"
+                position = { x = 0 y = 150 }
+
+                instantTextBoxType = {
+                    name = "battleship_count_calculator_title"
+                    position = { x = -165 y = -10 }
+                    font = "hoi_18mbs"
+                    text = "BATTLESHIP_COUNT_CALCULATOR"
+                    format = left
+                    maxWidth = 150
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "BATTLESHIP_COUNT_CALCULATOR_TT"
+                }
+                iconType = {
+                    name = "ship_icon"
+                    position = {x=-50 y=15} # Y is centered in code
+                    spriteType = "GFX_unit_battleship_icon_medium"
+                    centerposition = yes
+                    scale = 1
+                    alwaystransparent = yes
+                }
+                instantTextBoxType = {
+                    name = "battleship_count_calculator"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?battleship_count_calculator]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "BATTLESHIP_COUNT_CALCULATOR_TT"
+                }
+
+
+                containerWindowType = {
+                    name = "increase_battleship_count_calculator"
+                    position = { x = 75 y = -3 }
+
+                    buttonType = {
+                        name = "increase_battleship_count_calculator"
+                        spriteType = "GFX_small_plus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "increase_battleship_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "increases_battleship_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "increases_battleship_count_calculator_delayed_tooltip"
+                    }
+                }
+                containerWindowType = {
+                    name = "decrease_battleship_count_calculator"
+                    position = { x = 75 y = 12 }
+
+                    buttonType = {
+                        name = "decrease_battleship_count_calculator"
+                        spriteType = "GFX_small_minus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "decrease_battleship_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "decreases_battleship_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "decreases_battleship_count_calculator_delayed_tooltip"
+                    }
+                }
+            }
+
+            # Battlecruisers
+            containerWindowType = {
+                name = "battlecruiser_count_calculator"
+                position = { x = 0 y = 200 }
+
+                instantTextBoxType = {
+                    name = "battlecruiser_count_calculator_title"
+                    position = { x = -165 y = -10 }
+                    font = "hoi_18mbs"
+                    text = "BATTLECRUISER_COUNT_CALCULATOR"
+                    format = left
+                    maxWidth = 150
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "BATTLECRUISER_COUNT_CALCULATOR_TT"
+                }
+                iconType = {
+                    name = "ship_icon"
+                    position = {x=-50 y=15} # Y is centered in code
+                    spriteType = "GFX_unit_battle_cruiser_icon_medium"
+                    centerposition = yes
+                    scale = 1
+                    alwaystransparent = yes
+                }
+                instantTextBoxType = {
+                    name = "battlecruiser_count_calculator"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?battlecruiser_count_calculator]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "BATTLECRUISER_COUNT_CALCULATOR_TT"
+                }
+
+
+                containerWindowType = {
+                    name = "increase_battlecruiser_count_calculator"
+                    position = { x = 75 y = -3 }
+
+                    buttonType = {
+                        name = "increase_battlecruiser_count_calculator"
+                        spriteType = "GFX_small_plus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "increase_battlecruiser_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "increases_battlecruiser_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "increases_battlecruiser_count_calculator_delayed_tooltip"
+                    }
+                }
+                containerWindowType = {
+                    name = "decrease_battlecruiser_count_calculator"
+                    position = { x = 75 y = 12 }
+
+                    buttonType = {
+                        name = "decrease_battlecruiser_count_calculator"
+                        spriteType = "GFX_small_minus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "decrease_battlecruiser_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "decreases_battlecruiser_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "decreases_battlecruiser_count_calculator_delayed_tooltip"
+                    }
+                }
+            }
+
+            # Carriers
+            containerWindowType = {
+                name = "carrier_count_calculator"
+                position = { x = 0 y = 250 }
+
+                instantTextBoxType = {
+                    name = "carrier_count_calculator_title"
+                    position = { x = -165 y = -10 }
+                    font = "hoi_18mbs"
+                    text = "CARRIER_COUNT_CALCULATOR"
+                    format = left
+                    maxWidth = 150
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "CARRIER_COUNT_CALCULATOR_TT"
+                }
+                iconType = {
+                    name = "ship_icon"
+                    position = {x=-50 y=15} # Y is centered in code
+                    spriteType = "GFX_unit_carrier_icon_medium"
+                    centerposition = yes
+                    scale = 1
+                    alwaystransparent = yes
+                }
+                instantTextBoxType = {
+                    name = "carrier_count_calculator"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?carrier_count_calculator]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "CARRIER_COUNT_CALCULATOR_TT"
+                }
+
+
+                containerWindowType = {
+                    name = "increase_carrier_count_calculator"
+                    position = { x = 75 y = -3 }
+
+                    buttonType = {
+                        name = "increase_carrier_count_calculator"
+                        spriteType = "GFX_small_plus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "increase_carrier_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "increases_carrier_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "increases_carrier_count_calculator_delayed_tooltip"
+                    }
+                }
+                containerWindowType = {
+                    name = "decrease_carrier_count_calculator"
+                    position = { x = 75 y = 12 }
+
+                    buttonType = {
+                        name = "decrease_carrier_count_calculator"
+                        spriteType = "GFX_small_minus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "decrease_carrier_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "decreases_carrier_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "decreases_carrier_count_calculator_delayed_tooltip"
+                    }
+                }
+            }
+
+            # SHBB
+            containerWindowType = {
+                name = "shbb_count_calculator"
+                position = { x = 0 y = 300 }
+
+                instantTextBoxType = {
+                    name = "shbb_count_calculator_title"
+                    position = { x = -165 y = -10 }
+                    font = "hoi_18mbs"
+                    text = "SHBB_COUNT_CALCULATOR"
+                    format = left
+                    maxWidth = 160
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "SHBB_COUNT_CALCULATOR_TT"
+                }
+                iconType = {
+                    name = "ship_icon"
+                    position = {x=-50 y=15} # Y is centered in code
+                    spriteType = "GFX_unit_sh_battleship_icon_medium"
+                    centerposition = yes
+                    scale = 1
+                    alwaystransparent = yes
+                }
+                instantTextBoxType = {
+                    name = "shbb_count_calculator"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?shbb_count_calculator]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "SHBB_COUNT_CALCULATOR_TT"
+                }
+
+
+                containerWindowType = {
+                    name = "increase_shbb_count_calculator"
+                    position = { x = 75 y = -3 }
+
+                    buttonType = {
+                        name = "increase_shbb_count_calculator"
+                        spriteType = "GFX_small_plus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "increase_shbb_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "increases_shbb_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "increases_shbb_count_calculator_delayed_tooltip"
+                    }
+                }
+                containerWindowType = {
+                    name = "decrease_shbb_count_calculator"
+                    position = { x = 75 y = 12 }
+
+                    buttonType = {
+                        name = "decrease_shbb_count_calculator"
+                        spriteType = "GFX_small_minus_button"
+                        position = { x = 0 y = 0 }
+                    }
+
+                    instantTextBoxType = {
+                        name = "decrease_shbb_count_calculator_tooltip"
+                        position = { x = 0 y = 0 }
+                        font = "hoi_18mbs"
+                        format = left
+                        maxWidth = 24
+                        maxHeight = 24
+                        fixedsize = yes
+                        pdx_tooltip = "decreases_shbb_count_calculator_tooltip"
+                        pdx_tooltip_delayed = "decreases_shbb_count_calculator_delayed_tooltip"
+                    }
+                }
+            }
+
+ 
+            # Total Ships
+			containerWindowType = {
+				name = "ships_total_window"
+				position = { x = 8 y = 420 }
+				iconType = {
+					name ="ships_total_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "ships_total_text"
+					position = { x = -12 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 95
+					maxHeight = 24
+					fixedsize = yes
+					text = "TOTAL_SHIPS_TITLE"
+					pdx_tooltip = "GDP_TOTAL_DESC"
+				}
+				instantTextBoxType = {
+					name = "ships_total_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "TOTAL_SHIPS_CALCULATOR"
+					pdx_tooltip = "TOTAL_SHIPS_CALCULATOR_DESC"
+					pdx_tooltip_delayed = "TOTAL_SHIPS_CALCULATOR_DELAYED_DESC"
+				}
+			}
+
+        }
+
+        # Command Limit Cost
+		containerWindowType = {
+			name = "calculator_tab"
+			position = { x = 77 y = 100 }
+
+			# Ship Cost Container
+			containerWindowType = {
+				name = "naval_calculator_table_expenses"
+
+				# Ship Cost Container
+				instantTextBoxType = {
+					name = "ship_cost"
+					position = { x = 220 y = 35 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SHIP_COST_TITLE"
+					pdx_tooltip = "OPEN_NAVAL_CALCULATOR_BUTTON"
+				}
+				instantTextBoxType = {
+					name = "defence_spending_rate"
+					position = { x = 215 y = 75 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SIZE1"
+					pdx_tooltip = "DEFENCE_SPENDING_TOOLTIP"
+					pdx_tooltip_delayed = "DEFENCE_SPENDING_TOOLTIP_DELAYED"
+				}
+				instantTextBoxType = {
+					name = "internal_security_spending_rate"
+					position = { x = 215 y = 125 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SIZE2"
+					pdx_tooltip = "POLICE_SPENDING_TOOLTIP"
+					pdx_tooltip_delayed = "POLICE_SPENDING_TOOLTIP_DELAYED"
+				}
+				instantTextBoxType = {
+					name = "education_exp_rate"
+					position = { x = 215 y = 175 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SIZE2"
+					pdx_tooltip = "EDUCATION_EXPENSE_TOOLTIP"
+					pdx_tooltip_delayed = "EDUCATION_EXPENSE_TOOLTIP_DELAYED"
+				} 
+				instantTextBoxType = {
+					name = "health_expenses_rate"
+					position = { x = 215 y = 225 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SIZE4"
+					pdx_tooltip = "HEALTHCARE_EXPENSE_TOOLTIP"
+					pdx_tooltip_delayed = "HEALTHCARE_EXPENSE_TOOLTIP_DELAYED"
+				}
+				instantTextBoxType = {
+					name = "social_expense_rate"
+					position = { x = 215 y = 275 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SIZE4"
+					pdx_tooltip = "WELFARE_EXPENSE_TOOLTIP"
+					pdx_tooltip_delayed = "WELFARE_EXPENSE_TOOLTIP_DELAYED"
+				}
+				instantTextBoxType = {
+					name = "interest_on_debt_expense"
+					position = { x = 215 y = 325 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SIZE6"
+					pdx_tooltip = "INTEREST_EXPENSE_TOOLTIP"
+					pdx_tooltip_delayed = "INTEREST_EXPENSE_TOOLTIP_DELAYED"
+				}
+				instantTextBoxType = {
+					name = "migration_law_expense_rates"
+					position = { x = 215 y = 375 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 80
+					maxHeight = 24
+					fixedsize = yes
+					text = "SIZE6"
+					pdx_tooltip = "MIGRATION_LAWS_TOOLTIP"
+					pdx_tooltip_delayed = "MIGRATION_LAWS_TOOLTIP_DELAYED"
+				}
+			}
+		}
+
+        # Totals Column
+        containerWindowType = {
+            name = "calculated_totals"
+            position = { x = 400 y = 170 }
+
+            # Total Cost Container
+            instantTextBoxType = {
+                name = "ship_cost"
+                position = { x = 0 y = -35 }
+                font = "hoi_18mbs"
+                format = center
+                maxWidth = 75
+                maxHeight = 24
+                fixedsize = yes
+                text = "TOTAL_COST_TITLE"
+                pdx_tooltip = "OPEN_NAVAL_CALCULATOR_BUTTON"
+            }
+
+            containerWindowType = {
+                name = "calculated_totals_dd"
+                position = { x = 0 y = 0 }
+
+                instantTextBoxType = {
+                    name = "destroyer_count_calculator_total"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?destroyer_count_calculator_total]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "DESTROYER_COUNT_CALCULATOR_TOTAL_TT"
+                }
+            }
+
+            containerWindowType = {
+                name = "calculated_totals_lc"
+                position = { x = 0 y = 50 }
+
+                instantTextBoxType = {
+                    name = "light_cruiser_count_calculator_total"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?light_cruiser_count_calculator_total]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "LIGHT_CRUISER_COUNT_CALCULATOR_TOTAL_TT"
+                }
+            }
+
+            containerWindowType = {
+                name = "calculated_totals_hc"
+                position = { x = 0 y = 100 }
+
+                instantTextBoxType = {
+                    name = "heavy_cruiser_count_calculator_total"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?heavy_cruiser_count_calculator_total]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "HEAVY_CRUISER_COUNT_CALCULATOR_TOTAL_TT"
+                }
+            }
+
+            containerWindowType = {
+                name = "calculated_totals_bb"
+                position = { x = 0 y = 150 }
+
+                instantTextBoxType = {
+                    name = "battleship_count_calculator_total"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?battleship_count_calculator_total]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "BATTLESHIP_COUNT_CALCULATOR_TOTAL_TT"
+                }
+            }
+
+            containerWindowType = {
+                name = "calculated_totals_bc"
+                position = { x = 0 y = 200 }
+
+                instantTextBoxType = {
+                    name = "battlecruiser_count_calculator_total"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?battlecruiser_count_calculator_total]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "BATTLECRUISER_COUNT_CALCULATOR_TOTAL_TT"
+                }
+            }
+
+            containerWindowType = {
+                name = "calculated_totals_cv"
+                position = { x = 0 y = 250 }
+
+                instantTextBoxType = {
+                    name = "carrier_count_calculator_total"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?carrier_count_calculator_total]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "CARRIER_COUNT_CALCULATOR_TOTAL_TT"
+                }
+            }
+
+            containerWindowType = {
+                name = "calculated_totals_shbb"
+                position = { x = 0 y = 300 }
+
+                instantTextBoxType = {
+                    name = "shbb_count_calculator_total"
+                    position = { x = 10 y = 4 }
+                    font = "hoi_18mbs"
+                    text = "[?shbb_count_calculator_total]"
+                    format = center
+                    maxWidth = 55
+                    maxHeight = 24
+                    fixedsize = yes
+                    pdx_tooltip = "SHBB_COUNT_CALCULATOR_TOTAL_TT"
+                }
+            }
+
+            # Fleet Cap
+			containerWindowType = {
+				name = "fleet_cap_window"
+				position = { x = 8 y = 420 }
+				iconType = {
+					name ="fleet_cap_bg"
+					spriteType = "GFX_generic_box_smallest"
+				}
+				instantTextBoxType = {
+					name = "fleet_cap_text"
+					position = { x = -25 y = -20 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 120
+					maxHeight = 24
+					fixedsize = yes
+					text = "COMMAND_LIMIT_TITLE"
+					pdx_tooltip = "COMMAND_LIMIT_TITLE_DESC"
+				}
+				instantTextBoxType = {
+					name = "fleet_cap_amount"
+					position = { x = 5 y = 5 }
+					font = "hoi_18mbs"
+					format = center
+					maxWidth = 60
+					maxHeight = 24
+					fixedsize = yes
+					text = "COMMAND_LIMIT"
+					pdx_tooltip = "COMMAND_LIMIT_DESC"
+					pdx_tooltip_delayed = "FLEET_CAP_DELAYED_DESC"
+				}
+			}
+        }
+	}
+	
+	##################################################################################################
+	##################################################################################################
+	##################################################################################################
+	
+	containerWindowType = {
+		name = "lend_lease_button_container"
+		position = { x = 678 y = 36 }
+
+		buttonType  = {
+			name = "lend_lease_button"
+			spriteType = "GFX_lend_lease_button"
+			position = { x=0 y=0 }
+			clicksound = click_close
+			oversound = ui_menu_over
+			clicksound = decisions_ui_checkbox
+			pdx_tooltip = "LEND_LEASE_BUTTON_TT"
+			pdx_tooltip_delayed = "LEND_LEASE_BUTTON_DESC_TT"
+		}
+	}
+    
+    containerWindowType = {
+		name = "warning_arrow_stuff"
+		position = { x = 600 y = 60 }
+
+		iconType = {
+			name = "warning_arrow"		
+			quadTextureSprite ="GFX_arrow"
+		}
+	}
+
+	containerWindowType = {
+		name = "lend_lease_window"
+		position = { x = 0 y = 0}	
+		size = { width = 1200 height = 900 }
+		orientation = center
+		origo = center
+		fade_time = 100
+		moveable = yes
+		fade_type = linear
+		click_to_front = no
+		clipping = no
+		
+		background = {
+			name = "Background"		
+			quadTextureSprite ="GFX_custom_menu"
+		}
+		
+		buttonType  = {
+			name = "close_button31"
+			spriteType = "GFX_close_button31"
+			position = { x = 1297 y = 11 }
+			Orientation = "UPPER_LEFT"
+			clicksound = click_close
+			shortcut = "ESCAPE"
+			oversound = ui_menu_over
+		}	
+		
+		instantTextBoxType = {
+            name = "churchill_says" 
+            position = { x = 5 y = 80 }
+            maxHeight = 24
+            maxWidth = 380
+            font = "hoi_16mbs"
+            format = center
+            text = "[churchill_localization_loc]"
+            #pdx_tooltip = ENG_funds_info
+        }
+		
+		iconType = {
+			name = "Churchill"
+			spriteType = "GFX_churchill"
+			position = { x = 13 y = 63 }
+			Orientation = "UPPER_LEFT"
+			#pdx_tooltip = HMP_eq_log_button_tt
+		}	
+		
+		instantTextboxType = {
+			name = "lend_lease_title"
+			position = { x = 525 y = 7 }
+			font = "hoi_36header"
+			borderSize = {x = 0 y = 0}
+			text = "Imperial Decisions"
+			maxWidth = 400
+			maxHeight = 20
+			fixedsize = yes
+		}
+		
+		instantTextBoxType = {
+			name = "funds_info" 
+			position = { x = -50 y = 170 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "ENG_funds_info"
+			pdx_tooltip = ENG_funds_info_tt
+		}	
+
+		######### CANADIAN OBLIGATIONS #########
+		
+		instantTextBoxType = {
+			name = "CAN_title" 
+			position = { x = 163 y = 100 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Canada"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		instantTextBoxType = {
+			name = "CAN_obligation_info" 
+			position = { x = 163 y = 215 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "CAN_obligation_info_tt"
+			pdx_tooltip = obligation_tt
+		}
+		
+		buttonType = {
+			name = "can_increase_obligation_button"
+			position = { x = 370 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 1
+		}
+		
+		buttonType = {
+			name = "can_decrease_obligation_button"
+			position = { x = 315 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 2
+		}
+		
+		buttonType = {
+			name = "CAN_flag"
+			position = { x = 315 y = 125 }
+			spriteType = "GFX_can_flag"
+			clicksound = click_default
+			pdx_tooltip = boost_tt
+		}
+		
+		######### SOUTH AFRICAN OBLIGATIONS #########
+		
+		instantTextBoxType = {
+			name = "SAF_title" 
+			position = { x = 290 y = 100 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "South Africa"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		instantTextBoxType = {
+			name = "SAF_obligation_info" 
+			position = { x = 290 y = 215 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "SAF_obligation_info_tt"
+			pdx_tooltip = obligation_tt
+		}
+		
+		buttonType = {
+			name = "saf_increase_obligation_button"
+			position = { x = 495 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 1
+		}
+		
+		buttonType = {
+			name = "saf_decrease_obligation_button"
+			position = { x = 440 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 2
+		}
+		
+		buttonType = {
+			name = "SAF_flag"
+			position = { x = 440 y = 125 }
+			spriteType = "GFX_saf_flag"
+			clicksound = click_default
+			pdx_tooltip = boost_tt
+		}
+		
+		######### RAJ OBLIGATIONS #########
+
+		instantTextBoxType = {
+			name = "RAJ_title" 
+			position = { x = 415 y = 100 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Indians"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		instantTextBoxType = {
+			name = "RAJ_obligation_info" 
+			position = { x = 415 y = 215 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "RAJ_obligation_info_tt"
+			pdx_tooltip = obligation_tt
+		}
+		
+		buttonType = {
+			name = "raj_increase_obligation_button"
+			position = { x = 620 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 1
+		}
+		
+		buttonType = {
+			name = "raj_decrease_obligation_button"
+			position = { x = 565 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 2
+		}
+		
+		buttonType = {
+			name = "RAJ_flag"
+			position = { x = 565 y = 125 }
+			spriteType = "GFX_raj_flag"
+			clicksound = click_default
+			pdx_tooltip = boost_tt
+		}
+
+		######### AUSTRALIAN OBLIGATIONS #########
+		
+		instantTextBoxType = {
+			name = "AST_title" 
+			position = { x = 538 y = 100 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Australians"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		instantTextBoxType = {
+			name = "AST_obligation_info" 
+			position = { x = 540 y = 215 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "AST_obligation_info_tt"
+			pdx_tooltip = obligation_tt
+		}
+		
+		buttonType = {
+			name = "ast_increase_obligation_button"
+			position = { x = 745 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 1
+		}
+		
+		buttonType = {
+			name = "ast_decrease_obligation_button"
+			position = { x = 690 y = 180 }
+			quadTextureSprite = "GFX_change_conveyor_order_btn"
+			buttonFont = "hoi_18mbs"
+			clicksound = click_default
+			frame = 2
+		}
+		
+		buttonType = {
+			name = "AST_flag"
+			position = { x = 690 y = 125 }
+			spriteType = "GFX_ast_flag"
+			clicksound = click_default
+			pdx_tooltip = boost_tt
+		}
+		
+		########################################
+		
+		instantTextBoxType = {
+			name = "american_buyer" 
+			position = { x = 350 y = 260 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "american_buyer_tt"
+			pdx_tooltip = american_buyer_tt_tt
+		}
+		
+		iconType = {
+			name = "button_background.1"
+			position = { x = 285 y = 300 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.1"
+			position = { x = 750 y = 306 }
+			quadTextureSprite = "GFX_decision_select_icon_strip"
+			clicksound = decisions_ui_checkbox
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "gun_order" 
+			position = { x = 350 y = 306 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 12500 Guns"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.2"
+			position = { x = 285 y = 340 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.2"
+			position = { x = 750 y = 346 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "arty_order" 
+			position = { x = 350 y = 346 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 2000 Artillery"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.3"
+			position = { x = 285 y = 380 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.3"
+			position = { x = 750 y = 386 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "at_order" 
+			position = { x = 350 y = 386 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 1500 Anti-Tank Guns"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.4"
+			position = { x = 285 y = 420 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.4"
+			position = { x = 750 y = 426 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "aa_order" 
+			position = { x = 350 y = 426 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 1225 Anti-Air Guns"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.5"
+			position = { x = 285 y = 460 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.5"
+			position = { x = 750 y = 466 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "rocket_arty_order" 
+			position = { x = 350 y = 466 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 1250 Rocket Artillery"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.6"
+			position = { x = 285 y = 500 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.6"
+			position = { x = 750 y = 506 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "support_eq_order" 
+			position = { x = 350 y = 506 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 1225 Support Equipment"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.7"
+			position = { x = 285 y = 540 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.7"
+			position = { x = 750 y = 546 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "truck_order" 
+			position = { x = 350 y = 546 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 2500 Trucks"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.8"
+			position = { x = 285 y = 580 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.8"
+			position = { x = 750 y = 586 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "mechanized_order" 
+			position = { x = 350 y = 586 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 500 Mechanized Vehicles"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.9"
+			position = { x = 285 y = 620 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.9"
+			position = { x = 750 y = 626 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "light_tank_order" 
+			position = { x = 350 y = 626 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 250 Light Tanks"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.10"
+			position = { x = 285 y = 660 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.10"
+			position = { x = 750 y = 666 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "medium_tank_order" 
+			position = { x = 350 y = 666 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 200 Medium Tanks"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		iconType = {
+			name = "button_background.11"
+			position = { x = 285 y = 700 }
+			spriteType = "GFX_decision_item_bg_single"
+		}
+		
+		buttonType = {
+			name = "button_select.11"
+			position = { x = 750 y = 706 }
+			spriteType = "GFX_decision_select_icon_strip"
+			clicksound = click_default
+			frame = 2
+			tooltip = "AOD_cost_tt"
+		}
+		
+		instantTextBoxType = {
+			name = "heavy_tank_order" 
+			position = { x = 350 y = 706 }
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Order 125 Heavy Tanks"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+		#########################################################
+
+		instantTextBoxType = {
+			name = "churchill_decision_title" 
+			position = { x = -640 y = -190 }
+			orientation = center
+			maxHeight = 24
+			maxWidth = 380
+			font = "hoi_24header"
+			format = center
+			text = "Commission Divisions"
+			#pdx_tooltip = ENG_funds_info
+		}
+		
+
+		buttonType = {
+			name = "churchill_decision1"
+			position = { x = -525 y = -150 }
+			buttonText = "churchill_decisions1_tt"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "churchill_decision_light_tanks_tt"
+			#pdx_tooltip_delayed = "churchill_decision1_tt"
+		}
+	
+		buttonType = {
+			name = "churchill_decision2"
+			position = { x = -525 y = -120 }
+			buttonText = "churchill_decisions2_tt"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "churchill_decision_medium_tanks_tt"
+		}
+		
+		buttonType = {
+			name = "churchill_decision3"
+			position = { x = -525 y = -90 }
+			buttonText = "churchill_decisions3_tt"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "churchill_decision_heavy_tanks_tt"
+		}
+		
+		buttonType = {
+			name = "churchill_decision4"
+			position = { x = -525 y = -60 }
+			buttonText = "churchill_decisions4_tt"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "churchill_decision_african_army"
+		}
+		
+		buttonType = {
+			name = "churchill_decision5"
+			position = { x = -525 y = -30 }
+			buttonText = "churchill_decisions5_tt"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "churchill_decision_raj_tt"
+			
+		}
+		
+		buttonType = {
+			name = "churchill_decision6"
+			position = { x = -525 y = 0 }
+			buttonText = "churchill_decisions6_tt"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "churchill_decision_singapore_tt"
+		}
+		
+		# buttonType = {
+			# name = "churchill_decision7"
+			# position = { x = -525 y = 30 }
+			# buttonText = "churchill_decisions7_tt"
+			# quadTextureSprite = "GFX_btn_green"
+			# buttonFont = "hoi_16mbs"
+			# orientation = center
+			# clicksound = ui_award_collect_reward
+			# tooltip = "work_in_progress"
+		# }
+		
+		# buttonType = {
+			# name = "churchill_decision8"
+			# position = { x = -525 y = 60 }
+			# buttonText = "churchill_decisions8_tt"
+			# quadTextureSprite = "GFX_btn_green"
+			# buttonFont = "hoi_16mbs"
+			# orientation = center
+			# clicksound = ui_award_collect_reward
+			# tooltip = "work_in_progress"
+		# }
+		
+		# buttonType = {
+			# name = "churchill_decision9"
+			# position = { x = -525 y = 90 }
+			# buttonText = "churchill_decisions9_tt"
+			# quadTextureSprite = "GFX_btn_green"
+			# buttonFont = "hoi_16mbs"
+			# orientation = center
+			# clicksound = ui_award_collect_reward
+			# tooltip = "work_in_progress"
+		# }
+		
+		# buttonType = {
+			# name = "churchill_decision10"
+			# position = { x = -525 y = 120 }
+			# buttonText = "churchill_decisions10_tt"
+			# quadTextureSprite = "GFX_btn_green"
+			# buttonFont = "hoi_16mbs"
+			# orientation = center
+			# clicksound = ui_award_collect_reward
+			# tooltip = "work_in_progress"
+		# }
+		
+		#########################################################
+		
+		buttonType = {
+			name = "UK_buff_button"
+			position = { x = -525 y = 100 }
+			buttonText = "UK_buff_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "UK_buff_tt"
+		}
+		
+		buttonType = {
+			name = "UK_research_buff"
+			position = { x = -525 y = 130 }
+			buttonText = "UK_research_buff_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "UK_research_industry_buff"
+		}
+		
+		buttonType = {
+			name = "small_loans"
+			position = { x = -525 y = 160 }
+			buttonText = "small_loans_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "small_loans_title_tt"
+		}
+		
+		buttonType = {
+			name = "medium_loans"
+			position = { x = -525 y = 190 }
+			buttonText = "medium_loans_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "medium_loans_title_tt"
+		}
+		
+		buttonType = {
+			name = "large_loans"
+			position = { x = -525 y = 220 }
+			buttonText = "large_loans_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "large_loans_title_tt"
+		}
+        
+        #########################################################
+        
+        instantTextboxType = {
+			name = "stuff"
+			position = { x = 915 y = 100 }
+			font = "hoi_36header"
+			borderSize = {x = 0 y = 0}
+			text = "Colonial Development"
+            tooltip = "stuff_tt"
+			maxWidth = 400
+			maxHeight = 20
+			fixedsize = yes
+		}
+        
+        buttonType = {
+			name = "UK_policy_buff_can"
+			position = { x = 410 y = -300 }
+			buttonText = "UK_policy_buff_can_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "UK_policy_buff_can_tt"
+		}
+		
+        buttonType = {
+			name = "UK_policy_buff_saf"
+			position = { x = 410 y = -270 }
+			buttonText = "UK_policy_buff_saf_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "UK_policy_buff_saf_tt"
+		}
+        
+        buttonType = {
+			name = "UK_policy_buff_raj"
+			position = { x = 410 y = -240 }
+			buttonText = "UK_policy_buff_raj_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "UK_policy_buff_saf_tt"
+		}
+        
+        buttonType = {
+			name = "UK_policy_buff_ast"
+			position = { x = 410 y = -210 }
+			buttonText = "UK_policy_buff_ast_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "UK_policy_buff_saf_tt"
+		}
+        
+        buttonType = {
+			name = "UK_policy_buff_cansaf"
+			position = { x = 410 y = -180 }
+			buttonText = "UK_policy_buff_cansaf_title"
+			quadTextureSprite = "GFX_btn_green"
+			buttonFont = "hoi_16mbs"
+			orientation = center
+			clicksound = ui_award_collect_reward
+			tooltip = "UK_policy_buff_cansaf_tt"
+		}
+        
+        #########################################################
+}
+	
+	
+
+

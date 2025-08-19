@@ -1,0 +1,458 @@
+#####################
+
+###  ##  #  # # #  ## 
+ #  #  # ## # # # #   
+ #  #### # ## ##   #  
+ #  #  # #  # # #   # 
+ #  #  # #  # # # ## 
+
+ #################### 
+GER_germany_tank_organization = {
+	include = generic_horst_tank_organization
+	icon = GFX_idea_generic_acquire_tanks
+	
+	allowed = {	
+		original_tag = GER
+	}
+	
+	add_trait = { 
+		token = generic_horst_germany_trait_1
+		name = generic_horst_germany_trait_1
+		icon = GFX_generic_mio_department_icon_tank_heavy_tank_line_efficiency
+		special_trait_background = yes
+
+		position = { x=9 y=1 }
+		
+		limit_to_equipment_type = { heavy_tank_chassis_1 heavy_tank_chassis_2 heavy_tank_chassis_3 }
+		
+		equipment_bonus = {
+			build_cost_ic = -0.1
+		}
+	}
+	
+	add_trait = {
+		token = generic_horst_germany_trait_2
+		name = generic_horst_germany_trait_2
+		icon = GFX_generic_mio_department_icon_tank_general_armor
+		special_trait_background = yes
+
+		position = { x=9 y=2 }
+		
+		#limit_to_equipment_type = { heavy_tank_chassis_1 heavy_tank_chassis_2 heavy_tank_chassis_3 }
+		
+		equipment_bonus = {
+			armor_value = 0.1
+		}
+	}
+	
+	add_trait = {
+		token = generic_horst_germany_trait_3
+		name = generic_horst_germany_trait_3
+		icon = GFX_generic_mio_department_icon_tank_light_tank_quality
+		special_trait_background = yes
+
+		position = { x=9 y=3 }
+		
+		#limit_to_equipment_type = { light_tank_chassis_2 light_tank_chassis_3 light_tank_chassis_4 }
+		
+		equipment_bonus = {
+			maximum_speed = 0.05
+			fuel_capacity = 0.05
+		}
+	}
+}
+
+AXIS_MINORS_tank_organization = {
+	include = generic_horst_tank_organization
+	icon = GFX_idea_generic_acquire_tanks
+	
+	allowed = {	
+		OR = {	
+			original_tag = SPR
+			original_tag = CZE
+			original_tag = EFR
+			original_tag = FIN
+			original_tag = ROM
+			original_tag = HUN
+			original_tag = DEN
+			original_tag = YUG
+			original_tag = BUL
+			original_tag = AOI
+			original_tag = TUR
+			original_tag = ALB
+		}	
+	}
+	
+	add_trait = { 
+		token = generic_horst_AXIS_MINORS_trait_1
+		name = generic_horst_AXIS_MINORS_trait_1
+		icon = GFX_generic_mio_department_icon_facilities
+		special_trait_background = yes
+
+		position = { x=6 y=4 }
+		
+		mutually_exclusive = { generic_horst_AXIS_MINORS_trait_4 }
+		
+		available = {
+			custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+		}
+		
+		#limit_to_equipment_type = { heavy_tank_chassis_1 heavy_tank_chassis_2 heavy_tank_chassis_3 }
+		
+		production_bonus = {
+			production_efficiency_cap_factor = 0.05
+		}
+	}
+	
+	add_trait = {
+		token = generic_horst_AXIS_MINORS_trait_2
+		name = generic_horst_AXIS_MINORS_trait_2
+		icon = GFX_generic_mio_department_icon_facilities
+		special_trait_background = yes
+
+		position = { x=2 y=4 }
+		
+		available = {
+			custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+		}
+		
+		#limit_to_equipment_type = { heavy_tank_chassis_1 heavy_tank_chassis_2 heavy_tank_chassis_3 }
+		
+		production_bonus = {
+			production_resource_need_factor = -0.25
+		}
+	}
+	
+	add_trait = {
+		token = generic_horst_AXIS_MINORS_trait_3
+		name = generic_horst_AXIS_MINORS_trait_3
+		icon = GFX_generic_mio_department_icon_facilities
+		special_trait_background = yes
+
+		position = { x=0 y=4 }
+		
+		available = {
+			custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+		}
+		
+		#limit_to_equipment_type = { light_tank_chassis_2 light_tank_chassis_3 light_tank_chassis_4 }
+		
+		equipment_bonus = {
+			reliability = 0.25
+		}
+	}
+	
+	add_trait = {
+		token = generic_horst_AXIS_MINORS_trait_4
+		name = generic_horst_AXIS_MINORS_trait_4
+		icon = GFX_generic_mio_department_icon_facilities
+		special_trait_background = yes
+		
+		mutually_exclusive = { generic_horst_AXIS_MINORS_trait_3 }
+
+		position = { x=8 y=4 }
+		
+		#available = {
+		#	custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+		#}
+		
+		#limit_to_equipment_type = { light_tank_chassis_2 light_tank_chassis_3 light_tank_chassis_4 }
+		
+		production_bonus = {
+			production_efficiency_gain_factor = 0.25
+			production_conversion_speed_factor = 0.25
+		}
+	}
+}
+
+GER_porsche_organization = {
+	include = generic_heavy_tank_organization
+	icon = GFX_idea_porsche
+	
+	allowed = {	
+		always = no
+	}
+}
+
+GER_henschel_organization = {
+	include = generic_mobile_tank_organization
+	icon = GFX_idea_henschel
+	
+	allowed = {	
+		always = no
+	}
+}
+
+GER_man_organization = {
+	include = generic_medium_tank_organization
+	icon = GFX_idea_GER_MAN
+	
+	allowed = {	
+		always = no
+	}
+}
+
+GER_nibelungenwerke_organization  = {
+	include = generic_tank_refurbishment_plant_organization
+	icon = GFX_idea_nibelungenwerke
+	allowed = { 
+		always = no 
+	}
+}		
+GER_alkett_organization = {
+	include = generic_infantry_tank_organization
+	icon = GFX_idea_GER_alkett
+	
+	allowed = {	
+		always = no
+	}
+}
+
+GER_daimler_benz_organization = {
+	include = generic_tank_organization
+	icon = GFX_idea_GER_daimler_benz # TODO change
+	
+	allowed = {
+		always = no
+	}
+
+}
+
+#####################
+
+ ## #  # ### ###   ## 
+#   #  #  #  #  # #   
+ #  ####  #  ###   #  
+  # #  #  #  #      # 
+##  #  # ### #    ##  
+ 
+#####################
+GER_deschimag_organization = {
+	include = generic_escort_ship_organization
+	icon = GFX_idea_GER_deschimag
+		
+	allowed = {	
+		tag = GER 
+	}
+}
+
+
+GER_germaniawerft_organization = {
+	include = generic_battle_line_ship_organization
+	icon = GFX_idea_germaniawerft
+	
+	allowed = {	
+		tag = GER 
+	}
+}
+
+
+	
+GER_blohm_und_voss_organization = {
+	include = generic_raider_ship_organization
+	icon = GFX_idea_blohm_und_voss
+	
+	allowed = {	
+		tag = GER 
+	}
+}
+
+
+GER_hdw_organization = {
+	include = generic_submarine_organization
+	icon = GFX_idea_GER_hdw 
+	
+	allowed = {	
+		original_tag = GER 
+	}
+	
+	}
+
+
+GER_deutsche_werke_organization = {
+	include = generic_task_force_ship_organization
+	icon = GFX_idea_GER_deutsche_werke
+allowed = {	
+		original_tag = GER 
+	}
+	
+	}
+
+
+
+GER_kriegsmarinewerft_wilhelmshaven_organization = {
+	include = generic_refurbishment_repair_organization
+	icon = GFX_idea_GER_kriegsmarinewerft_wilhelmshaven
+	
+	allowed = {	
+		original_tag = GER 
+	}
+	
+	}
+
+
+
+###########################
+
+###  #    ##  #  # ###  ## 
+#  # #   #  # ## # #   #   
+###  #   #### # ## ##   #  
+#    #   #  # #  # #     # 
+#    ### #  # #  # ### ##  
+
+###########################
+
+GER_messerschmitt_organization = {
+	include = generic_light_aircraft_organization
+	icon = GFX_idea_messerschmitt
+	
+	allowed = {	
+			tag = GER
+	}
+}
+
+GER_junkers_organization = {
+	include = generic_cas_aircraft_organization
+	icon = GFX_idea_junkers
+	
+	allowed = {	 
+		OR = {
+			tag = GER 
+			the_geacps = yes
+		}
+	}
+	available = {
+	}
+}
+
+GER_focke_wulf_organization = {
+	include = generic_range_focused_aircraft_organization #generic_multi_role_aircraft_organization
+	icon = GFX_idea_focke_wulf
+	
+	allowed = {	
+		tag = GER 
+	}
+}
+
+GER_heinkel_organization = {
+	include = generic_medium_aircraft_organization
+	icon = GFX_idea_heinkel
+	
+	allowed = {	
+		tag = GER 
+	}
+}
+
+GER_dornier_organization = {
+	include = generic_naval_aircraft_organization
+	icon = GFX_idea_dornier
+	allowed = {	
+		tag = GER 
+	}
+}
+
+GER_arado_flugzeugwerke_organization = {
+	include = generic_multi_role_aircraft_organization
+	icon = GFX_idea_GER_arado_flugzeugwerke
+	
+	allowed = {	
+		original_tag = GER 
+	}
+	
+	}
+	
+	
+GER_fieseler_organization = {
+	include = generic_naval_aircraft_organization
+	icon = GFX_idea_GER_fieseler
+	
+	allowed = {	
+		original_tag = GER 
+	}
+
+
+}
+
+################################### 
+
+#   #  ##  ### ### ###  ### ### #   
+## ## #  #  #  #   #  #  #  #   #   
+# # # ####  #  ##  ###   #  ##  #   
+#   # #  #  #  #   #  #  #  #   #   
+#   # #  #  #  ### #  # ### ### ### 
+
+
+###################################
+
+GER_rheinmetall_organization = {
+	include = generic_artillery_organization
+	icon = GFX_idea_rheinmetall
+	
+	allowed = {	
+		always = no
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = GER } }
+			}
+			FROM = { NOT = { has_war_with = GER } }
+		}
+	}
+}
+
+GER_mauser_organization = {
+	include = generic_infantry_equipment_organization
+	icon = GFX_idea_mauser
+	
+	allowed = {	 
+		always = no
+	}
+}
+
+GER_opel_organization = {
+	include = generic_motorized_mechanized_organization
+	icon = GFX_idea_opel
+	
+	allowed = {	
+		always = no
+	}
+	
+	available = {
+		IF = {
+			limit = { FROM = { original_tag = ROM } }
+			FROM = { has_completed_focus = ROM_invite_axis_motor_companies }
+		}	
+	}
+	
+	add_trait = { 
+		token = ROM_opel_organization_token
+		name = ROM_opel_organization
+		icon = GFX_generic_mio_department_icon_motorized_production
+
+		position = { x=0 y=0 }
+		
+		visible = {
+			FROM = { original_tag = ROM }
+		}
+
+		equipment_bonus = {
+			build_cost_ic = -0.10
+		}
+	}
+	
+	
+}
+
+
+GER_carl_walther_organization = {
+	include = generic_support_equipment_organization
+	icon = GFX_idea_GER_carl_walther
+	
+	allowed = {	
+		always = no
+	}
+
+
+}

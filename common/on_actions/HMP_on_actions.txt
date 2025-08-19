@@ -1,0 +1,2533 @@
+on_actions = {
+	on_naval_invasion = { 
+		effect ={  
+			if = { 
+				limit = { OR ={  spanish_coastline = yes   }  } 
+				 teleport_armies = {limit = { normally_played_allies = yes  } to_state = 518 }     every_country = {  delete_unit = { state = 518 disband = yes  } } PREV = { if = { limit = { SPR = { owns_state = 41 } }transfer_state_to = SPR}  else = { transfer_state_to = GER }  }
+			} 
+			if = { 
+				limit = { british_coastline_not_south = yes    } 
+				teleport_armies = {limit = { the_axis = yes  } to_state = 507 }     every_country = {  delete_unit = { state = 507 disband = yes  } } 
+				PREV = { 
+					if = { limit ={  NOT = { OR = { state = 582 state = 323 }}}  transfer_state_to = ENG   }  
+					if = { limit ={  state = 582 POL = { owns_state =  582 }  } transfer_state_to = POL }
+					else = { transfer_state_to = ENG }
+					if = { limit ={  state = 323 NOR = { owns_state =  323 }  } transfer_state_to = NOR }
+					else = { transfer_state_to = ENG }
+				} 	
+			}
+			if = { limit = { FROM = { is_core_of = SPR } }
+				teleport_armies = {limit = { tag = SPR  } to_state = 41 } 
+			}
+					if = { 
+				limit = { OR ={  state = 313 state = 21  } date < 1940.1.1   } 
+				teleport_armies = {limit = { the_axis = yes  } to_state = FROM } 
+				PREV = { 	if = { limit ={  FRA = { owns_state = 21 }}  transfer_state_to = FRA   }  	} 	
+			}
+			
+				 	if = {
+				limit = {
+					ROOT = {
+						divisions_in_state = {
+							 unit = marine_commando
+							 size > 0
+							 state = PREV
+						}
+						 has_tech = marines_commandos_demolition 
+					}
+					NOT = { has_state_flag = marines_commando_effect }
+					OWNER = { NOT = { tag = ROOT } }
+				}
+				SF_marine_demoliton_effect = yes # Note that the state flag condition is not preventing it from doing 1 damage per division 
+			}
+			}
+	}
+	on_new_term_election = {	random_events = { 100 = election.14 100 = election.15 }	}
+	on_startup = {
+		effect = {
+		IF = {
+	limit = {
+		NOT = { has_dlc = "Trial of Allegiance" }
+	}
+	
+	BRA = { country_event = { id = mtg_netherlands.1148 } }
+	}
+
+			
+			if = { limit = {has_game_rule = {rule = horst_host_country option = ENG}} set_variable={host = ENG.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = GER}} set_variable={host = GER.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = ITA}} set_variable={host = ITA.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = ROM}} set_variable={host = ROM.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = HUN}} set_variable={host = HUN.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = FIN}} set_variable={host = FIN.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = USA}} set_variable={host = USA.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = CAN}} set_variable={host = CAN.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = SAF}} set_variable={host = SAF.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = RAJ}} set_variable={host = RAJ.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = AST}} set_variable={host = AST.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = NZL}} set_variable={host = NZL.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = CZE}} set_variable={host = CZE.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = YUG}} set_variable={host = YUG.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = JAP}} set_variable={host = JAP.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = MAN}} set_variable={host = MAN.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = SOV}} set_variable={host = SOV.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = FRA}} set_variable={host = FRA.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = SPR}} set_variable={host = SPR.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = NOR}} set_variable={host = NOR.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = AOI}} set_variable={host = AOI.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = EFR}} set_variable={host = EFR.id} }	
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = BUL}} set_variable={host = BUL.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = BRA}} set_variable={host = BRA.id} }
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = HOL}} set_variable={host = HOL.id} }	
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = POL}} set_variable={host = POL.id} }	
+			else_if = { limit = {has_game_rule = {rule = horst_host_country option = GRE}} set_variable={host = GRE.id} }	
+			var:host = { set_variable = { marked_states = 0 } set_country_flag = host	}
+			SWE = { HMP_startup_on_actions = yes }
+		}
+
+		effect = {
+			BRA = {
+				set_variable = { focustree_background = 1 }
+			}
+		}
+	}
+
+	on_capitulation = {	effect = { 	HMP_capitulations_on_actions = yes		}	}
+	
+	on_subject_autonomy_level_change = {
+		effect = {
+			if = {
+				limit = { tag = RAJ	has_autonomy_state = autonomy_dominion	}
+				create_country_leader = {
+					name = "Archibald Wavell"
+					picture = "gfx/leaders/ENG/Portrait_Britain_Archibald_Wavell.dds"
+					expire = "1965.1.1"
+					ideology = centrism
+					traits = {	staunch_monarchist }
+				}
+			}
+		}
+	}	
+
+
+
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = { 
+					FROM.FROM = { is_libyan_state = yes }
+					FROM = { OR ={ is_in_faction_with = GER tag = GER } }
+				}
+				ITA = {
+					add_to_variable = {
+						var= AXIS_COMPASS_SUPPLY_supply_consumption_factor value = -0.025
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_SUPPLY_supply_node_range value = 0.05
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_SUPPLY_army_strength_factor value = 0.1
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_dig_in_speed_factor value = 0.1
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_pocket_penalty value = -0.05
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_planning_speed value = 0.1
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_org_loss_at_low_org_factor value = -0.05
+					}					
+				}
+			}
+				if = {
+				limit = { 
+					FROM.FROM = { is_libyan_state = yes }
+					FROM = { OR ={ is_in_faction_with = ENG tag = ENG } }
+				}
+				ITA = {
+					add_to_variable = {
+						var= AXIS_COMPASS_SUPPLY_supply_consumption_factor value = 0.025
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_SUPPLY_supply_node_range value = -0.05
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_SUPPLY_army_strength_factor value = -0.1
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_dig_in_speed_factor value = -0.1
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_pocket_penalty value = 0.05
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_planning_speed value = -0.1
+					}
+					add_to_variable = {
+						var= AXIS_COMPASS_org_loss_at_low_org_factor value = 0.05
+					}					
+				}
+			}		
+			
+		
+		
+			if = { limit = { OR = {  AND = { FROM = { tag = RAJ} RAJ = { has_war_with = JAP } country_exists = RAJ RAJ = { surrender_progress > 0.8 } RAJ = { NOT = { has_country_flag = RAJ_BOSE_flag  }   }  }   AND = { ENG = { has_war_with = JAP } FROM.FROM = { state = 439 } ENG ={  owns_state = 439   } } } }
+			every_state = {limit = { is_owned_by = RAJ }
+				if = { limit = { ENG = { controls_state = 595 } }
+				teleport_armies = {limit = { normally_played_allies = yes  } to_state = 595 }
+				}
+				else_if ={  limit = { ENG= { controls_state = 269 } }
+				teleport_armies = {limit = { normally_played_allies = yes  } to_state = 269 }
+				}
+				else = { 
+					teleport_armies = {limit = { normally_played_allies = yes  } to_state = 297 }
+				}
+			
+			}
+			
+				RAJ = { 
+				set_country_flag = RAJ_BOSE_flag 
+				}
+				JAP = { complete_national_focus = JAP_RAJ_form_azad_hind }
+			}
+			if = {
+				limit = {
+					has_global_flag = SOV_propaganda_death_to_invaders_active_flag
+					FROM.FROM = { is_core_of = SOV }
+				}
+				if = { #If SOV is new controller, remove state modifier
+					limit = {
+						ROOT = { tag = SOV }
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_invaders_must_die } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_invaders_must_die } }
+				}
+				else_if = { #If SOV lost the state, add state modifier
+					limit = {
+						FROM = { tag = SOV }
+						ROOT = { has_war_with = SOV }
+					}
+					FROM.FROM = { add_dynamic_modifier = { modifier = SOV_invaders_must_die } }
+				}
+			}
+		}
+		
+		#SOVIET - Clean other state modifiers when Soviets lose control over the state
+		effect = {
+			if = {
+				limit = {
+					FROM.FROM = { is_core_of = SOV }
+					ROOT = { NOT = { tag = SOV } }
+				}
+				if = { #SOV_defend_moscow
+					limit = {
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_defend_moscow } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_defend_moscow } }
+				}
+				if = { #SOV_increased_metals_production
+					limit = {
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_increased_metals_production } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_increased_metals_production } }
+				}
+				if = { #SOV_seraya_loshad_battery
+					limit = {
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_seraya_loshad_battery } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_seraya_loshad_battery } }
+				}
+				if = { #SOV_krasnaya_gorka_battery
+					limit = {
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_krasnaya_gorka_battery } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_krasnaya_gorka_battery } }
+				}
+				if = { #SOV_armored_battery_35
+					limit = {
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_armored_battery_35 } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_armored_battery_35 } }
+				}
+				if = { #SOV_factory_worker_militias_raised
+					limit = {
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_factory_worker_militias_raised } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_factory_worker_militias_raised } }
+				}
+				if = { #SOV_civilian_labor_in_defense
+					limit = {
+						FROM.FROM = { has_dynamic_modifier = { modifier = SOV_civilian_labor_in_defense } }
+					}
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_civilian_labor_in_defense } }
+				}
+			}
+		}
+		effect = {
+		
+		# BURMA
+		if = {
+			limit = {
+				FROM = { OR = { original_tag = RAJ original_tag = ENG } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 288 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_burma } }
+		}
+		if = {
+			limit = {
+				ROOT = { OR = { original_tag = RAJ original_tag = ENG } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 288 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_burma } }
+		}
+
+		# PAPUA
+		if = {
+			limit = {
+				FROM = { OR = { original_tag = AST original_tag = ENG original_tag = NZL original_tag = CAN original_tag = SAF original_tag = RAJ } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 523 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_papua } }
+		}
+		if = {
+			limit = {
+				ROOT = { OR = { original_tag = AST original_tag = ENG original_tag = NZL original_tag = CAN original_tag = SAF original_tag = RAJ } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 523 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_papua } }
+		}
+
+		# JAVA
+		if = {
+			limit = {
+				FROM = { original_tag = USA JAP = { has_government = fascism } }
+				FROM.FROM = { state = 335 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_java } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = USA JAP = { has_government = fascism } }
+				FROM.FROM = { state = 335 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_java } }
+		}
+
+		# CEYLON
+		if = {
+			limit = {
+				FROM = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 422 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_ceylon } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 422 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_ceylon } }
+		}
+
+		# GABON
+		if = {
+			limit = {
+				FROM = { OR = { original_tag = FRA original_tag = ENG original_tag = CAN original_tag = SAF } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 539 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gabon } }
+		}
+		if = {
+			limit = {
+				ROOT = { OR = { original_tag = FRA original_tag = ENG original_tag = CAN original_tag = SAF } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 539 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gabon } }
+		}
+
+		# KHARTOUM
+		if = {
+			limit = {
+				FROM = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 551 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_khartoum } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 551 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_khartoum } }
+		}
+
+		# ADEN
+		if = {
+			limit = {
+				FROM = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 574 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_aden } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 574 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_aden } }
+		}
+
+		# GIBRALTAR
+		if = {
+			limit = {
+				FROM = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 118 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gibraltar } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 118 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gibraltar } }
+		}
+
+		# ABU DHABI
+		if = {
+			limit = {
+				FROM = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 138 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_abu_dhabi } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+				FROM.FROM = { state = 138 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_abu_dhabi } }
+		}
+
+		# TRIPOLI
+		if = {
+			limit = {
+				FROM = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 448 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_tripoli } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 448 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_tripoli } }
+		}
+
+		# IWO JIMA
+		if = {
+			limit = {
+				FROM = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 560 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_iwo_jima } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 560 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_iwo_jima } }
+		}
+
+		# CAIRO
+		if = {
+			limit = {
+				FROM = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 305 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_cairo } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 305 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_cairo } }
+		}
+
+		# BANGKOK
+		if = {
+			limit = {
+				FROM = { OR = { original_tag = JAP original_tag = SIA } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 289 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_bangkok } }
+		}
+		if = {
+			limit = {
+				ROOT = { OR = { original_tag = JAP original_tag = SIA } JAP = { has_government = fascism } }
+				FROM.FROM = { state = 289 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_bangkok } }
+		}
+
+		# PALAU
+		if = {
+			limit = {
+				FROM = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 488 }
+			}
+			USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_palau } }
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+				FROM.FROM = { state = 488 }
+			}
+			USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_palau } }
+		}
+
+		
+		
+		
+		
+		
+		
+		
+				if = { #Italy loses a state
+				limit = {
+					FROM = {
+						original_tag = ITA
+						has_power_balance = { id = ITA_power_balance }
+						is_power_balance_side_active = {
+							id = ITA_power_balance
+							side = ITA_grand_council_side
+						}
+					}
+					FROM.FROM = {
+						is_owned_by = ITA
+					}
+				}
+				if = { #It's a core -> Non mi piazze!
+					limit = {
+						FROM.FROM = {
+						OR = {
+							is_core_of = ITA
+							OR = { state = 305 state = 450 state =448 state = 458 }
+							}
+							NOT = { OR = { state = 579 state = 279  state = 449 state = 606 state = 515  state = 274 state = 552 state = 506 state = 605 state = 116 state = 164 state = 182 }}
+						}
+					}
+					if = { #FIRST TIME LOSING A CORE PLAYER GETS EVENT (Effects are handled there)
+						limit = {
+							FROM = { check_variable = { ITA_lost_core = 0 } }
+						}
+						FROM = {
+							set_variable = { ITA_lost_core = FROM.FROM }
+							country_event = { id = BBA_italy_bop.1 hours = 1 }
+						}
+					}
+					else = { #Further cores lost will not trigger event
+						ITA_bop_high_decrease_effect = yes
+						ITA_bop_increase_lost_core_modifier = yes
+					}
+				}
+			}
+			else_if = { #Italy gets a core state back
+				limit = {
+					ROOT = {
+						original_tag = ITA
+						has_power_balance = { id = ITA_power_balance }
+						is_power_balance_side_active = {
+							id = ITA_power_balance
+							side = ITA_grand_council_side
+						}
+					}
+					FROM.FROM = {
+						OR = {
+							is_core_of = ITA
+							OR = { state = 305 state = 450 state =448 state = 458 }
+							}
+							NOT = { OR = { state = 579 state = 279  state = 449 state = 606 state = 515  state = 274 state = 552 state = 506 state = 605 state = 116 state = 164 state = 182 }}
+					}
+				}
+				ROOT = { #This event is fired only once, condition set in the actual event
+						set_variable = { ITA_reclaimed_core = FROM.FROM }
+						country_event = { id = BBA_italy_bop.3 hours = 1 }
+					}
+				ITA_bop_high_increase_effect = yes
+				ITA_bop_decrease_lost_core_modifier = yes
+			}
+		
+					if = {
+				limit = {
+					ITA_state_or_vp_name_should_change = yes
+				}
+				ITA_change_name_of_state_or_vp = yes
+			}
+		
+
+		if ={ 
+		limit = { 
+			POL = { NOT = { has_country_flag = poland_capitulated }  surrender_progress > 0.5 } FROM.FROM = { is_core_of = POL }
+		}
+			HMP_script_poland = yes 
+		}
+		if = { limit =  { NOT = { GER = { has_country_flag = vlasov_captured_flag }} FROM.FROM = { state = 263 } GER = { has_government = fascism }      }   GER = { set_country_flag = vlasov_captured_flag country_event = { id =  NSB_soviet_fascist_tsarist.32 } }        }
+		
+			if = {
+				limit = {
+					FROM.FROM = {
+						HMP_italy_debuff_wall = yes
+						has_dynamic_modifier = { modifier = ITA_italian_railways_modifier }
+					}
+				}
+				FROM.FROM = {  remove_dynamic_modifier = { modifier = ITA_italian_railways_modifier2 } }
+				FROM.FROM = {  remove_dynamic_modifier = { modifier = ITA_italian_railways_modifier } }
+			}
+			if = {
+				limit = {
+					tag = FRA
+					has_completed_focus = FRA_national_uprising
+					FROM.FROM = {
+						is_core_of = ROOT
+						not = { has_state_flag = FRA_core_state_liberated }
+					}
+				}
+				FROM.FROM = {
+					set_state_flag = FRA_core_state_liberated
+					create_unit = {
+						division = "name = \"1re Demi-Brigade de Chasseurs\" division_template = \"FFI Demi-Brigade\" start_experience_factor = 0"  
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"2me Demi-Brigade de Chasseurs\" division_template = \"FFI Demi-Brigade\" start_experience_factor = 0"  
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"3me Demi-Brigade de Chasseurs\" division_template = \"FFI Demi-Brigade\" start_experience_factor = 0"  
+						owner = ROOT
+					}
+				}
+			}
+				if = {
+					limit = {
+						FROM = { tag = FRA }
+						FROM.FROM = { is_core_of = FRA }
+						OR ={  AND ={  FRA = { surrender_progress	> 0.33 NOT = { OR = { controls_state = 18 controls_state = 29 controls_state = 267 }} } }	FRA = { surrender_progress	> 0.5	}	 }
+						NOT = { FRA = { has_country_flag = france_is_kill }}
+					}
+					FRA = {		set_country_flag = france_is_kill   } 
+					 tp_divs_out_of_france = yes
+					PER = { horstorical_multiplayer_vichy_france = yes }
+					FRA = {
+						
+						add_state_core = 539 set_capital = { state = 539 }
+						country_event = { id = france.10 }
+						set_global_flag = fall_of_france
+						set_cosmetic_tag = FRA_FREE
+						news_event = { id = news.34 days = 0 }
+					}
+					ENG = { 
+						retire_country_leader = yes					
+						create_country_leader = {
+							name = "Winston Churchill"
+							desc = "POLITICS_WINSTON_CHURCHILL_DESC"
+							picture = "Portrait_Britain_Winston_Churchill.dds"
+							expire = "1965.1.1"
+							ideology = conservatism
+							traits = {	british_bulldog	}
+						}
+
+						add_stability = 0.1
+						add_war_support = 0.1
+						}
+					GER = {  country_event = { id = france.14 }}
+					if = { limit = { country_exists = JAP } JAP = { complete_national_focus=  JAP_move_to_indochina } }
+
+					}				
+		
+							
+			if = {
+				limit = {
+					FROM = { tag = HOL }
+					FROM.FROM = { state = 7 }
+					date < 1940.6.1
+				}
+				HOL = { tp_divs_out_of_holland = yes }
+						GER = { transfer_state = 35 transfer_state = 7 transfer_state = 36  }
+		if = { limit = {  HOL = { is_ai =yes } } 
+		HOL = { complete_national_focus = HOL_devour complete_national_focus = HOL_continue_the_war_in_batavia complete_national_focus = HOL_reinforce_java complete_national_focus = HOL_reinforce_sumatra }
+every_state = { limit =  { is_owned_by = HOL NOT = {state = 352 } } ENG = {transfer_state = PREV}  } PER = { transfer_state = 352 country_event = { id = usa.6243 days = 1 }  }  }
+		} 
+									
+			if = {
+				limit = { OR = { 	normally_played_allies = yes tag = SOV } FROM.FROM = { state = 110 } date > 1941.1.1 }
+				SWE = { give_resource_rights = { receiver = ENG state = 576 } }  
+			      GER = { remove_resource_rights = 576 }
+				}	
+					if = {
+				limit = {  HMP_italy_dying = yes}
+				 set_global_flag = ITA_cap GER= { country_event = { id = italy.600 } }
+				 if = { limit = { AOI = { has_country_flag = host } } GER = { set_country_flag = host }  AOI = { clr_country_flag = host }  }
+				if = { limit = { YUG = { has_country_flag = host } } GER = { set_country_flag = host }  YUG = { clr_country_flag = host }  }
+				if = { limit = { country_exists = AOI }  GER = { add_to_variable = { paratrooper_div_cap = 2 }  set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap } annex_country = { target = AOI transfer_troops = yes } }	}
+				ITA = { every_unit_leader = { set_nationality = GER }  set_autonomy = {  target = YUG   autonomy_state = autonomy_free } }
+				GER = { change_tag_from = ITA} 
+				GER = { set_autonomy = {  target = YUG   autonomy_state = reichskommissariat }	}
+				YUG = { set_cosmetic_tag = CRO_fascism}
+			}
+			if = {
+				limit = {  HMP_italy_sort_of_dying = yes NOT = { ITA = { has_country_flag = ITA_rsi_established }	} }
+				ITA = { complete_national_focus = ITA_the_italian_social_republic }
+			}
+			if = {
+				limit = {
+					OR = {
+						TAG = ENG
+						TAG = USA
+						TAG = AST
+						TAG = FRA
+						TAG = CAN
+						TAG = NZL
+						TAG = SAF
+					}
+					FROM = { original_tag = GER }
+					FROM.FROM = { state = 16 }
+				}
+				news_event = news.134
+			}
+			if = {
+				limit = {
+					the_axis = yes 
+					FROM = { original_tag = SOV }
+					FROM.FROM = { state = 195 }
+					NOT = { has_global_flag = fall_of_leningrad }
+				}
+				news_event = news.103
+				set_global_flag = fall_of_leningrad
+			}			
+				if = {
+				limit = {
+					the_axis = yes 
+					FROM = { original_tag = SOV }
+					FROM.FROM = { state = 217 }
+					NOT = { has_global_flag = fall_of_stalingrad }
+				}
+				news_event = news.105
+				set_global_flag = fall_of_stalingrad
+			}			
+					if = {
+				limit = {
+					the_axis = yes 
+					FROM = { original_tag = SOV }
+					FROM.FROM = { state = 219 }
+					NOT = { has_global_flag = fall_of_moscow }
+				}
+				news_event = news.106
+				set_global_flag = fall_of_moscow
+			}			
+			
+								if = {
+				limit = {
+					OR = { original_tag = JAP original_tag = MAN }
+					FROM = { original_tag = USA }
+					FROM.FROM = { state = 416 }
+					NOT = { has_global_flag = fall_of_pearl_harbor }
+				}
+				news_event = news.118
+				set_global_flag = fall_of_pearl_harbor
+			}	
+			if = {
+				limit = {
+					original_tag = SOV
+					FROM = { original_tag = GER }
+					FROM.FROM = { state = 64 }
+					NOT = { has_global_flag = fall_of_berlin_sov }
+				}
+				news_event = news.140
+				set_global_flag = fall_of_berlin_sov
+			}			
+		}
+	}
+
+	# Ace pilots
+	# country, FROM = ace
+	on_ace_promoted = {
+		random_events = {
+			100 = ace_promoted.1
+			5 = ace_promoted.2
+		}
+	}
+
+	# country, FROM = ace, PREV = enemy ace
+	# This event fires twice, once for each ace.
+	on_aces_killed_each_other = {
+		random_events = {
+			100 = aces_killed_each_other.1
+		}
+	}
+
+	# country, FROM = our ace,
+	# PREV = enemy ace, has killed FROM
+	on_ace_killed_by_ace = {
+		random_events = {
+			100 = ace_killed_by_ace.1
+		}
+	}
+
+	# country, FROM = our ace,
+	# PREV = enemy ace, killed by FROM
+	on_ace_killed_other_ace = {
+		random_events = {
+			100 = ace_killed_other_ace.1
+		}
+	}
+
+	# our ace is killed by no name
+	# country, FROM = ace
+	on_ace_killed = {
+		random_events = {
+			100 = ace_died.1
+		}
+	}
+
+	# our ace died in accident
+	# country, FROM = ace
+	on_ace_killed_on_accident = {
+
+	}
+
+	# enemy ace is killed by our non name
+	# country, FROM = enemy ace
+	on_non_ace_killed_other_ace = {
+
+	}
+
+	on_war_relation_added = { # ---> Fires in 2nd place (1st is on_declare_war) -> This one is triggered ALWAYS 
+		#SOVIET - If Soviet has "Long Live to Peace" propaganda campaign active, bad shit happens if they enter a war
+		effect = {
+			if = { #SOV is attacker - bad SOV gets properly punished
+				limit = {
+					ROOT = { original_tag = SOV }
+					SOV = {
+						has_country_flag = SOV_propaganda_peace_active_flag
+						NOT = { has_country_flag = SOV_punished_for_breaking_flag }
+					}
+				}
+				country_event = { id = NSB_soviet_propaganda_capmaign_events.2 hours = 4 random_hours = 2 }
+			}
+			else_if = { #SOV is defender - SOV gets mild punishment // #TODO_Manu: This is not triggering when someone declares on SOV
+				limit = {
+					FROM = { original_tag = SOV }
+					SOV = {
+						has_country_flag = SOV_propaganda_peace_active_flag
+						NOT = { has_country_flag = SOV_punished_for_breaking_flag }
+					}
+				}
+				country_event = { id = NSB_soviet_propaganda_capmaign_events.3 hours = 4 random_hours = 2 }
+			}
+			
+						IF = {
+				limit = {
+					NOT = { has_global_flag = SOV_winter_war_flag }
+					FROM = { tag = FIN }
+					
+				}
+				set_variable = { FIN_white_death_target_country = ROOT }
+			}
+			
+			
+		}	
+	}
+	on_paradrop = {
+	    effect = {
+			if = { 
+				limit = {  british_coastline_not_south = yes    } 
+				teleport_armies = {limit = { the_axis = yes  } to_state = 507 } 
+				PREV = { 
+					 transfer_state_to = ENG 
+				} 	
+			}
+			if = {  limit = { OR = { is_core_of = SPR state = 600 } }   teleport_armies = { limit = { the_axis = yes  }  to_state = 507 }  every_country = {  delete_unit = { state = 507 disband = yes  }	   } }
+		}
+	}	
+
+		on_daily_SOV = {
+		effect = {
+			SWE = { on_daily_fuel = yes }
+			if = { limit = { FRA = { check_variable = { FRA_legitimacy < 100 } has_country_flag = start_legitimacy_counter } } FRA=  { add_to_variable = { var = FRA_legitimacy value = 1 }    } }
+		
+				add_to_variable = { SOV_paranoia_weekly_bucket = SOV_paranoia }
+				if = { #MEDIUM PARANOIA LEVEL
+					limit = {
+						SOV_paranoia_is_medium_level = yes
+					}
+					add_to_variable = { SOV_medium_paranoia_days = 1 } #Used to randomize having a Great or a Regular purge (so that every day kinda counts)
+				}
+				else_if = { #HIGH PARANOIA LEVEL
+					limit = {
+						SOV_paranoia_is_high_level = yes
+					}
+					add_to_variable = { SOV_high_paranoia_days = 1 } #Used to randomize having a Great or a Regular purge (so that every day kinda counts)
+				}
+		}
+	}
+
+	
+	on_weekly_SOV = {
+		effect = {
+			JAP = { calc_japanese_pacific_navy_bonus = yes } 
+				if = { limit = { NOT= { EFR= { has_country_flag = vichy_france_established } } }
+					577 = { set_demilitarized_zone = yes } 397 = { set_demilitarized_zone = yes }
+				}
+			if = { limit = { date > 1939.9.1 NOT = { SPR = { has_country_flag = SPR_violated }}} 600 = { set_demilitarized_zone = yes }   }
+			if = { limit = { date > 1939.9.1 NOT = { ITA = { has_country_flag = ITA_took_balearics }}} 177 = { set_demilitarized_zone = yes }   }			
+			if = { limit = { date > 1939.9.1 ENG = { controls_state = 118 	divisions_in_state = { type = infantry   size < 1   state = 118 } } } ENG = { country_event = { id = mtg_netherlands.1147 days = 1 }}  }
+			if = {	limit = { HOL = { has_completed_focus = HOL_continue_the_war_in_batavia }}	HOL = { add_to_variable = {	THIS.prca_tokens = THIS.prca_tokens_weekly	}	THIS_clamp_max_tokens = yes	}	}
+		}
+	}
+	
+		# effect ={ #Weekly Paranoia modifiers
+			# if = { #If other modifiers affect Paranoia, then use the same flag with different values, which will work as a multiplier
+				# limit = {
+					# has_country_flag = SOV_paranoia_system_active_flag
+					# has_country_flag = SOV_paranoia_modifier_active_flag #Stalin's Paranoid leader trait
+				# }
+				# SOV_paranoia_modifier_increase_effect = yes
+			# }
+		# }
+		# effect = { #Randomly Triggered Purges
+			# if = {
+				# limit = {
+					# NOT = { has_country_flag = SOV_civil_war_triggered_flag } # check if Civil war has been triggered first TODO_THOMAS: remove if not using paranoia
+					# has_country_flag = SOV_paranoia_system_active_flag
+				# }
+				# set_temp_variable = { SOV_temp_paranoia_days = SOV_medium_paranoia_days }
+				# add_to_temp_variable = { SOV_temp_paranoia_days = SOV_high_paranoia_days }
+				# log = "Total Paranoia days = [?SOV_temp_paranoia_days]"
+
+				# if = {
+					# limit = {
+						# check_variable = { SOV_temp_paranoia_days > 3 }
+						# NOT = { has_country_flag = SOV_paranoia_conducting_inspection_flag } #Don't trigger a random purge if one is already going to be triggered from decision
+						# SOV_paranoia_is_finishing_purge_focus = no #Don't trigger a random purge if one is already going to be triggered from focus
+						# NOT = { has_country_flag = SOV_paranoia_random_purge_cooldown_from_focus_flag } #Wait 15 days after a purge has been triggered from focus
+						# NOT = { has_country_flag = SOV_paranoia_random_purge_cooldown_from_decision_flag } #Wait 15 days after a purge has been triggered from decision
+					# }
+					# random_list = {
+						# 100 = { # Nothing Happens
+							# modifier = {
+								# factor = 5
+								# check_variable = { SOV_paranoia_weekly_bucket < 400 }
+							# }
+							# modifier = {
+								# factor = 0.75
+								# check_variable = { SOV_paranoia_weekly_bucket > 500 }
+							# }
+							# log = "Lucky you: No random purge this week"
+						# }
+						# 100 = { # Regular Purge
+							# modifier = {
+								# factor = 0
+								# check_variable = { SOV_medium_paranoia_days = 0 }
+							# }
+							# modifier = {
+								# factor = 1.5
+								# check_variable = { SOV_paranoia_weekly_bucket > 400 }
+							# }
+							# modifier = {
+								# factor = 2
+								# check_variable = { SOV_medium_paranoia_days > SOV_high_paranoia_days }
+							# }
+							# SOV_manage_a_regular_purge_effect = yes
+						# }
+						# 100 = { #Great Purge
+							# modifier = {
+								# factor = 0
+								# check_variable = { SOV_high_paranoia_days = 0 }
+							# }
+							# modifier = {
+								# factor = 0.5
+								# check_variable = { SOV_high_paranoia_days < 3 }
+							# }
+							# modifier = {
+								# factor = 2
+								# check_variable = { SOV_high_paranoia_days > SOV_medium_paranoia_days }
+							# }
+							# modifier = {
+								# factor = 1.5
+								# check_variable = { SOV_paranoia_weekly_bucket > 400 }
+							# }
+							# SOV_manage_a_great_purge_effect = yes
+						# }
+					# }
+				# }
+
+				# CLEAN STUFF FOR NEXT WEEK
+				# set_variable = { SOV_medium_paranoia_days = 0 }
+				# set_variable = { SOV_high_paranoia_days = 0 }
+				# set_variable = { SOV_paranoia_weekly_bucket = 0 }
+			# }
+		# }
+	# }
+	on_weekly = {
+		effect = {
+			HMP_check_fleet_size = yes 
+		}
+	}
+	
+
+	
+	on_monthly = {
+		effect = {
+			share_intel_effect = yes
+	    }
+	}
+	
+	on_monthly_GER = {
+		effect = { 
+		if = { limit = { NOT = { has_global_flag = festung_europa_has_fallen  } ENG ={ has_completed_focus = ENG_dieppe } }
+			calc_festung_europa = yes
+		}
+		if = { limit = { GER= { has_war_with = ITA } }
+		compass_ll_calc = yes
+		}
+		#var:host = { news_event = mtg_news.4778 } #awkwardly firing whenit should not
+		HMP_sov_LL_monthly_effect = yes 
+		recalc_allied_rubber = yes 
+		recalc_vichy_france_legitimacy = yes 
+		if = { limit = { JAP ={ check_variable = { JAP_indies_spirit_var > -0.19 } has_war_with = ENG} } JAP = { add_to_variable = { var = JAP_indies_spirit_var value = -0.02 } } }
+		if = { limit = { has_global_flag = JAPAN_CAPPED_SUPPORT_SOV } SOV = { add_to_variable = { var = SOV_barb_ll_token value = 30 } add_to_variable = { var = SOV_barb_ll_token2 value = 30 } } }
+		if = { limit = { date > 1942.6.22 GER = { has_completed_focus = GER_the_great_turn has_war_with = ENG } } GER = { endsieg_production_buff_calc = yes  } }
+		if = { limit = { GER = { has_completed_focus = GER_totaler_krieg } } GER = { add_to_variable = { germany_war_exhaustion_war_support_factor = -0.020  } } }
+		if = { limit = { SOV = { has_war_with = GER has_completed_focus = SOV_the_permanent_revolution } } SOV = { add_to_variable = { soviet_war_exhaustion_war_support_factor = -0.035  }SOV_war_exhaustion_org_calc = yes } }
+		
+				
+		}
+	}
+	
+	
+		on_operative_on_mission_spotted = {
+	effect = {
+            # SCOPE  the operative
+            # ROOT   the country the operative was performing its mission in
+            # FROM   the country the operative is operating for
+
+			# base values
+            set_temp_variable = {
+                var = capture_chance
+                value = 90
+            }
+            set_temp_variable = {
+                var = kill_chance
+                value = 10
+            }			
+
+            # nullify kill chance for some missions
+            if = {
+                limit = {
+                    OR = {
+                        operative_leader_mission = control_trade
+                        operative_leader_mission = diplomatic_pressure
+                    }
+                }
+                set_temp_variable = {
+                    var = kill_chance
+                    value = 0
+                }
+            }
+
+            # Capture chance modifier unused as it would just increased or decrease death chance
+            #multiply_temp_variable = {
+            #   var = capture_chance
+            #   value = own_capture_chance_factor # the operative's capture chance modifiers
+            #}
+            #clamp_temp_variable = {
+            #   var = capture_chance
+            #   min = 0
+            #   max = 100
+            #}
+
+            random_list = {
+                #log = yes # log picked effect in game.log
+
+                temp_var:capture_chance = {
+                   	capture_operative = {
+                   	    captured_by = ROOT
+                   	}  	
+                }
+                temp_var:kill_chance = {
+                    kill_operative = {
+                        killed_by = ROOT
+                    }
+                }
+
+            }
+
+        }
+        
+    }
+
+	on_operative_captured = {
+		effect = {
+			# SCOPE  the operative
+			# ROOT   the country the operative was performing its mission in
+			# FROM   the country the operative is operating for
+			operative_leader_event = {
+					id = lar_operative_event.6
+					recipient = ROOT
+					originator = ROOT
+					set_from_from = ROOT
+					set_from = FROM
+					days = 1
+			}
+			if = {
+				limit = {
+					NOT = { has_unit_leader_flag = le_clerc1 }
+				}
+				set_unit_leader_flag = le_clerc1
+			}
+			else_if = {
+				limit = {
+					has_unit_leader_flag = le_clerc1
+				}
+				set_unit_leader_flag = le_clerc2
+			}
+			random_list = {
+				log = yes
+				90 = { #regular
+					operative_leader_event = {
+						id = lar_operative_event.1
+						set_from_from = ROOT
+					}
+				}
+				10 = { #operative turned
+					modifier = {
+						has_trait = operative_tough
+						factor = 0 #tough operatives never get turned
+					}
+					modifier = {
+						has_trait = operative_double_agent
+						factor = 0 #no tripple agents please
+					}
+					turn_operative = { turned_by = ROOT }
+					# ensure the operative has the nationality of the country he is coming from
+					add_nationality = FROM
+					operative_leader_event = {
+            	    	id = lar_operative_event.5
+						set_from_from = FROM #tells the event which nationality to add
+            		}
+            	}
+			}
+		}
+	}
+
+	on_operative_death = {
+		effect = {
+			# SCOPE  the operative
+			# ROOT   the killer country (optional)
+			# FROM   the country the operative is operating for
+			if = {
+				limit = {
+					country_exists = ROOT
+				}
+
+				# operative killed by a country, likelly while on mission
+				operative_leader_event = {
+					id = lar_operative_event.3
+					set_from_from = ROOT
+				}
+			}
+			else = {
+				# other cause of death
+			}
+			
+			if = {
+				limit = {
+					FROM = {
+						NOT = { is_ai = yes }
+						has_done_agency_upgrade = upgrade_suicide_pills
+					}
+				}
+				set_global_flag = kill_me_alive_flag
+			}
+		}
+	}
+	
+	on_operative_detected_during_operation = {
+		effect = {
+			random_list = {
+				45 = {
+					force_operative_leader_into_hiding = 45
+					operative_leader_event = {
+						id = lar_operative_event.2
+						set_from_from = FROM
+					}
+				}
+				25 = {
+					capture_operative = {
+						captured_by = FROM
+					}
+				}
+				25 = {
+					harm_operative_leader = 90
+					operative_leader_event = {
+						id = lar_operative_event.4
+						set_from_from = FROM
+					}
+				}
+				5 = {
+					kill_operative = {
+						killed_by = FROM
+					}
+				}
+			}
+		}
+	}
+
+	on_operation_completed = {
+		effect = {
+			# same scope setup as in operation outcome:
+			# THIS: the operation
+			# ROOT: the initiating country
+			# FROM: the target country
+			#log = "This: [This.GetName] From: [From.GetName] Root: [Root.GetName]"
+			
+			if = {
+				limit = {
+					ROOT = { has_country_flag = just_freed_operative_flag }
+				}
+				every_operative = {
+					if = {
+						limit = {
+							NOT = { has_trait = operative_escape_artist }
+						}
+						random_list = {
+							15 = { add_unit_leader_trait = operative_escape_artist }
+							85 = {}
+						}
+					}
+				}
+				ROOT = { clr_country_flag = just_freed_operative_flag }
+			}
+			every_operative = { #add target nationality if linguist
+				if = {
+					limit = {
+						has_trait = operative_linguist
+						NOT = { has_nationality = FROM }
+					}
+					random_list = {
+						20 = { add_nationality = FROM }
+						80 = {}
+					}
+				}
+			}
+		}
+	}
+
+	
+	
+	
+	on_monthly_NOR = {
+		effect = {
+			if = {
+				limit = {
+					NOT = { 
+						has_global_flag = NOR_the_norwegian_queen_is_dead 
+						has_global_flag = NOR_the_norwegian_king_is_dead 
+						has_government = communism
+						has_government = fascism  
+					}
+				}
+				if = {
+					limit = {
+						exists = yes 
+						date > 1938.10.29 # 20 days before Queen Maud death. 
+					}
+					if = { # The King Dies
+						limit = {
+							has_country_flag = NOR_has_a_rikstanken
+							has_completed_focus = NOR_the_chamberlains_overture
+						}
+						if = { # The King Dies
+							limit = {
+								has_completed_focus = NOR_shield_of_the_north
+								has_war = yes
+								surrender_progress > 0.2
+							}
+							country_event = { 
+								id = AAT_norway_monarchist.2
+								days = 20 
+							}	
+							every_country = {
+								limit = {
+										is_major = yes 
+									NOT = { original_tag = NOR }
+								}
+								news_event = {
+									id = AAT_norway_news.3
+									days = 20 
+								}
+							}
+						}
+					}
+					else = { # The Queen Dies
+						country_event = { 
+							id = AAT_norway.20
+							days = 20 
+						}	
+						every_country = {
+							limit = {
+									is_major = yes 
+								NOT = { original_tag = NOR }
+							}
+							news_event = {
+								id = AAT_norway_news.2
+								days = 20 
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_ruling_party_change = {
+
+
+		effect = { # FIN - Make sure country leaders have their appropriate party name
+			if = {
+				limit = {
+					original_tag = FIN
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							ruling_only = no
+							character = FIN_kyosti_kallio
+						}
+					}
+					set_party_name = { #Maalaisliitto (Agrarian League)
+						ideology = neutrality
+						name = FIN_neutrality_party
+						long_name = FIN_neutrality_party_long
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_leader = {
+							ruling_only = no
+							character = FIN_risto_ryti
+						}
+					}
+					set_party_name = { #National Progressive Party
+						ideology = neutrality
+						name = FIN_neutrality_party_progressive
+						long_name = FIN_neutrality_party_progressive_long
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_leader = {
+							ruling_only = no
+							character = FIN_carl_mannerheim
+						}
+					}
+					set_party_name = { #Non-Partisan Military Government
+						ideology = neutrality
+						name = FIN_neutrality_party_military
+						long_name = FIN_neutrality_party_military_long
+					}
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_country_leader = {
+								ruling_only = no
+								character = FIN_pehr_evind_svinhufvud
+							}
+							has_country_leader = {
+								ruling_only = no
+								character = FIN_juho_kusti_paasikivi
+							}
+						}
+					}
+					set_party_name = { #Kokoomus (National Coalition Party)
+						ideology = neutrality
+						name = FIN_neutrality_party_kokoomus
+						long_name = FIN_neutrality_party_kokoomus_long
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_leader = {
+							ruling_only = no
+							character = FIN_prince_wolfgang_von_hesse
+						}
+					}
+					set_party_name = {
+						ideology = neutrality
+						long_name = FIN_neutrality_party_monarchist_long
+						name = FIN_neutrality_party_monarchist
+					}
+				}
+				else = { #Fallback is Agrarian League (Maalaisliitto)
+					set_party_name = {
+						ideology = neutrality
+						name = FIN_neutrality_party
+						long_name = FIN_neutrality_party_long
+					}
+				}
+			}
+		}
+
+		effect = { # FIN - Deactivate BoP and bringing back old Sisu NS if changing ideology without AAT
+			if = {
+				limit = {
+					NOT = { has_dlc = "Arms Against Tyranny" }
+					original_tag = FIN
+					NOT = {
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_pehr_evind_svinhufvud
+						}
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_kyosti_kallio
+						}
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_risto_ryti
+						}
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_carl_mannerheim
+						}
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_juho_kusti_paasikivi
+						}
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_prince_wolfgang_von_hesse
+						}
+					}
+				}
+				if = { #Remove BoP and related Sisu NS
+					limit = {
+						has_power_balance = {
+							id = FIN_power_balance
+						}
+					}
+					remove_power_balance = { id = FIN_power_balance }
+					if = {
+						limit = {
+							has_idea = FIN_sisu_1
+						}
+						remove_ideas = FIN_sisu_1
+					}
+					else_if = {
+						limit = {
+							has_idea = FIN_sisu_2
+						}
+						remove_ideas = FIN_sisu_2
+					}
+					else_if = {
+						limit = {
+							has_idea = FIN_sisu_3
+						}
+						remove_ideas = FIN_sisu_3
+					}
+					else_if = {
+						limit = {
+							has_idea = FIN_sisu_4
+						}
+						remove_ideas = FIN_sisu_4
+					}
+					else_if = {
+						limit = {
+							has_idea = FIN_sisu_5
+						}
+						remove_ideas = FIN_sisu_5
+					}
+				}
+
+				if = { #Add old Sisu NS
+					limit = {
+						NOT = { has_idea = sisu }
+					}
+					add_ideas = sisu
+				}
+			}
+		}
+
+		effect = { #FIN - Drop cosmetic tags if appropriate
+			if = { #RED FINLAND cosmetic
+				limit = {
+					has_cosmetic_tag = FIN_red_finland
+					NOT = { has_government = communism }
+				}
+				drop_cosmetic_tag = yes
+			}
+			if = { #GRAND FINNISH FEDERATION cosmetic
+				limit = {
+					has_cosmetic_tag = FIN_grand_finnish_federation
+					NOT = { has_government = democratic }
+				}
+				drop_cosmetic_tag = yes
+			}
+			if = { #GREATER FINLAND cosmetic
+				limit = {
+					has_cosmetic_tag = FIN_greater_finland
+					OR = {
+						has_government = democratic
+						has_government = communism
+					}
+				}
+				drop_cosmetic_tag = yes
+			}
+			if = { #CONFEDERATED FINNO-RUSSIAN REPUBLICS cosmetic
+				limit = {
+					has_cosmetic_tag = FIN_confederated_finno_russian_republics
+					OR = {
+						has_government = fascism
+						has_government = neutrality
+					}
+				}
+				drop_cosmetic_tag = yes
+			}
+			if = { #KINGDOM OF FINLAND cosmetic
+				limit = {
+					has_cosmetic_tag = FIN_kingdom_of_finland
+					NOT = { has_government = neutrality }
+				}
+				drop_cosmetic_tag = yes
+			}
+		}
+	}
+
+	on_weekly_FIN = {
+		#FINLAND BOP
+		effect = {
+			##################
+			### SVINHUFVUD ###
+			##################
+			if = { #SVINHUFVUD - GOOD = No Democ & No Commie |||| BAD = Some Democ OR Commie // Losing Cores
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_pehr_evind_svinhufvud
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#CONCERNING SUPPORT FOR SOCIALISTS
+				if = {
+					limit = {
+						OR = {
+							communism > 0.09
+							democratic > 0.09
+						}
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_concerning_support_for_socialists
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_socialists
+						}
+					}
+					#Remove opposite modifier if necessary
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_eradicate_socialism
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_eradicate_socialism
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_concerning_support_for_socialists
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_socialists
+						}
+					}
+				}
+				#### GOOD ####
+				#ERADICATE SOCIALISM
+				if = {
+					limit = {
+						democratic < 0.01
+						communism < 0.01
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_eradicate_socialism
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_eradicate_socialism
+						}
+					}
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_concerning_support_for_socialists
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_socialists
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_eradicate_socialism
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_eradicate_socialism
+						}
+					}
+				}
+			}
+			##################
+			##### KALLIO #####
+			##################
+			else_if = { #KALLIO - GOOD = No Fascist & No Commie |||| BAD = Some Fascist OR Commie // Losing Cores
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_kyosti_kallio
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#CONCERNING SUPPORT FOR EXTREMISTS
+				if = {
+					limit = {
+						OR = {
+							communism > 0.09
+							fascism > 0.09
+						}
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_concerning_support_for_extremists
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_extremists
+						}
+					}
+					#Remove opposite modifier if necessary
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_eradicate_extremists
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_eradicate_extremists
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_concerning_support_for_extremists
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_extremists
+						}
+					}
+				}
+				#### GOOD ####
+				#ERADICATE EXTREMISTS
+				if = {
+					limit = {
+						fascism < 0.01
+						communism < 0.01
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_eradicate_extremists
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_eradicate_extremists
+						}
+					}
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_concerning_support_for_extremists
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_extremists
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_eradicate_extremists
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_eradicate_extremists
+						}
+					}
+				}
+			}
+			###########################################################
+			###### RYTI ############################## VON HESSE ######
+			###########################################################
+			else_if = { #RYTI - GOOD = Control Cores owned by enemies |||| BAD = Some Democ OR Commie // Losing Cores  ######## Also used for King von Hesse
+				limit = {
+					OR = {
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_risto_ryti
+						}
+						has_country_leader = {
+							ruling_only = yes
+							character = FIN_prince_wolfgang_von_hesse
+						}
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#CONCERNING SUPPORT FOR SOCIALISTS
+				if = {
+					limit = {
+						OR = {
+							communism > 0.09
+							democratic > 0.09
+						}
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_concerning_support_for_socialists
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_socialists
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						has_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_socialists
+						}
+					}
+					remove_power_balance_modifier = {
+						id = FIN_power_balance
+						modifier = FIN_bop_modifier_concerning_support_for_socialists
+					}
+				}
+				#### GOOD ####
+				#DREAM OF GREATER FINLAND
+				if = {
+					limit = {
+						any_core_state = {
+							NOT = { is_owned_by = ROOT }
+							is_controlled_by = ROOT
+						}
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_dream_of_greater_finland
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_dream_of_greater_finland
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						has_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_dream_of_greater_finland
+						}
+					}
+					remove_power_balance_modifier = {
+						id = FIN_power_balance
+						modifier = FIN_bop_modifier_dream_of_greater_finland
+					}
+				}
+			}
+			##################
+			### MANNERHEIM ###
+			##################
+			else_if = { #MANNERHEIM - GOOD = War |||| BAD = Peace
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_carl_mannerheim
+					}
+				}
+				#### BAD ####
+				#PEACE
+				if = {
+					limit = {
+						has_war = no
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_appointed_regent
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_appointed_regent
+						}
+					}
+					#Remove opposite modifier if necessary
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_reliable_leader
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_reliable_leader
+						}
+					}
+				}
+				#### GOOD ####
+				#WAR
+				else = {
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_reliable_leader
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_reliable_leader
+						}
+					}
+					#Remove opposite modifier if necessary
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_appointed_regent
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_appointed_regent
+						}
+					}
+				}
+			}
+			##################
+			#### PAASIKIVI ###
+			##################
+			else_if = { #PAASIKIVI - GOOD = Very High Stab |||| BAD = Low Stab // Losing Cores
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_juho_kusti_paasikivi
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#CARETAKER
+				if = {
+					limit = {
+						has_stability < 0.6
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_caretaker
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_caretaker
+						}
+					}
+					#Remove opposite modifier if necessary
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_realist_conservative
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_realist_conservative
+						}
+					}
+				}
+				#### GOOD ####
+				#WAR
+				else_if = {
+					limit = {
+						has_stability > 0.95 
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_realist_conservative
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_realist_conservative
+						}
+					}
+					#Remove opposite modifier if necessary
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_caretaker
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_caretaker
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_realist_conservative
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_realist_conservative
+						}
+					}
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_caretaker
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_caretaker
+						}
+					}
+				}
+			}
+			##################
+			##### ANNALA #####
+			##################
+			else_if = { #ANNALA - GOOD = Deployed MP and winning war |||| BAD = Some Democratic OR Commie // Losing Cores
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_vilho_annala
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#CONCERNING SUPPORT FOR SOCIALISTS
+				if = {
+					limit = {
+						OR = {
+							communism > 0.09
+							democratic > 0.09
+						}
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_concerning_support_for_socialists
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_socialists
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						has_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_socialists
+						}
+					}
+					remove_power_balance_modifier = {
+						id = FIN_power_balance
+						modifier = FIN_bop_modifier_concerning_support_for_socialists
+					}
+				}
+
+				#### GOOD ####
+				#STRONG NATION
+				if = {
+					limit = {
+						has_war = yes
+						surrender_progress < 0.05
+						has_army_manpower = { size > 299999 }
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_strong_nation
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_strong_nation
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_strong_nation
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_strong_nation
+						}
+					}
+				}
+			}
+			##################
+			##### TANNER #####
+			##################
+			else_if = { #TANNER - GOOD = High Democ Support |||| BAD = Some Fascist OR Commie // Losing Cores
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_vaino_tanner
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#CONCERNING SUPPORT FOR EXTREMISTS
+				if = {
+					limit = {
+						OR = {
+							communism > 0.09
+							fascism > 0.09
+						}
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_concerning_support_for_extremists
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_extremists
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_concerning_support_for_extremists
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_concerning_support_for_extremists
+						}
+					}
+				}
+
+				#### GOOD ####
+				#UNITED NATION
+				if = {
+					limit = {
+						democratic > 0.95
+						all_owned_state = {
+							is_controlled_by = ROOT
+						}
+						controls_state = 146 #KARJALA
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_united_nation
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_united_nation
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_united_nation
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_united_nation
+						}
+					}
+				}
+			}
+			####################
+			##### AALTONEN #####
+			####################
+			else_if = { #AALTONEN - GOOD = Winning war against Fascists |||| BAD = Not high Commie // Losing Cores
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_aimo_aaltonen
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#DIVIDED PROLETARIAT
+				if = {
+					limit = {
+						communism < 0.8
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_divided_proletariat
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_divided_proletariat
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_divided_proletariat
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_divided_proletariat
+						}
+					}
+				}
+
+				#### GOOD ####
+				#ANTI-FASCIST CRUSADE
+				if = {
+					limit = {
+						has_war = yes
+						any_enemy_country = {
+							has_government = fascism
+						}
+						surrender_progress < 0.05
+						NOT = {
+							any_war_score < 10
+						}
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_anti_fascist_crusade
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_anti_fascist_crusade
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_anti_fascist_crusade
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_anti_fascist_crusade
+						}
+					}
+				}
+			}
+			#################
+			##### LEINO #####
+			#################
+			else_if = { #LEINO - GOOD = No Fascism in Europe |||| BAD = Not high Commie // Losing Cores
+				limit = {
+					has_country_leader = {
+						ruling_only = yes
+						character = FIN_yrjo_leino
+					}
+				}
+				#### BAD ####
+				#LOSING CORES
+				FIN_check_and_manage_losing_cores_for_bop_effect = yes
+
+				#DIVIDED PROLETARIAT
+				if = {
+					limit = {
+						communism < 0.8
+					}
+					#Add modifier (only once)
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_divided_proletariat
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_divided_proletariat
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_divided_proletariat
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_divided_proletariat
+						}
+					}
+				}
+
+				#### GOOD ####
+				#OBLITERATED EUROPEAN FASCISM
+				if = {
+					limit = {
+						fascism < 0.01
+						all_country = { #No Fascist country in Europe
+							OR = {
+								NOT = { has_government = fascism }
+								capital_scope = {
+									NOT = { is_on_continent = europe }
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_power_balance_modifier = {
+									id = FIN_power_balance
+									modifier = FIN_bop_modifier_obliterated_european_fascism
+								}
+							}
+						}
+						add_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_obliterated_european_fascism
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							has_power_balance_modifier = {
+								id = FIN_power_balance
+								modifier = FIN_bop_modifier_obliterated_european_fascism
+							}
+						}
+						remove_power_balance_modifier = {
+							id = FIN_power_balance
+							modifier = FIN_bop_modifier_obliterated_european_fascism
+						}
+					}
+				}
+			}
+	
+			# UNKNOWN LEADER -> KILL BOP
+			else = {
+				remove_power_balance = {
+					id = FIN_power_balance
+				}
+			}
+
+			#### CLEAN ANY OBSOLETE BOP MODIFIERS (based on country leader)
+			FIN_clean_all_obsolete_bop_modifiers_effect = yes
+		}
+	}
+
+	on_monthly_SOV = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = { has_global_flag = great_purge_global_flag1 }
+				}
+				SOV = {
+					random_list = {
+						20 = {
+							# Industry
+							country_event = {
+								id = sov_great_purge_event.01
+								hours = 1
+							}
+						}
+						20 = {
+							# Military
+							country_event = {
+								id = sov_great_purge_event.02
+								hours = 1
+							}
+						}
+						20 = {
+							# Airfoce
+							country_event = {
+								id = sov_great_purge_event.03
+								hours = 1
+							}
+						}
+						20 = {
+							# defections
+							country_event = {
+								id = sov_great_purge_event.04
+								hours = 1
+							}
+						}
+						20 = {
+							# Nothing Ever Happens
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = { has_global_flag = great_purge_global_flag2 }
+				}
+				SOV = {
+					random_list = {
+						15 = {
+							# Industry
+							country_event = {
+								id = sov_great_purge_event.01
+								hours = 1
+							}
+						}
+						15 = {
+							# Military
+							country_event = {
+								id = sov_great_purge_event.02
+								hours = 1
+							}
+						}
+						15 = {
+							# Airfoce
+							country_event = {
+								id = sov_great_purge_event.03
+								hours = 1
+							}
+						}
+						15 = {
+							# defections
+							country_event = {
+								id = sov_great_purge_event.04
+								hours = 1
+							}
+						}
+						40 = {
+							# Nothing Ever Happens
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = { has_global_flag = great_purge_global_flag3 }
+				}
+				SOV = {
+					random_list = {
+						10 = {
+							# Industry
+							country_event = {
+								id = sov_great_purge_event.01
+								hours = 1
+							}
+						}
+						10 = {
+							# Military
+							country_event = {
+								id = sov_great_purge_event.02
+								hours = 1
+							}
+						}
+						10 = {
+							# Airfoce
+							country_event = {
+								id = sov_great_purge_event.03
+								hours = 1
+							}
+						}
+						10 = {
+							# defections
+							country_event = {
+								id = sov_great_purge_event.04
+								hours = 1
+							}
+						}
+						60 = {
+							# Nothing Ever Happens
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,4915 @@
+##############################
+##############################
+##### WUW GERMANY EVENTS #####
+##############################
+##############################
+
+add_namespace = wuw_GER_military_events
+add_namespace = wuw_GER_diplomacy
+add_namespace = wuw_GER_news
+add_namespace = wuw_GER_releasable
+add_namespace = wuw_GER_civil_war
+add_namespace = wuw_GER_mutual_guarantees
+add_namespace = wuw_GER_weltpolitik
+add_namespace = wuw_GER_chinese_diplomacy
+add_namespace = wuw_GER_monroe
+add_namespace = wuw_GER_monroe_news
+add_namespace = wuw_GER_reichskommissariats
+add_namespace = wuw_GER_legions
+add_namespace = wuw_GER_realpolitik
+add_namespace = GOT_GER_integrated_puppet_economies
+add_namespace = wuw_GER_the_battle_of_britain
+add_namespace = wuw_GER_uncertain_future
+add_namespace = wuw_GER_german_politics
+add_namespace = GER_operation_panzerfaust_events
+add_namespace = GOT_GER_amerikabomber
+add_namespace = GOT_GER_fading_eagle
+
+#### INNER CIRCLE ###
+add_namespace = GER_inner_circle
+add_namespace = GER_inner_circle_todt
+add_namespace = GER_inner_circle_speer
+add_namespace = GER_inner_circle_goring
+add_namespace = GER_inner_circle_himmler
+add_namespace = GER_inner_circle_goebbels
+add_namespace = GER_inner_circle_hess
+add_namespace = GER_inner_circle_bormann
+
+
+#### MILITARY EVENTS ####
+country_event = { #clear country flag so we can do more Operational Planning
+	id = wuw_GER_military_events.1
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		clr_country_flag = GER_operational_planning_flag
+	}
+}
+
+country_event = { #Charlie Brown and Franz Stigler incident (GER)
+	id = wuw_GER_military_events.2
+	title = wuw_GER_military_events.2.t
+	desc = wuw_GER_military_events.2.desc
+	picture = GFX_report_event_fighters
+
+	fire_only_once = yes
+
+	trigger = {
+		date > 1943.12.20
+		original_tag = GER
+		has_government = fascism
+		any_country = {
+			original_tag = USA
+			has_government = democratic
+			has_war_with = ROOT
+			has_deployed_air_force_size = {
+				size > 0
+				type = strategic_bomber
+			}
+		}
+	}
+
+	option = { #A hero through and through
+		name = wuw_GER_military_events.2.a
+		ai_chance = {
+			base = 10
+		}	
+
+		add_ace = {
+			name = Franz
+			surname = Stigler
+			callsign = "Kugel" #Made up. means "bullet" in German... none of which flew :D
+			type = fighter_unique
+		}
+
+		add_war_support = 0.03
+
+		add_popularity = {
+			ideology = democratic
+			popularity = 0.05
+		}	
+	}
+
+	option = { #Make an example of him for defying us
+		name = wuw_GER_military_events.2.b
+		ai_chance = {
+			base = 20
+		}
+
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.05
+		}	
+
+		add_war_support = 0.03	
+	}
+
+	option = { #Silence this situation! The troops cannot know
+		name = wuw_GER_military_events.2.c
+		ai_chance = {
+			base = 10
+			modifier = { #historically this was silenced
+				factor = 10
+				is_historical_focus_on = yes
+			}
+		}		
+	}
+}
+
+country_event = { #SOV accepts NAP
+	id = wuw_GER_diplomacy.102
+	title = wuw_GER_diplomacy.102.t
+	desc = wuw_GER_diplomacy.102.desc
+	picture = GFX_report_event_hitler_handshake
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = { #yay
+		name = wuw_GER_diplomacy.102.a
+
+	}
+}
+
+country_event = { #SOV rejects NAP
+	id = wuw_GER_diplomacy.103
+	title = wuw_GER_diplomacy.103.t
+	desc = wuw_GER_diplomacy.103.desc
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = { #angy
+		name = wuw_GER_diplomacy.103.a
+	}
+}
+
+country_event = { #SOV accepts sphere of influence
+	id = wuw_GER_diplomacy.104
+	title = wuw_GER_diplomacy.104.t
+	desc = wuw_GER_diplomacy.104.desc
+	picture = GFX_report_event_hitler_handshake
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = { #yay
+		name = wuw_GER_diplomacy.104.a
+	}
+}
+
+country_event = { #SOV rejects sphere of influence
+	id = wuw_GER_diplomacy.105
+	title = wuw_GER_diplomacy.105.t
+	desc = wuw_GER_diplomacy.105.desc
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = { #angy
+		name = wuw_GER_diplomacy.105.a
+	}
+}
+
+country_event = { #SOV asked about resources for industry
+	id = wuw_GER_diplomacy.107
+	title = wuw_GER_diplomacy.107.t
+	desc = wuw_GER_diplomacy.107.desc
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+
+	option = { #sure
+		name = wuw_GER_diplomacy.107.a
+		ai_chance = {
+			base = 10
+		}
+
+		IF = {
+			limit = { FROM = { has_country_flag = GER_requests_oil_flag }}
+
+			FROM.FROM = {
+				add_resource = {
+					type = oil
+					amount = -5
+				}
+
+				set_state_flag = GER_trades_for_oil_here_flag
+
+				IF = {
+					limit = { 
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+					}
+
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+
+				ELSE = {
+					ROOT = {
+						random_core_state = {
+							limit = {
+								free_building_slots = {
+									building = industrial_complex
+									size > 0
+									include_locked = yes
+								}
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+
+			FROM = {
+				random_core_state = {
+					limit = {
+						industrial_complex > 0
+					}
+
+					remove_building = {
+						type = industrial_complex 
+						level = 1
+					}
+				}
+
+				IF = {
+					limit = {
+						NOT = {
+							has_dynamic_modifier = {
+								modifier = GER_industrial_relocation_resources
+							}
+						}
+
+					}
+					add_dynamic_modifier = {
+						modifier = GER_industrial_relocation_resources
+					}
+				}
+
+				ELSE = {
+					custom_effect_tooltip = GER_industrial_relocation_resources_modify_tt
+				}
+
+				
+				add_to_variable = { GER_industrial_relocation_resources_country_resource_oil = 5 tooltip = country_resource_oil_tt }
+
+				clr_country_flag = GER_requests_oil_flag
+
+				hidden_effect = {
+					country_event = {
+						id = wuw_GER_diplomacy.108
+						hours = 6
+					}
+				}
+			}
+			
+		}
+
+		ELSE_IF = {
+			limit = { FROM = { has_country_flag = GER_requests_tungsten_flag }}
+
+			FROM.FROM = {
+				add_resource = {
+					type = tungsten
+					amount = -5
+				}
+
+				set_state_flag = GER_trades_for_tungsten_here_flag
+
+				IF = {
+					limit = { 
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+					}
+
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+
+				ELSE = {
+					ROOT = {
+						random_core_state = {
+							limit = {
+								free_building_slots = {
+									building = industrial_complex
+									size > 0
+									include_locked = yes
+								}
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+
+			FROM = {
+				random_core_state = {
+					limit = {
+						industrial_complex > 0
+					}
+
+					remove_building = {
+						type = industrial_complex 
+						level = 1
+					}
+				}
+
+				IF = {
+					limit = {
+						NOT = {
+							has_dynamic_modifier = {
+								modifier = GER_industrial_relocation_resources
+							}
+						}
+
+					}
+					add_dynamic_modifier = {
+						modifier = GER_industrial_relocation_resources
+					}
+				}
+
+				ELSE = {
+					custom_effect_tooltip = GER_industrial_relocation_resources_modify_tt
+				}
+				
+				add_to_variable = { GER_industrial_relocation_resources_country_resource_tungsten = 5 tooltip = country_resource_tungsten_tt }
+				
+
+				clr_country_flag = GER_requests_tungsten_flag
+
+				hidden_effect = {
+					country_event = {
+						id = wuw_GER_diplomacy.108
+						hours = 6
+					}
+				}
+			}
+		}
+
+		ELSE_IF = {
+			limit = { FROM = { has_country_flag = GER_requests_chromium_flag }}
+
+			FROM.FROM = {
+				add_resource = {
+					type = chromium
+					amount = -5
+				}
+
+				set_state_flag = GER_trades_for_chromium_here_flag
+
+				IF = {
+					limit = { 
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+					}
+
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+
+				ELSE = {
+					ROOT = {
+						random_core_state = {
+							limit = {
+								free_building_slots = {
+									building = industrial_complex
+									size > 0
+									include_locked = yes
+								}
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+
+			FROM = {
+				random_core_state = {
+					limit = {
+						industrial_complex > 0
+					}
+
+					remove_building = {
+						type = industrial_complex 
+						level = 1
+					}
+				}
+
+				IF = {
+					limit = {
+						NOT = {
+							has_dynamic_modifier = {
+								modifier = GER_industrial_relocation_resources
+							}
+						}
+
+					}
+					add_dynamic_modifier = {
+						modifier = GER_industrial_relocation_resources
+					}
+				}
+
+				ELSE = {
+					custom_effect_tooltip = GER_industrial_relocation_resources_modify_tt
+				}
+				
+				add_to_variable = { GER_industrial_relocation_resources_country_resource_chromium = 5 tooltip = country_resource_chromium_tt }
+
+				clr_country_flag = GER_requests_chromium_flag
+
+				hidden_effect = {
+					country_event = {
+						id = wuw_GER_diplomacy.108
+						hours = 6
+					}
+				}
+			}
+		}
+	}
+
+	option = { #no, ask me later
+		name = wuw_GER_diplomacy.107.b
+		ai_chance = {
+			base = 2
+			modifier = {
+				factor = 10
+				has_opinion = {
+					target = FROM
+					value < 0
+				}
+			}
+		}
+
+		FROM = {
+			IF = {
+				limit = { has_country_flag = GER_requests_oil_flag }
+
+				clr_country_flag = GER_requests_oil_flag
+			}
+			ELSE_IF = {
+				limit = { has_country_flag = GER_requests_tungsten_flag }
+
+				clr_country_flag = GER_requests_tungsten_flag
+			}
+			ELSE_IF = {
+				limit = { has_country_flag = GER_requests_chromium_flag }
+
+				clr_country_flag = GER_requests_chromium_flag
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			country_event = {
+				id = wuw_GER_diplomacy.109
+				hours = 6
+			}
+		}
+	}
+
+	option = { #no, don't ask again
+		name = wuw_GER_diplomacy.107.c
+		ai_chance = {
+			base = 0 #this is just for a player to opt out of events
+		}
+
+		FROM = {
+			IF = {
+				limit = { has_country_flag = GER_requests_oil_flag }
+
+				clr_country_flag = GER_requests_oil_flag
+			}
+			ELSE_IF = {
+				limit = { has_country_flag = GER_requests_tungsten_flag }
+
+				clr_country_flag = GER_requests_tungsten_flag
+			}
+			ELSE_IF = {
+				limit = { has_country_flag = GER_requests_chromium_flag }
+
+				clr_country_flag = GER_requests_chromium_flag
+			}
+			set_country_flag = GER_SOV_no_industrial_relocation_flag
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			country_event = {
+				id = wuw_GER_diplomacy.110
+				hours = 6
+			}
+		}
+	}
+}
+
+country_event = { #SOV agrees to industrial relocation
+	id = wuw_GER_diplomacy.108
+	title = wuw_GER_diplomacy.108.t
+	desc = wuw_GER_diplomacy.108.desc
+	picture = GFX_report_event_hitler_handshake
+
+	is_triggered_only = yes
+
+	option = { #yay
+		name = wuw_GER_diplomacy.108.a
+
+		event_option_tooltip = wuw_GER_diplomacy.107.a
+	}
+}
+
+country_event = { #SOV rejects industrial relocation for now
+	id = wuw_GER_diplomacy.109
+	title = wuw_GER_diplomacy.109.t
+	desc = wuw_GER_diplomacy.109.desc
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	option = { #angy
+		name = wuw_GER_diplomacy.109.a
+	}
+}
+
+country_event = { #SOV rejects industrial relocation altogether
+	id = wuw_GER_diplomacy.110
+	title = wuw_GER_diplomacy.110.t
+	desc = wuw_GER_diplomacy.110.desc
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	option = { #angy
+		name = wuw_GER_diplomacy.110.a
+
+		custom_effect_tooltip = GER_SOV_have_had_enough_tt
+	}
+}
+
+#German Trade Event to Romania
+country_event = { 
+	id = wuw_GER_diplomacy.111
+	title = wuw_GER_diplomacy.111.t
+	desc = AAT_germany.1.desc #Intentional
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+
+	option = { #Accept the offer
+		name = wuw_GER_diplomacy.111.a
+		ai_chance = {
+			base = 20
+			modifier = {
+				factor = 2
+				has_opinion = {
+					target = FROM
+					value > 24
+				}
+			}
+			modifier = {
+				factor = 0.5
+				any_other_country = {
+					has_guaranteed = ROOT
+					is_major = yes
+				}
+			}
+		}		
+		ROOT = {
+			add_ideas = GER_development_of_economic_relations_ns
+			IF = {
+				limit = {
+					FROM = {
+						has_government = fascism
+					}
+				}
+				add_ideas = GER_align_romania
+			}
+			ELSE_IF = {
+				limit = {
+					FROM = {
+						has_government = neutrality
+					}
+				}
+				add_ideas = GER_align_romania_unaligned
+			}
+			ELSE_IF = {
+				limit = {
+					FROM = {
+						has_government = democratic
+					}
+				}
+				add_ideas = GER_align_romania_democratic
+			}
+		}
+
+		add_ai_strategy = { 
+			type = befriend 
+			id = FROM
+			value = 100
+		}
+
+		custom_effect_tooltip = war_will_cancel_deal_tt
+		FROM = {
+			country_event = { id = wuw_GER_diplomacy.112 hours = 5 random_hours = 5 }
+		}
+	}
+
+	option = { #Reject the offer
+		name = wuw_GER_diplomacy.111.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 15
+				has_opinion = {
+					target = FROM
+					value < -29
+				}
+			}
+			modifier = {
+				add = 15
+				has_opinion = {
+					target = FROM
+					value < -49
+				}
+			}
+		}
+
+		add_ai_strategy = { 
+			type = befriend 
+			id = FROM
+			value = -50
+		}
+
+		custom_effect_tooltip = generic_could_lead_to_tt
+		effect_tooltip = {
+			FROM = {
+				create_wargoal = {
+					type = annex_everything
+					target = ROOT
+				}
+			}
+		}
+
+		FROM = {
+			country_event = { id = wuw_GER_diplomacy.113 hours = 5 random_hours = 5 }
+		}
+	}
+}
+country_event = { #FROM accepts our trade deal
+	id = wuw_GER_diplomacy.112
+	title = wuw_GER_diplomacy.2.t #Intentional
+	desc = wuw_GER_diplomacy.112.desc 
+	picture = GFX_report_event_tank_factory
+
+	is_triggered_only = yes
+
+	option = { #Good!
+		name = wuw_GER_diplomacy.1.a #Intentional 
+		effect_tooltip = {
+			FROM = {
+				add_ideas = GER_development_of_economic_relations_ns
+			}
+		}
+		custom_effect_tooltip = war_will_cancel_deal_tt
+		add_ai_strategy = { 
+			type = befriend 
+			id = FROM
+			value = 100
+		}
+	}
+}
+country_event = { #FROM rejects our trade deal
+	id = wuw_GER_diplomacy.113
+	title = wuw_GER_diplomacy.3.t #Intentional
+	desc = wuw_GER_diplomacy.113.desc 
+	picture = GFX_report_event_tank_factory
+
+	is_triggered_only = yes
+
+	option = { #Too bad for them...
+		name = wuw_GER_diplomacy.3.a #Intentional
+		ai_chance = {
+			base = 10
+		}
+
+		add_ai_strategy = { 
+			type = befriend 
+			id = FROM
+			value = -50
+		}
+	}
+	option = { #This means war
+		name = wuw_GER_diplomacy.113.b
+		ai_chance = {
+			base = 1
+		}
+		if = {
+			limit = {
+				ROOT = {
+					has_guaranteed = FROM
+				}
+			}
+			ROOT = {
+				diplomatic_relation = {
+					country = FROM
+					relation = guarantee
+					active = no
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				has_non_aggression_pact_with = FROM
+			}
+			ROOT = {
+				diplomatic_relation = {
+					country = FROM
+					relation = non_aggression_pact
+					active = no
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = {
+					is_in_faction_with = ROOT
+				}
+			}
+			if = {
+				limit = {
+					is_faction_leader = yes
+				}
+				ROOT = { remove_from_faction = FROM }
+			}
+			else = {
+				ROOT = { leave_faction = yes }
+			}
+		}
+
+		create_wargoal = {
+			type = annex_everything
+			target = FROM
+		}
+	}
+}
+
+
+# Germany gets a puppet
+country_event = { 
+	id = wuw_GER_diplomacy.115
+	title = denmark_expansion_event.801.t # Also intentional 
+	desc = denmark_expansion_event.801.desc
+	picture = GFX_report_event_generic_sign_treaty1
+
+	#fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #Great
+		name = denmark_expansion_event.301.a #Intentional
+
+		puppet = FROM 
+
+	}
+}
+
+
+
+#GER wants to integrate CZE
+country_event = { 
+	id = wuw_GER_diplomacy.117
+	title = wuw_GER_realpolitik.16.t #Intentional
+	desc = wuw_GER_realpolitik.16.desc #Intentional
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+
+	#We cannot refuse them
+	option = { 
+		name = wuw_GER_diplomacy.117.a
+		ai_chance = {
+			base = 5
+			modifier = {
+				factor = 2
+				has_government = FROM
+			}
+			modifier = {
+				factor = 2
+				strength_ratio = {
+				    tag = FROM
+				    ratio < 0.75
+				}
+			}
+			modifier = {
+				factor = 2
+				strength_ratio = {
+				    tag = FROM
+				    ratio < 0.5
+				}
+			}
+			modifier = {
+				factor = 0.5
+				any_other_country = {
+					is_major = yes
+					has_guaranteed = ROOT
+				}
+			}
+			modifier = {
+				factor = 0.5
+				any_other_country = {
+					is_major = yes
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+
+		FROM = { # FROM Accepts
+			country_event = { 
+				id = wuw_GER_diplomacy.118
+				hours = 5 
+				random_hours = 6
+			}
+		}
+
+		effect_tooltip = {
+			FROM = {
+				annex_country = {
+					target = ROOT
+					transfer_troops = yes
+				}
+			}
+			every_state = {
+				limit = {
+					is_owned_and_controlled_by = CZE
+					OR = {
+						state = 69
+						state = 972
+						state = 74
+					}
+				}
+				add_core_of = PREV
+			}
+		}
+	}
+
+	# We will never submit!
+	option = {
+		name = wuw_GER_diplomacy.117.b
+		ai_chance = {
+			base = 2
+			modifier = {
+				factor = 5
+				strength_ratio = {
+				    tag = FROM
+				    ratio > 1
+				}
+			}
+			modifier = {
+				factor = 5
+				strength_ratio = {
+				    tag = FROM
+				    ratio > 1.25
+				}
+			}
+			modifier = {
+				factor = 0
+				is_subject_of = FROM
+			}
+		}
+
+		add_war_support = 0.1
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		FROM = { # FROM Rejects
+			country_event = { 
+				id = wuw_GER_diplomacy.118
+				hours = 5 
+				random_hours = 6
+			}
+		}
+	}
+}
+ 
+# Germany annexes CZE peacefully
+country_event = { 
+	id = wuw_GER_diplomacy.118
+	title = wuw_GER_diplomacy.118.t
+	desc = wuw_GER_realpolitik.8.desc #Intentional
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+
+	option = { # A great day for the German nation!
+		name = wuw_GER_realpolitik.8.a #Intentional
+	}
+}
+
+#CZE Rejects our offer - event for GER
+country_event = { 
+	id = wuw_GER_diplomacy.119
+	title = wuw_GER_diplomacy.119.t
+	desc = wuw_GER_diplomacy.113.desc #Intentional
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	# In that case we must respect their wishes
+	option = { 
+		name = wuw_GER_realpolitik.38.a	#Intentional	
+		ai_chance = {
+			base = 10
+		}
+
+		add_stability = 0.1
+		add_political_power = 50
+
+	}
+
+	#CZE must be destroyed
+	option = { 
+		name = wuw_GER_realpolitik.9.a #Intentional	
+		ai_chance = {
+			base = 90
+		}
+
+		create_wargoal = {
+			type = annex_everything
+			target = FROM
+		}
+
+		if = {
+			limit = {
+				FROM = {
+					is_subject_of = ROOT
+				}
+			}
+			end_puppet = FROM
+		}
+		if = {
+			limit = {
+				is_faction_leader = yes
+				FROM = {
+					is_in_faction_with = ROOT
+				}
+			}
+			ROOT = { remove_from_faction = FROM }
+		}
+		else_if = {
+			limit = {
+				FROM = {
+					is_in_faction_with = ROOT
+				}
+			}
+			ROOT = { leave_faction = yes }
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		every_state = {
+			limit = {
+				is_owned_and_controlled_by = CZE
+				OR = {
+					state = 69
+					state = 972
+					state = 74
+				}
+			}
+			add_core_of = PREV
+		}
+	}
+}
+
+
+### GERMAN FOREIGN LEGIONS AND LEGIONARIES EVENTS ###
+
+# The Formation of a Georgian Legion - event for GER 
+country_event = {
+	id = wuw_GER_legions.1
+	title = wuw_GER_legions.1.t
+	desc = wuw_GER_legions.1.desc 
+	picture = GFX_report_event_german_volunteers
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # More men means more good :0 
+		name = wuw_GER_legions.1.a
+		ai_chance = {
+			base = 100
+		}
+		
+		custom_effect_tooltip = GER_shalva_maglakelidze_and_giorgi_kvinitadze_join
+		hidden_effect = {
+			every_possible_country = {
+				limit = {
+					has_character = GEO_giorgi_kvinitadze
+				}
+				set_nationality = {
+				    target_country = ROOT
+				    character = GEO_giorgi_kvinitadze
+				}
+			}
+			every_possible_country = {
+				limit = {
+					has_character = GEO_shalva_maglakelidze
+				}
+				set_nationality = {
+				    target_country = ROOT
+				    character = GEO_shalva_maglakelidze
+				}
+			}
+		}
+
+		add_manpower = 5000
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+		custom_effect_tooltip = GER_georgian_legion_recruitment_tt
+
+		hidden_effect = {
+			delete_unit_template_and_units = {
+				division_template = "Georgische Legion"
+				disband = yes #if yes, will refund equipment/manpower.
+			}
+
+			division_template = {
+				name = "Georgische Legion"	
+				division_names_group = GER_INF_01
+				template_counter = 48 # The Cross 
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					artillery_brigade = { x = 2 y = 0 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }  
+					artillery = { x = 0 y = 1 }  
+				}
+			}
+
+			random_state = { 
+				limit = {
+					is_fully_controlled_by = ROOT
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Georgische Legion 'Tbilisi'\" division_template = \"Georgische Legion\" start_experience_factor = 0.3 start_equipment_factor = 0.9"
+				    owner = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Georgische Legion 'Poti'\" division_template = \"Georgische Legion\" start_experience_factor = 0.3 start_equipment_factor = 0.9"
+				    owner = ROOT
+				}
+			}
+		}
+		
+	}
+	option = { # We have no need for them
+		name = wuw_GER_legions.1.b
+		ai_chance = {
+			base = 0
+		}
+
+		add_political_power = 25
+		
+	}
+}
+
+# Hans Krebs Recalled from the Soviet Union - event for GER 
+country_event = {
+	id = wuw_GER_legions.2
+	title = wuw_GER_legions.2.t
+	desc = wuw_GER_legions.2.desc 
+	picture = GFX_report_event_soviet_german_soldier_handshake
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # More men means more good :0 
+		name = wuw_GER_legions.2.a
+		
+		show_unit_leaders_tooltip = GER_hans_krebs
+		set_country_flag = GER_recalled_hans_krebs_from_russia_flag
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		army_experience = 15
+		add_manpower = 200
+		
+	}
+}
+
+
+
+
+# The Destruction of the Lokot Autonomy - event for GER
+country_event = {
+	id = wuw_GER_legions.6
+	title = wuw_GER_legions.6.t
+	desc = wuw_GER_legions.6.desc
+	picture = GFX_report_event_soviet_soldiers
+
+	is_triggered_only = yes
+
+	# The war has made a turn
+	option = {
+		name = wuw_GER_legions.6.a
+		
+		custom_effect_tooltip = GER_lokot_collaborators_have_been_captured_by_the_soviets_tt
+
+	}
+}
+
+
+
+### RELEASABLE AND FORMABLE EVENTS ####
+
+# A new German capital - event for the nation that reformed Germany
+country_event = {  
+	id = wuw_GER_releasable.1
+	title = wuw_GER_releasable.1.t
+	desc = wuw_GER_releasable.1.desc 
+	picture = GFX_report_event_SWI_parliament_members
+
+	is_triggered_only = yes
+
+	option = { # It should be Berlin!
+		name = wuw_GER_releasable.1.a
+		trigger = {
+			owns_state = 64
+			NOT = {
+				capital_scope = {
+					state = 64
+				}
+			}
+		}
+		ai_chance = {
+			base = 25
+		}
+		
+		set_capital = {
+		 	state = 64
+		 	remember_old_capital = no
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		64 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}	
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		add_stability = 0.02
+		
+	}
+	option = { # It should be Munich!
+		name = wuw_GER_releasable.1.b
+		trigger = {
+			owns_state = 52
+			NOT = {
+				capital_scope = {
+					state = 52
+				}
+			}
+		}
+		ai_chance = {
+			base = 25
+		}
+		
+		set_capital = {
+		 	state = 52
+		 	remember_old_capital = no
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		52 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}	
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		add_stability = 0.02
+		
+	}
+	option = { # It should be Frankfurt!
+		name = wuw_GER_releasable.1.c
+		trigger = {
+			owns_state = 55
+			NOT = {
+				capital_scope = {
+					state = 55
+				}
+			}
+		}
+		ai_chance = {
+			base = 20
+		}
+		
+		set_capital = {
+		 	state = 55
+		 	remember_old_capital = no
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		55 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}	
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		add_stability = 0.02
+		
+	}
+	option = { # Our capital is fine as it is
+		name = wuw_GER_releasable.1.d
+		trigger = {
+		}
+		ai_chance = {
+			base = 30
+		}
+		
+		add_stability = 0.05
+		add_war_support = 0.03
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		capital_scope = {
+			add_extra_state_shared_building_slots = 4
+		}
+		
+	}
+}
+
+
+
+##################################
+### INTEGRATE PUPPET ECONOMIES ###
+##################################
+
+country_event = {
+	id = GOT_GER_integrated_puppet_economies.01
+	title = GOT_GER_integrated_puppet_economies.01.t
+	desc = GOT_GER_integrated_puppet_economies.01.desc
+	picture = GFX_report_event_generic_construction_site
+
+	is_triggered_only = yes
+
+	option = { #ok
+		name = GOT_GER_integrated_puppet_economies.01.a
+				
+		custom_effect_tooltip = {
+			localization_key = GER_idea_added_for_limited_time
+			IDEA = idea_desc|GER_german_development_aid
+			TIME = [?FROM.GER_puppet_economies_integration_days]
+		}
+	}
+}
+
+country_event = {
+	id = GOT_GER_integrated_puppet_economies.02
+	title = GOT_GER_integrated_puppet_economies.02.t
+	desc = GOT_GER_integrated_puppet_economies.02.desc
+	picture = GFX_report_event_generic_construction_site
+
+	is_triggered_only = yes
+
+	option = { #ok
+		name = GOT_GER_integrated_puppet_economies.02.a
+				
+		custom_effect_tooltip = {
+			localization_key = GER_idea_added_for_limited_time
+			IDEA = idea_desc|GER_german_exploitation
+			TIME = [?FROM.GER_puppet_economies_integration_days]
+		}
+	}
+}
+
+
+#Göring wants to launch the Blitz
+country_event = {
+	id = wuw_GER_the_battle_of_britain.01
+	title = wuw_GER_the_battle_of_britain.01.t
+	desc = wuw_GER_the_battle_of_britain.01.desc
+	picture = GFX_report_event_GER_bombers
+
+	trigger = {
+		original_tag = GER
+		has_government = fascism
+		has_dlc = "Gotterdammerung"
+		FRA = { 
+			OR = {
+				has_capitulated = yes
+				exists = no
+			}
+		}
+		GER = {
+			has_idea = goering
+			has_war_with = ENG
+			NOT = { #No need to launch the Blitz if Germany already have boots on the ground in Britain
+				any_controlled_state = {
+					is_core_of = ENG
+				}
+			}
+		}
+		NOT = {
+			any_country = {
+				is_subject_of = GER
+				any_controlled_state = {
+					is_core_of = ENG
+				}
+			}
+		}
+	}
+
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		days = 90
+	}
+
+	option = { #Launch the Blitz
+		name = wuw_GER_the_battle_of_britain.01.a
+				
+		custom_effect_tooltip = GER_unlocks_big_ben_raid_tt
+		set_country_flag = GER_goring_launches_the_blitz_flag
+		custom_effect_tooltip = generic_skip_one_line_tt 
+		add_timed_idea = {
+			idea = GER_battle_for_air_superiority
+			days = 180
+		}
+	}
+	option = { #Göring is promising too much
+		name = wuw_GER_the_battle_of_britain.01.b
+				
+		add_political_power = -25
+		air_experience = -15
+	}
+}
+
+
+country_event = {
+	id = wuw_GER_german_politics.01
+	title = wuw_GER_german_politics.01.t
+	desc = wuw_GER_german_politics.01.desc
+	picture = GFX_report_event_election_vote
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	
+	option = { #Zentrum
+		name = wuw_GER_german_politics.01.a
+		ai_chance = {
+			base = 10
+		}
+
+		set_politics = { 
+			ruling_party = democratic 
+			elections_allowed = yes 
+		}
+
+		effect_tooltip = { #Konrad is the default Democratic leader
+			add_country_leader_role = {
+				character = GER_konrad_adenauer
+				promote_leader = yes
+				country_leader = {
+					ideology = conservatism
+					expire = 1965.1.1
+					traits = { GER_traditionalist } 
+				}
+			}
+		}
+		hidden_effect = {
+			set_cosmetic_tag = GER_german_monarchy_conservative
+		}
+	}
+
+	option = { #Social Democrats
+		name = wuw_GER_german_politics.01.b
+		ai_chance = {
+			base = 5
+		}
+
+		set_politics = {
+			ruling_party = democratic
+			elections_allowed = yes
+			last_election = "1933.3.5"
+			election_frequency = 48
+			long_name = GER_democratic_socialist_party_long
+			name = GER_democratic_socialist_party
+		}
+
+		hidden_effect = {
+			set_cosmetic_tag = GER_german_monarchy_democratic
+		}
+	}
+}
+
+
+# A Question of Horthy's Loyalty - event for GER
+country_event = {
+	id =  GER_operation_panzerfaust_events.01
+	title =  GER_operation_panzerfaust_events.01.t
+	desc =  GER_operation_panzerfaust_events.01.desc
+	picture = GFX_report_event_hungary_refused
+
+	trigger = {
+
+		# Probably for the best
+		has_dlc = "Gotterdammerung"
+
+		# Base Conditions for Germany, basically you must lead the Axis and be in WW2
+		original_tag = GER
+		is_subject = no
+		has_government = fascism
+		is_faction_leader = yes
+
+		# Base Conditions for Hungary, basically they must have Horthy as their leader and be "available" to be puppeted
+		HUN = {
+			has_government = neutrality
+			is_in_faction_with = ROOT
+			is_subject = no
+			has_country_leader = {
+				ruling_only = yes
+				character = HUN_miklos_horthy
+			}	
+		}
+
+		# Additional Conditions/Triggers, there are two ways this event can fire, by losing, or by stalling
+		OR = {
+			# Hungary is activly losing while at war with the Soviets, which puts them in a state of panic
+			AND = {
+				HUN = {
+					has_civil_war = no
+					has_war_with = SOV
+					any_core_state = { 
+						is_owned_by = HUN
+						NOT = { 
+							is_controlled_by = HUN 
+						} 
+					}
+				}
+				GER = {
+					has_civil_war = no
+					has_war_with = SOV
+				}
+			}
+			# We are stalling while figthing against the Soviets, which scares the Hungarian leadership
+			AND = {
+				HUN = {
+					has_civil_war = no
+					has_war_with = SOV
+					has_country_flag = {
+						flag = HUN_time_at_war_together_with_germany
+						days > 1096 # Three Years
+					}
+					has_war_support < 0.6 # HUN has less than 60% war support (their will to fight is wavering)
+				}
+				GER = {
+					has_civil_war = no
+					has_war_with = SOV
+				}
+			}
+		}
+
+	}
+
+	mean_time_to_happen = { days = 14 }
+
+	hidden = no
+
+	fire_only_once = yes
+
+	# Demand his subservience to the Führer
+	option = {
+		name =  GER_operation_panzerfaust_events.01.a
+		# AI will always choose this one
+		ai_chance = {
+			base = 100
+		}
+
+		HUN = {
+			# [GER.GetLeader] Demands Horthy's Resignation
+			country_event = {
+				id = GER_operation_panzerfaust_events.02
+				hours = 6
+				random_hours = 12
+			}	
+		}
+		
+	}
+
+	# This is an overreaction, Horthy is loyal! (nothing ever happen)
+	option = {
+		name = GER_operation_panzerfaust_events.01.b
+		# AI won't do this one
+		ai_chance = {
+			base = 0
+		}
+
+		add_political_power = 25 
+		# (we are missing out on a potential puppet, but aren't seen as, well, as bad on an international level for it)
+
+	}
+}
+
+# Adolf Hitler Demands Horthy's Resignation - event for HUN
+country_event = { 
+	id = GER_operation_panzerfaust_events.02
+	title = GER_operation_panzerfaust_events.02.t
+	desc = GER_operation_panzerfaust_events.02.desc
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+
+	# We are in no position to oppose them
+	option = { 
+		name = GER_operation_panzerfaust_events.02.a
+		# AI will always choose this one, to avoid unnesseary trouble or struggles for players
+		ai_chance = {
+			base = 100
+		}
+
+		FROM = {
+			# Hungary Folds
+			country_event = {
+				id = GER_operation_panzerfaust_events.03
+				hours = 12
+			}
+		}
+		effect_tooltip = {
+			FROM = {
+				puppet = ROOT
+			}
+			IF = {
+				limit = {
+					ROOT = {
+						has_idea = HUN_power_to_the_regent_idea
+					}
+				}
+				remove_ideas = HUN_power_to_the_regent_idea
+			}
+			ELSE_IF = {
+				limit = {
+					ROOT = {
+						has_idea = HUN_more_power_to_the_regent_idea
+					}
+				}
+				remove_ideas = HUN_more_power_to_the_regent_idea
+			}
+		}
+
+	}
+
+	# They have no power here
+	option = {
+		name = GER_operation_panzerfaust_events.02.b
+		# AI won't do this one
+		ai_chance = {
+			base = 0
+		}
+
+		FROM = {
+			# Horthy Remains Defiant
+			country_event = {
+				id = GER_operation_panzerfaust_events.04
+				hours = 12
+			}
+		}
+
+	}
+}
+
+# Hungary Folds - event for GER
+country_event = { 
+	id = GER_operation_panzerfaust_events.03
+	title = GER_operation_panzerfaust_events.03.t
+	desc = GER_operation_panzerfaust_events.03.desc
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+
+	# Fantastic
+	option = { 
+		name = GER_operation_panzerfaust_events.03.a
+		
+		puppet = FROM
+
+		IF = {
+			limit = {
+				FROM = {
+					has_idea = HUN_power_to_the_regent_idea
+				}
+			}
+			FROM = {
+				remove_ideas = HUN_power_to_the_regent_idea
+			}
+		}
+		ELSE_IF = {
+			limit = {
+				FROM = {
+					has_idea = HUN_more_power_to_the_regent_idea
+				}
+			}
+			FROM = {
+				remove_ideas = HUN_more_power_to_the_regent_idea
+			}
+		}
+
+		FROM = {
+			add_trait = {
+			    character = HUN_ferenc_szalasi
+			    ideology = nazism
+			    trait = HUN_nemzetvezeto_trait
+			}
+		}
+
+	}
+
+}
+
+
+# Germany launches Operation Margarethe - event for HUN
+country_event = { 
+	id = GER_operation_panzerfaust_events.05
+	title = GER_operation_panzerfaust_events.05.t
+	desc = GER_operation_panzerfaust_events.05.desc
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+
+	# Let them come
+	option = { 
+		name = GER_operation_panzerfaust_events.05.a
+
+		add_war_support = 0.1
+
+	}
+}
+
+# Germany Attempts Deescalation - event for HUN
+country_event = { 
+	id = GER_operation_panzerfaust_events.06
+	title = GER_operation_panzerfaust_events.06.t
+	desc = GER_operation_panzerfaust_events.06.desc
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+
+	# Then so be it
+	option = { 
+		name = GER_operation_panzerfaust_events.06.a
+
+		# This is a political victory for Horthy
+		add_political_power = 150
+
+	}
+}
+
+# Operation Panzerfaust is a Failure - event for GER
+country_event = { 
+	id = GER_operation_panzerfaust_events.07
+	title = GER_operation_panzerfaust_events.07.t
+	desc = GER_operation_panzerfaust_events.07.desc
+	picture = GFX_report_event_DEN_german_tanks
+	is_triggered_only = yes
+
+	# They will have to remain outside our grasp, for now
+	option = { 
+		name = GER_operation_panzerfaust_events.07.a
+
+		# A big blunder
+		add_political_power = -100
+
+		HUN = {
+			country_event = {
+				id = GER_operation_panzerfaust_events.09
+				hours = 6
+				random_hours = 12
+			}	
+		}
+
+	}
+}
+
+# Operation Panzerfaust is a Success - event for GER
+country_event = { 
+	id = GER_operation_panzerfaust_events.08
+	title = GER_operation_panzerfaust_events.08.t
+	desc = GER_operation_panzerfaust_events.08.desc
+	picture = GFX_report_event_DEN_german_tanks
+	is_triggered_only = yes
+
+	# Most excellent
+	option = { 
+		name = GER_operation_panzerfaust_events.08.a
+
+		HUN = {
+			country_event = {
+				id = GER_operation_panzerfaust_events.10
+				hours = 6
+				random_hours = 12
+			}	
+		}
+
+	}
+}
+
+# Plot on Horthy Foiled - event for HUN
+country_event = { 
+	id = GER_operation_panzerfaust_events.09
+	title = GER_operation_panzerfaust_events.09.t
+	desc = GER_operation_panzerfaust_events.09.desc
+	picture = GFX_report_event_DEN_german_tanks
+	is_triggered_only = yes
+
+	# We are safe, for now
+	option = { 
+		name = GER_operation_panzerfaust_events.09.a
+
+		add_stability = 0.05
+
+	}
+}
+
+# Horthy Kidnapped - event for HUN
+country_event = { 
+	id = GER_operation_panzerfaust_events.10
+	title = GER_operation_panzerfaust_events.10.t
+	desc = GER_operation_panzerfaust_events.10.desc
+	picture = GFX_report_event_DEN_german_tanks
+	is_triggered_only = yes
+
+	# We will have to accept their conditions.
+	option = { 
+		name = GER_operation_panzerfaust_events.10.a
+		ai_chance = {
+			base = 80
+		}
+
+		FROM = {
+			puppet = ROOT
+		}
+
+		IF = {
+			limit = {
+				has_idea = HUN_power_to_the_regent_idea
+			}
+			remove_ideas = HUN_power_to_the_regent_idea
+		}
+		ELSE_IF = {
+			limit = {
+				has_idea = HUN_more_power_to_the_regent_idea
+			}
+			remove_ideas = HUN_more_power_to_the_regent_idea
+		}
+
+		add_trait = {
+		    character = HUN_ferenc_szalasi
+		    ideology = nazism
+		    trait = HUN_nemzetvezeto_trait
+		}
+
+	}
+	# We shall never surrender!
+	option = { 
+		name = GER_operation_panzerfaust_events.10.b
+		ai_chance = {
+			base = 20
+		}
+
+		add_war_support = 0.05
+
+		add_country_leader_role = {
+			character = HUN_geza_lakatos
+			promote_leader = yes
+			country_leader = {
+				ideology = oligarchism
+				expire = "1965.1.1"
+				traits = { generallissimo desperate_gambit } 
+			}
+		}	
+
+
+	}
+}
+
+
+
+
+ ##  #   # ### ###  ### # #  ##  ###   ##  #   # ###  ### ###  
+#  # ## ## #   #  #  #  # # #  # #  # #  # ## ## #  # #   #  # 
+#### # # # ##  ###   #  ##  #### ###  #  # # # # ###  ##  ###  
+#  # #   # #   #  #  #  # # #  # #  # #  # #   # #  # #   #  # 
+#  # #   # ### #  # ### # # #  # ###   ##  #   # ###  ### #  # 
+
+
+# Choose MIO for Amerikabomber project - AAT VERSION
+country_event = {
+	id = GOT_GER_amerikabomber.01
+	title = GOT_GER_amerikabomber.01.t
+	desc = GOT_GER_amerikabomber.01.desc
+	picture =  GFX_report_event_airplane_factory
+
+	is_triggered_only = yes
+
+	#fire_only_once = yes
+
+	trigger = {
+		NOT = { is_special_project_completed = sp:sp_air_intercontinental_bomber }
+	}
+
+	option = { #Focke-Wulf
+		name = GOT_GER_amerikabomber.01.a
+		
+		if = {
+			limit = {
+				has_dlc = "Gotterdammerung"
+			}
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_focke_wulf_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = -0.15 #Represents the MIO focused on Amerikabomber and not in boring regular planes. WWARNING! Any change on this penalty needs to be applied to the bonus coming after project completion (in scripted effect below)
+					add_mio_size = 1
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = when_intercontinental_bomber_project_is_completed_tt
+
+			effect_tooltip = {
+				GER_amerika_bomber_focke_wulf_completion_SP_effects = yes
+				if = {
+					limit = {
+						has_dlc = "Arms Against Tyranny"
+					}
+					mio:GER_focke_wulf_organization = {
+						GER_amerika_bomber_focke_wulf_completion_MIO_effects = yes
+					}
+				}
+			}
+		}
+		else = {
+			add_equipment_bonus = {
+				name = GER_amerikabomber
+				bonus = {
+					large_plane_airframe = { #Valid for BBA and not BBA
+						air_range = 0.15
+						air_bombing = 0.1
+						instant = yes
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_focke_wulf_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+					complete_mio_trait = GER_mio_trait_amerikabomber_learnings
+				}
+			}
+		}
+
+		set_country_flag = GER_amerikabomber_focke_wulf_flag
+	}
+
+	option = { #Heinkel
+		name = GOT_GER_amerikabomber.01.b
+		
+		if = {
+			limit = {
+				has_dlc = "Gotterdammerung"
+			}
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_heinkel_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = -0.15 #Represents the MIO focused on Amerikabomber and not in boring regular planes. WWARNING! Any change on this penalty needs to be applied to the bonus coming after project completion (in scripted effect below)
+					add_mio_size = 1
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = when_intercontinental_bomber_project_is_completed_tt
+
+			effect_tooltip = {
+				GER_amerika_bomber_heinkel_completion_SP_effects = yes
+				if = {
+					limit = {
+						has_dlc = "Arms Against Tyranny"
+					}
+					mio:GER_heinkel_organization = {
+						GER_amerika_bomber_heinkel_completion_MIO_effects = yes
+					}
+				}
+			}
+		}
+		else = {
+			add_equipment_bonus = {
+				name = GER_amerikabomber
+				bonus = {
+					large_plane_airframe = { #Valid for BBA and not BBA
+						air_range = 0.15
+						air_bombing = 0.1
+						instant = yes
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_heinkel_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+					complete_mio_trait = GER_mio_trait_amerikabomber_learnings
+				}
+			}
+		}
+
+		set_country_flag = GER_amerikabomber_heinkel_flag
+	}
+
+	option = { #Junkers
+		name = GOT_GER_amerikabomber.01.c
+		
+		if = {
+			limit = {
+				has_dlc = "Gotterdammerung"
+			}
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_junkers_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = -0.15 #Represents the MIO focused on Amerikabomber and not in boring regular planes. WWARNING! Any change on this penalty needs to be applied to the bonus coming after project completion (in scripted effect below)
+					add_mio_size = 1
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = when_intercontinental_bomber_project_is_completed_tt
+
+			effect_tooltip = {
+				GER_amerika_bomber_junkers_completion_SP_effects = yes
+				if = {
+					limit = {
+						has_dlc = "Arms Against Tyranny"
+					}
+					mio:GER_junkers_organization = {
+						GER_amerika_bomber_junkers_completion_MIO_effects = yes
+					}
+				}
+			}
+		}
+		else = {
+			add_equipment_bonus = {
+				name = GER_amerikabomber
+				bonus = {
+					large_plane_airframe = { #Valid for BBA and not BBA
+						air_range = 0.15
+						air_bombing = 0.1
+						instant = yes
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_junkers_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+					complete_mio_trait = GER_mio_trait_amerikabomber_learnings
+				}
+			}
+		}
+
+		set_country_flag = GER_amerikabomber_junkers_flag
+	}
+
+	option = { #Messerschmitt
+		name = GOT_GER_amerikabomber.01.d
+		
+		if = {
+			limit = {
+				has_dlc = "Gotterdammerung"
+			}
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_messerschmitt_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = -0.15 #Represents the MIO focused on Amerikabomber and not in boring regular planes. WWARNING! Any change on this penalty needs to be applied to the bonus coming after project completion (in scripted effect below)
+					add_mio_size = 1
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = when_intercontinental_bomber_project_is_completed_tt
+
+			effect_tooltip = {
+				GER_amerika_bomber_messerschmitt_completion_SP_effects = yes
+				if = {
+					limit = {
+						has_dlc = "Arms Against Tyranny"
+					}
+					mio:GER_messerschmitt_organization = {
+						GER_amerika_bomber_messerschmitt_completion_MIO_effects = yes
+					}
+				}
+			}
+		}
+		else = {
+			add_equipment_bonus = {
+				name = GER_amerikabomber
+				bonus = {
+					large_plane_airframe = { #Valid for BBA and not BBA
+						air_range = 0.15
+						air_bombing = 0.1
+						instant = yes
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				mio:GER_messerschmitt_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+					complete_mio_trait = GER_mio_trait_amerikabomber_learnings
+				}
+			}
+		}
+
+		set_country_flag = GER_amerikabomber_messerschmitt_flag
+	}
+}
+
+
+
+
+
+
+#### ##    ## ##    ## ######## ########      ######  #### ########   ######  ##       ######## 
+ ##  ###   ## ###   ## ##       ##     ##    ##    ##  ##  ##     ## ##    ## ##       ##       
+ ##  ####  ## ####  ## ##       ##     ##    ##        ##  ##     ## ##       ##       ##       
+ ##  ## ## ## ## ## ## ######   ########     ##        ##  ########  ##       ##       ######   
+ ##  ##  #### ##  #### ##       ##   ##      ##        ##  ##   ##   ##       ##       ##       
+ ##  ##   ### ##   ### ##       ##    ##     ##    ##  ##  ##    ##  ##    ## ##       ##       
+#### ##    ## ##    ## ######## ##     ##     ######  #### ##     ##  ######  ######## ########
+
+
+# ADVISOR ORDER
+# 1 = TODT
+# 2 = SPEER
+# 3 = GÖRING
+# 4 = HIMMLER
+# 5 = GOEBBELS
+# 6 = HESS
+# 7 = BORMANN
+
+
+# CONSTANT FOR INNER CIRCLE TIMES (These needs to be x7 compared to the Focus cost in the focus file) - NEEDS TO MATCH THE SAME CONSTANTS USED IN THE FOCUS FILE x7
+@inner_circle_time_tier_1 = 140
+@inner_circle_time_tier_2 = 140
+@inner_circle_time_tier_3 = 280
+# FLAG CONSTANTS (It is 1 day more so the tooltip and days shown in the focus about Focus Progress match exactly the moment when the focus is completed)
+@inner_circle_time_tier_1_flag = 141
+@inner_circle_time_tier_2_flag = 141
+@inner_circle_time_tier_3_flag = 281
+
+
+ ##  ### #  # ### ###  ###  ##  
+#    #   ## # #   #  #  #  #  # 
+# ## ##  # ## ##  ###   #  #    
+#  # #   #  # #   #  #  #  #  # 
+ ##  ### #  # ### #  # ###  ##  
+
+
+# New Character replaces an Ascended Advisor
+country_event = {
+	id = GER_inner_circle.01
+	title = GER_inner_circle.01.t
+	desc = GER_inner_circle.01.desc
+	picture = "[GetAscendingAdvisorPortrait]"
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #Replace Ascended Advisor 1
+		name = GER_inner_circle.01.a
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler should replace Bormann on Historical when he ascends
+				factor = 100
+				check_variable = { GER_ascending_advisor = 4 } #Himmler Ascending
+				check_variable = { GER_ascended_advisor_1 = 7 } #Bormann ascended in this slot
+			}
+		}
+		
+		GER_remove_replaced_advisor_1_effects = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_variable = { GER_ascended_advisor_1 = GER_ascending_advisor }
+		GER_add_replacing_advisor_effects = yes
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #Replace Ascended Advisor 2
+		name = GER_inner_circle.01.b
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler should replace Bormann on Historical when he ascends
+				factor = 100
+				check_variable = { GER_ascending_advisor = 4 } #Himmler Ascending
+				check_variable = { GER_ascended_advisor_2 = 7 } #Bormann ascended in this slot
+			}
+		}
+
+		GER_remove_replaced_advisor_2_effects = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_variable = { GER_ascended_advisor_2 = GER_ascending_advisor }
+		GER_add_replacing_advisor_effects = yes
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #Replace Ascended Advisor 3
+		name = GER_inner_circle.01.c
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler should replace Bormann on Historical when he ascends
+				factor = 100
+				check_variable = { GER_ascending_advisor = 4 } #Himmler Ascending
+				check_variable = { GER_ascended_advisor_3 = 7 } #Bormann ascended in this slot
+			}
+		}
+
+		GER_remove_replaced_advisor_3_effects = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_variable = { GER_ascended_advisor_3 = GER_ascending_advisor }
+		GER_add_replacing_advisor_effects = yes
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Abort - Ditch this advisor
+		name = GER_inner_circle.01.d
+
+		ai_chance = { #AI "knows" what its doing (pffff)
+			base = 0
+		}
+
+		if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 1 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_todt
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 2 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_speer
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 3 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_goring
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 4 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_himmler
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 5 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_goebbels
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 6 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_party_chancellor_hess
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 7 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_party_chancellor_bormann
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else = {
+			log = "Something went terribly wrong with your nazis (no wonder)"
+		}
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+
+			clr_country_flag = GER_inner_circle_cd_flag
+		}
+	}
+}
+
+# A Strong Successor - Ascended Advisor can replace Hitler
+country_event = {
+	id = GER_inner_circle.02
+	title = GER_inner_circle.02.t
+	desc = GER_inner_circle.02.desc
+	picture = "[GetFuhrerEventPortrait]"
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Ascended Advisor 1 becomes Country Leader
+		name = GER_inner_circle.02.a
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler & Göring are more likely to replace Hitler
+				add = 2
+				OR = {
+					check_variable = { GER_ascended_advisor_1 = 3 } #Göring
+					check_variable = { GER_ascended_advisor_1 = 4 } #Himmler
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = 1 }
+			}
+			add_country_leader_role = {
+				character =  GER_fritz_todt
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_todt_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = 2 }
+			}
+			add_country_leader_role = {
+				character =  GER_albert_speer
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_speer_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = 3 }
+			}
+			add_country_leader_role = {
+				character =  GER_hermann_goring
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_goring_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = 4 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_himmler_director_reich_security
+				}
+				add_country_leader_role = {
+					character =  GER_heinrich_himmler
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_himmler_fuhrer_abwehr } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_heinrich_himmler
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_himmler_fuhrer_ss } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = 5 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_goebbels_reich_minister_of_propaganda_master_no_lar
+				}
+				add_country_leader_role = {
+					character =  GER_joseph_goebbels
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_goebbels_fuhrer_no_lar } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_joseph_goebbels
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_goebbels_fuhrer } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = 6 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_hess_first_among_equals_no_aat
+				}
+				add_country_leader_role = {
+					character =  GER_rudolf_hess
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_hess_fuhrer_no_aat } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_rudolf_hess
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_hess_fuhrer } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = 7 }
+			}
+			add_country_leader_role = {
+				character =  GER_martin_bormann
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_bormann_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else = {
+			log = "Couldn't find a valid Ascended Advisor (1) to Promote"
+		}
+
+		hidden_effect = {
+			GER_remove_replaced_advisor_1_effects = yes
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Ascended Advisor 2 becomes Country Leader
+		name = GER_inner_circle.02.b
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler & Göring are more likely to replace Hitler
+				add = 2
+				OR = {
+					check_variable = { GER_ascended_advisor_2 = 3 } #Göring
+					check_variable = { GER_ascended_advisor_2 = 4 } #Himmler
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = 1 }
+			}
+			add_country_leader_role = {
+				character =  GER_fritz_todt
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_todt_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = 2 }
+			}
+			add_country_leader_role = {
+				character =  GER_albert_speer
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_speer_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = 3 }
+			}
+			add_country_leader_role = {
+				character =  GER_hermann_goring
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_goring_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = 4 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_himmler_director_reich_security
+				}
+				add_country_leader_role = {
+					character =  GER_heinrich_himmler
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_himmler_fuhrer_abwehr } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_heinrich_himmler
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_himmler_fuhrer_ss } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = 5 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_goebbels_reich_minister_of_propaganda_master_no_lar
+				}
+				add_country_leader_role = {
+					character =  GER_joseph_goebbels
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_goebbels_fuhrer_no_lar } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_joseph_goebbels
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_goebbels_fuhrer } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = 6 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_hess_first_among_equals_no_aat
+				}
+				add_country_leader_role = {
+					character =  GER_rudolf_hess
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_hess_fuhrer_no_aat } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_rudolf_hess
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_hess_fuhrer } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = 7 }
+			}
+			add_country_leader_role = {
+				character =  GER_martin_bormann
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_bormann_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else = {
+			log = "Couldn't find a valid Ascended Advisor (2) to Promote"
+		}
+
+		hidden_effect = {
+			GER_remove_replaced_advisor_2_effects = yes
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Ascended Advisor 3 becomes Country Leader
+		name = GER_inner_circle.02.c
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler & Göring are more likely to replace Hitler
+				add = 2
+				OR = {
+					check_variable = { GER_ascended_advisor_3 = 3 } #Göring
+					check_variable = { GER_ascended_advisor_3 = 4 } #Himmler
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = 1 }
+			}
+			add_country_leader_role = {
+				character =  GER_fritz_todt
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_todt_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = 2 }
+			}
+			add_country_leader_role = {
+				character =  GER_albert_speer
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_speer_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = 3 }
+			}
+			add_country_leader_role = {
+				character =  GER_hermann_goring
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_goring_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = 4 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_himmler_director_reich_security
+				}
+				add_country_leader_role = {
+					character =  GER_heinrich_himmler
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_himmler_fuhrer_abwehr } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_heinrich_himmler
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_himmler_fuhrer_ss } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = 5 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_goebbels_reich_minister_of_propaganda_master_no_lar
+				}
+				add_country_leader_role = {
+					character =  GER_joseph_goebbels
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_goebbels_fuhrer_no_lar } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_joseph_goebbels
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_goebbels_fuhrer } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = 6 }
+			}
+			if = {
+				limit = {
+					has_idea = GER_hess_first_among_equals_no_aat
+				}
+				add_country_leader_role = {
+					character =  GER_rudolf_hess
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_hess_fuhrer_no_aat } 
+					}
+					promote_leader = yes
+				}
+			}
+			else = {
+				add_country_leader_role = {
+					character =  GER_rudolf_hess
+					country_leader = {
+						ideology = nazism
+						expire = 1965.1.1
+						traits = { GER_hess_fuhrer } 
+					}
+					promote_leader = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = 7 }
+			}
+			add_country_leader_role = {
+				character =  GER_martin_bormann
+				country_leader = {
+					ideology = nazism
+					expire = 1965.1.1
+					traits = { GER_bormann_fuhrer } 
+				}
+				promote_leader = yes
+			}
+		}
+		else = {
+			log = "Couldn't find a valid Ascended Advisor (3) to Promote"
+		}
+
+		hidden_effect = {
+			GER_remove_replaced_advisor_3_effects = yes
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Abort!
+		name = GER_inner_circle.02.d
+
+		ai_chance = {
+			base = 0
+		}
+
+		uncomplete_national_focus = {
+			focus = GER_a_strong_successor
+			uncomplete_children = no
+			refund_political_power = yes
+		}
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+}
+
+# INTRIGUE - Todt-Speer-Göring ME focuses
+country_event = {
+	id = GER_inner_circle.03
+	title = GER_inner_circle.03.t
+	desc = GER_inner_circle.03.desc
+	picture = "[GetIndustrialIntrigueEventPortrait]"
+
+	fire_only_once = yes
+
+	trigger = {
+		OR = {
+			has_shine_effect_on_focus = GER_autonomous_organization_todt
+			has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+			has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+		}
+		NOT = {
+			has_completed_focus = GER_autonomous_organization_todt
+			has_completed_focus = GER_plenipotentiary_of_armaments
+			has_completed_focus = GER_plenipotentiary_of_the_four_year_plan
+		}
+	}
+
+	mean_time_to_happen	= {
+		days = 10
+		modifier = {
+			factor = 0.1
+			count_triggers = {
+				amount = 2
+				has_shine_effect_on_focus = GER_autonomous_organization_todt
+				has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+				has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+			}
+		}
+	}
+
+	#ASSIGN CHARACTER THAT "TRIGGERED" THE EVENT
+	immediate = {
+		hidden_effect = {
+			set_country_flag = GER_inner_circle_event_pending_flag
+			if = { #Göring prevails
+				limit = {
+					has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+				}
+				set_variable = { GER_intrigue_character = 3 }
+			}			
+			else_if = { #Then Speer
+				limit = {
+					has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+				}
+				set_variable = { GER_intrigue_character = 2 }
+			}			
+			else_if = { #Last Todt
+				limit = {
+					has_shine_effect_on_focus = GER_autonomous_organization_todt
+				}
+				set_variable = { GER_intrigue_character = 1 }
+			}
+		}
+	}
+
+	option = { # Current Advisor is fine
+		name = GER_inner_circle.03.a
+
+		if = {
+			limit = {
+				check_variable = { GER_intrigue_character = 1 }
+			}
+			custom_effect_tooltip = {
+				localization_key = GER_advisor_will_continue_focus_tt
+				CHARACTER = GER_fritz_todt
+				FOCUS = GER_autonomous_organization_todt
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_intrigue_character = 2 }
+			}
+			custom_effect_tooltip = {
+				localization_key = GER_advisor_will_continue_focus_tt
+				CHARACTER = GER_albert_speer
+				FOCUS = GER_plenipotentiary_of_armaments
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_intrigue_character = 3 }
+			}
+			custom_effect_tooltip = {
+				localization_key = GER_advisor_will_continue_focus_tt
+				CHARACTER = GER_hermann_goring
+				FOCUS = GER_plenipotentiary_of_the_four_year_plan
+			}
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_autonomous_organization_todt
+				NOT = { check_variable = { GER_intrigue_character = 1 } }
+			}
+			custom_effect_tooltip = {
+				localization_key = GER_stop_progress_on_advisor_focus_tt
+				CHARACTER = GER_fritz_todt
+				FOCUS = GER_autonomous_organization_todt
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			hidden_effect = {
+				deactivate_shine_on_focus = GER_autonomous_organization_todt
+				clr_country_flag = GER_autonomous_organization_todt_in_progress_flag
+			}
+		}
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+				NOT = { check_variable = { GER_intrigue_character = 2 } }
+			}
+			custom_effect_tooltip = {
+				localization_key = GER_stop_progress_on_advisor_focus_tt
+				CHARACTER = GER_albert_speer
+				FOCUS = GER_plenipotentiary_of_armaments
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			hidden_effect = {
+				deactivate_shine_on_focus = GER_plenipotentiary_of_armaments
+				clr_country_flag = GER_plenipotentiary_of_armaments_in_progress_flag
+			}
+		}
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+				NOT = { check_variable = { GER_intrigue_character = 3 } }
+			}
+			custom_effect_tooltip = {
+				localization_key = GER_stop_progress_on_advisor_focus_tt
+				CHARACTER = GER_hermann_goring
+				FOCUS = GER_plenipotentiary_of_the_four_year_plan
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			hidden_effect = {
+				deactivate_shine_on_focus = GER_plenipotentiary_of_the_four_year_plan
+				clr_country_flag = GER_plenipotentiary_of_the_four_year_plan_in_progress_flag
+			}
+		}
+
+		set_variable = { GER_industrialist_prevailed = GER_intrigue_character }
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_intrigue_character
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Favor Todt
+		name = GER_inner_circle.03.b
+
+		trigger = {
+			NOT = {
+				check_variable = { GER_intrigue_character = 1 }
+			}
+		}
+
+		if = { #Intrigue Character (that triggered the event) is in SLOT 1
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = GER_intrigue_character }
+			}
+			if = { #Todt is already an ascended advisor (no need to replace or ascend anyone)
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_fritz_todt
+					FOCUS = GER_autonomous_organization_todt
+					CHARACTER_2 = GER_albert_speer
+					CHARACTER_3 = GER_hermann_goring
+				}
+			}
+			else = { #Todt is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 1 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 1 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_1_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_1 = 1 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_fritz_todt
+					FOCUS = GER_autonomous_organization_todt
+					CHARACTER_2 = GER_albert_speer
+					CHARACTER_3 = GER_hermann_goring
+					FOCUS_COMPLETED = GER_ascension_of_todt
+					IDEA = idea_desc|GER_todt_reich_engineer
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_todt }
+						}
+						unlock_national_focus = GER_ascension_of_todt
+					}
+					GER_add_todt_effects = yes
+					country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else_if = { #Intrigue Character (that triggered the event) is in SLOT 2
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_fritz_todt
+					FOCUS = GER_autonomous_organization_todt
+					CHARACTER_2 = GER_albert_speer
+					CHARACTER_3 = GER_hermann_goring
+				}
+			}
+			else = { #Todt is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 1 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 1 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_2_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_2 = 1 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_fritz_todt
+					FOCUS = GER_autonomous_organization_todt
+					CHARACTER_2 = GER_albert_speer
+					CHARACTER_3 = GER_hermann_goring
+					FOCUS_COMPLETED = GER_ascension_of_todt
+					IDEA = idea_desc|GER_todt_reich_engineer
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_todt }
+						}
+						unlock_national_focus = GER_ascension_of_todt
+					}
+					GER_add_todt_effects = yes
+					country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else_if = { #Intrigue Character (that triggered the event) is in SLOT 3
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_fritz_todt
+					FOCUS = GER_autonomous_organization_todt
+					CHARACTER_2 = GER_albert_speer
+					CHARACTER_3 = GER_hermann_goring
+				}
+			}
+			else = { #Todt is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 1 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 1 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_3_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_3 = 1 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_fritz_todt
+					FOCUS = GER_autonomous_organization_todt
+					CHARACTER_2 = GER_albert_speer
+					CHARACTER_3 = GER_hermann_goring
+					FOCUS_COMPLETED = GER_ascension_of_todt
+					IDEA = idea_desc|GER_todt_reich_engineer
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_todt }
+						}
+						unlock_national_focus = GER_ascension_of_todt
+					}
+					GER_add_todt_effects = yes
+					country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else = {
+			log = "Intrigue Character index in variable seems to not match any ascended advisor."
+		}
+
+		# SET ADVISOR PREVAILING AND STOP THE OTHER ME FOCUSES
+		hidden_effect = {
+			set_variable = { GER_industrialist_prevailed = 1 }
+			if = {
+				limit = {
+					has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+				}
+				deactivate_shine_on_focus = GER_plenipotentiary_of_armaments
+				clr_country_flag = GER_plenipotentiary_of_armaments_in_progress_flag
+			}
+			if = {
+				limit = {
+					has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+				}
+				deactivate_shine_on_focus = GER_plenipotentiary_of_the_four_year_plan
+				clr_country_flag = GER_plenipotentiary_of_the_four_year_plan_in_progress_flag
+			}
+		}
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_intrigue_character
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Favor Speer
+		name = GER_inner_circle.03.c
+
+
+		trigger = {
+			NOT = {
+				check_variable = { GER_intrigue_character = 2 }
+			}
+		}
+
+		if = { #Intrigue Character (that triggered the event) is in SLOT 1
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 2 }
+						check_variable = { GER_ascended_advisor_2 = 2 }
+						check_variable = { GER_ascended_advisor_3 = 2 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_albert_speer
+					FOCUS = GER_plenipotentiary_of_armaments
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_hermann_goring
+				}
+			}
+			else = { #Speer is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 2 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 2 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 2 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_1_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_1 = 2 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_albert_speer
+					FOCUS = GER_plenipotentiary_of_armaments
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_hermann_goring
+					FOCUS_COMPLETED = GER_ascension_of_speer
+					IDEA = idea_desc|GER_speer_reich_architect
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_speer }
+						}
+						unlock_national_focus = GER_ascension_of_speer
+					}
+					GER_add_speer_effects = yes
+					country_event = { id = GER_inner_circle_speer.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else_if = { #Intrigue Character (that triggered the event) is in SLOT 2
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 2 }
+						check_variable = { GER_ascended_advisor_2 = 2 }
+						check_variable = { GER_ascended_advisor_3 = 2 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_albert_speer
+					FOCUS = GER_plenipotentiary_of_armaments
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_hermann_goring
+				}
+			}
+			else = { #Speer is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 2 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 2 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 2 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_2_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_2 = 2 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_albert_speer
+					FOCUS = GER_plenipotentiary_of_armaments
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_hermann_goring
+					FOCUS_COMPLETED = GER_ascension_of_speer
+					IDEA = idea_desc|GER_speer_reich_architect
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_speer }
+						}
+						unlock_national_focus = GER_ascension_of_speer
+					}
+					GER_add_speer_effects = yes
+					country_event = { id = GER_inner_circle_speer.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else_if = { #Intrigue Character (that triggered the event) is in SLOT 3
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 2 }
+						check_variable = { GER_ascended_advisor_2 = 2 }
+						check_variable = { GER_ascended_advisor_3 = 2 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_albert_speer
+					FOCUS = GER_plenipotentiary_of_armaments
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_hermann_goring
+				}
+			}
+			else = { #Speer is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 2 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 2 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 2 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_3_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_3 = 2 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_albert_speer
+					FOCUS = GER_plenipotentiary_of_armaments
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_hermann_goring
+					FOCUS_COMPLETED = GER_ascension_of_speer
+					IDEA = idea_desc|GER_speer_reich_architect
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_speer }
+						}
+						unlock_national_focus = GER_ascension_of_speer
+					}
+					GER_add_speer_effects = yes
+					country_event = { id = GER_inner_circle_speer.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else = {
+			log = "Intrigue Character index in variable seems to not match any ascended advisor."
+		}
+
+		# SET ADVISOR PREVAILING AND STOP THE OTHER ME FOCUSES
+		hidden_effect = {
+			set_variable = { GER_industrialist_prevailed = 2 }
+			if = {
+				limit = {
+					has_shine_effect_on_focus = GER_autonomous_organization_todt
+				}
+				deactivate_shine_on_focus = GER_autonomous_organization_todt
+				clr_country_flag = GER_autonomous_organization_todt_in_progress_flag
+			}
+			if = {
+				limit = {
+					has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+				}
+				deactivate_shine_on_focus = GER_plenipotentiary_of_the_four_year_plan
+				clr_country_flag = GER_plenipotentiary_of_the_four_year_plan_in_progress_flag
+			}
+		}
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_intrigue_character
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Favor Göring
+		name = GER_inner_circle.03.d
+
+		trigger = {
+			NOT = {
+				check_variable = { GER_intrigue_character = 3 }
+			}
+			has_completed_focus = GER_the_four_year_plan
+		}
+
+		if = { #Intrigue Character (that triggered the event) is in SLOT 1
+			limit = {
+				check_variable = { GER_ascended_advisor_1 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 3 }
+						check_variable = { GER_ascended_advisor_2 = 3 }
+						check_variable = { GER_ascended_advisor_3 = 3 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_hermann_goring
+					FOCUS = GER_plenipotentiary_of_the_four_year_plan
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_albert_speer
+				}
+			}
+			else = { #Göring is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 3 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 3 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 3 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_1_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_1 = 3 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_hermann_goring
+					FOCUS = GER_plenipotentiary_of_the_four_year_plan
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_albert_speer
+					FOCUS_COMPLETED = GER_ascension_of_goring
+					IDEA = idea_desc|GER_goring_overseer_four_year_plan
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_goring }
+						}
+						unlock_national_focus = GER_ascension_of_goring
+					}
+					GER_add_goring_effects = yes
+					country_event = { id = GER_inner_circle_goring.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else_if = { #Intrigue Character (that triggered the event) is in SLOT 2
+			limit = {
+				check_variable = { GER_ascended_advisor_2 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 3 }
+						check_variable = { GER_ascended_advisor_2 = 3 }
+						check_variable = { GER_ascended_advisor_3 = 3 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_hermann_goring
+					FOCUS = GER_plenipotentiary_of_the_four_year_plan
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_albert_speer
+				}
+			}
+			else = { #Göring is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 3 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 3 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 3 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_2_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_2 = 3 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_hermann_goring
+					FOCUS = GER_plenipotentiary_of_the_four_year_plan
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_albert_speer
+					FOCUS_COMPLETED = GER_ascension_of_goring
+					IDEA = idea_desc|GER_goring_overseer_four_year_plan
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_goring }
+						}
+						unlock_national_focus = GER_ascension_of_goring
+					}
+					GER_add_goring_effects = yes
+					country_event = { id = GER_inner_circle_goring.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else_if = { #Intrigue Character (that triggered the event) is in SLOT 3
+			limit = {
+				check_variable = { GER_ascended_advisor_3 = GER_intrigue_character }
+			}
+			if = {
+				limit = {
+					OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+						check_variable = { GER_ascended_advisor_1 = 3 }
+						check_variable = { GER_ascended_advisor_2 = 3 }
+						check_variable = { GER_ascended_advisor_3 = 3 }
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_already_ascended_tt
+					CHARACTER = GER_hermann_goring
+					FOCUS = GER_plenipotentiary_of_the_four_year_plan
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_albert_speer
+				}
+			}
+			else = { #Göring is not ascended (search for an open slot or replace Intrigue Character)
+				if = { #There is an open slot for Ascending Advisor, seize it!
+					limit = {
+						OR = { #Only need to check for two positions but this way is the same trigger in all places in this event
+							check_variable = { GER_ascended_advisor_1 = 0 }
+							check_variable = { GER_ascended_advisor_2 = 0 }
+							check_variable = { GER_ascended_advisor_3 = 0 }
+						}
+					}
+					if = { #This is done like this because I'll have to copy-paste this thousands of times and I'd like to preserve what little is left of my brain, so safer to copy-paste the same stuff all the time.
+						limit = {
+							check_variable = { GER_ascended_advisor_1 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_1 = 3 }
+					}
+					else_if = {
+						limit = {
+							check_variable = { GER_ascended_advisor_2 = 0 }
+						}
+						set_variable = { GER_ascended_advisor_2 = 3 }
+					}
+					else = {
+						set_variable = { GER_ascended_advisor_3 = 3 }
+					}
+				}
+				else = { #There is no open slot for Ascending Advisor, replace the Intrigue Character
+					# REMOVE THE ADVISOR THAT TRIGGERED THE EVENT
+					GER_remove_replaced_advisor_3_effects = yes
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					#Set the new advisor
+					set_variable = { GER_ascended_advisor_3 = 3 }
+				}
+				
+				custom_effect_tooltip = {
+					localization_key = GER_intrigue_replacing_advisor_new_ascending_tt
+					CHARACTER = GER_hermann_goring
+					FOCUS = GER_plenipotentiary_of_the_four_year_plan
+					CHARACTER_2 = GER_fritz_todt
+					CHARACTER_3 = GER_albert_speer
+					FOCUS_COMPLETED = GER_ascension_of_goring
+					IDEA = idea_desc|GER_goring_overseer_four_year_plan
+				}
+
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_completed_focus = GER_ascension_of_goring }
+						}
+						unlock_national_focus = GER_ascension_of_goring
+					}
+					GER_add_goring_effects = yes
+					country_event = { id = GER_inner_circle_goring.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				}
+			}
+		}
+		else = {
+			log = "Intrigue Character index in variable seems to not match any ascended advisor."
+		}
+
+		# SET ADVISOR PREVAILING AND STOP THE OTHER ME FOCUSES
+		hidden_effect = {
+			set_variable = { GER_industrialist_prevailed = 3 }
+			if = {
+				limit = {
+					has_shine_effect_on_focus = GER_autonomous_organization_todt
+				}
+				deactivate_shine_on_focus = GER_autonomous_organization_todt
+				clr_country_flag = GER_autonomous_organization_todt_in_progress_flag
+			}
+			if = {
+				limit = {
+					has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+				}
+				deactivate_shine_on_focus = GER_plenipotentiary_of_armaments
+				clr_country_flag = GER_plenipotentiary_of_armaments_in_progress_flag
+			}
+		}
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_intrigue_character
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+}
+
+
+
+###  ##  ###  ### 
+ #  #  # #  #  #  
+ #  #  # #  #  #  
+ #  #  # #  #  #  
+ #   ##  ###   #  
+
+# TODT - Start work on Focus
+country_event = {
+	id = GER_inner_circle_todt.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_todt
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 1 }
+			check_variable = { GER_ascended_advisor_2 = 1 }
+			check_variable = { GER_ascended_advisor_3 = 1 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = GER_form_organization_todt }
+			}
+			activate_shine_on_focus = GER_form_organization_todt
+			set_country_flag = { flag = GER_form_organization_todt_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = GER_inner_circle_todt.02 days = @inner_circle_time_tier_1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_autonomous_organization_todt }
+				NOT = { check_variable = { GER_industrialist_prevailed = 2 } } #Speer Prevailed in the Industrialist Intrigue
+				NOT = { check_variable = { GER_industrialist_prevailed = 3 } } #Göring Prevailed in the Industrialist Intrigue
+			}
+			activate_shine_on_focus = GER_autonomous_organization_todt
+			set_country_flag = { flag = GER_autonomous_organization_todt_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = GER_inner_circle_todt.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_wunderwaffe }
+				NOT = { has_shine_effect_on_focus = GER_wunderwaffe } #Speer is working on this already
+				NOT = { check_variable = { GER_industrialist_prevailed = 2 } } #Speer Prevailed in the Industrialist Intrigue
+				NOT = { check_variable = { GER_industrialist_prevailed = 3 } } #Göring Prevailed in the Industrialist Intrigue
+			}
+			activate_shine_on_focus = GER_wunderwaffe
+			set_country_flag = { flag = GER_wunderwaffe_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = GER_inner_circle_todt.02 days = @inner_circle_time_tier_3 }
+			set_variable = { GER_wonder_weapons_focus_advisor = 1 }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH TODT's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+
+# TODT - Complete Focus
+country_event = {
+	id = GER_inner_circle_todt.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_todt
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 1 }
+			check_variable = { GER_ascended_advisor_2 = 1 }
+			check_variable = { GER_ascended_advisor_3 = 1 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_form_organization_todt
+			}
+			complete_national_focus = {
+				focus = GER_form_organization_todt
+				use_side_message = yes
+				originator_name = GER_fritz_todt
+			}
+			clr_country_flag = GER_form_organization_todt_in_progress_flag
+			country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_autonomous_organization_todt
+			}
+			complete_national_focus = {
+				focus = GER_autonomous_organization_todt
+				use_side_message = yes
+				originator_name = GER_fritz_todt
+			}
+			clr_country_flag = GER_autonomous_organization_todt_in_progress_flag
+			country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_wunderwaffe
+				check_variable = { GER_wonder_weapons_focus_advisor = 1 } #It is Todt working on it
+			}
+			complete_national_focus = {
+				focus = GER_wunderwaffe
+				use_side_message = yes
+				originator_name = GER_fritz_todt
+			}
+			clr_country_flag = GER_wunderwaffe_in_progress_flag
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH TODT's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+
+
+ ## ###  ### ### ###  
+#   #  # #   #   #  # 
+ #  ###  ##  ##  ###  
+  # #    #   #   #  # 
+##  #    ### ### #  # 
+
+
+# SPEER - Start work on Focus
+country_event = {
+	id = GER_inner_circle_speer.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_speer
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 2 }
+			check_variable = { GER_ascended_advisor_2 = 2 }
+			check_variable = { GER_ascended_advisor_3 = 2 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = GER_employ_philipp_holzmann }
+			}
+			activate_shine_on_focus = GER_employ_philipp_holzmann
+			set_country_flag = { flag = GER_employ_philipp_holzmann_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = GER_inner_circle_speer.02 days = @inner_circle_time_tier_1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_plenipotentiary_of_armaments }
+				NOT = { check_variable = { GER_industrialist_prevailed = 1 } } #Todt Prevailed in the Industrialist Intrigue
+				NOT = { check_variable = { GER_industrialist_prevailed = 3 } } #Göring Prevailed in the Industrialist Intrigue
+			}
+			activate_shine_on_focus = GER_plenipotentiary_of_armaments
+			set_country_flag = { flag = GER_plenipotentiary_of_armaments_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = GER_inner_circle_speer.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_wunderwaffe }
+				NOT = { has_shine_effect_on_focus = GER_wunderwaffe } #Todt is working on this already
+				NOT = { check_variable = { GER_industrialist_prevailed = 1 } } #Todt Prevailed in the Industrialist Intrigue
+				NOT = { check_variable = { GER_industrialist_prevailed = 3 } } #Göring Prevailed in the Industrialist Intrigue
+			}
+			activate_shine_on_focus = GER_wunderwaffe
+			set_country_flag = { flag = GER_wunderwaffe_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = GER_inner_circle_speer.02 days = @inner_circle_time_tier_3 }
+			set_variable = { GER_wonder_weapons_focus_advisor = 2 }
+
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH SPEER's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+
+# SPEER - Complete Focus
+country_event = {
+	id = GER_inner_circle_speer.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_speer
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 2 }
+			check_variable = { GER_ascended_advisor_2 = 2 }
+			check_variable = { GER_ascended_advisor_3 = 2 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_employ_philipp_holzmann
+			}
+			complete_national_focus = {
+				focus = GER_employ_philipp_holzmann
+				use_side_message = yes
+				originator_name = GER_albert_speer
+			}
+			clr_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+			country_event = { id = GER_inner_circle_speer.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+			}
+			complete_national_focus = {
+				focus = GER_plenipotentiary_of_armaments
+				use_side_message = yes
+				originator_name = GER_albert_speer
+			}
+			clr_country_flag = GER_plenipotentiary_of_armaments_in_progress_flag
+			country_event = { id = GER_inner_circle_speer.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_wunderwaffe
+				check_variable = { GER_wonder_weapons_focus_advisor = 2 } #It is Speer working on it
+			}
+			complete_national_focus = {
+				focus = GER_wunderwaffe
+				use_side_message = yes
+				originator_name = GER_albert_speer
+			}
+			clr_country_flag = GER_wunderwaffe_in_progress_flag
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH SPEER's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+
+
+ ##   ##  ###  ### #  #  ##  
+#    #  # #  #  #  ## # #    
+# ## #  # ###   #  # ## # ## 
+#  # #  # #  #  #  #  # #  # 
+ ##   ##  #  # ### #  #  ##  
+
+# GÖRING - Start work on Focus
+country_event = {
+	id = GER_inner_circle_goring.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_goring
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 3 }
+			check_variable = { GER_ascended_advisor_2 = 3 }
+			check_variable = { GER_ascended_advisor_3 = 3 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = GER_prioritize_the_four_year_plan }
+			}
+			activate_shine_on_focus = GER_prioritize_the_four_year_plan
+			set_country_flag = { flag = GER_prioritize_the_four_year_plan_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = GER_inner_circle_goring.02 days = @inner_circle_time_tier_1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_plenipotentiary_of_the_four_year_plan }
+				NOT = { check_variable = { GER_industrialist_prevailed = 1 } } #Todt Prevailed in the Industrialist Intrigue
+				NOT = { check_variable = { GER_industrialist_prevailed = 2 } } #Speer Prevailed in the Industrialist Intrigue
+			}
+			activate_shine_on_focus = GER_plenipotentiary_of_the_four_year_plan
+			set_country_flag = { flag = GER_plenipotentiary_of_the_four_year_plan_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = GER_inner_circle_goring.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_integration_of_puppet_economies }
+				NOT = { check_variable = { GER_industrialist_prevailed = 1 } } #Todt Prevailed in the Industrialist Intrigue
+				NOT = { check_variable = { GER_industrialist_prevailed = 2 } } #Speer Prevailed in the Industrialist Intrigue
+			}
+			activate_shine_on_focus = GER_integration_of_puppet_economies
+			set_country_flag = { flag = GER_integration_of_puppet_economies_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = GER_inner_circle_goring.02 days = @inner_circle_time_tier_3 }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH GÖRING's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+
+# GÖRING - Complete Focus
+country_event = {
+	id = GER_inner_circle_goring.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_goring
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 3 }
+			check_variable = { GER_ascended_advisor_2 = 3 }
+			check_variable = { GER_ascended_advisor_3 = 3 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_prioritize_the_four_year_plan
+			}
+			complete_national_focus = {
+				focus = GER_prioritize_the_four_year_plan
+				use_side_message = yes
+				originator_name = GER_hermann_goring
+			}
+			clr_country_flag = GER_prioritize_the_four_year_plan_in_progress_flag
+			country_event = { id = GER_inner_circle_goring.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+			}
+			complete_national_focus = {
+				focus = GER_plenipotentiary_of_the_four_year_plan
+				use_side_message = yes
+				originator_name = GER_hermann_goring
+			}
+			clr_country_flag = GER_plenipotentiary_of_the_four_year_plan_in_progress_flag
+			country_event = { id = GER_inner_circle_goring.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_integration_of_puppet_economies
+			}
+			complete_national_focus = {
+				focus = GER_integration_of_puppet_economies
+				use_side_message = yes
+				originator_name = GER_hermann_goring
+			}
+			clr_country_flag = GER_integration_of_puppet_economies_in_progress_flag
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH GÖRING's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+
+
+#  # ### #   # #   # #   ### ###  
+#  #  #  ## ## ## ## #   #   #  # 
+####  #  # # # # # # #   ##  ###  
+#  #  #  #   # #   # #   #   #  # 
+#  # ### #   # #   # ### ### #  # 
+
+
+# HIMMLER - Pick branch
+country_event = {
+	id = GER_inner_circle_himmler.00
+	title = GER_inner_circle_himmler.00.t
+	desc = GER_inner_circle_himmler.00.desc
+	picture = GFX_report_event_GER_himmler
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #SS
+		name = GER_inner_circle_himmler.00.a
+		ai_chance = {
+			base = 10
+		}
+		custom_effect_tooltip = GER_inner_circle_himmler_ss_tt
+
+		hidden_effect = {
+			GER_heinrich_himmler = {
+				set_character_flag = GER_himmler_ss_focus_flag
+			}
+			country_event = { id = GER_inner_circle_himmler.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #Gestapo
+		name = GER_inner_circle_himmler.00.b
+
+		custom_effect_tooltip = GER_inner_circle_himmler_gestapo_tt
+
+		hidden_effect = {
+			GER_heinrich_himmler = {
+				set_character_flag = GER_himmler_gestapo_focus_flag
+			}
+			country_event = { id = GER_inner_circle_himmler.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+}
+
+
+# HIMMLER - Start work on Focus
+country_event = {
+	id = GER_inner_circle_himmler.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_himmler
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 4 }
+			check_variable = { GER_ascended_advisor_2 = 4 }
+			check_variable = { GER_ascended_advisor_3 = 4 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				GER_heinrich_himmler = { has_character_flag = GER_himmler_ss_focus_flag }
+			}
+			if = {
+				limit = {
+					NOT = { has_completed_focus = GER_expand_ss_security_duties }
+				}
+				activate_shine_on_focus = GER_expand_ss_security_duties
+				set_country_flag = { flag = GER_expand_ss_security_duties_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+				country_event = { id = GER_inner_circle_himmler.02 days = @inner_circle_time_tier_1 }
+			}
+			else_if = {
+				limit = {
+					NOT = { has_completed_focus = GER_strengthen_the_waffen_ss }
+				}
+				activate_shine_on_focus = GER_strengthen_the_waffen_ss
+				set_country_flag = { flag = GER_strengthen_the_waffen_ss_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+				country_event = { id = GER_inner_circle_himmler.02 days = @inner_circle_time_tier_3 }
+			}
+			else_if = {
+				limit = {
+					NOT = { has_completed_focus = GER_hegemony_of_the_ss }
+				}
+				activate_shine_on_focus = GER_hegemony_of_the_ss
+				set_country_flag = { flag = GER_hegemony_of_the_ss_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+				country_event = { id = GER_inner_circle_himmler.02 days = @inner_circle_time_tier_2 }
+			}
+		}
+		else_if = {
+			limit = {
+				GER_heinrich_himmler = { has_character_flag = GER_himmler_gestapo_focus_flag }
+			}
+			if = {
+				limit = {
+					NOT = { has_completed_focus = GER_expand_gestapo }
+				}
+				activate_shine_on_focus = GER_expand_gestapo
+				set_country_flag = { flag = GER_expand_gestapo_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+				country_event = { id = GER_inner_circle_himmler.02 days = @inner_circle_time_tier_1 }
+			}
+			else_if = {
+				limit = {
+					NOT = { has_completed_focus = GER_absorb_the_abwehr }
+				}
+				activate_shine_on_focus = GER_absorb_the_abwehr
+				set_country_flag = { flag = GER_absorb_the_abwehr_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+				country_event = { id = GER_inner_circle_himmler.02 days = @inner_circle_time_tier_2 }
+			}
+			else_if = {
+				limit = {
+					NOT = { has_completed_focus = GER_hegemony_of_the_ss }
+				}
+				activate_shine_on_focus = GER_hegemony_of_the_ss
+				set_country_flag = { flag = GER_hegemony_of_the_ss_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+				country_event = { id = GER_inner_circle_himmler.02 days = @inner_circle_time_tier_2 }
+			}
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH HIMMLER's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+
+# HIMMLER - Complete Focus
+country_event = {
+	id = GER_inner_circle_himmler.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_himmler
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 4 }
+			check_variable = { GER_ascended_advisor_2 = 4 }
+			check_variable = { GER_ascended_advisor_3 = 4 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_expand_ss_security_duties
+			}
+			complete_national_focus = {
+				focus = GER_expand_ss_security_duties
+				use_side_message = yes
+				originator_name = GER_heinrich_himmler
+			}
+			clr_country_flag = GER_expand_ss_security_duties_in_progress_flag
+			country_event = { id = GER_inner_circle_himmler.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_strengthen_the_waffen_ss
+			}
+			complete_national_focus = {
+				focus = GER_strengthen_the_waffen_ss
+				use_side_message = yes
+				originator_name = GER_heinrich_himmler
+			}
+			clr_country_flag = GER_strengthen_the_waffen_ss_in_progress_flag
+			country_event = { id = GER_inner_circle_himmler.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_expand_gestapo
+			}
+			complete_national_focus = {
+				focus = GER_expand_gestapo
+				use_side_message = yes
+				originator_name = GER_heinrich_himmler
+			}
+			clr_country_flag = GER_expand_gestapo_in_progress_flag
+			country_event = { id = GER_inner_circle_himmler.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_absorb_the_abwehr
+			}
+			complete_national_focus = {
+				focus = GER_absorb_the_abwehr
+				use_side_message = yes
+				originator_name = GER_heinrich_himmler
+			}
+			clr_country_flag = GER_absorb_the_abwehr_in_progress_flag
+			country_event = { id = GER_inner_circle_himmler.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_hegemony_of_the_ss
+			}
+			complete_national_focus = {
+				focus = GER_hegemony_of_the_ss
+				use_side_message = yes
+				originator_name = GER_heinrich_himmler
+			}
+			clr_country_flag = GER_hegemony_of_the_ss_in_progress_flag
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH HIMMLER's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+
+
+ ##   ##  ### ###  ###  ### #    ## 
+#    #  # #   #  # #  # #   #   #   
+# ## #  # ##  ###  ###  ##  #    #  
+#  # #  # #   #  # #  # #   #     # 
+ ##   ##  ### ###  ###  ### ### ##  
+
+
+# GOEBBELS - Start work on Focus
+country_event = {
+	id = GER_inner_circle_goebbels.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_goebbels
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 5 }
+			check_variable = { GER_ascended_advisor_2 = 5 }
+			check_variable = { GER_ascended_advisor_3 = 5 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = GER_ministry_of_public_enlightenment }
+			}
+			activate_shine_on_focus = GER_ministry_of_public_enlightenment
+			set_country_flag = { flag = GER_ministry_of_public_enlightenment_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = GER_inner_circle_goebbels.02 days = @inner_circle_time_tier_1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_fund_the_film_department }
+			}
+			activate_shine_on_focus = GER_fund_the_film_department
+			set_country_flag = { flag = GER_fund_the_film_department_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = GER_inner_circle_goebbels.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_propaganda_master }
+			}
+			activate_shine_on_focus = GER_propaganda_master
+			set_country_flag = { flag = GER_propaganda_master_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = GER_inner_circle_goebbels.02 days = @inner_circle_time_tier_3 }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH GOEBBELS's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+
+# GOEBBELS - Complete Focus
+country_event = {
+	id = GER_inner_circle_goebbels.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_ascension_of_goebbels
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 5 }
+			check_variable = { GER_ascended_advisor_2 = 5 }
+			check_variable = { GER_ascended_advisor_3 = 5 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_ministry_of_public_enlightenment
+			}
+			complete_national_focus = {
+				focus = GER_ministry_of_public_enlightenment
+				use_side_message = yes
+				originator_name = GER_joseph_goebbels
+			}
+			clr_country_flag = GER_ministry_of_public_enlightenment_in_progress_flag
+			country_event = { id = GER_inner_circle_goebbels.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_fund_the_film_department
+			}
+			complete_national_focus = {
+				focus = GER_fund_the_film_department
+				use_side_message = yes
+				originator_name = GER_joseph_goebbels
+			}
+			clr_country_flag = GER_fund_the_film_department_in_progress_flag
+			country_event = { id = GER_inner_circle_goebbels.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_propaganda_master
+			}
+			complete_national_focus = {
+				focus = GER_propaganda_master
+				use_side_message = yes
+				originator_name = GER_joseph_goebbels
+			}
+			clr_country_flag = GER_propaganda_master_in_progress_flag
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH GOEBBELS's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+
+
+#  # ###  ##  ## 
+#  # #   #   #   
+#### ##   #   #  
+#  # #     #   # 
+#  # ### ##  ##  
+
+# HESS - Start work on Focus
+country_event = {
+	id = GER_inner_circle_hess.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_party_chancellor_hess
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 6 }
+			check_variable = { GER_ascended_advisor_2 = 6 }
+			check_variable = { GER_ascended_advisor_3 = 6 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = GER_optimize_reich_labour_service }
+				NOT = { has_shine_effect_on_focus = GER_optimize_reich_labour_service } #Bormann is working on this already (Should never happen anyways)
+			}
+			activate_shine_on_focus = GER_optimize_reich_labour_service
+			set_country_flag = { flag = GER_optimize_reich_labour_service_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = GER_inner_circle_hess.02 days = @inner_circle_time_tier_1 }
+			set_variable = { GER_optimize_reich_service_focus_advisor = 6 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_rally_the_industrialists }
+			}
+			activate_shine_on_focus = GER_rally_the_industrialists
+			set_country_flag = { flag = GER_rally_the_industrialists_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = GER_inner_circle_hess.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_total_control_over_domestic_affairs }
+				NOT = { has_shine_effect_on_focus = GER_total_control_over_domestic_affairs } #Bormann is working on this already (Should never happen anyways)
+			}
+			activate_shine_on_focus = GER_total_control_over_domestic_affairs
+			set_country_flag = { flag = GER_total_control_over_domestic_affairs_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = GER_inner_circle_hess.02 days = @inner_circle_time_tier_3 }
+			set_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 6 }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH HESS's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+
+# HESS - Complete Focus
+country_event = {
+	id = GER_inner_circle_hess.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_party_chancellor_hess
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 6 }
+			check_variable = { GER_ascended_advisor_2 = 6 }
+			check_variable = { GER_ascended_advisor_3 = 6 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_optimize_reich_labour_service
+				check_variable = { GER_optimize_reich_service_focus_advisor = 6 } #It is Hess completing it
+			}
+			complete_national_focus = {
+				focus = GER_optimize_reich_labour_service
+				use_side_message = yes
+				originator_name = GER_rudolf_hess
+			}
+			clr_country_flag = GER_optimize_reich_labour_service_in_progress_flag
+			country_event = { id = GER_inner_circle_hess.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_rally_the_industrialists
+			}
+			complete_national_focus = {
+				focus = GER_rally_the_industrialists
+				use_side_message = yes
+				originator_name = GER_rudolf_hess
+			}
+			clr_country_flag = GER_rally_the_industrialists_in_progress_flag
+			country_event = { id = GER_inner_circle_hess.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_total_control_over_domestic_affairs
+				check_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 6 } #It is Hess completing it
+			}
+			complete_national_focus = {
+				focus = GER_total_control_over_domestic_affairs
+				use_side_message = yes
+				originator_name = GER_rudolf_hess
+			}
+			clr_country_flag = GER_total_control_over_domestic_affairs_in_progress_flag
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH HESS's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+
+
+###   ##  ###  #   #  ##  #  # #  # 
+#  # #  # #  # ## ## #  # ## # ## # 
+###  #  # ###  # # # #### # ## # ## 
+#  # #  # #  # #   # #  # #  # #  # 
+###   ##  #  # #   # #  # #  # #  # 
+
+# BORMANN - Start work on Focus
+country_event = {
+	id = GER_inner_circle_bormann.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_party_chancellor_bormann
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 7 }
+			check_variable = { GER_ascended_advisor_2 = 7 }
+			check_variable = { GER_ascended_advisor_3 = 7 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = GER_optimize_reich_labour_service }
+				NOT = { has_shine_effect_on_focus = GER_optimize_reich_labour_service } #Hess is working on this already (Should never happen anyways)
+			}
+			activate_shine_on_focus = GER_optimize_reich_labour_service
+			set_country_flag = { flag = GER_optimize_reich_labour_service_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = GER_inner_circle_bormann.02 days = @inner_circle_time_tier_1 }
+			set_variable = { GER_optimize_reich_service_focus_advisor = 7 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_glorify_party_rallies }
+			}
+			activate_shine_on_focus = GER_glorify_party_rallies
+			set_country_flag = { flag = GER_glorify_party_rallies_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = GER_inner_circle_bormann.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = GER_total_control_over_domestic_affairs }
+				NOT = { has_shine_effect_on_focus = GER_total_control_over_domestic_affairs } #Hess is working on this already (Should never happen anyways)
+			}
+			activate_shine_on_focus = GER_total_control_over_domestic_affairs
+			set_country_flag = { flag = GER_total_control_over_domestic_affairs_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = GER_inner_circle_bormann.02 days = @inner_circle_time_tier_3 }
+			set_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 7 }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH BORMANN's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+
+# BORMANN - Complete Focus
+country_event = {
+	id = GER_inner_circle_bormann.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = GER_party_chancellor_bormann
+		OR = {
+			check_variable = { GER_ascended_advisor_1 = 7 }
+			check_variable = { GER_ascended_advisor_2 = 7 }
+			check_variable = { GER_ascended_advisor_3 = 7 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = GER_optimize_reich_labour_service
+				check_variable = { GER_optimize_reich_service_focus_advisor = 7 } #It is Bormann completing it
+			}
+			complete_national_focus = {
+				focus = GER_optimize_reich_labour_service
+				use_side_message = yes
+				originator_name = GER_martin_bormann
+			}
+			clr_country_flag = GER_optimize_reich_labour_service_in_progress_flag
+			country_event = { id = GER_inner_circle_bormann.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_glorify_party_rallies
+			}
+			complete_national_focus = {
+				focus = GER_glorify_party_rallies
+				use_side_message = yes
+				originator_name = GER_martin_bormann
+			}
+			clr_country_flag = GER_glorify_party_rallies_in_progress_flag
+			country_event = { id = GER_inner_circle_bormann.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = GER_total_control_over_domestic_affairs
+				check_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 7 } #It is Bormann completing it
+			}
+			complete_national_focus = {
+				focus = GER_total_control_over_domestic_affairs
+				use_side_message = yes
+				originator_name = GER_martin_bormann
+			}
+			clr_country_flag = GER_total_control_over_domestic_affairs_in_progress_flag
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH BORMANN's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+
+
+
+
+
+
+
+
+country_event = { #[FROM.GetNameDefCap] Demands Our Subjugation
+	id = GOT_GER_fading_eagle.01
+	title = GOT_GER_fading_eagle.01.t
+	desc = GOT_GER_fading_eagle.01.desc
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = { #sounds good
+		name = GOT_GER_fading_eagle.01.a
+		ai_chance = {
+			base = 100
+		}
+
+		FROM = {
+			country_event = {
+				id = GOT_GER_fading_eagle.02
+				hours = 12
+			}
+		}
+		effect_tooltip = {
+			FROM = {
+				puppet = ROOT
+			}
+		}
+
+	}
+	option = { #no way
+		name = GOT_GER_fading_eagle.01.b
+		ai_chance = {
+			base = 0
+		}
+
+		FROM = {
+			country_event = {
+				id = GOT_GER_fading_eagle.03
+				hours = 12
+			}
+		}
+
+	}
+}
+
+country_event = { #[FROM.GetNameDefCap] Accepts our Demands
+	id = GOT_GER_fading_eagle.02
+	title = GOT_GER_fading_eagle.02.t
+	desc = GOT_GER_fading_eagle.02.desc
+	picture = GFX_report_event_generic_handshake
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = { #great!
+		name = GOT_GER_fading_eagle.02.a
+
+		puppet = FROM 
+
+	}
+	
+}
+
+country_event = { #[FROM.GetNameDefCap] Rejects our Demands
+	id = GOT_GER_fading_eagle.03
+	title = GOT_GER_fading_eagle.03.t
+	desc = GOT_GER_fading_eagle.03.desc
+	picture = GFX_report_event_generic_riot
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = { #it was not a question!
+		name = GOT_GER_fading_eagle.03.a
+		ai_chance = {
+			base = 5
+		}
+
+		remove_from_faction = FROM
+
+	}
+	option = { #was worth asking
+		name = GOT_GER_fading_eagle.03.b
+		ai_chance = {
+			base = 95 # We don't usually want the AI to escalate when they can't afford it
+		}
+
+		add_political_power = 50
+
+	}
+}

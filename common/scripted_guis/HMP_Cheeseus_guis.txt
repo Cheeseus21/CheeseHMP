@@ -1,0 +1,880 @@
+    scripted_gui = {
+
+        # The top button of that allows you to see lend-lease stuff
+        lend_lease_button_gui = {
+            window_name = "lend_lease_button_container"
+            context_type = player_context
+
+            visible = {
+                tag = ENG
+            }
+
+            effects = {
+                lend_lease_button_click = {
+                    if = {
+                        limit = { 
+                            NOT = { # The flag allows you to open and close lend lease screen
+                                has_country_flag = lend_lease_window_open 
+                            } 
+                        }
+                        set_country_flag = lend_lease_window_open
+                    }
+                    else = {
+                        clr_country_flag = lend_lease_window_open
+                    }
+                    set_country_flag = warning_error_visible
+                }
+            }
+
+            triggers = {
+            }
+
+            dynamic_lists = {
+            }
+
+            properties = {
+            }
+
+            ai_enabled = {
+                always = no
+            }
+        }	
+        
+        warning_arrow_stuff_gui = {
+            window_name = "warning_arrow_stuff"
+            context_type = player_context
+
+            visible = {
+                tag = ENG
+                NOT = { has_country_flag = warning_error_visible }
+            }
+
+            effects = {
+            }
+
+            triggers = {
+            }
+
+            dynamic_lists = {
+            }
+
+            properties = {
+            }
+
+            ai_enabled = {
+                always = no
+            }
+        }	
+
+        lend_lease_window_gui = {
+            window_name = "lend_lease_window"
+            context_type = player_context
+
+            visible = {
+                has_country_flag = lend_lease_window_open
+            }
+
+            effects = {
+                close_button31_click = {
+                    clr_country_flag = lend_lease_window_open
+                }
+                can_increase_obligation_button_click = {
+                    CAN = {
+                        add_to_variable = { var = ENG_fuck_can_modifier value = 0.05 }
+                    }
+                }
+                can_decrease_obligation_button_click = {
+                    CAN = {
+                        subtract_from_variable = { var = ENG_fuck_can_modifier value = 0.05 } 
+                    }
+                }
+                saf_increase_obligation_button_click = {
+                    SAF = {
+                        add_to_variable = { var = ENG_fuck_saf_modifier value = 0.05 }
+                    }
+                }
+                saf_decrease_obligation_button_click = {
+                    SAF = {
+                        subtract_from_variable = { var = ENG_fuck_saf_modifier value = 0.05 } 
+                    }
+                }
+                raj_increase_obligation_button_click = {
+                    RAJ = {
+                        add_to_variable = { var = ENG_fuck_raj_modifier value = 0.05 }
+                    }
+                }
+                raj_decrease_obligation_button_click = {
+                    RAJ = {
+                        subtract_from_variable = { var = ENG_fuck_raj_modifier value = 0.05 } 
+                    }
+                }
+                ast_increase_obligation_button_click = {
+                    AST = {
+                        add_to_variable = { var = ENG_fuck_ast_modifier value = 0.05 }
+                    }
+                }
+                ast_decrease_obligation_button_click = {
+                    AST = {
+                        subtract_from_variable = { var = ENG_fuck_ast_modifier value = 0.05 } 
+                    }
+                }
+                CAN_flag_click  = {
+                    CAN = {
+                        add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 2 } 
+                }
+                SAF_flag_click  = {
+                    SAF = {
+                        add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 2 } 
+                }
+                RAJ_flag_click  = {
+                    RAJ = {
+                        add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 2 } 
+                }
+                AST_flag_click  = {
+                    AST = {
+                        add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 2 } 
+                }
+                button_select.1_click  = {
+                    USA = {
+                        country_event = order.1
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 } 
+                }
+                button_select.2_click  = {
+                    USA = {
+                        country_event = order.2
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.3_click  = {
+                    USA = {
+                        country_event = order.3
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.4_click  = {
+                    USA = {
+                        country_event = order.4
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.5_click  = {
+                    USA = {
+                        country_event = order.5
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.6_click  = {
+                    USA = {
+                        country_event = order.6
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.7_click  = {
+                    USA = {
+                        country_event = order.7
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.8_click  = {
+                    USA = {
+                        country_event = order.8
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.9_click  = {
+                    USA = {
+                        country_event = order.9
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.10_click  = {
+                    USA = {
+                        country_event = order.10
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                button_select.11_click  = {
+                    USA = {
+                        country_event = order.11
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 }
+                }
+                churchill_decision1_click = {
+                    hidden_effect = {  
+                        load_oob = "ENG_light_tank_spawn"
+                    }     
+                    subtract_from_variable = { var = ENG_funds value = 2 }
+                    
+                    set_country_flag = light_tank_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.4
+                        days = 180
+                    }
+                }
+                churchill_decision2_click = {
+                    hidden_effect = {  
+                        load_oob = "ENG_medium_tank_spawn" 
+                    }     
+                    subtract_from_variable = { var = ENG_funds value = 3 }
+                    
+                    set_country_flag = medium_tank_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.5
+                        days = 180
+                    }
+                }
+                churchill_decision3_click = {
+                    hidden_effect = {  
+                        load_oob = "ENG_heavy_tank_spawn"
+                    }     
+                    subtract_from_variable = { var = ENG_funds value = 5 }
+                    
+                    set_country_flag = heavy_tank_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.6
+                        days = 180
+                    }
+                }
+                churchill_decision4_click = {
+                    hidden_effect = {  
+                        load_oob = "ENG_african_garrison"  
+                        add_manpower = -720000  
+                    }     
+                    subtract_from_variable = { var = ENG_funds value = 12 }
+                    set_country_flag = ENG_african_garrison_spawned
+                }
+                churchill_decision5_click = {
+                    hidden_effect = {  
+                        load_oob = "ENG_raj_garrison"  
+                        add_manpower = -720000  
+                    }     
+                    subtract_from_variable = { var = ENG_funds value = 16 }
+                    set_country_flag = ENG_raj_garrison_spawned
+                }
+                churchill_decision6_click = {
+                    hidden_effect = {  
+                        load_oob = "ENG_singapore_garrison"  
+                        add_manpower = -720000  
+                    }     
+                    subtract_from_variable = { var = ENG_funds value = 16 }
+                    set_country_flag = ENG_singapore_garrison_spawned
+                }
+                UK_buff_button_click = {
+                    add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
+                    subtract_from_variable = { var = ENG_funds value = 2 } 
+                }
+                UK_research_buff_click = {
+                    add_tech_bonus = {
+                        name = ENG_funds_industrial_research
+                        bonus = 1
+                        uses = 1
+                        category = industry
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 } 
+                }
+                small_loans_click = {
+                    add_to_variable = { var = ENG_funds value = 2 }
+
+                    set_country_flag = small_loans_cooldown
+                    
+                    add_timed_idea = { idea = adding_small_funds  days = 180 }
+                    
+                    country_event = {
+                        id = loan_cooldown.1
+                        days = 180
+                    }
+                }
+                medium_loans_click = {
+                    add_to_variable = { var = ENG_funds value = 4 }
+
+                    set_country_flag = medium_loans_cooldown
+                    
+                    add_timed_idea = { idea = adding_medium_funds  days = 180 }
+
+                    country_event = {
+                        id = loan_cooldown.2
+                        days = 180
+                    }
+                }
+                large_loans_click = {
+
+                    add_to_variable = { var = ENG_funds value = 6 }
+
+                    set_country_flag = large_loans_cooldown
+                    
+                    add_timed_idea = { idea = adding_large_funds  days = 180 }
+
+                    country_event = {
+                        id = loan_cooldown.3
+                        days = 180
+                    }
+                }
+                UK_policy_buff_can_click = {
+                    CAN = {
+                        add_offsite_building = { type = arms_factory level = 1 }
+                        add_offsite_building = { type = industrial_complex level = 1 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 } 
+                    set_country_flag = UK_policy_buff_can_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.7
+                        days = 120
+                    }
+                }
+                UK_policy_buff_saf_click = {
+                    SAF = {
+                        add_offsite_building = { type = arms_factory level = 1 }
+                        add_offsite_building = { type = industrial_complex level = 1 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 } 
+                    set_country_flag = UK_policy_buff_saf_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.8
+                        days = 120
+                    }
+                }
+                UK_policy_buff_raj_click = {
+                    RAJ = {
+                        add_offsite_building = { type = arms_factory level = 1 }
+                        add_offsite_building = { type = industrial_complex level = 1 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 } 
+                    set_country_flag = UK_policy_buff_raj_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.9
+                        days = 120
+                    }
+                }
+                UK_policy_buff_ast_click = {
+                    AST = {
+                        add_offsite_building = { type = arms_factory level = 1 }
+                        add_offsite_building = { type = industrial_complex level = 1 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 1 } 
+                    set_country_flag = UK_policy_buff_ast_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.10
+                        days = 120
+                    }
+                }
+                UK_policy_buff_cansaf_click = {
+                    CAN = {
+                        add_offsite_building = { type = arms_factory level = 2 }
+                        add_offsite_building = { type = industrial_complex level = 2 }
+                    }
+                    subtract_from_variable = { var = ENG_funds value = 2 } 
+                    set_global_flag = UK_policy_buff_cansaf_cooldown
+                    
+                    country_event = {
+                        id = loan_cooldown.11
+                        days = 120
+                    }
+                }
+            }
+
+            triggers = {
+                can_increase_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    CAN = {
+                        check_variable = {
+                            var     = ENG_fuck_can_modifier
+                            value   = 0.25
+                            compare = less_than
+                        }
+                    }
+                }
+                can_decrease_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    CAN = {
+                        NOT = {
+                            check_variable = {
+                            var = ENG_fuck_can_modifier
+                            value = 0
+                            compare = less_than_or_equals
+                            }
+                        }
+                    }
+                }
+                saf_increase_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    SAF = {
+                        check_variable = {
+                            var     = ENG_fuck_saf_modifier
+                            value   = 0.25
+                            compare = less_than
+                        }
+                    }
+                }
+                saf_decrease_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    SAF = {
+                        NOT = {
+                            check_variable = {
+                            var = ENG_fuck_saf_modifier
+                            value = 0
+                            compare = less_than_or_equals
+                            }
+                        }
+                    }
+                }
+                raj_increase_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    RAJ = {
+                        check_variable = {
+                            var     = ENG_fuck_raj_modifier
+                            value   = 0.25
+                            compare = less_than
+                        }
+                    }
+                }
+                raj_decrease_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    RAJ = {
+                        NOT = {
+                            check_variable = {
+                            var = ENG_fuck_raj_modifier
+                            value = 0
+                            compare = less_than_or_equals
+                            }
+                        }
+                    }
+                }
+                ast_increase_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    AST = {
+                        check_variable = {
+                            var     = ENG_fuck_ast_modifier
+                            value   = 0.25
+                            compare = less_than
+                        }
+                    }
+                }
+                ast_decrease_obligation_button_click_enabled = {
+                    has_completed_focus = ENG_imperial_policy
+                    AST = {
+                        NOT = {
+                            check_variable = {
+                            var = ENG_fuck_ast_modifier
+                            value = 0
+                            compare = less_than_or_equals
+                            }
+                        }
+                    }
+                }
+                CAN_flag_click_enabled = {
+                    AND = {
+                        check_variable = {
+                            ENG_funds > 0
+                        }
+                        NOT = {
+                            CAN = {
+                                has_idea  = funds_factory_output_idea
+                            }
+                        }
+                    }
+                }
+                SAF_flag_click_enabled = {
+                    AND = {
+                        check_variable = {
+                            ENG_funds > 0
+                        }
+                        NOT = {
+                            SAF = {
+                                has_idea  = funds_factory_output_idea
+                            }
+                        }
+                    }
+                }
+                RAJ_flag_click_enabled = {
+                    AND = {
+                        check_variable = {
+                            ENG_funds > 0
+                        }
+                        NOT = {
+                            RAJ = {
+                                has_idea  = funds_factory_output_idea
+                            }
+                        }
+                    }
+                }
+                AST_flag_click_enabled = {
+                    AND = {
+                        check_variable = {
+                            ENG_funds > 0
+                        }
+                        NOT = {
+                            AST = {
+                                has_idea  = funds_factory_output_idea
+                            }
+                        }
+                    }
+                }
+                button_select.1_click_enabled = {
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_gun_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.2_click_enabled = {
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_arty_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.3_click_enabled = {
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_at_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.4_click_enabled = {
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_aa_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.5_click_enabled = {
+                    has_tech = rocket_artillery
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_rocket_arty_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.6_click_enabled = {
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_sup_eq_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.7_click_enabled = {
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_truck_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.8_click_enabled = {
+                    has_tech = mechanised_infantry
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_mechanized_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.9_click_enabled = {
+                    has_tech = basic_light_tank_chassis 
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_light_tanks_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.10_click_enabled = {
+                    has_tech = basic_medium_tank_chassis 
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_medium_tanks_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                button_select.11_click_enabled = {
+                    has_tech = basic_heavy_tank_chassis 
+                    NOT = {
+                        USA = {
+                            has_country_flag = USA_AOD_heavy_tanks_order_flag
+                        }
+                    }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                    USA = {
+                        has_completed_focus = USA_lend_lease_act
+                    }
+                }
+                churchill_decision1_click_enabled = {
+                    check_variable = {
+                        ENG_funds > 1
+                    }
+                    NOT = { has_country_flag = light_tank_cooldown }
+                }
+                churchill_decision2_click_enabled = {
+                    check_variable = {
+                        ENG_funds > 2
+                    }
+                    NOT = { has_country_flag = medium_tank_cooldown }
+                }
+                churchill_decision3_click_enabled = {
+                    check_variable = {
+                        ENG_funds > 4
+                    }
+                    NOT = { has_country_flag = heavy_tank_cooldown }
+                }
+                churchill_decision4_click_enabled = {
+                    has_war = no 
+                    has_manpower > 720000 
+                    check_variable = {
+                        ENG_funds > 11
+                    }
+                    NOT = { has_country_flag = ENG_african_garrison_spawned }
+                }
+                churchill_decision5_click_enabled = {
+                    date > 1940.1.1 
+                    date < 1941.1.1
+                    has_manpower > 720000 
+                    check_variable = {
+                        ENG_funds > 15
+                    }
+                    NOT = { has_country_flag = ENG_raj_garrison_spawned }
+                    NOT = { has_global_flag = war_in_the_west_start }
+                }
+                churchill_decision6_click_enabled = {
+                    date > 1940.1.1 
+                    date < 1941.1.1
+                    has_manpower > 720000 
+                    check_variable = {
+                        ENG_funds > 15
+                    }
+                    NOT = { has_country_flag = ENG_singapore_garrison_spawned }
+                    NOT = { has_global_flag = war_in_the_west_start }
+                }
+                UK_buff_button_click_enabled = {
+                    check_variable = {
+                        ENG_funds > 1
+                    }
+                    NOT = { has_idea = funds_factory_output_idea }
+                }
+                UK_research_buff_click_enabled = {
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                }
+                small_loans_click_enabled = {
+                    NOT = { has_country_flag = small_loans_cooldown }
+                }
+                medium_loans_click_enabled = {
+                    NOT = { has_country_flag = medium_loans_cooldown }
+                }
+                large_loans_click_enabled = {
+                    NOT = { has_country_flag = large_loans_cooldown }
+                }
+                UK_policy_buff_can_click_enabled = {
+                    has_completed_focus = ENG_develop_colonial_industries
+                    NOT = { has_country_flag = UK_policy_buff_can_cooldown }
+                    NOT = { has_global_flag = CANSAF_annex }
+                    NOT = { has_global_flag = CANSAF_annex }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                }
+                UK_policy_buff_saf_click_enabled = {
+                    has_completed_focus = ENG_develop_colonial_industries
+                    NOT = { has_country_flag = UK_policy_buff_saf_cooldown }
+                    NOT = { has_global_flag = CANSAF_annex }
+                    NOT = { has_global_flag = CANSAF_annex }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                }
+                UK_policy_buff_raj_click_enabled = {
+                    has_completed_focus = ENG_develop_colonial_industries
+                    NOT = { has_country_flag = UK_policy_buff_raj_cooldown }
+                    NOT = { has_global_flag = war_in_the_west_start }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                }
+                UK_policy_buff_ast_click_enabled = {
+                    has_completed_focus = ENG_develop_colonial_industries
+                    NOT = { has_country_flag = UK_policy_buff_ast_cooldown }
+                    NOT = { has_global_flag = war_in_the_west_start }
+                    check_variable = {
+                        ENG_funds > 0
+                    }
+                }
+                UK_policy_buff_cansaf_click_enabled = {
+                    has_completed_focus = ENG_develop_colonial_industries
+                    NOT = { has_global_flag = UK_policy_buff_cansaf_cooldown }
+                    has_global_flag = CANSAF_annex
+                    check_variable = {
+                        ENG_funds > 1
+                    }
+                }
+            }	
+        }
+        
+        # close_button31_gui = {
+            # window_name = "lend_lease_window"
+            # context_type = player_context
+
+            # visible = {
+                #has_country_flag = lend_lease_window_open
+            # }
+
+            # effects = {
+                # close_button31_click = {
+                    # clr_country_flag = lend_lease_window_open
+                # }
+            # }
+
+            # triggers = {
+                # lend_lease_button_click_enabled = {
+                    # has_country_flag = lend_lease_window_open
+                # }
+                # lend_lease_button_visible = {
+                    # has_country_flag = lend_lease_window_open
+                # }
+            # }
+
+            # dynamic_lists = {
+            # }
+
+            # properties = {
+            # }
+
+            # ai_enabled = {
+                # always = no
+            # }
+        # }	
+        
+        # can_increase_obligation_button_gui = {
+            # window_name = "lend_lease_window"
+            # context_type = player_context
+
+            # visible = {
+                # has_country_flag = lend_lease_window_open
+            # }
+
+            # effects = {
+                # can_increase_obligation_button_click = {
+                    # CAN = {
+                        # add_to_variable = { var = ENG_fuck_can_modifier value = 0.05 } 
+                    # }
+                # }
+            # }
+
+            # triggers = {
+            # }
+
+            # dynamic_lists = {
+            # }
+
+            # properties = {
+            # }
+
+            # ai_enabled = {
+                # always = no
+            # }
+        # }	
+        
+        # can_decrease_obligation_button_gui = {
+            # window_name = "lend_lease_window"
+            # context_type = player_context
+
+            # visible = {
+                # has_country_flag = lend_lease_window_open
+            # }
+
+            # effects = {
+                # can_decrease_obligation_button_click = {
+                    # CAN = {
+                        # subtract_from_variable = { var = ENG_fuck_can_modifier value = 0.05 } 
+                    # }
+                # }
+            # }
+
+            # triggers = {
+            # }
+
+            # dynamic_lists = {
+            # }
+
+            # properties = {
+            # }
+
+            # ai_enabled = {
+                # always = no
+            # }
+        # }	
+    }

@@ -1,0 +1,352 @@
+﻿shared_focus = {
+	id = AXIS_pact_of_steel
+	icon = GFX_focus_chi_mission_to_germany 
+	x = 0
+	y = 0
+	offset = {
+		x = 17  
+		y = 10   
+		trigger = {	tag = HUN}
+	}
+		offset = {
+		x = 30  
+		y = 0   
+		trigger = {	tag = CZE}
+	}
+	offset = {
+		x = 24  
+		y = 7
+		trigger = {	tag = FIN}
+	}
+		offset = {
+		x = 32  
+		y = 8
+		trigger = {	tag = DEN}
+	}
+		offset = {
+		x = 30  
+		y = 8   
+		trigger = {	tag = ROM}
+	}
+			offset = {
+		x = 14  
+		y = 5
+		trigger = {	tag = EFR}
+	}
+		offset = {
+		x = 12  
+		y = 8
+		trigger = {	tag = BUL}
+	}
+		offset = {
+		x = 29  
+		y = 0   
+		trigger = {	tag = SPR}
+	}
+		offset = {
+		x = 16  
+		y = 6   
+		trigger = {	tag = YUG}
+	}
+		cost = 5
+	completion_reward = {
+		add_political_power = 50
+	}
+}
+ 
+shared_focus = {
+	id = AXIS_joint_training_program
+	icon = GFX_focus_generic_military_mission 
+	x = 0
+	y = 1
+	
+	prerequisite = { focus = AXIS_pact_of_steel }
+	relative_position_id = AXIS_pact_of_steel
+	cost = 5
+	completion_reward = {
+		army_experience = 50
+	}
+}
+shared_focus = {
+	id = AXIS_ger_patron
+	icon = GFX_focus_chi_mission_to_germany 
+	x = 0 
+	y = 1  
+
+	mutually_exclusive = {  focus = AXIS_ita_patron focus = AXIS_jap_patron }
+	prerequisite = { focus = AXIS_joint_training_program }
+	relative_position_id = AXIS_joint_training_program
+	cost = 5
+		completion_reward = {
+		if = { limit = { NOT ={ has_idea  = ideological_fanaticism_focus } }
+			add_ideas = ideological_fanaticism_focus
+		}
+			else ={ swap_ideas = { add_idea = ideological_fanaticism_focus_2 remove_idea = ideological_fanaticism_focus } }
+		}
+}
+
+
+shared_focus = {
+	id = AXIS_ger_patron_1
+	icon = GFX_focus_generic_military_mission 
+	x = -1
+	y = 1
+
+	prerequisite = { focus = AXIS_ger_patron }
+	relative_position_id = AXIS_ger_patron
+	cost = 5
+	completion_reward = {
+		add_ideas = brains_over_brawn
+	
+	}
+}
+shared_focus = {
+	id = AXIS_ger_patron_2
+	icon = GFX_focus_generic_paratrooper 
+	x = 0
+	y = 1
+
+	prerequisite = { focus = AXIS_ger_patron_1 }
+	relative_position_id = AXIS_ger_patron_1
+	cost = 5
+	completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.99
+				uses = 1
+				category = cat_paratroopers_doctrine
+			}	
+	hidden_effect = {
+	add_to_variable = { paratrooper_div_cap = 1 }
+				set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
+		
+		}
+		custom_effect_tooltip = AXIS_ger_patron_2_tt
+	
+	}
+}
+
+shared_focus = {
+	id = AXIS_ger_patron_3
+	icon = GFX_goal_generic_oil_refinery 
+	x = 1
+	y = 1
+
+	prerequisite = { focus = AXIS_ger_patron }
+	relative_position_id = AXIS_ger_patron
+	cost = 5
+	completion_reward = {
+		random_owned_state = {
+			add_extra_state_shared_building_slots =1  
+			add_building_construction = { 
+				type = fuel_silo
+				level = 1 
+				instant_build=  yes
+			}
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots =1  
+			add_building_construction = {
+				type = fuel_silo
+				level = 1 
+				instant_build=  yes
+			}
+		}	
+	}
+}
+shared_focus = {
+	id = AXIS_ger_patron_4
+	icon = GFX_goal_generic_navy_submarine 
+	x = 0
+	y = 1
+
+	prerequisite = { focus = AXIS_ger_patron_3 }
+	relative_position_id = AXIS_ger_patron_3
+	cost = 5
+	completion_reward = {
+		add_ideas = wolfpack_tactics_idea 
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+shared_focus = {
+	id = AXIS_ita_patron
+	icon = GFX_focus_befriend_italy 
+	x = -4
+	y = 1
+
+	mutually_exclusive = {  focus = AXIS_ger_patron focus = AXIS_jap_patron }
+	prerequisite = { focus = AXIS_joint_training_program }
+	relative_position_id = AXIS_joint_training_program 
+	cost = 5
+	completion_reward = {
+		add_ideas = italian_corporatism
+	
+	}
+}
+
+shared_focus = {
+	id = AXIS_ita_patron_1
+	icon = GFX_goal_fortify_the_westwall 
+	x = -1
+	y = 1
+
+	prerequisite = { focus = AXIS_ita_patron }
+	relative_position_id = AXIS_ita_patron
+	cost = 5
+	completion_reward = {
+		add_ideas = italian_defense
+	
+	}
+}
+shared_focus = {
+	id = AXIS_ita_patron_2
+	icon = GFX_focus_ITA_blackshirts 
+	x = 0
+	y = 1 	
+
+	prerequisite = { focus = AXIS_ita_patron_1 }
+	relative_position_id = AXIS_ita_patron_1
+	cost = 5
+	completion_reward = {
+	   custom_effect_tooltip = GEN_the_kings_guard_1a_tt
+			hidden_effect = {
+							delete_unit_template_and_units = {
+    division_template = "Fascist Militia"
+    disband = yes 
+	}
+			load_oob = "GEN_militia" 
+				add_to_variable = { GEN_militias_cap = 8 }
+				set_division_template_cap = {  division_template = "Fascist Militia" division_cap = GEN_militias_cap }
+			}
+			random_controlled_state = { #Create a few more Blackshirt Divs
+				limit = {
+					is_core_of = ROOT
+					is_fully_controlled_by = ROOT
+				}
+				custom_effect_tooltip = GEN_the_kings_guard_1b_tt
+				hidden_effect = {
+					create_unit = {
+						division = "division_template = \"Fascist Militia\" start_experience_factor = 0.3 start_equipment_factor = 1"
+						owner = ROOT 
+						count = 8
+					}
+				}
+				} 
+
+	}
+}
+
+shared_focus = {
+	id = AXIS_ita_patron_3
+	icon = GFX_focus_generic_railroad 
+	x = 1
+	y = 1
+
+	prerequisite = { focus = AXIS_ita_patron }
+	relative_position_id = AXIS_ita_patron
+	cost = 5
+	completion_reward = {
+	    add_equipment_to_stockpile = {
+			type = train_equipment_1
+			amount = 20
+			producer = ITA
+		}
+	}
+}
+shared_focus = {
+	id = AXIS_ita_patron_4
+	icon = GFX_focus_generic_mediterranean_sea_focus 
+	x = 0
+	y = 1
+
+	prerequisite = { focus = AXIS_ita_patron_3 }
+	relative_position_id = AXIS_ita_patron_3
+	cost = 5
+	completion_reward = {
+	   add_ideas = supremacy_at_sea
+	
+	}
+}
+
+shared_focus = {
+	id = AXIS_jap_patron
+	icon = GFX_focus_chi_collaboration_with_the_japanese 
+	x = 4
+	y = 1
+
+	mutually_exclusive = {  focus = AXIS_ita_patron focus = AXIS_ger_patron }
+	prerequisite = { focus = AXIS_joint_training_program }
+	relative_position_id = AXIS_joint_training_program
+	cost = 5
+	completion_reward = {
+		add_ideas = showa_statism
+	}
+}
+
+
+shared_focus = {
+	id = AXIS_jap_patron_1
+	icon = GFX_focus_prc_infiltration 
+	x = -1
+	y = 1 
+
+	prerequisite = { focus = AXIS_jap_patron }
+	relative_position_id = AXIS_jap_patron
+	cost = 5
+	completion_reward = {
+	   add_ideas = live_off_the_rear
+	}
+}
+shared_focus = {
+	id = AXIS_jap_patron_2
+	icon = GFX_goal_generic_special_forces 
+	x = 0
+	y = 1 
+ 
+	prerequisite = { focus = AXIS_jap_patron_1 }
+	relative_position_id = AXIS_jap_patron_1
+	cost = 5
+	completion_reward = {
+		add_ideas = japanese_commando_training
+	}
+}
+
+shared_focus = {  
+	id = AXIS_jap_patron_3
+	text=  JAP_bicycle_battalions
+	icon = GFX_goal_generic_special_forces 
+	x = 1
+	y = 1
+
+	prerequisite = { focus = AXIS_jap_patron }
+	relative_position_id = AXIS_jap_patron
+	cost = 5
+	completion_reward = {
+		set_technology = { bicycle_infantry = 1 }
+	}
+}
+shared_focus = {
+	id = AXIS_jap_patron_4
+	icon = GFX_focus_ETH_an_ethiopian_navy_in_exile  
+	x = 0
+	y = 1
+
+	prerequisite = { focus = AXIS_jap_patron_3 }
+	relative_position_id = AXIS_jap_patron_3
+	cost = 5
+	completion_reward = {
+	     add_ideas =decisive_battle_idea
+	 
+	}
+}

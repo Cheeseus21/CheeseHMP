@@ -1,0 +1,328 @@
+﻿capital = 500
+add_to_tech_sharing_group = commonwealth_research
+set_fuel_ratio = 1
+oob = "BRA_1936"
+add_timed_idea = { idea = NO_TRADE days = 1339 }
+create_intelligence_agency = yes
+set_stability = 0.75
+set_war_support = 0
+set_variable = {
+    var = min_fuel
+    value = 0.800
+}
+IF = {
+	limit = {
+		has_dlc = "Trial of Allegiance"
+	}
+	set_country_flag = BRA_toa_DLC
+
+
+	add_ideas = {
+		SMB_MTG_naval_arms_race_legacy BRA_separatism_idea
+	}
+
+	# Undiversified Economy Modifier
+	set_variable = { BRA_economy_production_efficiency_gain_factor = -0.2 }
+	set_variable = { BRA_economy_production_max_efficiency_factor = -0.2 }
+	set_variable = { BRA_economy_industrial_capacity_factor = -0.2 }
+	
+	# Weak Government Modifier
+	set_variable = { BRA_weak_government_stability_factor = -0.25 }
+	set_variable = { BRA_weak_government_pp_factor = -0.25 }
+	set_variable = { BRA_weak_government_neutrality_factor = 0 }
+	set_variable = { BRA_weak_government_command_power_factor = 0 }
+
+	# State Of Emergency Modifier
+	set_variable = { BRA_coup_stability_factor = -0.5 }
+	set_variable = { BRA_coup_communism_factor = 0 }
+	set_variable = { BRA_coup_democratic_factor = 0 }
+	set_variable = { BRA_coup_fascism_factor = 0 }
+	set_variable = { BRA_coup_neutrality_factor = 0 }
+
+	# Estado Novo Modifier
+	set_variable = { BRA_estado_novo_stability_factor = 0 }
+	set_variable = { BRA_estado_novo_fascism_factor = 0 }
+	set_variable = { BRA_estado_novo_communism_factor = 0 }
+	set_variable = { BRA_estado_novo_democratic_factor = 0 }
+	set_variable = { BRA_estado_novo_fascism_factor = 0 }
+	set_variable = { BRA_estado_novo_neutrality_factor = 0 }
+	set_variable = { BRA_estado_novo_production_speed_buildings_factor = 0 }
+	set_variable = { BRA_estado_novo_war_support_factor = 0 }
+	set_variable = { BRA_estado_novo_recruitable_population_factor = 0 }
+	set_variable = { BRA_estado_novo_consumer_goods_expected_value = 0 }
+	set_variable = { BRA_estado_novo_political_power_factor = 0 }
+	set_variable = { BRA_estado_novo_production_factory_max_efficiency_factor = 0 }
+	set_variable = { BRA_estado_novo_industrial_capacity_factory = 0 }
+	set_variable = { BRA_estado_novo_industrial_capacity_dockyard = 0 }
+	set_variable = { BRA_estado_novo_production_speed_arms_factory_factor = 0 }
+	set_variable = { BRA_estado_novo_production_speed_dockyard_factor = 0 }
+	set_variable = { BRA_estado_novo_production_speed_industrial_complex_factor = 0 }
+
+	add_dynamic_modifier = { modifier = BRA_undiversified_economy_modifier }
+	add_dynamic_modifier = { modifier = BRA_weak_government }
+	add_dynamic_modifier = { modifier = BRA_aftermath_of_the_coup }
+	set_party_name = {
+		ideology = neutrality
+		name = BRA_military_party
+		long_name = BRA_military_party_long
+	}
+
+	set_party_name = {
+		ideology = democratic
+		name = BRA_provisional_government
+		long_name = BRA_provisional_government_long
+	}
+
+}
+IF = {
+	limit = {
+		NOT = { has_dlc = "Trial of Allegiance" }
+	}
+	
+	add_ideas = { BRA_naval BRA_low }
+	}
+
+recruit_character = BRA_getulio_vargas
+
+recruit_character = BRA_omar_bradley
+recruit_character = BRA_dwight_eisenhower
+recruit_character = BRA_douglas_macarthur
+recruit_character = BRA_george_patton
+recruit_character = BRA_bernard_montgomery
+recruit_character = BRA_george_giffard
+recruit_character = BRA_harold_alexander
+recruit_character = BRA_oliver_leese
+recruit_character = BRA_Plínio_Salgado
+recruit_character = BRA_alexander_wilson
+recruit_character = BRA_jim_williams
+recruit_character = BRA_lucas_williams
+recruit_character = BRA_joao_baptista_de_mattos
+recruit_character = BRA_markos_drakos
+recruit_character = BRA_alexandros_papagos
+recruit_character = BRA_charles_de_gaulle
+recruit_character = BRA_king_haakon_vii
+recruit_character = BRA_alphonse_juin
+recruit_character = BRA_izaak_reijnders
+recruit_character = BRA_henri_winkelman
+recruit_character = BRA_jean_de_lattre_de_tassigny
+recruit_character = BRA_philippe_leclerc
+recruit_character = BRA_petrus_wilhelmus_best
+recruit_character = BRA_eurico_gaspar_dutra
+recruit_character = BRA_mariepierre_koenig
+recruit_character = BRA_antoinemariebenoit_besson
+recruit_character = BRA_godfried_van_voorst_tot_voorst
+recruit_character = BRA_euclides_zenobio_da_costa
+recruit_character = BRA_mascarenhas_de_morais
+recruit_character = BRA_carl_gustav_fleischer
+recruit_character = BRA_otto_ruge
+recruit_character = BRA_charalambos_katsimitros
+recruit_character = BRA_kristian_laake
+recruit_character = BRA_henri_giraud
+recruit_character = BRA_georges_catroux
+recruit_character = BRA_morais_commando
+recruit_character = BRA_jose_highcommand
+recruit_character = BRA_cordeiro_highcommand
+recruit_character = BRA_augusto_tasso_fragoso	
+recruit_character = BRA_newton_cavalcanti
+recruit_character = BRA_dutra_chief
+recruit_character = BRA_vargas_gentleman 
+recruit_character = BRA_afranio_de_melo_franco
+recruit_character = BRA_ZenobiodaCosta
+recruit_character = BRA_joao_neves_da_fontoura
+recruit_character = BRA_motta
+recruit_character = BRA_dutra
+recruit_character = BRA_artur_da_costa_e_silva
+recruit_character = BRA_dutratheorist
+recruit_character = BRA_osvaldo_aranha
+recruit_character = BRA_artur
+recruit_character = BRA_nero
+recruit_character = BRA_john_dill
+# Navy Leaders
+recruit_character = BRA_francois_darlan
+recruit_character = BRA_leonard_w_murray
+recruit_character = BRA_harry_dewolf
+recruit_character = BRA_harold_farncomb
+recruit_character = BRA_victor_crutchley 
+recruit_character = BRA_karel_doorman
+recruit_character = BRA_conrad_helfrich
+recruit_character = BRA_peter_phipps
+recruit_character = BRA_edmund_rupert_drummond
+recruit_character = BRA_guy_hallifax
+
+recruit_character = BRA_arlindo_veiga_dos_santos
+recruit_character = BRA_augusto_fragoso
+recruit_character = BRA_candido_mariano
+recruit_character = BRA_alvaro_de_castro
+recruit_character = BRA_gois_monterio
+recruit_character = BRA_olympio_falconiere_da_cunha
+recruit_character = BRA_floriano_de_lima_brayner
+recruit_character = BRA_jose_pessoa_cavalcanti_de_albuquerque
+recruit_character = BRA_henrique_teixeira_lott
+recruit_character = BRA_pereira_de_oliveira
+recruit_character = BRA_eduardo_guedes
+recruit_character = BRA_cristovao_de_castro
+recruit_character = BRA_milton_de_freitas
+recruit_character = BRA_lampiao
+recruit_character = BRA_henrique_aristides_guilhem
+recruit_character = BRA_silvio_de_noronha
+recruit_character = BRA_protogenes_guimaraes
+recruit_character = BRA_renato_de_almeida_guillobel
+recruit_character = BRA_alvaro_alberto_da_motta_e_silva
+recruit_character = BRA_augusto_rademaker
+recruit_character = BRA_floriano_peixoto
+recruit_character = BRA_jorge_martins
+recruit_character = BRA_aristides_guilhem
+recruit_character = BRA_salgado_filho
+recruit_character = BRA_ismael_motta_paes
+recruit_character = BRA_epaminondas_dos_santos
+recruit_character = BRA_agliberto_vieira
+recruit_character = BRA_moreira_lima
+recruit_character = BRA_afranio_de_mello_franco
+recruit_character = BRA_henry_ford
+recruit_character = BRA_geremia_lunarelli
+recruit_character = BRA_oliveria_viana
+recruit_character = BRA_leoncio_basbaum
+recruit_character = BRA_minervino_de_oliveira
+recruit_character = BRA_filinto_muller
+recruit_character = BRA_francisco_campos
+recruit_character = BRA_joao_marques_de_reis
+recruit_character = BRA_joao_neves_da_fortuna
+recruit_character = BRA_alfred_agache
+recruit_character = BRA_jose_linhares
+recruit_character = BRA_benedito_valadres
+
+
+recruit_character = BRA_ernest_king
+
+add_ideas = {
+	bureau_of_ordnance_spirit
+	bra_ernest_king
+	}
+#add_timed_idea = { idea = pacific_focused_navy days = 1735 } #Oct 1st 1940
+
+# Starting tech
+set_technology = {
+	infantry_weapons = 1
+	infantry_weapons1 = 1	
+	tech_support = 1		
+	tech_engineers = 1
+	tech_trucks = 1
+	gw_artillery = 1
+	interwar_antitank = 1
+	interwar_antiair = 1
+	basic_light_tank_chassis = 1
+	basic_train = 1
+	gwtank_chassis = 1
+	light_railway_gun = 1 
+	iw_small_airframe = 1
+	building_limiter_tech = 1
+	basic_small_airframe = 1
+	standard_inf = 1
+	early_ship_hull_submarine = 1
+	basic_ship_hull_submarine = 1
+	early_ship_hull_light = 1
+	early_ship_hull_cruiser = 1
+	early_ship_hull_heavy = 1
+	basic_battery = 1
+	special_equipment_tech = 1
+	basic_torpedo = 1
+	mtg_transport = 1
+}
+
+set_rule = { can_be_spymaster = no }
+
+set_research_slots = 3
+
+add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 2500	 }
+add_equipment_to_stockpile = { type = support_equipment_1 amount = 50 }
+
+#####SUPPLY EQUIPMENT ADDED TO GIVE MINORS A BASIC STOCKPILE TO WORK WITH EARLY GAME#####
+add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 200 }
+#########################################################################################
+add_ideas = {  armyandnavy_idea }
+	set_naval_oob = "BRA_1936_naval"	
+
+	set_politics = {
+		ruling_party = democratic
+		last_election = "1934.7.17"
+		election_frequency = 48
+		elections_allowed = yes
+	}
+
+	set_popularities = {
+		democratic = 50
+		neutrality = 25
+		fascism = 15
+		communism = 10
+	}
+
+set_convoys = 60
+
+
+	create_equipment_variant = {
+		name = "Minas Geras Class"
+		type = ship_hull_heavy_1
+		name_group = BRA_BB_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_heavy_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_2
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = heavy_ship_engine_2
+			fixed_ship_secondaries_slot = dp_ship_secondaries_2
+			fixed_ship_armor_slot = ship_armor_bb_2
+			front_1_custom_slot = ship_heavy_battery_2 
+			mid_1_custom_slot = ship_anti_air_2
+			mid_2_custom_slot = ship_airplane_launcher_2
+			rear_1_custom_slot = ship_heavy_battery_2
+		}
+	}
+	create_equipment_variant = {
+		name = "Bahia Class"
+		type = ship_hull_cruiser_1
+		name_group = BRA_CL_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_medium_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_2
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_2
+			fixed_ship_armor_slot = ship_armor_cruiser_2
+			fixed_ship_secondaries_slot = ship_secondaries_2
+			mid_1_custom_slot = ship_light_medium_battery_2 
+			mid_2_custom_slot = ship_light_medium_battery_2
+			rear_1_custom_slot = ship_light_medium_battery_2
+		}
+	}
+	create_equipment_variant = {
+		name = "Para Class"
+		type = ship_hull_light_1
+		name_group = BRA_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_2
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = ship_sonar_1
+			fixed_ship_engine_slot = light_ship_engine_2
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = ship_torpedo_1
+			rear_1_custom_slot = ship_depth_charge_1
+		}
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Humaytá Class"
+		type = ship_hull_submarine_2
+		name_group = BRA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_2
+			rear_1_custom_slot = empty
+		}
+	}
+
+anti_cross_faction_trade_axis = yes 

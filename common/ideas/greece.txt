@@ -1,0 +1,1722 @@
+ideas = {
+			hidden_ideas  = {
+				GREECE_SURRENDER_PROGRESS = {
+					available = { 
+						OR = {
+							NOT = { has_country_flag = greece_campaign } 
+							AND = { GRE = {has_country_flag = greece_campaign } GRE = {surrender_progress < 0.25 } }
+						} 
+					}
+					on_remove = {
+						HMP_script_greece_1 = yes
+					}
+				}
+			}
+	country = { 
+			GRE_sparta_warrior_spirit_ai = {
+			picture = gre_venerate_the_ancient_hellenes_hoplite_alexander
+				allowed = {
+				original_tag = GRE
+			}
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+			modifier = {
+				army_core_attack_factor = 0.75
+				army_core_defence_factor = 0.75
+				army_strength_factor = 1
+				army_morale_factor = 1
+				army_org_factor = 0.5
+				command_abilities_cost_factor = 1
+				army_speed_factor = 0.5
+				dig_in_speed_factor = 1
+				supply_consumption_factor = -0.40
+			}		
+			available = { owns_state = 47 }
+		}
+		GRE_sparta_warrior_spirit = {
+			picture = gre_venerate_the_ancient_hellenes_hoplite_alexander
+				allowed = {
+				original_tag = GRE
+			}
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+			modifier = {
+				army_strength_factor = 1
+				army_morale_factor = 0.1
+				command_abilities_cost_factor = 1
+			}		
+			available = { owns_state = 47 }
+		}
+		GRE_agrarian_society = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_agrarian_society
+				
+			removal_cost = -1
+				
+			modifier = {
+				industrial_capacity_factory = -0.30
+				conscription_factor = -0.30
+			}
+		}
+
+		GRE_farmer_culture = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_agricultural_communes2
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = -0.05	
+				stability_factor = 0.1
+				political_power_factor = 0.05
+				conscription_factor = -0.15
+			}
+		}
+
+		GRE_industrializing_society	= {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = man_five_year_plan_industry
+				
+			removal_cost = -1
+				
+			modifier = {
+				industrial_capacity_factory = 0.05
+				conscription_factor = -0.07	
+			}
+		}
+
+		GRE_agricultural_communes_idea = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_agricultural_communes
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = -0.05		
+				conscription_factor = -0.07				
+			}
+		}
+
+		GRE_farmer_managed_communes = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_agricultural_communes
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = -0.05	
+				stability_factor = 0.1
+				political_power_factor = 0.05
+				conscription_factor = -0.15	
+			}
+		}
+
+		GRE_industrializing_society_communist = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = eng_spirit_of_the_industrial_revolution
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				industrial_capacity_factory = 0.05
+				conscription_factor = -0.05
+			}
+		}
+
+		GRE_rural_exodus = {
+				
+			allowed = {
+				original_tag = GRE	
+			}
+
+			available = {
+				has_war = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = prc_low_popular_support3
+				
+			removal_cost = -1
+				
+			modifier = {
+				production_speed_industrial_complex_factor = 0.15
+				production_speed_dockyard_factor = 0.1
+				production_speed_arms_factory_factor = 0.05
+				production_speed_infrastructure_factor = 0.05
+				political_power_factor = -0.25
+			}
+		}	
+
+		GRE_command_economy = {
+				
+			allowed = {
+				original_tag = GRE
+				NOT = {
+					has_war_with = GER
+				}
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_central_management
+				
+			removal_cost = -1
+				
+			modifier = {
+				min_export = -0.15
+				consumer_goods_expected_value = -0.05
+			}
+		}	
+
+		GRE_debt_to_the_ifc = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					OR = { 
+						has_government = communism
+						has_government = fascism 
+					}
+				}
+			}
+
+			picture = gre_debt_to_the_ifc
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = -0.1	
+				consumer_goods_expected_value = 0.3	
+			}
+		}
+
+		GRE_debt_to_the_ifc_2 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					OR = { 
+						has_government = communism
+						has_government = fascism 
+					}
+				}
+			}
+
+			picture = gre_debt_to_the_ifc
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = -0.1	
+				consumer_goods_expected_value = 0.2	
+			}
+		}
+
+		GRE_debt_to_the_ifc_3 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					OR = { 
+						has_government = communism
+						has_government = fascism 
+					}
+				}
+			}
+
+			picture = gre_debt_to_the_ifc
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = -0.1	
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		GRE_schachtplan = {
+				
+			allowed = {
+				original_tag = GRE
+				NOT = {
+					has_war_with = GER
+				}
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_schachtplan
+				
+			removal_cost = -1
+				
+			modifier = {
+				economy_cost_factor = 0.25
+				trade_laws_cost_factor = 0.25
+				min_export = 0.3
+				consumer_goods_expected_value = -0.2
+				production_speed_industrial_complex_factor = 0.15			
+			}
+		}
+
+		GRE_schachtplan_modified = {
+				
+			allowed = {
+				original_tag = GRE
+				NOT = {
+					has_war_with = GER
+				}
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_schachtplan2
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = -0.05
+				min_export = 0.1				
+				production_speed_industrial_complex_factor = 0.15
+				production_speed_arms_factory_factor = 0.05
+			}
+		}
+
+		GRE_schachtplan_fascistised = {
+				
+			allowed = {
+				original_tag = GRE
+				NOT = {
+					has_war_with = GER
+				}
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_schachtplan3
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.1
+				consumer_goods_expected_value = -0.05	
+				political_power_factor	= 0.05				
+			}
+		}
+
+		GRE_sophistry_and_science_idea = {
+			removal_cost = -1
+			
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			picture = generic_research_bonus
+
+			removal_cost = -1
+			
+			modifier = {
+				research_speed_factor = 0.1
+			}
+		}
+
+		GRE_memories_of_the_anatolian_catastrophe = {
+				
+			allowed = {
+				original_tag = GRE
+				NOT = {
+					has_defensive_war = yes
+				}
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_martyrs_of_the_anatolian_catastrophe
+				
+			removal_cost = -1
+				
+			modifier = {
+				conscription_factor = -0.15	
+				war_support_factor = -0.15		
+			}
+		}
+
+		GRE_martyrs_of_the_anatolian_catastrophe = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_martyrs_of_the_anatolian_catastrophe
+				
+			removal_cost = -1
+				
+			modifier = {
+				conscription_factor = 0.1	
+				war_support_factor = 0.05		
+			}
+		}	
+
+		GRE_megali_idea_triumphant = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_victors_of_ww1
+				
+			removal_cost = -1
+				
+			modifier = {
+				conscription_factor = 0.15	
+				war_support_factor = 0.1
+				stability_factor = 0.15		
+			}
+		}		
+
+		GRE_eon = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_manpower_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				war_support_factor = 0.1
+				training_time_factor = -0.1
+				neutrality_drift = 0.03
+				fascism_drift = 0.01
+			}
+		}
+
+		GRE_eon_fascist = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_manpower_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				war_support_factor = 0.1
+				training_time_factor = -0.1
+				fascism_drift = 0.03
+			}
+		}
+
+		GRE_political_instability = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability
+				
+			removal_cost = -1
+				
+			modifier = {
+				political_power_factor	= -0.15		
+			}
+		}
+
+		GRE_political_instability_dummy = { #dummy idea for the start up menu
+			name = GRE_political_instability
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability
+				
+			removal_cost = -1
+				
+			modifier = {
+				political_power_factor	= -0.15		
+			}
+		}
+
+		GRE_state_of_the_nation_monarchism = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability
+				
+			removal_cost = -1
+				
+		}
+
+		GRE_political_instability_republican = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_republican
+				
+			removal_cost = -1
+				
+			modifier = {
+				political_power_factor	= -0.05
+				war_support_factor = -0.25
+			}
+		}
+
+		GRE_political_instability_republican_2 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_republican
+				
+			removal_cost = -1
+				
+			modifier = {
+				political_power_factor	= -0.05	
+			}
+		}
+
+		GRE_state_of_the_nation_republican = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_republican
+				
+			removal_cost = -1
+				
+		}
+
+		GRE_political_instability_communist = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_communism
+				
+			removal_cost = -1
+				
+			modifier = {
+				political_power_factor	= -0.05	
+				production_speed_buildings_factor = 0.05	
+			}
+		}
+
+		GRE_state_of_the_nation_communism = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_communism
+				
+			removal_cost = -1
+				
+		}
+
+		GRE_political_instability_metaxas = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_metaxism
+				
+			removal_cost = -1
+				
+			modifier = {
+				political_power_factor	= -0.05	
+			}
+		}
+
+		GRE_state_of_the_nation_metaxism = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_metaxism
+				
+			removal_cost = -1
+				
+		}
+
+		GRE_political_instability_fascism = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_fascism
+				
+			removal_cost = -1
+				
+			modifier = {
+				political_power_factor	= -0.05	
+			}
+		}
+
+		GRE_state_of_the_nation_fascism = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = gre_political_instability_fascism
+				
+			removal_cost = -1
+				
+		}
+
+		GRE_george_ii = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = { has_government = neutrality }	
+
+			picture = gre_george_ii
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = -0.05
+				neutrality_drift = 0.01	
+			}
+		}
+
+		GRE_george_ii_restrained = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = { has_government = neutrality }	
+
+			picture = gre_george_ii
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05		
+			}
+		}
+
+		GRE_foreign_monopolies = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_exploit_mines
+				
+			removal_cost = -1
+				
+			modifier = {
+				trade_laws_cost_factor = 0.75
+				economy_cost_factor	= 0.25
+				consumer_goods_expected_value = 0.4
+				trade_opinion_factor = 0.25
+			}
+		}
+
+		GRE_foreign_monopolies_2 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_exploit_mines
+				
+			removal_cost = -1
+				
+			modifier = {
+				trade_laws_cost_factor = 0.75
+				economy_cost_factor	= 0.25
+				consumer_goods_expected_value = 0.3
+				trade_opinion_factor = 0.25
+			}
+		}
+
+		GRE_foreign_monopolies_3 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_exploit_mines
+				
+			removal_cost = -1
+				
+			modifier = {
+				trade_laws_cost_factor = 0.75
+				economy_cost_factor	= 0.25
+				consumer_goods_expected_value = 0.2
+				trade_opinion_factor = 0.25
+			}
+		}
+
+		GRE_foreign_monopolies_4 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_exploit_mines
+				
+			removal_cost = -1
+				
+			modifier = {
+				trade_laws_cost_factor = 0.75
+				economy_cost_factor	= 0.25
+				consumer_goods_expected_value = 0.05
+				trade_opinion_factor = 0.25
+			}
+		}
+
+		GRE_cooperate_with_foreign_monopolies_spirit = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_deal_with_the_devil2
+				
+			removal_cost = -1
+				
+			modifier = {
+				economy_cost_factor	= -0.25	
+				trade_laws_cost_factor = -0.25
+				research_speed_factor = 0.05
+				trade_opinion_factor = 0.3
+			}
+		}
+
+		GRE_eee_in_government = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				has_government = fascism
+			}
+
+			picture = generic_fascism_drift_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				fascism_drift = 0.05
+			}
+		}
+
+		GRE_booming_tourism = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			available = {
+				has_war = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_air_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.1	
+				political_power_factor	= 0.15
+				consumer_goods_expected_value = -0.05
+			}
+		}
+		GRE_four_year_plan_spirit_1 = {
+		
+			allowed = {
+				original_tag = GRE
+				}	
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_production_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.3
+				industrial_capacity_factory = 0.10
+			}
+		}
+		GRE_four_year_plan_spirit_2 = {
+		
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_production_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.3
+				industrial_capacity_factory = 0.15
+			}
+		}
+		GRE_four_year_plan_spirit_3 = {
+		
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_production_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.3
+				industrial_capacity_factory = 0.2
+			}
+		}
+		GRE_four_year_plan_spirit_4 = {
+		
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_production_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.3
+				industrial_capacity_factory = 0.25
+			}
+		}
+
+		GRE_protectors_of_the_mediterranean_spirit = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = YUG_federal_defense_council
+				
+			removal_cost = -1
+				
+			#modifier = {
+			#	army_core_defence_factor = 0.05
+			#}
+
+			equipment_bonus = { 
+				ship_hull_light = {
+					build_cost_ic = -0.05 
+					instant = yes
+				}
+			}
+		}	
+
+		GRE_coastal = {
+			equipment_bonus = {
+				ship_hull_cruiser_coastal_defense_ship = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+			modifier = {
+				industrial_capacity_dockyard = 0.1
+			}
+		}
+
+		GRE_ancient_talents = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_coastal_navy
+				
+			removal_cost = -1
+				
+			modifier = {
+				navy_screen_defence_factor = 0.15
+				navy_screen_attack_factor = 0.15
+				industrial_capacity_dockyard = 0.1
+				navy_visibility = -0.05
+				screening_efficiency = 0.1
+			}
+		}
+
+		GRE_improving_our_defensive_lines = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = ast_all_in
+				
+			removal_cost = -1
+				
+			modifier = {
+				production_speed_bunker_factor = 0.3
+				production_speed_coastal_bunker_factor = 0.15
+			}
+		}
+
+		GRE_hellenic_army = { 
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_reserve_divisions
+				
+			removal_cost = -1
+				
+			modifier = {
+				weekly_manpower = 1000
+			}
+		}
+
+		GRE_alexander = { 
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_manpower_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				army_morale_factor = 0.2
+				army_org_factor = 0.2
+				army_speed_factor = 0.1
+			}
+		}
+
+		GRE_hellenic_army_3 = { 
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_reserve_divisions
+				
+			removal_cost = -1
+				
+			modifier = {
+				army_org_factor = 0.1
+			}
+		}		
+
+		GRE_byzantine_army = { 	
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = MEX_politicised_army
+				
+			removal_cost = -1
+				
+			modifier = {
+				army_morale_factor = 0.10 
+				land_reinforce_rate = 0.05
+			}
+		}
+
+		GRE_venerate_the_ancient_hellenes_spirit = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05	
+			}
+		}
+
+		GRE_venerate_the_ancient_hellenes_2 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes_hoplite
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				army_core_defence_factor = 0.05
+			}
+		}														
+
+		GRE_venerate_the_ancient_hellenes_3 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes_plato
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				research_speed_factor = 0.05
+			}
+		}
+
+		GRE_venerate_the_ancient_hellenes_4 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes_alexander_the_great
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				command_power_gain_mult = 0.05
+			}
+		}
+
+		GRE_venerate_the_ancient_hellenes_5 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes_hoplite_plato
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				army_core_defence_factor = 0.05
+				research_speed_factor = 0.05				
+			}
+		}
+
+		GRE_venerate_the_ancient_hellenes_6 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes_hoplite_alexander
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				army_core_defence_factor = 0.05
+				command_power_gain_mult = 0.05
+
+			}
+		}
+
+		GRE_venerate_the_ancient_hellenes_7 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes_plato_alexander
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+				research_speed_factor = 0.05
+				command_power_gain_mult = 0.05
+			}
+		}
+
+		GRE_venerate_the_ancient_hellenes_8 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_venerate_the_ancient_hellenes_complete
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.1
+				army_core_defence_factor = 0.05
+				research_speed_factor = 0.05
+				command_power_gain_mult = 0.05				
+			}
+		}
+
+		GRE_tourism = {
+
+			picture = toaster
+
+			modifier = {
+			industrial_capacity_factory = 0.075 }
+		}
+
+		GRE_metaxism_1 = {
+				
+			allowed = {
+				original_tag = GRE
+				has_war = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_metaxism
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.05
+			}
+		}
+
+		GRE_metaxism_2 = {
+				
+			allowed = {
+				original_tag = GRE
+				has_war = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_metaxism
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.1
+				army_core_defence_factor = 0.025
+			}
+		}
+
+		GRE_metaxism_3 = {
+				
+			allowed = {
+				original_tag = GRE
+				has_war = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_metaxism
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.20
+				army_core_defence_factor = 0.05
+			}
+		}
+		GRE_metaxism_4 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = gre_metaxism
+				
+			removal_cost = -1
+				
+			modifier = {
+				stability_factor = 0.20
+				army_core_defence_factor = 0.05
+				army_core_attack_factor = 0.1
+				supply_consumption_factor = -0.1
+			}
+		}
+		GRE_athenares = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+			picture = FRA_scw_intervention_republicans_focus
+				
+			modifier = {
+				war_support_factor = 0.3				
+				army_core_attack_factor = 0.25
+				army_core_defence_factor = 0.1
+				conscription_factor = 0.5	
+				neutrality_drift = 0.1			
+			}
+		}
+
+		GRE_reviving_the_double_headed_eagle_spirit = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = air_support_focus
+				
+			removal_cost = -1
+				
+			modifier = {			
+				war_support_factor = 0.1
+				political_power_factor	= 0.15			
+			}
+		}
+
+		GRE_reviving_the_double_headed_eagle_2 = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = air_support_focus
+				
+			removal_cost = -1
+				
+			modifier = {			
+				war_support_factor = 0.15
+				political_power_factor	= 0.15
+				non_core_manpower = 0.1			
+			}
+		}
+
+		GRE_paying_off_debt_small = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_foreign_capital
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = 0.05
+				min_export = 0.1			
+			}
+		}
+
+		GRE_paying_off_debt_large = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = SPR_relocate_the_gold_reserves
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = 0.3		
+				min_export = 0.25			
+			}
+		}
+
+		GRE_communist_protests = { 
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_communism_drift_bonus
+				
+			removal_cost = -1
+				
+			modifier = {
+				communism_drift = 0.05
+			}
+		}
+
+		GRE_economic_fluctuations = {
+				
+			allowed = {
+				original_tag = GRE
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = chi_hyper_inflation3
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = 0.2	
+			}
+		}
+
+		GRE_small_investment = {
+				
+			allowed = {
+				NOT = {
+					has_war_with = GRE
+				}
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_foreign_capital
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		GRE_moderate_investment = {
+				
+			allowed = {
+				NOT = {
+					has_war_with = GRE
+				}
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_foreign_capital
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = 0.054
+			}
+		}
+
+		GRE_heavy_investment = {
+				
+			allowed = {
+				NOT = {
+					has_war_with = GRE
+				}
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			picture = generic_foreign_capital
+				
+			removal_cost = -1
+				
+			modifier = {
+				consumer_goods_expected_value = 0.2
+			}
+		}
+
+																														
+	}	 													
+
+#DESIGNERS
+	naval_manufacturer = { 
+			
+		designer = yes
+
+		GRE_basileiades = {
+			
+			picture = gre_basileiades
+			
+			allowed = {
+				original_tag = GRE
+			}
+
+			cost = 50
+			
+			research_bonus = {
+				naval_equipment = 0.15
+			}
+			
+			traits = { med_fleet_naval_manufacturer2 }
+		}
+
+		GRE_astilleros_onassis = {
+			
+			picture = gre_astilleros_onassis
+			
+			allowed = {
+				original_tag = GRE
+			}
+
+			cost = 50
+			
+			research_bonus = {
+				naval_equipment = 0.15
+			}
+			
+			traits = { convoy_escort_naval_manufacturer2 }
+		}
+	}
+
+	industrial_concern = {
+
+		GRE_aete = {
+			
+			picture = gre_aete
+
+			research_bonus = {
+				electronics = 0.15
+			}
+
+			allowed = {
+				original_tag = GRE
+			}
+			
+			traits = { electronics_developer }
+		}
+
+		GRE_neorion = {
+			
+			picture = gre_neorion	
+			
+			research_bonus = {
+				industry = 0.075
+			}
+
+			allowed = {
+				original_tag = GRE
+			}
+			
+			traits = {
+				industrial_concern
+			}
+
+			modifier = {
+				industrial_capacity_factory = 0.05
+			}
+		}
+	}
+
+	materiel_manufacturer = {
+		
+		designer = yes
+		
+		GRE_pyrkal = {
+
+			picture = gre_pyrkal
+			
+			research_bonus = {
+				infantry_weapons = 0.15
+			}
+
+			allowed = {
+				original_tag = GRE
+			}
+			
+			traits = { infantry_equipment_manufacturer }
+		}
+
+		GRE_grabin_design_bureau = {
+
+			picture = grabin_design_bureau
+			
+			allowed = {
+				original_tag = GRE
+			}
+
+			available = {
+			}
+
+			cost = 120
+			
+			research_bonus = {
+				artillery = 0.15
+			}
+			
+			traits = { artillery_manufacturer }
+		}
+	}
+}

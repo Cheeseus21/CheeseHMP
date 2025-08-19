@@ -1,0 +1,675 @@
+﻿###########################
+# Mexico Events
+# By Tristan 'Enjoy' Edge, aged 30 and 2 months
+###########################
+
+add_namespace = mexico
+
+country_event = {
+	id = mexico.3
+	title = mexico.3.title
+	desc = mexico.3.desc
+	
+	picture = GFX_report_event_merchant_ship_01
+	
+	is_triggered_only = yes
+
+	option = {
+		name = mexico.3.a
+
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = flag_mexico_embargo_has_incited_cedillo
+				}
+			}
+			set_global_flag = flag_mexico_embargo_has_incited_cedillo
+			MEX_increase_cedillo_tension = yes # Supposedly, Cedillo rebelled because he thought the imperial powers would support him after the oil nationalisation
+		}
+	}
+}
+
+# Mexico asks Britain to sell Belize after aligning towards them
+
+country_event = {
+	id = mexico.12
+	title = mexico.12.title
+	desc = mexico.12.desc
+	
+	picture = GFX_report_event_generic_conference
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = mexico.12.a
+		
+		311 = {
+			set_state_name = "Belice"
+		}
+	}
+}
+
+# Mexico is informed that Belize was granted to them
+
+country_event = {
+	id = mexico.13
+	title = mexico.13.title
+	desc = mexico.13.desc
+	
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+
+	option = {
+		name = mexico.13.a
+	}
+}
+
+# Archbishop Pascual Díaz y Barreto passes away
+
+country_event = {
+	id = mexico.15
+	title = mexico.15.title
+	desc = mexico.15.desc
+	
+	picture = GFX_report_event_europe_funeral
+	
+	fire_only_once = yes
+	
+is_triggered_only = yes
+	
+	option = {
+		name = mexico.15.a # Rest in peace
+		
+		MEX_increase_church_power = yes
+	}
+	option = {
+		name = mexico.15.b # Burn in hell
+		
+		MEX_decrease_church_power = yes
+	
+	}
+}
+
+
+country_event = {
+	id = mexico.17
+	title = mexico.17.title
+	desc = mexico.17.desc
+	
+	picture = GFX_report_event_communists_cheer
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = mexico.17.a # We aren't Stalin's puppets, let him stay
+		set_global_flag = trotsky_exile_mexico
+	}
+}
+
+country_event = {
+	id = mexico.18
+	title = mexico.18.title
+	desc = mexico.18.desc
+	
+	picture = GFX_report_event_election_vote
+	
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = MEX
+		date < 1942.1.1
+		has_dlc = "Man the Guns"
+	}
+	
+	option = {
+		name = mexico.18.a
+		
+		country_event = {
+			id = mexico.19
+			days = 1
+		}
+
+	}
+	
+	option = {
+		name = mexico.18.b
+		
+		trigger = {
+			NOT = {
+				has_government = democratic
+			}
+		}
+		
+		add_stability = -0.03
+		
+		if = {
+			limit = {
+				has_government = neutrality
+			}
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+			}
+		}
+		
+		if = {
+			limit = {
+				has_government = fascism
+			}
+			set_politics = {
+				ruling_party = fascism
+				elections_allowed = no
+			}
+		}
+		
+		if = {
+			limit = {
+				has_government = communism
+			}
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
+			}
+		}
+
+	}
+}
+
+
+country_event = {
+	id = mexico.19
+	title = mexico.19.title
+	desc = mexico.19.desc
+	
+	picture = GFX_report_event_election_vote
+	
+	is_triggered_only = yes
+	
+	# Neutrality
+	
+	option = { # Left-wing successor: Francisco Múgica
+		name = mexico.19.a
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Francisco Múgica"
+				}
+			}
+			has_government = neutrality
+		}
+
+		create_country_leader = {
+			name = "Francisco Múgica"
+			desc = "POLITICS_FRANCISCO_MUGICA_DESC"
+			picture = "GFX_portrait_mex_francisco_mugica"
+			expire = "1965.1.1"
+			ideology = moderatism
+			traits = {
+				revolutionary_general
+			}
+		}
+		
+		hidden_effect = { # Juan Andreu complains he was not selected
+			if = {
+				limit = {
+					USA = {
+						is_subject = no
+						exists = yes
+						NOT = {
+							has_war_with = ROOT
+						}
+					}
+				}
+				country_event = {
+					id = mexico.20
+					days = 1
+				}
+			}
+		}
+	}
+	
+	option = { # Compromise successor: Manuel Ávila
+		name = mexico.19.b
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Manuel Ávila Camacho"
+				}
+			}
+			has_government = neutrality
+		}
+
+		create_country_leader = {
+			name = "Manuel Ávila Camacho"
+			desc = "POLITICS_MANUEL_AVILA_DESC"
+			picture = "GFX_portrait_mex_avila_civil"
+			expire = "1965.1.1"
+			ideology = oligarchism
+			traits = {
+				the_gentleman_president
+			}
+		}
+		
+		hidden_effect = { # Juan Andreu complains he was not selected
+			if = {
+				limit = {
+					USA = {
+						is_subject = no
+						exists = yes
+						NOT = {
+							has_war_with = ROOT
+						}
+					}
+				}
+				country_event = {
+					id = mexico.20
+					days = 1
+				}
+			}
+		}
+	}
+	
+	option = { # Right-wing successor: Saturnino Cedillo
+		name = mexico.19.c
+		
+		trigger = {
+			NOT = {
+				has_global_flag = flag_mexico_cedillo_has_revolted
+			}
+			has_completed_focus = MEX_focus_support_general_cedillo
+			NOT = {
+				has_country_leader = {
+					name = "Saturnino Cedillo"
+				}
+			}
+			has_government = neutrality
+		}
+
+		create_country_leader = {
+			name = "Saturnino Cedillo"
+			desc = "POLITICS_SATURNINO_CEDILLO_DESC"
+			picture = "GFX_portrait_mex_saturnino_cedillo"
+			expire = "1965.1.1"
+			ideology = despotism
+			traits = {
+				strongman_of_san_luis_potosi
+			}
+		}
+	}
+	
+	option = { # Left-wing successor: Francisco Múgica
+		name = mexico.19.f
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Francisco Múgica"
+				}
+			}
+			has_government = democratic
+		}
+
+		create_country_leader = {
+			name = "Francisco Múgica"
+			desc = "POLITICS_FRANCISCO_MUGICA_DESC"
+			picture = "GFX_portrait_mex_francisco_mugica"
+			expire = "1965.1.1"
+			ideology = socialism
+			traits = {
+				revolutionary_general
+			}
+		}
+		
+		hidden_effect = { # Juan Andreu complains he was not selected
+			if = {
+				limit = {
+					USA = {
+						is_subject = no
+						exists = yes
+						NOT = {
+							has_war_with = ROOT
+						}
+					}
+				}
+				country_event = {
+					id = mexico.20
+					days = 1
+				}
+			}
+		}
+
+	}
+	
+	option = { # Right-wing successor: Manuel Ávila
+		name = mexico.19.g
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Manuel Ávila Camacho"
+				}
+			}
+			has_government = democratic
+		}
+
+		create_country_leader = {
+			name = "Manuel Ávila Camacho"
+			desc = "POLITICS_MANUEL_AVILA_DESC"
+			picture = "GFX_portrait_mex_avila_civil"
+			expire = "1965.1.1"
+			ideology = conservatism
+			traits = {
+				the_gentleman_president
+			}
+		}
+		
+		hidden_effect = { # Juan Andreu complains he was not selected
+			if = {
+				limit = {
+					USA = {
+						is_subject = no
+						exists = yes
+						NOT = {
+							has_war_with = ROOT
+						}
+					}
+				}
+				country_event = {
+					id = mexico.20
+					days = 1
+				}
+			}
+		}
+
+	}
+
+	option = { # Social democratic successor: Francisco Múgica
+		name = mexico.19.j
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Francisco Múgica"
+				}
+			}
+			has_government = communism
+		}
+
+		create_country_leader = {
+			name = "Francisco Múgica"
+			desc = "POLITICS_FRANCISCO_MUGICA_DESC"
+			picture = "GFX_portrait_mex_francisco_mugica"
+			expire = "1965.1.1"
+			ideology = marxism
+			traits = {
+				revolutionary_general
+			}
+		}
+	}
+
+	option = { # Stalinist successor: Dionisio Encina
+		name = mexico.19.k
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Dionisio Encina"
+				}
+			}
+
+			has_government = communism
+		}
+
+		create_country_leader = {
+			name = "Dionisio Encina"
+			desc = "POLITICS_DIONISIO_ENCINA_DESC"
+			picture = "GFX_Portrait_MEX_Dionisio_Encina"
+			expire = "1965.1.1"
+			ideology = stalinism
+			traits = {
+				staunch_stalinist
+			}
+		}
+	}
+	
+	option = { # Trotskyist successor: Hernán Laborde
+		name = mexico.19.l
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Hernán Laborde"
+				}
+			}
+			has_government = communism
+			OR = {
+				NOT = {
+					has_global_flag = flag_mexico_invited_trotsky_to_government
+				}
+				AND = { # If Trotsky is in power, he steps down and Laborde is successor
+					has_global_flag = flag_mexico_invited_trotsky_to_government
+					has_country_leader = { name = "Leon Trotsky" }
+				}
+			}
+		}
+
+		create_country_leader = {
+			name = "Hernán Laborde"
+			desc = "POLITICS_HERNAN_LABORDE_DESC"
+			picture = "GFX_Portrait_MEX_Hernan_Laborde"
+			expire = "1965.1.1"
+			ideology = leninism
+			traits = {
+				devoted_trotskyist
+			}
+		}
+	}
+	
+	option = { # Continuity candidate: Saturnino Cedillo
+		name = mexico.19.n
+		
+		trigger = {
+			NOT = {
+				OR = {
+					has_global_flag = flag_mexico_cedillo_has_revolted
+					has_country_leader = {
+						name = "Saturnino Cedillo"
+					}
+				}	
+			}
+			has_completed_focus = MEX_focus_support_general_cedillo
+			has_government = fascism
+		}
+
+		create_country_leader = {
+			name = "Saturnino Cedillo"
+			desc = "POLITICS_SATURNINO_CEDILLO_DESC"
+			picture = "GFX_portrait_mex_saturnino_cedillo"
+			expire = "1965.1.1"
+			ideology = fascism_ideology
+			traits = {
+				strongman_of_san_luis_potosi
+			}
+		}
+	}
+
+	option = { # Falangist candidate: Salvador Abascal
+		name = mexico.19.q
+		
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Salvador Abascal"
+				}
+			}
+			has_government = fascism
+		}
+
+		create_country_leader = {
+			name = "Salvador Abascal"
+			desc = "POLITICS_SALVADOR_ABASCAL_DESC"
+			picture = "GFX_Portrait_MEX_Salvador_Abascal"
+			expire = "1965.1.1"
+			ideology = falangism
+			traits = {
+				fascist_militia_leader
+			}
+		}
+	}
+	option = { # Neither Trotsky nor Laborde: Valentín Campa
+		name = mexico.19.r
+		
+		trigger = {
+			has_country_leader = {
+			 	ruling_only = yes
+			 	name = "Hernán Laborde"
+			}				
+		}
+
+		create_country_leader = {
+			name = "Valentín Campa"
+			desc = "POLITICS_VALENTIN_CAMPA_DESC"
+			picture = "gfx/leaders/South America/Portrait_South_America_Generic_4.dds"
+			expire = "1965.1.1"
+			ideology = leninism
+			traits = {
+				railroad_enthusiast
+			}
+		}
+	}
+	# That should be enough for now.
+
+}
+
+# If a centre/left-wing neutral or democratic leader is selected, Juan Andreu complains (historic)
+# Only triggered if America exists, is independent and not at war with Mexico (flavour text reasons)
+
+country_event = {
+	id = mexico.20
+	title = mexico.20.title
+	desc = mexico.20.desc
+	
+	picture = GFX_report_event_election_vote
+	
+	is_triggered_only = yes
+
+	option = {
+		name = mexico.20.a
+	}
+}
+
+# Stalin is informed that Trotsky has been apprehended by Mexico and extradited
+
+country_event = {
+	id = mexico.21
+	title = mexico.21.title
+	desc = mexico.21.desc
+	
+	picture = GFX_report_event_stalin_propaganda
+	
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = trotsky_dead
+	}
+	
+	option = {
+		name = mexico.21.a
+	}
+}
+
+# Papal encyclical on Mexico issued by Pope Pius XI
+
+country_event = {
+	id = mexico.27
+	title = mexico.27.title
+	desc = mexico.27.desc
+	
+	picture = GFX_report_event_europe_funeral
+	
+	fire_only_once = yes
+	
+is_triggered_only = yes
+	
+	option = {
+		name = mexico.27.a # It is good that the anti-Church violence has ended.
+		
+		MEX_increase_church_power = yes
+		
+	}
+	option = {
+		name = mexico.27.b # Superstitious propaganda, prevent publication of this treason!
+		
+		MEX_decrease_church_power = yes
+
+	}
+}
+
+# Zoot Suit Riots occur in America
+
+country_event = {
+	id = mexico.32
+	title = mexico.32.title
+	desc = mexico.32.desc
+	
+	picture = GFX_report_event_mex_civil_war
+	
+	fire_only_once = yes
+	
+is_triggered_only = yes
+	
+	option = {
+		name = mexico.32.a
+		
+		add_stability = 0.01
+		add_political_power = -25
+
+	}
+	
+	option = {
+		name = mexico.32.b
+		
+		add_stability = -0.01
+		add_war_support = 0.01
+		
+		SWE = {
+			country_event = {
+				days = 1
+				id = mexico.33
+			}
+		}
+		
+	}
+}
+
+country_event = {
+	id = mexico.33
+	title = mexico.33.title
+	desc = mexico.33.desc
+	
+	picture = GFX_report_event_mex_civil_war
+	
+	is_triggered_only = yes
+
+	option = {
+		name = mexico.33.a
+		
+		MEX_decrease_church_power = yes
+		
+		add_stability = -0.01
+		add_war_support = 0.01
+	}
+	
+	option = {
+		name = mexico.33.b
+		
+		add_stability = 0.01
+		add_war_support = -0.01
+	}
+}
+

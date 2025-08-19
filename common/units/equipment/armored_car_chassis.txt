@@ -1,0 +1,223 @@
+equipments = {
+
+	armored_car_chassis = {
+		year = 1936
+		is_archetype = yes
+		is_buildable = no
+		picture = archetype_light_tank_equipment
+		type = armor
+		group_by = archetype
+		interface_category = interface_category_armor
+		priority = 2000
+				lend_lease_cost = 10
+
+		module_slots = {
+			main_armament_slot = {
+				required = yes
+				allowed_module_categories = {
+					tank_light_main_armament
+				}
+			}
+
+			turret_type_slot = {
+				required = yes
+				allowed_module_categories = {
+					car_car_turret_type
+					car_light_turret_type
+					car_casemate_turret_type
+				}
+			}
+
+			suspension_type_slot = {
+				required = yes
+				allowed_module_categories = {
+					car_suspension_type
+				}
+			}
+	engine_type_slot = {
+				required = yes
+				allowed_module_categories = {
+					tank_engine_type_L
+				}
+			}
+			armor_type_slot = {
+				required = yes
+				allowed_module_categories = {
+					car_armor_type
+				}
+			}
+
+		
+
+			special_type_slot_1 = {
+				required = no
+				allowed_module_categories = {
+					car_special_module
+					tank_radio_module
+					car_secondary_turret
+				}
+			}
+
+			special_type_slot_2 = {
+				required = no
+				allowed_module_categories = {
+					car_special_module
+					tank_radio_module
+					car_secondary_turret
+				}
+			}
+
+			special_type_slot_9 = {				    # Shell slot
+				required = no
+				allowed_module_categories = {
+					hull_mod
+				}
+			}	
+		}
+		module_count_limit = {
+			category = car_secondary_turret
+			count < 2
+		}
+				module_count_limit = {
+			module = car_squeezebore_adaptor
+			count < 2
+		}
+
+		module_count_limit = {
+			category = tank_radio_module
+			count < 2
+		}
+		module_count_limit = {
+			module = car_wet_ammo_storage
+			count < 2
+		}
+				module_count_limit = {
+			module = car_cheap_materials
+			count < 2
+		}
+			module_count_limit = {
+			module = car_expanded_fuel_tank
+			count < 2
+		}
+					module_count_limit = {
+			module = car_extra_ammo_storage
+			count < 3
+		}	
+		
+						module_count_limit = {
+			module = car_design_simplification
+			count < 2
+		}
+		module_count_limit = { 
+			module = car_heavy_machine_gun_special 
+			count < 2 
+		}
+					module_count_limit = {
+			module = car_module_improved_ergonomics
+			count < 2
+		}
+		module_count_limit = { 
+			module = car_module_camouflage_net
+			count < 2
+		}
+		module_count_limit = { 
+			module = car_module_improved_turning_mechanisms
+			count < 2
+		}
+		module_count_limit = { 
+			module = car_additional_machine_guns 
+			count < 2 
+		}
+		module_count_limit = {
+			module = car_easy_maintenance
+			count < 2
+		}
+		module_count_limit = {
+			module = car_auto_loader
+			count < 2
+		}
+		module_count_limit = {
+			module = car_stabilizer
+			count < 2
+		}
+		module_count_limit = {
+			module = car_vision_ports
+			count < 2
+		}
+		default_modules = {
+			main_armament_slot = empty
+			turret_type_slot = car_one_man_tank_turret
+			special_type_slot_9 = semi-flat_armor
+			suspension_type_slot = car_6x6_suspension
+			armor_type_slot = car_module_riveted_armor
+			engine_type_slot = tank_gasoline_engine_L
+		}
+		fuel_consumption = 0.8
+		maximum_speed = 5.00
+		build_cost_ic = 5.5
+		reliability = 0.90
+		hardness 	= 0.65
+		armor_value = 5 #3
+		manpower = 2
+	}
+
+	armored_car_chassis_0 = { #
+		abbreviation = "ac0"
+		derived_variant_name = gw_armored_car_equipment
+		visual_level = 0
+		year = 1936
+		archetype = armored_car_chassis
+		priority = 2000
+		module_slots = inherit
+		upgrades = {
+			tank_nsb_engine_upgrade
+			tank_nsb_armor_upgrade_armored_car
+		}
+	}
+
+	armored_car_chassis_1 = { #nuts
+		abbreviation = "ac1"
+		derived_variant_name = armored_car_equipment_1
+		visual_level = 0
+		year = 1940
+		archetype = armored_car_chassis
+		priority = 2000
+		module_slots = inherit
+		build_cost_ic = 6.0
+		reliability = 1.05
+		armor_value = 10 #8
+		hardness 	= 0.7
+		maximum_speed = 5.25
+		fuel_consumption = 1.8
+		upgrades = {
+			tank_nsb_engine_upgrade
+			tank_nsb_armor_upgrade_armored_car
+		}
+	}
+
+	armored_car_chassis_2 = { 
+		abbreviation = "ac2"
+		derived_variant_name = armored_car_equipment_2
+		visual_level = 0
+		year = 1943
+		archetype = armored_car_chassis
+		priority = 2000
+		module_slots = inherit
+		build_cost_ic = 6.0
+		reliability = 1.2
+		armor_value = 15 #14
+		hardness 	= 0.7
+		maximum_speed = 5.5
+		fuel_consumption = 1.8
+		resources = {
+			steel = 1
+		}
+		upgrades = {
+			tank_nsb_engine_upgrade
+			tank_nsb_armor_upgrade_armored_car
+		}
+	}
+
+	
+
+}

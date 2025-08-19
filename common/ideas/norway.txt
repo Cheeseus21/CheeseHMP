@@ -1,0 +1,1044 @@
+ideas = {
+######################################################PRE-DLC CONTENT BELOW DO NOT DELETE
+hidden_ideas = { 
+	anti_compass ={ 
+		modifier = { army_core_attack_factor = -0.5 army_core_defence_factor = -0.5 }
+	}
+		nor_cap = {
+	  available = { NOT = { surrender_progress > 0.25 }}
+	  on_remove ={ HMP_script_norway_cap = yes }
+	}
+}
+
+country = {
+	NOR_king_haakon_vii_ns = {
+ 			 picture = GFX_idea_NOR_king_haakon_vii_ns
+
+ 			 allowed = {
+ 			 	original_tag = NOR
+ 			 }
+
+ 			 cancel = {
+ 			 	has_government = communism 
+ 			 }
+
+ 			 removal_cost = -1 
+
+ 			 modifier = {
+ 			 	#consumer_goods_expected_value = 0.05
+ 			 	#political_power_factor = -0.1
+ 			 	stability_factor = 0.1
+ 			 } 
+		}
+	NOR_training = {
+	picture = FRA_army_of_aggression_focus
+	modifier = {
+	acclimatization_cold_climate_gain_factor = 1000
+	training_time_factor = -0.4
+	consumer_goods_expected_value = -0.1 
+	surrender_limit = 1
+	}
+	
+	}
+	
+	NOR_recover_eff = {
+	picture = FRA_army_of_aggression_focus
+	modifier = {
+	production_factory_efficiency_gain_factor = 20
+	industrial_capacity_factory = 1
+	}
+	}
+	
+	nor_bad_debuffs = {
+	picture = generic_disjointed_gov
+	modifier = {
+	surrender_limit = 1
+	conversion_cost_civ_to_mil_factor = 3.0	
+		}
+	}
+	
+	nor_winter_navy = {
+		picture = hol_naval_heritage
+		modifier = {
+			navy_weather_penalty = -0.20
+			naval_attrition = -0.2
+		}
+	}
+	NOR_fast_ships = {
+				picture = generic_navy_bonus
+		modifier = { naval_speed_factor = 0.1  }
+	}
+	NOR_shipbuild = {
+			picture = generic_navy_bonus
+		modifier = { production_speed_dockyard_factor = 0.25  }
+	}
+	NOR_naval_production = {
+		picture = generic_navy_bonus
+		modifier = { industrial_capacity_dockyard = 0.3 }
+	}
+	NOR_escort_effort = {
+		picture = generic_navy_bonus
+		equipment_bonus = {
+			ship_hull_light = {
+				instant = yes 
+				build_cost_ic = -0.10
+			}
+		}
+	}
+	NOR_fast_torps = {
+		picture = generic_sea_focused_navy
+		equipment_bonus = {
+			ship_hull_light = {
+				torpedo_attack = -0.2 instant = yes 
+			}
+			ship_hull_cruiser = {
+				torpedo_attack = -0.2 instant = yes 
+			}
+		}
+		modifier = {
+			naval_torpedo_screen_penetration_factor = 0.5
+		}
+	}
+	
+	
+
+	NOR_spec_ops = {
+		picture = ast_volunteer_defence_corps
+		modifier = {
+			max_planning = 0.1
+		}
+	}
+	
+	NOR_army_buffs = {
+	picture = generic_manpower_bonus
+	modifier = { industrial_capacity_factory = 0.10	}
+				equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+					special_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+								support_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+								artillery_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				
+							anti_tank_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				
+							anti_air_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+											mech_chassis = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+											light_tank_chassis = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				
+				medium_tank_chassis = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mech_amtrac_chassis = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				motorized_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+	
+	
+	}
+	
+	NOR_army_buffs2 = {
+	picture = generic_infantry_bonus
+	modifier = {
+	
+		command_power_gain_mult = 0.2
+	training_time_factor = -0.2
+	}
+	
+	}
+	
+	NOR_crofter = {
+	picture = generic_victors_of_ww1 
+	modifier = {
+	army_core_attack_factor = 0.10
+	army_core_defence_factor = 0.10
+	amphibious_invasion = 0.2
+	no_supply_grace  = 72
+	}
+	
+	}
+	NOR_bad_training = {
+		allowed = {
+			always = no
+		}
+		picture = chi_army_corruption
+		modifier = {
+			army_attack_factor = -0.05
+			army_defence_factor = -0.05
+		}
+	}
+######################################################PRE-DLC CONTENT ABOVE DO NOT DELETE
+#
+#AAT BELOW
+#
+
+
+
+		###  Initial National Spirits ###
+
+		NOR_complacent_cabinet_ns = {
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1 
+
+			modifier = {
+				political_power_gain = -1
+				#trade_laws_cost_factor = 0.5
+				#economy_cost_factor = 0.5
+				#training_time_army_factor = 0.6
+				#theorist_cost_factor = 1.2
+			}	
+		}
+		
+
+
+		NOR_obsolete_armed_forces_ns_1 = {
+			picture = generic_army_problems
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+			available = { owns_state = 110 }
+
+			removal_cost = -1
+
+			modifier = {
+				max_dig_in = -15
+				#cannot_use_abilities = 1
+			} 
+			
+			equipment_bonus = {
+				submarine = {
+					build_cost_ic = 100 instant = yes
+				}
+			}
+		}
+
+		NOR_obsolete_armed_forces_ns_2 = {
+			picture = generic_army_problems
+			name = NOR_obsolete_armed_forces_ns_1
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				army_org_factor = -0.1
+				army_speed_factor = -0.15
+				army_attack_factor = -0.20
+			} 
+		}
+
+		NOR_crumbling_fortifications_ns = {
+			picture = generic_wall_line
+
+			allowed = {
+				NOR_AAT = yes
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				land_bunker_effectiveness_factor = -0.5
+				coastal_bunker_effectiveness_factor = -0.5
+			}
+		}
+
+
+		NOR_the_hard_thirties_ns = {
+			picture = usa_great_depression_3
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_expected_value = 0.3
+				production_speed_buildings_factor = -0.3 
+			} 
+		}
+
+		NOR_the_hard_thirties_ns_2 = {
+			picture = usa_great_depression_2
+			name = NOR_the_hard_thirties_ns
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_expected_value = 0.2
+				production_speed_buildings_factor = -0.2
+			} 
+		}
+
+		NOR_the_hard_thirties_ns_3 = {
+			picture = usa_great_depression
+			name = NOR_the_hard_thirties_ns			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_expected_value = 0.1
+				production_speed_buildings_factor = -0.1 
+			} 
+		}
+
+		NOR_fake_independent_norway_ns = { 
+			name = NOR_independent_norway_dmod
+			removal_cost = -1
+			picture = generic_morale_bonus 
+
+			allowed = {
+ 				always = no
+ 			}
+
+ 			allowed_civil_war = {
+				always = yes
+			}
+
+ 			modifier = {
+				political_power_factor = 0.1
+				consumer_goods_expected_value = -0.05
+				production_speed_industrial_complex_factor = 0.15
+			}
+		}
+
+		NOR_anti_communist_sentiment_ns = {
+			picture = NOR_anti_communist_sentiment 
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+
+			allowed_civil_war = {
+				has_government = fascism			
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				fascism_drift = 0.015
+			} 
+		}
+
+		NOR_broken_gun_ns = {
+			picture = NOR_broken_gun_ns
+			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+			cancel = {
+				OR = {
+					has_war = yes 
+					NOT = { has_government = democratic }
+				}
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					has_government = communism
+				}
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				production_factory_max_efficiency_factor = -0.1
+				production_speed_industrial_complex_factor = 0.2
+				#consumer_goods_expected_value = -0.05
+			} 
+		}
+
+		NOR_broken_gun_ns_2 = {
+			picture = NOR_broken_gun_ns
+			
+			name = NOR_broken_gun_ns
+			
+			cancel = {
+				OR = {
+					has_war = yes 
+					NOT = { has_government = democratic }
+				}
+			}
+			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+			removal_cost = -1
+
+			modifier = {
+				production_factory_max_efficiency_factor = -0.15
+				production_speed_industrial_complex_factor = 0.3
+				consumer_goods_expected_value = -0.05
+			} 
+		}
+
+		NOR_broken_gun_ns_3 = {
+			picture = NOR_broken_gun_ns
+			
+			name = NOR_broken_gun_ns
+			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+			cancel = {
+				OR = {
+					has_war = yes 
+					NOT = { has_government = democratic }
+				}
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				production_factory_max_efficiency_factor = -0.2
+				production_speed_industrial_complex_factor = 0.4
+				consumer_goods_expected_value = -0.1
+			} 
+		}
+
+		NOR_printing_money_ns = {
+			picture = NOR_printing_money
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1 
+
+			modifier = {
+			 	consumer_goods_expected_value = -0.05
+				production_speed_industrial_complex_factor = 0.2
+			}
+		}
+
+
+		NOR_defensive_rearmament_ns = { # Unlocked in NOR_rearm_for_defense
+			picture = YUG_federal_defense_council
+			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				production_speed_bunker_factor = 0.20
+				production_speed_coastal_bunker_factor = 0.25
+				equipment_conversion_speed = 0.15
+			} 
+		}
+
+		NOR_coordinating_committee = {
+			picture = generic_political_support
+			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				army_core_attack_factor = 0.05
+			}
+		}
+
+		NOR_kretsen_ns = {
+			picture = chi_war_of_resistance2 
+			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				army_core_defence_factor = 0.05
+			}
+		}
+
+		NOR_ketsen_plus_KK_fake_ns = { # This is so I can have a better tooltip 
+			allowed = {
+				NOR_AAT = yes 
+			}
+			
+			removal_cost = -1 
+
+			modifier = {
+				army_core_attack_factor = 0.05
+				army_core_defence_factor = 0.05
+			}
+			
+		}
+
+		NOR_sivorg_ns = {
+			picture = NOR_sivog 
+			
+			allowed = {
+				NOR_AAT = yes 
+			}	
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				army_core_attack_factor = 0.075
+				army_core_defence_factor = 0.075
+			}
+		}
+
+		NOR_efficient_production_ns = { 
+			picture = man_five_year_plan_industry
+
+			allowed = {
+				NOR_AAT = yes 
+			}
+			
+			allowed_civil_war = {
+				always = yes 
+			}
+			
+			removal_cost = -1
+
+			modifier = {
+				production_factory_max_efficiency_factor = 0.1
+				consumer_goods_expected_value = -0.05
+			}
+		}
+
+		NOR_new_haeren_ns_1 = {
+			
+			picture = NOR_new_haeren_ns
+
+			name = NOR_new_haeren_ns_1
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			allowed_civil_war = {
+				always = yes 
+			}
+
+			removal_cost = -1 
+
+			modifier = {
+				army_org_factor = 0.1
+				army_morale_factor = 0.1
+				supply_consumption_factor = -0.1
+			}
+		}
+
+		NOR_new_haeren_ns_2 = {
+			name = NOR_new_haeren_ns_1
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			allowed_civil_war = {
+				always = yes 
+			}
+
+			removal_cost = -1 
+
+			picture = NOR_new_haeren_ns
+
+			modifier = {
+				army_org_factor = 0.1
+				army_morale_factor = 0.1
+				army_attack_factor = 0.1
+				army_defence_factor = 0.1
+				supply_consumption_factor = -0.1
+
+			}
+		}
+
+		NOR_kungens_garde_ns = {
+			picture = NOR_royal_guards_battalion_ns
+			allowed = {
+				NOR_AAT = yes
+			}
+
+			cancel = {
+				OR = {
+					has_government = communism
+					has_government = fascism
+				}
+			}
+
+			allowed_civil_war = {
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+				}
+			}
+
+			removal_cost = -1 
+
+			modifier = {
+				winter_attrition_factor = -1
+			} 
+		}
+
+		NOR_expanded_conscription_ns = {
+			picture = eng_imperial_conscription
+
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			removal_cost = -1 
+
+			modifier = {
+				conscription_factor = 0.15
+				training_time_factor = -0.20
+			}
+		}
+
+
+		NOR_mobile_government_ns = {
+			picture = SWE_per_albin_bus
+			allowed = {
+				NOR_AAT = yes 
+			}
+			cancel = { NOT = { has_variable = NOR_mobile_government_hq } }
+			modifier = {
+				surrender_limit = 0.5
+				resistance_growth_on_our_occupied_states = 0.25
+				resistance_target_on_our_occupied_states = 0.25
+				compliance_growth_on_our_occupied_states = -0.2
+			}
+		}
+
+
+
+##########
+################# Allied Democratic Path ###
+#########
+		NOR_crush_hitler_ns = {
+			picture = SPR_anti_fascist_crusade
+
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			removal_cost = -1 
+
+			targeted_modifier = {
+		    tag = GER
+		    attack_bonus_against = 0.4
+		    defense_bonus_against = 0.4
+		    }
+		    targeted_modifier = {
+		    tag = HUN
+		    attack_bonus_against = 0.4
+		    defense_bonus_against = 0.4
+		    }
+		    targeted_modifier = {
+		    tag = CZE
+		    attack_bonus_against = 0.4
+		    defense_bonus_against = 0.4
+		    }
+	        targeted_modifier = {
+		    tag = SPR
+		    attack_bonus_against = 0.4
+		    defense_bonus_against = 0.4
+		    }
+	        targeted_modifier = {
+		    tag = ROM
+		    attack_bonus_against = 0.4
+		    defense_bonus_against = 0.4
+		    }
+		    targeted_modifier = {
+		    tag = BUL
+		    attack_bonus_against = 0.4
+		    defense_bonus_against = 0.4
+		    }
+
+			modifier ={
+				weekly_manpower = 550
+				communism_drift = 0.08
+				war_stability_factor = 0.2
+				war_support_factor = 0.25
+			}
+		}
+
+	NOR_reduced_workers_rights_ns = {
+		picture = man_five_year_plan_industry 
+		allowed = {
+			NOR_AAT = yes 
+		}
+
+		modifier = {
+			production_factory_max_efficiency_factor = 0.1
+			production_factory_start_efficiency_factor = 0.1
+		}
+	}
+
+	NOR_investing_in_norway_ns = {
+		picture = GFX_generic_economic_increase 
+		allowed = {
+			always = yes 
+		}
+
+		modifier = {
+			consumer_goods_expected_value = -0.05
+		}
+	}
+
+	NOR_improved_training_ns = {
+		picture = ast_volunteer_defence_corps
+
+		allowed = {
+			NOR_AAT = yes 
+		}
+
+		modifier = {
+			training_time_factor = -0.3
+			minimum_training_level = 0.15
+			experience_gain_army_factor = 0.25
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+aircraft_manufacturer = {
+			
+		designer = yes
+		
+		NOR_marinens_flyvebaatfabrikk = {
+			
+			picture = generic_air_manufacturer_1
+
+			
+			allowed = {
+				original_tag = NOR
+			}
+			
+			research_bonus = {
+				air_equipment = 0.15
+			}
+			
+			traits = { naval_aircraft_manufacturer }
+			
+			equipment_bonus = {
+			}
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+
+		kjeller_flyfabrikk = {
+			
+			picture = generic_air_manufacturer_2
+
+			
+			allowed = {
+				original_tag = NOR
+			}
+			
+			research_bonus = {
+				air_equipment = 0.15
+			}
+			
+			traits = { light_aircraft_manufacturer }
+			
+			equipment_bonus = {
+				# licenced and built fokker C.V bombers
+			}
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	
+	naval_manufacturer = {
+		
+		designer = yes
+		
+		horten_naval_yard = {
+			
+			picture = generic_naval_manufacturer_1
+
+			
+			allowed = {
+				original_tag = NOR
+			}
+			
+			research_bonus = {
+				naval_equipment = 0.15
+			}
+			
+			equipment_bonus = {
+				# mer research
+			}
+			
+			traits = { naval_manufacturer }
+			
+			modifier = {
+			}
+		}
+	}
+
+	materiel_manufacturer = {
+		
+		designer = yes
+		
+		kongsberg = {
+			
+			picture = generic_infantry_equipment_manufacturer_1
+
+			
+			allowed = {
+				original_tag = NOR
+			}
+			
+			research_bonus = {
+				artillery = 0.15
+			}
+			
+			equipment_bonus = {
+				# rifles and pistols
+			}
+			
+			traits = { artillery_manufacturer }
+			
+			modifier = {
+			}
+		}
+	
+		raufoss_ammunisjonsfabrikker = {
+			
+			picture = generic_infantry_equipment_manufacturer_2
+
+			
+			allowed = {
+				original_tag = NOR
+			}
+			
+			research_bonus = {
+				infantry_weapons = 0.15
+			}
+			
+			equipment_bonus = {
+				# rifles and pistols
+			}
+			
+			traits = { infantry_equipment_manufacturer }
+			
+			modifier = {
+			}
+		}
+	
+		NOR_honefoss_karosserifabrikk = {
+			# technically not a military manufacturer. Remove if problem.
+			
+			picture = generic_motorized_equipment_manufacturer_3
+
+			
+			allowed = {
+				original_tag = NOR
+			}
+			
+			research_bonus = {
+				motorized_equipment = 0.15
+			}
+			
+			equipment_bonus = {
+			}
+			
+			traits = { motorized_equipment_manufacturer }
+			
+			modifier = {
+			}
+		}
+	}
+
+	industrial_concern = {
+		
+		NOR_tandbergs_radiofabrikk = {
+			
+			allowed = {
+				original_tag = NOR
+			}
+			
+			research_bonus = {
+				electronics = 0.1
+			}
+			
+			traits = { electronics_concern }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+
+		NOR_norsk_hydro = {
+
+			picture = generic_refining_concern_1
+		
+			allowed = {
+				original_tag = NOR
+				has_aat = no
+			}
+			
+			research_bonus = {
+				industry = 0.05
+				synth_resources = 0.1
+			}
+			
+			traits = { refinery_concern }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+
+		NOR_aat_norsk_hydro = {
+
+			picture = NOR_norsk_hydro 
+		
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			research_bonus = {
+				industry = 0.06
+			}
+			
+			traits = { NOR_hydroelectric_company_trait }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+
+		NOR_folks_hydro = {
+
+			picture = NOR_norsk_hydro
+		
+			allowed = {
+				NOR_AAT = yes 
+			}
+
+			visible = {
+				always = no
+			}
+			
+			research_bonus = {
+				industry = 0.07
+			}
+			
+			traits = { NOR_nationalized_hydroelectric_company_trait }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}	
+}

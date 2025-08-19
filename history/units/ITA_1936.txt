@@ -1,0 +1,124 @@
+﻿
+division_template = { 
+	name = "Divisione Alpina" 
+	division_names_group = ITA_MNT_01 
+
+	regiments = { 
+		mountaineers = { x = 0 y = 0 } mountaineers = { x = 1 y = 0 } mountaineers = { x = 2 y = 0 } anti_tank_brigade = { x = 3 y = 0 } artillery_brigade = { x = 4 y = 0 }
+					mountaineers = { x = 0 y = 1 } mountaineers = { x = 1 y = 1 } mountaineers = { x = 2 y = 1 } anti_tank_brigade = { x = 3 y = 1 } artillery_brigade = { x = 4 y = 1 }
+					mountaineers = { x = 0 y = 2 } mountaineers = { x = 1 y = 2 } mountaineers = { x = 2 y = 2 } anti_tank_brigade = { x = 3 y = 2 } artillery_brigade = { x = 4 y = 2 }
+					mountaineers = { x = 0 y = 3 } 	mountaineers = { x = 1 y = 3 } 	mountaineers = { x = 2 y = 3 } 	
+					mountaineers = { x = 0 y = 4 } 	mountaineers = { x = 1 y = 4 }	
+	} 
+	support = { 
+		engineer = { x = 0 y = 0 } 
+		artillery = { x = 0 y = 1 } 
+	} 
+
+	priority = 2 
+} 
+
+division_template = { #Blackshirts
+	name = "Camicie Nere" 
+	division_names_group = ITA_INF_02
+	template_counter = 103
+	is_locked = yes
+	force_allow_recruiting = yes
+	division_cap = 12 #WARNING THIS VALUE NEEDS TOP MATCH THE value in var ITA_militias_cap set in history file
+
+	# Represents nearly all infantry divisions
+	# In later years, CC.NN. Brigade added to INF Division (1x2 MIL/INF regiments)
+	# Also represent semi-mountain divisions (1st, 2nd, 3rd, 4th, 6th Divisions)
+	regiments = { 
+		militia = { x = 0 y = 0 } militia = { x = 1 y = 0 } militia = { x = 2 y = 0 } anti_tank_brigade = { x = 3 y = 0 } artillery_brigade = { x = 4 y = 0 }
+					militia = { x = 0 y = 1 } militia = { x = 1 y = 1 } militia = { x = 2 y = 1 } anti_tank_brigade = { x = 3 y = 1 } artillery_brigade = { x = 4 y = 1 }
+					militia = { x = 0 y = 2 } militia = { x = 1 y = 2 } militia = { x = 2 y = 2 } anti_tank_brigade = { x = 3 y = 2 } artillery_brigade = { x = 4 y = 2 }
+					militia = { x = 0 y = 3 } 	militia = { x = 1 y = 3 } 	militia = { x = 2 y = 3 } 	
+					militia = { x = 0 y = 4 } 	militia = { x = 1 y = 4 }	
+		
+	}
+	support = { 
+		engineer = { x = 0 y = 0 } artillery = { x = 0 y = 1 } signal_company = { x = 0 y = 2 } anti_air = { x = 0 y = 3 } recon= { x = 0 y = 4 } logistics_company = { x = 0 y = 5 }
+	}
+}
+
+####### OOB #######
+units = { 
+	division = { 
+		location = 9904 #Rome
+		division_template = "Divisione Alpina"
+		start_experience_factor = 0.3
+		start_equipment_factor = 0.01
+	}
+}
+
+####### Starting Production Queue #######
+instant_effect = { 
+		##### Equipments #####
+		add_equipment_production = { 
+			equipment = { 
+				type = infantry_equipment_1 
+				creator = "ITA" 
+			} 
+
+			requested_factories = 9
+			progress = 0.1 
+			efficiency = 50 
+		} 
+		add_equipment_production = { 
+			equipment = { 
+				type = infantry_equipment_0
+				creator = "ITA" 
+			} 
+
+			requested_factories = 1
+			progress = 0.1 
+			efficiency = 50 
+		} 
+		add_equipment_production = { 
+			equipment = { 
+				type = support_equipment_1 
+				creator = "ITA" 
+			} 
+
+			requested_factories = 4
+			progress = 0.3 
+			efficiency = 50 
+		} 
+
+
+		add_equipment_production = { 
+			equipment = { 
+				type = motorized_equipment_1 
+				creator = "ITA" 
+			} 
+
+			requested_factories = 1
+			progress = 0.4 
+			efficiency = 50 
+		} 
+
+		add_equipment_production = { 
+			equipment = { 
+				type = artillery_equipment_1 
+				creator = "ITA" 
+			} 
+
+			requested_factories = 0
+			progress = 0.4 
+			efficiency = 50 
+		} 
+
+		
+		add_equipment_production = { 
+			equipment = { 
+				type = anti_air_equipment_1 
+				creator = "ITA" 
+			} 
+
+			requested_factories = 3
+			progress = 0.4 
+			efficiency = 50 
+		} 
+	
+} 

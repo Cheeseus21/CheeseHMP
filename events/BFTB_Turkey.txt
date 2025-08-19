@@ -1,0 +1,345 @@
+###########################
+# Turkish Events
+###########################
+
+add_namespace = bftb_turkey
+
+#The Demokrat Parti Rises
+country_event = {
+	id = bftb_turkey.14
+	title = bftb_turkey.14.t
+	desc = bftb_turkey.14.desc
+	picture = GFX_report_event_tur_opposition_party
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	
+	option = {
+		name = bftb_turkey.14.a #this republic will survive their machinations
+		add_stability = -0.1
+		set_party_name = { 
+			ideology = democratic
+			long_name = TUR_democratic_party_proto_islamist_long
+			name = TUR_democratic_party_proto_islamist
+		}
+		add_country_leader_role = {
+			character = TUR_adnan_menderes
+			country_leader = {
+				expire = "1965.1.1"
+				ideology = conservatism
+				traits = {
+					man_of_the_nation
+				}
+			}
+			promote_leader = yes
+		}
+		hidden_effect = {
+			add_timed_idea = {
+				idea = TUR_rising_islamist_dissidence
+				days = 180
+			}
+			country_event = { id = bftb_turkey.15 }
+		}
+	}
+}
+
+#The Election - The Turkish General Election
+country_event = {
+	id = bftb_turkey.21
+	title = bftb_turkey.21.t
+	desc = bftb_turkey.21.desc
+	picture = GFX_report_event_tur_upheaval_celebration
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	
+	option = {
+		name = bftb_turkey.21.a #the Republicans!
+
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = TUR_mustafa_kemal_ataturk
+						ruling_only = yes
+					}
+				}
+				add_ideas = TUR_mustafa_kemal_ataturk_figurehead
+			}
+			if = {
+				limit = {
+					TUR_mustafa_kemal_ataturk = { is_unit_leader = yes }
+				}
+				TUR_mustafa_kemal_ataturk = { remove_unit_leader_role = yes }
+			}
+		}
+		TUR_celal_bayar = {
+			remove_country_leader_role = {
+				ideology = conservatism
+			}
+			add_country_leader_role = {
+				character = TUR_celal_bayar
+				country_leader = {
+					expire = "1965.1.1"
+					ideology = liberalism
+					traits = {
+						liberal_democratic_paragon
+					}
+				}
+				promote_leader = yes
+			}
+		}
+		
+		custom_effect_tooltip = TUR_republican_victory_tt
+		hidden_effect = {
+			set_party_name = { 
+				ideology = democratic
+				long_name = TUR_neutrality_party_long
+				name = TUR_neutrality_party
+			}
+			set_politics = { 
+				ruling_party = democratic 
+				elections_allowed = yes
+				election_frequency = 60
+			}
+			set_party_name = { 
+				ideology = neutrality
+				long_name = TUR_democratic_party_islamist_long
+				name = TUR_democratic_party_islamist
+			}
+			add_country_leader_role = {
+				character = TUR_adnan_menderes
+				country_leader = {
+					expire = "1965.1.1"
+					ideology = centrism
+					traits = {
+						man_of_the_nation
+					}
+				}
+				promote_leader = yes
+			}
+			if = {
+				limit = {
+					has_idea = TUR_celal_bayar
+				}
+				remove_ideas = TUR_celal_bayar
+				add_ideas = TUR_fethi_okyar
+			}
+			country_event = { id = bftb_turkey.135 days = 120 random = 80 }
+			set_temp_variable = {
+				var = TUR_CHP_support_var
+				value = party_popularity@neutrality
+			}
+			divide_temp_variable = {
+				var = TUR_CHP_support_var
+				value = 2
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = TUR_CHP_support_var
+			}
+		}
+	}
+	option = {
+		name = bftb_turkey.21.b #the Demokrat Parti!
+		trigger = {
+			democratic > 0.4
+		}
+		custom_effect_tooltip = TUR_conservative_victory_tt
+		hidden_effect = {
+			country_event = { id = bftb_turkey.135 days = 30 random = 60 }
+			if = {
+				limit = {
+					TUR_mustafa_kemal_ataturk = { is_unit_leader = yes }
+				}
+				TUR_mustafa_kemal_ataturk = { remove_unit_leader_role = yes }
+			}
+			set_politics = { 
+				ruling_party = democratic 
+				elections_allowed = yes
+				election_frequency = 60
+			}
+			promote_character = {
+				character = TUR_ismet_inonu
+				ideology = despotism
+			}
+			set_country_flag = TUR_held_democratic_election
+			if = {
+				limit = {
+					has_idea = TUR_mustafa_kemal_ataturk_figurehead
+				}
+				remove_ideas = TUR_mustafa_kemal_ataturk_figurehead
+			}
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+}
+
+#Electing a New President
+country_event = {
+	id = bftb_turkey.24
+	title = bftb_turkey.24.t
+	desc = bftb_turkey.24.desc
+	picture = GFX_report_event_tur_ataturk_inonu_parliament
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+
+	option = {
+		name = bftb_turkey.24.c #liberal + historic = Bayar and Ismet / Ismet
+		hidden_effect = {
+			remove_country_leader_role = {
+				character = TUR_ismet_inonu
+				ideology = despotism
+			}
+		}
+		add_country_leader_role = {
+			character = TUR_ismet_inonu
+			country_leader = {
+				expire = "1965.1.1"
+				ideology = oligarchism
+				traits = {
+					milli_sef
+				}
+			}
+			promote_leader = yes
+		}
+	}
+}
+
+#Fatherland First - Conscientious Objecters Volunteer for Service
+country_event = {
+	id = bftb_turkey.29
+	title = bftb_turkey.29.t
+	desc = bftb_turkey.29.desc
+	picture = GFX_report_event_tur_upheaval_celebration
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	
+	option = {
+		name = bftb_turkey.29.a #they see the benefit in serving the Fatherland
+		add_war_support = 0.05
+		add_timed_idea = {
+			idea = TUR_objectors_flocking_to_military_service
+			days = 360
+		}
+	}
+}
+
+
+#The Fading Father - Ataturk Health Crisis Begins
+country_event = {
+	id = bftb_turkey.133
+	title = bftb_turkey.133.t
+	desc = bftb_turkey.133.desc
+	picture = GFX_report_event_tur_ataturk_determined
+
+	trigger = {
+		original_tag = TUR
+		has_dlc = "Battle for the Bosporus"
+		has_country_leader = {
+			character = TUR_mustafa_kemal_ataturk
+			ruling_only = yes
+		}
+		date > 1937.01.01
+		date < 1939.14.08
+	}
+
+	fire_only_once = yes
+
+	mean_time_to_happen = { 
+		days = 90
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = TUR_ataturk_getting_sickly
+			set_variable = { var = TUR_ataturk_health_bar value = 3 }
+		}
+	}
+	
+	option = {
+		name = bftb_turkey.133.a #will he be able to continue to govern?
+		unlock_decision_category_tooltip = TUR_the_fading_father_category
+	}
+}
+
+#The Fading Father - Ataturk Passes Away [Leader]
+country_event = {
+	id = bftb_turkey.134
+	title = bftb_turkey.134.t
+	desc = bftb_turkey.134.desc
+	picture = GFX_report_event_tur_ataturk_death
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = TUR_ataturk_getting_sickly
+			clear_variable = TUR_ataturk_sickness_factor_var
+			clear_variable = TUR_ataturk_health_bar
+			if = {
+				limit = {
+					TUR_mustafa_kemal_ataturk = { is_unit_leader = yes }
+				}
+				TUR_mustafa_kemal_ataturk = { remove_unit_leader_role = yes }
+			}
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	
+	option = {
+		name = bftb_turkey.134.c #liberal + historic = Bayar and Ismet / Ismet
+		trigger = {
+			has_idea = TUR_ismet_inonu
+			has_completed_focus = TUR_the_sanayiciler
+		}
+		hidden_effect = {
+			remove_country_leader_role = {
+				character = TUR_ismet_inonu
+				ideology = despotism
+			}
+		}
+		add_country_leader_role = {
+			character = TUR_ismet_inonu
+			country_leader = {
+				expire = "1965.1.1"
+				ideology = centrism
+				traits = {
+					milli_sef
+				}
+			}
+			promote_leader = yes
+		}
+	}
+}
+
+#The Fading Father - Ataturk Passes Away [Retired]
+country_event = {
+	id = bftb_turkey.135
+	title = bftb_turkey.135.t
+	desc = bftb_turkey.135.desc
+	picture = GFX_report_event_tur_ataturk_death
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = { remove_ideas = TUR_mustafa_kemal_ataturk_figurehead }
+	}
+
+	option = {
+		name = bftb_turkey.135.a 
+		effect_tooltip = { remove_ideas = TUR_mustafa_kemal_ataturk_figurehead }
+	}
+}

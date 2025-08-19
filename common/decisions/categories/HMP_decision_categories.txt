@@ -1,0 +1,834 @@
+################
+#### RAJ ####
+################
+
+prospect_for_resources_raj = {
+	icon = generic_prospect_for_resources
+
+	priority = 30
+	
+	allowed = {
+		original_tag = RAJ
+	}
+
+	visible = {
+		has_completed_focus = RAJ_exploit_the_frontier	
+	}
+}
+
+
+
+
+
+
+
+HUN_national_academy_of_sciences_category = {
+
+	icon = GFX_decision_category_SOV_soviet_academy_of_sciences
+	priority = 30
+	picture = GFX_decision_cat_picture_soviet_national_academy_of_sciences
+	visible_when_empty = no	
+	allowed = {
+		original_tag = HUN
+	}
+
+	visible = {
+		has_dlc = "Gotterdammerung"
+	}
+}
+
+HUN_gyor_program_initiatives_category = {
+
+	icon = GFX_decision_category_generic_arms_trade
+	priority = 40
+	picture = GFX_decision_cat_generic_mefo_bills
+	visible_when_empty = no	
+	allowed = {
+		original_tag = HUN
+	}
+
+	visible = {
+		has_dlc = "Gotterdammerung"
+	}
+}
+
+
+GER_weltpolitik_cat = {
+	icon = GFX_decision_category_GER_weltpolitik
+	picture = GFX_decision_cat_picture_ARG_international_loan_decisions
+	allowed = {
+		original_tag = GER
+	}
+	priority = 8
+
+	visible = {
+			has_completed_focus = GER_mittelafrika
+	}
+
+}
+
+
+GER_reich_labor_service_cat = {
+	icon = GFX_decision_category_generic_industry
+	#picture = GFX_decision_cat_picture_PLACEHOLDER
+
+	allowed = {
+		original_tag = GER
+	}
+
+	priority = 6
+
+	visible = {
+		has_completed_focus = GER_optimize_reich_labour_service
+	}
+}
+
+
+
+
+GER_hilfskreuzer_cat = {
+	icon = GFX_decision_category_generic_naval
+	picture = GFX_decision_cat_picture_generic_shipbuilding
+
+	allowed = {
+		original_tag = GER
+	}
+
+	priority = 8
+
+	visible = {
+		has_completed_focus = GER_cruiser_warfare
+	}
+}
+USA_balance_of_power_category = {
+	icon = GFX_decision_category_power_struggle
+	
+	allowed = {
+		OR = { 
+				original_tag = USA
+			original_tag = ENG	
+				}
+	}
+	
+	priority = 90
+	
+	visible = {
+		
+	}
+}
+FIN_balance_of_power_category = {
+	icon = GFX_decision_category_power_struggle
+	
+	allowed = {
+		original_tag = FIN
+	}
+	
+	priority = 90
+	
+	visible = {
+		
+	}
+}
+
+FIN_motti_tactics_category = {
+	icon = GFX_decision_category_FIN_motti_tactics
+
+	picture = GFX_decision_cat_picture_FIN_motti_tactics
+	
+	allowed = {
+		original_tag = FIN
+	}
+	
+	priority = 89
+	
+	visible = {
+		has_completed_focus = FIN_motti_tactics
+	}
+
+	on_map_area = {
+		target_array = core_states
+		target_trigger = {
+			FROM = {
+				FIN_state_is_valid_for_motti_tactics = yes
+			}
+		}
+		name = FIN_motti_tactics_category
+		zoom = 300
+		state = 929
+	}
+}
+
+FIN_national_defense_category = {
+	icon = GFX_decision_category_FIN_national_defense
+
+	picture = GFX_decision_cat_picture_FIN_national_defense
+	
+	allowed = {
+		original_tag = FIN
+	}
+	
+	priority = 88
+	
+	visible = {
+	}
+
+	on_map_area = {
+		target_array = core_states
+		target_trigger = {
+			FROM = {
+				is_controlled_by = ROOT
+			}
+		}
+		name = FIN_national_defense_category
+		zoom = 300
+		state = 930
+	}
+}
+
+
+
+
+DEN_balance_of_power_category = {
+	icon = GFX_decision_category_power_struggle
+	
+	allowed = {
+		original_tag = DEN
+		has_dlc = "Arms Against Tyranny"
+	}
+	
+	priority = 100
+}
+
+
+
+
+NOR_exile_decisions_category = {
+	icon = generic_formable_nations
+	picture = GFX_decision_cat_picture_NOR_ship_building
+	allowed = {
+		original_tag = NOR 
+	}
+	visible = {	
+		#NOT = { owns_state = 110 }
+		#has_completed_focus = NOR_the_kings_no
+		always = no
+	}
+	priority = 9
+}
+
+
+NOR_democratic_preparation_decisions_category = {
+	icon = GFX_decision_category_generic_industry
+	picture = GFX_decision_cat_generic_mefo_bills
+	priority = 7
+	visible = {
+		#has_completed_focus = NOR_broken_gun_policies
+		#has_war = no
+		always = no
+	}
+	allowed = {
+		#NOR_AAT = yes 
+	}
+}
+
+NOR_allied_democratic_preparation_decisions_category = {
+	icon = GFX_decision_category_NOR_fascist_deploy_prep
+	picture = GFX_decision_cat_picture_NOR_preparedness
+	priority = 7
+	visible = {
+		#has_completed_focus = NOR_vote_of_no_confidence
+		#has_war = no
+		always = no
+	}
+	allowed = {
+		#NOR_AAT = yes 
+	}
+}
+
+
+NOR_allied_democratic_deploy_prep_decisions_category = {
+	icon = GFX_decision_category_NOR_fascist_deploy_prep 
+	picture = GFX_decision_cat_picture_SWI_military_readiness_decisions
+	priority = 7
+	visible = {
+		#has_completed_focus = NOR_vote_of_no_confidence
+		#has_completed_focus = NOR_weathering_the_storm_to_come
+		#has_war = yes
+		always = no
+	}
+
+	allowed = {
+		#NOR_AAT = yes 
+	}
+}
+
+NOR_monarchist_preparation_decisions_category = {
+	icon = GFX_decision_category_generic_monarchism
+	picture = GFX_decision_cat_picture_NOR_monarchism
+	priority = 7
+	visible = {
+		has_completed_focus = NOR_the_chamberlains_overture
+		has_war = no
+	}
+	allowed = {
+		NOR_AAT = yes 
+	}	
+}
+
+NOR_mobile_government_decisions_category = {
+	icon = GFX_decision_category_generic_crisis
+	picture = GFX_decision_cat_picture_NOR_olav_and_haakon
+	priority = 8 
+	visible = { 
+		#has_completed_focus = NOR_the_kings_no
+		#has_war = yes 
+		always = no
+	}
+	allowed = {
+		NOR_AAT = yes 
+	}	
+}
+
+GER_integration_of_puppet_economies_dec_cat = {
+	icon = GFX_decision_category_gre_paying_ifc_debt
+
+	priority = 5
+
+	allowed = {
+		original_tag = GER
+	}
+	visible = {
+		has_completed_focus = GER_integration_of_puppet_economies
+		num_subjects > 0
+	}
+}
+
+PACIFIC_WAR_CATEGORY_GUI_CATEGORY = {
+allowed = {
+    OR = { tag = JAP tag = USA}	
+}
+	visible_when_empty = yes
+	picture = GFX_decision_cat_generic_polynesia
+
+}
+
+raj_military_research = {
+	allowed = {
+		tag = RAJ
+	}
+	visible = {
+		has_country_flag = army_research_decision
+	}
+}
+GER_org_todt_category = {
+	priority = 100
+	icon = GFX_decision_category_generic_fascism
+	allowed = {
+		original_tag = GER
+	}
+	visible = {
+		has_government = fascism
+		has_completed_focus = GER_form_organization_todt
+	}
+}
+
+X_JAP_propaganda_campaigns = {
+	priority = 100
+	icon = SOV_propaganda
+	scripted_gui = JAP_propaganda_campaigns_ui
+	allowed = {
+		original_tag = JAP
+	}
+
+	visible = {
+		has_government = fascism
+	}
+}
+X_ITA_propaganda_campaigns = {
+	priority = 100
+	icon = SOV_propaganda
+	scripted_gui = ITA_propaganda_campaigns_ui
+	allowed = {
+		original_tag = ITA
+	}
+
+	visible = {
+		has_government = fascism
+	}
+}
+
+X_GER_propaganda_campaigns = {
+	priority = 100
+	icon = SOV_propaganda
+	scripted_gui = GER_propaganda_campaigns_ui
+	allowed = {
+		original_tag = GER
+	}
+
+	visible = {
+		has_government = fascism
+	}
+}
+
+X_USA_propaganda_campaigns = {
+	priority = 100
+	icon = SOV_propaganda
+	scripted_gui = USA_propaganda_campaigns_ui
+	allowed = {
+		original_tag = USA
+	}
+}
+
+X_ENG_propaganda_campaigns = {
+	priority = 100
+	icon = SOV_propaganda
+	scripted_gui = ENG_propaganda_campaigns_ui
+	allowed = {
+			original_tag = ENG
+	}
+
+	visible = {
+		has_government = democratic
+	}
+}
+
+
+ger_wehrmacht_pfu = { 
+	
+	picture = GFX_decision_cat_wehrmacht
+	
+	icon = army_reform
+	
+	allowed = {
+		original_tag = GER
+	}
+
+}
+
+ger_luftwaffe_pfu = { 
+	
+	icon = generic_fascism
+	
+	picture = GFX_decision_cat_luftwaffe
+	
+	allowed = {
+		original_tag = GER
+	}
+
+}
+
+ger_kriegsmarine_pfu = { 
+	
+	picture = GFX_decision_cat_kriegsmarine
+	
+	allowed = {
+		original_tag = GER
+	}
+
+}
+
+SS_recruitment_pfu = { 
+	
+	icon = GFX_decision_category_military_operation
+	
+	picture = GFX_decision_cat_waffen_ss
+	
+	allowed = {
+		original_tag = GER
+	}
+	visible = { has_completed_focus = GER_expand_ss_recruitment }
+}
+
+
+
+
+
+
+
+################
+#### SOVIET ####
+################
+lar_local_recruitment = {
+	allowed = { normally_played_country = yes  } 
+	visible = { has_done_agency_upgrade = upgrade_training_centers }
+	visibility_type = map_and_decisions_view
+	on_map_area = {
+		state = 8
+		name = LAR_recruitment_europe
+		zoom = 650	
+	}
+}
+RAJ_population_decisions = {
+	priority = 101
+	icon = generic_prospect_for_resources
+
+	allowed = {
+		original_tag = RAJ
+	}
+	visible = {
+		always = yes
+	}
+	visible_when_empty = no
+}
+####### NO STEP BACK! #######
+
+HOL_propaganda_campaings = {
+	icon = generic_propaganda	
+	allowed = {tag = HOL } 
+	visible = {
+		
+		HOL = { has_completed_focus = HOL_continue_the_war_in_batavia }
+	}
+	visible_when_empty = yes
+	scripted_gui = prca_propaganda_ui
+	priority = 100
+}
+
+SOV_paranoia_system = {
+
+	priority = 101
+
+	icon = SOV_paranoia
+
+	scripted_gui = sov_paranoia_system_ui
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = {
+		always = no
+		#OR = {
+		#	has_country_flag = SOV_paranoia_system_active_flag
+		#	has_country_flag = SOV_third_moscow_trial_flag
+		#	has_country_flag = SOV_debug_show_paranoia_system_flag #Debug
+		#}
+	}
+
+	visible_when_empty = yes
+}
+
+SOV_propaganda_campaigns = {
+	priority = 100
+
+	icon = SOV_propaganda
+
+	scripted_gui = sov_propaganda_campaigns_ui
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = {
+		OR = {
+			has_completed_focus = SOV_expand_the_agitprop
+			has_country_flag = SOV_debug_show_propaganda_system_flag #Debug
+		}
+	}
+}
+
+SOV_gosproyektstroy_decision_category = {
+	priority = 29
+
+	icon = generic_industry
+
+	picture = SOV_civil_puppet_interaction 
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = {
+		OR = {
+			has_idea = SOV_gosproyektstroy_1
+			has_country_flag = SOV_gosproyektstroy_level_2_flag
+			has_country_flag = SOV_gosproyektstroy_level_3_flag
+		}
+	}
+}
+
+SOV_industry_relocation = {
+	priority = 12
+
+	icon = generic
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = {
+		has_completed_focus = SOV_move_industry_to_the_urals
+	}
+}
+
+
+SOV_comecon_dec_cat = {
+	priority = 13
+
+	icon = SOV_civil_puppet_interaction
+	picture = GFX_decision_cat_picture_soviet_comecon
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = {
+		has_completed_focus = SOV_found_the_comecon
+	}
+}
+
+
+################
+##### ETH ######
+################
+
+ITA_missiolinis = { 
+
+	icon = decision_category_ITA_missiolinis
+
+	picture = GFX_decision_cat_picture_ITA_missiolinis
+	
+	allowed = {
+		original_tag = ITA
+	}
+	
+	priority = 100
+
+	visible_when_empty = yes
+	
+	visible = {
+		ITA_missiolinis_system_available = yes
+	}
+}
+
+ITA_balance_of_power_category = {
+	icon = GFX_decision_category_power_struggle
+	
+	allowed = {
+		original_tag = ITA
+	}
+	
+	priority = 90
+	
+	visible = {
+		
+	}
+}
+
+
+ITA_diplomacy_balkan_decision_category = {
+	icon = generic_foreign_policy
+	
+	allowed = {
+		original_tag = ITA
+	}
+	
+	priority = 8
+	
+	visible = {
+		GER = { has_completed_focus = GER_fate_of_yugoslavia }
+		is_subject = no
+	}
+}
+
+ITA_vallo_alpino_del_littorio_dec_cat = { 
+
+	icon = GFX_decision_category_generic_mountain_fortification
+	
+	allowed = {
+		original_tag = ITA
+	}
+	
+	priority = 7
+	
+	visible = {
+		has_completed_focus = ITA_vallo_alpino_del_littorio
+	}
+}
+
+ETH_consolidate_east_africa_category = {
+	icon = GFX_decision_category_generic_fascism
+
+	allowed = {
+		original_tag = AOI
+	}
+	visible = {
+		has_completed_focus = ETH_consolidate_east_africa
+	}
+	on_map_area = {
+		target_trigger = {
+			FROM = {
+				OR = { 
+					state = 269 state = 268 state = 587 state = 588 state = 551 state = 549 state = 442 state = 601 state = 547 state = 548 state = 546 
+				}
+				NOT = { is_core_of = AOI }
+				is_controlled_by = AOI
+			}
+		}
+		name = ETH_consolidate_ea_targets
+		zoom = 150
+	}
+	
+	priority = {
+		base = 10
+	}
+	visible_when_empty = no
+}
+
+ENG_funding_decisions = {
+icon = GFX_decision_category_generic_economy
+priority = 3
+}
+
+ENG_evacuation_decisions = {
+icon = GFX_decision_category_generic_economy
+priority = 3
+}
+
+ENG_minor_control_system = {
+icon = GFX_decision_category_generic_monarchism
+priority = 2
+}
+
+ENG_military_operations = {
+icon = GFX_decision_category_generic_crisis
+priority = 4
+}
+
+USA_AOD_missions = {
+icon = GFX_decision_category_generic_crisis
+priority = 1
+}
+
+USA_reinforce_islands_decision_category = {
+	icon = GFX_decision_category_generic_fortification
+	priority = 2
+	visible = { 
+		has_completed_focus = USA_reinforce_the_islands
+		original_tag = USA
+	}
+}
+
+USA_island_hopping_decision_category = {
+	icon = GFX_decision_category_generic_democracy
+	priority = 3
+	visible = { 
+		has_completed_focus = USA_island_hopping_logistics
+		original_tag = USA
+	}
+}
+
+USA_congress = {
+	icon = usa_congress
+	allowed = {	OR = { original_tag = USA original_tag = ENG	} }
+	visible = { OR ={  original_tag = USA AND = { original_tag = ENG has_global_flag = war_in_the_west_start } } }
+	scripted_gui = usa_congress_decision_ui	
+}
+
+POL_peasant_strike_category = {
+	
+	icon = GFX_decision_category_generic_crisis
+
+	allowed = {
+		original_tag = POL
+		has_dlc = "No Step Back"
+	}
+	visible = {
+		OR = {
+			has_idea = POL_looming_peasants_strike
+			has_idea = POL_great_peasants_strike
+		}
+	}
+	priority = 100
+}
+
+
+POL_invite_foreign_motor_decisions = {
+	icon = GFX_decision_category_generic_industry
+	allowed = {
+		original_tag = POL
+		has_dlc = "No Step Back"
+	}
+	visible = {
+		has_completed_focus = POL_attract_foreign_motors
+		NOT = { has_country_flag = invited_motor_co }
+	}
+}
+
+
+POL_defensive_plans = {
+	icon = GFX_decision_category_army_reform
+	allowed = {
+		original_tag = POL
+		has_dlc = "No Step Back"
+	}
+	visible = {	always = yes	}
+	priority = 8
+}
+support_commonwealth = {
+icon = generic_propaganda
+allowed = { tag = ENG  }
+visible = { has_global_flag = war_in_the_west_start }
+}
+USA_landon_ll_category = {
+allowed = { tag = USA  }
+visible = { NOT ={ has_war = yes } has_completed_focus = USA_landon_deal  }
+}
+USA_roosevelt_ll_category = {
+allowed = { tag = USA  }
+visible = { NOT ={ has_war = yes } has_completed_focus = USA_roosevelt_deal  }
+}
+
+SOV_great_patriotic_war = {
+	icon = patriotic
+	allowed = {	original_tag = SOV	}
+}
+
+
+HMP_soviet_lend_lease_system = {
+	icon = usa_congress
+	 allowed = {	OR = { original_tag = SWE normally_played_allies = yes	}  }
+	scripted_gui = HMP_soviet_lend_lease_system_ui	
+	visible = { NOT = {  has_war_with = SOV } NOT ={  has_government = fascism } NOT = { SOV = { has_completed_focus = SOV_the_permanent_revolution } } OR = { tag = ENG tag = USA has_global_flag = HMP_soviet_ll_visible_to_all_allies   } }
+}
+
+JAP_interservice_rivalry = {
+	allowed = {
+		original_tag = JAP
+	}
+}
+propaganda_effortsx = {
+	icon = generic_propaganda
+}
+operations = {
+	icon = GFX_decision_category_military_operation
+}
+political_actions = {
+	icon = generic_political_actions
+	allowed = {	always = yes}
+}
+
+invest_in_the_west = {
+	icon = generic_political_actions
+	visible = {
+		has_completed_focus = HOL_invest
+	}
+	priority = 80
+	visible_when_empty = yes
+}
+
+verzetsoperaties = {
+	icon = generic_political_actions
+	visible = {
+	OR = { 
+		has_completed_focus = HOL_binnenlands
+		has_completed_focus = HOL_request_allied_favors2
+		}
+	}
+	priority = 85
+	visible_when_empty = yes
+}
+
+HMP_templates = {
+icon = GFX_decision_category_military_operation
+}

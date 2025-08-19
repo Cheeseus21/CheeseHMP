@@ -1,0 +1,742 @@
+focus_tree = {
+	id = hungarian_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = HUN
+			has_dlc = "Death or Dishonor"
+		}
+	}
+	
+	default = no
+
+	continuous_focus_position = { x = 50 y = 1600 }
+
+
+	focus = {
+		id = HUN_support_domestic_industry
+		icon = GFX_goal_industrialized_agrarian_state
+		prerequisite = { focus = HUN_industrial_revitalization }
+		x = 0
+		y = 1
+		relative_position_id = HUN_industrial_revitalization
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			43 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HUN_support_urbanization
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = HUN_reintegrate_the_railroads }
+		x = 0
+		y = 1
+		relative_position_id = HUN_reintegrate_the_railroads
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_owned_state = { limit = { is_core_of = HUN }  add_extra_state_shared_building_slots = 2  }
+		}
+	}
+		focus = {
+		id = HUN_support_urbanization_2
+		icon = GFX_goal_great_budapest
+		prerequisite = { focus = HUN_support_urbanization }
+		x = 1
+		y = 1
+		relative_position_id = HUN_support_urbanization
+		cost = 10
+		completion_reward = {
+			43 = { set_state_category = megalopolis  }
+		}
+	}
+	
+
+	focus = {
+		id = HUN_institute_for_industrial_techniques
+		icon = GFX_focus_research
+		prerequisite = { focus = HUN_support_urbanization focus = HUN_support_domestic_industry}
+		x = -1
+		y = 1
+		relative_position_id = HUN_support_urbanization
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+
+	focus = {
+		id = HUN_announce_the_gyor_program
+		icon = GFX_goal_total_economic_mobilization  
+		prerequisite = { focus = HUN_institute_for_industrial_techniques }
+		x = 0
+		y = 1
+		relative_position_id = HUN_institute_for_industrial_techniques
+		bypass = {
+		    has_completed_focus = HUN_strengthen_the_monarchists
+		}
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_announce_the_gyor_program
+				bonus = 1.0
+				uses = 2
+				technology = flexible_line
+				technology = assembly_line_production
+				technology = streamlined_line
+				}
+		}
+	}
+
+	############################
+	#### CIVILIAN INDUSTRY #####
+	############################
+
+	focus = {
+		id = HUN_expand_the_manfred_weiss_steel_works
+		icon = GFX_goal_country_of_iron_and_steel 
+		prerequisite = { focus = HUN_announce_the_gyor_program }
+		x = -1
+		y = 1
+		relative_position_id = HUN_announce_the_gyor_program
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			43 = {
+				add_resource = {
+					type = steel
+					amount = 20
+				}	
+			}
+		}
+	}
+	focus = {
+		id = HUN_invite_foreign_investors
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = HUN_announce_the_gyor_program }
+		x = 0
+		y = 2
+		relative_position_id = HUN_announce_the_gyor_program
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		
+		completion_reward = {
+			add_ideas = HUN_invite_foreign_investors
+		}
+	}
+	focus = {
+		id = HUN_expand_the_aluminum_industry
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = HUN_expand_the_manfred_weiss_steel_works }
+		x = 0
+		y = 2
+		relative_position_id = HUN_expand_the_manfred_weiss_steel_works
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			43 = {
+				add_resource = {
+					type = steel
+					amount = 20
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUN_invest_in_north_transylvanian_mining
+		icon = GFX_r56_goal_generic_mining_iron
+		prerequisite = { focus = HUN_expand_the_aluminum_industry }
+		x = 0
+		y = 2
+		relative_position_id = HUN_expand_the_aluminum_industry
+		bypass = {
+			ROM = { has_completed_focus = ROM_secure_our_territorial_integrity }
+			}
+		cost = 5
+
+		available = {
+			controls_state = 76
+		}
+		completion_reward = {
+			76 = {
+				add_extra_state_shared_building_slots = 1
+}			
+			add_tech_bonus = {
+				name = excavation_tech_bonus_name
+				bonus = 1
+				uses = 2
+				category = excavation_tech
+			}	
+		}
+	}
+		focus = {
+		id = HUN_increase_metal_processing_capacity
+		icon = GFX_focus_generic_steel
+		prerequisite = {focus = HUN_invest_in_north_transylvanian_mining}
+		x = 0
+		y = 1
+		relative_position_id = HUN_invest_in_north_transylvanian_mining
+		
+		cost = 5
+
+		completion_reward = {
+			add_ideas = HUN_resource_efficiency
+		}
+	}
+	
+	focus = {
+		id = HUN_domestic_arms_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = HUN_announce_the_gyor_program }
+		x = 1
+		y = 1
+		relative_position_id = HUN_announce_the_gyor_program
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			155 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+				154 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}		
+		}
+	}
+
+	focus = {
+		id = HUN_boost_hungarian_aviation_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = HUN_domestic_arms_industry }
+		x = 0
+		y = 2
+		relative_position_id = HUN_domestic_arms_industry
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			43 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+					type = arms_factory
+					level = 6
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+		focus = {
+		id = HUN_expand_the_technical_university_of_budapest
+		icon = GFX_goal_agrarian_university
+		prerequisite = { focus = HUN_boost_hungarian_aviation_industry }
+		prerequisite = { focus = HUN_expand_the_aluminum_industry }
+		x = -1
+		y = 1
+		relative_position_id = HUN_boost_hungarian_aviation_industry
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+	############################
+	##### MILITARY STUFFS ######
+	############################
+
+	focus = {
+		id = HUN_war_games
+		icon = GFX_goal_poland_goal
+		
+		available = { is_ai = no }
+
+		x = 19
+		y = 0
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			army_experience = 75
+			
+		}
+	}
+
+	focus = {
+		id = HUN_militarize_the_levente
+		icon = GFX_focus_goal_levente_institution
+		prerequisite = { focus = HUN_war_games }
+		x = 1
+		y = 1
+		relative_position_id = HUN_war_games
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = HUN_levente_movement
+		}
+	}
+	focus = {
+		id = HUN_theory_of_flexible_defence
+		icon = GFX_focus_prc_infiltration
+		prerequisite = { focus = HUN_war_games }
+		x = 7
+		y = 1
+		relative_position_id = HUN_war_games
+
+		cost = 5
+
+		completion_reward = {
+			add_ideas = HUN_fortify_the_borders
+		}
+	}
+		focus = {
+		id = HUN_mountain_artillery
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = {focus = HUN_theory_of_flexible_defence }
+		x = 1
+		y = 1
+		relative_position_id = HUN_theory_of_flexible_defence
+		cost = 5
+		completion_reward = {
+			custom_effect_tooltip = ROM_mountain_artillery_tech_tt
+			hidden_effect = { set_technology = { mountain_gun = 1 } }
+		}
+	}
+
+
+	############################
+	####### ARMY STUFFS ########
+	############################
+
+	focus = {
+		id = HUN_army_maneuvers
+		icon = GFX_goal_espirit_de_corps
+		prerequisite = { focus = HUN_war_games }
+		x = 3
+		y = 1
+		relative_position_id = HUN_war_games
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 50
+		}
+	}
+	############################
+	######## AIR STUFFS ########
+	############################
+
+	focus = {
+		id = HUN_establish_the_air_force
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = HUN_war_games }
+		x = -1
+		y = 1
+		relative_position_id = HUN_war_games
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_equipment_to_stockpile = { type = transport_plane_equipment amount = 25 }
+		}
+	}
+	focus = {
+		id = HUN_study_rocket_designs
+		icon = GFX_focus_rocketry
+		prerequisite = { focus = HUN_establish_the_air_force }
+		x = 1
+		y = 1
+		relative_position_id = HUN_establish_the_air_force
+
+		cost = 5
+
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_study_rocket_designs
+				bonus = 1.0
+				uses = 3
+				category = rocketry
+			}
+		}
+	}
+
+	############################
+	###### MOBILE BRANCH #######
+	############################
+		focus = {
+		id = HUN_mobile_corps_doctrine
+		icon = GFX_focus_huba
+		prerequisite = { focus = HUN_war_games }
+		x = -3
+		y = 1
+		relative_position_id = HUN_war_games
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 25
+		}
+	}
+
+	focus = {
+		id = HUN_armored_warfare
+		icon = GFX_goal_generic_army_artillery
+
+		prerequisite = { focus = HUN_mobile_corps_doctrine }
+		x = 1
+		y = 1
+		relative_position_id = HUN_mobile_corps_doctrine
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_armored_warfare
+				bonus = 1.0
+				uses = 1
+				category = cat_1941_tanks
+			}
+		}
+	}
+
+
+	focus = {
+		id = HUN_the_botond
+		icon = GFX_focus_generic_truck
+		prerequisite = { focus = HUN_mobile_corps_doctrine }
+		x = -1
+		y = 1
+		relative_position_id = HUN_mobile_corps_doctrine
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_the_botond
+				bonus = 1.0
+				uses = 2
+				category = motorized_equipment
+			}
+		}
+	}
+		focus = {
+		id = HUN_mechanized_hussars
+		icon = GFX_goal_generic_army_motorized
+		prerequisite = { focus = HUN_the_botond }
+		mutually_exclusive = { focus = HUN_hussar_doctrine }
+		x = -1
+		y = 1
+		relative_position_id = HUN_the_botond
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_mechanized_hussars
+				bonus = 1.0
+				ahead_reduction = 1
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+		}
+	}
+
+	 
+		focus = {
+		id = HUN_hussar_doctrine
+		icon = GFX_goal_elite_cavalry_divisions
+		prerequisite = { focus = HUN_the_botond }
+		mutually_exclusive = { focus = HUN_mechanized_hussars }
+		x = 1
+		y = 1
+		relative_position_id = HUN_the_botond
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = HUN_hussar_doctrine_idea
+		}
+	}
+	
+
+	focus = {
+		id = HUN_motorized_logistics
+		icon = GFX_focus_SOV_the_road_of_life
+		prerequisite = {focus =HUN_mechanized_hussars  focus = HUN_hussar_doctrine }
+		x = 1
+		y = 1
+		relative_position_id = HUN_mechanized_hussars
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_motorized_logistics
+				bonus = 1.0
+				uses = 2
+				category = hospital_tech
+				category = logistics_tech
+			}
+		}
+	}
+
+	focus = {
+		id = HUN_develop_tanks
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = HUN_armored_warfare  }
+		x = 1
+		y = 1
+		relative_position_id = HUN_armored_warfare
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_develop_tanks
+				ahead_reduction = 0.5
+				bonus = 1
+				uses = 1
+				category = cat_1943_tanks	
+			}
+		}
+	}
+
+	focus = {
+		id = HUN_assault_gun_focus
+		icon = GFX_goal_generic_army_artillery2
+		prerequisite = { focus = HUN_armored_warfare  }
+		x = 0
+		y = 2
+		relative_position_id = HUN_armored_warfare
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = HUN_assault_gun_focus
+		}
+	}
+	
+	############################
+	##### HOME DEF BRANCH ######
+	############################
+
+	focus = {
+		id = HUN_light_infantry_divisions_doctrine
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = HUN_army_maneuvers }
+		x = 0
+		y = 1
+		relative_position_id = HUN_army_maneuvers
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 25
+			custom_effect_tooltip = HUN_light_infantry_divisions_doctrine_tech_tt
+			hidden_effect = { set_technology = { HUN_light_infantry_tech = 1 popup = no } }
+		}
+	}
+
+	focus = {
+		id = HUN_danuvia_submachine_guns
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = HUN_light_infantry_divisions_doctrine }
+		x = -1
+		y = 1
+		relative_position_id = HUN_light_infantry_divisions_doctrine
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_danuvia_submachine_guns
+				bonus = 0.5
+				uses = 3
+				category = infantry_weapons
+			}
+		}
+	}
+
+	focus = {
+		id = HUN_artillery_effort
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = HUN_light_infantry_divisions_doctrine }
+		x = 1
+		y = 1
+		relative_position_id = HUN_light_infantry_divisions_doctrine
+
+		cost = 5
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = HUN_artillery_effort
+				bonus = 0.5
+				uses = 3
+				category = artillery
+			}
+		}
+	}
+
+	focus = {
+		id = HUN_form_parachute_battalions
+		icon = GFX_focus_generic_paratrooper
+		prerequisite = { focus = HUN_artillery_effort focus = HUN_danuvia_submachine_guns}
+		
+		x = -1
+		y = 1
+		relative_position_id = HUN_artillery_effort
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_doctrine_cost_reduction = {
+				cost_reduction = 0.99
+				uses = 6
+				category = cat_paratroopers_doctrine
+			}	
+		}
+	}
+
+}
