@@ -249,108 +249,57 @@ focus = {
 	}
 
 
-focus = {
+	focus = {
 		id = FRA_industrial_expansion
 		icon = GFX_focus_generic_industry_3
+		
 		prerequisite = { focus = FRA_metropolitan_france }
-			prerequisite = { focus = FRA_algerie_france }
+		prerequisite = { focus = FRA_algerie_france }
+
 		x = -2
 		y = 1
+		
 		relative_position_id = FRA_metropolitan_france
+		
 		cost = 10
+		
 		cancel_if_invalid = yes
+		
 		continue_if_invalid = no
+		
 		available_if_capitulated = no
+		
 		bypass = { has_country_flag = vichy_france_established }
 
 		search_filters = {  FOCUS_FILTER_INDUSTRY }
+		
 		completion_reward = {
-                # custom_effect_tooltip = EFR_industrial_expansion_tt
-                        # if = { limit = { date < 1938.1.1 } set_country_flag = civ_pre_38_flag  
-                                            # 539 = {
-                # add_extra_state_shared_building_slots = 2 
-                # add_building_construction = {
-                    # type = industrial_complex 
-                    # level = 2 
-                    # instant_build = yes
-                # }
-            # }
-                        # }
-            # if = { limit = { date < 1939.1.1 } set_country_flag = civ_pre_39_flag  
-                                # 539 = {
-                # add_extra_state_shared_building_slots = 2 
-                # add_building_construction = {
-                    # type = industrial_complex 
-                    # level = 2 
-                    # instant_build = yes
-                # }
-            # }
-            # }
-            # if = { limit = { date < 1941.1.1 } set_country_flag = civ_pre_vichy_flag 
-                        # 539 = {
-                # add_extra_state_shared_building_slots = 2 
-                # add_building_construction = {
-                    # type = industrial_complex 
-                    # level = 2 
-                    # instant_build = yes
-                # }
-            # }
-            # }
             add_offsite_building = { type = industrial_complex level = 4 }
 		}
 	}
-		focus = {
+	focus = {
 		id = EFR_military_factories
 		icon = GFX_goal_generic_construct_mil_factory
+		
 		prerequisite = { focus = FRA_metropolitan_france }
-			prerequisite = { focus = FRA_algerie_france }
-			x = 0
+		prerequisite = { focus = FRA_algerie_france }
+		
+		x = 0
 		y = 1
+		
 		relative_position_id = FRA_metropolitan_france
+		
 		cost = 10
+		
 		bypass = { has_country_flag = vichy_france_established }
+		
 		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
 		completion_reward = {
-            # custom_effect_tooltip = EFR_military_factories_tt
-            # if = { limit = { date < 1938.1.1 } set_country_flag = mill_pre_38_flag  }
-            # if = { limit = { date < 1939.1.1 } set_country_flag = mill_pre_39_flag  }
-            # if = { limit = { date < 1941.1.1 } set_country_flag = mill_pre_vichy_flag  }
-            
-            # if = { limit = { date < 1938.1.1 } #12 mills
-                # FRA = { #3 division
-                    # add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 45000   } 
-                    # add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1500   }  
-                    # add_equipment_to_stockpile = { type = motorized_equipment amount = 4500   }  
-                    # add_equipment_to_stockpile = { type = support_equipment amount = 1500   }   
-                    # add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 750   }   
-                    # add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 4500   }           
-                # }
-            # }
-            # else_if = { limit = { date < 1939.1.1 date >1938.1.1  } #8 mills
-                # FRA = { #3 division
-                    # add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 30000   } 
-                    # add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1000   }  
-                    # add_equipment_to_stockpile = { type = motorized_equipment amount = 3000   }  
-                    # add_equipment_to_stockpile = { type = support_equipment amount = 1000   }   
-                    # add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 500   }   
-                    # add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 3000   }       
-                # }
-            # }
-            # else = {
-                # FRA = { #3 division #3 mills; 9 divs worth
-                    # add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 15000   } 
-                    # add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 500   }  
-                    # add_equipment_to_stockpile = { type = motorized_equipment amount = 1500   }  
-                    # add_equipment_to_stockpile = { type = support_equipment amount = 500   }   
-                    # add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 250   }   
-                    # add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 1500   }       
-                # }
-            # }
-                    
             add_offsite_building = { type = arms_factory level = 4 }
-				
 		}
 	}
+	
 	focus = {
 		id = EFR_extra_research_slot
 		icon = GFX_focus_research

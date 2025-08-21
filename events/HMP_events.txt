@@ -3410,27 +3410,59 @@ country_event = {
    }
    }
 			   
-           country_event = {
-   id = italy.805 
-   title = "The Continuation War"
-   desc = "With the German invasion of the Soviet Union, our time has come to strike the Soviets and reclaim our lost territories!"
-   picture = GFX_report_event_german_italian_pact
+country_event = {
+    id = italy.805
+    title = "The Continuation War"
+    desc = "With the German invasion of the Soviet Union, our time has come to strike the Soviets and reclaim our lost territories!"
+    picture = GFX_report_event_german_italian_pact
 
-   fire_only_once = no
- is_triggered_only = yes
-	hidden = yes
-   
-      option = {
-	if = { limit = { SOV = { check_variable = {var = SOV_rearline_military_district_army_core_defence_factor	value = 0	compare = greater_than } }  } SOV = {  add_to_variable = { var = SOV_rearline_military_district_army_core_defence_factor value = -0.01 }  }   }  
-	
-	if = { limit = { SOV = { check_variable = {var = SOV_frontline_military_district_army_core_defence_factor	value = 0	compare = greater_than } }  } SOV = {  add_to_variable = { var = SOV_frontline_military_district_army_core_defence_factor value = -0.01 }  }   }  
-	 
-	if = { limit = { SOV = { check_variable = {var = SOV_purge_air_factor	value = 0	compare = less_than } }  } SOV = {  add_to_variable = { var = SOV_purge_air_factor value = 0.01 }  }   }  
-	if = { limit = { SOV = { check_variable = {var = SOV_purge_air_factor	value = 0	compare = less_than } } } SOV = { country_event = { id = italy.805 days = 15 }  }  }
-	if = { limit = { SOV = {  check_variable = {var = SOV_purge_air_factor	value = 0	compare = greater_than_or_equals } } } SOV = { set_variable = { var = SOV_purge_air_factor value = 0 }   } }
+    fire_only_once = no
+    is_triggered_only = yes
+    hidden = yes
 
-	  }
-   }    
+    option = {
+        # If the Soviets have positive rearline defense, reduce it slightly
+        if = {
+            limit = {
+                SOV = { check_variable = { var = SOV_rearline_military_district_army_core_defence_factor value = 0 compare = greater_than } }
+            }
+            SOV = { add_to_variable = { var = SOV_rearline_military_district_army_core_defence_factor value = -0.01 } }
+        }
+
+        # If the Soviets have positive frontline defense, reduce it slightly
+        if = {
+            limit = {
+                SOV = { check_variable = { var = SOV_frontline_military_district_army_core_defence_factor value = 0 compare = greater_than } }
+            }
+            SOV = { add_to_variable = { var = SOV_frontline_military_district_army_core_defence_factor value = -0.01 } }
+        }
+
+        # If Soviet air purge factor is below 0, increase it slightly
+        if = {
+            limit = {
+                SOV = { check_variable = { var = SOV_purge_air_factor value = 0 compare = less_than } }
+            }
+            SOV = { add_to_variable = { var = SOV_purge_air_factor value = 0.01 } }
+        }
+
+        # If Soviet air purge factor is still below 0, trigger this event again after 15 days
+        if = {
+            limit = {
+                SOV = { check_variable = { var = SOV_purge_air_factor value = 0 compare = less_than } }
+            }
+            SOV = { country_event = { id = italy.805 days = 15 } }
+        }
+
+        # If Soviet air purge factor is 0 or higher, reset it to 0
+        if = {
+            limit = {
+                SOV = { check_variable = { var = SOV_purge_air_factor value = 0 compare = greater_than_or_equals } }
+            }
+            SOV = { set_variable = { var = SOV_purge_air_factor value = 0 } }
+        }
+    }
+}
+  
  
      
                  country_event = {

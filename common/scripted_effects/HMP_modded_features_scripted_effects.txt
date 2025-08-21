@@ -5464,103 +5464,186 @@ HMP_capitulations_on_actions = {
     }
 
 
-			if = { limit = { ROOT = { original_tag = SOV }  ENG = { has_country_flag = ENG_the_unthinkable } } democratic_russia = yes  }
-			if = {	limit = {original_tag = USA  ENG = { has_capitulated = yes }  }  man_in_the_high_castle = yes   }	
-			if = {	limit = {original_tag = ENG  USA = { has_capitulated = yes }  }  man_in_the_high_castle = yes   }	
-			
-			if = {	limit = {original_tag = ENG has_global_flag = war_in_the_west_start }  man_in_the_high_castle_NO_ASIA = yes   }	
-					
-			if = {	limit = { AND = { original_tag = AOI NOT = { AOI = { has_completed_focus = ETH_a_last_stand }}  } }	
-					if = { limit = { AOI = { has_country_flag = host } } ALB = { set_country_flag = host }  AOI = { clr_country_flag = host }  }
-					if = {  limit = { AOI = { is_ai = no } } ALB = { add_state_core = 626 transfer_state = 626 } }
-					else = { ITA = { transfer_state = 626 } }
-					ALB = { change_tag_from = AOI } 		
-					ITA = { annex_country = { target = AOI transfer_troops = no } }
-					every_state = { limit = { is_core_of = AOI}  ENG= { transfer_state = PREV  } }
-				}	
-				
-				if = {	limit = { AND = { original_tag = AOI AOI = { has_completed_focus = ETH_a_last_stand }  } }	
-				if = { limit = { AOI = { has_country_flag = host } }  AOI = { clr_country_flag = host } ITA = { set_country_flag = host }   }
-				ITA = { change_tag_from = AOI }
-				ITA = { annex_country = { target = AOI transfer_troops = no } }
-				}
-				
-		if =  { 
-		limit = { original_tag = BEL NOT = { BEL = { has_country_flag = BEL_capped }} }
-		BEL = {		
-			delete_unit = { disband = yes }	
-			#send_equipment_fraction = {  value = 1  target = PER }
-			set_country_flag = BEL_capped	
-			}
-		PER = { country_event = { id =  mtg_netherlands.331 hours = 2 } 	}
-					every_state = { limit = { is_core_of = BEL NOT = { state = 8 }}GER = {	transfer_state = PREV	} }
-			PER = { transfer_state = 8 } GER = { transfer_state = 8 }
+	# If ROOT player is SOV and England has the flag ENG_the_unthinkable, set democratic Russia
+    if = { 
+        limit = { 
+            ROOT = { original_tag = SOV } 
+            ENG = { has_country_flag = ENG_the_unthinkable } 
+        }  
+        democratic_russia = yes  
+    }
 
-		}
-		if = {
-			limit = {	NOT = { original_tag = GER }	NOT = { has_government = fascism }	}
-			news_event = { id = country_capitulated.0 days = 0 }
-		}
+    # If USA is the ROOT player and England has capitulated, set man_in_the_high_castle
+    if = {	
+        limit = { 
+            original_tag = USA  
+            ENG = { has_capitulated = yes }  
+        }  
+        man_in_the_high_castle = yes   
+    }
+
+    # If England is the ROOT player and USA has capitulated, set man_in_the_high_castle
+    if = {	
+        limit = { 
+            original_tag = ENG  
+            USA = { has_capitulated = yes }  
+        }  
+        man_in_the_high_castle = yes   
+    }
+
+	# If England is the player and the global flag 'war_in_the_west_start' is set, trigger the no-Asia variant
+    if = {	
+        limit = { 
+            original_tag = ENG 
+            has_global_flag = war_in_the_west_start 
+        }  
+        man_in_the_high_castle_NO_ASIA = yes   
+    }
+
+	if = { 
+        limit = { 
+            AND = { 
+                original_tag = AOI 
+                NOT = { AOI = { has_completed_focus = ETH_a_last_stand } } 
+            } 
+        }
+
+        # If AOI has the 'host' flag, set it on ALB and clear it from AOI
+        if = { 
+            limit = { AOI = { has_country_flag = host } } 
+            ALB = { set_country_flag = host }  
+            AOI = { clr_country_flag = host }  
+        }
+
+        # If AOI is player-controlled, make ALB core and transfer the state
+        if = {  
+            limit = { AOI = { is_ai = no } } 
+            ALB = { add_state_core = 626 transfer_state = 626 } 
+        }
+        else = { 
+            ITA = { transfer_state = 626 } 
+        }
+
+        # Change the tag from AOI to ALB and annex AOI as Italy
+        ALB = { change_tag_from = AOI }         
+        ITA = { annex_country = { target = AOI transfer_troops = no } }
+
+        # Transfer all AOI core states to ENG
+        every_state = { 
+            limit = { is_core_of = AOI }  
+            ENG = { transfer_state = PREV }  
+        }
+    }
+
+	if = { 
+        limit = { 
+            AND = { 
+                original_tag = AOI 
+                AOI = { has_completed_focus = ETH_a_last_stand } 
+            } 
+        }
+
+        # If AOI has the 'host' flag, clear it and set it on Italy
+        if = { 
+            limit = { AOI = { has_country_flag = host } }  
+            AOI = { clr_country_flag = host } 
+            ITA = { set_country_flag = host }   
+        }
+
+        # Italy replaces AOI and annexes it
+        ITA = { change_tag_from = AOI }
+        ITA = { annex_country = { target = AOI transfer_troops = no } }
+    }
+
+	if = { 
+        limit = { 
+            original_tag = BEL 
+            NOT = { BEL = { has_country_flag = BEL_capped } } 
+        }
+
+        BEL = {
+            delete_unit = { disband = yes }	
+            set_country_flag = BEL_capped	
+        }
+
+        PER = { 
+            country_event = { id = mtg_netherlands.331 hours = 2 } 	
+        }
+
+        every_state = { 
+            limit = { is_core_of = BEL NOT = { state = 8 } } 
+            GER = { transfer_state = PREV }	
+        }
+
+        PER = { transfer_state = 8 } 
+        GER = { transfer_state = 8 }
+    }
+
+    if = {
+        limit = { 
+            NOT = { original_tag = GER }	
+            NOT = { has_government = fascism }	
+        }
+        news_event = { id = country_capitulated.0 days = 0 }
+    }
 	
-			if = {
-				limit = { 
-					NOT = { 
-						DEN = { has_country_flag = DEN_capped } 
-					}	
-					original_tag = DEN	
-					DEN = { is_ai = yes }
-				}
-				DEN = { 
-					set_country_flag = DEN_capped 
-				} 
-				if = { 
-					limit = { 
-						date < 1941.1.1 
-					} 
-					GER = { transfer_state = 99 } 
-					PER = { transfer_state = 37 }  	
-					GER = { transfer_state = 37 } 
-				}
-			}
-	
-			
-			if = {
-			limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = NZL } NOT = { country_exists = AST }} }
-			JAP = { transfer_state = 490 transfer_state = 472 transfer_state = 312 transfer_state = 523 transfer_state = 518 transfer_state = 415 }
-			}
-			if = {
-			limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = AST } NOT = { country_exists = NZL }} }
-			JAP = { transfer_state  = 490 transfer_state  = 472 transfer_state  = 312 transfer_state  = 523 transfer_state = 518 transfer_state = 415   }
-			}
-						if = {
-			limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = NZL } country_exists = AST } }
-			JAP = { transfer_state  = 490  }
-			}
-						if = {
-			limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = AST }  country_exists = NZL } }
-			JAP = {  transfer_state  = 472 transfer_state  = 312 transfer_state  = 523 transfer_state = 415  transfer_state  = 518 }
-			}
+    if = {
+        limit = { 
+            NOT = { 
+                DEN = { has_country_flag = DEN_capped } 
+            }	
+            original_tag = DEN	
+            DEN = { is_ai = yes }
+        }
+        DEN = { 
+            set_country_flag = DEN_capped 
+        } 
+        if = { 
+            limit = { 
+                date < 1941.1.1 
+            } 
+            GER = { transfer_state = 99 } 
+            PER = { transfer_state = 37 }  	
+            GER = { transfer_state = 37 } 
+        }
+    }
+
+	if = {
+        limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = NZL } NOT = { country_exists = AST } } }
+        JAP = { transfer_state = 490 transfer_state = 472 transfer_state = 312 transfer_state = 523 transfer_state = 518 transfer_state = 415 }
+    }
+
+    if = {
+        limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = AST } NOT = { country_exists = NZL } } }
+        JAP = { transfer_state = 490 transfer_state = 472 transfer_state = 312 transfer_state = 523 transfer_state = 518 transfer_state = 415 }
+    }
+
+    if = {
+        limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = NZL } country_exists = AST } }
+        JAP = { transfer_state = 490 }
+    }
+
+    if = {
+        limit = { AND = { FROM = { original_tag = JAP } ROOT = { original_tag = AST } country_exists = NZL } }
+        JAP = { transfer_state = 472 transfer_state = 312 transfer_state = 523 transfer_state = 415 transfer_state = 518 }
+    }
 }
 
 HMP_script_poland = {
-	POL = { 
+	POL = {
 		set_country_flag = poland_capitulated
 		delete_unit = { disband = yes }
-		send_equipment_fraction = {  value = 1  target = PER }
+		send_equipment_fraction = { value = 1  target = PER }
 		country_event = poland.25
 	}
 
 	set_province_name = { id = 362	name = "Danzig"	}
-	set_province_name = {	id = 6558	name = "Posen"	}	
+	set_province_name = {	id = 6558	name = "Posen"	}
 	
 	PER = {			
-		country_event = { id=iraq_hist.111 hours = 6 }
-		country_event = { id=iraq_hist.112 hours = 12 }
+		country_event = { id = iraq_hist.111 hours = 6 }
+		country_event = { id = iraq_hist.112 hours = 12 }
 	}
-}
-  
-HMP_script_poland_3 = {
-	SOV = { complete_national_focus = SOV_claims_on_poland }
 }
   
 HMP_script_poland_2 = {
@@ -5583,1542 +5666,1907 @@ HMP_script_poland_2 = {
 	556 = {	set_state_name = "Danzig" }
 	86 = { set_state_name = "Posen"	}
 }
-  
+
+HMP_script_poland_3 = {
+	SOV = { complete_national_focus = SOV_claims_on_poland }
+}
+
 #####FUEL SYSTEM######
 
 fuel_system_refresh_list = {
-			if = {
-							limit = {
-								any_country = {
-									OR = { 
-										AND = {
-											NOT = { tag = ROOT}
-									is_in_faction_with = ROOT 
-									NOT = { is_in_array = { ROOT.faction_members_array = THIS.id } }
-								}
-								any_of_scopes = { array = ROOT.faction_members_array exists = no }
-								}
-								}
-								
-							}
-							clear_array=ROOT.faction_members_array
-							every_country = {
-								limit = {
-									NOT={tag=ROOT}
-									OR={
-									is_in_faction_with = ROOT 
-									AND={ROOT={tag=ENG} tag = SOV } 
-									AND={ROOT={tag=ENG}  tag = HOL } 
-									AND={ROOT={tag=ENG}  tag = POL } 
-									AND={ROOT={ tag = ENG }  tag = NOR } 
-										AND={ROOT={ tag = ENG }  tag = MON } 
-									AND={ROOT={tag=ENG} tag = GRE } 
-									AND={ROOT={tag=GER} tag = FIN } 
-										AND={ROOT={tag=GER} tag = DEN } 
-									}
-									NOT = { is_in_array = { ROOT.faction_members_array = THIS.id } }
-								}
-								add_to_array = { ROOT.faction_members_array = THIS.id }
-							}
-						}
-			if = {
-							limit = {
-								any_of_scopes={array=ROOT.faction_members_array NOT={is_in_array={GLOBAL.fuel_countries=THIS.id}}
-								}
-							}
-							for_each_scope_loop={
-								array=ROOT.faction_members_array
-								if={limit={NOT={is_in_array={GLOBAL.fuel_countries=THIS.id}}}
-								add_to_array={GLOBAL.fuel_countries=THIS.id}}
-								}
-				}
-}
-fuel_startup_effect = { 
-			every_country={ ###THESE NATIONS ARE THE FUEL CONTROLLERS
-				limit={	OR = { tag = GER tag = JAP tag = ENG } }
-				add_to_array={GLOBAL.fuel_system_manager=THIS.id}
-			}
-					GER = {
-				every_country = {
-					limit = {
-						NOT={tag=GER}
-						OR = { is_in_faction_with = GER tag = FIN  tag = CZE tag = YUG tag = SPR tag = EFR tag = ALB   }
-						NOT = { is_in_array = { GER.faction_members_array = THIS.id } }			
-					}
-					add_to_array = { GER.faction_members_array = THIS.id }
-				}
-				if = {
-					limit = {
-						any_of_scopes={array=GER.faction_members_array NOT={is_in_array={GLOBAL.fuel_countries=THIS.id}}}
-					}
-					for_each_scope_loop={
-						array=GER.faction_members_array
-						if={limit={NOT={is_in_array={GLOBAL.fuel_countries=THIS.id}}}
-						add_to_array={GLOBAL.fuel_countries=THIS.id}}
-					}
-				}
-			}
-			ENG = {
-				every_country = {
-					limit = {
-					OR = {
-						AND = { 
-						NOT={tag=ENG}
-						 OR = { is_in_faction_with = ENG tag = POL tag = HOL tag = NOR tag = GRE    }
-						NOT = { is_in_array = { ENG.faction_members_array = THIS.id } }	
-						}
-						tag = SOV
-					}
-					}
-					add_to_array = { ENG.faction_members_array = THIS.id }
-				}
-				if = {
-					limit = {
-						any_of_scopes={array=ENG.faction_members_array NOT={is_in_array={GLOBAL.fuel_countries=THIS.id}}}
-					}
-					for_each_scope_loop={
-						array=ENG.faction_members_array
-						if={limit={NOT={is_in_array={GLOBAL.fuel_countries=THIS.id}}}
-						add_to_array={GLOBAL.fuel_countries=THIS.id}}
-					}
-				}
-			}
-		}
-on_daily_fuel = {
-	for_each_scope_loop = {
-	array = GLOBAL.fuel_system_manager
-	set_variable = { GLOBAL.controllerscope = THIS.id }
-	for_each_scope_loop = {
-	array = THIS.faction_members_array
-	set_variable = { GLOBAL.currentscope = THIS.id }
-		##BLOCK 1A for FUEL_RECIPIENT #asssume FUEL_RECIPIENT (Hungary) has 0.5 min_fuel and 0.3 fuel_ratio
-		set_variable = { fuel_required = min_fuel }     #set x to 0.5
-		subtract_from_variable = { fuel_required = fuel_ratio }  #0.5 - 0.3 = 0.2 
-		multiply_variable = { fuel_required = max_fuel_k }      #0.2*50 = 10
-		multiply_variable = { fuel_required = 1000 }         #10*1000 = 10000
-		set_variable = { fuel_required_variable = fuel_required }  #set y to 10000
-		multiply_variable = { fuel_required_variable = -1 } #10000*-1 = -10000 (similar math is in BLOCK 1B)
-		##BLOCK 1B for FUEL_CONTROLLER
-		set_variable = { PREV.fuel_required = PREV.min_fuel } #if FUEL_CONTROLLER has fuel_ratio > min_fuel then fuel_required_variable will be positive
-		subtract_from_variable = { PREV.fuel_required = PREV.fuel_ratio }
-		multiply_variable = { PREV.fuel_required = PREV.max_fuel_k }
-		multiply_variable = { PREV.fuel_required = 1000 }
-		set_variable = { PREV.fuel_required_variable = PREV.fuel_required }
-		multiply_variable = { PREV.fuel_required_variable = -1 }		
-		##BLOCK 2 for "transfering" fuel from FUEL_CONTROLLER to FUEL_RECIPIENT
-		if={limit={
-			check_variable = { PREV.fuel_required < 0 }  #fuel from FUEL_CONTROLLER needs to be negative
-			check_variable = { fuel_required > 0} 	 #fuel to FUEL_RECIPIENT needs to be positive
-			check_variable = { min_fuel > fuel_ratio } #FUEL_RECIPIENT's min_fuel has to be bigger than their fuel ratio (aka they need fueL)
-			check_variable = { PREV.fuel_required_variable > fuel_required } #available fuel on the FUEL_CONTROLLER must be above the required fuel for the minor
-			}
-			set_temp_variable = { PREV.fuel_from_FUEL_CONTROLLER = fuel_required_variable }  #set fuel_from_FUEL_CONTROLLER to 10000 
-			set_temp_variable = { fuel_to_FUEL_RECIPIENT = fuel_required }                 #set fuel_to_FUEL_RECIPIENT to -10000        
-			PREV = { add_fuel = fuel_from_FUEL_CONTROLLER	}					      #add 10000 to FUEL_CONTROLLER 									
-			add_fuel = fuel_to_FUEL_RECIPIENT                             #add -10000 to minor
-		}
-	}
-	}
-	for_each_scope_loop = {
-		array = GLOBAL.fuel_countries
-		set_temp_variable = { currentfuel = fuel_ratio }
-		subtract_from_temp_variable = { currentfuel= 1 }
-		multiply_temp_variable = { currentfuel = 88 }
-		set_variable = { fuel_bar_fuel = currentfuel }
-	}
-}
-				
-		fascism_has_been_defeated = { #divided over 5 scripts to avoid weird errors in MP where the script is partially executed or causes other issues
-		SPR = { transfer_state  = 600 }
-		8 = { remove_core_of = GER } 28 = { remove_core_of = GER } 85 = { remove_core_of = GER }
+    if = {
+        limit = {
+            any_country = {
+                OR = { 
+                    AND = {
+                        NOT = { tag = ROOT }
+                        is_in_faction_with = ROOT
+                        NOT = { is_in_array = { ROOT.faction_members_array = THIS.id } }
+                    }
+                    any_of_scopes = { array = ROOT.faction_members_array exists = no }
+                }
+            }
+        }
+        clear_array = ROOT.faction_members_array
 
-every_state = { limit = { is_core_of = ITA NOT = { OR = { state = 515 state = 448 state = 449 state = 606 state = 279 state = 450 state = 579 state = 625 state = 624  }}} ITA ={ transfer_state = PREV  set_cosmetic_tag = ITA_democratic }   }
-
-			SOV = { transfer_state = 216 transfer_state = 215 transfer_state = 213 transfer_state = 287   transfer_state = 78  transfer_state = 80  transfer_state = 192  transfer_state = 198    clr_country_flag =  SOV_third_five_year_plan_locked_flag }
-		SWE = { transfer_state  = 552  transfer_state  = 506 transfer_state  = 604 transfer_state = 605 transfer_state = 608  transfer_state  = 354  transfer_state = 332 }
-		GER = { add_ideas = GER_western_trade_cooperation set_country_flag = NO_MORE_FASCISM set_autonomy = {  target = SPR  autonomy_state = autonomy_free }    }
-every_country = { if={limit = {is_in_faction_with = ENG} 
-white_peace = SPR  white_peace = GER
-if = { limit = { country_exists = ROM } white_peace = ROM }
-if = { limit = { country_exists = HUN } white_peace = HUN }
-if = { limit = { country_exists = ITA } white_peace = ITA }
-if = { limit = { country_exists = BUL } white_peace = BUL }
-if = { limit = { country_exists = AOI } white_peace = AOI }
-if = { limit = { country_exists = FIN } white_peace = FIN }
-if = { limit = { country_exists = ALB } white_peace = ALB }
- } }
-SOV = { 
-white_peace = SPR white_peace = GER white_peace = JAP
-if = { limit = { country_exists = ROM } white_peace = ROM }
-if = { limit = { country_exists = HUN } white_peace = HUN }
-if = { limit = { country_exists = ITA } white_peace = ITA }
-if = { limit = { country_exists = BUL } white_peace = BUL }
-if = { limit = { country_exists = AOI } white_peace = AOI }
-if = { limit = { country_exists = FIN } white_peace = FIN }
-if = { limit = { country_exists = ALB } white_peace = ALB }
-}
-PER ={  country_event = { id = soviet.1464 hours = 2 } }
-}
-fascism_has_been_defeated_2 = {
-reset_province_name = 9909 
-reset_province_name =  778 
-reset_province_name = 362
-reset_state_name  = 362 
-reset_state_name  = 553 
-reset_province_name  = 6464 
-reset_state_name = 86
-reset_province_name = 6558
-reset_state_name = 28 
-reset_state_name = 8
-reset_province_name = 6583 
-reset_province_name = 678 
-reset_province_name = 9503
-reset_state_name = 1 
-reset_province_name = 3838
-reset_state_name = 102 
-reset_province_name = 9627
-reset_province_name = 9940 
-reset_province_name = 12058
-reset_state_name = 182
-	
-cap_finland_effect = yes
-GER = { 
-release = CZE 
-release = POL 
-release = NOR
-release = YUG
-release = ROM 
-release = GRE 
-release = BUL 
-release = ALB 
-release = HUN 
-release = FRA 
-release = HOL 
-release = DEN 
-release = BEL 
-}
-SPR = { release = BUL }
-ALB = { transfer_state = 44 set_cosmetic_tag = ALB_communism }
-PER ={  country_event = { id = soviet.1465 hours = 2 } }
-}
-
-
-
-
-fascism_has_been_defeated_3 = { 
-
-if =  { limit = { country_exists = ITA } ITA = { release = YUG release = ROM release = GRE release = BUL release = ALB  }  }
-if =  { limit = { country_exists = BUL } BUL = { release = GRE }  }
-if =  { limit = { country_exists = ROM } ROM = { release = GRE }  }
-BUL = { release = YUG release = SPR release = ROM release = HUN }
-NOR = { release = ENG }
-POL = { 
-transfer_state = 5 #Ermland-Masuren
-transfer_state = 63 #Hinterpommern
-transfer_state = 68 #Ostmark
-transfer_state = 66 #Niederschlesien
-transfer_state = 67 #Oberschlesien
-transfer_state = 97
-}
-5 = { add_core_of = POL }
-63 = { add_core_of = POL }
-68 = { add_core_of = POL }
-66 = { add_core_of = POL }
-67 = { add_core_of = POL }
-YUG = {
-transfer_state = 163 #Zara 
-}
-HUN = { release = YUG release = CZE release = ROM }
-SWE =  {  transfer_state = 266 transfer_state = 419     }
-SOV = {    
-transfer_state = 188 #Memel          ###GERMANY###
-transfer_state = 330 #Konigsberg
-transfer_state = 62 #Vorpommern
-transfer_state = 61 #Mecklenberg
-transfer_state = 64 #Brandenburg
-transfer_state = 65 #Sachsen
-transfer_state = 60 #Thuringen
-transfer_state = 4 #Lower Austria ###AUSTRIA### 
-transfer_state = 73 #Carpathian Ruthenia ###CZECHIA###
-#set_autonomy = {  target = GER  autonomy_state = autonomy_puppet }
-set_autonomy = {  target = POL  autonomy_state = autonomy_puppet }
-set_autonomy = {  target = YUG  autonomy_state = autonomy_puppet }
-set_autonomy = {  target = ROM  autonomy_state = autonomy_puppet }
-set_autonomy = {  target = HUN  autonomy_state = autonomy_puppet }
-set_autonomy = {  target = ALB  autonomy_state = autonomy_puppet }
-set_autonomy = {  target = BUL  autonomy_state = autonomy_puppet }
-if = {
-				limit = {
-					original_tag = SOV
-					has_country_flag = SOV_third_five_year_plan_locked_flag
-					NOT = { has_country_flag = SOV_fourth_five_year_plan_available_flag }
-					OR = {
-						NOT = {
-							any_country = {
-								has_country_flag = SOV_third_five_year_plan_disruptor_flag
-							}
-						}
-						any_country = {
-							has_country_flag = SOV_third_five_year_plan_disruptor_flag
-							NOT = { has_war_with = ROOT }
-						}
-					}
-				}
-				set_country_flag = SOV_fourth_five_year_plan_available_flag
-				clr_country_flag = SOV_great_patriotic_war_flag
-				complete_national_focus = SOV_restoration_and_development
-			}
-  }
-  CZE = { set_cosmetic_tag = CZE_democratic remove_ideas = armyandnavy_idea remove_ideas = CZE_divided_nation }
-    YUG = { set_cosmetic_tag = YUG_communism remove_ideas = ITA_italia_irredenta_achieved remove_ideas = CRO_croat_muslims_happy remove_ideas = CRO_tomislav_II  }
-ROM = { set_cosmetic_tag = ROM_communism remove_ideas = ROM_figurehead_king_michael remove_ideas = ROM_reserve_divisions remove_ideas = ROM_iron_guard remove_dynamic_modifier = { modifier = GER_fuel_mechanic } }
-HUN = { set_cosmetic_tag =  HUN_communism remove_dynamic_modifier = { modifier = GER_fuel_mechanic } remove_ideas = HUN_invite_foreign_investors remove_ideas = militarism_focus }
-BUL = { transfer_state = 293 set_cosmetic_tag = BUL_communism remove_ideas = BUL_brannik remove_ideas = BUL_prussia_of_the_balkans_04 remove_ideas = BUL_krali_marko_line_idea remove_ideas = BUL_bulgarian_irredentism  remove_ideas = BUL_zveno_ns  remove_ideas = BUL_bulgarian_tsardom remove_ideas = BUL_tsar_boris_positive_03 remove_ideas = BUL_bulgarian_patriarchate_restored remove_dynamic_modifier = { modifier = GER_fuel_mechanic } }  
-POL = { set_cosmetic_tag = POL_communism remove_dynamic_modifier = { modifier =  USA_cheap_rubber } remove_ideas = POL_anti_blitz_vehicles remove_ideas = POL_influex_of_exiles remove_ideas = POL_right_paramilitarism_idea remove_ideas = POL_april_constitution_left remove_ideas = POL_common_organization_of_society_idea remove_ideas = POL_walery_slawek_chairman   }
-NOR ={ set_cosmetic_tag = NOR_democratic }
-FRA= { set_cosmetic_tag = FRA_democratic }
-HOL= { set_cosmetic_tag = HOL_democratic }
-SWE =  {  transfer_state = 421 transfer_state = 413   transfer_state = 412 transfer_state = 595 transfer_state = 596 transfer_state = 597 transfer_state = 598      }
-ENG = { 
-
-transfer_state = 582 
-add_to_faction = CZE
-add_to_faction = HOL
-transfer_state = 271 
-transfer_state = 38
-transfer_state = 610
-transfer_state = 611
-transfer_state = 612
-transfer_state = 550
-transfer_state = 559
-transfer_state = 454 
-transfer_state = 453
-transfer_state = 291
-transfer_state = 592
-transfer_state = 593
-transfer_state = 594
-transfer_state = 626
-release = NOR
-release = DEN
-
-		transfer_state = 152 #Upper Austria ###AUSTRIA###
-transfer_state = 448 #Tripoli ###ITALY###
-transfer_state = 449 #El Agheila
-transfer_state = 579 #Cyrenaica
-transfer_state = 624 #Msus
-transfer_state = 625 #Derna
-transfer_state = 279 #Cyrenaican Desert
-transfer_state = 602 #SIWA
-transfer_state = 601
-transfer_state = 515 #Tripolitania
-transfer_state = 606 #ZILLAH
-transfer_state = 450 #Benghasi
-}
-		
-		AOI = {   transfer_state = 610 transfer_state = 38 transfer_state = 271 transfer_state = 612 transfer_state = 611 set_politics = { ruling_party = neutrality } set_cosmetic_tag = ETH_neutrality}
-if =  { limit = { country_exists = EFR } FRA = { annex_country = { target = EFR  transfer_troops = yes }   } }
-PER ={  country_event = { id = soviet.1466 hours = 2 } }
-}
-
-fascism_has_been_defeated_4 = {
-if =  { limit = { NOT = { country_exists = ITA } } ITA = { transfer_state = 2 }  }
-ITA = { release = FRA release = GRE release = BUL } ENG = { set_autonomy = {  target = ITA  autonomy_state = autonomy_supervised_state } 
-remove_dynamic_modifier = { modifier = ITA_regia_marina_3_alt_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_marina_alt_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_marina_2_alt_dynamic_modifier }
- remove_dynamic_modifier = { modifier = ITA_regia_marina_3_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_marina_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_marina_2_dynamic_modifier }
- remove_ideas = { ITA_servizio_informazione_militare_ns_vanilla ITA_german_military_cooperation_focus ITA_hardened_irregular_bands ITA_battaglio_del_grano ITA_battaglia_per_la_nascite ITA_italia_irredenta_achieved ITA_disgruntlement_in_the_airforce ITA_disgruntlement_in_the_army ITA_efficient_supply_lines    }
- remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_3_alt_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_alt_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_2_alt_dynamic_modifier }
- remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_3_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_2_dynamic_modifier }
-  remove_dynamic_modifier = { modifier = ITA_regio_esercito_3_alt_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regio_esercito_alt_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regio_esercito_2_alt_dynamic_modifier }
- remove_dynamic_modifier = { modifier = ITA_regio_esercito_3_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regio_esercito_dynamic_modifier } remove_dynamic_modifier = { modifier = ITA_regio_esercito_2_dynamic_modifier }
-remove_dynamic_modifier = { modifier = GER_fuel_mechanic } 
-  } 
-FRA = {
-transfer_state = 153 #Tyrol ###AUSTRIA###
-transfer_state = 461 transfer_state = 268 transfer_state = 459 transfer_state = 513  transfer_state = 460 transfer_state = 554 transfer_state = 458 transfer_state = 577 transfer_state = 397  transfer_state = 589  transfer_state = 590  transfer_state = 591 
-}
-USA = { release = DEN }
-ENG ={  add_to_faction = USA } 
-ENG = { add_to_faction = BEL add_to_faction = DEN add_to_faction = GRE }
-GER = {
-remove_dynamic_modifier = { modifier = GER_war_exhaustion }
-remove_dynamic_modifier = { modifier = GER_fuel_mechanic }
-remove_ideas = { GER_totaler_krieg_idea2 GER_stuka GER_pillen GER_choco VIC_aircraft_parts VIC_guest_workers GER_grosraumwirtschaft GER_redirecting_naval_production  GER_mech general_staff sour_loser    }
-set_cosmetic_tag = GER_DEM
-	set_politics = {
-	 ruling_party = neutrality
-	 elections_allowed = no
-	}
-	add_popularity = {
-		ideology = neutrality
-		popularity = 0.70
-	}
-	release = ITA 
-}
-ITA = { 
-	set_cosmetic_tag = ITA_democratic
-}
-ENG = { add_to_faction = GER } 
-if = { limit = { NOT = { has_global_flag = war_in_the_west_start } }
-HOL = { transfer_state = 309 transfer_state = 321  transfer_state = 352 transfer_state = 322 transfer_state = 516 transfer_state = 562 transfer_state = 342 transfer_state = 581 transfer_state = 575 transfer_state = 334  transfer_state = 335 transfer_state = 317 }
-}
-BEL = { transfer_state = 295  }
-ENG = {	country_event = { id = britain.1116 days = 1 }	}
- ITA ={  every_state = { limit = { is_core_of = ITA is_owned_by = GER } } transfer_state = PREV  }
- SPR = { dismantle_faction = yes } 
-}
-democratic_russia = {
-		SWE = { transfer_state = 11 transfer_state = 189 transfer_state = 190 transfer_state = 	191 transfer_state = 13 transfer_state = 12 }
-		every_country = { limit = {  is_in_faction_with = SOV }
-			set_politics = { ruling_party = democratic }
-			white_peace = USA white_peace = ENG white_peace = CAN white_peace = SAF white_peace = RAJ white_peace = NZL white_peace = AST white_peace = FRA white_peace = POL white_peace = HOL white_peace = BRA white_peace = NOR white_peace = GRE 
-		}
-		every_country = { limit = {  is_in_faction_with = ENG }
-			white_peace = SOV white_peace = ROM white_peace = HUN white_peace = POL white_peace = YUG white_peace = BUL
-		}	
-	SOV = {  release = FIN release = POL release = ROM 
-			set_politics = { ruling_party = democratic }
-							if = {
-					limit = { #Kerensky comes back from exile if Democratic
-						has_government = democratic
-						SOV_aleksandr_kerensky = {
-							has_character_flag = SOV_exiled_flag
-						}
-					}
-					SOV_aleksandr_kerensky = {
-						clr_character_flag = SOV_exiled_flag
-					}
-				}
-		}
-	}
-	
-	catch_up_iraq_with_tech = {
-	set_technology = { popup = no
-	tech_support = 1
-	infantry_weapons = 1
-	basic_train = 1
-	synth_oil_experiments = 1
-	fuel_refining2 = 1
-	special_equipment_tech = 1
-	fuel_refining3 = 1 
-	fuel_refining4 = 1
-	fuel_refining5 = 1
-	camelry_tech = 1
-	tech_engineers = 1 
-	tech_engineers2 = 1
-	tech_recon = 1 
-	tech_recon2 = 1
-	tech_maintenance_company = 1
-	tech_logistics_company = 1
-	tech_logistics_company2 = 1
-	gw_artillery = 1 
-	interwar_artillery = 1
-	artillery1 = 1 
-	artillery2 = 1 
-	iw_small_airframe = 1 
-	rocket_artillery = 1
-	interwar_antiair = 1
-	antiair1 = 1
-	antiair2 = 1	
-    interwar_antitank = 1	
-	antitank1 = 1
-	antitank2 = 1
-	antitank3 = 1 
-	electronic_mechanical_engineering = 1
-	radio = 1
-	mechanical_computing = 1
-	computing_machine = 1
-	basic_machine_tools = 1
-	improved_machine_tools = 1 
-	advanced_machine_tools = 1
-	dispersed_industry = 1
-	dispersed_industry2 = 1 
-	dispersed_industry3 = 1 
-	fuel_silos = 1 
-	construction1 = 1 
-	construction2 = 1 
-	construction3 = 1 
-	excavation1 = 1 
-	excavation2 = 1 
-	excavation3 = 1 
-	excavation4 = 1
-	infantry_weapons1 = 1 
-	infantry_weapons2 = 1
-	improved_infantry_weapons_2 = 1	
-	tech_mountaineers = 1 
-	improved_infantry_weapons = 1 
-    tech_special_forces = 1
-    support_weapons = 1 
-	motorised_infantry = 1 
-	}
-	}
-	
-	the_golden_coup_has_been_launched = {
-	hidden_effect = { catch_up_iraq_with_tech = yes }
-	add_equipment_to_stockpile = { type= train_equipment_1 amount = 20 producer = ITA }
-	remove_ideas = ai_imiter
-	ITA = { transfer_state = 44 }
-	remove_state_core = 44 add_state_core = 592 add_state_core = 593 add_state_core = 594 
-	transfer_state = 291 set_capital = {state = 291 } add_state_core = 291
-	load_oob = "ITA_IRQ_Spawn"  
-	add_equipment_to_stockpile = { type = convoy_1  amount = 200  producer = ALB }
-	add_research_slot = 4
-		291 = { add_extra_state_shared_building_slots = 2 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
-		592 = { add_extra_state_shared_building_slots = 2 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
-		593 = { add_extra_state_shared_building_slots = 1  add_building_construction = { type = industrial_complex level = 1 instant_build = yes }   }
-		594 = { add_extra_state_shared_building_slots = 2  add_building_construction = { type = industrial_complex level = 1 instant_build = yes } add_building_construction = { type = arms_factory level = 1 instant_build = yes }  }
-		
-		add_ideas = tot_economic_mobilisation add_ideas = service_by_requirement add_ideas = free_trade 
-	set_politics = {
-		ruling_party = fascism
-		elections_allowed  = no
-	}
-	add_to_war = {	targeted_alliance = GER	enemy = ENG	}
-	}
-	
-	iraq_gbp_doctrine = {
-	hidden_effect = { 
-		set_technology = { popup = no
-	trench_warfare = 1  
-	grand_battle_plan = 1
-	prepared_defense = 1
-	grand_assault = 1
-	armored_operations = 1
-	c3i_theory = 1 
-	branch_interoperation = 1 
-	assault_breakthrough = 1
-	infantry_offensive = 1
-	grand_mechanized_offensive = 1
-	assault_concentration = 1
-	night_assault_tactics = 1
-	}
-	}
-	}
-		iraq_ma_doctrine = {
-			hidden_effect = {
-				set_technology = { popup = no
-	mass_assault = 1 
-	pocket_defence = 1 
-	defence_in_depth = 1
-	peoples_army = 1
-	human_wave_offensive = 1
-	breakthrough_priority = 1
-	operational_concentration = 1
-	deep_operations = 1
-	mechanized_wave = 1
-	human_infantry_offensive = 1
-	large_front_offensive = 1
-	}
-	}
-	}
-		iraq_sf_doctrine = {
-			hidden_effect = { 
-				set_technology = { popup = no
-	superior_firepower = 1
-	concentrated_fire_plans = 1
-	sup_delay = 1 
-	mobile_defence = 1
-	dispersed_support = 1
-	tactical_control = 1
-	regimental_combat_teams = 1
-	sup_mechanized_offensive = 1
-	forward_observers = 1
-	intergrated_support = 1 
-	centralized_fire_control = 1
-	combined_arms = 1
-	}
-	}
-	}
-
-man_in_the_high_castle = {
-SPR = { 
-transfer_state = 461 #Casa Blanca
-transfer_state = 513 #Tlemcen
-transfer_state = 459 #Algiers
-transfer_state = 118 #Gibraltar
-}
-
-AOI = {
-transfer_state = 268 #French Somaliland
-transfer_state = 269 #British Somaliland
-transfer_state = 547 #Kenya
-transfer_state = 548 #Uganda
-transfer_state = 551 #Khartoum
-transfer_state = 587 #Port Sudan
-transfer_state = 588 #Shamaliyah
-transfer_state = 549 #Sudan 
-transfer_state = 550 #Eritrea
-transfer_state = 271 #Ethiopia
-transfer_state = 559 #Somaliland
-transfer_state = 601 #JUBA
-transfer_state = 610
-transfer_state = 611 
-transfer_state = 612 
-transfer_state = 38
-}
-
-
-every_state = {
-    limit = {
-        OR = {
-            is_core_of = AST
-            is_core_of = NZL
-           state= 306 state = 288 state = 609
+        every_country = {
+            limit = {
+                NOT = { tag = ROOT }
+                OR = {
+                    is_in_faction_with = ROOT
+                    AND = { ROOT = { tag = ENG } tag = SOV }
+                    AND = { ROOT = { tag = ENG } tag = HOL }
+                    AND = { ROOT = { tag = ENG } tag = POL }
+                    AND = { ROOT = { tag = ENG } tag = NOR }
+                    AND = { ROOT = { tag = ENG } tag = MON }
+                    AND = { ROOT = { tag = ENG } tag = GRE }
+                    AND = { ROOT = { tag = GER } tag = FIN }
+                    AND = { ROOT = { tag = GER } tag = DEN }
+                }
+                NOT = { is_in_array = { ROOT.faction_members_array = THIS.id } }
+            }
+            add_to_array = { ROOT.faction_members_array = THIS.id }
         }
     }
-    JAP = { transfer_state = PREV }
-}
-ENG = { set_autonomy = { target = RAJ autonomy_state = autonomy_free  end_wars = yes }   } 
-JAP = {
-set_autonomy = { target = RAJ autonomy_state = autonomy_wtt_imperial_associate  } 
 
-transfer_state = 296 #ATTU ISLAND
-transfer_state = 516 #West Papua
-transfer_state = 562 #The Moluccas
- transfer_state = 581 #Norhtern Sumatra
-transfer_state = 317 #Aru Islands
-transfer_state = 575 #Lesser Sunda Islands
-transfer_state = 342 #Sulawesi
-transfer_state = 334 #Kalimantan
-transfer_state = 335 #Java 
-transfer_state = 322 #West Central Papua
-transfer_state = 321 #Sumatra 
-transfer_state = 336 #Singapore
-transfer_state = 333 #North Borneo
-transfer_state = 418 #Mindanao 
-transfer_state = 485 #Cebu 
-transfer_state = 417 #Palawan
-transfer_state = 403 #Central Islands 
-transfer_state = 327 #Manila
-transfer_state = 501 #Christmas Island 
-transfer_state = 326 #Hong Kong 
-transfer_state = 307 #Andaman 
-transfer_state = 422 #Ceylon  
-transfer_state = 281 #Maldives
-transfer_state = 315 #Diego Garcia 
-transfer_state = 301 #Kergulen 
-transfer_state = 503 #Cocos Islands
-transfer_state = 320 #French India  
-transfer_state = 318 #Seychelles 
-transfer_state = 139 #Fiji 
-transfer_state = 490 #Samoa
-transfer_state = 124 #New Caledonia 
-transfer_state = 491 #Nauru 
-transfer_state = 485 #Gilbert Islands 
-transfer_state = 568 #Phoenix Island 
-transfer_state = 489 #Nendo 
-transfer_state = 565 #Ellice Islands 
-transfer_state = 140 #Guam 
-transfer_state = 472 #Solomon Islands 
-transfer_state = 567 #Tahiti 
-transfer_state = 270 #Pitcairn Island 
-transfer_state = 499 #Line Islands 
-transfer_state = 141 #Johnston Atoll 
-transfer_state = 353 #Wake Island
-transfer_state = 420 #Midwawy Island 
-transfer_state = 416 #Hawaii 
-transfer_state = 296 #Attu Island 
-transfer_state = 463 #Alaska 
-transfer_state = 473 #British Columbia 
-transfer_state = 316 #Haida Gwaii 
-transfer_state = 304 #Vancouver Island
-transfer_state = 387 #Idaho 
-transfer_state = 386 #Washington 
-transfer_state = 385 #Oregon 
-transfer_state = 378 #California 
-transfer_state = 379 #Nevada
-transfer_state = 380 #Utah 
-transfer_state = 377 #Arizona 
-transfer_state = 113 #Panama Canal 
-transfer_state = 299 #Falkland Islands 
-transfer_state = 302 #South Georgia 
-transfer_state = 523 #Papua
-transfer_state = 312 #Bismarck
-transfer_state = 415 #Australian Central Cordillera
-transfer_state = 479 #Australian Central Cordillera
-
-}
-RAJ = { set_cosmetic_tag = RAJ_BOSE  }
-
-ITA = {
-transfer_state = 410 
-transfer_state = 424
-transfer_state = 305
-
-transfer_state = 460 #Constantine
-transfer_state = 458 #Tunisia
-transfer_state = 577 #Gabes
-transfer_state = 397 #Tunisian Desert
-transfer_state = 1 #Corsica
-transfer_state = 313 #Savoy
-transfer_state = 32 #Alpes 
-transfer_state = 21 #Provence 
-#transfer_state = 608 #Eastern province
-transfer_state = 452 #Marsa Matruh  
-transfer_state = 447 #Alexandria 
-transfer_state = 584 #El Alamein
-transfer_state = 586 #Western Mountains
-transfer_state = 436 #Luxor
-transfer_state = 585 #Giza
-transfer_state = 456 #Aswan 
-transfer_state = 453 #Sinai
-transfer_state = 454 #Palestine 
-transfer_state = 455 #Jordan
-transfer_state = 554 #Damascus 
-transfer_state = 589 #Aleppo 
-transfer_state = 590 #Lebanon 
-transfer_state = 591 #Deir-az-Zur 
-transfer_state = 183 #Cyprus 
-transfer_state = 116 #Malta 
-transfer_state = 138 #Abu Dhabi
-transfer_state = 294 #Oman
-transfer_state = 574 #Aden
-transfer_state = 602 #Siwa wastes
-
+    if = {
+        limit = {
+            any_of_scopes = { array = ROOT.faction_members_array NOT = { is_in_array = { GLOBAL.fuel_countries = THIS.id } } }
+        }
+        for_each_scope_loop = {
+            array = ROOT.faction_members_array
+            if = { limit = { NOT = { is_in_array = { GLOBAL.fuel_countries = THIS.id } } }
+                add_to_array = { GLOBAL.fuel_countries = THIS.id }
+            }
+        }
+    }
 }
 
-every_state	= { limit = { is_core_of = BEL }
-	GER = {transfer_state =  PREV }
+fuel_startup_effect = { 
+    every_country = {  # THESE NATIONS ARE THE FUEL CONTROLLERS
+        limit = { OR = { tag = GER tag = JAP tag = ENG } }
+        add_to_array = { GLOBAL.fuel_system_manager = THIS.id }
+    }
+
+    GER = {
+        every_country = {
+            limit = {
+                NOT = { tag = GER }
+                OR = { is_in_faction_with = GER tag = FIN tag = CZE tag = YUG tag = SPR tag = EFR tag = ALB }
+                NOT = { is_in_array = { GER.faction_members_array = THIS.id } }            
+            }
+            add_to_array = { GER.faction_members_array = THIS.id }
+        }
+
+        if = {
+            limit = { any_of_scopes = { array = GER.faction_members_array NOT = { is_in_array = { GLOBAL.fuel_countries = THIS.id } } } }
+            for_each_scope_loop = {
+                array = GER.faction_members_array
+                if = { 
+                    limit = { NOT = { is_in_array = { GLOBAL.fuel_countries = THIS.id } } }
+                    add_to_array = { GLOBAL.fuel_countries = THIS.id }
+                }
+            }
+        }
+    }
+
+    ENG = {
+        every_country = {
+            limit = {
+                OR = {
+                    AND = { 
+                        NOT = { tag = ENG }
+                        OR = { is_in_faction_with = ENG tag = POL tag = HOL tag = NOR tag = GRE }
+                        NOT = { is_in_array = { ENG.faction_members_array = THIS.id } }    
+                    }
+                    tag = SOV
+                }
+            }
+            add_to_array = { ENG.faction_members_array = THIS.id }
+        }
+
+        if = {
+            limit = { any_of_scopes = { array = ENG.faction_members_array NOT = { is_in_array = { GLOBAL.fuel_countries = THIS.id } } } }
+            for_each_scope_loop = {
+                array = ENG.faction_members_array
+                if = { 
+                    limit = { NOT = { is_in_array = { GLOBAL.fuel_countries = THIS.id } } }
+                    add_to_array = { GLOBAL.fuel_countries = THIS.id }
+                }
+            }
+        }
+    }
 }
 
-every_state	= { limit = { OR = { is_owned_by = ENG is_owned_by = CAN is_owned_by = USA  is_owned_by = HOL is_owned_by = NOR is_owned_by = FRA  is_owned_by = SAF }  } 
-	GER = {transfer_state =  PREV }
+on_daily_fuel = {
+    # Loop over all fuel controllers
+    for_each_scope_loop = {
+        array = GLOBAL.fuel_system_manager
+        set_variable = { GLOBAL.controllerscope = THIS.id }
+
+        # Loop over all faction members of this controller
+        for_each_scope_loop = {
+            array = THIS.faction_members_array
+            set_variable = { GLOBAL.currentscope = THIS.id }
+
+            ## BLOCK 1A: Calculate fuel needed by the FUEL_RECIPIENT
+            set_variable = { fuel_required = min_fuel }               # Set x to min_fuel (e.g., 0.5)
+            subtract_from_variable = { fuel_required = fuel_ratio }   # Subtract current fuel ratio (e.g., 0.3 → 0.5-0.3=0.2)
+            multiply_variable = { fuel_required = max_fuel_k }        # Scale by max fuel constant (e.g., 0.2*50=10)
+            multiply_variable = { fuel_required = 1000 }             # Scale further (10*1000=10000)
+            set_variable = { fuel_required_variable = fuel_required } 
+            multiply_variable = { fuel_required_variable = -1 }      # Invert for transfer calculation (-10000)
+
+            ## BLOCK 1B: Calculate available fuel from the FUEL_CONTROLLER
+            set_variable = { PREV.fuel_required = PREV.min_fuel }    
+            subtract_from_variable = { PREV.fuel_required = PREV.fuel_ratio }
+            multiply_variable = { PREV.fuel_required = PREV.max_fuel_k }
+            multiply_variable = { PREV.fuel_required = 1000 }
+            set_variable = { PREV.fuel_required_variable = PREV.fuel_required }
+            multiply_variable = { PREV.fuel_required_variable = -1 }
+
+            ## BLOCK 2: Transfer fuel if conditions are met
+            if = {
+                limit = {
+                    check_variable = { PREV.fuel_required < 0 }             # Fuel from controller must be negative
+                    check_variable = { fuel_required > 0 }                 # Fuel to recipient must be positive
+                    check_variable = { min_fuel > fuel_ratio }            # Recipient needs fuel
+                    check_variable = { PREV.fuel_required_variable > fuel_required } # Controller has enough fuel
+                }
+
+                set_temp_variable = { PREV.fuel_from_FUEL_CONTROLLER = fuel_required_variable }  # Fuel to transfer
+                set_temp_variable = { fuel_to_FUEL_RECIPIENT = fuel_required }                   # Fuel to recipient
+                PREV = { add_fuel = fuel_from_FUEL_CONTROLLER }                                  # Deduct from controller
+                add_fuel = fuel_to_FUEL_RECIPIENT                                               # Add to recipient
+            }
+        }
+    }
+
+    # Update fuel bar display for all countries
+    for_each_scope_loop = {
+        array = GLOBAL.fuel_countries
+        set_temp_variable = { currentfuel = fuel_ratio }
+        subtract_from_temp_variable = { currentfuel = 1 }
+        multiply_temp_variable = { currentfuel = 88 }
+        set_variable = { fuel_bar_fuel = currentfuel }
+    }
 }
-GER = { transfer_state = 331 transfer_state = 280} #Dutch Central Cordillera
 
+fascism_has_been_defeated = { 
+    # Transfer some key states
+    SPR = { transfer_state = 600 }
+
+    # Remove German cores on specific states
+    8 = { remove_core_of = GER } 
+    28 = { remove_core_of = GER } 
+    85 = { remove_core_of = GER }
+
+    # Transfer all Italian core states except excluded ones and set cosmetic tag
+    every_state = { 
+        limit = { 
+            is_core_of = ITA 
+            NOT = { OR = { state = 515 state = 448 state = 449 state = 606 state = 279 state = 450 state = 579 state = 625 state = 624 } } 
+        } 
+        ITA = { 
+            transfer_state = PREV  
+            set_cosmetic_tag = ITA_democratic 
+        }   
+    }
+
+    # Transfer SOV states and clear flag
+    SOV = { 
+        transfer_state = 216 transfer_state = 215 transfer_state = 213 transfer_state = 287
+        transfer_state = 78 transfer_state = 80 transfer_state = 192 transfer_state = 198
+        clr_country_flag = SOV_third_five_year_plan_locked_flag 
+    }
+
+    # Transfer SWE states
+    SWE = { 
+        transfer_state = 552 transfer_state = 506 transfer_state = 604 transfer_state = 605 
+        transfer_state = 608 transfer_state = 354 transfer_state = 332 
+    }
+
+    # Update Germany
+    GER = { 
+        add_ideas = GER_western_trade_cooperation
+        set_country_flag = NO_MORE_FASCISM
+        set_autonomy = { target = SPR autonomy_state = autonomy_free }    
+    }
+
+    # Make all countries in ENG faction white peace with relevant nations
+    every_country = { 
+        if = { 
+            limit = { is_in_faction_with = ENG } 
+            white_peace = SPR  
+            white_peace = GER
+            if = { limit = { country_exists = ROM } white_peace = ROM }
+            if = { limit = { country_exists = HUN } white_peace = HUN }
+            if = { limit = { country_exists = ITA } white_peace = ITA }
+            if = { limit = { country_exists = BUL } white_peace = BUL }
+            if = { limit = { country_exists = AOI } white_peace = AOI }
+            if = { limit = { country_exists = FIN } white_peace = FIN }
+            if = { limit = { country_exists = ALB } white_peace = ALB }
+        } 
+    }
+
+    # Make SOV white peace with relevant nations
+    SOV = { 
+        white_peace = SPR white_peace = GER white_peace = JAP
+        if = { limit = { country_exists = ROM } white_peace = ROM }
+        if = { limit = { country_exists = HUN } white_peace = HUN }
+        if = { limit = { country_exists = ITA } white_peace = ITA }
+        if = { limit = { country_exists = BUL } white_peace = BUL }
+        if = { limit = { country_exists = AOI } white_peace = AOI }
+        if = { limit = { country_exists = FIN } white_peace = FIN }
+        if = { limit = { country_exists = ALB } white_peace = ALB }
+    }
+
+    # Trigger event for Persia
+    PER = { country_event = { id = soviet.1464 hours = 2 } }
+}
+
+fascism_has_been_defeated_2 = {
+    reset_province_name = 9909 
+    reset_province_name =  778 
+    reset_province_name = 362
+    reset_state_name  = 362 
+    reset_state_name  = 553 
+    reset_province_name  = 6464 
+    reset_state_name = 86
+    reset_province_name = 6558
+    reset_state_name = 28 
+    reset_state_name = 8
+    reset_province_name = 6583 
+    reset_province_name = 678 
+    reset_province_name = 9503
+    reset_state_name = 1 
+    reset_province_name = 3838
+    reset_state_name = 102 
+    reset_province_name = 9627
+    reset_province_name = 9940 
+    reset_province_name = 12058
+    reset_state_name = 182
+    
+    cap_finland_effect = yes
+    
+    GER = { 
+        release = CZE 
+        release = POL 
+        release = NOR
+        release = YUG
+        release = ROM 
+        release = GRE 
+        release = BUL 
+        release = ALB 
+        release = HUN 
+        release = FRA 
+        release = HOL 
+        release = DEN 
+        release = BEL 
+    }
+    SPR = { release = BUL }
+    ALB = { transfer_state = 44 set_cosmetic_tag = ALB_communism }
+    PER = { country_event = { id = soviet.1465 hours = 2 } }
+}
+
+fascism_has_been_defeated_3 = {
+
+    # Release countries from Italy if Italy exists
+    if = { limit = { country_exists = ITA } 
+        ITA = { release = YUG release = ROM release = GRE release = BUL release = ALB } 
+    }
+
+    # Conditional releases
+    if = { limit = { country_exists = BUL } BUL = { release = GRE } }
+    if = { limit = { country_exists = ROM } ROM = { release = GRE } }
+
+    # General releases
+    BUL = { release = YUG release = SPR release = ROM release = HUN }
+    NOR = { release = ENG }
+
+    # Poland: transfer key states and add cores
+    POL = { 
+        transfer_state = 5 transfer_state = 63 transfer_state = 68 transfer_state = 66
+        transfer_state = 67 transfer_state = 97
+    }
+    5 = { add_core_of = POL }
+    63 = { add_core_of = POL }
+    68 = { add_core_of = POL }
+    66 = { add_core_of = POL }
+    67 = { add_core_of = POL }
+
+    # Yugoslavia and Hungary
+    YUG = { transfer_state = 163 } # Zara
+    HUN = { release = YUG release = CZE release = ROM }
+
+    # Sweden transfers
+    SWE = { transfer_state = 266 transfer_state = 419 }
+
+    # Soviet transfers and autonomy assignments
+    SOV = {    
+        transfer_state = 188 transfer_state = 330 transfer_state = 62 transfer_state = 61
+        transfer_state = 64 transfer_state = 65 transfer_state = 60 transfer_state = 4
+        transfer_state = 73
+        set_autonomy = { target = POL autonomy_state = autonomy_puppet }
+        set_autonomy = { target = YUG autonomy_state = autonomy_puppet }
+        set_autonomy = { target = ROM autonomy_state = autonomy_puppet }
+        set_autonomy = { target = HUN autonomy_state = autonomy_puppet }
+        set_autonomy = { target = ALB autonomy_state = autonomy_puppet }
+        set_autonomy = { target = BUL autonomy_state = autonomy_puppet }
+
+        # Check for SOV five-year plan flags
+        if = {
+            limit = {
+                original_tag = SOV
+                has_country_flag = SOV_third_five_year_plan_locked_flag
+                NOT = { has_country_flag = SOV_fourth_five_year_plan_available_flag }
+                OR = {
+                    NOT = { any_country = { has_country_flag = SOV_third_five_year_plan_disruptor_flag } }
+                    any_country = { 
+                        has_country_flag = SOV_third_five_year_plan_disruptor_flag
+                        NOT = { has_war_with = ROOT }
+                    }
+                }
+            }
+            set_country_flag = SOV_fourth_five_year_plan_available_flag
+            clr_country_flag = SOV_great_patriotic_war_flag
+            complete_national_focus = SOV_restoration_and_development
+        }
+    }
+
+    # Cosmetic tags and idea removal
+    CZE = { set_cosmetic_tag = CZE_democratic remove_ideas = armyandnavy_idea remove_ideas = CZE_divided_nation }
+    YUG = { set_cosmetic_tag = YUG_communism remove_ideas = ITA_italia_irredenta_achieved remove_ideas = CRO_croat_muslims_happy remove_ideas = CRO_tomislav_II }
+    ROM = { set_cosmetic_tag = ROM_communism remove_ideas = ROM_figurehead_king_michael remove_ideas = ROM_reserve_divisions remove_ideas = ROM_iron_guard remove_dynamic_modifier = { modifier = GER_fuel_mechanic } }
+    HUN = { set_cosmetic_tag = HUN_communism remove_dynamic_modifier = { modifier = GER_fuel_mechanic } remove_ideas = HUN_invite_foreign_investors remove_ideas = militarism_focus }
+    BUL = { 
+        transfer_state = 293
+        set_cosmetic_tag = BUL_communism
+        remove_ideas = BUL_brannik
+        remove_ideas = BUL_prussia_of_the_balkans_04
+        remove_ideas = BUL_krali_marko_line_idea
+        remove_ideas = BUL_bulgarian_irredentism
+        remove_ideas = BUL_zveno_ns
+        remove_ideas = BUL_bulgarian_tsardom
+        remove_ideas = BUL_tsar_boris_positive_03
+        remove_ideas = BUL_bulgarian_patriarchate_restored
+        remove_dynamic_modifier = { modifier = GER_fuel_mechanic }
+    }
+    POL = {
+        set_cosmetic_tag = POL_communism
+        remove_dynamic_modifier = { modifier = USA_cheap_rubber }
+        remove_ideas = POL_anti_blitz_vehicles
+        remove_ideas = POL_influex_of_exiles
+        remove_ideas = POL_right_paramilitarism_idea
+        remove_ideas = POL_april_constitution_left
+        remove_ideas = POL_common_organization_of_society_idea
+        remove_ideas = POL_walery_slawek_chairman
+    }
+    NOR = { set_cosmetic_tag = NOR_democratic }
+    FRA = { set_cosmetic_tag = FRA_democratic }
+    HOL = { set_cosmetic_tag = HOL_democratic }
+
+    # Sweden additional state transfers
+    SWE = { transfer_state = 421 transfer_state = 413 transfer_state = 412 transfer_state = 595 transfer_state = 596 transfer_state = 597 transfer_state = 598 }
+
+    # England state transfers and releases
+    ENG = {
+        transfer_state = 582 
+        add_to_faction = CZE
+        add_to_faction = HOL
+        transfer_state = 271 transfer_state = 38 transfer_state = 610 transfer_state = 611 transfer_state = 612
+        transfer_state = 550 transfer_state = 559 transfer_state = 454 transfer_state = 453 transfer_state = 291
+        transfer_state = 592 transfer_state = 593 transfer_state = 594 transfer_state = 626
+        release = NOR
+        release = DEN
+        transfer_state = 152 transfer_state = 448 transfer_state = 449 transfer_state = 579 transfer_state = 624
+        transfer_state = 625 transfer_state = 279 transfer_state = 602 transfer_state = 601 transfer_state = 515
+        transfer_state = 606 transfer_state = 450
+    }
+
+    # AOI transfers and political setup
+    AOI = {
+        transfer_state = 610 transfer_state = 38 transfer_state = 271 transfer_state = 612 transfer_state = 611
+        set_politics = { ruling_party = neutrality }
+        set_cosmetic_tag = ETH_neutrality
+    }
+
+    # France annexes EFR if it exists
+    if = { limit = { country_exists = EFR } FRA = { annex_country = { target = EFR transfer_troops = yes } } }
+
+    # Trigger event for Persia
+    PER = { country_event = { id = soviet.1466 hours = 2 } }
 }
 
 
+fascism_has_been_defeated_4 = {
 
+    # Italy fallback if it doesn't exist
+    if = { 
+        limit = { NOT = { country_exists = ITA } } 
+        ITA = { transfer_state = 2 }  
+    }
+
+    # Italy releases and England handles autonomy
+    ITA = { release = FRA release = GRE release = BUL } 
+
+    ENG = { 
+        set_autonomy = { target = ITA autonomy_state = autonomy_supervised_state }
+        remove_dynamic_modifier = { modifier = ITA_regia_marina_3_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_marina_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_marina_2_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_marina_3_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_marina_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_marina_2_dynamic_modifier }
+        remove_ideas = {
+            ITA_servizio_informazione_militare_ns_vanilla ITA_german_military_cooperation_focus
+            ITA_hardened_irregular_bands ITA_battaglio_del_grano ITA_battaglia_per_la_nascite
+            ITA_italia_irredenta_achieved ITA_disgruntlement_in_the_airforce ITA_disgruntlement_in_the_army
+            ITA_efficient_supply_lines
+        }
+        remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_3_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_2_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_3_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regia_aeronautica_2_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regio_esercito_3_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regio_esercito_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regio_esercito_2_alt_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regio_esercito_3_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regio_esercito_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = ITA_regio_esercito_2_dynamic_modifier }
+        remove_dynamic_modifier = { modifier = GER_fuel_mechanic }
+    }
+
+    # France state transfers
+    FRA = {
+        transfer_state = 153 # Tyrol ###AUSTRIA###
+        transfer_state = 461 transfer_state = 268 transfer_state = 459 transfer_state = 513
+        transfer_state = 460 transfer_state = 554 transfer_state = 458 transfer_state = 577
+        transfer_state = 397 transfer_state = 589 transfer_state = 590 transfer_state = 591
+    }
+
+    # USA releases
+    USA = { release = DEN }
+
+    # England adds countries to faction
+    ENG = { add_to_faction = USA add_to_faction = BEL add_to_faction = DEN add_to_faction = GRE }
+
+    # Germany changes
+    GER = {
+        remove_dynamic_modifier = { modifier = GER_war_exhaustion }
+        remove_dynamic_modifier = { modifier = GER_fuel_mechanic }
+        remove_ideas = {
+            GER_totaler_krieg_idea2 GER_stuka GER_pillen GER_choco VIC_aircraft_parts
+            VIC_guest_workers GER_grosraumwirtschaft GER_redirecting_naval_production GER_mech
+            general_staff sour_loser
+        }
+        set_cosmetic_tag = GER_DEM
+        set_politics = { ruling_party = neutrality elections_allowed = no }
+        add_popularity = { ideology = neutrality popularity = 0.70 }
+        release = ITA
+    }
+
+    # Italy cosmetic changes
+    ITA = { set_cosmetic_tag = ITA_democratic }
+
+    # England adds Germany to faction
+    ENG = { add_to_faction = GER }
+
+    # Netherlands state transfers if war not started
+    if = { 
+        limit = { NOT = { has_global_flag = war_in_the_west_start } }
+        HOL = { 
+            transfer_state = 309 transfer_state = 321 transfer_state = 352 transfer_state = 322
+            transfer_state = 516 transfer_state = 562 transfer_state = 342 transfer_state = 581
+            transfer_state = 575 transfer_state = 334 transfer_state = 335 transfer_state = 317 
+        }
+    }
+
+    # Belgium state transfer
+    BEL = { transfer_state = 295 }
+
+    # England triggers event
+    ENG = { country_event = { id = britain.1116 days = 1 } }
+
+    # Italy: transfer states it owns to previous owner
+    ITA = { every_state = { limit = { is_core_of = ITA is_owned_by = GER } } transfer_state = PREV }
+
+    # Dismantle SPR faction
+    SPR = { dismantle_faction = yes }
+
+}
+
+democratic_russia = {
+
+    # Sweden state transfers
+    SWE = { 
+        transfer_state = 11 transfer_state = 189 transfer_state = 190 
+        transfer_state = 191 transfer_state = 13 transfer_state = 12 
+    }
+
+    # Every country in the Soviet faction becomes democratic and makes white peace with major powers
+    every_country = { 
+        limit = { is_in_faction_with = SOV }
+        set_politics = { ruling_party = democratic }
+        white_peace = USA white_peace = ENG white_peace = CAN white_peace = SAF 
+        white_peace = RAJ white_peace = NZL white_peace = AST white_peace = FRA 
+        white_peace = POL white_peace = HOL white_peace = BRA white_peace = NOR 
+        white_peace = GRE
+    }
+
+    # Every country in the English faction makes white peace with former Soviet allies
+    every_country = { 
+        limit = { is_in_faction_with = ENG }
+        white_peace = SOV white_peace = ROM white_peace = HUN 
+        white_peace = POL white_peace = YUG white_peace = BUL
+    }
+
+    # Soviet Union releases some nations and becomes democratic
+    SOV = {  
+        release = FIN release = POL release = ROM 
+        set_politics = { ruling_party = democratic }
+
+        # Kerensky returns from exile if conditions met
+        if = {
+            limit = { 
+                has_government = democratic
+                SOV_aleksandr_kerensky = { has_character_flag = SOV_exiled_flag }
+            }
+            SOV_aleksandr_kerensky = { clr_character_flag = SOV_exiled_flag }
+        }
+    }
+}
+
+catch_up_iraq_with_tech = {
+    set_technology = {
+        popup = no
+        
+        # Infantry & support
+        tech_support = 1
+        infantry_weapons = 1
+        basic_train = 1
+        special_equipment_tech = 1
+        camelry_tech = 1
+        tech_engineers = 1
+        tech_engineers2 = 1
+        tech_recon = 1
+        tech_recon2 = 1
+        tech_maintenance_company = 1
+        tech_logistics_company = 1
+        tech_logistics_company2 = 1
+        support_weapons = 1
+        motorised_infantry = 1
+        tech_mountaineers = 1
+        improved_infantry_weapons = 1
+        improved_infantry_weapons_2 = 1
+        infantry_weapons1 = 1
+        infantry_weapons2 = 1
+        tech_special_forces = 1
+
+        # Artillery & anti-air
+        gw_artillery = 1
+        interwar_artillery = 1
+        artillery1 = 1
+        artillery2 = 1
+        rocket_artillery = 1
+        interwar_antiair = 1
+        antiair1 = 1
+        antiair2 = 1
+        interwar_antitank = 1
+        antitank1 = 1
+        antitank2 = 1
+        antitank3 = 1
+
+        # Industry & construction
+        electronic_mechanical_engineering = 1
+        radio = 1
+        mechanical_computing = 1
+        computing_machine = 1
+        basic_machine_tools = 1
+        improved_machine_tools = 1
+        advanced_machine_tools = 1
+        dispersed_industry = 1
+        dispersed_industry2 = 1
+        dispersed_industry3 = 1
+        fuel_silos = 1
+        construction1 = 1
+        construction2 = 1
+        construction3 = 1
+        excavation1 = 1
+        excavation2 = 1
+        excavation3 = 1
+        excavation4 = 1
+
+        # Fuel & resources
+        synth_oil_experiments = 1
+        fuel_refining2 = 1
+        fuel_refining3 = 1
+        fuel_refining4 = 1
+        fuel_refining5 = 1
+    }
+}
+
+the_golden_coup_has_been_launched = {
+    hidden_effect = { catch_up_iraq_with_tech = yes }
+
+    # Stockpiles & equipment
+    add_equipment_to_stockpile = { type = train_equipment_1 amount = 20 producer = ITA }
+    add_equipment_to_stockpile = { type = convoy_1 amount = 200 producer = ALB }
+
+    # Remove AI idea
+    remove_ideas = ai_imiter
+
+    # State transfers and cores
+    ITA = { transfer_state = 44 }
+    remove_state_core = 44
+    add_state_core = 592
+    add_state_core = 593
+    add_state_core = 594
+
+    transfer_state = 291
+    set_capital = { state = 291 }
+    add_state_core = 291
+
+    # Load predefined army
+    load_oob = "ITA_IRQ_Spawn"
+
+    # Add research slots
+    add_research_slot = 4
+
+    # State buildings
+    291 = {
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+    }
+    592 = {
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+    }
+    593 = {
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+    }
+    594 = {
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+    }
+
+    # National ideas
+    add_ideas = tot_economic_mobilisation
+    add_ideas = service_by_requirement
+    add_ideas = free_trade
+
+    # Politics
+    set_politics = {
+        ruling_party = fascism
+        elections_allowed = no
+    }
+
+    # War involvement
+    add_to_war = { targeted_alliance = GER enemy = ENG }
+}
+
+	
+iraq_gbp_doctrine = {
+	hidden_effect = { 
+		set_technology = { 
+            popup = no
+            
+            trench_warfare = 1  
+            grand_battle_plan = 1
+            prepared_defense = 1
+            grand_assault = 1
+            armored_operations = 1
+            c3i_theory = 1 
+            branch_interoperation = 1 
+            assault_breakthrough = 1
+            infantry_offensive = 1
+            grand_mechanized_offensive = 1
+            assault_concentration = 1
+            night_assault_tactics = 1
+        }
+	}
+}
+
+iraq_ma_doctrine = {
+    hidden_effect = {
+        set_technology = { 
+            popup = no
+            mass_assault = 1
+            pocket_defence = 1
+            defence_in_depth = 1
+            peoples_army = 1
+            human_wave_offensive = 1
+            breakthrough_priority = 1
+            operational_concentration = 1
+            deep_operations = 1
+            mechanized_wave = 1
+            human_infantry_offensive = 1
+            large_front_offensive = 1
+        }
+    }
+}
+
+iraq_sf_doctrine = {
+    hidden_effect = { 
+        set_technology = { 
+            popup = no
+            superior_firepower = 1
+            concentrated_fire_plans = 1
+            sup_delay = 1
+            mobile_defence = 1
+            dispersed_support = 1
+            tactical_control = 1
+            regimental_combat_teams = 1
+            sup_mechanized_offensive = 1
+            forward_observers = 1
+            intergrated_support = 1
+            centralized_fire_control = 1
+            combined_arms = 1
+        }
+    }
+}
+
+
+man_in_the_high_castle = {
+
+    SPR = { 
+        transfer_state = 461 # Casa Blanca
+        transfer_state = 513 # Tlemcen
+        transfer_state = 459 # Algiers
+        transfer_state = 118 # Gibraltar
+    }
+
+    AOI = {
+        transfer_state = 268 # French Somaliland
+        transfer_state = 269 # British Somaliland
+        transfer_state = 547 # Kenya
+        transfer_state = 548 # Uganda
+        transfer_state = 551 # Khartoum
+        transfer_state = 587 # Port Sudan
+        transfer_state = 588 # Shamaliyah
+        transfer_state = 549 # Sudan
+        transfer_state = 550 # Eritrea
+        transfer_state = 271 # Ethiopia
+        transfer_state = 559 # Somaliland
+        transfer_state = 601 # JUBA
+        transfer_state = 610
+        transfer_state = 611
+        transfer_state = 612
+        transfer_state = 38
+    }
+
+    every_state = {
+        limit = {
+            OR = {
+                is_core_of = AST
+                is_core_of = NZL
+                state = 306
+                state = 288
+                state = 609
+            }
+        }
+        JAP = { transfer_state = PREV }
+    }
+
+    ENG = { set_autonomy = { target = RAJ autonomy_state = autonomy_free end_wars = yes } }
+
+    JAP = {
+        set_autonomy = { target = RAJ autonomy_state = autonomy_wtt_imperial_associate }
+
+        transfer_state = 296 # ATTU ISLAND
+        transfer_state = 516 # West Papua
+        transfer_state = 562 # The Moluccas
+        transfer_state = 581 # Northern Sumatra
+        transfer_state = 317 # Aru Islands
+        transfer_state = 575 # Lesser Sunda Islands
+        transfer_state = 342 # Sulawesi
+        transfer_state = 334 # Kalimantan
+        transfer_state = 335 # Java
+        transfer_state = 322 # West Central Papua
+        transfer_state = 321 # Sumatra
+        transfer_state = 336 # Singapore
+        transfer_state = 333 # North Borneo
+        transfer_state = 418 # Mindanao
+        transfer_state = 485 # Cebu
+        transfer_state = 417 # Palawan
+        transfer_state = 403 # Central Islands
+        transfer_state = 327 # Manila
+        transfer_state = 501 # Christmas Island
+        transfer_state = 326 # Hong Kong
+        transfer_state = 307 # Andaman
+        transfer_state = 422 # Ceylon
+        transfer_state = 281 # Maldives
+        transfer_state = 315 # Diego Garcia
+        transfer_state = 301 # Kergulen
+        transfer_state = 503 # Cocos Islands
+        transfer_state = 320 # French India
+        transfer_state = 318 # Seychelles
+        transfer_state = 139 # Fiji
+        transfer_state = 490 # Samoa
+        transfer_state = 124 # New Caledonia
+        transfer_state = 491 # Nauru
+        transfer_state = 485 # Gilbert Islands
+        transfer_state = 568 # Phoenix Island
+        transfer_state = 489 # Nendo
+        transfer_state = 565 # Ellice Islands
+        transfer_state = 140 # Guam
+        transfer_state = 472 # Solomon Islands
+        transfer_state = 567 # Tahiti
+        transfer_state = 270 # Pitcairn Island
+        transfer_state = 499 # Line Islands
+        transfer_state = 141 # Johnston Atoll
+        transfer_state = 353 # Wake Island
+        transfer_state = 420 # Midway Island
+        transfer_state = 416 # Hawaii
+        transfer_state = 463 # Alaska
+        transfer_state = 473 # British Columbia
+        transfer_state = 316 # Haida Gwaii
+        transfer_state = 304 # Vancouver Island
+        transfer_state = 387 # Idaho
+        transfer_state = 386 # Washington
+        transfer_state = 385 # Oregon
+        transfer_state = 378 # California
+        transfer_state = 379 # Nevada
+        transfer_state = 380 # Utah
+        transfer_state = 377 # Arizona
+        transfer_state = 113 # Panama Canal
+        transfer_state = 299 # Falkland Islands
+        transfer_state = 302 # South Georgia
+        transfer_state = 523 # Papua
+        transfer_state = 312 # Bismarck
+        transfer_state = 415 # Australian Central Cordillera
+        transfer_state = 479 # Australian Central Cordillera
+    }
+
+    RAJ = { set_cosmetic_tag = RAJ_BOSE }
+
+    ITA = {
+        transfer_state = 410
+        transfer_state = 424
+        transfer_state = 305
+        transfer_state = 460 # Constantine
+        transfer_state = 458 # Tunisia
+        transfer_state = 577 # Gabes
+        transfer_state = 397 # Tunisian Desert
+        transfer_state = 1   # Corsica
+        transfer_state = 313 # Savoy
+        transfer_state = 32  # Alpes
+        transfer_state = 21  # Provence
+        transfer_state = 452 # Marsa Matruh
+        transfer_state = 447 # Alexandria
+        transfer_state = 584 # El Alamein
+        transfer_state = 586 # Western Mountains
+        transfer_state = 436 # Luxor
+        transfer_state = 585 # Giza
+        transfer_state = 456 # Aswan
+        transfer_state = 453 # Sinai
+        transfer_state = 454 # Palestine
+        transfer_state = 455 # Jordan
+        transfer_state = 554 # Damascus
+        transfer_state = 589 # Aleppo
+        transfer_state = 590 # Lebanon
+        transfer_state = 591 # Deir-az-Zur
+        transfer_state = 183 # Cyprus
+        transfer_state = 116 # Malta
+        transfer_state = 138 # Abu Dhabi
+        transfer_state = 294 # Oman
+        transfer_state = 574 # Aden
+        transfer_state = 602 # Siwa Wastes
+    }
+
+    every_state = {
+        limit = { is_core_of = BEL }
+        GER = { transfer_state = PREV }
+    }
+
+    every_state = {
+        limit = {
+            OR = {
+                is_owned_by = ENG
+                is_owned_by = CAN
+                is_owned_by = USA
+                is_owned_by = HOL
+                is_owned_by = NOR
+                is_owned_by = FRA
+                is_owned_by = SAF
+            }
+        }
+        GER = { transfer_state = PREV }
+    }
+
+    GER = {
+        transfer_state = 331
+        transfer_state = 280 # Dutch Central Cordillera
+    }
+}
 
 man_in_the_high_castle_NO_ASIA = {
-SPR = { 
-transfer_state = 461 #Casa Blanca
-transfer_state = 513 #Tlemcen
-transfer_state = 459 #Algiers
-transfer_state = 118 #Gibraltar
-}
 
-AOI = {
-transfer_state = 268 #French Somaliland
-transfer_state = 269 #British Somaliland
-transfer_state = 547 #Kenya
-transfer_state = 548 #Uganda
-transfer_state = 551 #Khartoum
-transfer_state = 587 #Port Sudan
-transfer_state = 588 #Shamaliyah
-transfer_state = 549 #Sudan 
-transfer_state = 550 #Eritrea
-transfer_state = 271 #Ethiopia
-transfer_state = 559 #Somaliland
-transfer_state = 601 #JUBA
-transfer_state = 610
-transfer_state = 611 
-transfer_state = 612 
-transfer_state = 38
-}
-
-
-every_state = {
-    limit = {
-        OR = { state = 306 state = 288 state = 609 }  
+    SPR = { 
+        transfer_state = 461 # Casa Blanca
+        transfer_state = 513 # Tlemcen
+        transfer_state = 459 # Algiers
+        transfer_state = 118 # Gibraltar
     }
-    JAP = { transfer_state = PREV }
+
+    AOI = {
+        transfer_state = 268 # French Somaliland
+        transfer_state = 269 # British Somaliland
+        transfer_state = 547 # Kenya
+        transfer_state = 548 # Uganda
+        transfer_state = 551 # Khartoum
+        transfer_state = 587 # Port Sudan
+        transfer_state = 588 # Shamaliyah
+        transfer_state = 549 # Sudan 
+        transfer_state = 550 # Eritrea
+        transfer_state = 271 # Ethiopia
+        transfer_state = 559 # Somaliland
+        transfer_state = 601 # JUBA
+        transfer_state = 610
+        transfer_state = 611 
+        transfer_state = 612 
+        transfer_state = 38
+    }
+
+    every_state = {
+        limit = {
+            OR = { state = 306 state = 288 state = 609 }
+        }
+        JAP = { transfer_state = PREV }
+    }
+
+    every_state = { 
+        limit = { is_core_of = RAJ }
+        RAJ = { transfer_state = PREV }
+    }
+
+    JAP = { 
+        set_autonomy = { target = RAJ autonomy_state = autonomy_wtt_imperial_associate }
+    } 
+
+    RAJ = { set_cosmetic_tag = RAJ_BOSE } 
+
+    ITA = {
+        transfer_state = 410 
+        transfer_state = 424
+        transfer_state = 305
+        transfer_state = 460 # Constantine
+        transfer_state = 458 # Tunisia
+        transfer_state = 577 # Gabes
+        transfer_state = 397 # Tunisian Desert
+        transfer_state = 1   # Corsica
+        transfer_state = 313 # Savoy
+        transfer_state = 32  # Alpes 
+        transfer_state = 21  # Provence 
+        # transfer_state = 608 # Eastern province
+        transfer_state = 452 # Marsa Matruh  
+        transfer_state = 447 # Alexandria 
+        transfer_state = 584 # El Alamein
+        transfer_state = 586 # Western Mountains
+        transfer_state = 436 # Luxor
+        transfer_state = 585 # Giza
+        transfer_state = 456 # Aswan 
+        transfer_state = 453 # Sinai
+        transfer_state = 454 # Palestine 
+        transfer_state = 455 # Jordan
+        transfer_state = 554 # Damascus 
+        transfer_state = 589 # Aleppo 
+        transfer_state = 590 # Lebanon 
+        transfer_state = 591 # Deir-az-Zur 
+        transfer_state = 183 # Cyprus 
+        transfer_state = 116 # Malta 
+        transfer_state = 138 # Abu Dhabi
+        transfer_state = 294 # Oman
+        transfer_state = 574 # Aden
+        transfer_state = 602 # Siwa Wastes
+    }
+
+    every_state = { 
+        limit = { is_core_of = BEL }
+        GER = { transfer_state = PREV }
+    }
+
+    every_state = { 
+        limit = { 
+            OR = { 
+                is_owned_by = ENG
+                is_owned_by = CAN
+                is_owned_by = USA
+                is_owned_by = HOL
+                is_owned_by = NOR
+                is_owned_by = FRA
+                is_owned_by = SAF
+            }  
+        } 
+        GER = { transfer_state = PREV }
+    }
+
+    GER = { 
+        transfer_state = 331
+        transfer_state = 280 # Dutch Central Cordillera
+    }
+
 }
-every_state = { limit = { is_core_of = RAJ }RAJ = {  transfer_state = PREV } }
-JAP = { set_autonomy = { target = RAJ autonomy_state = autonomy_wtt_imperial_associate  }   } 
-RAJ = { set_cosmetic_tag = RAJ_BOSE } 
-ITA = {
-transfer_state = 410 
-transfer_state = 424
-transfer_state =305
-
-transfer_state = 460 #Constantine
-transfer_state = 458 #Tunisia
-transfer_state = 577 #Gabes
-transfer_state = 397 #Tunisian Desert
-transfer_state = 1 #Corsica
-transfer_state = 313 #Savoy
-transfer_state = 32 #Alpes 
-transfer_state = 21 #Provence 
-#transfer_state = 608 #Eastern province
-transfer_state = 452 #Marsa Matruh  
-transfer_state = 447 #Alexandria 
-transfer_state = 584 #El Alamein
-transfer_state = 586 #Western Mountains
-transfer_state = 436 #Luxor
-transfer_state = 585 #Giza
-transfer_state = 456 #Aswan 
-transfer_state = 453 #Sinai
-transfer_state = 454 #Palestine 
-transfer_state = 455 #Jordan
-transfer_state = 554 #Damascus 
-transfer_state = 589 #Aleppo 
-transfer_state = 590 #Lebanon 
-transfer_state = 591 #Deir-az-Zur 
-transfer_state = 183 #Cyprus 
-transfer_state = 116 #Malta 
-transfer_state = 138 #Abu Dhabi
-transfer_state = 294 #Oman
-transfer_state = 574 #Aden
-transfer_state = 602 #Siwa wastes
-
-}
-
-every_state	= { limit = { is_core_of = BEL }
-	GER = {transfer_state =  PREV }
-}
-
-every_state	= { limit = { OR = { is_owned_by = ENG is_owned_by = CAN is_owned_by = USA  is_owned_by = HOL is_owned_by = NOR is_owned_by = FRA  is_owned_by = SAF }  } 
-	GER = {transfer_state =  PREV }
-}
-GER = { transfer_state = 331  transfer_state = 280}#Dutch Central Cordillera
-
-}
-
-
-
-
 
 arabia_front = {
-hidden_effect = { 
-set_global_flag = ARABIA_FRONT_DECISION
- ENG ={ transfer_state = 354  transfer_state  = 604  transfer_state  = 332  load_oob = "ENG_ARABIA" } #always transfer the UK Arabian states
+    hidden_effect = { 
+        set_global_flag = ARABIA_FRONT_DECISION
 
-if = { 
-	limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism} controls_state = 291      }     }   
-	if = { 
-		limit = { ALB = { is_ai = no }  country_exists = ALB } 
-		ALB = { transfer_state  = 608 add_state_core = 608     transfer_state = 552 add_state_core = 552    }      
-		ITA = { load_oob = "ITA_SAU_SPAWN_ITA_BIG"  }
-	}
-	else = { ITA = {   transfer_state  = 608   transfer_state = 552 load_oob = "ITA_SAU_SPAWN_ITA_BIG"  }   }
-}
-else = { ENG = {  transfer_state  = 608 transfer_state = 552 } } #give UK axis Arabian states by Iraq if no Axis control of Iraq yet
+        ENG = { 
+            transfer_state = 354
+            transfer_state = 604
+            transfer_state = 332
+            load_oob = "ENG_ARABIA"
+        } # always transfer the UK Arabian states
 
- 
- 
-if = { limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism} controls_state = 455      }     } 
-	if = { 
-		limit = { ALB = { is_ai = no }  country_exists = ALB }   
-			ALB = {  add_state_core = 605    transfer_state  = 605 transfer_state  = 506  add_state_core = 506 } 
-			ITA = { load_oob = "ITA_ARABIA" }			
-	}
-	else = { ITA ={  transfer_state  = 605 transfer_state  = 506 load_oob = "ITA_ARABIA"  } }
-}
-else = {
-	ENG = { transfer_state = 605 transfer_state  = 506  } #give UK Axis Arabian states by Red Sea if no Axis control of Jordan
-}
+        # Check if Axis (Germany) controls Iraq
+        if = { 
+            limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 291 } }   
+            if = { 
+                limit = { ALB = { is_ai = no } country_exists = ALB } 
+                ALB = { 
+                    transfer_state = 608
+                    add_state_core = 608     
+                    transfer_state = 552
+                    add_state_core = 552    
+                }      
+                ITA = { load_oob = "ITA_SAU_SPAWN_ITA_BIG" }
+            }
+            else = { 
+                ITA = { 
+                    transfer_state = 608
+                    transfer_state = 552
+                    load_oob = "ITA_SAU_SPAWN_ITA_BIG"
+                }   
+            }
+        }
+        else = { 
+            ENG = { transfer_state = 608 transfer_state = 552 } 
+        } # give UK Axis Arabian states by Iraq if no Axis control of Iraq yet
 
-PER = { country_event = { id = mtg_netherlands.1244 hours = 2 }}
-}
-}
+        # Check if Axis controls Jordan
+        if = { 
+            limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 455 } } 
+            if = { 
+                limit = { ALB = { is_ai = no } country_exists = ALB }   
+                ALB = {  
+                    transfer_state = 605
+                    add_state_core = 605    
+                    transfer_state = 506
+                    add_state_core = 506 
+                } 
+                ITA = { load_oob = "ITA_ARABIA" }            
+            }
+            else = {
+                ITA = { transfer_state = 605 transfer_state = 506 load_oob = "ITA_ARABIA" }
+            }
+        }
+        else = {
+            ENG = { transfer_state = 605 transfer_state = 506 } 
+        } # give UK Axis Arabian states by Red Sea if no Axis control of Jordan
 
-
-horstorical_multiplayer_vichy_france_2 = {
-FRA = { delete_unit_template_and_units = { division_template = "Fortress Division"  disband = no }    set_technology= { france_cheap_inf_off = 1 popup = no } FRA_jean_de_lattre_de_tassigny = { remove_unit_leader_trait = ranger       } }
-ITA = { complete_national_focus = ITA_request_control_of_french_territories } #Italian claims, includes territory from Tunisia+Corsica+South Eastern France that was occupied in 1942
-if = { limit = { has_start_date > 1936.1.1 }  FRA = { remove_resource_rights = 497 }  }
-BEL = { delete_unit_template_and_units = { division_template = "Infantry Division" disband = yes  }}
-GER = { add_to_faction = EFR add_ideas = VIC_aircraft_parts } 
-ENG = { complete_national_focus = ENG_compass }
-EFR ={ 
-set_country_flag = vichy_france_established
-add_to_war = {	targeted_alliance = GER	enemy = ENG	}
-add_equipment_to_stockpile = {
-    type = convoy_1
-    amount = 200
-    producer = EFR
-}
-add_dynamic_modifier = {  modifier = vichy_legitimacy }
-
-
-###SOUTHERN FRANCE###
-transfer_state = 26
-add_state_core = 26
-set_capital = { state = 26 } 
-transfer_state = 33 
-add_state_core = 33 
-transfer_state = 507
-add_state_core = 507  
-transfer_state = 20
-add_state_core = 20 
-transfer_state = 25
-add_state_core = 25 
-transfer_state = 31 
-add_state_core = 31 
-transfer_state = 22 
-add_state_core = 22 
-transfer_state = 32 
-add_state_core = 32 
-transfer_state = 21
-add_state_core = 21 
-###NORTH AFRICA### #demilitarized so Vichy players aren't utter cancer
-transfer_state = 460
-460 = { set_demilitarized_zone = yes }
-transfer_state = 513
-513 = { set_demilitarized_zone = yes }
-transfer_state = 459
-459 = { set_demilitarized_zone = yes }
-transfer_state = 461
-461 = { set_demilitarized_zone = yes }
- ###SYRIA
- transfer_state = 554
- 554 =  { set_demilitarized_zone = yes }
-  transfer_state = 590
- 590 =  { set_demilitarized_zone = yes }
-  transfer_state = 591
- 591 =  { set_demilitarized_zone = yes }
-  transfer_state = 589
- 589 =  { set_demilitarized_zone = yes }
- 
+        PER = { country_event = { id = mtg_netherlands.1244 hours = 2 } }
+    }
 }
 
-}
-
-horstorical_multiplayer_vichy_france_3 = {
-FRA = { set_technology = { ita_no_transport_off =1   } }
-if = { limit = {country_exists = AOI } AOI = { add_ideas = defensive_posture } }
-if = { limit = { EFR = { has_country_flag = mill_pre_38_flag }}
-every_state = { 
-	limit = { has_state_flag = FRA_industrial_expansion_target }
-				add_extra_state_shared_building_slots = 1 
-			add_building_construction = {
-				type = arms_factory 
-				level = 1 
-				instant_build = yes
-			}
-}
-   }
-   if = { limit = { EFR = { has_country_flag = mill_pre_39_flag }}
-every_state = { 
-	limit = { has_state_flag = FRA_industrial_expansion_target }
-				add_extra_state_shared_building_slots = 1 
-			add_building_construction = {
-				type = arms_factory 
-				level = 1 
-				instant_build = yes
-			}
-}
-   }
-if = { limit = { EFR = { has_country_flag = mill_pre_vichy_flag }}
-		every_state = { 
-	limit = { has_state_flag = FRA_industrial_expansion_target }
-				add_extra_state_shared_building_slots = 2 
-			add_building_construction = {
-				type = arms_factory 
-				level = 2 
-				instant_build = yes
-			}
-}
-   }
-   
-   if = { limit = { EFR = { has_country_flag = civ_pre_38_flag }}
-every_state = { 
-	limit = { has_state_flag = FRA_industrial_expansion_target }
-				add_extra_state_shared_building_slots = 1 
-			add_building_construction = {
-				type = industrial_complex 
-				level = 1 
-				instant_build = yes
-			}
-}
-   }
-   if = { limit = { EFR = { has_country_flag = civ_pre_39_flag }}
-		every_state = { 
-	limit = { has_state_flag = FRA_industrial_expansion_target }
-				add_extra_state_shared_building_slots = 1 
-			add_building_construction = {
-				type = industrial_complex 
-				level = 1 
-				instant_build = yes
-			}
-}
-   }
-if = { limit = { EFR = { has_country_flag = civ_pre_vichy_flag }}
-every_state = { 
-	limit = { has_state_flag = FRA_industrial_expansion_target }
-				add_extra_state_shared_building_slots = 1 
-			add_building_construction = {
-				type = industrial_complex 
-				level = 1 
-				instant_build = yes
-			}
-}
-   }
-
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	> 19 } } }
-	FRA = {  add_offsite_building = { type = arms_factory level = 3 } 	}
-}
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	> 39 } } }
-	FRA = {  add_offsite_building = { type = arms_factory level = 3 } 	}
-}
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	> 59 } } }
-	FRA = { 543 = { add_building_construction = {  type = naval_base level = 1 province = 5222 instant_build = yes }} add_offsite_building = { type = arms_factory level = 3 } 	}
-}
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	> 79 } } }
-	FRA = {  complete_national_focus = FRA_appeal_to_the_french_nation add_offsite_building = { type = arms_factory level = 3 } 	}
-}
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	> 99 } } }
-	FRA = {  complete_national_focus = FRA_appeal_to_overseas_territories }
-}
-FRA = { transfer_state = 301  }
-EFR = { 
-recalc_vichy_france_legitimacy = yes 
-21 = { set_demilitarized_zone = yes }
-22 = { set_demilitarized_zone = yes }
-31 = { set_demilitarized_zone = yes }
-25 = { set_demilitarized_zone = yes }
-33 = { set_demilitarized_zone = yes }
-32 = { set_demilitarized_zone = yes }
-20 = { set_demilitarized_zone = yes }
-507 = { set_demilitarized_zone = yes }
-hidden_effect = { remove_ideas = fix_slot_issues }
-}
-
-
-if = { limit = { country_exists = NOR GER = { NOT = { controls_state = 110 }}}  GER = { activate_decision = GER_weserbung_operation2  }   }
-
-}
-HMP_script_norway_cap = {
-if = {
-limit = { NOT = {  NOR = { has_country_flag = norway_just_capped } }  }
-							NOR = {	 tp_divs_out_of_norway = yes }
-
-					if = { limit = { NOR = { is_ai = yes  }} ENG = { add_to_variable = { paratrooper_div_cap = 2 } set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap } annex_country = { target = NOR } 669 = {add_building_construction = { type = arms_factory level = 12 instant_build = yes } add_building_construction = { type = industrial_complex level = 4 instant_build = yes } add_extra_state_shared_building_slots = 16 }  }    }
-				    if = { limit = { NOR = {is_ai = no }} 
-					 NOR =  { set_country_flag = norway_just_capped set_capital = { state = 669 } complete_national_focus = nor_winter_mountain_training  } 
-						if = { limit = { NOR = {  is_in_faction = no }} 
-						ENG = { add_to_faction = NOR  }
-						}
-					}
-					GER = { transfer_state = 144 transfer_state = 142 transfer_state = 110 transfer_state = 143 } #activate_decision = GER_begin_heavy_water_production }
-						   GER = { load_oob = "GER_NOR_SPAWN"}
-					
-}
-}
+# This code teleports divisions out of France, checks for AI Vichy rewards and generally cleans up the capitulation process.
 horstorical_multiplayer_vichy_france = {
-EFR ={ 
-	tp_divs_out_of_vichy = yes
-			add_ideas = EFR_work_service 
-			add_ideas = FRA_mandatory_work_service 
-			add_ideas = VIC_produce_aircraft_parts
-}
-if = {
-	limit = {EFR = { is_ai = yes } } 
-	GER = { add_offsite_building = { type = industrial_complex level = 5 } }
-	ITA = { 
-		159 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-		158 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-				39 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-				314 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-				160 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-				161 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-				162 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-				157 = { 
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = { 
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = { 
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
-	
-		
-create_equipment_variant = {
-			name = "Renault AMC 35"
-		type = medium_tank_chassis_1
-			parent_version = 0
-			modules = {
-				main_armament_slot = tank_medium_cannon_2
-				turret_type_slot = tank_medium_two_man_tank_turret
-				suspension_type_slot = tank_christie_suspension_M
-				armor_type_slot = tank_welded_armor
-				engine_type_slot = tank_diesel_engine
-				special_type_slot_1 = stabilizer
-				special_type_slot_2 = tank_radio_2
-				special_type_slot_3 = smoke_launchers
-				special_type_slot_4 = easy_maintenance
-				armor_shape_slot = flat_armor
-			}
-				upgrades = {
-					tank_nsb_engine_upgrade = 5
-					tank_nsb_armor_upgrade_medium = 8
-				}
-		icon = "GFX_FRA_improved_medium_tank_medium"
-		}
+    EFR = { 
+        tp_divs_out_of_vichy = yes
+        add_ideas = EFR_work_service
+        add_ideas = FRA_mandatory_work_service
+        add_ideas = VIC_produce_aircraft_parts
+    }
 
-	create_equipment_variant = {
-			name = "1936 FCM"
-		type = light_tank_chassis_2
-			parent_version = 0
-			modules = {
-				main_armament_slot = tank_small_cannon_2
-				turret_type_slot = tank_light_two_man_tank_turret
-				suspension_type_slot = tank_christie_suspension_L
-				armor_type_slot = tank_riveted_armor
-				engine_type_slot = tank_diesel_engine_L
-				special_type_slot_1 = stabilizer
-				special_type_slot_2 = tank_radio_2
-				special_type_slot_3 = smoke_launchers
-				special_type_slot_4 = additional_machine_guns
-				armor_shape_slot = flat_armor
-			}
-				upgrades = {
-					tank_nsb_engine_upgrade = 5
-					tank_nsb_armor_upgrade_light = 5
-				}
-		icon = "GFX_FRA_improved_light_tank_medium"
-		}
-add_equipment_to_stockpile = {
-    type = infantry_equipment_1
-    amount = 40000
-    producer = FRA
-}
-add_equipment_to_stockpile = {
-    type = artillery_equipment_1
-    amount = 4000
-    producer = FRA
-}
-add_equipment_to_stockpile = {
-    type = anti_tank_equipment_1
-    amount = 2000
-    producer = FRA
-}
-add_equipment_to_stockpile = {
-    type = motorized_equipment_1
-    amount = 5000
-    producer = FRA
-}
-add_equipment_to_stockpile = {
-    type = anti_air_equipment_1
-    amount = 1500
-    producer = FRA
-}
-add_equipment_to_stockpile = {
-    type = support_equipment_1
-    amount = 1000
-    producer = FRA
-}
-hidden_effect = {
-	if = { limit = { NOT = { has_tech = improved_light_tank_chassis } } set_technology = { improved_light_tank_chassis = 1 popup = no } }
-	if = { limit = { NOT = { has_tech = basic_medium_tank_chassis } } set_technology = { basic_medium_tank_chassis = 1 popup = no } }
-}
+    if = { 
+        limit = { EFR = { is_ai = yes } } 
 
-add_equipment_to_stockpile = {
-    type = medium_tank_chassis_1
-	variant_name  = "Renault AMC 35"
-    amount = 1000 #1300+300 
-    producer = FRA
-}
-add_equipment_to_stockpile = {
-    type = light_tank_chassis_2
-    amount = 1200 #900 heavies + 600 lights
-	variant_name = "1936 FCM" 
-    producer = FRA
-}				
-		
-		
-	}
-}
-BEL = { every_state ={ limit = { OR = { is_owned_by = FRA is_owned_by = BEL }  } teleport_armies = {limit = { original_tag = BEL } to_state = 295 } } }
-if = { limit = { BEL = { owns_state = 6}} every_state = { limit = { is_core_of = BEL NOT = {  state = 295 } }GER = { transfer_state = PREV } }  }
-PER = { country_event = { id = mtg_netherlands.1141 hours = 3 } country_event = { id = mtg_netherlands.1142 hours = 6 }   }
-FRA = {  clr_country_flag = start_legitimacy_counter add_ideas = FRA_defeatism   }
-EFR = { 
-###WEST AFRICA###
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	< 80 } } } transfer_state = 445 445 = { set_demilitarized_zone = yes } }
-###MADAGASCAR###
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	< 60 } } } transfer_state = 543 543 = { set_demilitarized_zone = yes } }
-###CENTRAL AFRICA - BET###
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	< 40 } } } transfer_state = 277 277 = { set_demilitarized_zone = yes } }
-###CENTRAL AFRICA - GABON###
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	< 20 } } } transfer_state = 510 510	 = { set_demilitarized_zone = yes } }
-###CENTRAL AFRICA - BELGIAN CONGO###
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	> 59 } } } FRA = { complete_national_focus = FRA_continue_the_fight transfer_state = 295  	} }
+        # Germany AI builds
+        GER = { add_offsite_building = { type = industrial_complex level = 5 } }
+
+        # Italy AI builds in specific states
+        ITA = { 
+            159 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            158 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            39 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            314 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            160 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            161 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            162 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            157 = { 
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    # French tank variants
+    create_equipment_variant = {
+        name = "Renault AMC 35"
+        type = medium_tank_chassis_1
+        parent_version = 0
+        modules = {
+            main_armament_slot = tank_medium_cannon_2
+            turret_type_slot = tank_medium_two_man_tank_turret
+            suspension_type_slot = tank_christie_suspension_M
+            armor_type_slot = tank_welded_armor
+            engine_type_slot = tank_diesel_engine
+            special_type_slot_1 = stabilizer
+            special_type_slot_2 = tank_radio_2
+            special_type_slot_3 = smoke_launchers
+            special_type_slot_4 = easy_maintenance
+            armor_shape_slot = flat_armor
+        }
+        upgrades = {
+            tank_nsb_engine_upgrade = 5
+            tank_nsb_armor_upgrade_medium = 8
+        }
+        icon = "GFX_FRA_improved_medium_tank_medium"
+    }
+
+    create_equipment_variant = {
+        name = "1936 FCM"
+        type = light_tank_chassis_2
+        parent_version = 0
+        modules = {
+            main_armament_slot = tank_small_cannon_2
+            turret_type_slot = tank_light_two_man_tank_turret
+            suspension_type_slot = tank_christie_suspension_L
+            armor_type_slot = tank_riveted_armor
+            engine_type_slot = tank_diesel_engine_L
+            special_type_slot_1 = stabilizer
+            special_type_slot_2 = tank_radio_2
+            special_type_slot_3 = smoke_launchers
+            special_type_slot_4 = additional_machine_guns
+            armor_shape_slot = flat_armor
+        }
+        upgrades = {
+            tank_nsb_engine_upgrade = 5
+            tank_nsb_armor_upgrade_light = 5
+        }
+        icon = "GFX_FRA_improved_light_tank_medium"
+    }
+
+    # French equipment stockpiles
+    add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 40000 producer = FRA }
+    add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 4000 producer = FRA }
+    add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 2000 producer = FRA }
+    add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 5000 producer = FRA }
+    add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 1500 producer = FRA }
+    add_equipment_to_stockpile = { type = support_equipment_1 amount = 1000 producer = FRA }
+    add_equipment_to_stockpile = { type = medium_tank_chassis_1 variant_name = "Renault AMC 35" amount = 1000 producer = FRA }
+    add_equipment_to_stockpile = { type = light_tank_chassis_2 variant_name = "1936 FCM" amount = 1200 producer = FRA }
+
+    # Hidden tech effects
+    hidden_effect = {
+        if = { limit = { NOT = { has_tech = improved_light_tank_chassis } } set_technology = { improved_light_tank_chassis = 1 popup = no } }
+        if = { limit = { NOT = { has_tech = basic_medium_tank_chassis } } set_technology = { basic_medium_tank_chassis = 1 popup = no } }
+    }
+
+    # Belgium teleportation for armies
+    BEL = { 
+        every_state = { limit = { OR = { is_owned_by = FRA is_owned_by = BEL } } teleport_armies = { limit = { original_tag = BEL } to_state = 295 } } 
+    }
+
+    if = { 
+        limit = { BEL = { owns_state = 6 } }
+        every_state = { limit = { is_core_of = BEL NOT = { state = 295 } } GER = { transfer_state = PREV } }
+    }
+
+    # Persian events
+    PER = { 
+        country_event = { id = mtg_netherlands.1141 hours = 3 } 
+        country_event = { id = mtg_netherlands.1142 hours = 6 }   
+    }
+
+    # Initial French flags and ideas
+    FRA = { clr_country_flag = start_legitimacy_counter add_ideas = FRA_defeatism }
+
+    # Vichy-controlled colonial states based on legitimacy
+    EFR = { 
+        # West Africa
+        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 80 } } } transfer_state = 445 445 = { set_demilitarized_zone = yes } }
+        # Madagascar
+        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 60 } } } transfer_state = 543 543 = { set_demilitarized_zone = yes } }
+        # Central Africa - BET
+        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 40 } } } transfer_state = 277 277 = { set_demilitarized_zone = yes } }
+        # Central Africa - Gabon
+        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 20 } } } transfer_state = 510 510 = { set_demilitarized_zone = yes } }
+        # Belgian Congo
+        if = { limit = { FRA = { check_variable = { FRA_legitimacy > 59 } } } FRA = { complete_national_focus = FRA_continue_the_fight transfer_state = 295 } }
+    }
+
+    # Germany adjustments
+    GER = { 
+        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 40 } } } complete_national_focus = GER_reintegrate_luxemburg_and_alsace_lorraine }
+        set_cosmetic_tag = GER_greater_german_reich
+        diplomatic_relation = { country = EFR relation = non_aggression_pact active = yes }
+        add_ideas = VIC_guest_workers
+        transfer_state = 28
+        transfer_state = 17
+        transfer_state = 27
+        transfer_state = 18
+        transfer_state = 24
+        transfer_state = 16
+        transfer_state = 267
+        transfer_state = 15
+        transfer_state = 30
+        transfer_state = 23
+        transfer_state = 14
+        transfer_state = 19
+        transfer_state = 29
+    }
+
+    # France leader and idea cleanup
+    FRA = {
+        remove_ideas = FRA_protected_by_the_maginot_line
+        remove_ideas = FRA_protected_by_the_maginot_line_defensive
+        remove_ideas = FRA_protected_by_the_maginot_line_offensive
+        remove_ideas = FRA_victors_of_wwi2
+        remove_ideas = FRA_full_employment
+        create_country_leader = {
+            name = "Charles de Gaulle"
+            desc = "POLITICS_CHARLES_DE_GAULLE_DESC"
+            picture = "Portrait_France_Charles_De_Gaulle.dds"
+            expire = "1965.1.1"
+            ideology = conservatism
+            traits = { }
+        }
+    }
+
+    hidden_effect = { PER = { country_event = { id = italy.3524 days = 10 } } }
 }
 
-GER = { 
-if = { limit = { FRA = { check_variable = { FRA_legitimacy 	< 40 } } }
-complete_national_focus = GER_reintegrate_luxemburg_and_alsace_lorraine
-}
-set_cosmetic_tag = GER_greater_german_reich
-diplomatic_relation = {   country = EFR    relation = non_aggression_pact   active = yes }
-add_ideas = VIC_guest_workers 
 
-transfer_state = 28
-transfer_state = 17
-transfer_state = 27
-transfer_state = 18
-transfer_state = 24
-transfer_state = 16
-transfer_state = 267
-transfer_state = 15
-transfer_state = 30
-transfer_state = 23
-transfer_state = 14
-transfer_state = 19
-transfer_state = 29
+# This code establishes Vichy France and territorial claims
+horstorical_multiplayer_vichy_france_2 = {
+    FRA = { 
+        delete_unit_template_and_units = { division_template = "Fortress Division" disband = no }    
+        set_technology = { france_cheap_inf_off = 1 popup = no } 
+        FRA_jean_de_lattre_de_tassigny = { remove_unit_leader_trait = ranger } 
+    }
+
+    ITA = { complete_national_focus = ITA_request_control_of_french_territories } 
+    # Italian claims include territory from Tunisia, Corsica, and South Eastern France occupied in 1942
+
+    if = {
+        limit = { has_start_date > 1936.1.1 }  
+        FRA = { remove_resource_rights = 497 }  
+    }
+
+    BEL = { delete_unit_template_and_units = { division_template = "Infantry Division" disband = yes } }
+
+    GER = { add_to_faction = EFR add_ideas = VIC_aircraft_parts }
+
+    ENG = { complete_national_focus = ENG_compass }
+
+    EFR = {
+        set_country_flag = vichy_france_established
+        add_to_war = { targeted_alliance = GER enemy = ENG }
+        add_equipment_to_stockpile = { type = convoy_1 amount = 200 producer = EFR }
+        add_dynamic_modifier = { modifier = vichy_legitimacy }
+
+        ### SOUTHERN FRANCE ###
+        transfer_state = 26
+        add_state_core = 26
+        set_capital = { state = 26 } 
+        transfer_state = 33
+        add_state_core = 33
+        transfer_state = 507
+        add_state_core = 507
+        transfer_state = 20
+        add_state_core = 20
+        transfer_state = 25
+        add_state_core = 25
+        transfer_state = 31
+        add_state_core = 31
+        transfer_state = 22
+        add_state_core = 22
+        transfer_state = 32
+        add_state_core = 32
+        transfer_state = 21
+        add_state_core = 21
+
+        ### NORTH AFRICA (demilitarized zones) ###
+        transfer_state = 460
+        460 = { set_demilitarized_zone = yes }
+        transfer_state = 513
+        513 = { set_demilitarized_zone = yes }
+        transfer_state = 459
+        459 = { set_demilitarized_zone = yes }
+        transfer_state = 461
+        461 = { set_demilitarized_zone = yes }
+
+        ### SYRIA (demilitarized zones) ###
+        transfer_state = 554
+        554 = { set_demilitarized_zone = yes }
+        transfer_state = 590
+        590 = { set_demilitarized_zone = yes }
+        transfer_state = 591
+        591 = { set_demilitarized_zone = yes }
+        transfer_state = 589
+        589 = { set_demilitarized_zone = yes }
+    }
 }
-FRA = {
-remove_ideas = FRA_protected_by_the_maginot_line
-remove_ideas = FRA_protected_by_the_maginot_line_defensive
-remove_ideas = FRA_protected_by_the_maginot_line_offensive
-remove_ideas = FRA_victors_of_wwi2
-remove_ideas = FRA_full_employment
-			create_country_leader = {
-				name = "Charles de Gaulle"
-				desc = "POLITICS_CHARLES_DE_GAULLE_DESC"
-				picture = "Portrait_France_Charles_De_Gaulle.dds"
-				expire = "1965.1.1"
-				ideology = conservatism
-				traits = {
-				}
-			}
+
+# This code checks the rewards for high legitimacy
+horstorical_multiplayer_vichy_france_3 = {
+    FRA = { set_technology = { ita_no_transport_off = 1 } }
+
+    if = { limit = { country_exists = AOI } AOI = { add_ideas = defensive_posture } }
+
+    # FRA legitimacy milestones for offsite buildings and focus completions
+    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 19 } } }
+        FRA = { add_offsite_building = { type = arms_factory level = 3 } }
+    }
+
+    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 39 } } }
+        FRA = { add_offsite_building = { type = arms_factory level = 3 } }
+    }
+
+    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 59 } } }
+        FRA = { 
+            543 = { add_building_construction = { type = naval_base level = 1 province = 5222 instant_build = yes } }
+            add_offsite_building = { type = arms_factory level = 3 } 
+        }
+    }
+
+    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 79 } } }
+        FRA = { complete_national_focus = FRA_appeal_to_the_french_nation add_offsite_building = { type = arms_factory level = 3 } }
+    }
+
+    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 99 } } }
+        FRA = { complete_national_focus = FRA_appeal_to_overseas_territories }
+    }
+
+    FRA = { transfer_state = 301 }
+
+    EFR = { 
+        recalc_vichy_france_legitimacy = yes 
+        21 = { set_demilitarized_zone = yes }
+        22 = { set_demilitarized_zone = yes }
+        31 = { set_demilitarized_zone = yes }
+        25 = { set_demilitarized_zone = yes }
+        33 = { set_demilitarized_zone = yes }
+        32 = { set_demilitarized_zone = yes }
+        20 = { set_demilitarized_zone = yes }
+        507 = { set_demilitarized_zone = yes }
+        hidden_effect = { remove_ideas = fix_slot_issues }
+    }
+
+    # Activate Weserbung Operation if Norway exists but Germany doesn’t control state 110
+    if = { 
+        limit = { country_exists = NOR GER = { NOT = { controls_state = 110 } } }  
+        GER = { activate_decision = GER_weserbung_operation2 }   
+    }
 }
-	
-	hidden_effect = { PER = { country_event = { id = italy.3524 days = 10 }}}
-			
+
+HMP_script_norway_cap = {
+    if = {
+        limit = { NOT = { NOR = { has_country_flag = norway_just_capped } } }
+
+        # Trigger Norway TP divisions setup
+        NOR = { tp_divs_out_of_norway = yes }
+
+        # If Norway is AI-controlled
+        if = { 
+            limit = { NOR = { is_ai = yes } } 
+            ENG = { 
+                add_to_variable = { paratrooper_div_cap = 2 } 
+                set_division_template_cap = { division_template = "Paratroopers" division_cap = paratrooper_div_cap } 
+                annex_country = { target = NOR } 
+                669 = {
+                    add_building_construction = { type = arms_factory level = 12 instant_build = yes } 
+                    add_building_construction = { type = industrial_complex level = 4 instant_build = yes } 
+                    add_extra_state_shared_building_slots = 16
+                }
+            }  
+        }
+
+        # If Norway is player-controlled
+        if = { 
+            limit = { NOR = { is_ai = no } } 
+            NOR = { 
+                set_country_flag = norway_just_capped 
+                set_capital = { state = 669 } 
+                complete_national_focus = nor_winter_mountain_training
+            }
+
+            # Ensure Norway joins a faction if not already
+            if = { 
+                limit = { NOR = { is_in_faction = no } } 
+                ENG = { add_to_faction = NOR } 
+            }
+        }
+
+        # Germany state transfers and OOB load
+        GER = { 
+            transfer_state = 144 
+            transfer_state = 142 
+            transfer_state = 110 
+            transfer_state = 143 
+            # activate_decision = GER_begin_heavy_water_production (commented out)
+        }
+        GER = { load_oob = "GER_NOR_SPAWN" }
+    }
 }
+
+# ===========================
+# HOI4 lend-lease event blocks
+# ===========================
 
 HMP_guns_to_swe = { 
- ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_GunsSent value =  25000 }	
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_GunsSent value = 25000 }	
 	}
-	send_equipment = {  equipment = infantry_equipment  amount = 25000  target = SOV  } 
+	send_equipment = { equipment = infantry_equipment amount = 25000 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_at_to_swe = { 
- ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_ATSent value =  3000 }	
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_ATSent value = 3000 }	
 	}
-	send_equipment = {  equipment = anti_tank_equipment  amount = 3000  target = SOV  } 
+	send_equipment = { equipment = anti_tank_equipment amount = 3000 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_arty_to_swe = { 
 	ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 }
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_ArtySent value =  4000 }	
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 }
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_ArtySent value = 4000 }	
 	}
-	send_equipment = {  equipment = artillery_equipment  amount = 4000  target = SOV  } 
+	send_equipment = { equipment = artillery_equipment amount = 4000 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_aa_to_swe = { 
- ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_AASent value =  3250 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_AASent value = 3250 }
 	}
-	send_equipment = {  equipment = anti_air_equipment  amount = 3250  target = SOV  } 
+	send_equipment = { equipment = anti_air_equipment amount = 3250 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_rarty_to_swe = { 
-ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_RartySent value =  2500 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_RartySent value = 2500 }
 	}
-	send_equipment = {  equipment = rocket_artillery_equipment  amount = 2500  target = SOV  } 
+	send_equipment = { equipment = rocket_artillery_equipment amount = 2500 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_sup_to_swe = { 
-	 ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 }
-add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }	
-	add_to_variable = {  var = SOV_SupSent value = 3250 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 }
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }	
+		add_to_variable = { var = SOV_SupSent value = 3250 }
 	} 
-	send_equipment = {  equipment = support_equipment  amount = 3250  target = SOV  } 
+	send_equipment = { equipment = support_equipment amount = 3250 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_mot_to_swe = { 
-	 ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_MotSent value = 5000 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_MotSent value = 5000 }
 	}
-	send_equipment = {  equipment = motorized_equipment  amount = 5000  target = SOV  } 
+	send_equipment = { equipment = motorized_equipment amount = 5000 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_mech_to_swe = { 
-	 ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_MechSent value = 1000 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_MechSent value = 1000 }
 	}
-	send_equipment = {  equipment = mech_chassis  amount = 1000  target = SOV  } 
+	send_equipment = { equipment = mech_chassis amount = 1000 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_med_to_swe = { 
- ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_MedSent value = 400 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_MedSent value = 400 }
 	} 
-	send_equipment = {  equipment = medium_tank_chassis  amount = 400  target = SOV  } 
+	send_equipment = { equipment = medium_tank_chassis amount = 400 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_light_to_swe = { 
-	 ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_LightSent value = 500 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_LightSent value = 500 }
 	}
-	send_equipment = {  equipment = light_tank_chassis  amount = 500  target = SOV  } 
+	send_equipment = { equipment = light_tank_chassis amount = 500 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_fighter_to_swe = { 
-  ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_FighterSent value = 250 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_FighterSent value = 250 }
 	}
-	send_equipment = {  equipment = small_plane_airframe  amount = 250  target = SOV  } 
+	send_equipment = { equipment = small_plane_airframe amount = 250 target = SOV } 
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 HMP_cas_to_swe = { 
-  ENG = { 
-	add_to_variable = {  var = SOV_barb_ll_token value = -5 } 
-	add_to_variable ={ var = SOV_barb_ll_token2 value = 5 }
-	add_to_variable = {  var = SOV_ll_this_month value = 5 } 
-	add_to_variable = {  var = SOV_CasSent value = 250 }
+	ENG = { 
+		add_to_variable = { var = SOV_barb_ll_token value = -5 } 
+		add_to_variable = { var = SOV_barb_ll_token2 value = 5 }
+		add_to_variable = { var = SOV_ll_this_month value = 5 } 
+		add_to_variable = { var = SOV_CasSent value = 250 }
 	}
-	send_equipment = {  equipment = small_plane_cas_airframe  amount = 250  target = SOV  }
+	send_equipment = { equipment = small_plane_cas_airframe amount = 250 target = SOV }
 	send_equipment = { equipment = convoy amount = 5 target = SWE }
 }
 
 
+
 HMP_sov_LL_monthly_effect = {
 	ENG = {  
-	clear_variable = SOV_ll_monthly_generation
-	clear_variable = SOV_ll_this_month
-	clear_variable = SOV_ll_monthly_cap
-	if = { limit = { GER = { has_war_with = SOV } }
-	if = { limit = { OR = { AND = { USA = { controls_state = 416 } SOV = { controls_state = 408 } } has_global_flag = war_in_the_west_start }  } add_to_variable = {  var = SOV_ll_monthly_generation value = 1  } add_to_variable = { var = SOV_ll_monthly_cap value = 5 }  }
-	if = { limit = { AND = { OR = { ENG = { controls_state = 412 }SOV = { controls_state = 412 } }SOV = { controls_state = 229 } } } add_to_variable = { var = SOV_ll_monthly_generation value = 7 }  add_to_variable = { var = SOV_ll_monthly_cap value = 25 }    } 
-	if = { limit = { SOV = { controls_state = 213 } } 	 add_to_variable = {  var = SOV_ll_monthly_generation value = 3 }  add_to_variable = { var = SOV_ll_monthly_cap value = 5 }     } 
-	if = { limit = { AND = {  ENG = { controls_state = 116 } SOV = { controls_state = 137 } } }   add_to_variable = {  var = SOV_ll_monthly_generation   value = 1 } add_to_variable = { var = SOV_ll_monthly_cap value = 3 }   }
-	if = { limit = { OR = { NOT = { JAP = { controls_state = 526 }  }JAP = { is_subject_of = USA    }    has_global_flag = war_in_the_west_start } }  add_to_variable = {  var = SOV_ll_monthly_generation value = 1 } } 
-	if = { limit = { OR = { NOT = { JAP = { controls_state = 560 } }JAP = { is_subject_of = USA    } has_global_flag = war_in_the_west_start } }  add_to_variable = {  var = SOV_ll_monthly_generation value = 1 }  } 
-	if = { limit = { OR = { NOT = { JAP = { controls_state = 488 } }JAP = { is_subject_of = USA    } has_global_flag = war_in_the_west_start } }  add_to_variable = {  var = SOV_ll_monthly_generation value = 1 }   } 
-	if = { limit = {  OR = {NOT = { JAP = { controls_state = 180 } }JAP = { is_subject_of = USA    } has_global_flag = war_in_the_west_start } } add_to_variable = {  var = SOV_ll_monthly_generation value = 1 }   } 
-	if = { limit = { ENG = { controls_state = 336 } NOT = { has_global_flag = war_in_the_west_start }  }  add_to_variable = {  var = SOV_ll_monthly_generation value = 1 }   } 
-	if = { limit = { NOT = { has_global_flag = war_in_the_west_start } ENG = { controls_state = 326 } }  add_to_variable = {  var = SOV_ll_monthly_generation value = 1 }   } 
-	if = { limit = {  OR = {NOT = { JAP = { controls_state = 409 } }JAP = { is_subject_of = USA    } has_global_flag = war_in_the_west_start } }  add_to_variable = {  var = SOV_ll_monthly_generation value = 1 }   } 
-	if = { limit = { OR ={  USA ={ has_completed_focus = USA_support_sov } has_global_flag = war_in_the_west_start date > 1942.4.15    }    }  add_to_variable = { var = SOV_ll_monthly_cap value = 10 }   add_to_variable = {  var = SOV_ll_monthly_generation value = 10 } }
-	if = { limit = { OR ={  USA ={ has_completed_focus = USA_secure_allied_shipping } has_global_flag = war_in_the_west_start date > 1942.4.15    }    }  add_to_variable = { var = SOV_ll_monthly_cap value = 10 }   add_to_variable = {  var = SOV_ll_monthly_generation value = 10 } }
+		# Reset monthly lend-lease variables
+		clear_variable = SOV_ll_monthly_generation
+		clear_variable = SOV_ll_this_month
+		clear_variable = SOV_ll_monthly_cap
+
+		# If Germany is at war with the Soviet Union
+		if = {
+			limit = { GER = { has_war_with = SOV } }
+
+			# Murmansk / Archangelsk route
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							USA = { controls_state = 416 } # Iceland
+							SOV = { controls_state = 408 } # Murmansk
+						}
+						has_global_flag = war_in_the_west_start
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+				add_to_variable = { var = SOV_ll_monthly_cap value = 5 }
+			}
+
+			# Persian corridor
+			if = {
+				limit = {
+					AND = {
+						OR = {
+							ENG = { controls_state = 412 } # Iraq
+							SOV = { controls_state = 412 }
+						}
+						SOV = { controls_state = 229 } # Persia
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 7 }
+				add_to_variable = { var = SOV_ll_monthly_cap value = 25 }
+			}
+
+			# Vladivostok route
+			if = {
+				limit = { SOV = { controls_state = 213 } } # Vladivostok
+				add_to_variable = { var = SOV_ll_monthly_generation value = 3 }
+				add_to_variable = { var = SOV_ll_monthly_cap value = 5 }
+			}
+
+			# Arctic convoy route
+			if = {
+				limit = {
+					AND = {
+						ENG = { controls_state = 116 } # Scotland
+						SOV = { controls_state = 137 } # Archangelsk
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+				add_to_variable = { var = SOV_ll_monthly_cap value = 3 }
+			}
+
+			# Pacific route – blocked unless USA controls or Japan excluded
+			if = {
+				limit = {
+					OR = {
+						NOT = { JAP = { controls_state = 526 } } # Korea
+						JAP = { is_subject_of = USA }
+						has_global_flag = war_in_the_west_start
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+			}
+			if = {
+				limit = {
+					OR = {
+						NOT = { JAP = { controls_state = 560 } } # Taiwan
+						JAP = { is_subject_of = USA }
+						has_global_flag = war_in_the_west_start
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+			}
+			if = {
+				limit = {
+					OR = {
+						NOT = { JAP = { controls_state = 488 } } # Sakhalin
+						JAP = { is_subject_of = USA }
+						has_global_flag = war_in_the_west_start
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+			}
+			if = {
+				limit = {
+					OR = {
+						NOT = { JAP = { controls_state = 180 } } # Kurils
+						JAP = { is_subject_of = USA }
+						has_global_flag = war_in_the_west_start
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+			}
+
+			# Convoys through Gibraltar & Suez if no western war
+			if = {
+				limit = {
+					ENG = { controls_state = 336 } # Gibraltar
+					NOT = { has_global_flag = war_in_the_west_start }
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = war_in_the_west_start }
+					ENG = { controls_state = 326 } # Suez
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+			}
+
+			# Japan blocking another route
+			if = {
+				limit = {
+					OR = {
+						NOT = { JAP = { controls_state = 409 } } # Manchuria
+						JAP = { is_subject_of = USA }
+						has_global_flag = war_in_the_west_start
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_generation value = 1 }
+			}
+
+			# USA special focuses increasing lend-lease
+			if = {
+				limit = {
+					OR = {
+						USA = { has_completed_focus = USA_support_sov }
+						has_global_flag = war_in_the_west_start
+						date > 1942.4.15
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_cap value = 10 }
+				add_to_variable = { var = SOV_ll_monthly_generation value = 10 }
+			}
+			if = {
+				limit = {
+					OR = {
+						USA = { has_completed_focus = USA_secure_allied_shipping }
+						has_global_flag = war_in_the_west_start
+						date > 1942.4.15
+					}
+				}
+				add_to_variable = { var = SOV_ll_monthly_cap value = 10 }
+				add_to_variable = { var = SOV_ll_monthly_generation value = 10 }
+			}
+		}
+
+		# Update monthly variables after routes are checked
+		add_to_variable = { var = SOV_barb_ll_token value = SOV_ll_monthly_generation } 
+		set_variable = { var = SOV_total_IC_sent value = SOV_barb_ll_token2 }
+		multiply_variable = { var = SOV_total_IC_sent value = 2000 }
 	}
-	add_to_variable ={ var = SOV_barb_ll_token value = SOV_ll_monthly_generation } 
-	set_variable = { var = SOV_total_IC_sent value = SOV_barb_ll_token2 }
-	multiply_variable = { var = SOV_total_IC_sent value = 2000 }
+
+	SWE = { 
+		# Debug: sends insane test amounts (1,000,000 each)
+		send_equipment = { equipment = infantry_equipment        amount = 1000000 target = SOV } #1
+		send_equipment = { equipment = artillery_equipment       amount = 1000000 target = SOV } #2
+		send_equipment = { equipment = anti_tank_equipment       amount = 1000000 target = SOV } #3	
+		send_equipment = { equipment = support_equipment         amount = 1000000 target = SOV } #4
+		send_equipment = { equipment = rocket_artillery_equipment amount = 1000000 target = SOV } #5
+		send_equipment = { equipment = anti_air_equipment        amount = 1000000 target = SOV } #6
+
+		send_equipment = { equipment = small_plane_airframe      amount = 1000000 target = SOV } #7 
+		send_equipment = { equipment = small_plane_cas_airframe  amount = 1000000 target = SOV } #8
+		send_equipment = { equipment = mech_chassis              amount = 1000000 target = SOV } #9
+		send_equipment = { equipment = medium_tank_chassis       amount = 1000000 target = SOV } #10
+		send_equipment = { equipment = light_tank_chassis        amount = 1000000 target = SOV } #11
+		send_equipment = { equipment = motorized_equipment       amount = 1000000 target = SOV } #12
 	}
-SWE = { 
-send_equipment = {  equipment = infantry_equipment  amount = 1000000  target = SOV  }#1
-send_equipment = {  equipment = artillery_equipment  amount = 1000000  target = SOV  }#2
-send_equipment = {  equipment = anti_tank_equipment  amount = 1000000  target = SOV  }#3	
-send_equipment = {  equipment = support_equipment  amount = 1000000  target = SOV  }#4
-send_equipment = {  equipment = rocket_artillery_equipment  amount = 1000000  target = SOV  }#5
-send_equipment = {  equipment = anti_air_equipment  amount = 1000000  target = SOV  } #6
-#####
-send_equipment = {  equipment = small_plane_airframe  amount = 1000000  target = SOV  } #7 
-send_equipment = {  equipment = small_plane_cas_airframe  amount = 1000000  target = SOV  } #8
-send_equipment = {  equipment = mech_chassis  amount = 1000000  target = SOV  } #9
-send_equipment = {  equipment = medium_tank_chassis  amount = 1000000  target = SOV  } #10
-send_equipment = {  equipment = light_tank_chassis  amount = 1000000  target = SOV  } #11
-send_equipment = {  equipment = motorized_equipment  amount = 1000000  target = SOV  } #12
-###
-}
 }
 
-endsieg_production_buff_calc = { 
-clear_variable = GER.GER_engsieg_output 
-clear_array = GER.ENDSIEG_SOV
-clear_array = GER.ENDSIEG_BLK
-clear_array = GER.ENDSIEG_ITA
-clear_array = GER.ENDSIEG_FRA
-clear_array = GER.ENDSIEG_GER
 
-every_state = { limit = {  controller = { NOT = { is_in_faction_with = GER }} 
- OR = { state = 228 state = 227 state = 200 state = 196 state = 137 state = 226 state = 197 state = 221 state = 259 state = 203 state = 240 state = 220 state = 225 state = 222 state = 223 state = 205 
-		state = 242  state = 246 state = 263 state = 208 state = 224 state = 193 state = 243 state = 209 state = 13 state = 191 state = 12 state = 210 state = 190 state = 189 state = 11 state = 512 state = 96 
-		state = 207 state = 241 state = 206 state = 95 state = 192  state = 287 state = 78  state = 198 state = 202 state = 199 state = 201 state = 194 state = 204 state = 94 state = 93 state = 91 state = 89 state = 80 state = 97  
-		state = 245 state = 218 state = 234 state = 238 state = 217 state = 237 state = 235 state = 232 state = 233 state = 231 state = 230 state = 229 state = 236 state = 265 
-		state = 260 state = 239 state =  258 state = 257 state = 254 state = 219 state = 247 state = 244 state = 264 state = 146 state = 216 state = 215 state = 213
-		}   #Soviet states
-				}
-			add_to_array = { array = GER.ENDSIEG_SOV value = THIS  }
-				}
-			set_variable  = { var = GER.TEMP_ENDSIEG_SOV  value = GER.ENDSIEG_SOV^num }
-			multiply_variable = { var = GER.TEMP_ENDSIEG_SOV value = 0.005 }
-			add_to_variable = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_SOV }
-			clear_variable = TEMP_ENDSIEG_SOV
+endsieg_production_buff_calc = {
+
+	# Reset main variables and arrays
+	clear_variable = GER.GER_engsieg_output 
+	clear_array    = GER.ENDSIEG_SOV
+	clear_array    = GER.ENDSIEG_BLK
+	clear_array    = GER.ENDSIEG_ITA
+	clear_array    = GER.ENDSIEG_FRA
+	clear_array    = GER.ENDSIEG_GER
+
+	# -------------------------------
+	# Soviet states
+	# -------------------------------
+	every_state = {
+		limit = {
+			controller = { NOT = { is_in_faction_with = GER } }
+			OR = {
+				state = 228 state = 227 state = 200 state = 196 state = 137 state = 226 state = 197 state = 221 state = 259 state = 203 state = 240 state = 220 state = 225 state = 222 state = 223 state = 205 
+				state = 242 state = 246 state = 263 state = 208 state = 224 state = 193 state = 243 state = 209 state = 13 state = 191 state = 12 state = 210 state = 190 state = 189 state = 11 state = 512 state = 96 
+				state = 207 state = 241 state = 206 state = 95 state = 192 state = 287 state = 78 state = 198 state = 202 state = 199 state = 201 state = 194 state = 204 state = 94 state = 93 state = 91 state = 89 
+				state = 80 state = 97 state = 245 state = 218 state = 234 state = 238 state = 217 state = 237 state = 235 state = 232 state = 233 state = 231 state = 230 state = 229 state = 236 state = 265 
+				state = 260 state = 239 state = 258 state = 257 state = 254 state = 219 state = 247 state = 244 state = 264 state = 146 state = 216 state = 215 state = 213
+			} # Soviet states
+		}
+		add_to_array = { array = GER.ENDSIEG_SOV value = THIS }
+	}
+	set_variable      = { var = GER.TEMP_ENDSIEG_SOV value = GER.ENDSIEG_SOV^num }
+	multiply_variable = { var = GER.TEMP_ENDSIEG_SOV value = 0.005 }
+	add_to_variable   = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_SOV }
+	clear_variable    = GER.TEMP_ENDSIEG_SOV
+	
+	# -------------------------------
+	# Balkans + Norway + C. Europe (excluding GER)
+	# -------------------------------
+	every_state = {
+		limit = {
+			controller = { NOT = { is_in_faction_with = GER } }
+			OR = {
+				state = 186 state = 185 state = 47 state = 486 state = 44 state = 184 state = 106 state = 105 state = 212 state = 613 state = 48 state = 211 state = 293 state = 77 state = 46 state = 79 state = 108 state = 107 
+				state = 414 state = 45 state = 104 state = 103 state = 109 state = 163 state = 81 state = 82 state = 84 state = 83 state = 76 state = 73 state = 154 state = 43 state = 155 state = 514 state = 303 state = 71  
+				state = 578 state = 70 state = 102 state = 31 state = 22 state = 25 state = 33 state = 26 state = 20 state = 507 state = 314 state = 144 state = 143 state = 142 state = 110
+			} # Balkans + Norway + Central Europe (non-GER)
+		}
+		add_to_array = { array = GER.ENDSIEG_BLK value = THIS }
+	}
+	set_variable      = { var = GER.TEMP_ENDSIEG_BLK value = GER.ENDSIEG_BLK^num }
+	multiply_variable = { var = GER.TEMP_ENDSIEG_BLK value = 0.015 }
+	add_to_variable   = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_BLK }
+	clear_variable    = GER.TEMP_ENDSIEG_BLK
+
+	# -------------------------------
+	# Italian states
+	# -------------------------------
+	every_state = {
+		limit = {
+			controller = { NOT = { is_in_faction_with = GER } }
+			OR = {
+				state = 115 state = 156 state = 117 state = 157 state = 2 state = 162 state = 161 state = 158 state = 313 state = 32 state = 21 state = 159 state = 39 state = 160
+			} # Italy
+		}
+		add_to_array = { array = GER.ENDSIEG_ITA value = THIS }
+	}
+	set_variable      = { var = GER.TEMP_ENDSIEG_ITA value = GER.ENDSIEG_ITA^num }
+	multiply_variable = { var = GER.TEMP_ENDSIEG_ITA value = 0.025 }
+	add_to_variable   = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_ITA }
+	clear_variable    = GER.TEMP_ENDSIEG_ITA
+
+	# -------------------------------
+	# France + Low Countries + Denmark + Poland
+	# -------------------------------
+	every_state = {
+		limit = {
+			controller = { NOT = { is_in_faction_with = GER } }
+			OR = {
+				state = 19 state = 23 state = 30 state = 14 state = 15 state = 24 state = 27 state = 17 state = 18 state = 16 state = 267 state = 29 state = 34 state = 36 state = 7 state = 35 state = 6 state = 37 state = 99 
+				state = 88 state = 72 state = 75 state = 9 state = 90 state = 92 state = 10 state = 87 state = 86 state = 98 state = 553
+			} # France + Benelux + Denmark + Poland
+		}
+		add_to_array = { array = GER.ENDSIEG_FRA value = THIS }
+	}
+	set_variable      = { var = GER.TEMP_ENDSIEG_FRA value = GER.ENDSIEG_FRA^num }
+	multiply_variable = { var = GER.TEMP_ENDSIEG_FRA value = 0.03 }
+	add_to_variable   = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_FRA }
+	clear_variable    = GER.TEMP_ENDSIEG_FRA
+
+	# -------------------------------
+	# German core states
+	# -------------------------------
+	every_state = {
+		limit = {
+			controller = { NOT = { is_in_faction_with = GER } }
+			OR = {
+				state = 188 state = 330 state = 5 state = 556 state = 85 state = 63 state = 4 state = 152 state = 52 state = 153 state = 50 state = 28 state = 8 state = 42 state = 51 state = 55 state = 54 state = 53 state = 69 
+				state = 74 state = 67 state = 66 state = 68 state = 62 state = 64 state = 61 state = 58 state = 59 state = 56 state = 57 state = 65 state = 60
+			} # German cores
+		}
+		add_to_array = { array = GER.ENDSIEG_GER value = THIS }
+	}
+	set_variable      = { var = GER.TEMP_ENDSIEG_GER value = GER.ENDSIEG_GER^num }
+	multiply_variable = { var = GER.TEMP_ENDSIEG_GER value = 0.04 }
+	add_to_variable   = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_GER }
+	clear_variable    = GER.TEMP_ENDSIEG_GER
 			
-every_state = { limit = { controller = { NOT = { is_in_faction_with = GER }} 
- OR = { state = 186 state = 185 state = 47  state = 486 state = 44 state = 184 state = 106 state = 105 state = 212 state = 613 state = 48 state = 211  state = 293 state = 77 state = 46 state = 79 state = 108 state = 107 
- state = 414 state = 45 state = 104 state = 103 state = 109 state = 163 state = 81 state = 82 state = 84 state = 83 state = 76 state = 73 state = 154 state = 43 state = 155 state = 514 state = 303 state = 71  
- state = 578 state = 70  state = 102  state = 31 state = 22 state = 25 state = 33 state = 26 state = 20 state = 507 state = 314 state = 144 state = 143  state = 142 state = 110   }   #Balkans + Norway + C. Europe w/o GER 
-				}
-			add_to_array = { array = GER.ENDSIEG_BLK value = THIS  }
+	# -------------------------------
+	# Special case: Bitter Peace / Soviet collapse
+	# -------------------------------
+	if = {
+		limit = {
+			OR = {
+				SOV = { surrender_progress > 0.98 }
+				has_global_flag = a_bitter_peace_fired
 			}
-			set_variable  = { var = GER.TEMP_ENDSIEG_BLK value = GER.ENDSIEG_BLK^num }
-			multiply_variable = { var = GER.TEMP_ENDSIEG_BLK value = 0.015 }
-			add_to_variable = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_BLK }
-			clear_variable = GER.TEMP_ENDSIEG_BLK
-				
-				
-every_state = { limit = { controller = { NOT = { is_in_faction_with = GER }} 
- OR = { state = 115 state = 156 state = 117 state = 157 state = 2 state = 162 state = 161 state = 158 state = 313 state = 32 state = 21 state = 159 state = 39 state = 160   }   #ITA
-				}
-			add_to_array = { array = GER.ENDSIEG_ITA value = THIS  }
-			}
-			set_variable  = { var = GER.TEMP_ENDSIEG_ITA value = GER.ENDSIEG_ITA^num }
-			multiply_variable = { var = GER.TEMP_ENDSIEG_ITA value = 0.025 }
-			add_to_variable = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_ITA }
-			clear_variable = GER.TEMP_ENDSIEG_ITA
-					
-every_state = { limit = { controller = { NOT = { is_in_faction_with = GER }} 
- OR = { state = 19 state = 23 state = 30 state = 14 state = 15 state = 24 state = 27 state = 17 state = 18 state = 16 state = 267 state = 29 state = 34 state = 36 state = 7 state = 35 state = 6 state = 37 state = 99 
-		state = 88  state = 72 state = 75 state = 9 state = 90 state = 92 state = 10 state = 87 state = 86 state = 98 state = 553 }   #FRA+HOL+BEL+DEN+POL
-				}
-			add_to_array = { array = GER.ENDSIEG_FRA value = THIS  }
-			}
-			set_variable  = { var = GER.TEMP_ENDSIEG_FRA value = GER.ENDSIEG_FRA^num }
-			multiply_variable = { var = GER.TEMP_ENDSIEG_FRA value = 0.03 }
-			add_to_variable = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_FRA }
-			clear_variable = GER.TEMP_ENDSIEG_FRA
-					
-every_state = { limit = { controller = { NOT = { is_in_faction_with = GER }} 
- OR = { state = 188 state = 330 state = 5 state = 556 state = 85 state = 63 state = 4 state = 152 state = 52 state = 153 state = 50 state = 28 state = 8 state = 42 state = 51 state = 55 state = 54 state = 53 state = 69 
-		state = 74 state = 67 state = 66 state = 68 state = 62  state = 64 state = 61 state = 58 state = 59 state = 56 state = 57 state = 65 state = 60  }   #GER CORES
-				}
-			add_to_array = { array = GER.ENDSIEG_GER value = THIS  }
-			}
-			set_variable  = { var = GER.TEMP_ENDSIEG_GER value = GER.ENDSIEG_GER^num }
-			multiply_variable = { var = GER.TEMP_ENDSIEG_GER value = 0.04 }
-			add_to_variable = { var = GER.GER_engsieg_output value = GER.TEMP_ENDSIEG_GER }
-			clear_variable = GER.TEMP_ENDSIEG_GER
-			
-			if = { limit = { OR = { SOV = { surrender_progress > 0.98 }  has_global_flag = a_bitter_peace_fired   } }   #bitter
-			add_to_variable = { var = GER.GER_engsieg_output value = -1.2 }
-			if = { limit ={  check_variable = { GER.GER_engsieg_output < 0 } }
-				set_variable = { var = GER.GER_engsieg_output value = 0 }
-			}
-			}
+		}
+		add_to_variable = { var = GER.GER_engsieg_output value = -1.2 }
+
+		# Ensure value never goes below zero
+		if = {
+			limit = { check_variable = { GER.GER_engsieg_output < 0 } }
+			set_variable = { var = GER.GER_engsieg_output value = 0 }
+		}
+	}
 }
+
 
 startup_events = {
 	every_country = { limit = { OR = { tag = SPR tag = HUN tag = CZE tag = ROM tag = BUL } }country_event = { id = countrystartup.101 }  }
