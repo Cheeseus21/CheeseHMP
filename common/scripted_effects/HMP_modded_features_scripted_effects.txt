@@ -4382,504 +4382,43 @@ SOV_relocate_mil = {
     }
 }
 
-########## CONGRESS STUFF ##########
-
-#Important to put HIGHEST first
-USA_great_depression_level_up = {
-	# level 5 not relevant. Cannot go above.
-	custom_effect_tooltip = USA_great_depression_up_tt
-	if = {
-		limit = { has_idea = great_depression_2 }
-		swap_ideas = {
-			remove_idea = great_depression_2
-			add_idea = great_depression
-		}
-	}
-	else_if = {
-		limit = { has_idea = great_depression_3 }
-		swap_ideas = {
-			remove_idea = great_depression_3
-			add_idea = great_depression_2
-		}
-	}
-}
-
-#Important to put LOWEST first
-USA_great_depression_level_down = {
-	if = {
-		limit = { has_idea = great_depression_3 }
-		custom_effect_tooltip = USA_great_depression_down_tt
-		remove_ideas = great_depression_3
-	}
-	if = {
-		limit = { has_idea = great_depression_2 }
-		custom_effect_tooltip = USA_great_depression_down_tt
-		swap_ideas = {
-		remove_idea = great_depression_2
-		add_idea = great_depression_3
-		}
-	}
-	if = {
-		limit = { has_idea = great_depression }
-		custom_effect_tooltip = USA_great_depression_down_tt
-		swap_ideas = {
-			remove_idea = great_depression
-			add_idea = great_depression_2
-		}
-	}
-}
-
-USA_congress_get_quorum = {
-	set_variable = { var = quorum_low value = senators_total }
-	multiply_variable = { var = quorum_low value = 0.4 }
-	set_variable = { var = quorum_medium value = senators_total }
-	multiply_variable = { var = quorum_medium value = 0.5 }
-	set_variable = { var = quorum_high value = senators_total }
-	multiply_variable = { var = quorum_high value = 0.6 }
-	round_variable = quorum_low 
-	round_variable = quorum_medium 
-	round_variable = quorum_high
-	USA_recalc_congress_icon_frames = yes
-}
-USA_congress_remove_state = {
-	custom_effect_tooltip = mtg_usa_congress_remove_state_tt
-	subtract_from_variable = { senators_total = 2 }
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_congress_get_quorum = yes
-	USA_recalc_congress_icon_frames = yes
-}
-USA_congress_add_state = {
-	custom_effect_tooltip = mtg_usa_congress_add_state_tt
-	add_to_variable = { senators_total = 2 }
-	add_to_variable = { senators_support = 2 }
-	USA_congress_get_quorum = yes
-	USA_recalc_congress_icon_frames = yes
-}
-USA_congress_small_opposition = {
-	custom_effect_tooltip = mtg_usa_congress_small_opposition_tt
-	hidden_effect = {
-		USA_senate_small_opposition = yes
-		USA_house_small_opposition = yes
-		
-	}
-}
-
-USA_senate_small_opposition = {
-	custom_effect_tooltip = mtg_usa_senate_small_opposition_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = -4 }
-	add_to_variable = { senators_support = temp_factor }
-	round_variable = senators_support
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_small_opposition = {
-	custom_effect_tooltip = mtg_usa_house_small_opposition_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = -20 }
-	add_to_variable = { representatives_support = temp_factor }
-	round_variable = representatives_support
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_senate_small_support = {
-	custom_effect_tooltip = mtg_usa_senate_small_support_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = 5 }
-	add_to_variable = { senators_support = temp_factor }
-	round_variable = senators_support
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_small_support = {
-	custom_effect_tooltip = mtg_usa_house_small_support_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = 25 }
-	clamp_temp_variable = { var = temp_factor max = 25 min = 10 }
-	add_to_variable = { representatives_support = temp_factor }
-	round_variable = representatives_support
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-################################HORST CONGRESS REWORK######################################################
-USA_house_small_supporta = {
-	custom_effect_tooltip = mtg_usa_house_small_supporta_tt
- add_to_variable = { representatives_support = 15 }
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_small_oppositiona = {
-	custom_effect_tooltip = mtg_usa_house_small_oppositiona_tt
- add_to_variable = { representatives_support = -10 }
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_senate_small_supportb = {
-	custom_effect_tooltip = mtg_usa_senate_small_supportb_tt
-	add_to_variable = { senators_support = 3 }
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_senate_small_oppositiona = {
-	custom_effect_tooltip = mtg_usa_senate_small_oppositiona_tt
-	add_to_variable = { senators_support = -2 }
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_congress_small_oppositiona = {
-	custom_effect_tooltip = mtg_usa_congress_small_oppositiona_tt
-	hidden_effect = {
-		USA_senate_small_oppositiona = yes
-		USA_house_small_oppositiona = yes
-	}
-}
-USA_congress_small_supporta = {
-	custom_effect_tooltip = mtg_usa_congress_small_supporta_tt
-	hidden_effect = {
-		USA_house_small_supporta = yes 
- 		USA_senate_small_supportb = yes
-	}
-}
-
-USA_senate_medium_oppositiona = {
-	custom_effect_tooltip = mtg_usa_senate_medium_oppositiona_tt
-	add_to_variable = { senators_support = -5 }
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_medium_oppositiona = {
-	custom_effect_tooltip = mtg_usa_house_medium_oppositiona_tt
-	add_to_variable = { representatives_support = -25 }
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_senate_medium_supporta = {
-	custom_effect_tooltip = mtg_usa_senate_medium_supporta_tt
-	add_to_variable = { senators_support = 7 }
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_medium_supporta = {
-	custom_effect_tooltip = mtg_usa_house_medium_supporta_tt
-	add_to_variable = { representatives_support = 30 }
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_congress_medium_supporta = {
-	custom_effect_tooltip = mtg_usa_congress_medium_supporta_tt
-	hidden_effect = {
-		USA_senate_medium_supporta = yes
-		USA_house_medium_supporta = yes
-	}
-}
-USA_congress_medium_oppositiona = {
-	custom_effect_tooltip = mtg_usa_congress_medium_oppositiona_tt
-	hidden_effect = {
-		USA_senate_medium_oppositiona = yes
-		USA_house_medium_oppositiona = yes
-		
-	}
-}
-
-
-USA_senate_medium_opposition = {
-	custom_effect_tooltip = mtg_usa_senate_medium_opposition_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = -8 }
-	clamp_temp_variable = { var = temp_factor max = -3 min = -8 }
-	add_to_variable = { senators_support = temp_factor }
-	round_variable = senators_support
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_medium_opposition = {
-	custom_effect_tooltip = mtg_usa_house_medium_opposition_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = -40 }
-	clamp_temp_variable = { var = temp_factor max = -20 min = -40 }
-	add_to_variable = { representatives_support = temp_factor }
-	round_variable = representatives_support
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_senate_medium_support = {
-	custom_effect_tooltip = mtg_usa_senate_medium_support_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = 10 }
-	clamp_temp_variable = { var = temp_factor max = 10 min = 5 }
-	add_to_variable = { senators_support = temp_factor }
-	round_variable = senators_support
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_medium_support = {
-	custom_effect_tooltip = mtg_usa_house_medium_support_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = 50 }
-	clamp_temp_variable = { var = temp_factor max = 50 min = 20 }
-	add_to_variable = { representatives_support = temp_factor }
-	round_variable = representatives_support
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_senate_large_opposition = {
-	custom_effect_tooltip = mtg_usa_senate_large_opposition_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = -25 }
-	clamp_temp_variable = { var = temp_factor max = 25 min = -10 }
-	add_to_variable = { senators_support = temp_factor }
-	round_variable = senators_support
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_large_opposition = {
-	custom_effect_tooltip = mtg_usa_house_large_opposition_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = -100 }
-	clamp_temp_variable = { var = temp_factor max = -50 min = -100 }
-	add_to_variable = { representatives_support = temp_factor }
-	round_variable = representatives_support
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_senate_large_support = {
-	custom_effect_tooltip = mtg_usa_senate_large_support_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = 30 }
-	clamp_temp_variable = { var = temp_factor max = 30 min = 15 }
-	add_to_variable = { senators_support = temp_factor }
-	round_variable = senators_support
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_house_large_support = {
-	custom_effect_tooltip = mtg_usa_house_large_support_tt
-	set_temp_variable = { temp_factor = random }
-	multiply_temp_variable = { temp_factor = 125 }
-	clamp_temp_variable = { var = temp_factor max = 125 min = 80 }
-	add_to_variable = { representatives_support = temp_factor }
-	round_variable = representatives_support
-	clamp_variable = { var = representatives_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_congress_medium_opposition = {
-	custom_effect_tooltip = mtg_usa_congress_medium_opposition_tt
-	hidden_effect = {
-		USA_senate_medium_opposition = yes
-		USA_house_medium_opposition = yes
-		
-	}
-}
-
-USA_congress_large_opposition = {
-	custom_effect_tooltip = mtg_usa_congress_large_opposition_tt
-	hidden_effect = {
-		USA_senate_large_opposition = yes
-		USA_house_large_opposition = yes
-		
-	}
-}
-USA_congress_small_support = {
-	custom_effect_tooltip = mtg_usa_congress_small_support_tt
-	hidden_effect = {
-		USA_senate_small_support = yes
-		USA_house_small_support = yes
-		
-	}
-}
-
-USA_congress_medium_support = {
-	custom_effect_tooltip = mtg_usa_congress_medium_support_tt
-	hidden_effect = {
-		USA_senate_medium_support = yes
-		USA_house_medium_support = yes
-		
-	}
-}
-USA_congress_large_support = {
-	custom_effect_tooltip = mtg_usa_congress_large_support_tt
-	hidden_effect = {
-		USA_senate_large_support = yes
-		USA_house_large_support = yes
-		
-	}
-}
-USA_election_senate = {
-	set_variable = { var = senators_for_reelection value = senators_total } #not temp because needed for events
-	multiply_variable = { senators_for_reelection = 0.3 }
-	multiply_variable = { senators_for_reelection = election_factor }
-	add_to_variable = { senators_support = senators_for_reelection }
-	round_variable = senators_support
-	round_variable = senators_for_reelection
-	set_variable = { sen_loc = senators_for_reelection }
-	if = {
-		limit = {
-			check_variable = { sen_loc < 0 }
-		}
-		multiply_variable = { sen_loc = -1 }
-	}
-	clamp_variable = { var = senators_support max = senators_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_election_house = {
-	set_variable = { var = representatives_for_reelection value = representatives_total } #not temp because needed for events
-	multiply_variable = { representatives_for_reelection = 0.5 }
-	multiply_variable = { representatives_for_reelection = election_factor }
-	set_variable = { representatives_support = representatives_total }
-	multiply_variable = { representatives_support = 0.5 }
-	add_to_variable = { representatives_support = representatives_for_reelection }
-	round_variable = representatives_support
-	round_variable = representatives_for_reelection
-	set_variable = { ror_loc = representatives_for_reelection }
-	if = {
-		limit = {
-			check_variable = { ror_loc < 0 }
-		}
-		multiply_variable = { ror_loc = -1 }
-	}
-	clamp_variable = { var = senators_support max = representatives_total min = 0 }
-	USA_recalc_congress_icon_frames = yes
-}
-USA_return_majority = { #for communist/fascist
-	custom_effect_tooltip = USA_return_majority_tt
-	set_variable = { var = goal_value_senators value = senators_total }
-	multiply_variable = { var = goal_value_senators value = 0.7 }
-	round_variable = goal_value_senators
-	if = {
-		limit = {
-			check_variable = { var = senators_support value = goal_value_senators compare = less_than } #shouldn't punish player
-		}
-		set_variable = { var = senators_support value = goal_value_senators }
-	}
-	set_variable = { var = goal_value_representatives value = representatives_total }
-	multiply_variable = { var = goal_value_representatives value = 0.7 }
-	round_variable = goal_value_representatives
-	if = {
-		limit = {
-			check_variable = { var = representatives_support value = goal_value_representatives compare = less_than } #shouldn't punish player
-		}
-		set_variable = { var = representatives_support value = goal_value_representatives }
-	}
-	USA_recalc_congress_icon_frames = yes
-}
-USA_flip_support = {
-	set_temp_variable = { senators_temp = senators_total }
-	subtract_from_temp_variable = { senators_temp = senators_support }
-	set_variable = { senators_support = senators_temp }
-	set_temp_variable = { representatives_temp = representatives_total }
-	subtract_from_temp_variable = { representatives_temp = representatives_support }
-	set_variable = { representatives_support = representatives_temp }
-	USA_recalc_congress_icon_frames = yes
-}
-
-USA_recalc_congress_icon_frames = { 
-set_temp_variable = { senators_temp = senators_support }
-	divide_temp_variable = { senators_temp = senators_total }
-	multiply_temp_variable = { senators_temp = 21 }
-	if = {
-		limit = { check_variable = { senators_temp > 0 } }
-		clamp_temp_variable = {
-			var = senators_temp
-			min = 1
-			max = 21
-		}
-	}
-	else = {
-		set_temp_variable = { senators_temp = 1 }
-	}
-	set_variable = { current_senate_icon_frame = senators_temp }
-
-	set_temp_variable = { house_temp = representatives_support }
-	divide_temp_variable = { house_temp = representatives_total }
-	multiply_temp_variable = { house_temp = 21 }
-	if = {
-		limit = { check_variable = { house_temp > 0 } }
-		clamp_temp_variable = {
-			var = house_temp
-			min = 1
-			max = 21
-		}
-	}
-	else = {
-		set_temp_variable = { house_temp = 1 }		
-	}
-	set_variable = { current_house_icon_frame = house_temp }
-}
-USA_calc_stars = {
-	if = {
-		limit = {
-			has_cosmetic_tag = USA_50
-		}
-		set_cosmetic_tag = USA_51
-	}
-	else_if = {
-		limit = {
-			has_cosmetic_tag = USA_49
-		}
-		set_cosmetic_tag = USA_50
-	}
-	else = {
-		set_cosmetic_tag = USA_49
-	}
-}
-
-USA_all_plane_LL = {
-	send_equipment = { equipment = small_plane_cas_airframe amount = 20 target = ENG }
-	send_equipment = { equipment = medium_plane_airframe amount = 20 target = ENG }
-}
-
 revert_cross_faction_trade_unthinkable = {
 	every_country = { limit = { is_in_faction_with = ENG }
-	break_embargo = ITA
-	break_embargo = GER
-	break_embargo = FIN
-	break_embargo = DDR
-}
+		break_embargo = ITA
+		break_embargo = GER
+		break_embargo = FIN
+		break_embargo = DDR
+	}
 
-ITA = { 
-	break_embargo = BRA
-	break_embargo = USA
-	break_embargo = ENG
-	break_embargo = FRA
-	break_embargo = CAN
-	break_embargo = DDR
-	break_embargo = SAF
-	break_embargo = HOL
-	break_embargo = RAJ
-	break_embargo = AST
-	break_embargo = NZL
-	break_embargo = NOR
-}
+	ITA = { 
+		break_embargo = BRA
+		break_embargo = USA
+		break_embargo = ENG
+		break_embargo = FRA
+		break_embargo = CAN
+		break_embargo = DDR
+		break_embargo = SAF
+		break_embargo = HOL
+		break_embargo = RAJ
+		break_embargo = AST
+		break_embargo = NZL
+		break_embargo = NOR
+	}
 
-
-GER = { 
-	break_embargo = BRA
-	break_embargo = USA
-	break_embargo = DDR
-	break_embargo = ENG
-	break_embargo = FRA
-	break_embargo = CAN
-	break_embargo = SAF
-	break_embargo = HOL
-	break_embargo = RAJ
-	break_embargo = AST
-	break_embargo = NZL
-	break_embargo = NOR
-}
-
-
+	GER = { 
+		break_embargo = BRA
+		break_embargo = USA
+		break_embargo = DDR
+		break_embargo = ENG
+		break_embargo = FRA
+		break_embargo = CAN
+		break_embargo = SAF
+		break_embargo = HOL
+		break_embargo = RAJ
+		break_embargo = AST
+		break_embargo = NZL
+		break_embargo = NOR
+	}
 }
 
 revert_cross_faction_trade_allies = {
@@ -4987,411 +4526,159 @@ anti_cross_faction_trade_japan = {
 }
 
 recalc_vichy_france_legitimacy = {
-EFR = { set_variable = { vichy_legitimacy_mechanic_stability_factor = -0.1 } } 
-if = { limit = { EFR = { has_completed_focus = VIC_africa_corps_3 } }  EFR = { add_to_variable={vichy_legitimacy_mechanic_stability_factor=0.05} } }
-if = { limit = { EFR = { controls_state = 510 } } EFR = { add_to_variable={vichy_legitimacy_mechanic_stability_factor=0.15}  }  }#MIDDLE CONGO
-if = { limit = { EFR = { controls_state = 445 } } EFR = { add_to_variable={vichy_legitimacy_mechanic_stability_factor=0.15}  }  } #FRENCH GUINEA
-if = { limit = { EFR = { controls_state = 543 } } EFR = { add_to_variable={vichy_legitimacy_mechanic_stability_factor=0.15}  }  }#MADAGASCAR
-if = { limit = { EFR = { controls_state = 554 } } EFR = { add_to_variable={vichy_legitimacy_mechanic_stability_factor=0.15}  }  }#SYRIA
-if = { limit = { or = { EFR = { controls_state = 460 } ITA = { controls_state = 460 }  }  } EFR = { add_to_variable={vichy_legitimacy_mechanic_stability_factor=0.15}  }  }#ALGERIA
-if = { limit = { EFR = { controls_state = 277 } }EFR = {  add_to_variable={vichy_legitimacy_mechanic_stability_factor=0.15}  }  }#CAMEROON
-if = { limit = { EFR = { is_subject_of = GER } } EFR = { add_to_variable={vichy_legitimacy_mechanic_stability_factor=-0.3}  }  }#Puppet check
+    EFR = { set_variable = { vichy_legitimacy_mechanic_stability_factor = -0.1 } }
+
+    if = { 
+        limit = { EFR = { has_completed_focus = VIC_africa_corps_3 } }
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.05 } }
+    }
+
+    if = { 
+        limit = { EFR = { controls_state = 510 } } # MIDDLE CONGO
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
+    }
+
+    if = { 
+        limit = { EFR = { controls_state = 445 } } # FRENCH GUINEA
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
+    }
+
+    if = { 
+        limit = { EFR = { controls_state = 543 } } # MADAGASCAR
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
+    }
+
+    if = { 
+        limit = { EFR = { controls_state = 554 } } # SYRIA
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
+    }
+
+    if = { 
+        limit = { OR = { EFR = { controls_state = 460 } ITA = { controls_state = 460 } } } # ALGERIA
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
+    }
+
+    if = { 
+        limit = { EFR = { controls_state = 277 } } # CAMEROON
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
+    }
+
+    if = { 
+        limit = { EFR = { is_subject_of = GER } } # Puppet check
+        EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = -0.3 } }
+    }
 }
 
 calc_japanese_pacific_navy_bonus = {
-JAP = { clear_variable = japanese_pacific_navy_bonus_range }
-USA = { clear_variable = operation_overlord_bonus }
-if = { limit = { check_okhotsk =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_okhotsk_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_nw_pacific =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_nw_pacific_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_sea_japan =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_sea_japan_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_coast_japan =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_coast_japan_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_sea_yellow =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_sea_yellow_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_sea_east_china =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_sea_east_china_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_sea_south_china =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_sea_south_china_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_mariana =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_mariana_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_sea_phillipine =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_sea_phillipine_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_sea_bismarck =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_sea_bismarck_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.1 } } } #USA
-if = { limit = { check_thailand =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } } #JAP
-if = { limit = { check_thailand_allies =  yes } USA = { add_to_variable = { var = operation_overlord_bonus value = 0.03 } } } #USA
-if = { limit = { check_west_emperor =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_hawaii =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_micronesia =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_pacific_line_ridge =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_sea_solomon =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_malacca =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_sea_celebes =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_sea_java =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
-if = { limit = { check_sea_arafura =  yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    JAP = { clear_variable = japanese_pacific_navy_bonus_range }
+    USA = { clear_variable = operation_overlord_bonus }
+
+    # JAP bonuses
+    if = { limit = { check_okhotsk = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_nw_pacific = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_japan = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_coast_japan = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_yellow = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_east_china = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_south_china = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_mariana = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_phillipine = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_bismarck = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_thailand = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_west_emperor = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_hawaii = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_micronesia = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_pacific_line_ridge = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_solomon = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_malacca = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_celebes = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_java = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
+    if = { limit = { check_sea_arafura = yes } JAP = { add_to_variable = { var = japanese_pacific_navy_bonus_range value = 0.1 } } }
 
 }
+
 
 calc_festung_europa = {
-if = { limit = { check_variable = { GER.festung_europa_max_dig_in > 5 } }
-	add_to_variable = { var = GER.festung_europa_max_dig_in value = -1 } 
-
-}
+	if = {
+		limit = { check_variable = { var = GER.festung_europa_max_dig_in value > 5 } }
+		add_to_variable = { var = GER.festung_europa_max_dig_in value = -1 }
+	}
 	else = {
-			set_global_flag = festung_europa_has_fallen
+		set_global_flag = festung_europa_has_fallen
 	}
 }
 
+# ALLIED SYNTHETIC REFINERY MODIFIER #
 recalc_allied_rubber = {
+	USA = { 
+		set_variable = { 
+			var = USA_cheap_rubber_production_speed_synthetic_refinery_factor 
+			value = -1.00
+		} 	
+	}
 
-	BUL = {
-			clear_variable = total_mil_dock
-			clear_variable = total_civ
-			clear_variable = total_civ_adjusted
-			set_variable = {
-				var = total_mil_dock
-				value = num_of_military_factories
-			}
-			add_to_variable = {
-				var = total_mil_dock
-				value = num_of_naval_factories			
-			}
-			set_variable = {
-				var = total_civ
-				value = num_of_factories	
-			}
-			subtract_from_variable = {
-				var = total_civ
-				value = total_mil_dock
-			}
-			set_variable = {
-				var = total_civ_adjusted
-				value = total_civ
-			}
-			subtract_from_variable = {
-				var = total_civ_adjusted
-				value = 15
-			}			
-			if = {
-				limit = {
-					check_variable = { total_civ_adjusted >  total_mil_dock }
-					date > 1939.9.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 336 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.20 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 423 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 422 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.10 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 327 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.10 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 581 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.04 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 321 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.15 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 335 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.15 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 333 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.10 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 334 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 342 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 575 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 562 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.03 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 516 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 523 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 } }
+	}
+	if = { 
+		limit = { any_country = { OR = { tag = JAP tag = MAN } controls_state = 312 } }
+		USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 } }
+	}
 }
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 
-				if = {
-				limit = {
-					check_variable = { total_civ >  total_mil_dock }
-					date > 1940.3.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 		
-		}
-		
-			CZE = {
-			clear_variable = total_mil_dock
-			clear_variable = total_civ
-			clear_variable = total_civ_adjusted
-			set_variable = {
-				var = total_mil_dock
-				value = num_of_military_factories
-			}
-			add_to_variable = {
-				var = total_mil_dock
-				value = num_of_naval_factories			
-			}
-			set_variable = {
-				var = total_civ
-				value = num_of_factories	
-			}
-			subtract_from_variable = {
-				var = total_civ
-				value = total_mil_dock
-			}
-			set_variable = {
-				var = total_civ_adjusted
-				value = total_civ
-			}
-			subtract_from_variable = {
-				var = total_civ_adjusted
-				value = 10
-			}			
-			if = {
-				limit = {
-					check_variable = { total_civ_adjusted >  total_mil_dock }
-					date > 1939.9.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 
-				if = {
-				limit = {
-					check_variable = {total_civ >  total_mil_dock }
-					date > 1940.3.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 		
-		}
-	HUN = {
-			clear_variable = total_mil_dock
-			clear_variable = total_civ
-			clear_variable = total_civ_adjusted
-			set_variable = {
-				var = total_mil_dock
-				value = num_of_military_factories
-			}
-			add_to_variable = {
-				var = total_mil_dock
-				value = num_of_naval_factories			
-			}
-			set_variable = {
-				var = total_civ
-				value = num_of_factories	
-			}
-			subtract_from_variable = {
-				var = total_civ
-				value = total_mil_dock
-			}
-			set_variable = {
-				var = total_civ_adjusted
-				value = total_civ
-			}
-			subtract_from_variable = {
-				var = total_civ_adjusted
-				value = 15
-			}			
-			if = {
-				limit = {
-					check_variable = { total_civ_adjusted >  total_mil_dock }
-					date > 1939.9.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 
-				if = {
-				limit = {
-					check_variable = { total_civ >  total_mil_dock }
-					date > 1940.5.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 		
-		}
-	SPR = {
-			clear_variable = total_mil_dock
-			clear_variable = total_civ
-			clear_variable = total_civ_adjusted
-			set_variable = {
-				var = total_mil_dock
-				value = num_of_military_factories
-			}
-			add_to_variable = {
-				var = total_mil_dock
-				value = num_of_naval_factories			
-			}
-			set_variable = {
-				var = total_civ
-				value = num_of_factories	
-			}
-			subtract_from_variable = {
-				var = total_civ
-				value = total_mil_dock
-			}
-			set_variable = {
-				var = total_civ_adjusted
-				value = total_civ
-			}
-			subtract_from_variable = {
-				var = total_civ_adjusted
-				value = 20
-			}			
-			if = {
-				limit = {
-				check_variable = { 	total_civ_adjusted >  total_mil_dock }
-					date > 1939.9.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 
-				if = {
-				limit = {
-					check_variable = { total_civ >  total_mil_dock }
-					date > 1940.6.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 		
-		}
-		
-			ROM = {
-			clear_variable = total_mil_dock
-			clear_variable = total_civ
-			clear_variable = total_civ_adjusted
-			set_variable = {
-				var = total_mil_dock
-				value = num_of_military_factories
-			}
-			add_to_variable = {
-				var = total_mil_dock
-				value = num_of_naval_factories			
-			}
-			set_variable = {
-				var = total_civ
-				value = num_of_factories	
-			}
-			subtract_from_variable = {
-				var = total_civ
-				value = total_mil_dock
-			}
-			set_variable = {
-				var = total_civ_adjusted
-				value = total_civ
-			}
-			subtract_from_variable = {
-				var = total_civ_adjusted
-				value = 15
-			}			
-			if = {
-				limit = {
-					check_variable = { total_civ_adjusted >  total_mil_dock }
-					date > 1939.9.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 
-				if = {
-				limit = {
-					check_variable = { total_civ >  total_mil_dock }
-					date > 1940.5.1
-				}
-				random_owned_state = {
-					limit = {
-					non_damaged_building_level = {
-    building = industrial_complex
-    level > 1
-}
-					}
-					remove_building = {
-					type = industrial_complex
-						level= 1		
-					}
-				}
-			} 		
-		}
-		
-	USA = {  set_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = -1.00} 	}
-	if = { limit = { any_country = { OR = { tag = JAP tag = MAN  } controls_state = 336  }  } USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.20 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 423  }  }  USA = {add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 }    }  }
-	if = { limit = { any_country = { OR = { tag = JAP tag = MAN  } controls_state = 422  }  }  USA = {add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.10 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 327  }  }USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.10 }    }  }
-	if = { limit = { any_country = { OR = { tag = JAP tag = MAN  } controls_state = 581  }  } USA = {add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.04 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 321  }  }USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.15 }    }  }
-	if = { limit = { any_country = { OR = { tag = JAP tag = MAN  } controls_state = 335  }  } USA = {add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.15 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 333  }  }USA = {  add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.1 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 334  }  }USA = {add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 342  }  } USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 }    }  }
-	if = { limit = { any_country = { OR = { tag = JAP tag = MAN  } controls_state = 575  }  }  USA = {add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 562  }  }USA = {  add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.03 }    } }
-	if = { limit = { any_country = {OR = { tag = JAP tag = MAN } controls_state = 516  }  } USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 }    } 	 }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 523  }  } USA = { add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 }    }  }
-	if = { limit = { any_country = {  OR = { tag = JAP tag = MAN  } controls_state = 312  }  } USA = {add_to_variable = { var = USA_cheap_rubber_production_speed_synthetic_refinery_factor value = 0.08 }    } 	 }
-}
+
 
 
 
@@ -5422,9 +4709,29 @@ generic_bonus_999 = {
 	}
 }
 
+HMP_remember_party_pop_on_autonomy_switch = {
+	set_variable = {
+		var = POL.neutrality_support_var
+		value = party_popularity_100@neutrality
+	}
+	set_variable = {
+		var = POL.democratic_support_var
+		value = party_popularity_100@democratic
+	}
+	set_variable = {
+		var = POL.communism_support_var
+		value = party_popularity_100@communism
+	}
+	set_variable = {
+		var = POL.fascism_support_var
+		value = party_popularity_100@fascism
+	}
+}
+
 HMP_atlantis = {
-	GRE = {set_country_flag = gre_island_spotted2 }
-				PER = { country_event = { id= mtg_netherlands.346 days = 1 }}
+	GRE = { set_country_flag = gre_island_spotted2 }
+	PER = { country_event = { id = mtg_netherlands.346 days = 1 } }
+
 	280 = {
 		set_state_name = "Atlantis"
 		add_building_construction = {
@@ -5443,274 +4750,186 @@ HMP_atlantis = {
 			level = 5
 			instant_build = yes
 		}
-			set_victory_points = {
-		province = 4112
-		value = 10
-		}
-	}
-	GRE = { 
-	add_state_core = 280
-	transfer_state = 280
-	}
-	if = { limit = { GRE = { is_ai = yes } }
-	280 = { 
-		add_extra_state_shared_building_slots = 8
-		add_building_construction = {
-			type = arms_factory
-			level = 6
-			instant_build = yes
-		}
-		add_building_construction = {
-			type = dockyard
-			level = 2
-			instant_build = yes
-		}
 		set_victory_points = {
-		province = 4112
-		value = 1
+			province = 4112
+			value = 10
 		}
+	}
+
+	GRE = { 
+		add_state_core = 280
+		transfer_state = 280
+	}
+
+	if = { 
+		limit = { GRE = { is_ai = yes } }
+		280 = { 
+			add_extra_state_shared_building_slots = 8
+			add_building_construction = {
+				type = arms_factory
+				level = 6
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+			set_victory_points = {
+				province = 4112
+				value = 1
+			}
 		}
-	ENG = { add_state_core = 280 transfer_state = 280 load_oob = "ENG_ATL_Front_GAR3" }
+		ENG = { 
+			add_state_core = 280 
+			transfer_state = 280 
+			load_oob = "ENG_ATL_Front_GAR3" 
+		}
 	}
 }
 
-			HMP_remember_party_pop_on_autonomy_switch = {
-			set_variable = {
-				var = POL.neutrality_support_var
-				value = party_popularity_100@neutrality
-			}
-			set_variable = {
-				var = POL.democratic_support_var
-				value = party_popularity_100@democratic
-			}
-			set_variable = {
-				var = POL.communism_support_var
-				value = party_popularity_100@communism
-			}
-			set_variable = {
-				var = POL.fascism_support_var
-				value = party_popularity_100@fascism
-			}
-		}
+HMP_script_greece_1 = { 
+	if = { 
+		limit = { NOT = { GER = { has_completed_focus = GER_war_with_the_ussr } } } 
+		if = { 
+			limit = { GRE = { is_ai = yes } } 
+			ENG = { 
+				add_to_variable = { paratrooper_div_cap = 2 } 
+				set_division_template_cap = { 
+					division_template = "Paratroopers" 
+					division_cap = paratrooper_div_cap 
+				} 
+			} 
+			GRE = { 
+				delete_units = { 
+					division_template = "Greek Infantry" 
+					disband = no 
+				} 
+			} 
+		} 
+		every_state = { 
+			limit = { is_core_of = GRE } 
+			teleport_armies = { 
+				limit = { original_tag = GRE } 
+				to_state = 280 
+			} 
+		} 
+		PER = { country_event = { id = mtg_netherlands.725 hours = 2 } } 
+	} 
+}
 
-		HMP_script_greece_1 ={ 
-		if = { limit = { NOT ={ GER = { has_completed_focus = GER_war_with_the_ussr } } } 
-		if = { limit = { GRE = { is_ai = yes } } ENG = { add_to_variable = { paratrooper_div_cap = 2 } set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap } } GRE = {		delete_units = { division_template = "Greek Infantry"   disband = no} } }
-		every_state ={ limit = { is_core_of = GRE  } teleport_armies = {limit = { original_tag = GRE } to_state = 280 } } 
-			PER = { country_event = { id = mtg_netherlands.725 hours = 2  }}
-		}
-		}
-	HMP_script_greece_2 ={ 
-		PER = { country_event = { id = mtg_netherlands.726 hours = 2  }}
-		GRE = {complete_national_focus = GRE_atlantis }
-				ITA = { transfer_state = 486 transfer_state = 185 transfer_state = 47 transfer_state = 187 transfer_state = 182 transfer_state = 186  add_threat = 5}
-				PER = { transfer_state = 184 } 
+HMP_script_greece_2 = { 
+	PER = { country_event = { id = mtg_netherlands.726 hours = 2 } }
+	GRE = { complete_national_focus = GRE_atlantis }
+	ITA = { 
+		transfer_state = 486 
+		transfer_state = 185 
+		transfer_state = 47 
+		transfer_state = 187 
+		transfer_state = 182 
+		transfer_state = 186  
+		add_threat = 5
 	}
-		
-	HMP_script_greece_3 ={ 
-				if = { limit = {country_exists = BUL } BUL = { transfer_state = 184 } }
-				else = { ITA = { transfer_state = 184 } }	
-			PER = { country_event = { id = mtg_netherlands.727 hours = 2  }}
-				if = { limit = { NOT = { GRE ={  has_war_with = GER } } } GRE = { complete_national_focus =GRE_join_allies} }
-						every_state = { limit = { OR ={ state = 184 state = 186 state = 47 state = 486 state = 185   } } add_dynamic_modifier = { scope = ITA modifier = ITA_italian_railways_modifier2 }    } 
+	PER = { transfer_state = 184 } 
+}
+
+HMP_script_greece_3 = { 
+	if = { 
+		limit = { country_exists = BUL } 
+		BUL = { transfer_state = 184 } 
 	}
-	HMP_script_greece_4 = {
-		if = { limit = { GRE = { OR = { is_ai =yes AND = {  has_country_flag = ETH_swap_to_eng  is_ai = no  }  }   } }  ENG ={ add_to_variable = { paratrooper_div_cap = 2 }  set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap } annex_country = { target = GRE }}  }
-		if = { limit = { country_exists = GRE } GRE = {load_oob = "GRE_atl" }  }
-		ITA = { clr_country_flag = greece_campaign   }
-						hidden_effect = { fuel_system_refresh_list = yes if = { limit = { AND = { EFR = {owns_state = 26} NOT = {EFR = { has_country_flag = EFR_torch_declared}} } }	EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } }
-		ITA = { set_technology = { ita_no_transport_off =1   } }
+	else = { 
+		ITA = { transfer_state = 184 } 
+	}	
+
+	PER = { country_event = { id = mtg_netherlands.727 hours = 2 } }
+
+	if = { 
+		limit = { NOT = { GRE = { has_war_with = GER } } } 
+		GRE = { complete_national_focus = GRE_join_allies } 
 	}
 
-	HMP_script_china = {	
+	every_state = { 
+		limit = { OR = { state = 184 state = 186 state = 47 state = 486 state = 185 } } 
+		add_dynamic_modifier = { scope = ITA modifier = ITA_italian_railways_modifier2 }    
+	} 
+}
 
-			  every_state = { limit = { is_core_of = CHI NOT = { state = 498 }} JAP = {	transfer_state = PREV	} } PER = { transfer_state = 498 } JAP = { transfer_state = 498 }    
-			USA = { add_war_support = 0.15 } 
-			JAP = {
-				
-			add_ace = {
-				type = "fighter_unique"
-				name = "Kenichi"
-				surname = "Abe"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Takahide"
-				surname = "Aioi"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Sadaaki"
-				surname = "Akamatsu"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Takeo"
-				surname = "Banno"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Kisaji"
-				surname = "Beppu"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Jiro"
-				surname = "Chono"
-				callsign = "Tigre" #Totally made up
-			}
-add_ace = {
-				type = "fighter_unique"
-				name = "Sachio"
-				surname = "Endo"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Kihei"
-				surname = "Fujiwara"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Yoshishige"
-				surname = "Hayashi"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Hiroshi"
-				surname = "Gomi"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Kurakazu"
-				surname = "Goto"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Sakuji"
-				surname = "Hayashi"
-				callsign = "Tigre" #Totally made up
-			}
-add_ace = {
-				type = "fighter_unique"
-				name = "Teigo"
-				surname = "Ishida"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Ishizuka"
-				surname = "Tokuyasu"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Ryotaro"
-				surname = "Jobo"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Akira"
-				surname = "Kawakita"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Saburo"
-				surname = "Kitahata"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Shiro"
-				surname = "Kuratori"
-				callsign = "Tigre" #Totally made up
-			}
-add_ace = {
-				type = "fighter_unique"
-				name = "Hideo"
-				surname = "Maeda"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Yutaka"
-				surname = "Morioka"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Nobuji"
-				surname = "Negishi"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Yoshio"
-				surname = "Oishi"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Shinobu"
-				surname = "Terada"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Takao"
-				surname = "Sakano"
-				callsign = "Tigre" #Totally made up
-			}
-add_ace = {
-				type = "fighter_unique"
-				name = "Yasuhiro"
-				surname = "Shigematsu"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Tadao"
-				surname = "Sumi"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Shogo"
-				surname = "Takeuchi"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Sadao"
-				surname = "Uehara"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Hideo"
-				surname = "Watanabe"
-				callsign = "Tigre" #Totally made up
-			}
-			add_ace = {
-				type = "fighter_unique"
-				name = "Yoshitaro"
-				surname = "Yoshioka"
-				callsign = "Tigre" #Totally made up
-			}
+HMP_script_greece_4 = {
+	if = { 
+		limit = { GRE = { OR = { is_ai = yes AND = { has_country_flag = ETH_swap_to_eng is_ai = no } } } } 
+		ENG = { 
+			add_to_variable = { paratrooper_div_cap = 2 }  
+			set_division_template_cap = { division_template = "Paratroopers" division_cap = paratrooper_div_cap } 
+			annex_country = { target = GRE } 
+		} 
+	}
 
-			}
-			}
+	if = { 
+		limit = { country_exists = GRE } 
+		GRE = { load_oob = "GRE_atl" }  
+	}
+
+	ITA = { clr_country_flag = greece_campaign }
+
+	hidden_effect = { 
+		fuel_system_refresh_list = yes 
+		if = { 
+			limit = { AND = { EFR = { owns_state = 26 } NOT = { EFR = { has_country_flag = EFR_torch_declared } } } } 
+			EFR = { 
+				every_owned_state = { limit = { NOT = { has_state_flag = keep_milled } } set_demilitarized_zone = yes } 
+				26 = { set_demilitarized_zone = no } 
+			} 
+		} 
+	}
+
+	ITA = { set_technology = { ita_no_transport_off = 1 } }
+}
+
+HMP_script_china = {	
+	every_state = { 
+		limit = { is_core_of = CHI NOT = { state = 498 } } 
+		JAP = { transfer_state = PREV } 
+	} 
+
+	PER = { transfer_state = 498 } 
+	JAP = { transfer_state = 498 }    
+	USA = { add_war_support = 0.15 } 
+
+	JAP = {
+		add_ace = { type = "fighter_unique" name = "Kenichi" surname = "Abe" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Takahide" surname = "Aioi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Sadaaki" surname = "Akamatsu" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Takeo" surname = "Banno" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Kisaji" surname = "Beppu" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Jiro" surname = "Chono" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Sachio" surname = "Endo" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Kihei" surname = "Fujiwara" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Yoshishige" surname = "Hayashi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Hiroshi" surname = "Gomi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Kurakazu" surname = "Goto" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Sakuji" surname = "Hayashi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Teigo" surname = "Ishida" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Ishizuka" surname = "Tokuyasu" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Ryotaro" surname = "Jobo" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Akira" surname = "Kawakita" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Saburo" surname = "Kitahata" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Shiro" surname = "Kuratori" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Hideo" surname = "Maeda" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Yutaka" surname = "Morioka" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Nobuji" surname = "Negishi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Yoshio" surname = "Oishi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Shinobu" surname = "Terada" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Takao" surname = "Sakano" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Yasuhiro" surname = "Shigematsu" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Tadao" surname = "Sumi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Shogo" surname = "Takeuchi" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Sadao" surname = "Uehara" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Hideo" surname = "Watanabe" callsign = "Tigre" }
+		add_ace = { type = "fighter_unique" name = "Yoshitaro" surname = "Yoshioka" callsign = "Tigre" }
+	}
+}
+
 
 HMP_script_spain = {
 	ENG = {  add_war_support = 0.1   }
@@ -5749,214 +4968,501 @@ HMP_script_spain = {
 ########ON ACTIONS##########
 
 HMP_startup_on_actions = {
-if = { limit ={  has_game_rule = { rule = horst_mines option = horst_mines_on } }
-every_country = { 
-limit = { OR = { tag = GER tag = JAP tag = USA tag = FRA tag = DEN tag = SIA tag = MEX tag = ENG tag = ITA tag = SOV  } }
-set_technology = {
-	basic_naval_mines = 1
-}
-}
-}
-set_variable={GLOBAL.cap = 100}
-if = { limit = { has_global_flag  = war_in_the_west_start } 
-		121 = { add_resource = { type = oil	amount = 300 } }  #400 added from USA
-		126 = {	add_resource = { type = aluminium amount = 40 } }
-		422 = { add_resource = { type = rubber	amount = 20 } } 
-		520 = {	add_resource = { type = steel amount = 25 } } 
-		425 = {	add_resource = { type = steel amount = 25 } } 
-		284 = {	add_resource = { type = steel amount = 25 } }
-}
+    if = { 
+        limit = { has_game_rule = { rule = horst_mines option = horst_mines_on } }
+        every_country = { 
+            limit = { OR = { tag = GER tag = JAP tag = USA tag = FRA tag = DEN tag = SIA tag = MEX tag = ENG tag = ITA tag = SOV } }
+            set_technology = { basic_naval_mines = 1 }
+        }
+    }
 
-every_country = {
-	limit = { OR ={  tag = AUS tag = ALB tag = CHI tag = SWE tag = BEL  } }
-	drop_cosmetic_tag = yes
-}
-TUR ={ set_cosmetic_tag = TUR_neutrality }
-every_country = {
-	limit = { OR = { is_in_faction_with = ENG tag = GRE tag = NOR tag = HOL tag = POL tag = ENG } NOT = { tag = USA} } 
-	send_embargo = USA
-}
-if = { limit = { POL = { is_ai = no } } var:host = { country_event = { id = horsthelp.100 } } }
-	every_country = {
-		#every_military_industrial_organization = {
-		#	add_mio_size = 10
-		#}
-		air_experience = 300
-		navy_experience = 500
-		share_intel_effect = yes
-		every_character = {
-		limit = { is_navy_leader = yes }
-			add_dynamic_modifier = { modifier = fleet_overstack_dynamic_modifier  }
-		}
-	}
+    set_variable = { GLOBAL.cap = 100 }
+    if = { 
+        limit = { 
+            has_global_flag  = war_in_the_west_start 
+        } 
+        121 = { add_resource = { type = oil	amount = 300 } }  #400 added from USA
+        126 = {	add_resource = { type = aluminium amount = 40 } }
+        422 = { add_resource = { type = rubber	amount = 20 } } 
+        520 = {	add_resource = { type = steel amount = 25 } } 
+        425 = {	add_resource = { type = steel amount = 25 } } 
+        284 = {	add_resource = { type = steel amount = 25 } }
+    }
 
-#if = { limit = { NOT = { has_global_flag  = war_in_the_west_start  } }
-#add_rubber_cap = yes
-#}
-set_global_flag = blocking_pauses
-if = { limit ={  has_game_rule = { rule = horst_scw option = horst_scw_on } }
-every_country = { limit = { NOT = { tag = USA }  is_in_faction_with = ENG }
-	add_timed_idea = { idea = SPR_ALLIES_WS_FIXER days = 1200 } 
-}
-if = { limit = { has_global_flag = war_in_the_west_start }
-if = { limit ={HOL = { is_ai = yes } }
-ENG ={ transfer_state = 352  }
-}
-	FRA = {
-	add_ideas = NZL_2nzef_fra 
-	add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 12000  }
-	add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1200  }
-	add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 400  }	
-	add_equipment_to_stockpile = { type = support_equipment_1 amount = 1200  }
-	add_equipment_to_stockpile = { type = special_equipment_1 amount = 1800  }	
-	}
-}
-SWE = { news_event = { id = horsttool.132 } }
-every_country = {
-	limit ={ OR = { tag = FRA tag = SOV tag = ITA tag = GER } }
-	add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 18000  }
-	add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1800  }
-	add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 600  }	
-	add_equipment_to_stockpile = { type = support_equipment_1 amount = 1800  }
-	add_equipment_to_stockpile = { type = special_equipment_1 amount = 2700  }	
-}
-every_country = {
-	limit ={ OR = { tag = BUL tag = ROM  tag = AST tag = NZL tag = SAF tag = CAN } }
-	add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 6000  }
-	add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 600  }
-	add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 200  }	
-	add_equipment_to_stockpile = { type = support_equipment_1 amount = 600  }
-		add_equipment_to_stockpile = { type = special_equipment_1 amount = 900  }	
-}
-}
-if = { limit ={  has_game_rule = { rule = horst_scw option = horst_scw_off } }
-SPR = { transfer_state = 167 }
-#SPR = { add_ideas = SPR_neutrality31 }
-SWE = { news_event = { id = horsttool.131 } }
-SPR = { news_event = { id = lar_news.1 days = 1190 } } #end of SCW; early april 1939
-GER = {load_oob = "GER_vet"}
-SOV = {load_oob = "SOV_vet" }
-}
+    every_country = {
+        limit = { 
+            OR = { 
+                tag = AUS 
+                tag = ALB 
+                tag = CHI 
+                tag = SWE 
+                tag = BEL  
+            } 
+        }
+        drop_cosmetic_tag = yes
+    }
+    
+    TUR = { set_cosmetic_tag = TUR_neutrality }
+    
+    every_country = {
+        limit = { 
+            OR = { 
+                is_in_faction_with = ENG 
+                tag = GRE 
+                tag = NOR 
+                tag = HOL 
+                tag = POL 
+                tag = ENG 
+            } 
+            NOT = { tag = USA } 
+        } 
+        send_embargo = USA
+    }
 
-RAJ = { 
-	set_variable = { RAJ_agrarian_society_value = -0.70 }
-	add_dynamic_modifier = { modifier = RAJ_agrarian_society_dynamic }
-	remove_ideas = RAJ_agrarian_society #For startup screen
-	}
-ITA ={ anti_cross_faction_trade_allies = yes } 
-every_state = { limit = { AND = { is_core_of = YUG NOT = { OR = { state = 314  state = 163 state = 109 state = 103 state = 104 } } } }  add_dynamic_modifier = { modifier = local_manpower_yug }  }
+    every_country = {
+        air_experience = 300
+        navy_experience = 500
+        share_intel_effect = yes
+        every_character = {
+            limit = { is_navy_leader = yes }
+            add_dynamic_modifier = { modifier = fleet_overstack_dynamic_modifier  }
+        }
+    }
+    
+    set_global_flag = blocking_pauses
+    
+    if = {
+        limit = { has_game_rule = { rule = horst_scw option = horst_scw_on } }
 
-country_event = { id = countrystartup.29 }
-share_intel_effect = yes 
+        every_country = {
+            limit = { NOT = { tag = USA } is_in_faction_with = ENG }
+            add_timed_idea = { idea = SPR_ALLIES_WS_FIXER days = 1200 }
+        }
 
-every_country = { limit = { NOT ={ tag = ENG tag = JAP tag =FRA tag = SOV tag =USA tag = GER tag = ITA}} set_country_flag = no_navy_mio_funding set_country_flag =  no_plane_mio_funding	air_experience = -150   add_equipment_to_stockpile = { type = train_equipment_1 amount = 8 } }
-	USA={ add_equipment_to_stockpile = { type = train_equipment_1 amount = 300 } } JAP={ add_equipment_to_stockpile = { type = train_equipment_1 amount = 60 } } ITA={ add_ideas = qol_start_eff_ita add_equipment_to_stockpile = { type = train_equipment_1 amount = 150 } } 
-	GER={ add_equipment_to_stockpile = { type = train_equipment_1 amount = 500 } } SOV={ add_equipment_to_stockpile = { type = train_equipment_1 amount = 320 } } 
-	ENG={ add_equipment_to_stockpile = { type = train_equipment_1 amount = 230 } } 
-	every_country = { limit ={ NOT = { TAG = POL }} add_ideas = hidden_anti_cold_acclimation_spirit add_opinion_modifier = { target = POL modifier = anti_cross_polish_trade	   }       }
-	every_country = { limit = { OR = { is_in_faction_with = ENG  TAG = HOL tag = GRE tag = POL tag = NOR }  }  add_ideas = anti_port_building    }
-	every_country = { limit = { NOT = { OR = { tag = ITA tag = SOV }} } add_ideas = qol_start_eff } #adds starting eff and kills tac/strat range before danzig
-	HOL = { country_event = { id =  mtg_netherlands.1146 hours = 2 } } 
-	if = { limit = {CZE = { is_ai = yes}} CZE ={  add_ideas = ai_imiter  } 	} if = { limit = {YUG = { is_ai = yes}} YUG ={  add_ideas = ai_imiter  } } if = { limit = {HOL = { is_ai = yes} } HOL = { add_ideas = ai_imiter }	} if = { limit = {POL = { is_ai = yes} } POL = { add_ideas = ai_imiter }	}
-	ENG ={load_oob = "ENG_SEA_LION" } every_country = { country_event = { id = countrystartup.29 }  country_event = { id = countrystartup.28 }   } 
-	JAP = { add_ideas = fuel_sov } SOV = { add_ideas = qol_start_eff_sov add_ideas = fuel_sov } GER = { add_ideas = fuel_sov } ENG = { add_ideas = fuel_eng  } USA = { add_ideas = fuel_eng  }  FRA = { add_ideas = fuel_fra  } ITA = { add_ideas = fuel_fra  } 
-	MAN  = { give_resource_rights = { receiver = JAP state = 3 } give_resource_rights = { receiver = JAP state = 328 } give_resource_rights = { receiver = JAP state = 496 } }	 
-	AST  = { give_resource_rights = { receiver = USA state = 523 } give_resource_rights = { receiver = USA state = 312 }	} 
-	RAJ  = { give_resource_rights = { receiver = ENG state = 423 }	} every_country = {limit = { OR = { tag = NOR tag = GRE tag = FRA tag = HOL tag = POL } } every_state ={ limit ={ OR ={ state = 105 state = 106 state = 107 state = 108 state = 414 state = 45 state = 303 state = 102  state = 459 state = 460 }  } add_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION days = 1335 }     } every_core_state ={ limit = { NOT = { state = 352 } } add_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION days = 1335 }   } } 669 = { remove_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION }    }
-	ROM = { 	give_resource_rights = { receiver = GER  state = 46  resources = { oil } } }
-	HOL = { 	give_resource_rights = { receiver = ENG  state = 352  resources = { oil } } }
-	allied_reluctance = yes startup_events = yes barb_airbases_effect = yes fuel_startup_effect = yes bad_infra_state_effect = yes make_asia_go_faster = yes
-	if = { limit = { has_global_flag = war_in_the_west_start   } ENG = {	set_technology = { fuel_refining2 = 1 popup = no } set_technology = { fuel_refining3 = 1 popup = no } set_technology = { fuel_refining4 = 1 popup = no } set_technology = { fuel_refining5 = 1 popup = no }  } SWE = { give_resource_rights = { receiver = FRA state = 517  }  give_resource_rights = { receiver = FRA state = 124  }  give_resource_rights = { receiver = ENG state = 520  }give_resource_rights = { receiver = ENG state = 334  } give_resource_rights = { receiver = ENG state = 335  } give_resource_rights = { receiver = ENG state = 284  } give_resource_rights = { receiver = FRA state = 497 }   }  } 
-	if = { limit = { country_exists = USA } every_country = { limit = { normally_played_allies = yes } add_dynamic_modifier = { modifier = USA_cheap_rubber }   }   }
+        if = {
+            limit = { has_global_flag = war_in_the_west_start }
+            if = { limit = { HOL = { is_ai = yes } } }
+            ENG = { transfer_state = 352 }
+        }
+
+        FRA = {
+            add_ideas = NZL_2nzef_fra
+            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 12000 }
+            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1200 }
+            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 400 }
+            add_equipment_to_stockpile = { type = support_equipment_1 amount = 1200 }
+            add_equipment_to_stockpile = { type = special_equipment_1 amount = 1800 }
+        }
+
+        SWE = { news_event = { id = horsttool.132 } }
+
+        every_country = {
+            limit = { 
+                OR = { 
+                    tag = FRA 
+                    tag = SOV 
+                    tag = ITA 
+                    tag = GER 
+                } 
+            }
+            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 18000 }
+            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1800 }
+            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 600 }
+            add_equipment_to_stockpile = { type = support_equipment_1 amount = 1800 }
+            add_equipment_to_stockpile = { type = special_equipment_1 amount = 2700 }
+        }
+
+        every_country = {
+            limit = { 
+                OR = { 
+                    tag = BUL 
+                    tag = ROM 
+                    tag = AST 
+                    tag = NZL 
+                    tag = SAF 
+                    tag = CAN 
+                } 
+            }
+            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 6000 }
+            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 600 }
+            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 200 }
+            add_equipment_to_stockpile = { type = support_equipment_1 amount = 600 }
+            add_equipment_to_stockpile = { type = special_equipment_1 amount = 900 }
+        }
+    }
+
+    if = { 
+        limit = { has_game_rule = { rule = horst_scw option = horst_scw_off } }
+
+        SPR = { transfer_state = 167 }
+        SWE = { news_event = { id = horsttool.131 } }
+        SPR = { news_event = { id = lar_news.1 days = 1190 } } # end of SCW; early April 1939
+        GER = { load_oob = "GER_vet" }
+        SOV = { load_oob = "SOV_vet" }
+    }
+
+
+    RAJ = { 
+        set_variable = { RAJ_agrarian_society_value = -0.70 }
+        add_dynamic_modifier = { modifier = RAJ_agrarian_society_dynamic }
+        remove_ideas = RAJ_agrarian_society #For startup screen
+    }
+    
+    ITA ={ anti_cross_faction_trade_allies = yes } 
+    
+    every_state = { 
+        limit = { 
+            AND = { 
+                is_core_of = YUG 
+                NOT = { OR = { state = 314 state = 163 state = 109 state = 103 state = 104 } } 
+            } 
+        }  
+        add_dynamic_modifier = { modifier = local_manpower_yug }  
+    }
+
+
+    country_event = { id = countrystartup.29 }
+    
+    share_intel_effect = yes 
+
+    every_country = { 
+        limit = { 
+            NOT = { 
+                tag = ENG 
+                tag = JAP 
+                tag = FRA 
+                tag = SOV 
+                tag = USA 
+                tag = GER 
+                tag = ITA 
+            } 
+        } 
+        set_country_flag = no_navy_mio_funding
+        set_country_flag = no_plane_mio_funding
+        air_experience = -150
+        add_equipment_to_stockpile = { type = train_equipment_1 amount = 8 }
+    }
+    
+    USA = { add_equipment_to_stockpile = { type = train_equipment_1 amount = 300 } }
+    JAP = { add_equipment_to_stockpile = { type = train_equipment_1 amount = 60 } }
+    GER = { add_equipment_to_stockpile = { type = train_equipment_1 amount = 500 } }
+    SOV = { add_equipment_to_stockpile = { type = train_equipment_1 amount = 320 } }
+    ENG = { add_equipment_to_stockpile = { type = train_equipment_1 amount = 230 } }
+    ITA = { 
+        add_ideas = qol_start_eff_ita
+        add_equipment_to_stockpile = { type = train_equipment_1 amount = 150 } 
+    }
+    
+    every_country = { 
+        limit = { NOT = { tag = POL } }
+        add_ideas = hidden_anti_cold_acclimation_spirit
+        add_opinion_modifier = { target = POL modifier = anti_cross_polish_trade }
+    }
+
+    every_country = { 
+        limit = { OR = { is_in_faction_with = ENG tag = HOL tag = GRE tag = POL tag = NOR } }
+        add_ideas = anti_port_building
+    }
+
+    every_country = { 
+        limit = { NOT = { OR = { tag = ITA tag = SOV } } }
+        add_ideas = qol_start_eff
+    }
+
+    HOL = { country_event = { id = mtg_netherlands.1146 hours = 2 } }
+
+    if = { limit = { CZE = { is_ai = yes } } CZE = { add_ideas = ai_imiter } }
+    if = { limit = { YUG = { is_ai = yes } } YUG = { add_ideas = ai_imiter } }
+    if = { limit = { HOL = { is_ai = yes } } HOL = { add_ideas = ai_imiter } }
+    if = { limit = { POL = { is_ai = yes } } POL = { add_ideas = ai_imiter } }
+
+    ENG = { load_oob = "ENG_SEA_LION" }
+
+    every_country = { 
+        country_event = { id = countrystartup.29 }
+        country_event = { id = countrystartup.28 }
+    }
+
+    JAP = { add_ideas = fuel_sov }
+    SOV = { add_ideas = qol_start_eff_sov add_ideas = fuel_sov }
+    GER = { add_ideas = fuel_sov }
+    ENG = { add_ideas = fuel_eng }
+    USA = { add_ideas = fuel_eng }
+    FRA = { add_ideas = fuel_fra }
+    ITA = { add_ideas = fuel_fra }
+
+    MAN = {
+        give_resource_rights = { receiver = JAP state = 3 }
+        give_resource_rights = { receiver = JAP state = 328 }
+        give_resource_rights = { receiver = JAP state = 496 }
+    }
+
+    AST = {
+        give_resource_rights = { receiver = USA state = 523 }
+        give_resource_rights = { receiver = USA state = 312 }
+    }
+
+    RAJ = { give_resource_rights = { receiver = ENG state = 423 } }
+
+    every_country = {
+        limit = { OR = { tag = NOR tag = GRE tag = FRA tag = HOL tag = POL } }
+        every_state = {
+            limit = { OR = { state = 105 state = 106 state = 107 state = 108 state = 414 state = 45 state = 303 state = 102 state = 459 state = 460 } }
+            add_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION days = 1335 }
+        }
+        every_core_state = { limit = { NOT = { state = 352 } } add_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION days = 1335 } }
+    }
+
+    669 = { remove_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION } }
+
+    ROM = { give_resource_rights = { receiver = GER state = 46 resources = { oil } } }
+    HOL = { give_resource_rights = { receiver = ENG state = 352 resources = { oil } } }
+
+    allied_reluctance = yes
+    startup_events = yes
+    barb_airbases_effect = yes
+    fuel_startup_effect = yes
+    bad_infra_state_effect = yes
+    make_asia_go_faster = yes
+
+    if = { 
+        limit = { has_global_flag = war_in_the_west_start }
+        ENG = { 
+            set_technology = { fuel_refining2 = 1 popup = no }
+            set_technology = { fuel_refining3 = 1 popup = no }
+            set_technology = { fuel_refining4 = 1 popup = no }
+            set_technology = { fuel_refining5 = 1 popup = no }
+        }
+        SWE = { 
+            give_resource_rights = { receiver = FRA state = 517 }
+            give_resource_rights = { receiver = FRA state = 124 }
+            give_resource_rights = { receiver = ENG state = 520 }
+            give_resource_rights = { receiver = ENG state = 334 }
+            give_resource_rights = { receiver = ENG state = 335 }
+            give_resource_rights = { receiver = ENG state = 284 }
+            give_resource_rights = { receiver = FRA state = 497 }
+        }
+    }
+
+    if = { 
+        limit = { country_exists = USA }
+        every_country = { limit = { normally_played_allies = yes } add_dynamic_modifier = { modifier = USA_cheap_rubber } }
+    }
 }  
 
 cap_finland_effect = {
-		 SOV ={ white_peace = FIN } FIN = { white_peace = SOV leave_faction = yes country_event = { id = fincon.6 days = 3 }  } SOV = { transfer_state = 502 transfer_state = 146 transfer_state = 147 }
+    SOV = { 
+        white_peace = FIN
+        transfer_state = 502
+        transfer_state = 146
+        transfer_state = 147
+    }
+    FIN = { 
+        white_peace = SOV
+        leave_faction = yes
+        country_event = { id = fincon.6 days = 3 }
+    }
 }
-HMP_capitulations_on_actions = {
-	if = { limit ={ ROOT = { original_tag = EFR } }
-		GER = { activate_decision =  GER_annex_vichy  }
-	}
-	if = { limit = { ROOT = { original_tag = ITA } }     GER = { annex_country = { target = ITA transfer_troops = yes }} 
-	if ={  
-		limit ={ 
-		ENG = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 
-		CAN = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 
-		SAF = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 
-		FRA = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 		
-			USA = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 	
-				BRA = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 
-				AST = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 
-				NZL = { 
-				divisions_in_state = {
-    size < 1
-    state = 39
-}
-		} 
-	}
-	GER= {  transfer_state = 39 transfer_state = 160 transfer_state = 314 }
-	}
-	}
-	if = { limit = { ROOT = { original_tag = EFR }}  GER = { add_to_variable = { paratrooper_div_cap = 2 }  set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap } annex_country = {  target = EFR transfer_troops = yes }}    }
 
-	if =  { limit = { NOT = { EFR = { has_country_flag = EFR_torch_declared }}} PER = { country_event = { id = usa.1003 days = 2  } }  }
-	if = { limit = { AND = { original_tag = GER GER = { NOT = { has_country_flag = NO_MORE_FASCISM } has_war_with = SOV }} } fascism_has_been_defeated = yes }
+
+HMP_capitulations_on_actions = {
+	if = { 
+        limit = { ROOT = { original_tag = EFR } }
+        GER = { activate_decision = GER_annex_vichy }
+    }
+
+    if = { 
+        limit = { ROOT = { original_tag = ITA } }     
+        GER = { annex_country = { target = ITA transfer_troops = yes } } 
+
+        if = {  
+            limit = { 
+                ENG = { divisions_in_state = { size < 1 state = 39 } }
+                CAN = { divisions_in_state = { size < 1 state = 39 } }
+                SAF = { divisions_in_state = { size < 1 state = 39 } }
+                FRA = { divisions_in_state = { size < 1 state = 39 } }
+                USA = { divisions_in_state = { size < 1 state = 39 } }
+                BRA = { divisions_in_state = { size < 1 state = 39 } }
+                AST = { divisions_in_state = { size < 1 state = 39 } }
+                NZL = { divisions_in_state = { size < 1 state = 39 } }
+            }
+            GER = { transfer_state = 39 transfer_state = 160 transfer_state = 314 }
+        }
+    }
+
+    if = { 
+        limit = { ROOT = { original_tag = EFR } } 
+        GER = { 
+            add_to_variable = { 
+                var = paratrooper_div_cap 
+                value = 2 
+            } 
+            set_division_template_cap = {  
+                division_template = "Paratroopers" 
+                division_cap = paratrooper_div_cap 
+            } 
+            annex_country = {  
+                target = EFR 
+                transfer_troops = yes 
+            } 
+        }    
+    }
+
+	if = { 
+        limit = { NOT = { EFR = { has_country_flag = EFR_torch_declared } } } 
+        PER = { 
+            country_event = { 
+                id = usa.1003 
+                days = 2  
+            } 
+        }  
+    }
+    
+	if = {
+        limit = { 
+            AND = { 
+                original_tag = GER
+                GER = { 
+                    NOT = { has_country_flag = NO_MORE_FASCISM } 
+                    has_war_with = SOV 
+                } 
+            } 
+        } 
+        fascism_has_been_defeated = yes 
+    }
+
 	
-	if = { limit = {  original_tag = JAP  } 
-	every_country = { limit = { has_war_with = JAP } white_peace = JAP } 
-	JAP = { set_global_flag = JAPAN_CAPPED_FLAG add_ideas =  no_navy_jap set_politics = {	ruling_party = democratic elections_allowed = no last_election = "1935.12.17"  election_frequency = 48 } set_equipment_fraction = 0 release = CHI } 
-	CHI = { transfer_state = 527 transfer_state = 525 transfer_state = 498 } 
-	every_state = { limit = { is_core_of = MAN } CHI = { transfer_state = PREV } } 
-	FRA = { transfer_state = 497 transfer_state = 286 transfer_state = 493 transfer_state = 289 transfer_state=  667 transfer_state  = 668 transfer_state = 494 } 
-	USA = { transfer_state = 471 transfer_state = 135 transfer_state = 409 transfer_state = 488 transfer_state = 180 }  
-	USA = { country_event = { id = mtg_netherlands.1267 days = 1 } set_autonomy = { target = JAP autonomy_state = autonomy_supervised_state }   
-	if = { limit= { country_exists = SIA } set_autonomy = { target = SIA autonomy_state = autonomy_supervised_state }     } 
-	if = { limit= { country_exists = RAJ RAJ=  { has_government = fascism   } }  RAJ =  { transfer_state = 609 transfer_state = 288 transfer_state = 306 } 
-	ENG = { set_autonomy = { target = RAJ autonomy_state = autonomy_supervised_state }  }        }  } }   
+	if = { 
+        limit = { original_tag = JAP }
+
+        # Force all countries at war with Japan to white peace
+        every_country = { 
+            limit = { has_war_with = JAP } 
+            white_peace = JAP 
+        }
+
+        # Japan changes
+        JAP = { 
+            set_global_flag = JAPAN_CAPPED_FLAG
+            add_ideas = no_navy_jap
+            set_politics = {
+                ruling_party = democratic
+                elections_allowed = no
+                last_election = "1935.12.17"
+                election_frequency = 48
+            }
+            set_equipment_fraction = 0
+            release = CHI
+        }
+
+        # Transfer states to China
+        CHI = { 
+            transfer_state = 527
+            transfer_state = 525
+            transfer_state = 498
+        }
+
+        # Transfer Manchuria cores to China
+        every_state = { 
+            limit = { is_core_of = MAN } 
+            CHI = { transfer_state = PREV } 
+        }
+
+        # Transfer states to France
+        FRA = { 
+            transfer_state = 497
+            transfer_state = 286
+            transfer_state = 493
+            transfer_state = 289
+            transfer_state = 667
+            transfer_state = 668
+            transfer_state = 494
+        }
+
+        # Transfer states to USA
+        USA = { 
+            transfer_state = 471
+            transfer_state = 135
+            transfer_state = 409
+            transfer_state = 488
+            transfer_state = 180
+
+            country_event = { id = mtg_netherlands.1267 days = 1 }
+            set_autonomy = { target = JAP autonomy_state = autonomy_supervised_state }
+
+            if = { 
+                limit = { country_exists = SIA } 
+                set_autonomy = { target = SIA autonomy_state = autonomy_supervised_state }     
+            }
+
+            if = { 
+                limit = { country_exists = RAJ RAJ = { has_government = fascism } }  
+                RAJ = { 
+                    transfer_state = 609
+                    transfer_state = 288
+                    transfer_state = 306
+                }
+                ENG = { set_autonomy = { target = RAJ autonomy_state = autonomy_supervised_state } }        
+            }  
+        }  
+    }
+   
 			
-			if = {
-			limit = { ROOT = { original_tag = SOV }  GER = { has_government = fascism } }
-			every_country = { limit = { is_in_faction_with = GER} white_peace = SOV }
-			SOV = { white_peace = JAP white_peace = MAN white_peace = SIA white_peace = CZE white_peace = DEN     white_peace = GER white_peace = AOI white_peace = ALB white_peace = FIN white_peace = ITA white_peace = SPR white_peace = BUL white_peace = HUN white_peace = EFR white_peace = ROM   }
-			MON = { white_peace = JAP white_peace = MAN white_peace = SIA white_peace = CZE white_peace = DEN     white_peace = GER white_peace = AOI white_peace = ALB white_peace = FIN white_peace = ITA white_peace = SPR white_peace = BUL white_peace = HUN white_peace = EFR white_peace = ROM   }
-			news_event = { id = mtg_news.788 hours = 2     } 
-			PER = { country_event = { id = mtg_netherlands.343 hours = 3    }}
-			}
+    if = {
+        limit = { 
+            ROOT = { original_tag = SOV } 
+            GER = { has_government = fascism } 
+        }
+
+        # All countries in Germany's faction make white peace with the Soviet Union
+        every_country = { 
+            limit = { is_in_faction_with = GER } 
+            white_peace = SOV 
+        }
+
+        # Soviet Union makes white peace with all major nations
+        SOV = { 
+            white_peace = JAP
+            white_peace = MAN
+            white_peace = SIA
+            white_peace = CZE
+            white_peace = DEN
+            white_peace = GER
+            white_peace = AOI
+            white_peace = ALB
+            white_peace = FIN
+            white_peace = ITA
+            white_peace = SPR
+            white_peace = BUL
+            white_peace = HUN
+            white_peace = EFR
+            white_peace = ROM
+        }
+
+        # Mongolia also white peaces the same countries
+        MON = { 
+            white_peace = JAP
+            white_peace = MAN
+            white_peace = SIA
+            white_peace = CZE
+            white_peace = DEN
+            white_peace = GER
+            white_peace = AOI
+            white_peace = ALB
+            white_peace = FIN
+            white_peace = ITA
+            white_peace = SPR
+            white_peace = BUL
+            white_peace = HUN
+            white_peace = EFR
+            white_peace = ROM
+        }
+
+        # Trigger news and events
+        news_event = { id = mtg_news.788 hours = 2 }
+        PER = { country_event = { id = mtg_netherlands.343 hours = 3 } }
+    }
+
 
 			if = { limit = { ROOT = { original_tag = SOV }  ENG = { has_country_flag = ENG_the_unthinkable } } democratic_russia = yes  }
 			if = {	limit = {original_tag = USA  ENG = { has_capitulated = yes }  }  man_in_the_high_castle = yes   }	
