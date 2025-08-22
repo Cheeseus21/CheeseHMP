@@ -1,46 +1,11 @@
 
+# ██╗░░██╗░█████╗░██████╗░░██████╗████████╗  ████████╗██████╗░██╗░██████╗░░██████╗░███████╗██████╗░░██████╗
+# ██║░░██║██╔══██╗██╔══██╗██╔════╝╚══██╔══╝  ╚══██╔══╝██╔══██╗██║██╔════╝░██╔════╝░██╔════╝██╔══██╗██╔════╝
+# ███████║██║░░██║██████╔╝╚█████╗░░░░██║░░░  ░░░██║░░░██████╔╝██║██║░░██╗░██║░░██╗░█████╗░░██████╔╝╚█████╗░
+# ██╔══██║██║░░██║██╔══██╗░╚═══██╗░░░██║░░░  ░░░██║░░░██╔══██╗██║██║░░╚██╗██║░░╚██╗██╔══╝░░██╔══██╗░╚═══██╗
+# ██║░░██║╚█████╔╝██║░░██║██████╔╝░░░██║░░░  ░░░██║░░░██║░░██║██║╚██████╔╝╚██████╔╝███████╗██║░░██║██████╔╝
+# ╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░╚═════╝░░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░
 
-wuw_HUN_does_not_have_trianon = {
-	custom_trigger_tooltip = {
-	    tooltip = wuw_HUN_does_not_have_trianon_tt		
-	    NOT = {
-	    	OR = {
-	    		has_idea = HUN_treaty_of_triannon
-	    		has_idea = HUN_treaty_of_triannon_aat
-	    		has_idea = HUN_treaty_of_triannon_wuw
-	    		has_idea = HUN_treaty_of_triannon_aat_wuw
-	    		has_idea = HUN_treaty_of_triannon_2
-	    		has_idea = HUN_treaty_of_triannon_3
-	    		has_idea = HUN_treaty_of_triannon_wuw_no_army_exp_debuff
-	    		has_idea = HUN_treaty_of_triannon_aat_wuw_no_army_exp_debuff
-	    		has_idea = HUN_treaty_of_triannon_wuw_no_air_debuff
-	    		has_idea = HUN_treaty_of_triannon_aat_wuw_no_air_debuff
-	    		has_idea = HUN_treaty_of_triannon_wuw_no_air_or_army_debuff
-	    		has_idea = HUN_treaty_of_triannon_aat_wuw_no_air_or_army_debuff
-	    	}
-	    }
-	}
-}
-
-
-#### INNER CIRCLE ####
-GER_inner_circle_is_ascension_cd_over = {
-	NOT = {
-		has_country_flag = {
-			flag = GER_inner_circle_cd_flag
-			days < 175
-		}
-	}
-}
-
-is_southern_italy = {
-	OR = { state = 115 state = 156 state =117 state =157 state =2  }
-}
-
-DEN_aat = { # Trigger to check if playing as Denmark while having AAT
-	original_tag = DEN
-	has_dlc = "Arms Against Tyranny"
-}
 the_comintern = { 
 	OR = {
 		original_tag = MON
@@ -48,505 +13,9 @@ the_comintern = {
 	}
 }
 
-NOR_AAT = { # Trigger to check if playing as Norway while having AAT
-	original_tag = NOR
-	has_dlc = "Arms Against Tyranny"
+is_southern_italy = {
+	OR = { state = 115 state = 156 state =117 state =157 state =2  }
 }
-
-SWE_AAT = { 
-	AND = {
-		tag = SWE
-		original_tag = SWE
-		has_dlc = "Arms Against Tyranny"
-	}
-}
-
-has_aat = {
-	has_dlc = "Arms Against Tyranny"
-}
-
-DEN_potential_trading_partners = {
-	OR = {
-		original_tag = ENG
-		original_tag = GER
-	}
-	has_country_flag = DEN_danish_trading_partner_flag
-}
-
-DEN_designer_can_be_improved = { #Only meant to be used for tooltip purposes
-	custom_trigger_tooltip = {
-		tooltip = DEN_designer_can_be_improved_tt
-		hidden_trigger = {
-			always = yes	
-		}
-	}
-}
-DEN_has_haeren_dynamic_modifier = {
-	OR = {
-		has_dynamic_modifier = { modifier = DEN_haeren_dynamic_modifier }
-		has_dynamic_modifier = { modifier = DEN_haeren_dynamic_modifier_improved }
-		has_dynamic_modifier = { modifier = DEN_haeren_dynamic_modifier_max_improved }
-
-	}
-}
-DEN_improved_designer = { #Only meant to be used for tooltip purposes
-	custom_trigger_tooltip = {
-		tooltip = DEN_improved_designer_tt
-		hidden_trigger = {
-			always = yes	
-		}
-	}
-}
-DEN_has_sovaernet_dynamic_modifier = {
-	OR = {
-		has_dynamic_modifier = { modifier = DEN_sovaernet_dynamic_modifier }
-		has_dynamic_modifier = { modifier = DEN_sovaernet_dynamic_modifier_improved }
-		has_dynamic_modifier = { modifier = DEN_sovaernet_dynamic_modifier_max_improved }
-
-	}
-}
-
-DEN_has_flyvevabnet_dynamic_modifier = {
-	OR = {
-		has_dynamic_modifier = { modifier = DEN_flyvevabnet_dynamic_modifier }
-		has_dynamic_modifier = { modifier = DEN_flyvevabnet_dynamic_modifier_improved }
-		has_dynamic_modifier = { modifier = DEN_flyvevabnet_dynamic_modifier_max_improved }		
-	}
-}
-
-DEN_has_war_preparations_dynamic_modifier = {
-	has_dynamic_modifier = { modifier = DEN_war_preparations_dynamic_modifier }
-}
-
-DEN_has_political_edicts_dynamic_modifier = {
-	has_dynamic_modifier = { modifier = DEN_political_edicts_dynamic_modifier }
-}
-
-
-check_okhotsk = {
-AND = {
-	ENG=  { ships_in_area = { area = 87 size < 10 } }
-	NZL=  { ships_in_area = { area = 87 size < 10 } }
-	AST=  { ships_in_area = { area = 87 size < 10 } }
-	HOL=  { ships_in_area = { area = 87 size < 10 } }
-	USA=  { ships_in_area = { area = 87 size < 10 } }
-	NOR=  { ships_in_area = { area = 87 size < 10 } }
-	CAN=  { ships_in_area = { area = 87 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 87 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 87 size > 10 } }
-}
-check_okhotsk_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 87 size > 10 } }
-	NZL=  { ships_in_area = { area = 87 size > 10 } }
-	AST=  { ships_in_area = { area = 87 size > 10 } }
-	HOL=  { ships_in_area = { area = 87 size > 10 } }
-	USA=  { ships_in_area = { area = 87 size > 10 } }
-	NOR=  { ships_in_area = { area = 87 size > 10 } }
-	CAN=  { ships_in_area = { area = 87 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 87 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 87 size < 10 } }
-}
-
-
-check_nw_pacific = {
-AND = {
-	ENG=  { ships_in_area = { area = 180 size < 10 } }
-	NZL=  { ships_in_area = { area = 180 size < 10 } }
-	AST=  { ships_in_area = { area = 180 size < 10 } }
-	HOL=  { ships_in_area = { area = 180 size < 10 } }
-	USA=  { ships_in_area = { area = 180 size < 10 } }
-	NOR=  { ships_in_area = { area = 180 size < 10 } }
-	CAN=  { ships_in_area = { area = 180 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 180 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 180 size > 10 } }
-}
-
-check_nw_pacific_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 180 size > 10 } }
-	NZL=  { ships_in_area = { area = 180 size > 10 } }
-	AST=  { ships_in_area = { area = 180 size > 10 } }
-	HOL=  { ships_in_area = { area = 180 size > 10 } }
-	USA=  { ships_in_area = { area = 180 size > 10 } }
-	NOR=  { ships_in_area = { area = 180 size > 10 } }
-	CAN=  { ships_in_area = { area = 180 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 180 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 180 size < 10 } }
-}
-
-
-
-
-check_sea_japan = {
-AND = {
-	ENG=  { ships_in_area = { area = 79 size < 10 } }
-	NZL=  { ships_in_area = { area = 79 size < 10 } }
-	AST=  { ships_in_area = { area = 79 size < 10 } }
-	HOL=  { ships_in_area = { area = 79 size < 10 } }
-	USA=  { ships_in_area = { area = 79 size < 10 } }
-	NOR=  { ships_in_area = { area = 79 size < 10 } }
-	CAN=  { ships_in_area = { area = 79 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 79 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 79 size > 10 } }
-}
-
-check_sea_japan_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 79 size > 10 } }
-	NZL=  { ships_in_area = { area = 79 size > 10 } }
-	AST=  { ships_in_area = { area = 79 size > 10 } }
-	HOL=  { ships_in_area = { area = 79 size > 10 } }
-	USA=  { ships_in_area = { area = 79 size > 10 } }
-	NOR=  { ships_in_area = { area = 79 size > 10 } }
-	CAN=  { ships_in_area = { area = 79 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 79 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 79 size < 10 } }
-}
-check_coast_japan = {
-AND = {
-	ENG=  { ships_in_area = { area = 90 size < 10 } }
-	NZL=  { ships_in_area = { area = 90 size < 10 } }
-	AST=  { ships_in_area = { area = 90 size < 10 } }
-	HOL=  { ships_in_area = { area = 90 size < 10 } }
-	USA=  { ships_in_area = { area = 90 size < 10 } }
-	NOR=  { ships_in_area = { area = 90 size < 10 } }
-	CAN=  { ships_in_area = { area = 90 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 90 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 90 size > 10 } }
-}
-check_coast_japan_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 90 size > 10 } }
-	NZL=  { ships_in_area = { area = 90 size > 10 } }
-	AST=  { ships_in_area = { area = 90 size > 10 } }
-	HOL=  { ships_in_area = { area = 90 size > 10 } }
-	USA=  { ships_in_area = { area = 90 size > 10 } }
-	NOR=  { ships_in_area = { area = 90 size > 10 } }
-	CAN=  { ships_in_area = { area = 90 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 90 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 90 size < 10 } }
-}
-check_sea_yellow = {
-AND = {
-	ENG=  { ships_in_area = { area = 77 size < 10 } }
-	NZL=  { ships_in_area = { area = 77 size < 10 } }
-	AST=  { ships_in_area = { area = 77 size < 10 } }
-	HOL=  { ships_in_area = { area = 77 size < 10 } }
-	USA=  { ships_in_area = { area = 77 size < 10 } }
-	NOR=  { ships_in_area = { area = 77 size < 10 } }
-	CAN=  { ships_in_area = { area = 77 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 77 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 77 size > 10 } }
-}
-check_sea_yellow_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 77 size > 10 } }
-	NZL=  { ships_in_area = { area = 77 size > 10 } }
-	AST=  { ships_in_area = { area = 77 size > 10 } }
-	HOL=  { ships_in_area = { area = 77 size > 10 } }
-	USA=  { ships_in_area = { area = 77 size > 10 } }
-	NOR=  { ships_in_area = { area = 77 size > 10 } }
-	CAN=  { ships_in_area = { area = 77 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 77 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 77 size < 10 } }
-}
-check_sea_east_china = {
-AND = {
-	ENG=  { ships_in_area = { area = 76 size < 10 } }
-	NZL=  { ships_in_area = { area = 76 size < 10 } }
-	AST=  { ships_in_area = { area = 76 size < 10 } }
-	HOL=  { ships_in_area = { area = 76 size < 10 } }
-	USA=  { ships_in_area = { area = 76 size < 10 } }
-	NOR=  { ships_in_area = { area = 76 size < 10 } }
-	CAN=  { ships_in_area = { area = 76 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 76 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 76 size > 10 } }
-}
-check_sea_east_china_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 76 size > 10 } }
-	NZL=  { ships_in_area = { area = 76 size > 10 } }
-	AST=  { ships_in_area = { area = 76 size > 10 } }
-	HOL=  { ships_in_area = { area = 76 size > 10 } }
-	USA=  { ships_in_area = { area = 76 size > 10 } }
-	NOR=  { ships_in_area = { area = 76 size > 10 } }
-	CAN=  { ships_in_area = { area = 76 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 76 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 76 size < 10 } }
-}
-check_sea_south_china = {
-AND = {
-	ENG=  { ships_in_area = { area = 75 size < 10 } }
-	NZL=  { ships_in_area = { area = 75 size < 10 } }
-	AST=  { ships_in_area = { area = 75 size < 10 } }
-	HOL=  { ships_in_area = { area = 75 size < 10 } }
-	USA=  { ships_in_area = { area = 75 size < 10 } }
-	NOR=  { ships_in_area = { area = 75 size < 10 } }
-	CAN=  { ships_in_area = { area = 75 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 75 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 75 size > 10 } }
-}
-check_sea_south_china_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 75 size > 10 } }
-	NZL=  { ships_in_area = { area = 75 size > 10 } }
-	AST=  { ships_in_area = { area = 75 size > 10 } }
-	HOL=  { ships_in_area = { area = 75 size > 10 } }
-	USA=  { ships_in_area = { area = 75 size > 10 } }
-	NOR=  { ships_in_area = { area = 75 size > 10 } }
-	CAN=  { ships_in_area = { area = 75 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 75 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 75 size < 10 } }
-}
-check_sea_phillipine = {
-AND = {
-	ENG=  { ships_in_area = { area = 78 size < 10 } }
-	NZL=  { ships_in_area = { area = 78 size < 10 } }
-	AST=  { ships_in_area = { area = 78 size < 10 } }
-	HOL=  { ships_in_area = { area = 78 size < 10 } }
-	USA=  { ships_in_area = { area = 78 size < 10 } }
-	NOR=  { ships_in_area = { area = 78 size < 10 } }
-	CAN=  { ships_in_area = { area = 78 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 78 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 78 size > 10 } }
-}
-check_sea_phillipine_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 78 size > 10 } }
-	NZL=  { ships_in_area = { area = 78 size > 10 } }
-	AST=  { ships_in_area = { area = 78 size > 10 } }
-	HOL=  { ships_in_area = { area = 78 size > 10 } }
-	USA=  { ships_in_area = { area = 78 size > 10 } }
-	NOR=  { ships_in_area = { area = 78 size > 10 } }
-	CAN=  { ships_in_area = { area = 78 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 78 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 78 size < 10 } }
-}
-check_west_emperor = {
-AND = {
-	ENG=  { ships_in_area = { area = 95 size < 10 } }
-	NZL=  { ships_in_area = { area = 95 size < 10 } }
-	AST=  { ships_in_area = { area = 95 size < 10 } }
-	HOL=  { ships_in_area = { area = 95 size < 10 } }
-	USA=  { ships_in_area = { area = 95 size < 10 } }
-	NOR=  { ships_in_area = { area = 95 size < 10 } }
-	CAN=  { ships_in_area = { area = 95 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 95 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 95 size > 10 } }
-}
-
-check_hawaii = {
-AND = {
-	ENG=  { ships_in_area = { area = 105 size < 10 } }
-	NZL=  { ships_in_area = { area = 105 size < 10 } }
-	AST=  { ships_in_area = { area = 105 size < 10 } }
-	HOL=  { ships_in_area = { area = 105 size < 10 } }
-	USA=  { ships_in_area = { area = 105 size < 10 } }
-	NOR=  { ships_in_area = { area = 105 size < 10 } }
-	CAN=  { ships_in_area = { area = 105 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 105 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 105 size > 10 } }
-}
-
-check_mariana = {
-AND = {
-	ENG=  { ships_in_area = { area = 94 size < 10 } }
-	NZL=  { ships_in_area = { area = 94 size < 10 } }
-	AST=  { ships_in_area = { area = 94 size < 10 } }
-	HOL=  { ships_in_area = { area = 94 size < 10 } }
-	USA=  { ships_in_area = { area = 94 size < 10 } }
-	NOR=  { ships_in_area = { area = 94 size < 10 } }
-	CAN=  { ships_in_area = { area = 94 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 94 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 94 size > 10 } }
-}
-check_mariana_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 94 size > 10 } }
-	NZL=  { ships_in_area = { area = 94 size > 10 } }
-	AST=  { ships_in_area = { area = 94 size > 10 } }
-	HOL=  { ships_in_area = { area = 94 size > 10 } }
-	USA=  { ships_in_area = { area = 94 size > 10 } }
-	NOR=  { ships_in_area = { area = 94 size > 10 } }
-	CAN=  { ships_in_area = { area = 94 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 94 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 94 size < 10 } }
-}
-check_micronesia = {
-AND = {
-	ENG=  { ships_in_area = { area = 97 size < 10 } }
-	NZL=  { ships_in_area = { area = 97 size < 10 } }
-	AST=  { ships_in_area = { area = 97 size < 10 } }
-	HOL=  { ships_in_area = { area = 97 size < 10 } }
-	USA=  { ships_in_area = { area = 97 size < 10 } }
-	NOR=  { ships_in_area = { area = 97 size < 10 } }
-	CAN=  { ships_in_area = { area = 97 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 97 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 97 size > 10 } }
-}
-
-check_pacific_line_ridge = {
-AND = {
-	ENG=  { ships_in_area = { area = 82 size < 10 } }
-	NZL=  { ships_in_area = { area = 82 size < 10 } }
-	AST=  { ships_in_area = { area = 82 size < 10 } }
-	HOL=  { ships_in_area = { area = 82 size < 10 } }
-	USA=  { ships_in_area = { area = 82 size < 10 } }
-	NOR=  { ships_in_area = { area = 82 size < 10 } }
-	CAN=  { ships_in_area = { area = 82 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 82 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 82 size > 10 } }
-}
-
-check_sea_bismarck = {
-AND = {
-	ENG=  { ships_in_area = { area = 84 size < 10 } }
-	NZL=  { ships_in_area = { area = 84 size < 10 } }
-	AST=  { ships_in_area = { area = 84 size < 10 } }
-	HOL=  { ships_in_area = { area = 84 size < 10 } }
-	USA=  { ships_in_area = { area = 84 size < 10 } }
-	NOR=  { ships_in_area = { area = 84 size < 10 } }
-	CAN=  { ships_in_area = { area = 84 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 84 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 84 size > 10 } }
-}
-check_sea_bismarck_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 84 size > 10 } }
-	NZL=  { ships_in_area = { area = 84 size > 10 } }
-	AST=  { ships_in_area = { area = 84 size > 10 } }
-	HOL=  { ships_in_area = { area = 84 size > 10 } }
-	USA=  { ships_in_area = { area = 84 size > 10 } }
-	NOR=  { ships_in_area = { area = 84 size > 10 } }
-	CAN=  { ships_in_area = { area = 84 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 84 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 84 size < 10 } }
-}
-
-
-check_sea_solomon = {
-AND = {
-	ENG=  { ships_in_area = { area = 83 size < 10 } }
-	NZL=  { ships_in_area = { area = 83 size < 10 } }
-	AST=  { ships_in_area = { area = 83 size < 10 } }
-	HOL=  { ships_in_area = { area = 83 size < 10 } }
-	USA=  { ships_in_area = { area = 83 size < 10 } }
-	NOR=  { ships_in_area = { area = 83 size < 10 } }
-	CAN=  { ships_in_area = { area = 83 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 83 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 83 size > 10 } }
-}
-
-
-check_thailand = {
-AND = {
-	ENG=  { ships_in_area = { area = 176 size < 10 } }
-	NZL=  { ships_in_area = { area = 176 size < 10 } }
-	AST=  { ships_in_area = { area = 176 size < 10 } }
-	HOL=  { ships_in_area = { area = 176 size < 10 } }
-	USA=  { ships_in_area = { area = 176 size < 10 } }
-	NOR=  { ships_in_area = { area = 176 size < 10 } }
-	CAN=  { ships_in_area = { area = 176 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 176 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 176 size > 10 } }
-}
-check_thailand_allies = {
-OR = {
-	ENG=  { ships_in_area = { area = 176 size > 10 } }
-	NZL=  { ships_in_area = { area = 176 size > 10 } }
-	AST=  { ships_in_area = { area = 176 size > 10 } }
-	HOL=  { ships_in_area = { area = 176 size > 10 } }
-	USA=  { ships_in_area = { area = 176 size > 10 } }
-	NOR=  { ships_in_area = { area = 176 size > 10 } }
-	CAN=  { ships_in_area = { area = 176 size > 10 } } 	
-	BRA=  { ships_in_area = { area = 176 size > 10 } } 		
-}
-JAP = { ships_in_area = { area = 176 size < 10 } }
-}
-check_malacca = {
-AND = {
-	ENG=  { ships_in_area = { area = 72 size < 10 } }
-	NZL=  { ships_in_area = { area = 72 size < 10 } }
-	AST=  { ships_in_area = { area = 72 size < 10 } }
-	HOL=  { ships_in_area = { area = 72 size < 10 } }
-	USA=  { ships_in_area = { area = 72 size < 10 } }
-	NOR=  { ships_in_area = { area = 72 size < 10 } }
-	CAN=  { ships_in_area = { area = 72 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 72 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 72 size > 10 } }
-}
-
-check_sea_celebes = {
-AND = {
-	ENG=  { ships_in_area = { area = 80 size < 10 } }
-	NZL=  { ships_in_area = { area = 80 size < 10 } }
-	AST=  { ships_in_area = { area = 80 size < 10 } }
-	HOL=  { ships_in_area = { area = 80 size < 10 } }
-	USA=  { ships_in_area = { area = 80 size < 10 } }
-	NOR=  { ships_in_area = { area = 80 size < 10 } }
-	CAN=  { ships_in_area = { area = 80 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 80 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 80 size > 10 } }
-}
-
-check_sea_java = {
-AND = {
-	ENG=  { ships_in_area = { area = 93 size < 10 } }
-	NZL=  { ships_in_area = { area = 93 size < 10 } }
-	AST=  { ships_in_area = { area = 93 size < 10 } }
-	HOL=  { ships_in_area = { area = 93 size < 10 } }
-	USA=  { ships_in_area = { area = 93 size < 10 } }
-	NOR=  { ships_in_area = { area = 93 size < 10 } }
-	CAN=  { ships_in_area = { area = 93 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 93 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 93 size > 10 } }
-}
-
-check_sea_arafura = {
-AND = {
-	ENG=  { ships_in_area = { area = 91 size < 10 } }
-	NZL=  { ships_in_area = { area = 91 size < 10 } }
-	AST=  { ships_in_area = { area = 91 size < 10 } }
-	HOL=  { ships_in_area = { area = 91 size < 10 } }
-	USA=  { ships_in_area = { area = 91 size < 10 } }
-	NOR=  { ships_in_area = { area = 91 size < 10 } }
-	CAN=  { ships_in_area = { area = 91 size < 10 } } 	
-	BRA=  { ships_in_area = { area = 91 size < 10 } } 		
-}
-JAP = { ships_in_area = { area = 91 size > 10 } }
-}
-
-
 
 
 is_libyan_state = {
@@ -554,8 +23,6 @@ is_libyan_state = {
 		state = 579 state = 625 state = 450 state = 624 state = 279 state = 449 state = 606 state = 448 state =515  state = 397 state = 577 state = 458 
 	}
 }
-
-
 
 has_naval_treaty_trigger = {
 	OR = {
@@ -566,10 +33,10 @@ has_naval_treaty_trigger = {
 	}
 }
 
-
 ITA_africa_states = { 
 	OR = { state = 436 state = 586 state = 424 state = 410 state = 456 state = 305 state = 585 state = 447 state = 584 state = 602 state = 452 state = 453 state = 455 state = 454 state = 554 state = 590 state = 589 state = 591 state = 593 state = 592 state = 291 state = 594 state = 419 state = 421 state = 413 state = 596 state = 266 state = 598 state = 412 state = 597 state = 595 state = 279 state = 579 state = 625 state =624 state = 450 state = 449 state = 606 state = 448 state = 515 state = 397 state = 460 state = 577 state = 458 state = 513 state = 459   }
 }
+
 has_dino_grandi = {
 	has_country_leader = {
 		character = ITA_dino_grandi
@@ -577,18 +44,22 @@ has_dino_grandi = {
 	}
 	has_idea = ITA_dino_grandi
 }
+
 immune_to_pause_block = { OR = { has_country_flag = host tag = FRA tag = GER tag = ENG tag = SOV tag = USA tag = ITA  tag = JAP } }
+
 someone_really_lost = {
 	OR = {
 	SOV_really_lost = yes
 	FIN_really_lost = yes
 	}
 }
+
 SOV_really_lost = {
-	 OR = { NOT = { SOV = { controls_state = 213 } }  NOT = { SOV = { controls_state = 215 } }  NOT = { SOV = { controls_state = 216 } }  NOT = { SOV = { controls_state = 195 } }  }
+	OR = { NOT = { SOV = { controls_state = 213 } }  NOT = { SOV = { controls_state = 215 } }  NOT = { SOV = { controls_state = 216 } }  NOT = { SOV = { controls_state = 195 } }  }
 }
+
 FIN_really_lost = {
-	 OR = {  FIN = { surrender_progress > 0.4 } NOT = { FIN = { controls_state = 111 } }  NOT = { FIN = { controls_state = 150 } }  NOT = { FIN = { controls_state = 148 } }   }
+	OR = {  FIN = { surrender_progress > 0.4 } NOT = { FIN = { controls_state = 111 } }  NOT = { FIN = { controls_state = 150 } }  NOT = { FIN = { controls_state = 148 } }   }
 }
 
 southern_russia_state = { OR = { state = 419 state = 229 state = 230 state = 231 state = 232 state = 233 state = 235 state = 234  state = 237 state = 238 state = 234 state = 218 } }
@@ -637,109 +108,9 @@ should_have_any_unique_medals_trigger = {
 		should_have_ethiopian_medals_trigger = yes 
 	}
 }
-prca_has_available_propaganda_slot = {
-	custom_trigger_tooltip = {
-		tooltip = propaganda_available_tt
-		OR = {
-			check_variable = { THIS.prop_1_frame?1 = 1 }
-			check_variable = { THIS.prop_2_frame?1 = 1 }
-			check_variable = { THIS.prop_3_frame?1 = 1 }
-		}
-	}
-}
 
-# Note: THIS.ongoing_hostile_leaflet_operations will be removed after the decision is completed (and not the operation)
-prca_has_available_leaflet_operation = {
-	custom_trigger_tooltip = {
-		tooltip = leaflet_operation_available_tt
-		check_variable = { THIS.ongoing_hostile_leaflet_operations < 3 }
-	}
-}
+lend_lease_states_1 = { OR = { state = 215 state = 213 state = 195 state = 146 state = 147 state = 502 state = 244 state = 263 state = 223 state = 205 state = 246 state = 218 } }
 
-prca_tokens_not_maxed_out = {
-	custom_trigger_tooltip = {
-		tooltip = prca_tokens_not_maxed_out_tt
-		check_variable = { THIS.prca_tokens < 500 }
-	}
-}
-
-prca_use_default_decisions_trigger = {
-		NOT = { has_country_flag = prca_disable_default_decisions }
-}
-
-
-prca_leaflets_enabled_trigger = {
-		has_country_flag = prca_leaflets_enabled	# Has PRCA enabled?
-}
-
-
-ITA_missiolinis_system_available = {
-	hidden_trigger = {
-		has_country_flag = ITA_missiolinis_system_active_flag
-	}
-	has_country_leader = {
-		character = ITA_benito_mussolini
-		ruling_only = yes
-	}
-}
-ETH_is_horn_of_africa_original_tag = { tag = SWE } #deleting this will gen errors
-ITA_missiolinis_cd_ready = {
-	NOT = { has_country_flag = ITA_missiolini_activated_recently_flag }
-}
-
-ITA_missiolinis_can_have_a_new_mission = {
-	check_variable = { ITA_missiolinis_active_missions = 2 compare = less_than_or_equals }
-}
-
-ITA_is_northern_designer = { #Only meant to be used for tooltip purposes
-	custom_trigger_tooltip = {
-		tooltip = ITA_northern_designer_tt
-		hidden_trigger = {
-			always = yes	
-		}
-	}
-}
-
-ITA_is_southern_designer = { #Only meant to be used for tooltip purposes
-	custom_trigger_tooltip = {
-		tooltip = ITA_southern_designer_tt
-		hidden_trigger = {
-			always = yes	
-		}
-	}
-}
-
-ITA_is_northern_designer_improved = { #Only meant to be used for tooltip purposes
-	custom_trigger_tooltip = {
-		tooltip = ITA_northern_designer_improved_tt
-		hidden_trigger = {
-			always = yes	
-		}
-	}
-}
-
-ITA_is_southern_designer_improved = { #Only meant to be used for tooltip purposes
-	custom_trigger_tooltip = {
-		tooltip = ITA_southern_designer_improved_tt
-		hidden_trigger = {
-			always = yes	
-		}
-	}
-}
-ITA_is_italian_tag_for_music = {
-	OR = {
-		original_tag = ITA
-		original_tag = AOI
-	}
-}
-
-ITA_has_rejected_monarchy = { # Used to change NS names from Regio/a to something not referencing monarchy
-	OR = {
-		has_completed_focus = ITA_capo_supremo
-		has_completed_focus = ITA_the_italian_social_republic
-	}
-}
-lend_lease_states_1 = {  OR = { state = 215 state = 213 state = 195 state = 146 state = 147 state = 502 state = 244 state = 263 state = 223 state = 205 state = 246 state = 218          }  }
 lend_lease_states_2 = { OR = { state = 266 state = 481 state = 419 state = 229 state = 230 state = 231 state = 232 state = 233 state = 234 state = 238 state = 235 state = 232 state = 237 state = 236 state = 217 state = 245 state = 265 state = 239 state = 260 state = 257 state = 258 state = 254 state = 255 state = 253 state = 219 state = 248 state = 351 state = 214 state = 264 state = 247 state = 216        } } 
 
 #Used to change name of States and VPs when appropriate. Expected to be used inside on_state_control_changed. FROM.FROM is state / ROOT is new controller / FROM is former controller
@@ -764,44 +135,17 @@ british_coastline_not_south = {
  OR = { state = 122 state = 130 state = 131 state = 132 state = 133 state = 136 state = 121 state = 120 state = 119 state = 582 state = 323 state = 338 state = 615 }
 }
 
-has_sanation_left_opposition = {
-	custom_trigger_tooltip = {
-		tooltip = has_sanation_left_tt
-		OR = {
-			has_idea = POL_sanation_left_opposition_1
-			has_idea = POL_sanation_left_opposition_2
-			has_idea = POL_sanation_left_opposition_3
-			has_idea = POL_sanation_left_opposition_4
-			has_completed_focus = POL_the_left_chairman
-		}
-	}
-}
-
-has_sanation_right_opposition = {
-	custom_trigger_tooltip = {
-		tooltip = has_sanation_right_tt
-		OR = {
-			has_idea = POL_sanation_right_opposition_1
-			has_idea = POL_sanation_right_opposition_2
-			has_idea = POL_sanation_right_opposition_3
-			has_idea = POL_sanation_right_opposition_4
-			has_completed_focus = POL_second_man_of_the_state
-		}
-	}
-}
-
-
-
-
 is_initial_ethiopian_state = {
 	OR = {
 		state = 271
 		#add more
 	}
 }
+
 has_tech_sharing_feature = {
-		has_dlc = "La Resistance"
+	has_dlc = "La Resistance"
 }
+
 has_war_with_non_exiled_country = {
 	custom_trigger_tooltip = {
 		tooltip = has_war_with_non_exiled_country_tt
@@ -811,6 +155,7 @@ has_war_with_non_exiled_country = {
 		}
 	}
 }
+
 is_at_peace_exiled_countries_excluded = {
 	custom_trigger_tooltip = {
 		tooltip = is_at_peace_exiled_countries_excluded_tt
@@ -821,6 +166,7 @@ is_at_peace_exiled_countries_excluded = {
 		}
 	}
 }
+
 state_is_fully_controlled_by_ROOT_or_subject = {
 	custom_trigger_tooltip = {
 		tooltip = state_is_fully_controlled_by_ROOT_or_subject_tt
@@ -833,6 +179,7 @@ state_is_fully_controlled_by_ROOT_or_subject = {
 		}
 	}
 }
+
 state_has_any_resource = {
 	OR = {
 		has_resources_amount = {
@@ -948,86 +295,86 @@ state_is_in_the_mediterranean_sea = { ##TODO FIX
 	}
 }
 
-
-SOV_ll_check_trigger = {
-custom_trigger_tooltip = { tooltip = SOV_below_monthly_cap_tt
-	date > 1941.11.1 
-		ENG ={  
-	check_variable = { 
-		var = SOV_ll_this_month 
-		value = SOV_ll_monthly_cap  
-		compare = less_than 
-	} 
-		check_variable = { 
-		var = SOV_barb_ll_token 
-		value = 4 
-		compare = greater_than 
-	} 
-	}
-	}
-	suppy_route_secure = yes
-	}
-
-suppy_route_secure = {
-OR = { 
-OR = { AND = { USA = { controls_state = 416 } SOV = { controls_state = 408 } } has_global_flag = war_in_the_west_start }
-AND = { OR= { ENG = { controls_state = 412 } SOV = { controls_state = 412 }  }SOV = { controls_state = 229 } }
-SOV = { controls_state = 213 }
-AND = { ENG = { controls_state = 116 } SOV = { controls_state = 137 } }
-}
-}
  
 has_depression_trigger = { OR = { has_idea = great_depression has_idea = great_depression_2 has_idea = great_depression_3 } }
 
 spanish_coastline = { OR = { state = 169 state = 290  state = 173 state = 168 state = 167 state = 165 state = 172 state = 171	}}
 
 was_sent_expeditionaries = {
-OR = { 
-received_expeditionary_forces = { sender = GER value > 0 } 
-received_expeditionary_forces = { sender = ITA value > 0 } 
-received_expeditionary_forces = { sender = SPR value > 0 } 
-received_expeditionary_forces = { sender = ROM value > 0 } 
-received_expeditionary_forces = { sender = YUG value > 0 } 
-received_expeditionary_forces = { sender = CZE value > 0 } 
-received_expeditionary_forces = { sender = HUN value > 0 } 
-received_expeditionary_forces = { sender = BUL value > 0 }
- received_expeditionary_forces = { sender = ALB value > 0 } 
- received_expeditionary_forces = { sender = EFR value > 0 } 
- received_expeditionary_forces = { sender = AOI value > 0 } 
- received_expeditionary_forces = { sender = FIN value > 0 } 
-  received_expeditionary_forces = { sender = JAP value > 0 } 
- received_expeditionary_forces = { sender = MAN value > 0 } 
- received_expeditionary_forces = { sender = ENG value > 0 } 
-received_expeditionary_forces = { sender = USA value > 0 } 
-received_expeditionary_forces = { sender = FRA value > 0 } 
-received_expeditionary_forces = { sender = CAN value > 0 } 
-received_expeditionary_forces = { sender = POL value > 0 } 
-received_expeditionary_forces = { sender = BRA value > 0 } 
-received_expeditionary_forces = { sender = SAF value > 0 } 
-received_expeditionary_forces = { sender = HOL value > 0 } 
-received_expeditionary_forces = { sender = NOR value > 0 }
- received_expeditionary_forces = { sender = RAJ value > 0 } 
- received_expeditionary_forces = { sender = AST value > 0 } 
-  received_expeditionary_forces = { sender = GRE value > 0 } 
+    OR = { 
+        received_expeditionary_forces = { sender = GER value > 0 } 
+        received_expeditionary_forces = { sender = ITA value > 0 } 
+        received_expeditionary_forces = { sender = SPR value > 0 } 
+        received_expeditionary_forces = { sender = ROM value > 0 } 
+        received_expeditionary_forces = { sender = YUG value > 0 } 
+        received_expeditionary_forces = { sender = CZE value > 0 } 
+        received_expeditionary_forces = { sender = HUN value > 0 } 
+        received_expeditionary_forces = { sender = BUL value > 0 }
+        received_expeditionary_forces = { sender = ALB value > 0 } 
+        received_expeditionary_forces = { sender = EFR value > 0 } 
+        received_expeditionary_forces = { sender = AOI value > 0 } 
+        received_expeditionary_forces = { sender = FIN value > 0 } 
+        received_expeditionary_forces = { sender = JAP value > 0 } 
+        received_expeditionary_forces = { sender = MAN value > 0 } 
+        received_expeditionary_forces = { sender = ENG value > 0 } 
+        received_expeditionary_forces = { sender = USA value > 0 } 
+        received_expeditionary_forces = { sender = FRA value > 0 } 
+        received_expeditionary_forces = { sender = CAN value > 0 } 
+        received_expeditionary_forces = { sender = POL value > 0 } 
+        received_expeditionary_forces = { sender = BRA value > 0 } 
+        received_expeditionary_forces = { sender = SAF value > 0 } 
+        received_expeditionary_forces = { sender = HOL value > 0 } 
+        received_expeditionary_forces = { sender = NOR value > 0 }
+        received_expeditionary_forces = { sender = RAJ value > 0 } 
+        received_expeditionary_forces = { sender = AST value > 0 } 
+        received_expeditionary_forces = { sender = GRE value > 0 } 
+        received_expeditionary_forces = { sender = NZL value > 0 } 
+    }  
+}  # Checks if any listed country has sent expeditionary forces
 
- received_expeditionary_forces = { sender = NZL value > 0 } 
- }  
-}
 
 frontline_military_district_state = { OR = { state = 192 state = 287 state = 226 state = 203 state = 197 state = 198 state = 202 state = 78 state = 80 state = 89 state = 91 state = 199 state = 201 state = 93 state = 194 state = 94 state = 204 state = 206 state = 95 state = 97 state = 96 state = 512 state = 11 state = 189 state = 190  } }
+
 rearline_military_district_state = { OR = { state = 137 state = 242  state = 196 state = 207 state = 200 state = 259 state = 193 state = 241 state = 252 state = 12  } }
+
 uk_needs_help = {  
-any_country = { is_in_faction_with = GER 
-	OR = { has_full_control_of_state = 331 has_full_control_of_state = 345 has_full_control_of_state = 49 has_full_control_of_state = 349 has_full_control_of_state = 151 has_full_control_of_state = 127 has_full_control_of_state = 123 has_full_control_of_state = 125 has_full_control_of_state = 126 has_full_control_of_state = 338 has_full_control_of_state = 119 has_full_control_of_state = 133 has_full_control_of_state = 121 has_full_control_of_state = 136  has_full_control_of_state = 311 }
-	}
-}
+    any_country = { 
+        is_in_faction_with = GER 
+        OR = { 
+            has_full_control_of_state = 331
+            has_full_control_of_state = 345
+            has_full_control_of_state = 49
+            has_full_control_of_state = 349
+            has_full_control_of_state = 151
+            has_full_control_of_state = 127
+            has_full_control_of_state = 123
+            has_full_control_of_state = 125
+            has_full_control_of_state = 126
+            has_full_control_of_state = 338
+            has_full_control_of_state = 119
+            has_full_control_of_state = 133
+            has_full_control_of_state = 121
+            has_full_control_of_state = 136
+            has_full_control_of_state = 311
+        }
+    }
+}  # Checks if any Axis-aligned country controls key UK states
+
 
 japan_ll_check = { 
-	 any_country = { OR = { is_in_faction_with = GER  is_in_faction_with = JAP } controls_state = 561 } any_country = { OR = { is_in_faction_with = GER  is_in_faction_with = JAP } controls_state = 288 } any_country = { OR = { is_in_faction_with = GER  is_in_faction_with = JAP } controls_state = 439 } any_country = { OR = { is_in_faction_with = GER  is_in_faction_with = JAP } controls_state = 444 } any_country = { OR = { is_in_faction_with = GER  is_in_faction_with = JAP } controls_state = 412 } any_country = { OR = { is_in_faction_with = GER  is_in_faction_with = JAP } controls_state = 291 } any_country = { OR = { is_in_faction_with = GER  is_in_faction_with = JAP } controls_state = 554 }        
+    any_country = { OR = { is_in_faction_with = GER is_in_faction_with = JAP } controls_state = 561 }  # Key Japanese-controlled state
+    any_country = { OR = { is_in_faction_with = GER is_in_faction_with = JAP } controls_state = 288 }  # Another strategic state
+    any_country = { OR = { is_in_faction_with = GER is_in_faction_with = JAP } controls_state = 439 }  
+    any_country = { OR = { is_in_faction_with = GER is_in_faction_with = JAP } controls_state = 444 }  
+    any_country = { OR = { is_in_faction_with = GER is_in_faction_with = JAP } controls_state = 412 }  
+    any_country = { OR = { is_in_faction_with = GER is_in_faction_with = JAP } controls_state = 291 }  
+    any_country = { OR = { is_in_faction_with = GER is_in_faction_with = JAP } controls_state = 554 }        
+}  # Checks if key states are controlled by Axis-aligned countries
+
+
+disabled_ai_production = { 
+    NOT = { OR = { tag = CHI tag = BEL tag = AUS } }  # AI production disabled for all except China, Belgium, Australia
 }
-
-
-disabled_ai_production = { NOT = { OR = {  tag = CHI tag = BEL tag = AUS } } }
 
 bad_infra_state = { OR = { state = 442 state = 424 state = 410 state = 279 state = 605 state = 606 state = 515 state = 397 } }
 
@@ -1063,15 +410,470 @@ atlantikwall_states = {
 }
 
 asia_state = {
-OR = {   state = 333 state = 334 state = 562  state = 342 state = 516 state = 523 state = 312 state = 472 state = 575 state = 335 state = 321 state = 581 state = 288 state = 306   }
-}
+    OR = { 
+        state = 333 
+        state = 334 
+        state = 562  
+        state = 342 
+        state = 516 
+        state = 523 
+        state = 312 
+        state = 472 
+        state = 575 
+        state = 335 
+        state = 321 
+        state = 581 
+        state = 288 
+        state = 306
+    }
+}  # Key Asian states
+
 Philippines = {
-OR = {   state = 327  state = 403 state = 479  state = 418 state = 417 }
-}
+    OR = { 
+        state = 327  
+        state = 403 
+        state = 479  
+        state = 418 
+        state = 417
+    }
+}  # Philippine states
 
 south_italy = {
-OR = {   state = 115  state = 116  state = 117  state = 156   }
-} 
+    OR = { 
+        state = 115  
+        state = 116  
+        state = 117  
+        state = 156
+    }
+}  # Southern Italian states
+
+HMP_italy_dying = {
+    country_exists = ITA 
+    ITA = { surrender_progress > 0.95 }
+    NOT = { GER = { has_country_flag = ITA_cap } }
+}
+
+HMP_italy_sort_of_dying = {
+    country_exists = ITA 
+    ITA ={  
+        surrender_progress > 0.42
+        has_government = fascism
+    }
+}
+
+holnor = { 
+    OR = { 
+        tag = POL 
+        tag = GRE 
+        tag = HOL 
+        tag = NOR 
+    }
+}  # Group including Poland, Greece, Holland, and Norway
+
+the_axis = {
+    OR = { 
+        original_tag = GER
+        original_tag = ITA
+        original_tag = SPR
+        original_tag = CZE
+        original_tag = EFR
+        original_tag = FIN
+        original_tag = ROM
+        original_tag = HUN
+        original_tag = DEN
+        original_tag = YUG
+        original_tag = BUL
+        original_tag = AOI
+        original_tag = TUR
+        original_tag = ALB
+    }
+}
+
+the_axis_no_finefr = {
+    OR = { 
+        original_tag = GER
+        original_tag = ITA
+        original_tag = DEN
+        original_tag = SPR
+        original_tag = CZE
+        original_tag = ROM
+        original_tag = HUN
+        original_tag = YUG
+        original_tag = BUL
+        original_tag = AOI
+        original_tag = ALB
+    }
+}
+
+the_allies = {
+	OR = {
+		original_tag = ENG
+		original_tag = FRA
+		original_tag = USA
+		original_tag = CAN
+		original_tag = SAF
+		original_tag = AST
+		original_tag = RAJ
+		original_tag = NZL
+		original_tag = HOL
+		original_tag = POL
+		original_tag = GRE
+		original_tag = NOR
+		original_tag = BRA
+		original_tag = MEX
+	}
+}
+
+finefr = { 
+    OR = { 
+        original_tag = DEN 
+        original_tag = CZE 
+        original_tag = YUG 
+        original_tag = SPR 
+        original_tag = EFR 
+        original_tag = FIN
+    }
+}  # Minor Allied or friendly states
+
+the_geacps = { 
+    OR = { 
+        original_tag = SIA  
+        original_tag = JAP 
+        original_tag = MAN 
+    }
+}  # Greater East Asia Co-Prosperity Sphere countries
+
+
+normally_played_country = {
+    OR = {
+        original_tag = HOL
+        original_tag = BUL  
+        original_tag = POL
+        original_tag = BRA
+        original_tag = CZE
+        original_tag = YUG
+        original_tag = ALB 
+        original_tag = GRE
+        original_tag = AOI  
+        original_tag = NZL	
+        original_tag = AST	
+        original_tag = RAJ	
+        original_tag = JAP	
+        original_tag = MAN	
+        original_tag = SAF	
+        original_tag = FRA	
+        original_tag = FIN
+        original_tag = GER	
+        original_tag = MEX 
+        original_tag = TUR
+        original_tag = SIA
+        original_tag = MON
+        original_tag = ITA	
+        original_tag = ROM	
+        original_tag = HUN	
+        original_tag = SOV
+        original_tag = SPR	
+        original_tag = ENG	
+        original_tag = NOR
+        original_tag = CAN 
+        original_tag = USA
+        original_tag = NOR
+        original_tag = DEN
+        original_tag = EFR
+    }
+}
+
+normally_played_allies = {
+    OR = { 
+        original_tag = HOL 
+        original_tag = NZL
+        original_tag = AST
+        original_tag = RAJ
+        original_tag = SAF
+        original_tag = FRA
+        original_tag = ENG
+        original_tag = POL
+        original_tag = NOR
+        original_tag = GRE
+        original_tag = MEX
+        original_tag = BRA
+        original_tag = CAN
+        original_tag = USA
+    }
+}  # Defines all normally-played Allied countries
+
+
+HMP_italy_debuff_wall = { 
+    # List of Italian states affected by the debuff wall
+    OR = { 
+        state = 21 state = 313 state = 158 state = 162 state = 2 state = 117 state = 156 state = 115 
+        state = 157 state = 161 state = 160 state = 314 state = 103 state = 163 state = 105 state = 44 
+        state = 185 state = 47 state = 186 state = 486 state = 184 
+    } 
+}
+
+HMP_med_coastal_fort = {
+    OR = {
+        state = 158
+        state = 162
+        state = 2
+        state = 163 
+        state = 117
+        state = 156
+        state = 157
+        state = 161
+        state = 160
+        state = 313
+        state = 314
+        state = 103
+        state = 105
+        state = 44
+        state = 185
+        state = 186
+        state = 47
+        state = 486
+        state = 184
+        state = 187
+    }
+}
+
+vichy_state = { OR = { state = 461 state = 513 state = 459 state = 460 state = 458 state = 577 state = 554 state = 589 state = 590 state = 591 state = 445 state = 277 state = 510 state = 539  state = 397 } }
+
+
+# ██╗░░██╗░█████╗░██╗░░░░░██╗░░░░░░█████╗░███╗░░██╗██████╗░
+# ██║░░██║██╔══██╗██║░░░░░██║░░░░░██╔══██╗████╗░██║██╔══██╗
+# ███████║██║░░██║██║░░░░░██║░░░░░███████║██╔██╗██║██║░░██║
+# ██╔══██║██║░░██║██║░░░░░██║░░░░░██╔══██║██║╚████║██║░░██║
+# ██║░░██║╚█████╔╝███████╗███████╗██║░░██║██║░╚███║██████╔╝
+# ╚═╝░░╚═╝░╚════╝░╚══════╝╚══════╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░
+
+# ██████╗░██████╗░░█████╗░██████╗░░█████╗░░██████╗░░█████╗░███╗░░██╗██████╗░░█████╗░
+# ██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝░██╔══██╗████╗░██║██╔══██╗██╔══██╗
+# ██████╔╝██████╔╝██║░░██║██████╔╝███████║██║░░██╗░███████║██╔██╗██║██║░░██║███████║
+# ██╔═══╝░██╔══██╗██║░░██║██╔═══╝░██╔══██║██║░░╚██╗██╔══██║██║╚████║██║░░██║██╔══██║
+# ██║░░░░░██║░░██║╚█████╔╝██║░░░░░██║░░██║╚██████╔╝██║░░██║██║░╚███║██████╔╝██║░░██║
+# ╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚═╝░░░░░╚═╝░░╚═╝░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝
+
+prca_has_available_propaganda_slot = {
+	custom_trigger_tooltip = {
+		tooltip = propaganda_available_tt
+		OR = {
+			check_variable = { THIS.prop_1_frame?1 = 1 }
+			check_variable = { THIS.prop_2_frame?1 = 1 }
+			check_variable = { THIS.prop_3_frame?1 = 1 }
+		}
+	}
+}
+
+# Note: THIS.ongoing_hostile_leaflet_operations will be removed after the decision is completed (and not the operation)
+prca_has_available_leaflet_operation = {
+	custom_trigger_tooltip = {
+		tooltip = leaflet_operation_available_tt
+		check_variable = { THIS.ongoing_hostile_leaflet_operations < 3 }
+	}
+}
+
+prca_tokens_not_maxed_out = {
+	custom_trigger_tooltip = {
+		tooltip = prca_tokens_not_maxed_out_tt
+		check_variable = { THIS.prca_tokens < 500 }
+	}
+}
+
+prca_use_default_decisions_trigger = {
+	NOT = { has_country_flag = prca_disable_default_decisions }
+}
+
+
+prca_leaflets_enabled_trigger = {
+	has_country_flag = prca_leaflets_enabled	# Has PRCA enabled?
+}
+
+# ██╗████████╗░█████╗░██╗░░░░░██╗░░░██╗
+# ██║╚══██╔══╝██╔══██╗██║░░░░░╚██╗░██╔╝
+# ██║░░░██║░░░███████║██║░░░░░░╚████╔╝░
+# ██║░░░██║░░░██╔══██║██║░░░░░░░╚██╔╝░░
+# ██║░░░██║░░░██║░░██║███████╗░░░██║░░░
+# ╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝░░░╚═╝░░░
+
+ITA_missiolinis_system_available = {
+	hidden_trigger = {
+		has_country_flag = ITA_missiolinis_system_active_flag
+	}
+	has_country_leader = {
+		character = ITA_benito_mussolini
+		ruling_only = yes
+	}
+}
+ETH_is_horn_of_africa_original_tag = { tag = SWE } #deleting this will gen errors
+ITA_missiolinis_cd_ready = {
+	NOT = { has_country_flag = ITA_missiolini_activated_recently_flag }
+}
+
+ITA_missiolinis_can_have_a_new_mission = {
+	check_variable = { ITA_missiolinis_active_missions = 2 compare = less_than_or_equals }
+}
+
+ITA_is_northern_designer = { #Only meant to be used for tooltip purposes
+	custom_trigger_tooltip = {
+		tooltip = ITA_northern_designer_tt
+		hidden_trigger = {
+			always = yes	
+		}
+	}
+}
+
+ITA_is_southern_designer = { #Only meant to be used for tooltip purposes
+	custom_trigger_tooltip = {
+		tooltip = ITA_southern_designer_tt
+		hidden_trigger = {
+			always = yes	
+		}
+	}
+}
+
+ITA_is_northern_designer_improved = { #Only meant to be used for tooltip purposes
+	custom_trigger_tooltip = {
+		tooltip = ITA_northern_designer_improved_tt
+		hidden_trigger = {
+			always = yes	
+		}
+	}
+}
+
+ITA_is_southern_designer_improved = { #Only meant to be used for tooltip purposes
+	custom_trigger_tooltip = {
+		tooltip = ITA_southern_designer_improved_tt
+		hidden_trigger = {
+			always = yes	
+		}
+	}
+}
+ITA_is_italian_tag_for_music = {
+	OR = {
+		original_tag = ITA
+		original_tag = AOI
+	}
+}
+
+ITA_has_rejected_monarchy = { # Used to change NS names from Regio/a to something not referencing monarchy
+	OR = {
+		has_completed_focus = ITA_capo_supremo
+		has_completed_focus = ITA_the_italian_social_republic
+	}
+}
+
+
+# ██████╗░░█████╗░██╗░░░░░░█████╗░███╗░░██╗██████╗░
+# ██╔══██╗██╔══██╗██║░░░░░██╔══██╗████╗░██║██╔══██╗
+# ██████╔╝██║░░██║██║░░░░░███████║██╔██╗██║██║░░██║
+# ██╔═══╝░██║░░██║██║░░░░░██╔══██║██║╚████║██║░░██║
+# ██║░░░░░╚█████╔╝███████╗██║░░██║██║░╚███║██████╔╝
+# ╚═╝░░░░░░╚════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░
+
+has_sanation_left_opposition = {
+	custom_trigger_tooltip = {
+		tooltip = has_sanation_left_tt
+		OR = {
+			has_idea = POL_sanation_left_opposition_1
+			has_idea = POL_sanation_left_opposition_2
+			has_idea = POL_sanation_left_opposition_3
+			has_idea = POL_sanation_left_opposition_4
+			has_completed_focus = POL_the_left_chairman
+		}
+	}
+}
+
+has_sanation_right_opposition = {
+	custom_trigger_tooltip = {
+		tooltip = has_sanation_right_tt
+		OR = {
+			has_idea = POL_sanation_right_opposition_1
+			has_idea = POL_sanation_right_opposition_2
+			has_idea = POL_sanation_right_opposition_3
+			has_idea = POL_sanation_right_opposition_4
+			has_completed_focus = POL_second_man_of_the_state
+		}
+	}
+}
+
+# ██╗░░░░░███████╗███╗░░██╗██████╗░░░░░░░██╗░░░░░███████╗░█████╗░░██████╗███████╗
+# ██║░░░░░██╔════╝████╗░██║██╔══██╗░░░░░░██║░░░░░██╔════╝██╔══██╗██╔════╝██╔════╝
+# ██║░░░░░█████╗░░██╔██╗██║██║░░██║█████╗██║░░░░░█████╗░░███████║╚█████╗░█████╗░░
+# ██║░░░░░██╔══╝░░██║╚████║██║░░██║╚════╝██║░░░░░██╔══╝░░██╔══██║░╚═══██╗██╔══╝░░
+# ███████╗███████╗██║░╚███║██████╔╝░░░░░░███████╗███████╗██║░░██║██████╔╝███████╗
+# ╚══════╝╚══════╝╚═╝░░╚══╝╚═════╝░░░░░░░╚══════╝╚══════╝╚═╝░░╚═╝╚═════╝░╚══════╝
+
+# ████████╗██████╗░██╗░██████╗░░██████╗░███████╗██████╗░░██████╗
+# ╚══██╔══╝██╔══██╗██║██╔════╝░██╔════╝░██╔════╝██╔══██╗██╔════╝
+# ░░░██║░░░██████╔╝██║██║░░██╗░██║░░██╗░█████╗░░██████╔╝╚█████╗░
+# ░░░██║░░░██╔══██╗██║██║░░╚██╗██║░░╚██╗██╔══╝░░██╔══██╗░╚═══██╗
+# ░░░██║░░░██║░░██║██║╚██████╔╝╚██████╔╝███████╗██║░░██║██████╔╝
+# ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░╚═════╝░░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░
+
+SOV_ll_check_trigger = {
+    custom_trigger_tooltip = { 
+        tooltip = SOV_below_monthly_cap_tt
+        date > 1941.11.1
+
+        ENG = {  
+            check_variable = { 
+                var = SOV_ll_this_month 
+                value = SOV_ll_monthly_cap  
+                compare = less_than 
+            } 
+            check_variable = { 
+                var = SOV_barb_ll_token 
+                value = 4 
+                compare = greater_than 
+            } 
+        }
+    }
+
+    # Checks if the supply route is secure for the Soviets
+    suppy_route_secure = yes
+}
+
+
+supply_route_secure = {
+    OR = { 
+        # USA controls 416 and SOV controls 408 while war in the west has started
+        OR = { 
+            AND = { 
+                USA = { controls_state = 416 } 
+                SOV = { controls_state = 408 } 
+            } 
+            has_global_flag = war_in_the_west_start 
+        }
+
+        # Either ENG or SOV controls 412 AND SOV controls 229
+        AND = { 
+            OR = { 
+                ENG = { controls_state = 412 } 
+                SOV = { controls_state = 412 }  
+            } 
+            SOV = { controls_state = 229 } 
+        }
+
+        # SOV controls 213
+        SOV = { controls_state = 213 }
+
+        # ENG controls 116 AND SOV controls 137
+        AND = { 
+            ENG = { controls_state = 116 } 
+            SOV = { controls_state = 137 } 
+        }
+    }
+}  # Checks multiple conditions to see if a supply route is secure
+
+
+# ░█████╗░░█████╗░███╗░░██╗░██████╗░██████╗░███████╗░██████╗░██████╗
+# ██╔══██╗██╔══██╗████╗░██║██╔════╝░██╔══██╗██╔════╝██╔════╝██╔════╝
+# ██║░░╚═╝██║░░██║██╔██╗██║██║░░██╗░██████╔╝█████╗░░╚█████╗░╚█████╗░
+# ██║░░██╗██║░░██║██║╚████║██║░░╚██╗██╔══██╗██╔══╝░░░╚═══██╗░╚═══██╗
+# ╚█████╔╝╚█████╔╝██║░╚███║╚██████╔╝██║░░██║███████╗██████╔╝██████╔╝
+# ░╚════╝░░╚════╝░╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝╚══════╝╚═════╝░╚═════╝░
+
 congress_low_support_trigger = {
 	custom_trigger_tooltip = {
 		tooltip = congress_low_support_trigger_tt
@@ -1104,151 +906,83 @@ congress_super_high_support_trigger = {
 	}
 }
 
-	HMP_italy_dying = {
-		country_exists = ITA 
-		ITA = { surrender_progress > 0.95 }
-		NOT = { GER = { has_country_flag = ITA_cap } }
-	}
-	HMP_italy_sort_of_dying = {
-		country_exists = ITA 
-		ITA ={  
-			surrender_progress > 0.42
-			has_government = fascism
+
+# ██████╗░██████╗░░█████╗░██████╗░░█████╗░░██████╗░░█████╗░███╗░░██╗██████╗░░█████╗░
+# ██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝░██╔══██╗████╗░██║██╔══██╗██╔══██╗
+# ██████╔╝██████╔╝██║░░██║██████╔╝███████║██║░░██╗░███████║██╔██╗██║██║░░██║███████║
+# ██╔═══╝░██╔══██╗██║░░██║██╔═══╝░██╔══██║██║░░╚██╗██╔══██║██║╚████║██║░░██║██╔══██║
+# ██║░░░░░██║░░██║╚█████╔╝██║░░░░░██║░░██║╚██████╔╝██║░░██║██║░╚███║██████╔╝██║░░██║
+# ╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚═╝░░░░░╚═╝░░╚═╝░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝
+
+# ████████╗██████╗░██╗░██████╗░░██████╗░███████╗██████╗░░██████╗
+# ╚══██╔══╝██╔══██╗██║██╔════╝░██╔════╝░██╔════╝██╔══██╗██╔════╝
+# ░░░██║░░░██████╔╝██║██║░░██╗░██║░░██╗░█████╗░░██████╔╝╚█████╗░
+# ░░░██║░░░██╔══██╗██║██║░░╚██╗██║░░╚██╗██╔══╝░░██╔══██╗░╚═══██╗
+# ░░░██║░░░██║░░██║██║╚██████╔╝╚██████╔╝███████╗██║░░██║██████╔╝
+# ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░╚═════╝░░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░
+
+X_JAP_propaganda_poster_slot_available = {
+	custom_trigger_tooltip = {
+		tooltip = Xpand_propaganda_poster_slot_available_tt
+		OR = {
+			check_variable = { X_JAP_poster_left_icon_frame = X_JAP_propaganda_empty_slot_index }
+			check_variable = { X_JAP_poster_center_icon_frame = X_JAP_propaganda_empty_slot_index }
+			check_variable = { X_JAP_poster_right_icon_frame = X_JAP_propaganda_empty_slot_index }
 		}
 	}
-	holnor = {  OR = { tag = POL tag = GRE tag = HOL tag = NOR }}
-	
-the_axis = {
-OR = { 
-original_tag = GER
-original_tag = ITA
-original_tag = SPR
-original_tag = CZE
-original_tag = EFR
-original_tag = FIN
-original_tag = ROM
-original_tag = HUN
-original_tag = DEN
-original_tag = YUG
-original_tag = BUL
-original_tag = AOI
-original_tag = TUR
-original_tag = ALB
 }
-}
-the_axis_no_finefr = {
-OR = { 
-original_tag = GER
-original_tag = ITA
-original_tag = DEN
-original_tag = SPR
-original_tag = CZE
-original_tag = ROM
-original_tag = HUN
-original_tag = YUG
-original_tag = BUL
-original_tag = AOI
-original_tag = ALB
-}
-}
-the_allies = {
-	OR = {
-		original_tag = ENG
-		original_tag = FRA
-		original_tag = USA
-		original_tag = CAN
-		original_tag = SAF
-		original_tag = AST
-		original_tag = RAJ
-		original_tag = NZL
-		original_tag = HOL
-		original_tag = POL
-		original_tag = GRE
-		original_tag = NOR
-		original_tag = BRA
-		original_tag = MEX
+
+X_GER_propaganda_poster_slot_available = {
+	custom_trigger_tooltip = {
+		tooltip = Xpand_propaganda_poster_slot_available_tt
+		OR = {
+			check_variable = { X_GER_poster_left_icon_frame = X_GER_propaganda_empty_slot_index }
+			check_variable = { X_GER_poster_center_icon_frame = X_GER_propaganda_empty_slot_index }
+			check_variable = { X_GER_poster_right_icon_frame = X_GER_propaganda_empty_slot_index }
+		}
 	}
 }
 
-finefr= { OR = { original_tag = DEN tag = CZE tag = YUG tag = SPR tag = EFR tag = FIN}}
-
-the_geacps = { OR = { original_tag = SIA  original_tag = JAP original_tag = MAN } }
-
-normally_played_country = {
-OR = {
-original_tag = HOL
-original_tag = BUL  
-original_tag = POL
-original_tag = BRA
-original_tag = CZE
-original_tag = YUG
-original_tag = ALB 
-original_tag = GRE
-original_tag = AOI  
-original_tag = NZL	
-original_tag = AST	
-original_tag = RAJ	
-original_tag = JAP	
-original_tag = MAN	
-original_tag = SAF	
-original_tag = FRA	
-original_tag = FIN
-original_tag = GER	
-original_tag = MEX 
-original_tag = TUR
-original_tag = SIA
-original_tag = MON
-original_tag = ITA	
-original_tag = ROM	
-original_tag = HUN	
-original_tag = SOV
-original_tag = SPR	
-original_tag = ENG	
-original_tag = NOR
-original_tag = CAN 
-original_tag = USA
-original_tag = NOR
-original_tag = DEN
-original_tag = EFR
-}
+X_USA_propaganda_poster_slot_available = {
+	custom_trigger_tooltip = {
+		tooltip = Xpand_propaganda_poster_slot_available_tt
+		OR = {
+			check_variable = { X_USA_poster_left_icon_frame = X_USA_propaganda_empty_slot_index }
+			check_variable = { X_USA_poster_center_icon_frame = X_USA_propaganda_empty_slot_index }
+			check_variable = { X_USA_poster_right_icon_frame = X_USA_propaganda_empty_slot_index }
+		}
+	}
 }
 
-normally_played_allies = {
-OR = { original_tag = HOL original_tag = NZL	 original_tag = AST	 original_tag = RAJ	 original_tag = SAF	 original_tag = FRA	 original_tag = ENG	 original_tag = POL original_tag = NOR original_tag = GRE original_tag = MEX original_tag = BRA original_tag = CAN  original_tag = USA original_tag = NOR }
+X_ENG_propaganda_poster_slot_available = {
+	custom_trigger_tooltip = {
+		tooltip = Xpand_propaganda_poster_slot_available_tt
+		OR = {
+			check_variable = { X_ENG_poster_left_icon_frame = X_ENG_propaganda_empty_slot_index }
+			check_variable = { X_ENG_poster_center_icon_frame = X_ENG_propaganda_empty_slot_index }
+			check_variable = { X_ENG_poster_right_icon_frame = X_ENG_propaganda_empty_slot_index }
+		}
+	}
 }
 
-HMP_italy_debuff_wall = { OR = { state = 21 state = 313 state = 158 state = 162 state = 2 state = 117 state = 156 state = 115 state = 157 state = 161 state = 160 state = 314 state = 103 state = 163 state = 105 state = 44 state = 185 state = 47 state = 186 state = 486 state = 184 } }
-
-HMP_med_coastal_fort = {
-OR = {
-state = 158
-state = 162
-state = 2
-state = 163 
-state = 117
-state = 156
-state = 157
-state = 161
-state = 160
-state = 313
-state = 314
-state = 103
-state = 105
-state = 44
-state = 185
-state = 186
-state = 47
-state = 486
-state = 184
-state = 187
-}
+X_ITA_propaganda_poster_slot_available = {
+	custom_trigger_tooltip = {
+		tooltip = Xpand_propaganda_poster_slot_available_tt
+		OR = {
+			check_variable = { X_ITA_poster_left_icon_frame = X_ITA_propaganda_empty_slot_index }
+			check_variable = { X_ITA_poster_center_icon_frame = X_ITA_propaganda_empty_slot_index }
+			check_variable = { X_ITA_poster_right_icon_frame = X_ITA_propaganda_empty_slot_index }
+		}
+	}
 }
 
 
-
-vichy_state = {  OR =  {state = 461 state = 513 state = 459 state = 460 state = 458 state = 577 state = 554 state = 589 state = 590 state = 591 state = 445 state = 277 state = 510 state = 539  state = 397   } }
-
-
+# ░██████╗░█████╗░██╗░░░██╗██╗███████╗████████╗  ████████╗██████╗░██╗░██████╗░░██████╗░███████╗██████╗░░██████╗
+# ██╔════╝██╔══██╗██║░░░██║██║██╔════╝╚══██╔══╝  ╚══██╔══╝██╔══██╗██║██╔════╝░██╔════╝░██╔════╝██╔══██╗██╔════╝
+# ╚█████╗░██║░░██║╚██╗░██╔╝██║█████╗░░░░░██║░░░  ░░░██║░░░██████╔╝██║██║░░██╗░██║░░██╗░█████╗░░██████╔╝╚█████╗░
+# ░╚═══██╗██║░░██║░╚████╔╝░██║██╔══╝░░░░░██║░░░  ░░░██║░░░██╔══██╗██║██║░░╚██╗██║░░╚██╗██╔══╝░░██╔══██╗░╚═══██╗
+# ██████╔╝╚█████╔╝░░╚██╔╝░░██║███████╗░░░██║░░░  ░░░██║░░░██║░░██║██║╚██████╔╝╚██████╔╝███████╗██║░░██║██████╔╝
+# ╚═════╝░░╚════╝░░░░╚═╝░░░╚═╝╚══════╝░░░╚═╝░░░  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░╚═════╝░░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░
 
 SOV_propaganda_poster_slot_available = {
 	custom_trigger_tooltip = {
@@ -2003,57 +1737,561 @@ SOV_basic_fight_alongside_comrades_triggers = { #Used in foreign politics target
 		NOT = { has_war_with = ROOT }
 	}
 }
-X_JAP_propaganda_poster_slot_available = {
+
+
+# ░█████╗░░█████╗░████████╗  ██████╗░██╗░░░░░░█████╗░
+# ██╔══██╗██╔══██╗╚══██╔══╝  ██╔══██╗██║░░░░░██╔══██╗
+# ███████║███████║░░░██║░░░  ██║░░██║██║░░░░░██║░░╚═╝
+# ██╔══██║██╔══██║░░░██║░░░  ██║░░██║██║░░░░░██║░░██╗
+# ██║░░██║██║░░██║░░░██║░░░  ██████╔╝███████╗╚█████╔╝
+# ╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░  ╚═════╝░╚══════╝░╚════╝░
+
+DEN_aat = { # Trigger to check if playing as Denmark while having AAT
+	original_tag = DEN
+	has_dlc = "Arms Against Tyranny"
+}
+
+NOR_AAT = { # Trigger to check if playing as Norway while having AAT
+	original_tag = NOR
+	has_dlc = "Arms Against Tyranny"
+}
+
+SWE_AAT = { 
+	AND = {
+		tag = SWE
+		original_tag = SWE
+		has_dlc = "Arms Against Tyranny"
+	}
+}
+
+has_aat = {
+	has_dlc = "Arms Against Tyranny"
+}
+
+DEN_potential_trading_partners = {
+	OR = {
+		original_tag = ENG
+		original_tag = GER
+	}
+	has_country_flag = DEN_danish_trading_partner_flag
+}
+
+DEN_designer_can_be_improved = { #Only meant to be used for tooltip purposes
 	custom_trigger_tooltip = {
-		tooltip = Xpand_propaganda_poster_slot_available_tt
-		OR = {
-			check_variable = { X_JAP_poster_left_icon_frame = X_JAP_propaganda_empty_slot_index }
-			check_variable = { X_JAP_poster_center_icon_frame = X_JAP_propaganda_empty_slot_index }
-			check_variable = { X_JAP_poster_right_icon_frame = X_JAP_propaganda_empty_slot_index }
+		tooltip = DEN_designer_can_be_improved_tt
+		hidden_trigger = {
+			always = yes	
+		}
+	}
+}
+DEN_has_haeren_dynamic_modifier = {
+	OR = {
+		has_dynamic_modifier = { modifier = DEN_haeren_dynamic_modifier }
+		has_dynamic_modifier = { modifier = DEN_haeren_dynamic_modifier_improved }
+		has_dynamic_modifier = { modifier = DEN_haeren_dynamic_modifier_max_improved }
+
+	}
+}
+DEN_improved_designer = { #Only meant to be used for tooltip purposes
+	custom_trigger_tooltip = {
+		tooltip = DEN_improved_designer_tt
+		hidden_trigger = {
+			always = yes	
+		}
+	}
+}
+DEN_has_sovaernet_dynamic_modifier = {
+	OR = {
+		has_dynamic_modifier = { modifier = DEN_sovaernet_dynamic_modifier }
+		has_dynamic_modifier = { modifier = DEN_sovaernet_dynamic_modifier_improved }
+		has_dynamic_modifier = { modifier = DEN_sovaernet_dynamic_modifier_max_improved }
+
+	}
+}
+
+DEN_has_flyvevabnet_dynamic_modifier = {
+	OR = {
+		has_dynamic_modifier = { modifier = DEN_flyvevabnet_dynamic_modifier }
+		has_dynamic_modifier = { modifier = DEN_flyvevabnet_dynamic_modifier_improved }
+		has_dynamic_modifier = { modifier = DEN_flyvevabnet_dynamic_modifier_max_improved }		
+	}
+}
+
+DEN_has_war_preparations_dynamic_modifier = {
+	has_dynamic_modifier = { modifier = DEN_war_preparations_dynamic_modifier }
+}
+
+DEN_has_political_edicts_dynamic_modifier = {
+	has_dynamic_modifier = { modifier = DEN_political_edicts_dynamic_modifier }
+}
+
+
+# ███╗░░░███╗██╗░██████╗░█████╗░░░░
+# ████╗░████║██║██╔════╝██╔══██╗░░░
+# ██╔████╔██║██║╚█████╗░██║░░╚═╝░░░
+# ██║╚██╔╝██║██║░╚═══██╗██║░░██╗░░░
+# ██║░╚═╝░██║██║██████╔╝╚█████╔╝██╗
+# ╚═╝░░░░░╚═╝╚═╝╚═════╝░░╚════╝░╚═╝
+
+wuw_HUN_does_not_have_trianon = {
+	custom_trigger_tooltip = {
+	    tooltip = wuw_HUN_does_not_have_trianon_tt		
+	    NOT = {
+	    	OR = {
+	    		has_idea = HUN_treaty_of_triannon
+	    		has_idea = HUN_treaty_of_triannon_aat
+	    		has_idea = HUN_treaty_of_triannon_wuw
+	    		has_idea = HUN_treaty_of_triannon_aat_wuw
+	    		has_idea = HUN_treaty_of_triannon_2
+	    		has_idea = HUN_treaty_of_triannon_3
+	    		has_idea = HUN_treaty_of_triannon_wuw_no_army_exp_debuff
+	    		has_idea = HUN_treaty_of_triannon_aat_wuw_no_army_exp_debuff
+	    		has_idea = HUN_treaty_of_triannon_wuw_no_air_debuff
+	    		has_idea = HUN_treaty_of_triannon_aat_wuw_no_air_debuff
+	    		has_idea = HUN_treaty_of_triannon_wuw_no_air_or_army_debuff
+	    		has_idea = HUN_treaty_of_triannon_aat_wuw_no_air_or_army_debuff
+	    	}
+	    }
+	}
+}
+
+
+#### INNER CIRCLE ####
+GER_inner_circle_is_ascension_cd_over = {
+	NOT = {
+		has_country_flag = {
+			flag = GER_inner_circle_cd_flag
+			days < 175
 		}
 	}
 }
 
-X_GER_propaganda_poster_slot_available = {
-	custom_trigger_tooltip = {
-		tooltip = Xpand_propaganda_poster_slot_available_tt
-		OR = {
-			check_variable = { X_GER_poster_left_icon_frame = X_GER_propaganda_empty_slot_index }
-			check_variable = { X_GER_poster_center_icon_frame = X_GER_propaganda_empty_slot_index }
-			check_variable = { X_GER_poster_right_icon_frame = X_GER_propaganda_empty_slot_index }
-		}
-	}
+# ░█████╗░██╗░░██╗███████╗░█████╗░██╗░░██╗  ░██████╗██╗░░██╗██╗██████╗░░██████╗
+# ██╔══██╗██║░░██║██╔════╝██╔══██╗██║░██╔╝  ██╔════╝██║░░██║██║██╔══██╗██╔════╝
+# ██║░░╚═╝███████║█████╗░░██║░░╚═╝█████═╝░  ╚█████╗░███████║██║██████╔╝╚█████╗░
+# ██║░░██╗██╔══██║██╔══╝░░██║░░██╗██╔═██╗░  ░╚═══██╗██╔══██║██║██╔═══╝░░╚═══██╗
+# ╚█████╔╝██║░░██║███████╗╚█████╔╝██║░╚██╗  ██████╔╝██║░░██║██║██║░░░░░██████╔╝
+# ░╚════╝░╚═╝░░╚═╝╚══════╝░╚════╝░╚═╝░░╚═╝  ╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░╚═════╝░
+
+check_okhotsk = {
+AND = {
+	ENG=  { ships_in_area = { area = 87 size < 10 } }
+	NZL=  { ships_in_area = { area = 87 size < 10 } }
+	AST=  { ships_in_area = { area = 87 size < 10 } }
+	HOL=  { ships_in_area = { area = 87 size < 10 } }
+	USA=  { ships_in_area = { area = 87 size < 10 } }
+	NOR=  { ships_in_area = { area = 87 size < 10 } }
+	CAN=  { ships_in_area = { area = 87 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 87 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 87 size > 10 } }
+}
+check_okhotsk_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 87 size > 10 } }
+	NZL=  { ships_in_area = { area = 87 size > 10 } }
+	AST=  { ships_in_area = { area = 87 size > 10 } }
+	HOL=  { ships_in_area = { area = 87 size > 10 } }
+	USA=  { ships_in_area = { area = 87 size > 10 } }
+	NOR=  { ships_in_area = { area = 87 size > 10 } }
+	CAN=  { ships_in_area = { area = 87 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 87 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 87 size < 10 } }
 }
 
-X_USA_propaganda_poster_slot_available = {
-	custom_trigger_tooltip = {
-		tooltip = Xpand_propaganda_poster_slot_available_tt
-		OR = {
-			check_variable = { X_USA_poster_left_icon_frame = X_USA_propaganda_empty_slot_index }
-			check_variable = { X_USA_poster_center_icon_frame = X_USA_propaganda_empty_slot_index }
-			check_variable = { X_USA_poster_right_icon_frame = X_USA_propaganda_empty_slot_index }
-		}
-	}
+
+check_nw_pacific = {
+AND = {
+	ENG=  { ships_in_area = { area = 180 size < 10 } }
+	NZL=  { ships_in_area = { area = 180 size < 10 } }
+	AST=  { ships_in_area = { area = 180 size < 10 } }
+	HOL=  { ships_in_area = { area = 180 size < 10 } }
+	USA=  { ships_in_area = { area = 180 size < 10 } }
+	NOR=  { ships_in_area = { area = 180 size < 10 } }
+	CAN=  { ships_in_area = { area = 180 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 180 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 180 size > 10 } }
 }
 
-X_ENG_propaganda_poster_slot_available = {
-	custom_trigger_tooltip = {
-		tooltip = Xpand_propaganda_poster_slot_available_tt
-		OR = {
-			check_variable = { X_ENG_poster_left_icon_frame = X_ENG_propaganda_empty_slot_index }
-			check_variable = { X_ENG_poster_center_icon_frame = X_ENG_propaganda_empty_slot_index }
-			check_variable = { X_ENG_poster_right_icon_frame = X_ENG_propaganda_empty_slot_index }
-		}
-	}
+check_nw_pacific_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 180 size > 10 } }
+	NZL=  { ships_in_area = { area = 180 size > 10 } }
+	AST=  { ships_in_area = { area = 180 size > 10 } }
+	HOL=  { ships_in_area = { area = 180 size > 10 } }
+	USA=  { ships_in_area = { area = 180 size > 10 } }
+	NOR=  { ships_in_area = { area = 180 size > 10 } }
+	CAN=  { ships_in_area = { area = 180 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 180 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 180 size < 10 } }
 }
 
-X_ITA_propaganda_poster_slot_available = {
-	custom_trigger_tooltip = {
-		tooltip = Xpand_propaganda_poster_slot_available_tt
-		OR = {
-			check_variable = { X_ITA_poster_left_icon_frame = X_ITA_propaganda_empty_slot_index }
-			check_variable = { X_ITA_poster_center_icon_frame = X_ITA_propaganda_empty_slot_index }
-			check_variable = { X_ITA_poster_right_icon_frame = X_ITA_propaganda_empty_slot_index }
-		}
-	}
+
+
+
+check_sea_japan = {
+AND = {
+	ENG=  { ships_in_area = { area = 79 size < 10 } }
+	NZL=  { ships_in_area = { area = 79 size < 10 } }
+	AST=  { ships_in_area = { area = 79 size < 10 } }
+	HOL=  { ships_in_area = { area = 79 size < 10 } }
+	USA=  { ships_in_area = { area = 79 size < 10 } }
+	NOR=  { ships_in_area = { area = 79 size < 10 } }
+	CAN=  { ships_in_area = { area = 79 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 79 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 79 size > 10 } }
+}
+
+check_sea_japan_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 79 size > 10 } }
+	NZL=  { ships_in_area = { area = 79 size > 10 } }
+	AST=  { ships_in_area = { area = 79 size > 10 } }
+	HOL=  { ships_in_area = { area = 79 size > 10 } }
+	USA=  { ships_in_area = { area = 79 size > 10 } }
+	NOR=  { ships_in_area = { area = 79 size > 10 } }
+	CAN=  { ships_in_area = { area = 79 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 79 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 79 size < 10 } }
+}
+check_coast_japan = {
+AND = {
+	ENG=  { ships_in_area = { area = 90 size < 10 } }
+	NZL=  { ships_in_area = { area = 90 size < 10 } }
+	AST=  { ships_in_area = { area = 90 size < 10 } }
+	HOL=  { ships_in_area = { area = 90 size < 10 } }
+	USA=  { ships_in_area = { area = 90 size < 10 } }
+	NOR=  { ships_in_area = { area = 90 size < 10 } }
+	CAN=  { ships_in_area = { area = 90 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 90 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 90 size > 10 } }
+}
+check_coast_japan_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 90 size > 10 } }
+	NZL=  { ships_in_area = { area = 90 size > 10 } }
+	AST=  { ships_in_area = { area = 90 size > 10 } }
+	HOL=  { ships_in_area = { area = 90 size > 10 } }
+	USA=  { ships_in_area = { area = 90 size > 10 } }
+	NOR=  { ships_in_area = { area = 90 size > 10 } }
+	CAN=  { ships_in_area = { area = 90 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 90 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 90 size < 10 } }
+}
+check_sea_yellow = {
+AND = {
+	ENG=  { ships_in_area = { area = 77 size < 10 } }
+	NZL=  { ships_in_area = { area = 77 size < 10 } }
+	AST=  { ships_in_area = { area = 77 size < 10 } }
+	HOL=  { ships_in_area = { area = 77 size < 10 } }
+	USA=  { ships_in_area = { area = 77 size < 10 } }
+	NOR=  { ships_in_area = { area = 77 size < 10 } }
+	CAN=  { ships_in_area = { area = 77 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 77 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 77 size > 10 } }
+}
+check_sea_yellow_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 77 size > 10 } }
+	NZL=  { ships_in_area = { area = 77 size > 10 } }
+	AST=  { ships_in_area = { area = 77 size > 10 } }
+	HOL=  { ships_in_area = { area = 77 size > 10 } }
+	USA=  { ships_in_area = { area = 77 size > 10 } }
+	NOR=  { ships_in_area = { area = 77 size > 10 } }
+	CAN=  { ships_in_area = { area = 77 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 77 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 77 size < 10 } }
+}
+check_sea_east_china = {
+AND = {
+	ENG=  { ships_in_area = { area = 76 size < 10 } }
+	NZL=  { ships_in_area = { area = 76 size < 10 } }
+	AST=  { ships_in_area = { area = 76 size < 10 } }
+	HOL=  { ships_in_area = { area = 76 size < 10 } }
+	USA=  { ships_in_area = { area = 76 size < 10 } }
+	NOR=  { ships_in_area = { area = 76 size < 10 } }
+	CAN=  { ships_in_area = { area = 76 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 76 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 76 size > 10 } }
+}
+check_sea_east_china_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 76 size > 10 } }
+	NZL=  { ships_in_area = { area = 76 size > 10 } }
+	AST=  { ships_in_area = { area = 76 size > 10 } }
+	HOL=  { ships_in_area = { area = 76 size > 10 } }
+	USA=  { ships_in_area = { area = 76 size > 10 } }
+	NOR=  { ships_in_area = { area = 76 size > 10 } }
+	CAN=  { ships_in_area = { area = 76 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 76 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 76 size < 10 } }
+}
+check_sea_south_china = {
+AND = {
+	ENG=  { ships_in_area = { area = 75 size < 10 } }
+	NZL=  { ships_in_area = { area = 75 size < 10 } }
+	AST=  { ships_in_area = { area = 75 size < 10 } }
+	HOL=  { ships_in_area = { area = 75 size < 10 } }
+	USA=  { ships_in_area = { area = 75 size < 10 } }
+	NOR=  { ships_in_area = { area = 75 size < 10 } }
+	CAN=  { ships_in_area = { area = 75 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 75 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 75 size > 10 } }
+}
+check_sea_south_china_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 75 size > 10 } }
+	NZL=  { ships_in_area = { area = 75 size > 10 } }
+	AST=  { ships_in_area = { area = 75 size > 10 } }
+	HOL=  { ships_in_area = { area = 75 size > 10 } }
+	USA=  { ships_in_area = { area = 75 size > 10 } }
+	NOR=  { ships_in_area = { area = 75 size > 10 } }
+	CAN=  { ships_in_area = { area = 75 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 75 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 75 size < 10 } }
+}
+check_sea_phillipine = {
+AND = {
+	ENG=  { ships_in_area = { area = 78 size < 10 } }
+	NZL=  { ships_in_area = { area = 78 size < 10 } }
+	AST=  { ships_in_area = { area = 78 size < 10 } }
+	HOL=  { ships_in_area = { area = 78 size < 10 } }
+	USA=  { ships_in_area = { area = 78 size < 10 } }
+	NOR=  { ships_in_area = { area = 78 size < 10 } }
+	CAN=  { ships_in_area = { area = 78 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 78 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 78 size > 10 } }
+}
+check_sea_phillipine_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 78 size > 10 } }
+	NZL=  { ships_in_area = { area = 78 size > 10 } }
+	AST=  { ships_in_area = { area = 78 size > 10 } }
+	HOL=  { ships_in_area = { area = 78 size > 10 } }
+	USA=  { ships_in_area = { area = 78 size > 10 } }
+	NOR=  { ships_in_area = { area = 78 size > 10 } }
+	CAN=  { ships_in_area = { area = 78 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 78 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 78 size < 10 } }
+}
+check_west_emperor = {
+AND = {
+	ENG=  { ships_in_area = { area = 95 size < 10 } }
+	NZL=  { ships_in_area = { area = 95 size < 10 } }
+	AST=  { ships_in_area = { area = 95 size < 10 } }
+	HOL=  { ships_in_area = { area = 95 size < 10 } }
+	USA=  { ships_in_area = { area = 95 size < 10 } }
+	NOR=  { ships_in_area = { area = 95 size < 10 } }
+	CAN=  { ships_in_area = { area = 95 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 95 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 95 size > 10 } }
+}
+
+check_hawaii = {
+AND = {
+	ENG=  { ships_in_area = { area = 105 size < 10 } }
+	NZL=  { ships_in_area = { area = 105 size < 10 } }
+	AST=  { ships_in_area = { area = 105 size < 10 } }
+	HOL=  { ships_in_area = { area = 105 size < 10 } }
+	USA=  { ships_in_area = { area = 105 size < 10 } }
+	NOR=  { ships_in_area = { area = 105 size < 10 } }
+	CAN=  { ships_in_area = { area = 105 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 105 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 105 size > 10 } }
+}
+
+check_mariana = {
+AND = {
+	ENG=  { ships_in_area = { area = 94 size < 10 } }
+	NZL=  { ships_in_area = { area = 94 size < 10 } }
+	AST=  { ships_in_area = { area = 94 size < 10 } }
+	HOL=  { ships_in_area = { area = 94 size < 10 } }
+	USA=  { ships_in_area = { area = 94 size < 10 } }
+	NOR=  { ships_in_area = { area = 94 size < 10 } }
+	CAN=  { ships_in_area = { area = 94 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 94 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 94 size > 10 } }
+}
+check_mariana_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 94 size > 10 } }
+	NZL=  { ships_in_area = { area = 94 size > 10 } }
+	AST=  { ships_in_area = { area = 94 size > 10 } }
+	HOL=  { ships_in_area = { area = 94 size > 10 } }
+	USA=  { ships_in_area = { area = 94 size > 10 } }
+	NOR=  { ships_in_area = { area = 94 size > 10 } }
+	CAN=  { ships_in_area = { area = 94 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 94 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 94 size < 10 } }
+}
+check_micronesia = {
+AND = {
+	ENG=  { ships_in_area = { area = 97 size < 10 } }
+	NZL=  { ships_in_area = { area = 97 size < 10 } }
+	AST=  { ships_in_area = { area = 97 size < 10 } }
+	HOL=  { ships_in_area = { area = 97 size < 10 } }
+	USA=  { ships_in_area = { area = 97 size < 10 } }
+	NOR=  { ships_in_area = { area = 97 size < 10 } }
+	CAN=  { ships_in_area = { area = 97 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 97 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 97 size > 10 } }
+}
+
+check_pacific_line_ridge = {
+AND = {
+	ENG=  { ships_in_area = { area = 82 size < 10 } }
+	NZL=  { ships_in_area = { area = 82 size < 10 } }
+	AST=  { ships_in_area = { area = 82 size < 10 } }
+	HOL=  { ships_in_area = { area = 82 size < 10 } }
+	USA=  { ships_in_area = { area = 82 size < 10 } }
+	NOR=  { ships_in_area = { area = 82 size < 10 } }
+	CAN=  { ships_in_area = { area = 82 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 82 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 82 size > 10 } }
+}
+
+check_sea_bismarck = {
+AND = {
+	ENG=  { ships_in_area = { area = 84 size < 10 } }
+	NZL=  { ships_in_area = { area = 84 size < 10 } }
+	AST=  { ships_in_area = { area = 84 size < 10 } }
+	HOL=  { ships_in_area = { area = 84 size < 10 } }
+	USA=  { ships_in_area = { area = 84 size < 10 } }
+	NOR=  { ships_in_area = { area = 84 size < 10 } }
+	CAN=  { ships_in_area = { area = 84 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 84 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 84 size > 10 } }
+}
+check_sea_bismarck_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 84 size > 10 } }
+	NZL=  { ships_in_area = { area = 84 size > 10 } }
+	AST=  { ships_in_area = { area = 84 size > 10 } }
+	HOL=  { ships_in_area = { area = 84 size > 10 } }
+	USA=  { ships_in_area = { area = 84 size > 10 } }
+	NOR=  { ships_in_area = { area = 84 size > 10 } }
+	CAN=  { ships_in_area = { area = 84 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 84 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 84 size < 10 } }
+}
+
+
+check_sea_solomon = {
+AND = {
+	ENG=  { ships_in_area = { area = 83 size < 10 } }
+	NZL=  { ships_in_area = { area = 83 size < 10 } }
+	AST=  { ships_in_area = { area = 83 size < 10 } }
+	HOL=  { ships_in_area = { area = 83 size < 10 } }
+	USA=  { ships_in_area = { area = 83 size < 10 } }
+	NOR=  { ships_in_area = { area = 83 size < 10 } }
+	CAN=  { ships_in_area = { area = 83 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 83 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 83 size > 10 } }
+}
+
+
+check_thailand = {
+AND = {
+	ENG=  { ships_in_area = { area = 176 size < 10 } }
+	NZL=  { ships_in_area = { area = 176 size < 10 } }
+	AST=  { ships_in_area = { area = 176 size < 10 } }
+	HOL=  { ships_in_area = { area = 176 size < 10 } }
+	USA=  { ships_in_area = { area = 176 size < 10 } }
+	NOR=  { ships_in_area = { area = 176 size < 10 } }
+	CAN=  { ships_in_area = { area = 176 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 176 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 176 size > 10 } }
+}
+check_thailand_allies = {
+OR = {
+	ENG=  { ships_in_area = { area = 176 size > 10 } }
+	NZL=  { ships_in_area = { area = 176 size > 10 } }
+	AST=  { ships_in_area = { area = 176 size > 10 } }
+	HOL=  { ships_in_area = { area = 176 size > 10 } }
+	USA=  { ships_in_area = { area = 176 size > 10 } }
+	NOR=  { ships_in_area = { area = 176 size > 10 } }
+	CAN=  { ships_in_area = { area = 176 size > 10 } } 	
+	BRA=  { ships_in_area = { area = 176 size > 10 } } 		
+}
+JAP = { ships_in_area = { area = 176 size < 10 } }
+}
+check_malacca = {
+AND = {
+	ENG=  { ships_in_area = { area = 72 size < 10 } }
+	NZL=  { ships_in_area = { area = 72 size < 10 } }
+	AST=  { ships_in_area = { area = 72 size < 10 } }
+	HOL=  { ships_in_area = { area = 72 size < 10 } }
+	USA=  { ships_in_area = { area = 72 size < 10 } }
+	NOR=  { ships_in_area = { area = 72 size < 10 } }
+	CAN=  { ships_in_area = { area = 72 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 72 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 72 size > 10 } }
+}
+
+check_sea_celebes = {
+AND = {
+	ENG=  { ships_in_area = { area = 80 size < 10 } }
+	NZL=  { ships_in_area = { area = 80 size < 10 } }
+	AST=  { ships_in_area = { area = 80 size < 10 } }
+	HOL=  { ships_in_area = { area = 80 size < 10 } }
+	USA=  { ships_in_area = { area = 80 size < 10 } }
+	NOR=  { ships_in_area = { area = 80 size < 10 } }
+	CAN=  { ships_in_area = { area = 80 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 80 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 80 size > 10 } }
+}
+
+check_sea_java = {
+AND = {
+	ENG=  { ships_in_area = { area = 93 size < 10 } }
+	NZL=  { ships_in_area = { area = 93 size < 10 } }
+	AST=  { ships_in_area = { area = 93 size < 10 } }
+	HOL=  { ships_in_area = { area = 93 size < 10 } }
+	USA=  { ships_in_area = { area = 93 size < 10 } }
+	NOR=  { ships_in_area = { area = 93 size < 10 } }
+	CAN=  { ships_in_area = { area = 93 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 93 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 93 size > 10 } }
+}
+
+check_sea_arafura = {
+AND = {
+	ENG=  { ships_in_area = { area = 91 size < 10 } }
+	NZL=  { ships_in_area = { area = 91 size < 10 } }
+	AST=  { ships_in_area = { area = 91 size < 10 } }
+	HOL=  { ships_in_area = { area = 91 size < 10 } }
+	USA=  { ships_in_area = { area = 91 size < 10 } }
+	NOR=  { ships_in_area = { area = 91 size < 10 } }
+	CAN=  { ships_in_area = { area = 91 size < 10 } } 	
+	BRA=  { ships_in_area = { area = 91 size < 10 } } 		
+}
+JAP = { ships_in_area = { area = 91 size > 10 } }
 }
