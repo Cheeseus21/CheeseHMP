@@ -1,3 +1,31 @@
+####################################GENERAL TRAIT BALANCING###############################
+###Most general traits have a value of 1-5. The value can be modified/ignored depending on 
+###if it is a FM trait on a commander leading an army or a general trait on a commander 
+###leading an army group. FM traits = 0 on generals, general traits = 0.5x value on FMs.
+###
+###Generals are balanced around 20 points whereas Field Marshals are around 16 points for 
+###Axis/GEACPS/Soviets and 18 points for Allied generals and 14 points for allied Field Marshals
+###Exceptions can be made circumstantially, which is commented below in such a case.
+###
+###                 VALUES - FULL ON GEN/HALF ON FM 	
+###OLD GUARD = 1				BRILLIANT STRATEGIST = 1 	INFLEXIBLE STRATEGIST = 1	ORGANIZER = 1	
+###WINTER ATTRITION = 1	 		NAVAL INVADER = 1			GUERRILLA FIGHTER = 1
+###INVADER 2 = 1	 			NAVAL LIAISON = 1			SKILLED STAFFER = 1
+###CAV EXPERT = 1				FAKE STAFFER = 2 			FAKE STAFFER SOV = 4
+###PARATROOPER = 2				CAMO EXPERT = 2				BEARER OF ARTILLERY = 2
+###COMMANDO = 2					SCAVENGER = 2				CAV LEADER = 2             SKIRMISHER = 2
+###ANY TERRAIN = 2				ENGINEER = 2				COMBINED ARMS EXPERT = 2
+###PANZER EXPERT = 3			INFANTRY LEADER = 3			FORTRESS BUSTER = 3		
+###TRICKSTER = 3				IMPROV EXPERT = 3			AMBUSHER = 5			
+###PANZER LEADER = 5			INFANTRY EXPERT = 5			ADAPTABLE = 5			
+###
+###				   VALUES - FULL ON FM; ZERO ON GEN
+###EXPERT DELEGATOR = 1			ORGANIZATIONAL LEADER = 1	FAST PLANNER = 2
+###OFFENSIVE DOCTRINE = 2		INSPIRATIONAL LEADER = 2	AGGRESSIVE ASSAULTER = 3	
+###UNYIELDING DEFENDER = 3		THOROUGH PLANNER = 4		LOGISTICS WIZARD = 4	
+###	DEFENSIVE DOCTRINE = 5
+#########################################################################################
+
 
 # ██╗░░██╗░█████╗░██████╗░░██████╗████████╗░█████╗░██████╗░██╗░█████╗░░█████╗░██╗░░░░░
 # ██║░░██║██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗██║░░░░░
@@ -12,6 +40,216 @@
 # ░╚═══██╗██║░░██╗██╔══██╗██║██╔═══╝░░░░██║░░░░╚═══██╗
 # ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 # ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
+
+    exiled_ship_designs = {
+        set_technology = {
+            early_ship_hull_light = 1
+            basic_ship_hull_light = 1
+            smoke_generator = 1
+            basic_depth_charges = 1
+            improved_depth_charges = 1
+            sonar = 1
+            improved_sonar = 1
+            early_ship_hull_cruiser = 1
+            basic_ship_hull_cruiser = 1
+            improved_airplane_launcher = 1
+            basic_cruiser_armor_scheme = 1
+            basic_heavy_armor_scheme = 1
+            early_ship_hull_heavy =1 
+            basic_ship_hull_heavy = 1
+            ship_hull_super_heavy = 1
+            improved_heavy_armor_scheme = 1
+            early_ship_hull_carrier = 1
+            basic_ship_hull_carrier = 1
+            improved_ship_hull_carrier = 1
+            early_ship_hull_submarine = 1
+            basic_ship_hull_submarine = 1
+            basic_submarine_snorkel = 1
+            basic_battery = 1
+            basic_light_battery = 1
+            basic_medium_battery = 1
+            basic_light_shell= 1
+            basic_heavy_battery = 1
+            improved_light_battery = 1
+            basic_medium_battery = 1
+            improved_light_shell = 1
+            basic_medium_shell = 1
+            improved_medium_battery = 1
+            improved_medium_shell = 1
+            basic_heavy_battery = 1
+            basic_heavy_shell = 1
+            improved_heavy_battery = 1
+            improved_heavy_shell = 1
+            basic_dp_light_battery = 1
+            improved_dp_light_battery = 1
+            basic_torpedo = 1
+            magnetic_detonator = 1
+            homing_torpedo = 1
+            electric_torpedo = 1
+            improved_ship_torpedo_launcher =1 
+            advanced_ship_torpedo_launcher = 1
+            damage_control_1 = 1
+            damage_control_2 = 1
+            damage_control_3 = 1 
+            fire_control_methods_1 =1 
+            fire_control_methods_2 = 2
+            fire_control_methods_3 = 3
+            popup = no
+        }
+        create_equipment_variant = {
+            name = "Freedom Class"
+            type = ship_hull_light_2
+            parent_version = 0
+            modules = {
+                fixed_ship_battery_slot = ship_light_battery_3
+                fixed_ship_anti_air_slot = ship_anti_air_3
+                fixed_ship_fire_control_system_slot = ship_fire_control_system_2
+                fixed_ship_radar_slot = ship_radar_3
+                fixed_ship_engine_slot = light_ship_engine_3
+                mid_1_custom_slot = ship_torpedo_1
+                rear_1_custom_slot = ship_light_battery_3
+            }
+        }
+
+
+        create_equipment_variant = {
+            name = "Defiant Class"
+            type = ship_hull_cruiser_2
+            parent_version = 0
+            modules = {
+                fixed_ship_battery_slot = ship_light_medium_battery_3
+                fixed_ship_anti_air_slot = ship_anti_air_3
+                fixed_ship_fire_control_system_slot = ship_fire_control_system_2
+                fixed_ship_radar_slot = ship_radar_3
+                fixed_ship_engine_slot = cruiser_ship_engine_3
+                fixed_ship_armor_slot = ship_armor_cruiser_3
+                fixed_ship_secondaries_slot = dp_ship_secondaries_3
+                front_1_custom_slot = ship_light_medium_battery_3
+                mid_1_custom_slot = ship_light_medium_battery_3
+                mid_2_custom_slot = ship_anti_air_3
+                rear_1_custom_slot = ship_light_medium_battery_3
+            }
+        }
+        
+            create_equipment_variant = {
+            name = "Liberty Class"
+            type = ship_hull_cruiser_2
+            parent_version = 0
+            modules = {
+                fixed_ship_battery_slot = ship_medium_battery_3
+                fixed_ship_anti_air_slot = ship_anti_air_3
+                fixed_ship_fire_control_system_slot = ship_fire_control_system_2
+                fixed_ship_radar_slot = ship_radar_3
+                fixed_ship_engine_slot = cruiser_ship_engine_3
+                fixed_ship_armor_slot = ship_armor_cruiser_3
+                fixed_ship_secondaries_slot = dp_ship_secondaries_3
+                front_1_custom_slot = ship_medium_battery_3
+                mid_1_custom_slot = ship_medium_battery_3
+                mid_2_custom_slot = ship_anti_air_3
+                rear_1_custom_slot = ship_medium_battery_3
+            }
+        }
+        
+            create_equipment_variant = {
+            name = "Victory Class"
+            type = ship_hull_heavy_2
+            parent_version = 0
+            modules = {
+                fixed_ship_battery_slot = ship_heavy_battery_3
+                fixed_ship_anti_air_slot = ship_anti_air_3
+                fixed_ship_fire_control_system_slot = ship_fire_control_system_2
+                fixed_ship_radar_slot = ship_radar_3
+                fixed_ship_engine_slot = heavy_ship_engine_2
+                fixed_ship_armor_slot = ship_armor_bb_3
+                fixed_ship_secondaries_slot = dp_ship_secondaries_3
+                front_1_custom_slot = ship_heavy_battery_3
+                mid_1_custom_slot = ship_anti_air_3
+                mid_2_custom_slot = ship_airplane_launcher_2
+                rear_1_custom_slot = ship_heavy_battery_3
+            }
+        }
+
+
+            create_equipment_variant = {
+            name = "Independence Class"
+            type = ship_hull_carrier_2
+            parent_version = 0
+            modules = {
+                fixed_ship_deck_slot_1 = ship_deck_space
+                fixed_ship_deck_slot_2 = ship_deck_space
+                fixed_ship_anti_air_slot = ship_anti_air_3
+                fixed_ship_radar_slot = ship_radar_3
+                fixed_ship_engine_slot = carrier_ship_engine_3
+                fixed_ship_secondaries_slot = dp_ship_secondaries_3
+                fixed_ship_armor_slot = ship_armor_carrier_deck
+                front_1_custom_slot = ship_deck_space
+                mid_1_custom_slot = ship_deck_space
+                rear_1_custom_slot = ship_anti_air_3
+                rear_2_custom_slot = ship_anti_air_3
+            }
+        }
+    }
+
+    arabia_front = {
+        hidden_effect = { 
+            set_global_flag = ARABIA_FRONT_DECISION
+
+            ENG = { 
+                transfer_state = 354
+                transfer_state = 604
+                transfer_state = 332
+                load_oob = "ENG_ARABIA"
+            } # always transfer the UK Arabian states
+
+            # Check if Axis (Germany) controls Iraq
+            if = { 
+                limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 291 } }   
+                if = { 
+                    limit = { ALB = { is_ai = no } country_exists = ALB } 
+                    ALB = { 
+                        transfer_state = 608
+                        add_state_core = 608     
+                        transfer_state = 552
+                        add_state_core = 552    
+                    }      
+                    ITA = { load_oob = "ITA_SAU_SPAWN_ITA_BIG" }
+                }
+                else = { 
+                    ITA = { 
+                        transfer_state = 608
+                        transfer_state = 552
+                        load_oob = "ITA_SAU_SPAWN_ITA_BIG"
+                    }   
+                }
+            }
+            else = { 
+                ENG = { transfer_state = 608 transfer_state = 552 } 
+            } # give UK Axis Arabian states by Iraq if no Axis control of Iraq yet
+
+            # Check if Axis controls Jordan
+            if = { 
+                limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 455 } } 
+                if = { 
+                    limit = { ALB = { is_ai = no } country_exists = ALB }   
+                    ALB = {  
+                        transfer_state = 605
+                        add_state_core = 605    
+                        transfer_state = 506
+                        add_state_core = 506 
+                    } 
+                    ITA = { load_oob = "ITA_ARABIA" }            
+                }
+                else = {
+                    ITA = { transfer_state = 605 transfer_state = 506 load_oob = "ITA_ARABIA" }
+                }
+            }
+            else = {
+                ENG = { transfer_state = 605 transfer_state = 506 } 
+            } # give UK Axis Arabian states by Red Sea if no Axis control of Jordan
+
+            PER = { country_event = { id = mtg_netherlands.1244 hours = 2 } }
+        }
+    }
 
     USA_bop_remove_bop_effect = {
         remove_power_balance = { id = USA_power_balance }
@@ -3087,36 +3325,13 @@
         SPR = { add_threat = 3 }	
     }
 
-####################################GENERAL TRAIT BALANCING###############################
-###Most general traits have a value of 1-5. The value can be modified/ignored depending on 
-###if it is a FM trait on a commander leading an army or a general trait on a commander 
-###leading an army group. FM traits = 0 on generals, general traits = 0.5x value on FMs.
-###
-###Generals are balanced around 20 points whereas Field Marshals are around 16 points for 
-###Axis/GEACPS/Soviets and 18 points for Allied generals and 14 points for allied Field Marshals
-###Exceptions can be made circumstantially, which is commented below in such a case.
-###
-###                 VALUES - FULL ON GEN/HALF ON FM 	
-###OLD GUARD = 1				BRILLIANT STRATEGIST = 1 	INFLEXIBLE STRATEGIST = 1	ORGANIZER = 1	
-###WINTER ATTRITION = 1	 		NAVAL INVADER = 1			GUERRILLA FIGHTER = 1
-###INVADER 2 = 1	 			NAVAL LIAISON = 1			SKILLED STAFFER = 1
-###CAV EXPERT = 1				FAKE STAFFER = 2 			FAKE STAFFER SOV = 4
-###PARATROOPER = 2				CAMO EXPERT = 2				BEARER OF ARTILLERY = 2
-###COMMANDO = 2					SCAVENGER = 2				CAV LEADER = 2             SKIRMISHER = 2
-###ANY TERRAIN = 2				ENGINEER = 2				COMBINED ARMS EXPERT = 2
-###PANZER EXPERT = 3			INFANTRY LEADER = 3			FORTRESS BUSTER = 3		
-###TRICKSTER = 3				IMPROV EXPERT = 3			AMBUSHER = 5			
-###PANZER LEADER = 5			INFANTRY EXPERT = 5			ADAPTABLE = 5			
-###
-###				   VALUES - FULL ON FM; ZERO ON GEN
-###EXPERT DELEGATOR = 1			ORGANIZATIONAL LEADER = 1	FAST PLANNER = 2
-###OFFENSIVE DOCTRINE = 2		INSPIRATIONAL LEADER = 2	AGGRESSIVE ASSAULTER = 3	
-###UNYIELDING DEFENDER = 3		THOROUGH PLANNER = 4		LOGISTICS WIZARD = 4	
-###	DEFENSIVE DOCTRINE = 5
-#########################################################################################
 
-
-########ON ACTIONS##########
+# ░█████╗░███╗░░██╗  ░█████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗░██████╗
+# ██╔══██╗████╗░██║  ██╔══██╗██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║██╔════╝
+# ██║░░██║██╔██╗██║  ███████║██║░░╚═╝░░░██║░░░██║██║░░██║██╔██╗██║╚█████╗░
+# ██║░░██║██║╚████║  ██╔══██║██║░░██╗░░░██║░░░██║██║░░██║██║╚████║░╚═══██╗
+# ╚█████╔╝██║░╚███║  ██║░░██║╚█████╔╝░░░██║░░░██║╚█████╔╝██║░╚███║██████╔╝
+# ░╚════╝░╚═╝░░╚══╝  ╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═════╝░
 
 HMP_startup_on_actions = {
     if = { 
@@ -3411,6 +3626,20 @@ cap_finland_effect = {
 }
 
 
+# ░█████╗░░█████╗░██████╗░██╗████████╗██╗░░░██╗██╗░░░░░░█████╗░████████╗██╗░█████╗░███╗░░██╗
+# ██╔══██╗██╔══██╗██╔══██╗██║╚══██╔══╝██║░░░██║██║░░░░░██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║
+# ██║░░╚═╝███████║██████╔╝██║░░░██║░░░██║░░░██║██║░░░░░███████║░░░██║░░░██║██║░░██║██╔██╗██║
+# ██║░░██╗██╔══██║██╔═══╝░██║░░░██║░░░██║░░░██║██║░░░░░██╔══██║░░░██║░░░██║██║░░██║██║╚████║
+# ╚█████╔╝██║░░██║██║░░░░░██║░░░██║░░░╚██████╔╝███████╗██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║
+# ░╚════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝░░░╚═╝░░░░╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝
+
+# ░██████╗░█████╗░██████╗░██╗██████╗░████████╗░██████╗
+# ██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝██╔════╝
+# ╚█████╗░██║░░╚═╝██████╔╝██║██████╔╝░░░██║░░░╚█████╗░
+# ░╚═══██╗██║░░██╗██╔══██╗██║██╔═══╝░░░░██║░░░░╚═══██╗
+# ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
+# ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
+
 HMP_capitulations_on_actions = {
 	if = { 
         limit = { ROOT = { original_tag = EFR } }
@@ -3553,7 +3782,6 @@ HMP_capitulations_on_actions = {
         }  
     }
    
-			
     if = {
         limit = { 
             ROOT = { original_tag = SOV } 
@@ -3817,7 +4045,12 @@ HMP_script_poland_3 = {
 	SOV = { complete_national_focus = SOV_claims_on_poland }
 }
 
-#####FUEL SYSTEM######
+# ███████╗██╗░░░██╗███████╗██╗░░░░░  ░██████╗██╗░░░██╗░██████╗████████╗███████╗███╗░░░███╗
+# ██╔════╝██║░░░██║██╔════╝██║░░░░░  ██╔════╝╚██╗░██╔╝██╔════╝╚══██╔══╝██╔════╝████╗░████║
+# █████╗░░██║░░░██║█████╗░░██║░░░░░  ╚█████╗░░╚████╔╝░╚█████╗░░░░██║░░░█████╗░░██╔████╔██║
+# ██╔══╝░░██║░░░██║██╔══╝░░██║░░░░░  ░╚═══██╗░░╚██╔╝░░░╚═══██╗░░░██║░░░██╔══╝░░██║╚██╔╝██║
+# ██║░░░░░╚██████╔╝███████╗███████╗  ██████╔╝░░░██║░░░██████╔╝░░░██║░░░███████╗██║░╚═╝░██║
+# ╚═╝░░░░░░╚═════╝░╚══════╝╚══════╝  ╚═════╝░░░░╚═╝░░░╚═════╝░░░░╚═╝░░░╚══════╝╚═╝░░░░░╚═╝
 
 fuel_system_refresh_list = {
     if = {
@@ -3977,6 +4210,20 @@ on_daily_fuel = {
         set_variable = { fuel_bar_fuel = currentfuel }
     }
 }
+
+# ███████╗███╗░░██╗██████╗░  ░██████╗░░█████╗░███╗░░░███╗███████╗
+# ██╔════╝████╗░██║██╔══██╗  ██╔════╝░██╔══██╗████╗░████║██╔════╝
+# █████╗░░██╔██╗██║██║░░██║  ██║░░██╗░███████║██╔████╔██║█████╗░░
+# ██╔══╝░░██║╚████║██║░░██║  ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░
+# ███████╗██║░╚███║██████╔╝  ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗
+# ╚══════╝╚═╝░░╚══╝╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝
+
+# ░██████╗░█████╗░██████╗░██╗██████╗░████████╗░██████╗
+# ██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝██╔════╝
+# ╚█████╗░██║░░╚═╝██████╔╝██║██████╔╝░░░██║░░░╚█████╗░
+# ░╚═══██╗██║░░██╗██╔══██╗██║██╔═══╝░░░░██║░░░░╚═══██╗
+# ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
+# ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 
 fascism_has_been_defeated = { 
     # Transfer some key states
@@ -4365,200 +4612,6 @@ democratic_russia = {
     }
 }
 
-catch_up_iraq_with_tech = {
-    set_technology = {
-        popup = no
-        
-        # Infantry & support
-        tech_support = 1
-        infantry_weapons = 1
-        basic_train = 1
-        special_equipment_tech = 1
-        camelry_tech = 1
-        tech_engineers = 1
-        tech_engineers2 = 1
-        tech_recon = 1
-        tech_recon2 = 1
-        tech_maintenance_company = 1
-        tech_logistics_company = 1
-        tech_logistics_company2 = 1
-        support_weapons = 1
-        motorised_infantry = 1
-        tech_mountaineers = 1
-        improved_infantry_weapons = 1
-        improved_infantry_weapons_2 = 1
-        infantry_weapons1 = 1
-        infantry_weapons2 = 1
-        tech_special_forces = 1
-
-        # Artillery & anti-air
-        gw_artillery = 1
-        interwar_artillery = 1
-        artillery1 = 1
-        artillery2 = 1
-        rocket_artillery = 1
-        interwar_antiair = 1
-        antiair1 = 1
-        antiair2 = 1
-        interwar_antitank = 1
-        antitank1 = 1
-        antitank2 = 1
-        antitank3 = 1
-
-        # Industry & construction
-        electronic_mechanical_engineering = 1
-        radio = 1
-        mechanical_computing = 1
-        computing_machine = 1
-        basic_machine_tools = 1
-        improved_machine_tools = 1
-        advanced_machine_tools = 1
-        dispersed_industry = 1
-        dispersed_industry2 = 1
-        dispersed_industry3 = 1
-        fuel_silos = 1
-        construction1 = 1
-        construction2 = 1
-        construction3 = 1
-        excavation1 = 1
-        excavation2 = 1
-        excavation3 = 1
-        excavation4 = 1
-
-        # Fuel & resources
-        synth_oil_experiments = 1
-        fuel_refining2 = 1
-        fuel_refining3 = 1
-        fuel_refining4 = 1
-        fuel_refining5 = 1
-    }
-}
-
-the_golden_coup_has_been_launched = {
-    hidden_effect = { catch_up_iraq_with_tech = yes }
-
-    # Stockpiles & equipment
-    add_equipment_to_stockpile = { type = train_equipment_1 amount = 20 producer = ITA }
-    add_equipment_to_stockpile = { type = convoy_1 amount = 200 producer = ALB }
-
-    # Remove AI idea
-    remove_ideas = ai_imiter
-
-    # State transfers and cores
-    ITA = { transfer_state = 44 }
-    remove_state_core = 44
-    add_state_core = 592
-    add_state_core = 593
-    add_state_core = 594
-
-    transfer_state = 291
-    set_capital = { state = 291 }
-    add_state_core = 291
-
-    # Load predefined army
-    load_oob = "ITA_IRQ_Spawn"
-
-    # Add research slots
-    add_research_slot = 4
-
-    # State buildings
-    291 = {
-        add_extra_state_shared_building_slots = 2
-        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-    }
-    592 = {
-        add_extra_state_shared_building_slots = 2
-        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-    }
-    593 = {
-        add_extra_state_shared_building_slots = 1
-        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-    }
-    594 = {
-        add_extra_state_shared_building_slots = 2
-        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-    }
-
-    # National ideas
-    add_ideas = tot_economic_mobilisation
-    add_ideas = service_by_requirement
-    add_ideas = free_trade
-
-    # Politics
-    set_politics = {
-        ruling_party = fascism
-        elections_allowed = no
-    }
-
-    # War involvement
-    add_to_war = { targeted_alliance = GER enemy = ENG }
-}
-
-	
-iraq_gbp_doctrine = {
-	hidden_effect = { 
-		set_technology = { 
-            popup = no
-            
-            trench_warfare = 1  
-            grand_battle_plan = 1
-            prepared_defense = 1
-            grand_assault = 1
-            armored_operations = 1
-            c3i_theory = 1 
-            branch_interoperation = 1 
-            assault_breakthrough = 1
-            infantry_offensive = 1
-            grand_mechanized_offensive = 1
-            assault_concentration = 1
-            night_assault_tactics = 1
-        }
-	}
-}
-
-iraq_ma_doctrine = {
-    hidden_effect = {
-        set_technology = { 
-            popup = no
-            mass_assault = 1
-            pocket_defence = 1
-            defence_in_depth = 1
-            peoples_army = 1
-            human_wave_offensive = 1
-            breakthrough_priority = 1
-            operational_concentration = 1
-            deep_operations = 1
-            mechanized_wave = 1
-            human_infantry_offensive = 1
-            large_front_offensive = 1
-        }
-    }
-}
-
-iraq_sf_doctrine = {
-    hidden_effect = { 
-        set_technology = { 
-            popup = no
-            superior_firepower = 1
-            concentrated_fire_plans = 1
-            sup_delay = 1
-            mobile_defence = 1
-            dispersed_support = 1
-            tactical_control = 1
-            regimental_combat_teams = 1
-            sup_mechanized_offensive = 1
-            forward_observers = 1
-            intergrated_support = 1
-            centralized_fire_control = 1
-            combined_arms = 1
-        }
-    }
-}
-
-
 man_in_the_high_castle = {
 
     SPR = { 
@@ -4837,69 +4890,15 @@ man_in_the_high_castle_NO_ASIA = {
         transfer_state = 331
         transfer_state = 280 # Dutch Central Cordillera
     }
-
 }
 
-arabia_front = {
-    hidden_effect = { 
-        set_global_flag = ARABIA_FRONT_DECISION
 
-        ENG = { 
-            transfer_state = 354
-            transfer_state = 604
-            transfer_state = 332
-            load_oob = "ENG_ARABIA"
-        } # always transfer the UK Arabian states
-
-        # Check if Axis (Germany) controls Iraq
-        if = { 
-            limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 291 } }   
-            if = { 
-                limit = { ALB = { is_ai = no } country_exists = ALB } 
-                ALB = { 
-                    transfer_state = 608
-                    add_state_core = 608     
-                    transfer_state = 552
-                    add_state_core = 552    
-                }      
-                ITA = { load_oob = "ITA_SAU_SPAWN_ITA_BIG" }
-            }
-            else = { 
-                ITA = { 
-                    transfer_state = 608
-                    transfer_state = 552
-                    load_oob = "ITA_SAU_SPAWN_ITA_BIG"
-                }   
-            }
-        }
-        else = { 
-            ENG = { transfer_state = 608 transfer_state = 552 } 
-        } # give UK Axis Arabian states by Iraq if no Axis control of Iraq yet
-
-        # Check if Axis controls Jordan
-        if = { 
-            limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 455 } } 
-            if = { 
-                limit = { ALB = { is_ai = no } country_exists = ALB }   
-                ALB = {  
-                    transfer_state = 605
-                    add_state_core = 605    
-                    transfer_state = 506
-                    add_state_core = 506 
-                } 
-                ITA = { load_oob = "ITA_ARABIA" }            
-            }
-            else = {
-                ITA = { transfer_state = 605 transfer_state = 506 load_oob = "ITA_ARABIA" }
-            }
-        }
-        else = {
-            ENG = { transfer_state = 605 transfer_state = 506 } 
-        } # give UK Axis Arabian states by Red Sea if no Axis control of Jordan
-
-        PER = { country_event = { id = mtg_netherlands.1244 hours = 2 } }
-    }
-}
+# ███████╗██████╗░░█████╗░███╗░░██╗░█████╗░███████╗  ██╗░██████╗  ██████╗░███████╗░█████╗░██████╗░
+# ██╔════╝██╔══██╗██╔══██╗████╗░██║██╔══██╗██╔════╝  ██║██╔════╝  ██╔══██╗██╔════╝██╔══██╗██╔══██╗
+# █████╗░░██████╔╝███████║██╔██╗██║██║░░╚═╝█████╗░░  ██║╚█████╗░  ██║░░██║█████╗░░███████║██║░░██║
+# ██╔══╝░░██╔══██╗██╔══██║██║╚████║██║░░██╗██╔══╝░░  ██║░╚═══██╗  ██║░░██║██╔══╝░░██╔══██║██║░░██║
+# ██║░░░░░██║░░██║██║░░██║██║░╚███║╚█████╔╝███████╗  ██║██████╔╝  ██████╔╝███████╗██║░░██║██████╔╝
+# ╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░╚════╝░╚══════╝  ╚═╝╚═════╝░  ╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░
 
 # This code teleports divisions out of France, checks for AI Vichy rewards and generally cleans up the capitulation process.
 horstorical_multiplayer_vichy_france = {
@@ -5272,9 +5271,13 @@ HMP_script_norway_cap = {
     }
 }
 
-# ===========================
-# HOI4 lend-lease event blocks
-# ===========================
+
+# ██╗░░░░░███████╗███╗░░██╗██████╗░░░░░░░██╗░░░░░███████╗░█████╗░░██████╗███████╗
+# ██║░░░░░██╔════╝████╗░██║██╔══██╗░░░░░░██║░░░░░██╔════╝██╔══██╗██╔════╝██╔════╝
+# ██║░░░░░█████╗░░██╔██╗██║██║░░██║█████╗██║░░░░░█████╗░░███████║╚█████╗░█████╗░░
+# ██║░░░░░██╔══╝░░██║╚████║██║░░██║╚════╝██║░░░░░██╔══╝░░██╔══██║░╚═══██╗██╔══╝░░
+# ███████╗███████╗██║░╚███║██████╔╝░░░░░░███████╗███████╗██║░░██║██████╔╝███████╗
+# ╚══════╝╚══════╝╚═╝░░╚══╝╚═════╝░░░░░░░╚══════╝╚══════╝╚═╝░░╚═╝╚═════╝░╚══════╝
 
 HMP_guns_to_swe = { 
 	ENG = { 
@@ -5589,6 +5592,12 @@ HMP_sov_LL_monthly_effect = {
 	}
 }
 
+# ███████╗███╗░░██╗██████╗░░██████╗██╗███████╗░██████╗░
+# ██╔════╝████╗░██║██╔══██╗██╔════╝██║██╔════╝██╔════╝░
+# █████╗░░██╔██╗██║██║░░██║╚█████╗░██║█████╗░░██║░░██╗░
+# ██╔══╝░░██║╚████║██║░░██║░╚═══██╗██║██╔══╝░░██║░░╚██╗
+# ███████╗██║░╚███║██████╔╝██████╔╝██║███████╗╚██████╔╝
+# ╚══════╝╚═╝░░╚══╝╚═════╝░╚═════╝░╚═╝╚══════╝░╚═════╝░
 
 endsieg_production_buff_calc = {
 
@@ -5713,6 +5722,13 @@ endsieg_production_buff_calc = {
 	}
 }
 
+
+# ░██████╗████████╗░█████╗░██████╗░████████╗██╗░░░██╗██████╗░
+# ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██║░░░██║██╔══██╗
+# ╚█████╗░░░░██║░░░███████║██████╔╝░░░██║░░░██║░░░██║██████╔╝
+# ░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░░░██║░░░██║░░░██║██╔═══╝░
+# ██████╔╝░░░██║░░░██║░░██║██║░░██║░░░██║░░░╚██████╔╝██║░░░░░
+# ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░╚═════╝░╚═╝░░░░░
 
 startup_events = {
 	# Countries that trigger countrystartup.101
@@ -6165,155 +6181,6 @@ add_ruling_to_neu = {
 			neutrality = neutrality_support_var
 			fascism = fascism_support_var
 			communism = communism_support_var
-		}
-	}
-}
-
-exiled_ship_designs = {
-	set_technology = {
-		early_ship_hull_light = 1
-		basic_ship_hull_light = 1
-		smoke_generator = 1
-		basic_depth_charges = 1
-		improved_depth_charges = 1
-		sonar = 1
-		improved_sonar = 1
-		early_ship_hull_cruiser = 1
-		basic_ship_hull_cruiser = 1
-		improved_airplane_launcher = 1
-		basic_cruiser_armor_scheme = 1
-		basic_heavy_armor_scheme = 1
-		early_ship_hull_heavy =1 
-		basic_ship_hull_heavy = 1
-		ship_hull_super_heavy = 1
-		improved_heavy_armor_scheme = 1
-		early_ship_hull_carrier = 1
-		basic_ship_hull_carrier = 1
-		improved_ship_hull_carrier = 1
-		early_ship_hull_submarine = 1
-		basic_ship_hull_submarine = 1
-		basic_submarine_snorkel = 1
-		basic_battery = 1
-		basic_light_battery = 1
-		basic_medium_battery = 1
-		basic_light_shell= 1
-		basic_heavy_battery = 1
-		improved_light_battery = 1
-		basic_medium_battery = 1
-		improved_light_shell = 1
-		basic_medium_shell = 1
-		improved_medium_battery = 1
-		improved_medium_shell = 1
-		basic_heavy_battery = 1
-		basic_heavy_shell = 1
-		improved_heavy_battery = 1
-		improved_heavy_shell = 1
-		basic_dp_light_battery = 1
-		improved_dp_light_battery = 1
-		basic_torpedo = 1
-		magnetic_detonator = 1
-		homing_torpedo = 1
-		electric_torpedo = 1
-		improved_ship_torpedo_launcher =1 
-		advanced_ship_torpedo_launcher = 1
-		damage_control_1 = 1
-		damage_control_2 = 1
-		damage_control_3 = 1 
-		fire_control_methods_1 =1 
-		fire_control_methods_2 = 2
-		fire_control_methods_3 = 3
-		popup = no
-	}
-	create_equipment_variant = {
-		name = "Freedom Class"
-		type = ship_hull_light_2
-		parent_version = 0
-		modules = {
-			fixed_ship_battery_slot = ship_light_battery_3
-			fixed_ship_anti_air_slot = ship_anti_air_3
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-			fixed_ship_radar_slot = ship_radar_3
-			fixed_ship_engine_slot = light_ship_engine_3
-			mid_1_custom_slot = ship_torpedo_1
-			rear_1_custom_slot = ship_light_battery_3
-		}
-	}
-
-
-	create_equipment_variant = {
-		name = "Defiant Class"
-		type = ship_hull_cruiser_2
-		parent_version = 0
-		modules = {
-			fixed_ship_battery_slot = ship_light_medium_battery_3
-			fixed_ship_anti_air_slot = ship_anti_air_3
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-			fixed_ship_radar_slot = ship_radar_3
-			fixed_ship_engine_slot = cruiser_ship_engine_3
-			fixed_ship_armor_slot = ship_armor_cruiser_3
-			fixed_ship_secondaries_slot = dp_ship_secondaries_3
-			front_1_custom_slot = ship_light_medium_battery_3
-			mid_1_custom_slot = ship_light_medium_battery_3
-			mid_2_custom_slot = ship_anti_air_3
-			rear_1_custom_slot = ship_light_medium_battery_3
-		}
-	}
-	
-		create_equipment_variant = {
-		name = "Liberty Class"
-		type = ship_hull_cruiser_2
-		parent_version = 0
-		modules = {
-			fixed_ship_battery_slot = ship_medium_battery_3
-			fixed_ship_anti_air_slot = ship_anti_air_3
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-			fixed_ship_radar_slot = ship_radar_3
-			fixed_ship_engine_slot = cruiser_ship_engine_3
-			fixed_ship_armor_slot = ship_armor_cruiser_3
-			fixed_ship_secondaries_slot = dp_ship_secondaries_3
-			front_1_custom_slot = ship_medium_battery_3
-			mid_1_custom_slot = ship_medium_battery_3
-			mid_2_custom_slot = ship_anti_air_3
-			rear_1_custom_slot = ship_medium_battery_3
-		}
-	}
-	
-		create_equipment_variant = {
-		name = "Victory Class"
-		type = ship_hull_heavy_2
-		parent_version = 0
-		modules = {
-			fixed_ship_battery_slot = ship_heavy_battery_3
-			fixed_ship_anti_air_slot = ship_anti_air_3
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-			fixed_ship_radar_slot = ship_radar_3
-			fixed_ship_engine_slot = heavy_ship_engine_2
-			fixed_ship_armor_slot = ship_armor_bb_3
-			fixed_ship_secondaries_slot = dp_ship_secondaries_3
-			front_1_custom_slot = ship_heavy_battery_3
-			mid_1_custom_slot = ship_anti_air_3
-			mid_2_custom_slot = ship_airplane_launcher_2
-			rear_1_custom_slot = ship_heavy_battery_3
-		}
-	}
-
-
-		create_equipment_variant = {
-		name = "Independence Class"
-		type = ship_hull_carrier_2
-		parent_version = 0
-		modules = {
-			fixed_ship_deck_slot_1 = ship_deck_space
-			fixed_ship_deck_slot_2 = ship_deck_space
-			fixed_ship_anti_air_slot = ship_anti_air_3
-			fixed_ship_radar_slot = ship_radar_3
-			fixed_ship_engine_slot = carrier_ship_engine_3
-			fixed_ship_secondaries_slot = dp_ship_secondaries_3
-			fixed_ship_armor_slot = ship_armor_carrier_deck
-			front_1_custom_slot = ship_deck_space
-			mid_1_custom_slot = ship_deck_space
-			rear_1_custom_slot = ship_anti_air_3
-			rear_2_custom_slot = ship_anti_air_3
 		}
 	}
 }
@@ -16345,4 +16212,204 @@ ETH_add_random_mil_factory_effect = {
 			instant_build = yes
 		}
 	}
+}
+
+# ██╗██████╗░░█████╗░░██████╗░
+# ██║██╔══██╗██╔══██╗██╔═══██╗
+# ██║██████╔╝███████║██║██╗██║
+# ██║██╔══██╗██╔══██║╚██████╔╝
+# ██║██║░░██║██║░░██║░╚═██╔═╝░
+# ╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░
+
+catch_up_iraq_with_tech = {
+    set_technology = {
+        popup = no
+        
+        # Infantry & support
+        tech_support = 1
+        infantry_weapons = 1
+        basic_train = 1
+        special_equipment_tech = 1
+        camelry_tech = 1
+        tech_engineers = 1
+        tech_engineers2 = 1
+        tech_recon = 1
+        tech_recon2 = 1
+        tech_maintenance_company = 1
+        tech_logistics_company = 1
+        tech_logistics_company2 = 1
+        support_weapons = 1
+        motorised_infantry = 1
+        tech_mountaineers = 1
+        improved_infantry_weapons = 1
+        improved_infantry_weapons_2 = 1
+        infantry_weapons1 = 1
+        infantry_weapons2 = 1
+        tech_special_forces = 1
+
+        # Artillery & anti-air
+        gw_artillery = 1
+        interwar_artillery = 1
+        artillery1 = 1
+        artillery2 = 1
+        rocket_artillery = 1
+        interwar_antiair = 1
+        antiair1 = 1
+        antiair2 = 1
+        interwar_antitank = 1
+        antitank1 = 1
+        antitank2 = 1
+        antitank3 = 1
+
+        # Industry & construction
+        electronic_mechanical_engineering = 1
+        radio = 1
+        mechanical_computing = 1
+        computing_machine = 1
+        basic_machine_tools = 1
+        improved_machine_tools = 1
+        advanced_machine_tools = 1
+        dispersed_industry = 1
+        dispersed_industry2 = 1
+        dispersed_industry3 = 1
+        fuel_silos = 1
+        construction1 = 1
+        construction2 = 1
+        construction3 = 1
+        excavation1 = 1
+        excavation2 = 1
+        excavation3 = 1
+        excavation4 = 1
+
+        # Fuel & resources
+        synth_oil_experiments = 1
+        fuel_refining2 = 1
+        fuel_refining3 = 1
+        fuel_refining4 = 1
+        fuel_refining5 = 1
+    }
+}
+
+the_golden_coup_has_been_launched = {
+    hidden_effect = { catch_up_iraq_with_tech = yes }
+
+    # Stockpiles & equipment
+    add_equipment_to_stockpile = { type = train_equipment_1 amount = 20 producer = ITA }
+    add_equipment_to_stockpile = { type = convoy_1 amount = 200 producer = ALB }
+
+    # Remove AI idea
+    remove_ideas = ai_imiter
+
+    # State transfers and cores
+    ITA = { transfer_state = 44 }
+    remove_state_core = 44
+    add_state_core = 592
+    add_state_core = 593
+    add_state_core = 594
+
+    transfer_state = 291
+    set_capital = { state = 291 }
+    add_state_core = 291
+
+    # Load predefined army
+    load_oob = "ITA_IRQ_Spawn"
+
+    # Add research slots
+    add_research_slot = 4
+
+    # State buildings
+    291 = {
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+    }
+    592 = {
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+    }
+    593 = {
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+    }
+    594 = {
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+    }
+
+    # National ideas
+    add_ideas = tot_economic_mobilisation
+    add_ideas = service_by_requirement
+    add_ideas = free_trade
+
+    # Politics
+    set_politics = {
+        ruling_party = fascism
+        elections_allowed = no
+    }
+
+    # War involvement
+    add_to_war = { targeted_alliance = GER enemy = ENG }
+}
+
+	
+iraq_gbp_doctrine = {
+	hidden_effect = { 
+		set_technology = { 
+            popup = no
+            
+            trench_warfare = 1  
+            grand_battle_plan = 1
+            prepared_defense = 1
+            grand_assault = 1
+            armored_operations = 1
+            c3i_theory = 1 
+            branch_interoperation = 1 
+            assault_breakthrough = 1
+            infantry_offensive = 1
+            grand_mechanized_offensive = 1
+            assault_concentration = 1
+            night_assault_tactics = 1
+        }
+	}
+}
+
+iraq_ma_doctrine = {
+    hidden_effect = {
+        set_technology = { 
+            popup = no
+            mass_assault = 1
+            pocket_defence = 1
+            defence_in_depth = 1
+            peoples_army = 1
+            human_wave_offensive = 1
+            breakthrough_priority = 1
+            operational_concentration = 1
+            deep_operations = 1
+            mechanized_wave = 1
+            human_infantry_offensive = 1
+            large_front_offensive = 1
+        }
+    }
+}
+
+iraq_sf_doctrine = {
+    hidden_effect = { 
+        set_technology = { 
+            popup = no
+            superior_firepower = 1
+            concentrated_fire_plans = 1
+            sup_delay = 1
+            mobile_defence = 1
+            dispersed_support = 1
+            tactical_control = 1
+            regimental_combat_teams = 1
+            sup_mechanized_offensive = 1
+            forward_observers = 1
+            intergrated_support = 1
+            centralized_fire_control = 1
+            combined_arms = 1
+        }
+    }
 }
