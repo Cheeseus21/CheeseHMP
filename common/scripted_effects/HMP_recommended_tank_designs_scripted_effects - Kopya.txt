@@ -18,10 +18,11 @@ recommended_support_armor = {
                 type = super_heavy_tank_chassis_1
                 #parent_version = 0
                 modules = {
-                    main_armament_slot=tank_super_heavy_cannon_1
+                    main_armament_slot=tank_super_heavy_cannon_3
                     special_type_slot_1=tank_design_simplification
                     special_type_slot_2=tank_cheap_materials
                     special_type_slot_3=wet_ammo_storage
+					special_type_slot_4=secondary_turret_small_cannon
                     turret_type_slot=tank_super_heavy_three_man_tank_turret
                     suspension_type_slot=tank_torsion_bar_suspension_SH
                     engine_type_slot=tank_gasoline_engine_SH
@@ -29,7 +30,7 @@ recommended_support_armor = {
                     armor_shape_slot=flat_armor
                 }
                 upgrades = {
-                    tank_nsb_engine_upgrade = 8
+                    tank_nsb_engine_upgrade = 11
                     tank_nsb_armor_upgrade_super_heavy = 0
                 }
             }
@@ -56,12 +57,12 @@ recommended_support_armor = {
 						special_type_slot_4=tank_radio_2
 						turret_type_slot=tank_light_one_man_tank_turret
 						suspension_type_slot=tank_horstmann_suspension_L
-						engine_type_slot=tank_diesel_engine_L
-						armor_type_slot=tank_cast_armor
-						armor_shape_slot=semi-flat_armor
+						engine_type_slot=tank_gasoline_engine_L
+						armor_type_slot=tank_welded_armor
+						armor_shape_slot=flat_armor
 					}
 					upgrades = {
-						tank_nsb_engine_upgrade = 8
+						tank_nsb_engine_upgrade = 10
 						tank_nsb_armor_upgrade_light = 0
 					}
 				}
@@ -81,11 +82,11 @@ recommended_support_armor = {
 						turret_type_slot=tank_light_one_man_tank_turret
 						suspension_type_slot=tank_horstmann_suspension_L
 						engine_type_slot=tank_hydrostatic_engine_L
-						armor_type_slot=tank_cast_armor
-						armor_shape_slot=semi-flat_armor
+						armor_type_slot=tank_welded_armor
+						armor_shape_slot=flat_armor
 					}
 					upgrades = {
-						tank_nsb_engine_upgrade = 8
+						tank_nsb_engine_upgrade = 10
 						tank_nsb_armor_upgrade_light = 0
 					}
 				}
@@ -111,13 +112,13 @@ recommended_support_armor = {
                         special_type_slot_3=secondary_turret_hmg
                         special_type_slot_4=tank_radio_2
                         turret_type_slot=tank_heavy_two_man_tank_turret
-                        suspension_type_slot=tank_interleaved_suspension_H
+                        suspension_type_slot=tank_horstmann_suspension_H
                         engine_type_slot=tank_gasoline_engine_H
-                        armor_type_slot=tank_riveted_armor
-                        armor_shape_slot=semi-flat_armor
+                        armor_type_slot=tank_welded_armor
+                        armor_shape_slot=flat_armor
                     }
                     upgrades = {
-                        tank_nsb_engine_upgrade = 8
+                        tank_nsb_engine_upgrade = 11
                         tank_nsb_armor_upgrade_heavy = 0
                     }
                 }
@@ -136,13 +137,13 @@ recommended_support_armor = {
                         special_type_slot_3=secondary_turret_hmg
                         special_type_slot_4=auto_loader
                         turret_type_slot=tank_heavy_two_man_tank_turret
-                        suspension_type_slot=tank_interleaved_suspension_H
+                        suspension_type_slot=tank_horstmann_suspension_H
                         engine_type_slot=tank_gasoline_engine_H
-                        armor_type_slot=tank_riveted_armor
-                        armor_shape_slot=semi-flat_armor
+                        armor_type_slot=tank_welded_armor
+                        armor_shape_slot=flat_armor
                     }
                     upgrades = {
-                        tank_nsb_engine_upgrade = 8
+                        tank_nsb_engine_upgrade = 11
                         tank_nsb_armor_upgrade_heavy = 0
                     }
                 }
@@ -171,13 +172,13 @@ recommended_support_armor = {
                         special_type_slot_3=tank_radio_2
                         special_type_slot_4=secondary_turret_hmg
                         turret_type_slot=tank_medium_one_man_tank_turret
-                        suspension_type_slot=tank_interleaved_suspension_M
+                        suspension_type_slot=tank_horstmann_suspension_M
                         engine_type_slot=tank_gasoline_engine
-                        armor_type_slot=tank_module_bolted_armor
-                        armor_shape_slot=semi-flat_armor
+                        armor_type_slot=tank_welded_armor
+                        armor_shape_slot=flat_armor
                     }
                     upgrades = {
-                        tank_nsb_engine_upgrade = 8
+                        tank_nsb_engine_upgrade = 11
                         tank_nsb_armor_upgrade_medium = 0
                     }
                 }
@@ -196,14 +197,14 @@ recommended_support_armor = {
                         special_type_slot_3=stabilizer
                         special_type_slot_4=secondary_turret_hmg
                         turret_type_slot=tank_medium_one_man_tank_turret
-                        suspension_type_slot=tank_interleaved_suspension_M
+                        suspension_type_slot=tank_horstmann_suspension_M
                         engine_type_slot=tank_hydrostatic_engine
-                        armor_type_slot=tank_riveted_armor
-                        armor_shape_slot=semi-flat_armor
+                        armor_type_slot=tank_welded_armor
+                        armor_shape_slot=flat_armor
                     }
                     upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_medium = 2
+                        tank_nsb_engine_upgrade = 11
+                        tank_nsb_armor_upgrade_medium = 0
                     }
                 }
             }
@@ -211,17 +212,10 @@ recommended_support_armor = {
 	}
     
 	recommended_armored_car_recon_templates = {
-		if = {
+        if = {
             limit = {
                 has_tech = armored_car1
                 NOT = { has_tech = armored_car2 }
-                NOT = {
-                    OR = {
-                        has_tech = advanced_light_tank_chassis
-                        has_tech = improved_medium_tank_chassis
-                        has_tech = improved_heavy_tank_chassis
-                    }
-                }
             }
             create_equipment_variant = {
                 name = "Armored Car '36 [RECON]"
@@ -230,7 +224,7 @@ recommended_support_armor = {
                 modules = {
                     main_armament_slot=tank_auto_cannon
                     special_type_slot_1=tank_radio_1
-                    special_type_slot_2=smoke_launchers
+                    special_type_slot_2=car_smoke_launchers
                     turret_type_slot=car_three_man_car_turret
                     suspension_type_slot=car_8x8_suspension
                     engine_type_slot=tank_petrol_electric_engine_L
@@ -246,82 +240,6 @@ recommended_support_armor = {
 
         if = {
             limit = {
-                OR = {
-                    has_tech = advanced_light_tank_chassis
-                    has_tech = improved_medium_tank_chassis
-                    has_tech = improved_heavy_tank_chassis
-                }
-                has_tech = armored_car1
-                NOT = { has_tech = armored_car2 }
-                NOT = {
-                    OR = {
-                        has_tech = advanced_light_tank2_chassis
-                        has_tech = advanced_medium_tank_chassis
-                        has_tech = advanced_heavy_tank_chassis
-                    }
-                }
-            }
-            create_equipment_variant = {
-                name = "Armored Car '36 [RECON]"
-                type = armored_car_chassis_0
-                parent_version = 0
-                modules = {
-                    main_armament_slot=tank_auto_cannon
-                    special_type_slot_1=tank_radio_1
-                    special_type_slot_2=smoke_launchers
-                    turret_type_slot=car_three_man_car_turret
-                    suspension_type_slot=car_8x8_suspension
-                    engine_type_slot=tank_petrol_electric_engine_L
-                    armor_type_slot=car_module_riveted_armor
-                    special_type_slot_9=sloped_armor
-                }
-                upgrades = {
-                    tank_nsb_engine_upgrade = 3
-                    tank_nsb_armor_upgrade_armored_car = 8
-                }
-            }
-        }
-
-        if = {
-            limit = {
-                OR = {
-                    has_tech = advanced_light_tank2_chassis
-                    has_tech = advanced_medium_tank_chassis
-                    has_tech = advanced_heavy_tank_chassis
-                    has_tech = super_heavy_tank_chassis
-                }
-                has_tech = armored_car1
-                NOT = { has_tech = armored_car2 }
-            }
-            create_equipment_variant = {
-                name = "Armored Car '36 [RECON]"
-                type = armored_car_chassis_0
-                parent_version = 0
-                modules = {
-                    main_armament_slot=tank_auto_cannon_3
-                    special_type_slot_1=tank_radio_3
-                    special_type_slot_2=smoke_launchers
-                    turret_type_slot=car_three_man_car_turret
-                    suspension_type_slot=car_8x8_suspension
-                    engine_type_slot=tank_petrol_electric_engine_L
-                    armor_type_slot=car_module_riveted_armor
-                    special_type_slot_9=sloped_armor
-                }
-                upgrades = {
-                    tank_nsb_engine_upgrade = 3
-                    tank_nsb_armor_upgrade_armored_car = 8
-                }
-            }
-        }
-
-        if = {
-            limit = {
-                NOT = {
-                    has_tech = advanced_light_tank2_chassis
-                    has_tech = advanced_medium_tank_chassis
-                    has_tech = advanced_heavy_tank_chassis
-                    has_tech = super_heavy_tank_chassis
-                }
                 has_tech = armored_car2
                 NOT = { has_tech = armored_car3 }
             }
@@ -332,38 +250,6 @@ recommended_support_armor = {
                 modules = {
                     main_armament_slot=tank_auto_cannon_2
                     special_type_slot_1=tank_radio_2
-                    special_type_slot_2=car_stabilizer
-                    turret_type_slot=car_three_man_car_turret
-                    suspension_type_slot=car_8x8_suspension
-                    engine_type_slot=tank_petrol_electric_engine_L
-                    armor_type_slot=car_module_riveted_armor
-                    special_type_slot_9=sloped_armor
-                }
-                upgrades = {
-                    tank_nsb_engine_upgrade = 2
-                    tank_nsb_armor_upgrade_armored_car = 8
-                }
-            }
-        }
-
-        if = {
-            limit = {
-                OR = {
-                    has_tech = advanced_light_tank2_chassis
-                    has_tech = advanced_medium_tank_chassis
-                    has_tech = advanced_heavy_tank_chassis
-                    has_tech = super_heavy_tank_chassis
-                }
-                has_tech = armored_car2
-                NOT = { has_tech = armored_car3 }
-            }
-            create_equipment_variant = {
-                name = "Armored Car '40 [RECON]"
-                type = armored_car_chassis_1
-                parent_version = 0
-                modules = {
-                    main_armament_slot=tank_auto_cannon_3
-                    special_type_slot_1=tank_radio_3
                     special_type_slot_2=car_stabilizer
                     turret_type_slot=car_three_man_car_turret
                     suspension_type_slot=car_8x8_suspension
@@ -404,817 +290,281 @@ recommended_support_armor = {
     
     recommended_lt_recon_templates = {
         if = {
-            limit = {
-                NOT = {
-                    OR = {
-                        has_tech = advanced_light_tank_chassis
-                        has_tech = improved_medium_tank_chassis
-                        has_tech = improved_heavy_tank_chassis
-                    }
-                }
-            }
+			limit = { 
+				has_tech = basic_light_tank_chassis
+				NOT = { has_tech = improved_light_tank_chassis } 
+			}
 
-            if = {
-                limit = { NOT = { has_tech = improved_light_tank_chassis } }
+			create_equipment_variant = {
+				name = "Light Tank '34 [RECON]"
+				type = light_tank_chassis_1
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_auto_cannon
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_1
+					special_type_slot_2 = smoke_launchers
+					special_type_slot_3 = smoke_launchers
+					special_type_slot_4 = smoke_launchers
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
+		if = {
+			limit = { 
+				has_tech = improved_light_tank_chassis
+				NOT = { has_tech = advanced_light_tank_chassis } 
+			}
 
-                create_equipment_variant = {
-                    name = "Light Tank '34 [RECON]"
-                    type = light_tank_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_1
-                        special_type_slot_2 = smoke_launchers
-                        special_type_slot_3 = smoke_launchers
-                        special_type_slot_4 = smoke_launchers
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-            else = {
-                create_equipment_variant = {
-                    name = "Light Tank '36 [RECON]"
-                    type = light_tank_chassis_2
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_1
-                        special_type_slot_2 = tank_module_improved_turning_mechanisms
-                        special_type_slot_3 = stabilizer
-                        special_type_slot_4 = tank_module_improved_ergonomics
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-        }
-
-        else_if = {
-            limit = {
-                NOT = {
-                    OR = {
-                        has_tech = advanced_light_tank2_chassis
-                        has_tech = advanced_medium_tank_chassis
-                        has_tech = advanced_heavy_tank_chassis
-                        has_tech = super_heavy_tank_chassis
-                    }
-                }
-            }
-
-            if = {
-                limit = { NOT = { has_tech = improved_light_tank_chassis } }
-
-                create_equipment_variant = {
-                    name = "Light Tank '34 [RECON]"
-                    type = light_tank_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_1
-                        special_type_slot_2 = smoke_launchers
-                        special_type_slot_3 = smoke_launchers
-                        special_type_slot_4 = smoke_launchers
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-            else_if = {
-                limit = { NOT = { has_tech = advanced_light_tank_chassis } }
-
-                create_equipment_variant = {
-                    name = "Light Tank '36 [RECON]"
-                    type = light_tank_chassis_2
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon_2
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_2
-                        special_type_slot_2 = tank_module_improved_turning_mechanisms
-                        special_type_slot_3 = stabilizer
-                        special_type_slot_4 = tank_module_improved_ergonomics
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-            else = {
-                create_equipment_variant = {
-                    name = "Light Tank '40 [RECON]"
-                    type = light_tank_chassis_3
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon_2
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_2
-                        special_type_slot_2 = tank_module_improved_turning_mechanisms
-                        special_type_slot_3 = stabilizer
-                        special_type_slot_4 = tank_module_improved_ergonomics
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-        }
-
-        else = {
-            if = {
-                limit = { NOT = { has_tech = improved_light_tank_chassis } }
-
-                create_equipment_variant = {
-                    name = "Light Tank '34 [RECON]"
-                    type = light_tank_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_1
-                        special_type_slot_2 = smoke_launchers
-                        special_type_slot_3 = smoke_launchers
-                        special_type_slot_4 = smoke_launchers
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-            else_if = {
-                limit = { NOT = { has_tech = advanced_light_tank_chassis } }
-
-                create_equipment_variant = {
-                    name = "Light Tank '36 [RECON]"
-                    type = light_tank_chassis_2
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon_2
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_2
-                        special_type_slot_2 = tank_module_improved_turning_mechanisms
-                        special_type_slot_3 = stabilizer
-                        special_type_slot_4 = tank_module_improved_ergonomics
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-            else = {
-                create_equipment_variant = {
-                    name = "Light Tank '40 [RECON]"
-                    type = light_tank_chassis_3
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_auto_cannon_3
-                        turret_type_slot = tank_light_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_L
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_3
-                        special_type_slot_2 = tank_module_improved_turning_mechanisms
-                        special_type_slot_3 = stabilizer
-                        special_type_slot_4 = tank_module_improved_ergonomics
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 0
-                        tank_nsb_armor_upgrade_light = 8
-                    }
-                }
-            }
-        }
+			create_equipment_variant = {
+				name = "Light Tank '36 [RECON]"
+				type = light_tank_chassis_2
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_auto_cannon_2
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_2
+					special_type_slot_2 = tank_module_improved_turning_mechanisms
+					special_type_slot_3 = stabilizer
+					special_type_slot_4 = tank_module_improved_ergonomics
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
+		if = {
+			limit = { 
+				has_tech = advanced_light_tank_chassis
+				NOT = { has_tech = advanced_light_tank2_chassis } 
+			}
+			create_equipment_variant = {
+				name = "Light Tank '40 [RECON]"
+				type = light_tank_chassis_3
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_auto_cannon_2
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_2
+					special_type_slot_2 = tank_module_improved_turning_mechanisms
+					special_type_slot_3 = stabilizer
+					special_type_slot_4 = tank_module_improved_ergonomics
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
+		if = {
+			limit = { 
+				has_tech = advanced_light_tank2_chassis
+			}
+			create_equipment_variant = {
+				name = "Light Tank '42 [RECON]"
+				type = light_tank_chassis_3
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_auto_cannon_3
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_3
+					special_type_slot_2 = tank_module_improved_turning_mechanisms
+					special_type_slot_3 = stabilizer
+					special_type_slot_4 = tank_module_improved_ergonomics
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
     }
 	
 	recommended_flame_templates = {
-        if = {
-            limit = { has_tech = tech_engineers2 }
-            if = {
-                limit = {
-                    NOT = {
-                        OR = {
-                            has_tech = advanced_light_tank_chassis
-                            has_tech = improved_medium_tank_chassis
-                            has_tech = improved_heavy_tank_chassis
-                        }
-                    }
-                }
+		if = {
+			limit = { 
+				has_tech = basic_light_tank_chassis
+				NOT = { has_tech = improved_light_tank_chassis } 
+			}
 
-                create_equipment_variant = {
-                    name = "Medium Tank '36A [FLAME]"
-                    type = medium_tank_flame_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = flamethrower
-                        turret_type_slot = tank_medium_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_M
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_1
-                        special_type_slot_2 = extra_ammo_storage
-                        special_type_slot_3 = smoke_launchers
-                        special_type_slot_4 = smoke_launchers
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 2
-                        tank_nsb_armor_upgrade_medium = 8
-                    }
-                }
+			create_equipment_variant = {
+				name = "Flame Light Tank '34 [RECON]"
+				type = light_tank_flame_chassis_1
+				parent_version = 0
+				modules = {
+					main_armament_slot = flamethrower
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_1
+					special_type_slot_2 = smoke_launchers
+					special_type_slot_3 = smoke_launchers
+					special_type_slot_4 = smoke_launchers
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
+		if = {
+			limit = { 
+				has_tech = improved_light_tank_chassis
+				NOT = { has_tech = advanced_light_tank_chassis } 
+			}
 
-                create_equipment_variant = {
-                    name = "Heavy Tank '36A [FLAME]"
-                    type = heavy_tank_flame_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = flamethrower
-                        turret_type_slot = tank_heavy_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_H
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_H
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_1
-                        special_type_slot_2 = extra_ammo_storage
-                        special_type_slot_3 = smoke_launchers
-                        special_type_slot_4 = smoke_launchers
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 2
-                        tank_nsb_armor_upgrade_heavy = 8
-                    }
-                }
-
-                if = {
-                    limit = { NOT = { has_tech = improved_light_tank_chassis } }
-
-                    create_equipment_variant = {
-                        name = "Light Tank '34 [FLAME]"
-                        type = light_tank_flame_chassis_1
-                        parent_version = 0
-                        modules = {
-                            main_armament_slot = flamethrower
-                            turret_type_slot = tank_light_three_man_tank_turret
-                            suspension_type_slot = tank_interleaved_suspension_L
-                            armor_type_slot = tank_cast_armor
-                            engine_type_slot = tank_petrol_electric_engine_L
-                            armor_shape_slot = sloped_armor
-                            special_type_slot_1 = tank_radio_1
-                            special_type_slot_2 = extra_ammo_storage
-                            special_type_slot_3 = smoke_launchers
-                            special_type_slot_4 = smoke_launchers
-                        }
-                        upgrades = {
-                            tank_nsb_engine_upgrade = 2
-                            tank_nsb_armor_upgrade_light = 8
-                        }
-                    }
-                }
-                else = {
-                    create_equipment_variant = {
-                        name = "Light Tank '36 [FLAME]"
-                        type = light_tank_flame_chassis_2
-                        parent_version = 0
-                        modules = {
-                            main_armament_slot = flamethrower
-                            turret_type_slot = tank_light_three_man_tank_turret
-                            suspension_type_slot = tank_interleaved_suspension_L
-                            armor_type_slot = tank_cast_armor
-                            engine_type_slot = tank_petrol_electric_engine_L
-                            armor_shape_slot = sloped_armor
-                            special_type_slot_1 = tank_radio_1
-                            special_type_slot_2 = secondary_turret_hmg
-                            special_type_slot_3 = extra_ammo_storage
-                            special_type_slot_4 = smoke_launchers
-                        }
-                        upgrades = {
-                            tank_nsb_engine_upgrade = 2
-                            tank_nsb_armor_upgrade_light = 8
-                        }
-                    }
-                }
-            }
-            else_if = {
-                limit = {
-                    NOT = {
-                        OR = {
-                            has_tech = advanced_light_tank2_chassis
-                            has_tech = advanced_medium_tank_chassis
-                            has_tech = advanced_heavy_tank_chassis
-                            has_tech = super_heavy_tank_chassis
-                        }
-                    }
-                }
-
-                create_equipment_variant = {
-                    name = "Medium Tank '36B [FLAME]"
-                    type = medium_tank_flame_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = flamethrower
-                        turret_type_slot = tank_medium_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_M
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_2
-                        special_type_slot_2 = dozer_blade
-                        special_type_slot_3 = stabilizer
-                        special_type_slot_4 = tank_module_improved_turning_mechanisms
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 2
-                        tank_nsb_armor_upgrade_medium = 8
-                    }
-                }
-
-                create_equipment_variant = {
-                    name = "Heavy Tank '36B [FLAME]"
-                    type = heavy_tank_flame_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = flamethrower
-                        turret_type_slot = tank_heavy_three_man_tank_turret
-                        suspension_type_slot = tank_interleaved_suspension_H
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_petrol_electric_engine_H
-                        armor_shape_slot = sloped_armor
-                        special_type_slot_1 = tank_radio_2
-                        special_type_slot_2 = dozer_blade
-                        special_type_slot_3 = stabilizer
-                        special_type_slot_4 = tank_module_improved_turning_mechanisms
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 2
-                        tank_nsb_armor_upgrade_heavy = 8
-                    }
-                }
-
-                if = {
-                    limit = { NOT = { has_tech = improved_light_tank_chassis } }
-
-                    create_equipment_variant = {
-                        name = "Light Tank '34 [FLAME]"
-                        type = light_tank_flame_chassis_1
-                        parent_version = 0
-                        modules = {
-                            main_armament_slot = flamethrower
-                            turret_type_slot = tank_light_three_man_tank_turret
-                            suspension_type_slot = tank_interleaved_suspension_L
-                            armor_type_slot = tank_cast_armor
-                            engine_type_slot = tank_petrol_electric_engine_L
-                            armor_shape_slot = sloped_armor
-                            special_type_slot_1 = tank_radio_2
-                            special_type_slot_2 = dozer_blade
-                            special_type_slot_3 = stabilizer
-                            special_type_slot_4 = tank_module_improved_turning_mechanisms
-                        }
-                        upgrades = {
-                            tank_nsb_engine_upgrade = 2
-                            tank_nsb_armor_upgrade_light = 8
-                        }
-                    }
-                }
-                else_if = {
-                    limit = { NOT = { has_tech = advanced_light_tank_chassis } }
-
-                    create_equipment_variant = {
-                        name = "Light Tank '36 [FLAME]"
-                        type = light_tank_flame_chassis_2
-                        parent_version = 0
-                        modules = {
-                            main_armament_slot = flamethrower
-                            turret_type_slot = tank_light_three_man_tank_turret
-                            suspension_type_slot = tank_interleaved_suspension_L
-                            armor_type_slot = tank_cast_armor
-                            engine_type_slot = tank_petrol_electric_engine_L
-                            armor_shape_slot = sloped_armor
-                            special_type_slot_1 = tank_radio_2
-                            special_type_slot_2 = dozer_blade
-                            special_type_slot_3 = stabilizer
-                            special_type_slot_4 = tank_module_improved_turning_mechanisms
-                        }
-                        upgrades = {
-                            tank_nsb_engine_upgrade = 2
-                            tank_nsb_armor_upgrade_light = 8
-                        }
-                    }
-                }
-                else = {
-                    create_equipment_variant = {
-                        name = "Light Tank '40 [FLAME]]"
-                        type = light_tank_flame_chassis_3
-                        parent_version = 0
-                        modules = {
-                            main_armament_slot = flamethrower
-                            turret_type_slot = tank_light_three_man_tank_turret
-                            suspension_type_slot = tank_interleaved_suspension_L
-                            armor_type_slot = tank_cast_armor
-                            engine_type_slot = tank_petrol_electric_engine_L
-                            armor_shape_slot = sloped_armor
-                            special_type_slot_1 = tank_radio_2
-                            special_type_slot_2 = dozer_blade
-                            special_type_slot_3 = stabilizer
-                            special_type_slot_4 = tank_module_improved_turning_mechanisms
-                        }
-                        upgrades = {
-                            tank_nsb_engine_upgrade = 0
-                            tank_nsb_armor_upgrade_light = 8
-                        }
-                    }
-
-                    create_equipment_variant = {
-                        name = "Medium Tank '36C [FLAME]"
-                        type = medium_tank_flame_chassis_1
-                        parent_version = 0
-                        modules = {
-                            main_armament_slot = flamethrower
-                            turret_type_slot = tank_medium_three_man_tank_turret
-                            suspension_type_slot = tank_interleaved_suspension_M
-                            armor_type_slot = tank_cast_armor
-                            engine_type_slot = tank_petrol_electric_engine
-                            armor_shape_slot = sloped_armor
-                            special_type_slot_1 = tank_radio_3
-                            special_type_slot_2 = dozer_blade
-                            special_type_slot_3 = stabilizer
-                            special_type_slot_4 = tank_module_improved_turning_mechanisms
-                        }
-                        upgrades = {
-                            tank_nsb_engine_upgrade = 2
-                            tank_nsb_armor_upgrade_medium = 8
-                        }
-                    }
-
-                    create_equipment_variant = {
-                        name = "Heavy Tank '36C [FLAME]"
-                        type = heavy_tank_flame_chassis_1
-                        parent_version = 0
-                        modules = {
-                            main_armament_slot = flamethrower
-                            turret_type_slot = tank_heavy_three_man_tank_turret
-                            suspension_type_slot = tank_interleaved_suspension_H
-                            armor_type_slot = tank_cast_armor
-                            engine_type_slot = tank_petrol_electric_engine_H
-                            armor_shape_slot = sloped_armor
-                            special_type_slot_1 = tank_radio_3
-                            special_type_slot_2 = dozer_blade
-                            special_type_slot_3 = stabilizer
-                            special_type_slot_4 = tank_module_improved_turning_mechanisms
-                        }
-                        upgrades = {
-                            tank_nsb_engine_upgrade = 2
-                            tank_nsb_armor_upgrade_heavy = 8
-                        }
-                    }
-                }
-            }
-        }
+			create_equipment_variant = {
+				name = "Flame Light Tank '36 [RECON]"
+				type = light_tank_flame_chassis_2
+				parent_version = 0
+				modules = {
+					main_armament_slot = flamethrower
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_2
+					special_type_slot_2 = tank_module_improved_turning_mechanisms
+					special_type_slot_3 = stabilizer
+					special_type_slot_4 = tank_module_improved_ergonomics
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
+		if = {
+			limit = { 
+				has_tech = advanced_light_tank_chassis
+				NOT = { has_tech = advanced_light_tank2_chassis } 
+			}
+			create_equipment_variant = {
+				name = "Flame Light Tank '40 [RECON]"
+				type = light_tank_flame_chassis_3
+				parent_version = 0
+				modules = {
+					main_armament_slot = flamethrower
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_2
+					special_type_slot_2 = tank_module_improved_turning_mechanisms
+					special_type_slot_3 = stabilizer
+					special_type_slot_4 = tank_module_improved_ergonomics
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
+		if = {
+			limit = { 
+				has_tech = advanced_light_tank2_chassis
+			}
+			create_equipment_variant = {
+				name = "Flame Light Tank '42 [RECON]"
+				type = light_tank_flame_chassis_4
+				parent_version = 0
+				modules = {
+					main_armament_slot = flamethrower
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_interleaved_suspension_L
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_petrol_electric_engine_L
+					armor_shape_slot = sloped_armor
+					special_type_slot_1 = tank_radio_3
+					special_type_slot_2 = tank_module_improved_turning_mechanisms
+					special_type_slot_3 = stabilizer
+					special_type_slot_4 = tank_module_improved_ergonomics
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 0
+					tank_nsb_armor_upgrade_light = 8
+				}
+			}
+		}
 	}		
 
 	recommended_aa_tank_templates = {
 	
-		#####LIGHT SPAA; WELDED
-        if = {
-            limit = { has_tech = armor_tech_1 } #welded
-            if = {
-                limit = {
-                    NOT = { has_tech = advanced_light_tank2_chassis }
-                    has_tech = advanced_light_tank_chassis
-                }
-                create_equipment_variant = {
-                    name = "Light SPAA '40"
-                    type = light_tank_aa_chassis_3
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_2
-                        turret_type_slot = tank_light_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_L
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_light = 0
-                    }
-                }
-            }
-            if = {
-                limit = { has_tech = advanced_light_tank2_chassis }
-                create_equipment_variant = {
-                    name = "Light SPAA '43"
-                    type = light_tank_aa_chassis_4
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_3
-                        turret_type_slot = tank_light_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_L
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_light = 0
-                    }
-                }
-            }
-        }
-
-        #####LIGHT SPAA; RIVETED
-        else = {
-            if = {
-                limit = {
-                    NOT = { has_tech = advanced_light_tank2_chassis }
-                    has_tech = advanced_light_tank_chassis
-                }
-                create_equipment_variant = {
-                    name = "Light SPAA '40"
-                    type = light_tank_aa_chassis_3
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_2
-                        turret_type_slot = tank_light_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_L
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_light = 0
-                    }
-                }
-            }
-            if = {
-                limit = { has_tech = advanced_light_tank2_chassis }
-                create_equipment_variant = {
-                    name = "Light SPAA '43"
-                    type = light_tank_aa_chassis_4
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_3
-                        turret_type_slot = tank_light_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_L
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_L
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_light = 0
-                    }
-                }
-            }
-        }
-
-        #####MEDIUM SPAA; WELDED
-        if = {
-            limit = { has_tech = armor_tech_1 } #welded
-            if = {
-                limit = { NOT = { has_tech = improved_medium_tank_chassis } }
-                create_equipment_variant = {
-                    name = "Medium SPAA '36"
-                    type = medium_tank_aa_chassis_1
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon
-                        turret_type_slot = tank_light_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_M
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_medium = 0
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    NOT = { has_tech = advanced_medium_tank_chassis }
-                    has_tech = improved_medium_tank_chassis
-                }
-                create_equipment_variant = {
-                    name = "Medium SPAA '40"
-                    type = medium_tank_aa_chassis_2
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_2
-                        turret_type_slot = tank_light_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_M
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_medium = 0
-                    }
-                }
-            }
-            if = {
-                limit = { has_tech = advanced_medium_tank_chassis }
-                create_equipment_variant = {
-                    name = "Medium SPAA '43"
-                    type = medium_tank_aa_chassis_3
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_3
-                        turret_type_slot = tank_light_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_M
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_medium = 0
-                    }
-                }
-            }
-        }
-        
-        #####HEAVY SPAA; WELDED
-        if = {
-            limit = { has_tech = armor_tech_1 } #welded
-            if = {
-                limit = {
-                    NOT = { has_tech = advanced_heavy_tank_chassis }
-                    has_tech = improved_heavy_tank_chassis
-                }
-                create_equipment_variant = {
-                    name = "Heavy SPAA '40"
-                    type = heavy_tank_aa_chassis_2
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_2
-                        turret_type_slot = tank_medium_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_H
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_H
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_heavy = 0
-                    }
-                }
-            }
-            if = {
-                limit = { has_tech = advanced_heavy_tank_chassis }
-                create_equipment_variant = {
-                    name = "Heavy SPAA '43"
-                    type = heavy_tank_aa_chassis_3
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_3
-                        turret_type_slot = tank_medium_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_H
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_H
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_heavy = 0
-                    }
-                }
-            }
-        }
-
-        #####HEAVY SPAA; RIVETED
-        else = {
-            if = {
-                limit = {
-                    NOT = { has_tech = advanced_heavy_tank_chassis }
-                    has_tech = improved_heavy_tank_chassis
-                }
-                create_equipment_variant = {
-                    name = "Heavy SPAA '40"
-                    type = heavy_tank_aa_chassis_2
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_2
-                        turret_type_slot = tank_medium_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_H
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_H
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_heavy = 0
-                    }
-                }
-            }
-            if = {
-                limit = { has_tech = advanced_heavy_tank_chassis }
-                create_equipment_variant = {
-                    name = "Heavy SPAA '43"
-                    type = heavy_tank_aa_chassis_3
-                    parent_version = 0
-                    modules = {
-                        main_armament_slot = tank_anti_air_cannon_3
-                        turret_type_slot = tank_medium_one_man_tank_turret
-                        suspension_type_slot = tank_horstmann_suspension_H
-                        armor_type_slot = tank_cast_armor
-                        engine_type_slot = tank_gasoline_engine_H
-                        armor_shape_slot = semi-flat_armor
-                        special_type_slot_1 = extra_ammo_storage
-                        special_type_slot_2 = additional_machine_guns
-                        special_type_slot_3 = additional_machine_guns
-                        special_type_slot_4 = additional_machine_guns
-                    }
-                    upgrades = {
-                        tank_nsb_engine_upgrade = 8
-                        tank_nsb_armor_upgrade_heavy = 0
-                    }
-                }
-            }
-        }
+		if = {
+			limit = {
+				NOT = { has_tech = advanced_light_tank2_chassis }
+				has_tech = advanced_light_tank_chassis
+			}
+			create_equipment_variant = {
+				name = "Light SPAA '40"
+				type = light_tank_aa_chassis_3
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_anti_air_cannon_2
+					turret_type_slot = tank_light_one_man_tank_turret
+					suspension_type_slot = tank_horstmann_suspension_L
+					armor_type_slot = tank_riveted_armor
+					engine_type_slot = tank_gasoline_engine_L
+					armor_shape_slot = flat_armor
+					special_type_slot_1 = tank_pintle_hmg
+					special_type_slot_2 = additional_machine_guns
+					special_type_slot_3 = additional_machine_guns
+					special_type_slot_4 = additional_machine_guns
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 8
+					tank_nsb_armor_upgrade_light = 0
+				}
+			}
+		}
+		if = {
+			limit = { has_tech = advanced_light_tank2_chassis }
+			create_equipment_variant = {
+				name = "Light SPAA '43"
+				type = light_tank_aa_chassis_4
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_anti_air_cannon_3
+					turret_type_slot = tank_light_one_man_tank_turret
+					suspension_type_slot = tank_horstmann_suspension_L
+					armor_type_slot = tank_riveted_armor
+					engine_type_slot = tank_gasoline_engine_L
+					armor_shape_slot = flat_armor
+					special_type_slot_1 = tank_pintle_hmg
+					special_type_slot_2 = additional_machine_guns
+					special_type_slot_3 = additional_machine_guns
+					special_type_slot_4 = additional_machine_guns
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 8
+					tank_nsb_armor_upgrade_light = 0
+				}
+			}
+		}
 	}		
     
     
@@ -1240,8 +590,8 @@ recommended_support_armor = {
                     armor_type_slot = tank_riveted_armor
                     engine_type_slot = tank_gasoline_engine_L
                     armor_shape_slot = flat_armor
-                    special_type_slot_1 = extra_ammo_storage
-                    special_type_slot_2 = squeezebore_adaptor
+                    special_type_slot_1 = squeezebore_adaptor
+                    special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = additional_machine_guns
                     special_type_slot_4 = secondary_turret_hmg
                 }
@@ -1262,9 +612,9 @@ recommended_support_armor = {
                     turret_type_slot = tank_light_fixed_superstructure_turret
                     suspension_type_slot = tank_horstmann_suspension_L
                     armor_type_slot = tank_riveted_armor
-                    engine_type_slot = tank_hydrostatic_engine_L
+                    engine_type_slot = tank_gasoline_engine_L
                     armor_shape_slot = flat_armor
-                    special_type_slot_1 = extra_ammo_storage
+                    special_type_slot_1 = additional_machine_guns
                     special_type_slot_2 = squeezebore_adaptor
                     special_type_slot_3 = secondary_turret_hmg
                     special_type_slot_4 = auto_loader
@@ -1295,10 +645,10 @@ recommended_support_armor = {
                     turret_type_slot = tank_medium_fixed_superstructure_turret
                     suspension_type_slot = tank_horstmann_suspension_M
                     armor_type_slot = tank_riveted_armor
-                    engine_type_slot = tank_hydrostatic_engine
+                    engine_type_slot = tank_gasoline_engine
                     armor_shape_slot = flat_armor
-                    special_type_slot_1 = extra_ammo_storage
-                    special_type_slot_2 = squeezebore_adaptor
+                    special_type_slot_1 = squeezebore_adaptor
+                    special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = additional_machine_guns
                     special_type_slot_4 = secondary_turret_hmg
                 }
@@ -1319,10 +669,10 @@ recommended_support_armor = {
                     turret_type_slot = tank_medium_fixed_superstructure_turret
                     suspension_type_slot = tank_horstmann_suspension_M
                     armor_type_slot = tank_riveted_armor
-                    engine_type_slot = tank_hydrostatic_engine
+                    engine_type_slot = tank_gasoline_engine
                     armor_shape_slot = flat_armor
-                    special_type_slot_1 = extra_ammo_storage
-                    special_type_slot_2 = squeezebore_adaptor
+                    special_type_slot_1 = squeezebore_adaptor
+                    special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = secondary_turret_hmg
                     special_type_slot_4 = auto_loader
                 }
@@ -1352,10 +702,10 @@ recommended_support_armor = {
                     turret_type_slot = tank_heavy_fixed_superstructure_turret
                     suspension_type_slot = tank_horstmann_suspension_H
                     armor_type_slot = tank_riveted_armor
-                    engine_type_slot = tank_hydrostatic_engine_H
+                    engine_type_slot = tank_gasoline_engine_H
                     armor_shape_slot = flat_armor
-                    special_type_slot_1 = extra_ammo_storage
-                    special_type_slot_2 = squeezebore_adaptor
+                    special_type_slot_1 = squeezebore_adaptor
+                    special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = additional_machine_guns
                     special_type_slot_4 = secondary_turret_hmg
                 }
@@ -1376,10 +726,10 @@ recommended_support_armor = {
                     turret_type_slot = tank_heavy_fixed_superstructure_turret
                     suspension_type_slot = tank_horstmann_suspension_H
                     armor_type_slot = tank_riveted_armor
-                    engine_type_slot = tank_hydrostatic_engine_H
+                    engine_type_slot = tank_gasoline_engine_H
                     armor_shape_slot = flat_armor
-                    special_type_slot_1 = extra_ammo_storage
-                    special_type_slot_2 = squeezebore_adaptor
+                    special_type_slot_1 = squeezebore_adaptor
+                    special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = secondary_turret_hmg
                     special_type_slot_4 = auto_loader
                 }
@@ -1443,7 +793,7 @@ recommended_support_armor = {
                     special_type_slot_1 = tank_rocket_rails
                     special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = additional_machine_guns
-                    special_type_slot_4 = additional_machine_guns
+                    special_type_slot_4 = auto_loader
                 }
                 upgrades = {
                     tank_nsb_engine_upgrade = 8
@@ -1500,7 +850,7 @@ recommended_support_armor = {
                     special_type_slot_1 = tank_rocket_rails
                     special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = additional_machine_guns
-                    special_type_slot_4 = additional_machine_guns
+                    special_type_slot_4 = auto_loader
                 }
                 upgrades = {
                     tank_nsb_engine_upgrade = 8
@@ -1557,7 +907,7 @@ recommended_support_armor = {
                     special_type_slot_1 = tank_rocket_rails
                     special_type_slot_2 = additional_machine_guns
                     special_type_slot_3 = additional_machine_guns
-                    special_type_slot_4 = additional_machine_guns
+                    special_type_slot_4 = auto_loader
                 }
                 upgrades = {
                     tank_nsb_engine_upgrade = 8
