@@ -9765,13 +9765,31 @@ HMP_templates = {
 		}
 	}
 	HMP_navy_tips = { 
+		icon = GFX_mapicon_port_strike_result_text
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
 			country_event = { id = countrystartup.29  }
 		}
 	}
+	HMP_tank_minor_tips = { 
+		icon = GFX_medium_tank_chassis_texticon
+		allowed = {  normally_played_country = yes }
+		fire_only_once = no
+		complete_effect = {
+			country_event = { id = countrystartup.115  }
+		}
+	}
+	HMP_infantry_minor_tips = { 
+		icon = GFX_motorized_texticon
+		allowed = {  normally_played_country = yes }
+		fire_only_once = no
+		complete_effect = {
+			country_event = { id = countrystartup.116  }
+		}
+	}
 	HMP_compass = { 
+		icon = GFX_infiltrate_state_texticon
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
@@ -9779,6 +9797,7 @@ HMP_templates = {
 		}
 	}
 	HMP_templates_20w = {
+		icon = GFX_divisions
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
@@ -9819,6 +9838,7 @@ HMP_templates = {
 		}
 		
 	HMP_spec_ops = {
+		icon = GFX_divisions
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
@@ -9831,7 +9851,7 @@ HMP_templates = {
 						mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } mountaineers = { x = 2 y = 3 } rocket_artillery_brigade = { x = 3 y = 3 }
 						mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
 					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 }  medium_flame_tank = { x = 0 y = 2 }   }
+					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 }  light_flame_tank = { x = 0 y = 2 }   }
 				}	
 				division_template = {
 					name = "All-Purpose Special Forces"
@@ -9842,7 +9862,7 @@ HMP_templates = {
 						mountaineers = { x = 0 y = 3 } 	mountaineers = { x = 1 y = 3 } 	mountaineers = { x = 2 y = 3 } 	
 						mountaineers = { x = 0 y = 4 } 	mountaineers = { x = 1 y = 4 }																			   
 					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 }   anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } medium_flame_tank = { x = 0 y = 2 }     }
+					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 }   anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 2 }     }
 				}	
 				division_template = {
 					name = "Hard Attack Special Forces"
@@ -9853,11 +9873,12 @@ HMP_templates = {
 						mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } 							 rocket_artillery_brigade = { x = 3 y = 3 }  anti_tank_brigade = { x = 4 y = 3 }
 						mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
 					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } medium_flame_tank = { x = 0 y = 3 }     }
+					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 3 }     }
 				}				
 			}
 		}
 	HMP_templates_40w_tonk = {
+		icon = GFX_divisions
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 			complete_effect = { 
@@ -9876,6 +9897,7 @@ HMP_templates = {
 	}
 		
 	HMP_plane_templates = {
+		icon = GFX_anti_air_texticon
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		visible = { OR = { has_tech = basic_small_airframe has_tech = basic_medium_airframe has_tech = basic_large_airframe} }
@@ -9917,6 +9939,10 @@ HMP_templates = {
 	HMP_decision_recommended_armored_car_recon_templates = {
         icon = GFX_unit_armored_car_recon_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -9930,6 +9956,10 @@ HMP_templates = {
 	HMP_decision_recommended_lt_recon_templates = {
         icon = GFX_unit_light_tank_recon_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -9943,6 +9973,10 @@ HMP_templates = {
     HMP_decision_recommended_flame_templates = {
         icon = GFX_unit_light_flame_tank_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		available = {
 			ROOT = {
 				is_special_project_completed = sp:sp_land_flamethrower_tank
@@ -9961,6 +9995,10 @@ HMP_templates = {
     HMP_decision_recommended_aa_tank_templates = {
         icon = GFX_unit_light_sp_anti_air_brigade_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -9974,6 +10012,10 @@ HMP_templates = {
     HMP_decision_recommended_td_tank_templates = {
         icon = GFX_unit_medium_tank_destroyer_brigade_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -9987,6 +10029,10 @@ HMP_templates = {
     HMP_decision_recommended_spg_tank_templates = {
         icon = GFX_unit_medium_sp_artillery_brigade_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
