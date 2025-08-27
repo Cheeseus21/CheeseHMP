@@ -182,21 +182,19 @@ JAP_indies_spirit = {
     army_attack_factor = JAP.JAP_indies_spirit_var
     army_defence_factor	= JAP.JAP_indies_spirit_var
 }
+
 JAP_naval_range_spirit ={
-		icon = "GFX_idea_generic_coastal_defense_ships2"
-		navy_max_range_factor = JAP.japanese_pacific_navy_bonus_range
+	icon = "GFX_idea_generic_coastal_defense_ships2"
+	navy_max_range_factor = JAP.japanese_pacific_navy_bonus_range
 }
-USA_dday_spirit = {
-		icon = "GFX_idea_SPR_anti_fascist_crusade"
-		army_attack_factor = USA.operation_overlord_bonus
-		breakthrough_factor = USA.operation_overlord_bonus #wont work
-}
+
 ITA_FRA_neutrality_dynamic = {
 	icon = GFX_idea_FRA_undividable
 	remove_trigger= { NOT = { FRA={ owns_state = 16 } } }
 	army_attack_factor = -0.99
 	breakthrough_factor = -0.99
 }
+
 BRA_international_loan_modifier = {
 	enable = { always = yes }
 	icon = GFX_idea_NOR_printing_money
@@ -425,65 +423,69 @@ ETH_state_last_stand_modifier = {
 	army_core_defence_factor = 0.15
 	supply_consumption_factor = -0.25
 }
-	USA_cheap_rubber = {
-		icon = "GFX_idea_rubber"
-		remove_trigger  = { OR = { JAP = { is_subject_of = USA } is_subject_of = GER is_subject_of= JAP  } } 
-		production_speed_synthetic_refinery_factor = USA.USA_cheap_rubber_production_speed_synthetic_refinery_factor
-	}
+
+USA_cheap_rubber = {
+	icon = "GFX_idea_rubber"
+	remove_trigger  = { OR = { JAP = { is_subject_of = USA } is_subject_of = GER is_subject_of= JAP  } } 
+	production_speed_synthetic_refinery_factor = USA.USA_cheap_rubber_production_speed_synthetic_refinery_factor
+}
 
 vichy_legitimacy = {
 	icon = "GFX_idea_VFR_neu"
-war_support_factor = vichy_legitimacy_mechanic_stability_factor
-		}
-		
-	SOV_rearline_military_district = {
+	war_support_factor = vichy_legitimacy_mechanic_stability_factor
+}
+	
+	
+### EARLY SOVIET CORE DEFENCE ###	
+SOV_rearline_military_district = {
 	remove_trigger = { check_variable = {var = SOV_rearline_military_district_army_core_defence_factor	value = 0	compare = equals } } 
 	icon = "GFX_idea_SOV_military_industrial_complex"
 	army_core_defence_factor = SOV_rearline_military_district_army_core_defence_factor			
-		}
-	SOV_frontline_military_district = {
+}
+
+SOV_frontline_military_district = {
 	remove_trigger = { check_variable = {var = SOV_frontline_military_district_army_core_defence_factor	value = 0	compare = equals  } }
 	icon = "GFX_idea_SOV_military_industrial_complex"
 	army_core_defence_factor = SOV_frontline_military_district_army_core_defence_factor	
-		}
-		
-		
-		
-		GRE_Atlantean_defenses = {
-			icon = "GFX_idea_gre_martyrs_of_the_anatolian_catastrophe"
-				army_core_attack_factor = 3
-				army_core_defence_factor = 3
-		}
-		SOV_war_exhaustion = {
-			icon = GFX_idea_ger_the_great_red_menace
-			war_support_factor = SOV.soviet_war_exhaustion_war_support_factor
-			army_org_factor = SOV.soviet_war_exhaustion_army_org_factor
-		}
-		
-	    GER_war_exhaustion = {
-	    icon = "GFX_idea_generic_fascism_drift_2"
-				war_support_factor = GER.germany_war_exhaustion_war_support_factor
-				army_core_attack_factor = GER.germany_war_army_core_attack_factor
-				army_core_defence_factor = GER.germany_war_army_core_defence_factor
-					industrial_capacity_factory = GER.GER_engsieg_output
-		}
+}
+#################################
 
-		GER_fuel_mechanic = {
-			icon = "GFX_idea_ig_faben"
-			fuel_gain_factor_from_states = GER.germany_war_fuel_gain_factor_from_states	
-			production_speed_synthetic_refinery_factor = GER.germany_war_synth_construction_speed
-		}
-		ITA_sword_of_islam = {
-			icon = "GFX_idea_generic_fascism_drift_2"
-			stability_factor = italy_arab_support
-			war_support_factor = italy_arab_support
-			industrial_capacity_factory = italy_arab_support_output
-			industrial_capacity_dockyard = italy_arab_support_output
-		}
-		ITA_italian_railways_modifier = {
-			icon = "GFX_decision_ITA_claim_yugo_1"
-			max_dig_in_factor  = ITA.ITA_italian_railways_modifier_max_dig_in_factor_global
-		}
+GRE_Atlantean_defenses = {
+	icon = "GFX_idea_gre_martyrs_of_the_anatolian_catastrophe"
+		army_core_attack_factor = 3
+		army_core_defence_factor = 3
+}
+SOV_war_exhaustion = {
+	icon = GFX_idea_ger_the_great_red_menace
+	war_support_factor = SOV.soviet_war_exhaustion_war_support_factor
+	army_org_factor = SOV.soviet_war_exhaustion_army_org_factor
+}
+
+GER_war_exhaustion = {
+icon = "GFX_idea_generic_fascism_drift_2"
+		war_support_factor = GER.germany_war_exhaustion_war_support_factor
+		army_core_attack_factor = GER.germany_war_army_core_attack_factor
+		army_core_defence_factor = GER.germany_war_army_core_defence_factor
+			industrial_capacity_factory = GER.GER_engsieg_output
+}
+
+GER_fuel_mechanic = {
+	icon = "GFX_idea_ig_faben"
+	fuel_gain_factor_from_states = GER.germany_war_fuel_gain_factor_from_states	
+	production_speed_synthetic_refinery_factor = GER.germany_war_synth_construction_speed
+}
+ITA_sword_of_islam = {
+	icon = "GFX_idea_generic_fascism_drift_2"
+	stability_factor = italy_arab_support
+	war_support_factor = italy_arab_support
+	industrial_capacity_factory = italy_arab_support_output
+	industrial_capacity_dockyard = italy_arab_support_output
+}
+ITA_italian_railways_modifier = {
+	icon = "GFX_decision_ITA_claim_yugo_1"
+	max_dig_in_factor  = ITA.ITA_italian_railways_modifier_max_dig_in_factor_global
+}
+
 		gabon_1 = {
 	army_core_attack_factor = 0.075
 	army_core_defence_factor = 0.075

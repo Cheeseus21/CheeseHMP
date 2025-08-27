@@ -4804,7 +4804,7 @@ focus_tree = {
 			
 			add_to_variable = { SOV_the_red_army_army_org_factor = 0.1 }
 			set_variable = { SOV_the_red_army_experience_gain_army_factor = 0 }
-			set_variable = { SOV_the_red_army_experience_loss_factor = 0 }
+			#set_variable = { SOV_the_red_army_experience_loss_factor = 0 }
 
 			custom_effect_tooltip = SOV_lessons_of_war_ns_tt
 		}
@@ -7481,58 +7481,54 @@ focus_tree = {
 		cost = 2
 
 		available = {
-			num_of_civilian_factories_available_for_projects > 2
 			custom_trigger_tooltip = { OR = { AND = { NOT = { has_global_flag = war_in_the_west_start  }  JAP = { has_war = yes } } AND = { has_start_date > 1936.1.1.12 date > 1941.1.1   }  }    tooltip = "The Empire of Japan has attacked the Allies"}
 		}
 		
 		select_effect = {
-			add_ideas = SOV_development_of_eastern_allies
+		
 		}
 
 		completion_reward = {
-			custom_effect_tooltip = SOV_focus_select_effect_tt
-			effect_tooltip = {
-				add_ideas = SOV_development_of_eastern_allies
-			}
-		
-			custom_effect_tooltip = SOV_focus_complete_effect_tt
-			hidden_effect = {
-				remove_ideas = SOV_development_of_eastern_allies
-			}
-			
-			627 = { 
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2 
-					instant_build = yes
-				}
-			}
-			
-			if= { limit = { MON = { is_in_faction_with = SOV } }
-			631 = { 
-				add_extra_state_shared_building_slots = 2
-				    add_building_construction = {
-					type = industrial_complex
-					level = 2 
-					instant_build = yes
-				    }
-			    }	
-            }
 			transfer_state = 627
 			add_state_core = 627
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
 
-			if = { limit ={ MON = { is_ai = yes } }
-			transfer_state = 628
-			add_state_core = 628
-			transfer_state = 629
-			add_state_core = 629
-			transfer_state = 631
-			add_state_core = 631
-			transfer_state = 632
-			add_state_core = 632
-			transfer_state = 630
-			add_state_core = 630
+			if = { 
+				limit = { MON = { is_ai = no } }
+				631 = {
+					add_extra_state_shared_building_slots = 4
+					add_building_construction = {
+						type = industrial_complex 
+						level = 2
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = arms_factory 
+						level = 2
+						instant_build = yes
+					}			
+				}
+			}
+			else_if = {
+				limit = { MON = { is_ai = yes } }
+				every_state = {
+					limit = {
+						is_core_of = MON
+						is_fully_controlled_by = MON
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 10
+					}
+					remove_building = {
+						type = arms_factory
+						level = 10
+					}
+				}
+				annex_country = { target = MON transfer_troops = yes }
+				add_offsite_building = { type = industrial_complex level = 10 }
+				add_offsite_building = { type = arms_factory level = 20 }
 			}		
 		}
 	}
@@ -7551,16 +7547,18 @@ focus_tree = {
 				limit = { country_exists = MON }
 				MON = {
 					add_timed_idea = { idea = SOV_war_measures_allies days = 1095 }
-					add_ideas = tot_economic_mobilisation
 				}
-				add_relation_modifier = {
-					target = MON
-					modifier = stahlpakt73
-				}
+				#add_relation_modifier = {
+				#	target = MON
+				#	modifier = stahlpakt73
+				#}
 			}
 			else = {
 				add_political_power = 100
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			630 = { 
 				set_building_level = {
 					type = bunker

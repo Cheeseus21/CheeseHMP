@@ -1,0 +1,1562 @@
+recommended_aircraft = {
+	recommended_fighter = yes 
+	recommended_heavy_fighter = yes 
+	recommended_naval_bomber = yes 
+	recommended_maritime_patrol = yes 
+	recommanded_medium_bomber = yes
+	recommended_strat_bomber = yes 
+	recommended_CAS = yes
+}
+recommended_fighter = {
+	if = { limit = { has_tech = basic_small_airframe NOT = { has_tech = improved_small_airframe } }
+	
+		if = { limit = { has_tech =  survivability_studies has_tech =  range_improvements  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small		
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small		
+				}
+			}			
+			}		
+		}
+
+		if = { limit = { has_tech =  survivability_studies NOT ={  has_tech =  range_improvements  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+				}
+			}			
+			}		
+		}
+
+		
+				if = { limit = { has_tech =  range_improvements NOT ={  has_tech = survivability_studies  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = high_octane_fuel_small
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = high_octane_fuel_small
+				}
+			}			
+			}		
+		}
+		
+		
+		
+					if = { limit = {  NOT ={ has_tech =  range_improvements } NOT ={  has_tech = survivability_studies  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = high_octane_fuel_small
+					special_type_slot_2 = lmg_defense_turret
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Basic Light Fighter" 
+				type = small_plane_airframe_1
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					engine_type_slot = engine_2_1x
+					special_type_slot_1 = high_octane_fuel_small
+					special_type_slot_2 = lmg_defense_turret
+				}
+			}			
+			}		
+		}	
+		
+	}
+	if = { limit = { has_tech = improved_small_airframe NOT = { has_tech = advanced_small_airframe } }
+
+	if = { limit ={  NOT = {has_tech = aa_cannon_1 }  }
+		if = { limit = {has_tech =  survivability_studies has_tech =  range_improvements  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small		
+					special_type_slot_3 = high_octane_fuel_small
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small	
+					special_type_slot_3 = high_octane_fuel_small					
+				}
+			}			
+			}		
+		}
+
+		if = { limit = { has_tech =  survivability_studies NOT ={  has_tech =  range_improvements  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x			
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x				
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}		
+		}
+
+		
+				if = { limit = { has_tech =  range_improvements NOT ={  has_tech = survivability_studies  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x				
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x				
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}		
+		}
+		
+		
+		
+					if = { limit = {  NOT ={ has_tech =  range_improvements } NOT ={  has_tech = survivability_studies  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = high_octane_fuel_small
+					special_type_slot_2 = lmg_defense_turret
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x				
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = high_octane_fuel_small
+					special_type_slot_2 = lmg_defense_turret
+				}
+			}			
+			}		
+		}	
+		}
+	
+	
+	
+	if = { limit ={  has_tech = aa_cannon_1  }
+		if = { limit = {has_tech =  survivability_studies has_tech =  range_improvements  }
+		if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small	
+					special_type_slot_3 = high_octane_fuel_small					
+				}
+			}		
+			}
+			if = { limit = { NOT = { has_tech = aa_hmg }   }
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small		
+					special_type_slot_3 = high_octane_fuel_small
+				}
+			}		
+			}		
+		}
+
+		if = { limit = { has_tech =  survivability_studies NOT ={  has_tech =  range_improvements  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}		
+		}
+
+		
+				if = { limit = { has_tech =  range_improvements NOT ={  has_tech = survivability_studies  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x					
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x						
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}		
+		}
+		
+		
+		
+					if = { limit = {  NOT ={ has_tech =  range_improvements } NOT ={  has_tech = survivability_studies  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x		
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = high_octane_fuel_small
+					special_type_slot_2 = lmg_defense_turret
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+				fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x					
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = high_octane_fuel_small
+					special_type_slot_2 = lmg_defense_turret
+				}
+			}			
+			}		
+		}	
+		}
+		
+		
+		
+		
+		
+		
+		
+	if = { limit ={  has_tech = aa_cannon_2  }
+		if = { limit = {has_tech =  survivability_studies has_tech =  range_improvements  }
+		if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small	
+					special_type_slot_3 = high_octane_fuel_small					
+				}
+			}		
+			}
+			if = { limit = { NOT = { has_tech = aa_hmg }   }
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small	
+					special_type_slot_3 = high_octane_fuel_small					
+					
+				}
+			}		
+			}		
+		}
+
+		if = { limit = { has_tech =  survivability_studies NOT ={  has_tech =  range_improvements  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x				
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret					
+
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x				
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = armor_plate_small
+					special_type_slot_2 = high_octane_fuel_small
+					special_type_slot_3 = lmg_defense_turret							
+				}
+			}			
+			}		
+		}
+
+		
+				if = { limit = { has_tech =  range_improvements NOT ={  has_tech = survivability_studies  }  }
+			if = { limit = { has_tech = aa_hmg }    
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x					
+					engine_type_slot = engine_3_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = high_octane_fuel_small	
+					special_type_slot_3 = lmg_defense_turret
+
+				}
+			}			
+			}
+				if = { limit = { NOT ={  has_tech = aa_hmg }  }   
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x	
+					special_type_slot_1 = drop_tanks
+										engine_type_slot = engine_3_1x
+						special_type_slot_2 = high_octane_fuel_small
+						special_type_slot_3 = lmg_defense_turret
+				}
+			}			
+			}		
+		}
+		
+		
+		
+					if = { limit = {  NOT ={ has_tech =  range_improvements } NOT ={  has_tech = survivability_studies  }  }
+			create_equipment_variant = {
+				name = "Improved Light Fighter" 
+				type = small_plane_airframe_2
+				modules = {
+				fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x					
+					engine_type_slot = engine_3_1x
+						special_type_slot_1 = high_octane_fuel_small		
+special_type_slot_2 = lmg_defense_turret						
+				}
+			}			
+		}	
+		}
+	
+	
+	
+	
+	}	
+	if = { limit = { has_tech = advanced_small_airframe }
+		if = { limit = {has_tech = aa_cannon_2 }    
+				create_equipment_variant = {
+				name = "Advanced Light Fighter" 
+				type = small_plane_airframe_3
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = light_mg_2x
+					fixed_auxiliary_weapon_slot_2 = light_mg_2x
+					engine_type_slot = engine_4_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small		
+					special_type_slot_3 = high_octane_fuel_small					
+				}
+			}			
+		}
+		if = { limit = { NOT = { has_tech = aa_cannon_2 }    }
+				create_equipment_variant = {
+				name = "Advanced Light Fighter" 
+				type = small_plane_airframe_3
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_2x
+					engine_type_slot = engine_4_1x
+					special_type_slot_1 = drop_tanks
+					special_type_slot_2 = armor_plate_small	
+					special_type_slot_3 = high_octane_fuel_small					
+				}
+			}			
+		}
+	
+	
+	}		
+}
+recommended_heavy_fighter = {
+	if = { limit = { has_tech = basic_medium_airframe NOT = { has_tech = improved_medium_airframe } }
+		if = { limit = { has_tech =  survivability_studies  }
+			if = { limit = { has_tech =  aa_hmg  has_tech =  aa_cannon_1 }
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = hmg_defense_turret
+					special_type_slot_2 = armor_plate_medium	
+					special_type_slot_3 = high_octane_fuel_medium
+				}
+			}
+			}
+			if = { limit = { NOT = {  has_tech =  aa_hmg  } has_tech =  aa_cannon_1 }
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+					special_type_slot_2 = armor_plate_medium
+special_type_slot_3 = high_octane_fuel_medium					
+				}
+			}
+			}
+			if = { limit = { has_tech =  aa_hmg NOT = {  has_tech =  aa_cannon_1 } }
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_4x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = hmg_defense_turret_2x
+					special_type_slot_2 = hmg_defense_turret_2x
+					special_type_slot_3 = armor_plate_medium
+					special_type_slot_4 = high_octane_fuel_medium
+				}
+			}
+			}
+			if = { limit = { NOT = { has_tech =  aa_hmg } NOT = {  has_tech =  aa_cannon_1 } } 
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_4x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+					special_type_slot_2 = lmg_defense_turret_2x
+					special_type_slot_3 = armor_plate_medium
+					special_type_slot_4 = high_octane_fuel_medium
+				}
+			}
+			}			
+		}
+		if = { limit = { NOT = { has_tech =  survivability_studies  } }
+if = { limit = { has_tech =  aa_hmg  has_tech =  aa_cannon_1 }
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = hmg_defense_turret
+					special_type_slot_2 = high_octane_fuel_medium
+				}
+			}
+			}
+			if = { limit = { NOT = {  has_tech =  aa_hmg  } has_tech =  aa_cannon_1 }
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+					special_type_slot_2 = high_octane_fuel_medium
+				}
+			}
+			}
+			if = { limit = { has_tech =  aa_hmg NOT = {  has_tech =  aa_cannon_1 } }
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_4x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = hmg_defense_turret_2x
+					special_type_slot_2 = hmg_defense_turret_2x
+					special_type_slot_3 = high_octane_fuel_medium
+				}
+			}
+			}
+			if = { limit = { NOT = { has_tech =  aa_hmg } NOT = {  has_tech =  aa_cannon_1 } } 
+			create_equipment_variant = {
+				name = "Basic Heavy Fighter" 
+				type = medium_plane_fighter_airframe_1
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_4x
+					engine_type_slot = engine_2_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+					special_type_slot_2 = lmg_defense_turret_2x
+					special_type_slot_3 = high_octane_fuel_medium
+				}
+			}
+			}			
+		}
+	} #basic heavy fighter done
+	
+
+		if = { limit = { has_tech = improved_medium_airframe NOT = { has_tech = advanced_medium_airframe } }
+		if = { limit = { has_tech =  survivability_studies  }
+			if = { limit = { has_tech =  aa_hmg  has_tech =  aa_cannon_1 }
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_2 = aircraft_cannon_1_2x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = hmg_defense_turret
+					special_type_slot_2 = armor_plate_medium	
+					special_type_slot_3 = lmg_defense_turret
+special_type_slot_4 = high_octane_fuel_medium					
+					
+				}
+			}
+			}
+			if = { limit = { NOT = {  has_tech =  aa_hmg  } has_tech =  aa_cannon_1 }
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_2 = aircraft_cannon_1_2x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+					special_type_slot_2 = armor_plate_medium	
+										special_type_slot_3 = high_octane_fuel_medium
+										special_type_slot_4 = empty
+				}
+			}
+			}
+				if = { limit = {  has_tech =  aa_cannon_2 }
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_2 = aircraft_cannon_1_2x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = armor_plate_medium
+					special_type_slot_2 = high_octane_fuel_medium
+					special_type_slot_3 = empty
+				}
+			}
+			}		
+			
+			
+			
+			if = { limit = { has_tech =  aa_hmg NOT = {  has_tech =  aa_cannon_1 } }
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_4x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = hmg_defense_turret_2x
+					special_type_slot_2 = hmg_defense_turret_2x
+					special_type_slot_3 = armor_plate_medium
+					special_type_slot_4 = high_octane_fuel_medium
+				}
+			}
+			}
+			if = { limit = { NOT = { has_tech =  aa_hmg } NOT = {  has_tech =  aa_cannon_1 } } 
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_4x
+					fixed_auxiliary_weapon_slot_2 = light_mg_4x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+					special_type_slot_2 = lmg_defense_turret_2x
+					special_type_slot_3 = armor_plate_medium
+					special_type_slot_4 = high_octane_fuel_medium
+				}
+			}
+			}			
+		}
+		if = { limit = { NOT = { has_tech =  survivability_studies  } }
+		if = { limit = {  has_tech =  aa_cannon_1 }
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_2 = aircraft_cannon_1_2x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = cannon_defense_turret_2x
+										special_type_slot_2 = high_octane_fuel_medium
+										special_type_slot_3 = empty
+					
+				}
+			}
+			}
+					if = { limit = {  has_tech =  aa_cannon_2 }
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_2 = aircraft_cannon_2_2x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+										special_type_slot_2 = high_octane_fuel_medium
+															special_type_slot_3 = empty
+					
+				}
+			}
+			}
+			if = { limit = { has_tech =  aa_hmg NOT = {  has_tech =  aa_cannon_1 } }
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_4x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = hmg_defense_turret_2x
+					special_type_slot_2 = hmg_defense_turret_2x
+										special_type_slot_3 = high_octane_fuel_medium
+				}
+			}
+			}
+			if = { limit = { NOT = { has_tech =  aa_hmg } NOT = {  has_tech =  aa_cannon_1 } } 
+			create_equipment_variant = {
+				name = "Improved Heavy Fighter" 
+				type = medium_plane_fighter_airframe_2
+				modules = {
+					fixed_main_weapon_slot = light_mg_4x
+					fixed_auxiliary_weapon_slot_1 = light_mg_4x
+					fixed_auxiliary_weapon_slot_2 = light_mg_4x
+					engine_type_slot = engine_3_2x
+					special_type_slot_1 = lmg_defense_turret_2x
+					special_type_slot_2 = lmg_defense_turret_2x
+										special_type_slot_3 = high_octane_fuel_medium
+				}
+			}
+			}		
+		}
+	} #improved heavy fighter done
+
+	
+	
+	if = { limit = {has_tech = advanced_medium_airframe }
+			if = { limit = { has_tech = aa_cannon_2 } 
+				create_equipment_variant = {
+				name = "Advanced Heavy Fighter" 
+				type = medium_plane_fighter_airframe_3
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_2 = aircraft_cannon_2_2x
+					fixed_auxiliary_weapon_slot_3 = rocket_rails
+					engine_type_slot = engine_4_2x
+					special_type_slot_1 = armor_plate_medium
+					special_type_slot_2 = lmg_defense_turret_2x
+					special_type_slot_3 = lmg_defense_turret_2x
+					special_type_slot_4 = high_octane_fuel_medium
+				}
+			}					
+				}
+			if = { limit = { NOT ={  has_tech = aa_cannon_2 } has_tech = aa_cannon_1 }
+				create_equipment_variant = {
+				name = "Advanced Heavy Fighter" 
+				type = medium_plane_fighter_airframe_3
+				modules = {
+					fixed_main_weapon_slot = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_1 = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_2 = aircraft_cannon_1_2x
+					fixed_auxiliary_weapon_slot_3 = rocket_rails
+					engine_type_slot = engine_4_2x
+					special_type_slot_1 = armor_plate_medium
+					special_type_slot_2 = cannon_defense_turret_2x
+					special_type_slot_3 = cannon_defense_turret
+					special_type_slot_4 = high_octane_fuel_medium
+				}
+			}					
+				}
+				if = { limit = { NOT ={  has_tech = aa_cannon_2 } NOT ={has_tech = aa_cannon_1 }  }
+				create_equipment_variant = {
+				name = "Advanced Heavy Fighter" 
+				type = medium_plane_fighter_airframe_3
+				modules = {
+					fixed_main_weapon_slot = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_1 = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_2 = heavy_mg_4x
+					fixed_auxiliary_weapon_slot_3 = rocket_rails
+					engine_type_slot = engine_4_2x
+					special_type_slot_1 = armor_plate_medium
+					special_type_slot_2 = hmg_defense_turret_2x
+					special_type_slot_3 = hmg_defense_turret_2x
+					special_type_slot_4 = high_octane_fuel_medium
+				}
+			}					
+				}
+	
+	}
+}
+recommended_naval_bomber = {
+if = { limit = { has_tech = basic_small_airframe NOT = { has_tech = improved_small_airframe } has_tech = range_improvements}
+		create_equipment_variant = {
+		name = "Basic Naval Bomber"
+		type = small_plane_naval_bomber_airframe_1
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = empty
+			special_type_slot_2 = drop_tanks
+		}
+	}
+	}
+	if = { limit = { has_tech = basic_small_airframe NOT = { OR =  { has_tech = improved_small_airframe  has_tech = range_improvements} } }
+		create_equipment_variant = {
+		name = "Basic Naval Bomber"
+		type = small_plane_naval_bomber_airframe_1
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = empty
+		}
+	}
+	}
+	if = { limit = { has_tech = improved_small_airframe NOT = { has_tech = advanced_small_airframe } }
+		create_equipment_variant = {
+		name = "Improved Naval Bomber"
+		type = small_plane_naval_bomber_airframe_2
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = empty
+			special_type_slot_2 = drop_tanks
+			special_type_slot_3 = floats
+		}
+	}
+	}
+		if = { limit = { has_tech = survivability_studies has_tech = advanced_small_airframe  }
+		create_equipment_variant = {
+		name = "Advanced Naval Bomber"
+		type = small_plane_naval_bomber_airframe_3
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			engine_type_slot = engine_4_1x
+			special_type_slot_1 = empty
+			special_type_slot_2 = drop_tanks
+			special_type_slot_3 = floats
+			special_type_slot_4 = armor_plate_small
+			
+		}
+	}
+	}
+	
+		if = { limit = { NOT = {  has_tech = survivability_studies } has_tech = advanced_small_airframe  }
+		create_equipment_variant = {
+		name = "Advanced Naval Bomber"
+		type = small_plane_naval_bomber_airframe_3
+		modules = {
+			fixed_main_weapon_slot = empty
+			engine_type_slot = engine_4_1x
+			special_type_slot_1 = dive_brakes_small
+			special_type_slot_2 = drop_tanks
+			special_type_slot_3 = floats
+			special_type_slot_4 = lmg_defense_turret
+			
+		}
+	}
+	}
+}
+recommended_maritime_patrol = {
+
+	if = { limit = { NOT = { has_tech = survivability_studies }  has_tech = basic_large_airframe NOT = { has_tech = improved_large_airframe } }
+		create_equipment_variant = {
+		name = "Basic Maritime Patrol Bomber" 
+		type = large_plane_maritime_patrol_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			fixed_auxiliary_weapon_slot_1 = torpedo_mounting
+			engine_type_slot = engine_2_4x
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = flying_boat_large	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = lmg_defense_turret_2x
+			special_type_slot_5 = lmg_defense_turret_2x		
+			}
+		}
+	}	
+	if = { limit = { NOT = { has_tech = survivability_studies }  has_tech = improved_large_airframe NOT = { has_tech = advanced_large_airframe } }
+		create_equipment_variant = {
+		name = "Improved Maritime Patrol Bomber" 
+		type = large_plane_maritime_patrol_plane_airframe_2
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			fixed_auxiliary_weapon_slot_1 = torpedo_mounting
+			fixed_auxiliary_weapon_slot_2 = torpedo_mounting
+			engine_type_slot = engine_3_4x
+			special_type_slot_1 = hmg_defense_turret_2x
+			special_type_slot_2 = flying_boat_large	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = hmg_defense_turret_2x
+			special_type_slot_5 = hmg_defense_turret_2x 
+			}
+		}
+	}	
+	if = { limit = { NOT = { has_tech = survivability_studies }  has_tech = advanced_large_airframe }
+		create_equipment_variant = {
+		name = "Advanced Maritime Patrol Bomber" 
+		type = large_plane_maritime_patrol_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			fixed_auxiliary_weapon_slot_1 = torpedo_mounting
+			fixed_auxiliary_weapon_slot_2 = torpedo_mounting
+			engine_type_slot = engine_4_4x
+			special_type_slot_1 = cannon_defense_turret_2x
+			special_type_slot_2 = flying_boat_large	
+			special_type_slot_3 = cannon_defense_turret_2x
+			special_type_slot_4 = cannon_defense_turret_2x
+			special_type_slot_5 = cannon_defense_turret_2x 
+			special_type_slot_6 = cannon_defense_turret_2x 
+			
+			}
+		}
+	}
+
+
+
+
+	if = { limit = { has_tech = survivability_studies  has_tech = basic_large_airframe NOT = { has_tech = improved_large_airframe } }
+		create_equipment_variant = {
+		name = "Basic Maritime Patrol Bomber" 
+		type = large_plane_maritime_patrol_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			fixed_auxiliary_weapon_slot_1 = torpedo_mounting
+			engine_type_slot = engine_2_4x
+			special_type_slot_1 = armor_plate_large
+			special_type_slot_2 = flying_boat_large	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = hmg_defense_turret_2x
+			special_type_slot_5 = lmg_defense_turret_2x		
+			}
+		}
+	}	
+	if = { limit = { has_tech = survivability_studies  has_tech = improved_large_airframe NOT = { has_tech = advanced_large_airframe } }
+		create_equipment_variant = {
+		name = "Improved Maritime Patrol Bomber" 
+		type = large_plane_maritime_patrol_plane_airframe_2
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			fixed_auxiliary_weapon_slot_1 = torpedo_mounting
+			fixed_auxiliary_weapon_slot_2 = torpedo_mounting
+			engine_type_slot = engine_3_4x
+			special_type_slot_1 = armor_plate_large
+			special_type_slot_2 = flying_boat_large	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = hmg_defense_turret_2x
+			special_type_slot_5 = hmg_defense_turret_2x 
+			}
+		}
+	}	
+	if = { limit = { has_tech = survivability_studies  has_tech = advanced_large_airframe }
+		create_equipment_variant = {
+		name = "Advanced Maritime Patrol Bomber" 
+		type = large_plane_maritime_patrol_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting
+			fixed_auxiliary_weapon_slot_1 = torpedo_mounting
+			fixed_auxiliary_weapon_slot_2 = torpedo_mounting
+			engine_type_slot = engine_4_4x
+			special_type_slot_1 = armor_plate_large
+			special_type_slot_2 = flying_boat_large	
+			special_type_slot_3 = cannon_defense_turret_2x
+			special_type_slot_4 = cannon_defense_turret_2x
+			special_type_slot_5 = cannon_defense_turret_2x 
+			special_type_slot_6 = cannon_defense_turret_2x 
+			
+			}
+		}
+	}
+
+}
+recommanded_medium_bomber = {
+	if = { limit = { NOT = { has_tech = survivability_studies }  has_tech = basic_medium_airframe NOT = { has_tech = improved_medium_airframe } }
+		create_equipment_variant = {
+		name = "Basic Medium Bomber" 
+		type = medium_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			engine_type_slot = engine_2_2x
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			}
+		}
+	}	
+		if = { limit = { NOT = { has_tech = survivability_studies }  has_tech = improved_medium_airframe NOT = { has_tech = advanced_medium_airframe } }
+		create_equipment_variant = {
+		name = "Improved Medium Bomber" 
+		type = medium_plane_airframe_2
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = medium_bomb_bay
+			engine_type_slot = engine_3_2x
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = bomb_sights_1
+			}
+		}
+	}		
+			if = { limit = { NOT = { has_tech = survivability_studies }  has_tech = improved_computing_machine has_tech = advanced_medium_airframe }
+		create_equipment_variant = {
+		name = "Advanced Medium Bomber" 
+		type = medium_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = torpedo_mounting
+			engine_type_slot = engine_4_2x
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = bomb_sights_2
+			}
+		}
+	}	
+	if = { limit = { NOT = { has_tech = survivability_studies }  NOT = {  has_tech = improved_computing_machine } has_tech = advanced_medium_airframe }
+		create_equipment_variant = {
+		name = "Advanced Medium Bomber" 
+		type = medium_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = torpedo_mounting
+			engine_type_slot = engine_4_2x
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = lmg_defense_turret_2x
+			}
+		}
+	}	
+
+
+
+
+
+
+
+
+
+
+
+		if = { limit = { has_tech = survivability_studies  has_tech = basic_medium_airframe NOT = { has_tech = improved_medium_airframe } }
+		create_equipment_variant = {
+		name = "Basic Medium Bomber" 
+		type = medium_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			engine_type_slot = engine_2_2x
+			special_type_slot_1 = armor_plate_medium
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			}
+		}
+	}	
+		if = { limit = { has_tech = survivability_studies  has_tech = improved_medium_airframe NOT = { has_tech = advanced_medium_airframe } }
+		create_equipment_variant = {
+		name = "Improved Medium Bomber" 
+		type = medium_plane_airframe_2
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = medium_bomb_bay
+			engine_type_slot = engine_3_2x
+			special_type_slot_1 = armor_plate_medium
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = bomb_sights_1
+			}
+		}
+	}		
+			if = { limit = { has_tech = survivability_studies  has_tech = improved_computing_machine has_tech = advanced_medium_airframe }
+		create_equipment_variant = {
+		name = "Advanced Medium Bomber" 
+		type = medium_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = torpedo_mounting
+			engine_type_slot = engine_4_2x
+			special_type_slot_1 = armor_plate_medium
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = bomb_sights_2
+			}
+		}
+	}	
+	if = { limit = { has_tech = survivability_studies  NOT = {  has_tech = improved_computing_machine } has_tech = advanced_medium_airframe }
+		create_equipment_variant = {
+		name = "Advanced Medium Bomber" 
+		type = medium_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = torpedo_mounting
+			engine_type_slot = engine_4_2x
+			special_type_slot_1 = armor_plate_medium
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = bomb_sights_1
+			}
+		}
+	}	
+}
+recommended_strat_bomber = {
+
+
+
+	if = { limit = {  NOT = {has_tech = survivability_studies } has_tech = basic_large_airframe NOT = { has_tech = improved_large_airframe } }
+		create_equipment_variant = {
+		name = "Basic Strategic Bomber" 
+		type = large_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			engine_type_slot = engine_2_4x
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = lmg_defense_turret_2x			}
+		}
+	}	
+	
+	if = { limit = {  NOT = {has_tech = survivability_studies } has_tech = improved_large_airframe NOT = { has_tech = advanced_large_airframe } }
+		create_equipment_variant = {
+		name = "Improved Strategic Bomber" 
+		type = large_plane_airframe_2
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = large_bomb_bay
+			engine_type_slot = engine_3_4x
+			special_type_slot_1 = hmg_defense_turret_2x
+			special_type_slot_2 = hmg_defense_turret_2x	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = bomb_sights_1
+			}
+		}
+	}	
+	if = { limit = {  NOT = {has_tech = survivability_studies } has_tech = improved_computing_machine has_tech = advanced_large_airframe }
+		create_equipment_variant = {
+		name = "Advanced Strategic Bomber" 
+		type = large_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = large_bomb_bay
+			engine_type_slot = engine_4_4x
+			special_type_slot_1 = hmg_defense_turret_2x
+			special_type_slot_2 = hmg_defense_turret_2x	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = hmg_defense_turret_2x
+			special_type_slot_5 = bomb_sights_2 
+			}
+		}
+	}
+		if = { limit = { NOT = { has_tech = improved_computing_machine } NOT = {has_tech = survivability_studies } has_tech = advanced_large_airframe }
+		create_equipment_variant = {
+		name = "Advanced Strategic Bomber" 
+		type = large_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = large_bomb_bay
+			engine_type_slot = engine_4_4x
+			special_type_slot_1 = hmg_defense_turret_2x
+			special_type_slot_2 = hmg_defense_turret_2x	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = hmg_defense_turret_2x
+			special_type_slot_5 = bomb_sights_1 
+			}
+		}
+	}
+
+
+
+
+
+
+	if = { limit = {  has_tech = survivability_studies has_tech = basic_large_airframe NOT = { has_tech = improved_large_airframe } }
+		create_equipment_variant = {
+		name = "Basic Strategic Bomber" 
+		type = large_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			engine_type_slot = engine_2_4x
+			special_type_slot_1 = armor_plate_large
+			special_type_slot_2 = lmg_defense_turret_2x	
+			special_type_slot_3 = lmg_defense_turret_2x
+			special_type_slot_4 = lmg_defense_turret_2x			}
+		}
+	}	
+	
+	if = { limit = {  has_tech = survivability_studies has_tech = improved_large_airframe NOT = { has_tech = advanced_large_airframe } }
+		create_equipment_variant = {
+		name = "Improved Strategic Bomber" 
+		type = large_plane_airframe_2
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = large_bomb_bay
+			engine_type_slot = engine_3_4x
+			special_type_slot_1 = armor_plate_large
+			special_type_slot_2 = hmg_defense_turret_2x	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = bomb_sights_1
+			}
+		}
+	}	
+	if = { limit = {  has_tech = survivability_studies has_tech = improved_computing_machine has_tech = advanced_large_airframe }
+		create_equipment_variant = {
+		name = "Advanced Strategic Bomber" 
+		type = large_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = large_bomb_bay
+			engine_type_slot = engine_4_4x
+			special_type_slot_1 = armor_plate_large
+			special_type_slot_2 = hmg_defense_turret_2x	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = hmg_defense_turret_2x
+			special_type_slot_5 = bomb_sights_2 
+			}
+		}
+	}
+		if = { limit = { NOT = { has_tech = improved_computing_machine } has_tech = survivability_studies has_tech = advanced_large_airframe }
+		create_equipment_variant = {
+		name = "Advanced Strategic Bomber" 
+		type = large_plane_airframe_3
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = large_bomb_bay
+			fixed_auxiliary_weapon_slot_3 = large_bomb_bay
+			engine_type_slot = engine_4_4x
+			special_type_slot_1 = armor_plate_large
+			special_type_slot_2 = hmg_defense_turret_2x	
+			special_type_slot_3 = hmg_defense_turret_2x
+			special_type_slot_4 = hmg_defense_turret_2x
+			special_type_slot_5 = bomb_sights_1 
+			}
+		}
+	}
+}	
+recommended_CAS = {
+	if = { limit = { has_tech = basic_small_airframe NOT = { has_tech = improved_small_airframe }}   #only CAS 1
+		if = { limit = {  has_tech = range_improvements  }
+	create_equipment_variant = {
+		name = "Basic CAS"
+		type = small_plane_cas_airframe_1
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small
+		}
+	}
+		}
+	else = {limit = {  NOT = { has_tech = range_improvements  }  }
+	create_equipment_variant = {
+		name = "Basic CAS"
+		type = small_plane_cas_airframe_1
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = dive_brakes_small
+		}
+	}
+	}
+	}
+	
+	if = { limit = { has_tech = improved_small_airframe NOT = { has_tech = advanced_small_airframe }}#only CAS 2
+		if = { limit = {  has_tech = survivability_studies has_tech = rocket_artillery has_tech = range_improvements OR = { has_tech = aa_cannon_2 has_tech = antitank2  } }
+	create_equipment_variant = {
+		name = "Improved CAS" #gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = tank_buster_2
+			fixed_auxiliary_weapon_slot_1 = rocket_rails
+			fixed_auxiliary_weapon_slot_2 = rocket_rails
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = armor_plate_small
+		}
+	}
+	
+		}
+	else_if = { limit = {  has_tech = survivability_studies has_tech = range_improvements NOT ={  has_tech = rocket_artillery } OR = { has_tech = aa_cannon_2 has_tech = antitank2  } }
+	create_equipment_variant = {
+		name = "Improved CAS" #less gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = tank_buster_2
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			fixed_auxiliary_weapon_slot_2 = bomb_locks
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = armor_plate_small
+		}
+	}
+		}
+			else_if = { limit = {  has_tech = survivability_studies has_tech = range_improvements NOT ={ OR = { has_tech = aa_cannon_2 has_tech = antitank2 has_tech = rocket_artillery }   } }
+	create_equipment_variant = {
+		name = "Improved CAS" #less gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			fixed_auxiliary_weapon_slot_2 = bomb_locks
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = armor_plate_small
+		}
+	}
+		}	
+	
+		else_if = { limit = {  NOT = { has_tech = survivability_studies } has_tech = rocket_artillery has_tech = range_improvements OR = { has_tech = aa_cannon_2 has_tech = antitank2  } }
+	create_equipment_variant = {
+		name = "Improved CAS" #gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = tank_buster_2
+			fixed_auxiliary_weapon_slot_1 = rocket_rails
+			fixed_auxiliary_weapon_slot_2 = rocket_rails
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = empty
+		}
+	}
+	
+		}
+	else_if = { limit = { NOT = {  has_tech = survivability_studies } has_tech = range_improvements NOT ={  has_tech = rocket_artillery } OR = { has_tech = aa_cannon_2 has_tech = antitank2  } }
+	create_equipment_variant = {
+		name = "Improved CAS" #less gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = tank_buster_2
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			fixed_auxiliary_weapon_slot_2 = bomb_locks
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = empty
+		}
+	}
+		}
+			else_if = { limit = { NOT = {  has_tech = survivability_studies } has_tech = range_improvements NOT ={ OR = { has_tech = aa_cannon_2 has_tech = antitank2   has_tech = rocket_artillery }  }}
+	create_equipment_variant = {
+		name = "Improved CAS" #less gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			fixed_auxiliary_weapon_slot_2 = bomb_locks
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = empty
+		}
+	}
+		}
+		
+			else_if = { limit = {  NOT = { OR = { has_tech = survivability_studies has_tech = rocket_artillery } } has_tech = range_improvements OR = { has_tech = aa_cannon_2 has_tech = antitank2  } }
+	create_equipment_variant = {
+		name = "Improved CAS" #gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = tank_buster_2
+			fixed_auxiliary_weapon_slot_1 = rocket_rails
+			fixed_auxiliary_weapon_slot_2 = rocket_rails
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = empty
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = empty
+		}
+	}
+	
+		}
+	else_if = { limit = { NOT = {  OR ={  has_tech = survivability_studies has_tech = range_improvements } } NOT ={  has_tech = rocket_artillery } OR = { has_tech = aa_cannon_2 has_tech = antitank2  } }
+	create_equipment_variant = {
+		name = "Improved CAS" #less gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = tank_buster_2
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			fixed_auxiliary_weapon_slot_2 = bomb_locks
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = empty
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = empty
+		}
+	}
+		}
+			else_if = { limit = { NOT = { OR = {  has_tech = survivability_studies  has_tech = range_improvements } }  NOT ={ OR = { has_tech = aa_cannon_2 has_tech = antitank2  has_tech = rocket_artillery }}   }
+	create_equipment_variant = {
+		name = "Improved CAS" #less gucci
+		type = small_plane_cas_airframe_2
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = bomb_locks
+			fixed_auxiliary_weapon_slot_2 = bomb_locks
+			engine_type_slot = engine_3_1x
+			special_type_slot_1 = empty
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = empty
+		}
+	}
+	}	
+	
+}
+	if = { limit = { has_tech = advanced_small_airframe } #only CAS 3
+
+	create_equipment_variant = {
+		name = "Advanced CAS" #less gucci
+		type = small_plane_cas_airframe_3
+		modules = {
+			fixed_main_weapon_slot = tank_buster_2
+			fixed_auxiliary_weapon_slot_1 = tank_buster_1
+			fixed_auxiliary_weapon_slot_2 = rocket_rails
+			fixed_auxiliary_weapon_slot_3 = rocket_rails
+			engine_type_slot = engine_4_1x
+			special_type_slot_1 = drop_tanks
+			special_type_slot_2 = dive_brakes_small	
+			special_type_slot_3 = armor_plate_small
+			
+		}
+	}
+
+}
+}

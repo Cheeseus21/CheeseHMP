@@ -7134,6 +7134,7 @@ propaganda_effortsx = {
             country_event = { id = wtt_news.42 hours = 6}
 		}
 	}
+	
     GER_case_anton = {
         icon = generic_prepare_civil_war
         
@@ -7199,7 +7200,12 @@ propaganda_effortsx = {
         }
         visible = { 
             country_exists = EFR 
-            EFR = {  is_ai = yes }
+            OR = { 
+				EFR = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
         }
         cost = 0
         fire_only_once = yes
@@ -7246,7 +7252,12 @@ propaganda_effortsx = {
         }
         visible = { 
             country_exists = HUN 
-            HUN = {  is_ai = yes }
+            OR = { 
+				HUN = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
         }
         cost = 0
         fire_only_once = yes
@@ -7344,7 +7355,13 @@ propaganda_effortsx = {
             CZE = { OR = { is_ai = yes has_country_flag = annex_manual_override } }
         }
         visible = {
-            CZE = {  is_ai = yes }   
+			country_exists = CZE
+            OR = { 
+				EFR = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
         }
         cost = 0
         fire_only_once = yes
@@ -7376,7 +7393,12 @@ propaganda_effortsx = {
         }
         visible = {
             country_exists = ROM
-            ROM = {  is_ai = yes }
+            OR = { 
+				ROM = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
         }
         cost = 0
         fire_only_once = yes
@@ -7469,7 +7491,12 @@ propaganda_effortsx = {
 		available = { OR = { AND = { SPR = {  is_ai = yes }	}	 has_country_flag = annex_manual_override } }
 		visible =  { 
             country_exists = SPR 
-            SPR = {  is_ai = yes }
+            OR = { 
+				SPR = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
         } 
 		cost = 0		
 		fire_only_once = yes 
@@ -7536,7 +7563,12 @@ propaganda_effortsx = {
         }
         visible = { 
 			country_exists = BUL 
-			BUL = {  is_ai = yes }
+			OR = { 
+				BUL = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
 		}
         allowed = { tag = GER }
         fire_only_once = yes
@@ -7687,63 +7719,7 @@ propaganda_effortsx = {
 		}
 		timeout_effect = {	}
 	}
-	
-	# GER_annex_spr = { 
-		# icon = generic_operation
-		# allowed = {	original_tag = GER	}
-		# available = { OR = { AND = { SPR = {  is_ai = yes }	}	 has_country_flag = annex_manual_override } }
-		# visible =  { country_exists = SPR } 
-		# cost = 0		
-		# fire_only_once = yes 
-		# complete_effect = {
-			# add_manpower = 2000000
-			# hidden_effect = {
-			    # SPR_relocate_civs_mils = yes
-			    # SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# SPR_relocate_civs_mils = yes
-				# add_to_variable = { paratrooper_div_cap = 2 }  
-				# set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
-				# annex_country = {
-					# target = SPR  
-					# transfer_troops = yes 
-				# }
-				# release = SPR   
-				# fuel_system_refresh_list = yes
-				# SPR = { set_equipment_fraction = 0 }
-				# hidden_effect = { GER = { country_event = { id = mtg_germany.1346 days = 1 }  } 
-					# if = { 
-						# limit = { AND = { EFR = {owns_state = 26 } NOT = { EFR = { has_country_flag = EFR_torch_declared } } } }	
-						# EFR = { every_owned_state = {  limit = {  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } }
-					# } 
-				# }
-				# add_resource = {
-					# type = steel
-					# amount = 55 
-					# state = 153
-				# }
-				# add_resource = {
-					# type = tungsten
-					# amount = 60 
-					# state = 153
-				# }			
-				# add_resource = {
-					# type = chromium
-					# amount = 50 
-					# state = 153
-				# }
-			# }
-			# custom_effect_tooltip = GER_annex_spain_tt
-		# }
-	# }
+
 
 			USA_join_the_war = { 
 	 	available = { OR = { date > 1940.12.15 uk_needs_help = yes } } 
@@ -7881,7 +7857,12 @@ propaganda_effortsx = {
 		
 		visible = { 
 			country_exists = SAF 
-			SAF = { is_ai = yes }
+			OR = { 
+				SAF = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
 		}
 
 		complete_effect = {	
@@ -7949,9 +7930,13 @@ propaganda_effortsx = {
         fire_only_once = yes
 		
         visible = {
-            #has_global_flag = war_in_the_west_start
             country_exists = SAF
-			SAF = { is_ai = yes }
+			OR = { 
+				SAF = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
         }
 		
         complete_effect = {
@@ -8019,7 +8004,12 @@ propaganda_effortsx = {
 		
 		visible = {
             country_exists = CAN
-			CAN = { is_ai = yes }
+			OR = { 
+				CAN = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
         }
         
         cost = 0
@@ -8342,7 +8332,12 @@ propaganda_effortsx = {
 
             visible = {
 				country_exists = POL
-				POL = { is_ai = yes }
+				OR = { 
+					POL = { 
+						is_ai = yes 
+					} 
+					has_country_flag = annex_manual_override 
+				}
 			}
 			
             fire_only_once = yes
@@ -8378,12 +8373,16 @@ propaganda_effortsx = {
 
             available = {
                 OR = { RAJ = { is_ai = yes } has_country_flag = annex_manual_override }
-                #NOT = { ENG = { has_war_with = JAP } }
             }
 
             visible = {
 				country_exists = RAJ
-				RAJ = { is_ai = yes }
+				OR = { 
+					RAJ = { 
+						is_ai = yes 
+					} 
+					has_country_flag = annex_manual_override 
+				}
 			}
 			
             fire_only_once = yes
@@ -8470,7 +8469,12 @@ propaganda_effortsx = {
 
             visible = {
 				country_exists = FRA
-				FRA = { is_ai = yes }
+				OR = { 
+					FRA = { 
+						is_ai = yes 
+					} 
+					has_country_flag = annex_manual_override 
+				}
 			}
 
             complete_effect = {
@@ -8844,7 +8848,12 @@ propaganda_effortsx = {
 		
 		visible = {
 			country_exists = NOR
-			NOR = { is_ai = yes }
+			OR = { 
+				NOR = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
 		}
 
 		fire_only_once = yes
@@ -8900,7 +8909,12 @@ propaganda_effortsx = {
 
 		visible = {
 			country_exists = GRE
-			GRE = { is_ai = yes }
+			OR = { 
+				GRE = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
 		}
 
 
@@ -8957,7 +8971,12 @@ propaganda_effortsx = {
 
 		visible = {
 			country_exists = HOL
-			HOL = { is_ai = yes }
+			OR = { 
+				HOL = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
 		}
 
 		fire_only_once = yes
@@ -9346,7 +9365,12 @@ propaganda_effortsx = {
 		
 		visible = {
 			country_exists = BRA
-			BRA = { is_ai = yes }
+			OR = { 
+				BRA = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
 		}
 
 		cost = 0	
@@ -9393,187 +9417,6 @@ propaganda_effortsx = {
 			}
 		}
 	}
-
-	
-	# USA_annex_mexico = { 
-                # icon = generic_operation
-            # allowed = {	original_tag = USA }
-            # available = {
-                # OR = { MEX = { is_ai = yes } has_country_flag = annex_manual_override }
-            # }		
-            # cost = 0	
-            # fire_only_once = yes
-            # complete_effect = {
-            # add_to_variable = { paratrooper_div_cap = 2 } set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
-            # if = { limit = { date < 1940.1.1 }  MEX_relocate_civs_mils2 = yes USA = { annex_country = {	target = MEX  	transfer_troops = yes  }}hidden_effect ={every_state ={ limit = { is_core_of = MEX   }  SWE = { transfer_state = PREV  }   } } }
-            # else = {  annex_country = {	target = MEX  	transfer_troops = yes  } }
-
-        # hidden_effect = {  ENG = { fuel_system_refresh_list =yes} if = { limit = { AND = { EFR = {owns_state = 26} NOT = {EFR = { has_country_flag = EFR_torch_declared}} } }	EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } }
-        # }
-	# }
-	
-    # ITA_annex_romania = {
-        # icon = generic_operation
-        # allowed = {
-            # original_tag = GER
-        # }
-        # available = {
-            # OR = {
-                # ROM = { is_ai = yes }
-                # has_country_flag = annex_manual_override
-            # }
-        # }
-        # visible = {
-            # country_exists = ROM
-        # }
-        # cost = 0
-        # fire_only_once = yes
-        # complete_effect = {
-            # add_to_variable = { paratrooper_div_cap = 2 }
-            # set_division_template_cap = {
-                # division_template = "Paratroopers"
-                # division_cap = paratrooper_div_cap
-            # }
-            # if = {
-                # limit = {
-                    # NOT = { ROM = { has_completed_focus = ROM_german_romanian_oil_exploitation_company } }
-                # }
-                # 46 = { add_resource = { type = oil amount = 8 } }
-            # }
-            # if = {
-                # limit = {
-                    # NOT = { ROM = { has_completed_focus = ROM_expand_the_axis_oil_trade } }
-                # }
-                # 46 = { add_resource = { type = oil amount = 24 } }
-            # }
-            # if = {
-                # limit = {
-                    # NOT = { ROM = { has_completed_focus = ROM_hunedoara_steel_works } }
-                # }
-                # 82 = { add_resource = { type = steel amount = 16 } }
-            # }
-            # if = {
-                # limit = {
-                    # NOT = { has_tech = excavation5 }
-                    # ROM = { has_tech = excavation3 }
-                # }
-                # set_technology = { excavation3 = 1 }
-            # }
-            # if = {
-                # limit = {
-                    # NOT = { has_tech = excavation5 }
-                    # ROM = { has_tech = excavation4 }
-                # }
-                # set_technology = { excavation4 = 1 }
-            # }
-            # if = {
-                # limit = {
-                    # NOT = { has_tech = excavation5 }
-                    # ROM = { has_tech = excavation5 }
-                # }
-                # set_technology = { excavation5 = 1 }
-            # }
-            # annex_country = {
-                # target = ROM
-                # transfer_troops = yes
-            # }
-            # if = {
-                # limit = {
-                    # SOV = { NOT = { controls_state = 78 } }
-                # }
-                # transfer_state = 78
-                # transfer_state = 287
-                # transfer_state = 80
-            # }
-            # hidden_effect = {
-                # fuel_system_refresh_list = yes
-                # if = {
-                    # limit = {
-                        # AND = {
-                            # EFR = { owns_state = 26 }
-                            # NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                        # }
-                    # }
-                    # EFR = {
-                        # every_owned_state = {
-                            # limit = { NOT = { has_state_flag = keep_milled } }
-                            # set_demilitarized_zone = yes
-                        # }
-                        # 26 = { set_demilitarized_zone = no }
-                    # }
-                # }
-            # }
-        # }
-    # }
-
-	# ITA_annex_bul = {
-        # icon = generic_operation
-        # available = {
-            # OR = {
-                # BUL = {
-                    # is_in_faction_with = GER
-                    # is_ai = yes
-                # }
-                # has_country_flag = annex_manual_override
-            # }
-        # }
-        # visible = { country_exists = BUL }
-        # allowed = { tag = GER }
-        # fire_only_once = yes
-        # cost = 0
-
-        # complete_effect = {
-            # add_ideas = BUL_volunteers_in_spain_nationalist2
-
-            # add_to_variable = { paratrooper_div_cap = 2 }
-            # set_division_template_cap = {
-                # division_template = "Paratroopers"
-                # division_cap = paratrooper_div_cap
-            # }
-
-            # annex_country = {
-                # target = BUL
-                # transfer_troops = yes
-            # }
-
-            # hidden_effect = {
-                # GER = { fuel_system_refresh_list = yes }
-
-                # if = {
-                    # limit = { NOT = { BUL = { has_completed_focus = BUL_mineral_extraction_in_the_rhodopes } } }
-                    # 184 = { add_resource = { type = chromium amount = 9 } }
-                # }
-
-                # if = {
-                    # limit = { NOT = { BUL = { has_completed_focus = BUL_light_metal_exploitation } } }
-                    # 48 = { add_resource = { type = aluminium amount = 8 } }
-                    # 48 = { add_resource = { type = steel amount = 4 } }
-                # }
-
-                # if = {
-                    # limit = { NOT = { BUL = { has_completed_focus = BUL_steel_plant_in_pernik } } }
-                    # 48 = { add_resource = { type = steel amount = 6 } }
-                # }
-
-
-                # if = {
-                    # limit = {
-                        # EFR = {
-                            # owns_state = 26
-                            # NOT = { has_country_flag = EFR_torch_declared }
-                        # }
-                    # }
-                    # EFR = {
-                        # every_owned_state = {
-                            # limit = { NOT = { has_state_flag = keep_milled } }
-                            # set_demilitarized_zone = yes
-                        # }
-                        # 26 = { set_demilitarized_zone = no }
-                    # }
-                # }
-            # }
-        # }
-    # }
 
 	ITA_annex_yug = {
 		icon = generic_operation
@@ -9911,85 +9754,7 @@ allowed = { original_tag = SAF }
 			}
 		}
 	}
-
-	
-             # GER_plane_hun = {
-        # allowed = {	 OR = { original_tag = GER original_tag = ITA	} }
-             # icon = generic_naval
-             # fire_only_once = yes
-             # available = {    }
-            # complete_effect = {	 activate_mission = GER_plane_LL1 set_country_flag = ITA_send_plane } 	
-     # } 
-            # GER_plane_to_ita = { 
-             # allowed = {	 original_tag = GER	} 
-             # icon = GFX_decision_generic_air
-             # available = { has_equipment = { small_plane_airframe > 399 }   }
-             # complete_effect = {	 send_equipment = { equipment = small_plane_airframe amount = 400 target = ITA }  } 	
-             # } 
-                 # GER_plane_to_ita2 = { 
-             # allowed = {	 original_tag = GER	} 
-             # icon = GFX_decision_generic_air
-             # available = { has_equipment = { small_plane_cas_airframe > 99 }   }
-             # complete_effect = {	 send_equipment = { equipment = small_plane_cas_airframe amount = 100 target = ITA }	 } 	
-             # } 	
-            # ENG_plane_to_usa = { 
-             # allowed = {	 original_tag = ENG	} 
-             # icon = GFX_decision_generic_air
-             # visible = { NOT ={  has_global_flag = war_in_the_west_start}  }
-             # available = { OR = { has_equipment = { small_plane_airframe > 399 } has_equipment = { medium_plane_fighter_airframe > 399 }     }   }
-             # complete_effect = {	 if = { limit = { has_equipment ={ small_plane_airframe > 399 } } send_equipment = { equipment = small_plane_airframe amount = 400 target = USA }  }   if = { limit = { has_equipment ={ medium_plane_fighter_airframe > 399 } } send_equipment = { equipment = medium_plane_fighter_airframe amount = 400 target = USA }  }	 } 	
-             # } 
-                    # ENG_plane_to_usa2 = { 
-            # allowed = {	 original_tag = ENG	} 
-             # icon = GFX_decision_generic_air
-                     # visible = { NOT ={  has_global_flag = war_in_the_west_start}  }
-            # available = { has_equipment = { small_plane_cas_airframe > 99 }   }
-             # complete_effect = { send_equipment = { equipment = small_plane_cas_airframe amount = 100 target = USA }
-              # } 	
-             # } 
-             # GER_plane_hun2 = {
-         # allowed = {	 OR = { original_tag = GER original_tag = ITA	}	} 
-             # icon = generic_naval
-             # fire_only_once = no
-             # available = {    }
-             # complete_effect = {	 if = { limit =  { has_country_flag = ITA_send_plane }  clr_country_flag = ITA_send_plane  } else = { set_country_flag = ITA_send_plane } } 	
-     # } 
-
-            # GER_plane_LL1 = {
-        # allowed = {	 OR = { original_tag = GER original_tag = ITA	} }
-             # icon = generic_naval
-             # available = { tag = GGG	}
-             # days_mission_timeout = 7
-             # fire_only_once = no
-             # is_good = yes
-             # activation = { always = no	}
-            
-             # timeout_effect = {
-             # if = { limit =  { has_country_flag = ITA_send_plane }  GER_all_plane_LL = yes	 }
-             # activate_mission = GER_plane_LL2		
-             # }
-             # complete_effect = {	
-             # }
-         # }
-             # GER_plane_LL2 = {
-         # allowed = {	 OR = { original_tag = GER original_tag = ITA	} }
-             # icon = generic_naval
-             # available = { tag = GGG	}
-
-             # days_mission_timeout = 7
-
-             # fire_only_once = no
-             # is_good = yes
-             # activation = { always = no	}
-            
-             # timeout_effect = {
-             # if = { limit =  { has_country_flag = ITA_send_plane }  GER_all_plane_LL = yes	 }
-             # activate_mission = GER_plane_LL1		
-             # }
-             # complete_effect = {	
-             # }
-         # }
-	}
+}
 
 HMP_templates = {
 	HMP_rules = { 
@@ -10000,13 +9765,31 @@ HMP_templates = {
 		}
 	}
 	HMP_navy_tips = { 
+		icon = GFX_mapicon_port_strike_result_text
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
 			country_event = { id = countrystartup.29  }
 		}
 	}
+	HMP_tank_minor_tips = { 
+		icon = GFX_medium_tank_chassis_texticon
+		allowed = {  normally_played_country = yes }
+		fire_only_once = no
+		complete_effect = {
+			country_event = { id = countrystartup.115  }
+		}
+	}
+	HMP_infantry_minor_tips = { 
+		icon = GFX_motorized_texticon
+		allowed = {  normally_played_country = yes }
+		fire_only_once = no
+		complete_effect = {
+			country_event = { id = countrystartup.116  }
+		}
+	}
 	HMP_compass = { 
+		icon = GFX_infiltrate_state_texticon
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
@@ -10014,6 +9797,7 @@ HMP_templates = {
 		}
 	}
 	HMP_templates_20w = {
+		icon = GFX_divisions
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
@@ -10054,6 +9838,7 @@ HMP_templates = {
 		}
 		
 	HMP_spec_ops = {
+		icon = GFX_divisions
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		complete_effect = {
@@ -10066,7 +9851,7 @@ HMP_templates = {
 						mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } mountaineers = { x = 2 y = 3 } rocket_artillery_brigade = { x = 3 y = 3 }
 						mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
 					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 }  medium_flame_tank = { x = 0 y = 2 }   }
+					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 }  light_flame_tank = { x = 0 y = 2 }   }
 				}	
 				division_template = {
 					name = "All-Purpose Special Forces"
@@ -10077,7 +9862,7 @@ HMP_templates = {
 						mountaineers = { x = 0 y = 3 } 	mountaineers = { x = 1 y = 3 } 	mountaineers = { x = 2 y = 3 } 	
 						mountaineers = { x = 0 y = 4 } 	mountaineers = { x = 1 y = 4 }																			   
 					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 }   anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } medium_flame_tank = { x = 0 y = 2 }     }
+					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 }   anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 2 }     }
 				}	
 				division_template = {
 					name = "Hard Attack Special Forces"
@@ -10088,11 +9873,12 @@ HMP_templates = {
 						mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } 							 rocket_artillery_brigade = { x = 3 y = 3 }  anti_tank_brigade = { x = 4 y = 3 }
 						mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
 					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } medium_flame_tank = { x = 0 y = 3 }     }
+					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 3 }     }
 				}				
 			}
 		}
 	HMP_templates_40w_tonk = {
+		icon = GFX_divisions
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 			complete_effect = { 
@@ -10111,6 +9897,7 @@ HMP_templates = {
 	}
 		
 	HMP_plane_templates = {
+		icon = GFX_anti_air_texticon
 		allowed = {  normally_played_country = yes }
 		fire_only_once = no
 		visible = { OR = { has_tech = basic_small_airframe has_tech = basic_medium_airframe has_tech = basic_large_airframe} }
@@ -10135,6 +9922,10 @@ HMP_templates = {
 	HMP_decision_recommended_super_heavy_tank_templates = {
         icon = GFX_unit_super_heavy_armor_icon_small_texticon
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10148,6 +9939,10 @@ HMP_templates = {
 	HMP_decision_recommended_armored_car_recon_templates = {
         icon = GFX_unit_armored_car_recon_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10161,6 +9956,10 @@ HMP_templates = {
 	HMP_decision_recommended_lt_recon_templates = {
         icon = GFX_unit_light_tank_recon_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10174,6 +9973,15 @@ HMP_templates = {
     HMP_decision_recommended_flame_templates = {
         icon = GFX_unit_light_flame_tank_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
+		available = {
+			ROOT = {
+				is_special_project_completed = sp:sp_land_flamethrower_tank
+			}
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10185,8 +9993,12 @@ HMP_templates = {
 	}
     
     HMP_decision_recommended_aa_tank_templates = {
-        icon = GFX_unit_medium_sp_anti_air_brigade_icon_small
+        icon = GFX_unit_light_sp_anti_air_brigade_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10200,6 +10012,10 @@ HMP_templates = {
     HMP_decision_recommended_td_tank_templates = {
         icon = GFX_unit_medium_tank_destroyer_brigade_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10213,6 +10029,10 @@ HMP_templates = {
     HMP_decision_recommended_spg_tank_templates = {
         icon = GFX_unit_medium_sp_artillery_brigade_icon_small
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10226,6 +10046,10 @@ HMP_templates = {
     HMP_decision_recommended_light_tank_templates = {
         icon = GFX_light_tank_chassis_texticon
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10239,6 +10063,10 @@ HMP_templates = {
     HMP_decision_recommended_medium_tank_templates = {
         icon = GFX_medium_tank_chassis_texticon
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -10252,6 +10080,10 @@ HMP_templates = {
     HMP_decision_recommended_heavy_tank_templates = {
         icon = GFX_heavy_tank_chassis_texticon
 		allowed = { normally_played_country = yes }
+		available = {
+			has_tech = armor_tech_1
+			has_tech = engine_tech_1
+		}
 		fire_only_once = no
 		visible = { 
 		
@@ -11656,144 +11488,7 @@ USA_congress = {
 			}
 		}
 	}
-	USA_plane_eng = { 
-		allowed = {	original_tag = USA } 
-		icon = generic_naval
-		fire_only_once = yes
-		complete_effect = { activate_mission = USA_plane_LL1 set_country_flag = USA_send_plane	}		
-	}
-		USA_plane_eng2 = {
-		allowed = {	original_tag = USA } 
-		icon = generic_naval
-		fire_only_once = no
-		complete_effect = {  if = { limit = { NOT = { has_country_flag = USA_send_plane  }  }  set_country_flag = USA_send_plane }   else = { clr_country_flag = USA_send_plane } 	}		
-	}
-	USA_plane_LL1 = {
-		allowed = {	original_tag = USA }	
-		icon = generic_naval
-		available = { tag = GGG	}
-		days_mission_timeout = 7
-		fire_only_once = no
-		is_good = yes
-		activation = { always = no	}
-		timeout_effect = {
-			if = { limit =  { has_country_flag = USA_send_plane } USA_all_plane_LL = yes	}
-		activate_mission = USA_plane_LL2		
-		}
-		complete_effect = {	
-		}
-	}
-	USA_plane_LL2 = {
-		allowed = {	original_tag = USA }	
-		icon = generic_naval
-		available = { tag = GGG	}
-		days_mission_timeout = 7
-		fire_only_once = no
-		is_good = yes
-		activation = { always = no	}
-		timeout_effect = {
-				if = { limit =  { has_country_flag = USA_send_plane }  USA_all_plane_LL = yes	}
-		activate_mission = USA_plane_LL1		
-		}
-		complete_effect = {	
-		}
-	}
 }
-
-# USA_landon_ll_category = {
-    # USA_landon_ll_to_eng = {
-		# icon = generic_industry
-		# allowed = { original_tag = USA } 
-		# available = {
-			# #NOT = { has_country_flag = landon_supporting_minor }	
-			# has_completed_focus = USA_lend_lease_act
-			# num_of_civilian_factories_available_for_projects > 15
-		# }
-		# fire_only_once = no
-		# cost = 0
-		# days_re_enable = 0
-		# days_remove = 180
-		# on_map_mode = map_and_decisions_view 
-		# modifier = { civilian_factory_use = 20 }
-		# remove_effect = {
-			# ENG = { random_core_state = { add_extra_state_shared_building_slots = 5 add_building_construction = { type = arms_factory level = 5  instant_build = yes } }  }
-		# }
-	# }	
-# }
-
-# USA_roosevelt_ll_category = {
-    # USA_roosevelt_ll_to_target_inf  = {
-		# icon =generic_prepare_civil_war
-		# allowed = { original_tag = USA } 
-		# target_trigger = {
-			# FROM = { tag = ENG }
-		# }
-		# available = {
-			# NOT = { has_country_flag = roosevelt_supporting_minor }	
-			# has_completed_focus = USA_lend_lease_act
-			# }
-		# fire_only_once = no
-		# cost = 0
-		# days_re_enable = 0
-		# days_remove = 60
-		# on_map_mode = map_and_decisions_view 
-		# modifier = { civilian_factory_use = 10 }
-		# complete_effect = {
-			# set_country_flag = { flag = roosevelt_supporting_minor days = 30 }
-		# }	
-		# remove_effect = {
-			# ENG = { add_equipment_to_stockpile = { type = infantry_equipment amount = 6000  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = { type = artillery_equipment amount = 400  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = { type = anti_tank_equipment amount = 400 producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = { type = anti_air_equipment amount = 200  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = { type = support_equipment amount = 400  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = { type = motorized_equipment amount = 100  producer = ENG } }
-		# }
-	# }
-	
-    # USA_roosevelt_ll_to_target_armor = {
-		# icon = generic_prepare_civil_war
-		# allowed = { original_tag = USA } 
-		# target_trigger = {
-			# FROM = { tag = ENG }
-		# }
-		# available = {
-			# NOT = { has_country_flag = roosevelt_supporting_minor }	
-			# has_completed_focus = USA_lend_lease_act
-			# }
-		# fire_only_once = no
-		# cost = 0
-		# days_re_enable = 0
-		# days_remove = 90
-		# on_map_mode = map_and_decisions_view 
-		# modifier = { civilian_factory_use = 15 }
-		# complete_effect = {
-			# set_country_flag = { flag = roosevelt_supporting_minor days = 30 }
-		# }	
-		# remove_effect = {
-		# if = { limit = { ENG = { has_tech = improved_medium_tank_chassis } }
-			# ENG = { add_equipment_to_stockpile = {   type = medium_tank_chassis amount = 500  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = {   type = medium_tank_aa_chassis amount = 60  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = {   type = mech_chassis amount = 600  producer = ENG }	}
-		# }
-		# else_if = { limit = { ENG = { has_tech = improved_light_tank_chassis } }
-			# ENG = { add_equipment_to_stockpile = {   type = light_tank_chassis amount = 500  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = {   type = light_tank_aa_chassis amount = 60  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = {   type = mech_chassis amount = 600  producer = ENG }	}	
-		# }
-			# else_if = { limit = { ENG = { has_tech = improved_heavy_tank_chassis } }
-			# ENG = { add_equipment_to_stockpile = {   type = heavy_tank_chassis amount = 500  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = {   type = heavy_tank_aa_chassis amount = 60  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = {   type = mech_chassis amount = 600  producer = ENG }	}
-		# }
-		# else = { 
-			# ENG = { add_equipment_to_stockpile = {   type = mech_chassis amount = 600  producer = ENG }	}
-		# }
-			# ENG = { add_equipment_to_stockpile = {   type = support_equipment amount = 400  producer = ENG } }
-			# ENG = { add_equipment_to_stockpile = {   type = motorized_equipment amount = 100  producer = ENG } }
-		# }
-	# }
-# }
 
 JAP_interservice_rivalry = {
 	JAP_steel_for_guns = {
@@ -13019,1360 +12714,6 @@ invest_in_the_west = {
 		}
 	}
 }
-
-
-# ENG_funding_decisions = {
-    # ENG_add_funds = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_gre_investment_decisions
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 180
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-		
-		# modifier = {
-			# civilian_factory_use = 5
-		# }
-
-		# complete_effect = {
-			#add_timed_idea = { idea = adding_funds  days = 180 }
-			# add_to_variable = { var = ENG_funds value = 1 }
-            # custom_effect_tooltip = ENG_add_funds_tt	
-		# }
-	# }
-	
-	# ENG_add_funds_medium = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_gre_investment_decisions
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 180
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-		
-		# modifier = {
-			# civilian_factory_use = 10
-		# }
-
-		# complete_effect = {
-			#add_timed_idea = { idea = adding_funds  days = 180 }
-			# add_to_variable = { var = ENG_funds value = 4 }
-            # custom_effect_tooltip = ENG_add_funds_medium_tt	
-		# }
-	# }
-	
-	# ENG_add_funds_large = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_gre_investment_decisions
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 180
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-		
-		# modifier = {
-			# civilian_factory_use = 15
-		# }
-
-		# complete_effect = {
-			#add_timed_idea = { idea = adding_funds  days = 180 }
-			# add_to_variable = { var = ENG_funds value = 6 }
-            # custom_effect_tooltip = ENG_add_funds_large_tt	
-		# }
-	# }
-	
-	# ENG_singapore_evacuation = { 
-		# icon = generic_scorched_earth
-		
-		# available = {
-			# 336 = { 
-				# is_controlled_by = ENG
-			# }
-		# }
-		
-		# cancel_trigger = {   
-		    # 336 = { 
-				# is_controlled_by = JAP
-			# } 
-		# }
-		
-		# highlight_states = {
-            # highlight_state_targets = {
-			# state = 336
-		    # } 
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_singapore_strategy
-			# has_war_with = JAP
-			# 336 = { 
-				# is_controlled_by = ENG
-			# }			
-		# }
-
-		# fire_only_once = yes
-
-		# days_remove = 120
-
-		# modifier = {}
-
-		# remove_effect = {
-		    # hidden_effect = {
-		        # 336 = {
-			        # remove_building = {
-					# type = arms_factory
-					# level = 4
-				    # }
-				    # remove_building = {
-					# type = industrial_complex
-					# level = 5
-				    # }
-			    # }
-			# }
-			# add_offsite_building = { type = arms_factory level = 5 }
-			# add_offsite_building = { type = industrial_complex level = 5 }
-		# }
-	# }
-	
-	# ENG_hong_kong_evacuation = { 
-		# icon = generic_scorched_earth
-		
-		# available = {
-			# 326 = { 
-				# is_controlled_by = ENG
-			# }
-		# }
-		
-		# cancel_trigger = {   
-		    # 326 = { 
-				# is_controlled_by = JAP
-			# } 
-		# }
-		
-		# highlight_states = {
-            # highlight_state_targets = {
-			# state = 326
-		    # } 
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_hong_kong_gamble
-			# has_war_with = JAP
-			# 326 = { 
-				# is_controlled_by = ENG
-			# }			
-		# }
-
-		# fire_only_once = yes
-
-		# days_remove = 30
-
-		# modifier = {}
-
-		# remove_effect = {
-		    # hidden_effect = {
-		        # 326 = {
-			        # remove_building = {
-					# type = arms_factory
-					# level = 4
-				    # }
-				    # remove_building = {
-					# type = industrial_complex
-					# level = 4
-				    # }
-			    # }
-			# }
-			# add_offsite_building = { type = arms_factory level = 5 }
-			# add_offsite_building = { type = industrial_complex level = 5 }
-		# }
-	# }
-	
-	# ENG_egypt_evacuation = { 
-		# icon = generic_scorched_earth
-		
-		# available = {
-			# 447 = { 
-				# is_controlled_by = ENG
-			# }
-		# }
-		
-		# cancel_trigger = {   
-		    # 447 = { 
-				# is_controlled_by = ITA
-			# } 
-		# }
-		
-		# highlight_states = {
-            # highlight_state_targets = {
-			# state = 447
-		    # } 
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_egypt_fortification
-			# EFR = { has_country_flag = vichy_france_established }
-			# has_war_with = GER
-			# 447 = { 
-				# is_controlled_by = ENG
-			# }			
-		# }
-
-		# fire_only_once = yes
-
-		# days_remove = 60
-
-		# modifier = {}
-
-		# remove_effect = {
-			# add_offsite_building = { type = arms_factory level = 5 }
-			# add_offsite_building = { type = industrial_complex level = 5 }
-		# }
-	# }
-	
-	# ENG_funds_industrial_research = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_generic_research
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 180
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-			# add_tech_bonus = {
-				# name = ENG_funds_industrial_research
-			    # bonus = 1
-			    # uses = 1
-			    # category = industry
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 1 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_industrial_tt		
-		# }
-	# }
-	
-	# ENG_funds_factory_output = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_generic_protection
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-			# add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_dockyard_output = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_SWE_set_navy_budget
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-			# add_timed_idea = { idea = funds_dockyard_output_idea  days = 365 }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-    
-    # ENG_funds_boost_canada_output = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_generic_protection
-        
-        # targets = { CAN }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = CAN
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # CAN = {
-			    # add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_dockyard_output_can = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_SWE_set_navy_budget
-        
-        # targets = { CAN }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = CAN
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # CAN = {
-			    # add_timed_idea = { idea = funds_dockyard_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_boost_saf_output = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_generic_protection
-        
-        # targets = { SAF }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = SAF
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # SAF = {
-			    # add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_dockyard_output_saf = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_SWE_set_navy_budget
-        
-        # targets = { SAF }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = SAF
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # SAF = {
-			    # add_timed_idea = { idea = funds_dockyard_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_boost_raj_output = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_generic_protection
-        
-        # targets = { RAJ }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = RAJ
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # RAJ = {
-			    # add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_dockyard_output_raj = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_SWE_set_navy_budget
-        
-        # targets = { RAJ }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = RAJ
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # RAJ = {
-			    # add_timed_idea = { idea = funds_dockyard_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_boost_ast_output = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_generic_protection
-        
-        # targets = { AST }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = AST
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # AST = {
-			    # add_timed_idea = { idea = funds_factory_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_funds_dockyard_output_ast = {
-
-		# allowed = { tag = ENG }
-
-		# icon = GFX_decision_SWE_set_navy_budget
-        
-        # targets = { AST }
-
-		# cost = 0
-		# is_good = yes
-		# fire_only_once = no
-		
-		# days_remove = 365
-		
-		# allowed = {
-		    # tag = ENG
-	    # }
-		
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 0
-                # }
-			# }
-		# }
-
-		# cancel_trigger = {
-		# }
-		
-		# activation = {
-		# }
-
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# hidden_trigger = {
-				# country_exists = AST
-			# }
-		# }
-		
-		# cancel_effect = {
-		
-		# }
-
-		# complete_effect = {
-		    # AST = {
-			    # add_timed_idea = { idea = funds_dockyard_output_idea  days = 365 }
-			# }
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_tt
-		# }
-	# }
-	
-	# ENG_first_royal_tank_regiment = {
-
-		# icon = GFX_decision_generic_tank 
-		
-		# allowed = { tag = ENG }
-
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 1
-                # }
-			# }
-			# has_tech = improved_medium_tank_chassis
-		# }
-
-		# fire_only_once = yes
-        
-        # visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# complete_effect = {
-			# custom_effect_tooltip = ENG_first_RTR_tt
-			# subtract_from_variable = { var = ENG_funds value = 8 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_rtr_tt
-		
-			# hidden_effect = {
-				# delete_unit_template_and_units = { division_template = "Royal Tank Regiment" disband = no }
-				# add_manpower = -15000
-				# load_oob = ENG_First_RTR
-			# }	
-		# }
-	# }
-	
-	# ENG_second_royal_tank_regiment = {
-
-		# icon = GFX_decision_generic_tank 
-		
-		# allowed = { tag = ENG }
-
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 1
-                # }
-			# }
-			# has_tech = improved_medium_tank_chassis
-		# }
-
-		# fire_only_once = yes
-        
-        # visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# complete_effect = {
-			# custom_effect_tooltip = ENG_second_RTR_tt
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_rtr_tt
-		
-			# hidden_effect = {
-				# delete_unit_template_and_units = { division_template = "2nd Royal Tank Regiment" disband = no }
-				# add_manpower = -15000
-				# load_oob = ENG_Second_RTR
-			# }	
-		# }
-	# }
-	
-	# ENG_third_royal_tank_regiment = {
-
-		# icon = GFX_decision_generic_tank 
-		
-		# allowed = { tag = ENG }
-
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 1
-                # }
-			# }
-			# has_tech = improved_medium_tank_chassis
-		# }
-
-		# fire_only_once = yes
-        
-        # visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# complete_effect = {
-			# custom_effect_tooltip = ENG_third_RTR_tt
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_rtr_tt
-		
-			# hidden_effect = {
-				# delete_unit_template_and_units = { division_template = "3rd Royal Tank Regiment" disband = no }
-				# add_manpower = -15000
-				# load_oob = ENG_Third_RTR
-			# }	
-		# }
-	# }
-	
-	# ENG_fourth_royal_tank_regiment = {
-
-		# icon = GFX_decision_generic_tank 
-		
-		# allowed = { tag = ENG }
-
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-               # ENG_funds > 1
-               # }
-			# }
-			# has_tech = improved_medium_tank_chassis
-		# }
-
-		# fire_only_once = yes
-        
-        # visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# complete_effect = {
-			# custom_effect_tooltip = ENG_fourth_RTR_tt
-			# subtract_from_variable = { var = ENG_funds value = 2 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_rtr_tt
-		
-			# hidden_effect = {
-				# delete_unit_template_and_units = { division_template = "4th Royal Tank Regiment" disband = no }
-				# add_manpower = -15000
-				# load_oob = ENG_Fourth_RTR
-			# }	
-		# }
-	# }
-	
-	# ENG_BEF_decision = {
-
-		# icon = GFX_decision_eng_abdication_crisis 
-		
-		# allowed = { tag = ENG }
-
-		# available = {
-		    # custom_trigger_tooltip = {
-                # tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 15
-                # }
-			# }
-			# has_tech = improved_medium_tank_chassis
-			# NOT = { EFR = { has_country_flag = vichy_france_established } }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-			# NOT = { EFR = { has_country_flag = vichy_france_established } }
-		# }
-
-		# fire_only_once = yes
-		
-		# complete_effect = {
-			# custom_effect_tooltip = ENG_BEF_tt
-			# subtract_from_variable = { var = ENG_funds value = 16 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_bef_tt
-		
-			# hidden_effect = {
-			# delete_unit_template_and_units = { division_template = "British Expeditionary Force" disband = no }
-				# add_manpower = -15000
-				# load_oob = ENG_BEF
-			# }	
-		# }
-	# }
-	
-	# ENG_asia_army = {
-
-		# icon = GFX_decision_eng_imperial_federation 
-		
-		# allowed = { tag = ENG }
-
-		# available = { 
-		    # custom_trigger_tooltip = {
-			# tooltip = ENG_no_funds_tt
-		        # check_variable = {
-                # ENG_funds > 1
-                # }
-			# }
-            # NOT = { has_global_flag = war_in_the_west_start }
-			# date > 1940.12.1 
-			# controls_state = 336
-		# }
-
-		# fire_only_once = yes
-        
-        # visible = {
-			# has_completed_focus = ENG_gather_the_rearmament_plans
-		# }
-		
-		# complete_effect = {
-			# custom_effect_tooltip = ENG_asia_army_tt
-			# subtract_from_variable = { var = ENG_funds value = 8 } 
-			# custom_effect_tooltip = ENG_subtract_funds_decision_asia_army_tt
-		
-			# hidden_effect = {
-				# delete_unit_template_and_units = { division_template = "Asia Infantry" disband = no }
-				# add_manpower = -374000
-				# load_oob = ENG_asia_army
-			# }	
-		# }
-	# }
-# }
-
-# ENG_minor_control_system = {
-
-    # ENG_fuck_can_increase = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { CAN }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_can_1_tt
-                # CAN = {
-                    # check_variable = {
-                    # var = ENG_fuck_can_modifier
-                    # value = 0.25
-                    # compare = less_than
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = CAN
-			# }
-		# }
-		
-		# complete_effect = {
-            # CAN = {
-                # add_to_variable = { var = ENG_fuck_can_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_increase_can_tt
-		# }
-	# }
-    
-    # ENG_fuck_can_decrease = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { CAN }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_can_2_tt
-                # CAN = {
-                    # NOT = {
-                        # check_variable = {
-                        # var = ENG_fuck_can_modifier
-                        # value = 0
-                        # compare = less_than_or_equals
-                        # }
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = CAN
-			# }
-		# }
-		
-		# complete_effect = {
-            # CAN = {
-                # subtract_from_variable = { var = ENG_fuck_can_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_decrease_can_tt
-		# }
-	# }
-    
-    # ENG_fuck_saf_increase = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { SAF }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_saf_1_tt
-                # SAF = {
-                    # check_variable = {
-                    # var = ENG_fuck_saf_modifier
-                    # value = 0.25
-                    # compare = less_than
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = SAF
-			# }
-		# }
-		
-		# complete_effect = {
-            # SAF = {
-                # add_to_variable = { var = ENG_fuck_saf_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_increase_saf_tt
-		# }
-	# }
-    
-    # ENG_fuck_saf_decrease = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { SAF }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_saf_2_tt
-                # SAF = {
-                    # NOT = {
-                        # check_variable = {
-                        # var = ENG_fuck_saf_modifier
-                        # value = 0
-                        # compare = less_than_or_equals
-                        # }
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = SAF
-			# }
-		# }
-		
-		# complete_effect = {
-            # SAF = {
-                # subtract_from_variable = { var = ENG_fuck_saf_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_decrease_saf_tt
-		# }
-	# }
-    
-    # ENG_fuck_raj_increase = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { RAJ }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_raj_1_tt
-                # RAJ = {
-                    # check_variable = {
-                    # var = ENG_fuck_raj_modifier
-                    # value = 0.25
-                    # compare = less_than
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = RAJ
-			# }
-		# }
-		
-		# complete_effect = {
-            # RAJ = {
-                # add_to_variable = { var = ENG_fuck_raj_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_increase_raj_tt
-		# }
-	# }
-    
-    # ENG_fuck_raj_decrease = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { RAJ }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_raj_2_tt
-                # RAJ = {
-                    # NOT = {
-                        # check_variable = {
-                        # var = ENG_fuck_raj_modifier
-                        # value = 0
-                        # compare = less_than_or_equals
-                        # }
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = RAJ
-			# }
-		# }
-		
-		# complete_effect = {
-            # RAJ = {
-                # subtract_from_variable = { var = ENG_fuck_raj_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_decrease_raj_tt
-		# }
-	# }
-    
-    # ENG_fuck_ast_increase = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { AST }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_ast_1_tt
-                # AST = {
-                    # check_variable = {
-                    # var = ENG_fuck_ast_modifier
-                    # value = 0.25
-                    # compare = less_than
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = AST
-			# }
-		# }
-		
-		# complete_effect = {
-            # AST = {
-                # add_to_variable = { var = ENG_fuck_ast_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_increase_ast_tt
-		# }
-	# }
-    
-    # ENG_fuck_ast_decrease = {
-
-		# icon = GFX_decision_generic_monarchy 
-		
-		# allowed = { tag = ENG }
-        
-        # targets = { AST }
-
-		# available = {
-            # custom_trigger_tooltip = {
-                # tooltip = ENG_fuck_ast_2_tt
-                # AST = {
-                    # NOT = {
-                        # check_variable = {
-                        # var = ENG_fuck_ast_modifier
-                        # value = 0
-                        # compare = less_than_or_equals
-                        # }
-                    # }
-                # }
-            # }
-		# }
-		
-		# visible = {
-			# has_completed_focus = ENG_imperial_policy
-			# hidden_trigger = {
-				# country_exists = AST
-			# }
-		# }
-		
-		# complete_effect = {
-            # AST = {
-                # subtract_from_variable = { var = ENG_fuck_ast_modifier value = 0.05 } 
-            # }
-            # custom_effect_tooltip = ENG_fuck_control_system_decrease_ast_tt
-		# }
-	# }
-# }
 
 ENG_evacuation_decisions = {
     ENG_egypt_evacuation = { 
