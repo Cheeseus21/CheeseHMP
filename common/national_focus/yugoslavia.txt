@@ -61,7 +61,7 @@ focus_tree = {
 		completion_reward = {
 			add_offsite_building = {
 				type = industrial_complex
-				level = 1
+				level = 2
 			}
 		}
 	}
@@ -257,6 +257,7 @@ focus_tree = {
 			add_political_power = 150
             custom_effect_tooltip = generic_skip_one_line_tt
             remove_ideas = YUG_idea_serbian_question
+			remove_ideas = anti_german_military
             custom_effect_tooltip = generic_skip_one_line_tt
             effect_tooltip = {
                 remove_ideas = YUG_idea_macedonian_opposition
@@ -298,6 +299,26 @@ focus_tree = {
                     long_name = CRO_democratic_party_long
                     name = CRO_democratic_party
                 }
+				every_owned_state = {
+                	limit = {
+                	    OR = {
+                	        state = 107
+							state = 108
+							state = 303
+    	                }
+        	        }
+            	    add_extra_state_shared_building_slots = 3
+                	add_building_construction = {
+					    type = arms_factory
+					    level = 2
+					    instant_build = yes
+            	    }
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 1
+					    instant_build = yes
+            	    }
+				}
                 GER = {
                     transfer_state = 107
                     transfer_state = 108
@@ -305,8 +326,8 @@ focus_tree = {
                 }
                 ITA = {
                     transfer_state = 105
+                    transfer_state = 673
                     transfer_state = 674
-                    transfer_state = 675
                 }
                 if = { 
                     limit = {
@@ -324,12 +345,12 @@ focus_tree = {
                     limit = {
                         NOT = {
                             ITA = {
-                                controls_state = 677
+                                controls_state = 676
                             }
                         }
                     }
                     ITA = {
-                        transfer_state = 677
+                        transfer_state = 676
                     }
                 }
                 if = { 
@@ -354,18 +375,6 @@ focus_tree = {
                     }
                     BUL = {
                         transfer_state = 106
-                    }
-                }
-                if = { 
-                    limit = {
-                        NOT = {
-                            BUL = {
-                                controls_state = 673
-                            }
-                        }
-                    }
-                    BUL = {
-                        transfer_state = 673
                     }
                 }
                 if = { 
@@ -663,14 +672,33 @@ focus_tree = {
 	                fascism = 15
 	                communism = 10
                 }
+				every_owned_state = {
+                	limit = {
+                	    OR = {
+                	        state = 102
+							state = 103
+							state = 109
+	                        state = 676
+    	                }
+        	        }
+            	    add_extra_state_shared_building_slots = 4
+                	add_building_construction = {
+					    type = arms_factory
+					    level = 3
+					    instant_build = yes
+            	    }
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 1
+					    instant_build = yes
+            	    }
+				}
                 GER = {
-                    transfer_state = 104
                     transfer_state = 109
                 }
                 ITA = {
                     transfer_state = 103
-                    transfer_state = 105
-                    transfer_state = 674
+                    transfer_state = 673
                 }
                 if = { 
                     limit = {
@@ -700,12 +728,12 @@ focus_tree = {
                     limit = {
                         NOT = {
                             ITA = {
-                                controls_state = 677
+                                controls_state = 676
                             }
                         }
                     }
                     ITA = {
-                        transfer_state = 677
+                        transfer_state = 676
                     }
                 }
                 if = { 
@@ -718,6 +746,18 @@ focus_tree = {
                     }
                     BUL = {
                         transfer_state = 106
+                    }
+                }
+				if = { 
+                    limit = {
+                        NOT = {
+                            HUN = {
+                                controls_state = 45
+                            }
+                        }
+                    }
+                    HUN = {
+                        transfer_state = 45
                     }
                 }
                 if = { 
@@ -806,7 +846,7 @@ focus_tree = {
             focus = YUG_end_the_regency
         }
         completion_reward = {
-            add_stability = 0.1
+            country_event = yugoslavia.101
         }
     }
 
@@ -908,7 +948,7 @@ focus_tree = {
             effect_tooltip = {
                 ITA = {
                     transfer_state = 102
-                    transfer_state = 677
+                    transfer_state = 676
                 }
                 GER = {
                     transfer_state = 303
@@ -923,7 +963,7 @@ focus_tree = {
                     }
                     ITA = {
                         transfer_state = 102
-                        transfer_state = 677
+                        transfer_state = 676
                     }
                 }
                 if = { 
@@ -948,7 +988,7 @@ focus_tree = {
                         transfer_state = 102
                     }
                     ITA = {
-                        transfer_state = 677
+                        transfer_state = 676
                     }
                 }
             }
@@ -992,18 +1032,6 @@ focus_tree = {
                     transfer_state = 106
                 }
             }
-            if = { 
-                limit = {
-                    NOT = {
-                        BUL = {
-                            controls_state = 673
-                        }
-                    }
-                }
-                BUL = {
-                    transfer_state = 673
-                }
-            }
 	    }
     }
 
@@ -1038,7 +1066,9 @@ focus_tree = {
             if = { 
                 limit = {
                     NOT = {
-                        has_completed_focus = YUG_reinforce_serbia
+                        HUN = {
+                            controls_state = 45
+                        }
                     }
                 }
                 HUN = {
@@ -1090,7 +1120,7 @@ focus_tree = {
 		y = 0
 		cost = 5
 		completion_reward = {
-			676 = {
+			104 = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
@@ -1431,7 +1461,7 @@ focus_tree = {
                 limit = {
                     OR = {
                         state = 108
-                        state = 675
+                        state = 674
                     }
                 }
                 add_extra_state_shared_building_slots = 2
@@ -1466,7 +1496,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = YUG_incorporated_arsenals
+		id = YUG_expand_the_sarajevo_arsenals
 		icon = GFX_goal_generic_build_tank
 		prerequisite = {
             focus = YUG_the_five_year_plan
@@ -1479,26 +1509,13 @@ focus_tree = {
 		relative_position_id = YUG_the_five_year_plan
 		cost = 10
 		completion_reward = {
-            if = {
-                limit = {
-                    has_completed_focus = CRO_proclaim_greater_croatia
-                }
-                104 = {
-				    add_extra_state_shared_building_slots = 4
-				    add_building_construction = {
-					    type = arms_factory
-					    level = 4
-					    instant_build = yes
-				    }
-			    }
-            }
-			108 = {
+            104 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
-					type = arms_factory
-					level = 4
-					instant_build = yes
-				}
+				    type = arms_factory
+				    level = 4
+				    instant_build = yes
+			    }
 			}
 		}
 	}
@@ -1508,11 +1525,11 @@ focus_tree = {
 		id = YUG_urbanized_state
 		icon = GFX_focus_generic_low_cost_housing
 		prerequisite = {
-            focus = YUG_incorporated_arsenals
+            focus = YUG_expand_the_sarajevo_arsenals
         }
 		x = 0
 		y = 1
-		relative_position_id = YUG_incorporated_arsenals
+		relative_position_id = YUG_expand_the_sarajevo_arsenals
 		cost = 10
 		completion_reward = {
 			custom_effect_tooltip = YUG_urbanized_state_tt
@@ -1521,37 +1538,36 @@ focus_tree = {
                     limit = {
                         has_completed_focus = CRO_proclaim_greater_croatia
                     }
-                    103 = {
-                        set_state_category = large_city
-                    }
                     109 = {
+                        set_state_category = metropolis
+                    }
+                    103 = {
 				        set_state_category = large_city
 			        }
                     102 = {
 				        set_state_category = city
 			        }
-                    677 = {
+                    676 = {
 				        set_state_category = city
 			        }
-                    109 = {
+                    104 = {
 				        set_state_category = large_town
 			        }
                 }
-                107 = {
-				    set_state_category = metropolis
-			    }
-                45 = {
-				    set_state_category = large_city
-			    }
-                676 = {
-				    set_state_category = city
-			    }
-                414 = {
-				    set_state_category = city
-			    }
-			    108 = {
-				    set_state_category = large_town
-			    }
+				if = {
+					limit = {
+						has_completed_focus = YUG_join_axis
+					}
+        	        107 = {
+					    set_state_category = metropolis
+				    }
+					104 = {
+					    set_state_category = large_town
+				    }	
+				    108 = {
+					    set_state_category = large_town
+				    }	
+				}
             }
 		}
 	}

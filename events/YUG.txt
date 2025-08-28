@@ -1,14 +1,15 @@
 add_namespace = yugoslavia
 
 country_event = {
-	id = yugoslavia.1
-	title = yugoslavia.1.t
-	desc = yugoslavia.1.d
-	picture = GFX_report_event_generic_read_write
+	id = yugoslavia.101
+	title = yugoslavia.101.t
+	desc = yugoslavia.101.d
+	picture = GFX_report_event_generic_rally
 	is_triggered_only = yes
+    fire_only_once = yes
 
 	option = { #hungary
-		name = yugoslavia.1.a
+		name = yugoslavia.101.a
 
         trigger = {
             HUN = {
@@ -16,11 +17,18 @@ country_event = {
             }
         }
 
-        add_ideas = YUG_hungarian_princess
+        add_ideas = YUG_royal_wedding_idea
+
+        HUN = {
+			country_event = {
+				id = yugoslavia.102
+				days = 1
+			}
+		}
 	}
 
     option = { #romania
-		name = yugoslavia.1.b
+		name = yugoslavia.101.b
 
         trigger = {
             ROM = {
@@ -31,11 +39,18 @@ country_event = {
             }
         }
 
-        add_ideas = YUG_romanian_princess
+        add_ideas = YUG_royal_wedding_idea
+
+        ROM = {
+			country_event = {
+				id = yugoslavia.102
+				days = 1
+			}
+		}
 	}
 
     option = { #bulgaria
-		name = yugoslavia.1.c
+		name = yugoslavia.101.c
 
         trigger = {
             BUL = {
@@ -43,18 +58,96 @@ country_event = {
             }
         }
 
-        add_ideas = YUG_bulgarian_princess
+        add_ideas = YUG_royal_wedding_idea #princess marie louise, house of saxe-coburg and gotha-koháry
+
+        BUL = {
+			country_event = {
+				id = yugoslavia.102
+				days = 1
+			}
+		}
 	}
 
-    option = { #italy
-		name = yugoslavia.1.e
+    option = { #spain
+		name = yugoslavia.101.e
 
         trigger = {
-            BUL = {
-                has_completed_focus = BUL_the_tsars_regime
+            SPR = {
+                has_completed_focus = SPA_settle_the_succession_question
             }
         }
 
-        add_ideas = YUG_bulgarian_princess
+        add_ideas = YUG_royal_wedding_idea
+
+        SPR = {
+			country_event = {
+				id = yugoslavia.102
+				days = 1
+			}
+		}
 	}
+
+    option = { #germany
+		name = yugoslavia.101.g
+
+        trigger = {
+            OR = {
+                NOT = {
+                    HUN = {
+                        has_completed_focus = wuw_HUN_elect_a_fascist_king
+                    }
+                }
+                ROM = {
+                    has_completed_focus = ROM_ask_codreanue_to_form_government
+                    has_completed_focus = ROM_pressure_antonescu_into_becoming_prime_minister
+                }
+                NOT = {
+                    BUL = {
+                        has_completed_focus = BUL_the_tsars_regime
+                    }
+                }
+                NOT = {
+                    SPR = {
+                        has_completed_focus = SPA_settle_the_succession_question
+                    }
+                }
+            }
+        }
+        add_ideas = YUG_royal_wedding_idea
+
+        GER = {
+			country_event = {
+				id = yugoslavia.103
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+    id = yugoslavia.102
+	title = yugoslavia.102.t
+	desc = yugoslavia.102.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = yugoslavia.102.a
+        add_ideas = YUG_royal_wedding_idea
+    }
+}
+
+country_event = {
+    id = yugoslavia.103
+	title = yugoslavia.103.t
+	desc = yugoslavia.103.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = yugoslavia.103.a
+        add_ideas = YUG_royal_wedding_idea2
+    }
 }
