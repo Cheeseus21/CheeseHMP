@@ -19,7 +19,7 @@ focus_tree = {
 		y = 0
 		cost = 5
 		completion_reward = {
-			add_political_power = 120
+			add_political_power = 150
 			add_ideas = king_peter_1
 		}
 	}
@@ -33,9 +33,6 @@ focus_tree = {
 		cost = 5
         prerequisite = {
             focus = YUG_western_focus
-        }
-		mutually_exclusive = {
-            focus = YUG_reinforce_old_alliances
         }
 		completion_reward = {
 			add_offsite_building = {
@@ -54,9 +51,6 @@ focus_tree = {
 		cost = 5
         prerequisite = {
             focus = YUG_western_focus
-        }
-		mutually_exclusive = {
-            focus = YUG_friendship_treaty_with_italy
         }
 		completion_reward = {
 			add_offsite_building = {
@@ -130,6 +124,7 @@ focus_tree = {
             focus = YUG_attract_axis_capital
         }
 		completion_reward = {
+			add_research_slot = 1
 			add_stability = 0.10
             swap_ideas = {
                 remove_idea = YUG_divided_nation
@@ -183,7 +178,10 @@ focus_tree = {
         }
 		completion_reward = {
 			remove_ideas = YUG_idea_croatian_opposition
-            add_ideas = YUG_idea_serbian_question
+            swap_ideas = {
+				remove_idea = YUG_idea_serbian_general_staff
+				add_idea = YUG_idea_serbian_general_staff2
+			}
             every_owned_state = {
                 limit = {
                     OR = {
@@ -209,12 +207,6 @@ focus_tree = {
         }
 		completion_reward = {
 			add_ideas = PRU_italian_military_mission
-			ITA = { 
-				add_relation_modifier = {
-					target = YUG
-					modifier = stahlpakt5
-			    }
-			}
 		}
     }
 
@@ -256,8 +248,7 @@ focus_tree = {
             }
 			add_political_power = 150
             custom_effect_tooltip = generic_skip_one_line_tt
-            remove_ideas = YUG_idea_serbian_question
-			remove_ideas = anti_german_military
+            remove_ideas = YUG_idea_serbian_general_staff2
             custom_effect_tooltip = generic_skip_one_line_tt
             effect_tooltip = {
                 remove_ideas = YUG_idea_macedonian_opposition
@@ -401,6 +392,15 @@ focus_tree = {
                         transfer_state = 514
                     }
                 }
+				remove_state_core = 45
+				remove_state_core = 105
+				remove_state_core = 107
+				remove_state_core = 108
+				remove_state_core = 303
+				remove_state_core = 414
+				remove_state_core = 514
+				remove_state_core = 673
+				remove_state_core = 674
 				add_to_war = { targeted_alliance = GER enemy = ENG }
             }
 		}
@@ -542,7 +542,7 @@ focus_tree = {
             focus = CRO_establish_the_banovina_of_croatia
         }
 		completion_reward = {
-			remove_ideas = anti_german_military
+			remove_ideas = YUG_idea_serbian_general_staff
             swap_ideas = {
                 remove_idea = YUG_idea_croatian_opposition
                 add_idea = YUG_idea_croatian_resistance
@@ -581,11 +581,9 @@ focus_tree = {
         }
 		completion_reward = {
 			add_ideas = YUG_german_industrial_expertise
-            YUG = { 
-				add_relation_modifier = {
-					target = GER
-					modifier = stahlpakt7
-			    }
+			add_timed_idea = {
+				idea = YUG_idea_purged_army
+				days = 730
 			}
 		}
     }
@@ -631,7 +629,7 @@ focus_tree = {
             }
             custom_effect_tooltip = generic_skip_one_line_tt
             effect_tooltip = {
-                remove_ideas = YUG_idea_slovene_nationalism
+                remove_ideas = YUG_idea_slovene_nationalism 
             }
             hidden_effect = {
                 if = {
@@ -772,6 +770,22 @@ focus_tree = {
                         transfer_state = 514
                     }
                 }
+				remove_state_core = 102
+				remove_state_core = 103
+				remove_state_core = 109
+				remove_state_core = 163
+				remove_state_core = 303
+				remove_state_core = 314
+				remove_state_core = 514
+				remove_state_core = 676
+				if = {
+					limit = {
+						GER = {
+							has_war = yes
+						}
+					}
+					add_to_war = { targeted_alliance = GER enemy = ENG }
+				}
             }
         }
     }
@@ -832,6 +846,12 @@ focus_tree = {
         }
         completion_reward = {
             add_ideas = YUG_prince_of_serbia
+			hidden_effect = {
+				add_state_core = 44
+				add_state_core = 47
+				add_state_core = 185
+				add_state_core = 486
+			}
         }
     }
 
@@ -1263,7 +1283,7 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			107 = {
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
@@ -1285,10 +1305,10 @@ focus_tree = {
 		cost = 10
 		completion_reward = {
 			108 = {
-				add_extra_state_shared_building_slots = 6
+				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
 					type = industrial_complex
-					level = 3
+					level = 2
 					instant_build = yes
 				}
                 add_building_construction = {
@@ -1595,7 +1615,7 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id =  YUG_army_modernization
-		cost = 10
+		cost = 5
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -1724,7 +1744,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = YUG_tank_conversions
+		id = YUG_tank_licenses
 		icon = GFX_goal_generic_production2
 		prerequisite = { focus = YUG_armored_cavalry }
 		x = 0
@@ -1739,7 +1759,7 @@ focus_tree = {
 
 
 		completion_reward = {
-			add_ideas = YUG_idea_tank_conversions
+			add_ideas = YUG_idea_tank_licenses
 		}
 	}
 	focus = {
@@ -1789,20 +1809,6 @@ focus_tree = {
 			}
 		}
 	}
-	focus = {
-		id = CRO_domestic_artillery_production
-		icon = GFX_focus_SOV_organize_wreckers 
-		prerequisite = { focus = YUG_artillery_regiments }
-		x = 1
-		y = 2
-		relative_position_id = YUG_artillery_regiments
-
-		cost = 10
-
-		completion_reward = {
-			add_ideas = CRO_domestic_artillery_production_idea
-		}
-	}
 
 	focus = {
 		id = YUG_anti_tank_defenses
@@ -1825,6 +1831,21 @@ focus_tree = {
 				uses = 2
 				category = cat_anti_tank
 			}
+		}
+	}
+
+		focus = {
+		id = CRO_domestic_artillery_production
+		icon = GFX_focus_SOV_organize_wreckers 
+		prerequisite = { focus = YUG_anti_tank_defenses }
+		x = 0
+		y = 1
+		relative_position_id = YUG_anti_tank_defenses
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = CRO_domestic_artillery_production_idea
 		}
 	}
 
@@ -1928,12 +1949,12 @@ focus_tree = {
 	focus = {
 		id = YUG_army_maneuvers
 		icon = GFX_goal_generic_army_doctrines
-		prerequisite = { focus = YUG_motorize_the_cavalry }
-		x = -2
-		y = 2
-		relative_position_id = YUG_army_modernization
+		prerequisite = { focus = YUG_modernize_the_air_force }
+		x = 0
+		y = 1
+		relative_position_id = YUG_modernize_the_air_force
 
-		cost = 10
+		cost = 5
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -1952,7 +1973,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = YUG_army_maneuvers
 
-		cost = 10
+		cost = 5
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -1966,24 +1987,16 @@ focus_tree = {
 	focus = {
 		id = YUG_expand_the_split_shipyards
 		icon = GFX_goal_generic_construct_naval_dockyard
-		x = 25
-		y = 0
-
+		prerequisite = { focus = YUG_army_modernization}
+		x = 6
+		y = 1
+		relative_position_id = YUG_army_modernization
 		cost = 5
 
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
 		completion_reward = {
-			103 = {
-				add_extra_state_shared_building_slots = 6
-				add_building_construction = {
-					type = dockyard
-					level = 6
-					instant_build = yes
-				}
+			add_offsite_building = {
+				type = dockyard
+				level = 6
 			}
 		}
 	}
@@ -2021,13 +2034,9 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			103 = {
-				add_extra_state_shared_building_slots = 6
-				add_building_construction = {
-					type = dockyard
-					level = 6
-					instant_build = yes
-				}
+			add_offsite_building = {
+				type = dockyard
+				level = 6
 			}
 			if = { 
 				limit = { has_dlc = "Man the Guns" }
@@ -2157,6 +2166,20 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
+
+		completion_reward = {
+				custom_effect_tooltip = ROM_mountain_artillery_tech_tt
+				hidden_effect = { set_technology = { mountain_gun = 1 } }
+			}
+	}
+	focus = {
+		id = YUG_medal_for_extreme_bravery
+		icon = GFX_goal_generic_build_tank
+		prerequisite = { focus = CRO_mountain_brigades }
+		x = 0
+		y = 1
+		relative_position_id = CRO_mountain_brigades
+		cost = 10
 
 		completion_reward = {
 				custom_effect_tooltip = ROM_mountain_artillery_tech_tt
