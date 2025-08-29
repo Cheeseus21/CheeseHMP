@@ -4905,9 +4905,19 @@ focus_tree = {
 			add_popularity = {   ideology = fascism popularity = 1} 
 			add_timed_idea = { idea = desperate_defense days = 90 } 
 			hidden_effect = {
-				YUG = {
-					transfer_state = 163
-					transfer_state = 676
+				if = {
+					limit = {
+						YUG = { has_completed_focus = CRO_proclaim_greater_croatia }
+					}
+					YUG = {
+						transfer_state = 163
+						transfer_state = 676
+					}
+				}
+				else = {
+					GER = {
+						transfer_state = 676
+					}
 				}
 				GER = {
 					transfer_state = 102

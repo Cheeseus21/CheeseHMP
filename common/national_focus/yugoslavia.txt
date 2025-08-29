@@ -177,6 +177,7 @@ focus_tree = {
             focus = YUG_reinforce_serbia
         }
 		completion_reward = {
+			add_political_power = 150
 			remove_ideas = YUG_idea_croatian_opposition
             swap_ideas = {
 				remove_idea = YUG_idea_serbian_general_staff
@@ -188,6 +189,7 @@ focus_tree = {
                         state = 103
                         state = 104
                         state = 109
+						state = 675
                     }
                 }
                 add_extra_state_shared_building_slots = 5
@@ -225,7 +227,7 @@ focus_tree = {
                 NOT = {
                     ENG = { controls_state = 305 }
                 }
-                date > 1940.6.1
+                date > 1940.3.1
             }
         }
 		completion_reward = {
@@ -542,6 +544,7 @@ focus_tree = {
             focus = CRO_establish_the_banovina_of_croatia
         }
 		completion_reward = {
+			add_political_power = 150
 			remove_ideas = YUG_idea_serbian_general_staff
             swap_ideas = {
                 remove_idea = YUG_idea_croatian_opposition
@@ -861,7 +864,7 @@ focus_tree = {
         relative_position_id = YUG_end_the_regency
         x = 0
         y = 2
-        cost = 5
+        cost = 10
         prerequisite = {
             focus = YUG_end_the_regency
         }
@@ -884,7 +887,7 @@ focus_tree = {
             focus = YUG_united_kingdom
         }
         available = {
-            date > 1941.09.06
+            date > 1941.01.01
         }
 		completion_reward = {
             add_stability = 0.1
@@ -947,9 +950,7 @@ focus_tree = {
                     has_completed_focus = YUG_reinforce_serbia
                 }
                 AND = {
-                    EFR = {
-                        has_country_flag = vichy_france_established
-                    }
+                    GER = { has_completed_focus = GER_danzig_or_war }
                     has_completed_focus = CRO_establish_the_banovina_of_croatia
                 }
             }
@@ -1420,7 +1421,7 @@ focus_tree = {
 		cost = 10
 		completion_reward = {
 			every_owned_state = {
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = infrastructure
 					level = 1
@@ -1438,6 +1439,12 @@ focus_tree = {
             focus = YUG_expand_the_university_of_zagreb
             focus = YUG_expand_the_university_of_belgrade
         }
+		bypass = {
+			NOT = { 
+				owns_state = 103
+				owns_state = 109
+			}
+		}
 		x = -1
 		y = 1
 		relative_position_id = YUG_yugoslavian_rail_network
@@ -1472,6 +1479,12 @@ focus_tree = {
             focus = YUG_expand_the_university_of_zagreb
             focus = YUG_expand_the_university_of_belgrade
         }
+		bypass = {
+			NOT = { 
+				owns_state = 108
+				owns_state = 674
+			}
+		}
 		x = 1
 		y = 1
 		relative_position_id = YUG_yugoslavian_rail_network
@@ -1550,7 +1563,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = YUG_expand_the_sarajevo_arsenals
-		cost = 10
+		cost = 5
 		completion_reward = {
 			custom_effect_tooltip = YUG_urbanized_state_tt
             hidden_effect = {
@@ -1559,12 +1572,18 @@ focus_tree = {
                         has_completed_focus = CRO_proclaim_greater_croatia
                     }
                     109 = {
-                        set_state_category = metropolis
+                        set_state_category = megalopolis
                     }
                     103 = {
-				        set_state_category = large_city
+				        set_state_category = metropolis
 			        }
                     102 = {
+				        set_state_category = large_city
+			        }
+					163 = {
+				        set_state_category = city
+			        }
+					675 = {
 				        set_state_category = city
 			        }
                     676 = {
@@ -1579,12 +1598,18 @@ focus_tree = {
 						has_completed_focus = YUG_join_axis
 					}
         	        107 = {
-					    set_state_category = metropolis
+					    set_state_category = megalopolis
 				    }
-					104 = {
-					    set_state_category = large_town
-				    }	
-				    108 = {
+					108 = {
+					    set_state_category = large_city
+				    }
+					414 = {
+					    set_state_category = large_city
+				    }
+					674 = {
+				        set_state_category = city
+			        }	
+				    104 = {
 					    set_state_category = large_town
 				    }	
 				}
