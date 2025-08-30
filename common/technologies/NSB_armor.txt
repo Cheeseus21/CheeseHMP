@@ -60,29 +60,29 @@ technologies = {
 		}
 		
 		enable_equipment_modules = {
-		car_module_riveted_armor
-		mech_expanded_fuel_tank
-		car_expanded_fuel_tank
-		expanded_fuel_tank
-		tank_design_simplification
-		tank_cheap_materials
-		tank_platform_mount_turret
-		tank_front_plate_fixed_superstructure_turret
-		tank_pintle_hmg
-		hull_gun
-		squeezebore_adaptor
-				tank_auto_cannon
-				tank_super_heavy_cannon_1
+			car_module_riveted_armor
+			mech_expanded_fuel_tank
+			car_expanded_fuel_tank
+			expanded_fuel_tank
+			tank_design_simplification
+			tank_cheap_materials
+			tank_platform_mount_turret
+			tank_front_plate_fixed_superstructure_turret
+			tank_pintle_hmg
+			hull_gun
+			squeezebore_adaptor
+			tank_auto_cannon
+			tank_super_heavy_cannon_1
 			tank_anti_air_cannon
 			tank_heavy_cannon
 			tank_high_velocity_cannon_h1
 			tank_high_velocity_cannon_l1
 			tank_module_open_top_turret
 			tank_high_velocity_cannon_m1
-		tank_heavy_howitzer
-		tank_small_cannon
+			tank_heavy_howitzer
+			tank_small_cannon
 			secondary_turret_small_cannon
-				tank_medium_howitzer
+			tank_medium_howitzer
 			tank_close_support_gun
 			secondary_turret_close_support_gun
 			tank_medium_cannon
@@ -100,13 +100,13 @@ technologies = {
 			tank_gasoline_engine
 			tank_diesel_engine
 			tank_petrol_electric_engine
-				tank_gasoline_engine_H
+			tank_gasoline_engine_H
 			tank_diesel_engine_H
 			tank_petrol_electric_engine_H
-				tank_gasoline_engine_L
+			tank_gasoline_engine_L
 			tank_diesel_engine_L
 			tank_petrol_electric_engine_L
-				tank_gasoline_engine_SH
+			tank_gasoline_engine_SH
 			tank_diesel_engine_SH
 			tank_petrol_electric_engine_SH
 			tank_cast_armor
@@ -154,6 +154,7 @@ technologies = {
 			wet_ammo_storage
 			smoke_launchers
 		}
+		
 		enable_subunits = {
 			light_armor
 			medium_armor
@@ -179,21 +180,25 @@ technologies = {
 			leads_to_tech = sp_armored_advanced_flamethrower_tech
 			research_cost_coeff = 1
 		}
+
 		research_cost = 2
 		start_year = 1918
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 2 y = 0 }
 		}
+		
 		special_project_specialization = { specialization_land }
 
 		categories = {
 			armor
 			cat_light_armor
 			generic 
-						mio_cat_tech_light_armor_and_modules
+			mio_cat_tech_light_armor_and_modules
 		}
 	}
+
 
 	basic_light_tank_chassis = { #Panzer I
 
@@ -252,7 +257,7 @@ technologies = {
 		categories = {
 			armor 
 			cat_light_armor generic
-						mio_cat_tech_light_armor_and_modules
+			mio_cat_tech_light_armor_and_modules
 		}
 	}
 
@@ -282,7 +287,7 @@ technologies = {
 		categories = {
 			armor
 			cat_light_armor
-						mio_cat_tech_light_armor_and_modules
+			mio_cat_tech_light_armor_and_modules
 			generic
 		}
 	}
@@ -326,67 +331,82 @@ technologies = {
 		categories = {
 			armor
 			tp_tech generic
-			amphibious_drive 			mio_cat_tech_light_armor_and_modules
+			amphibious_drive 			
+			mio_cat_tech_light_armor_and_modules
 		}
 	}
 
 	advanced_light_tank_chassis = { #Leopard
-enable_subunits = {
+
+		enable_subunits = {
 			light_flame_tank
 			medium_flame_tank
 			heavy_flame_tank
-}
+		}
+		
 		path = {
 			leads_to_tech = amphibious_drive
 			research_cost_coeff = 1
 		}
-				special_project_specialization = { specialization_land }
+		
+		special_project_specialization = { specialization_land }
 
 		on_research_complete = {          
-		add_tech_bonus = {
-			name = "1940 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			ahead_reduction = 5
-			category = cat_1941_tanks
+			# add_tech_bonus = {
+				# name = "1940 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1941_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank_chassis = 1 popup = no }
+                set_technology = { improved_medium_tank_chassis = 1 popup = no }
+                set_technology = { improved_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car2 = 1 popup = no }
+            }	
 		}
-		}
-enable_equipment_modules = {
-car_module_camouflage_net
-tank_module_camouflage_net
-tank_module_improved_turning_mechanisms
-car_module_improved_turning_mechanisms
+		
+		enable_equipment_modules = {
+			car_module_camouflage_net
+			tank_module_camouflage_net
+			tank_module_improved_turning_mechanisms
+			car_module_improved_turning_mechanisms
 
-car_rocket_rails 
-tank_rocket_rails
-tank_close_support_gun2
-easy_maintenance
-ostketten
-dozer_blade
+			car_rocket_rails 
+			tank_rocket_rails
+			tank_close_support_gun2
+			easy_maintenance
+			ostketten
+			dozer_blade
 			
 			tank_half_track_suspension
-				tank_radio_2  tank_module_improved_ergonomics mech_module_improved_ergonomics car_module_improved_ergonomics 
-				stabilizer
-				tank_medium_howitzer_2
-				tank_medium_cannon_2
-				car_heavy_machine_gun_2
-				heavy_machine_gun_2
-tank_rocket_launcher
-		tank_heavy_howitzer2
-		tank_auto_cannon_2
+			tank_radio_2  
+			tank_module_improved_ergonomics 
+			mech_module_improved_ergonomics 
+			car_module_improved_ergonomics 
+			stabilizer
+			tank_medium_howitzer_2
+			tank_medium_cannon_2
+			car_heavy_machine_gun_2
+			heavy_machine_gun_2
+			tank_rocket_launcher
+			tank_heavy_howitzer2
+			tank_auto_cannon_2
 			tank_heavy_cannon_2
 			tank_anti_air_cannon_2
-	tank_high_velocity_cannon_m2
-	tank_high_velocity_cannon_h2
-	tank_high_velocity_cannon_l2
-	tank_super_heavy_cannon_2
+			tank_high_velocity_cannon_m2
+			tank_high_velocity_cannon_h2
+			tank_high_velocity_cannon_l2
+			tank_super_heavy_cannon_2
 			car_rocket_launcher
-		tank_small_cannon_2
-		car_high_velocity_cannon_m2
-		car_medium_cannon_2 
-		car_medium_howitzer_2
-		car_stabilizer
-}
+			tank_small_cannon_2
+			car_high_velocity_cannon_m2
+			car_medium_cannon_2 
+			car_medium_howitzer_2
+			car_stabilizer
+		}
+		
 		enable_equipments = {
 			light_tank_chassis_3
 			light_tank_destroyer_chassis_3
@@ -398,8 +418,9 @@ tank_rocket_launcher
 			leads_to_tech = advanced_light_tank2_chassis
 			research_cost_coeff = 1
 		}		
+
 		path = {
-			leads_to_tech =improved_medium_tank_chassis
+			leads_to_tech = improved_medium_tank_chassis
 			research_cost_coeff = 0.99
 		}
 
@@ -412,65 +433,79 @@ tank_rocket_launcher
 		}
 
 		categories = {
-			armor cat_1941_tanks 			mio_cat_tech_light_armor_and_modules
-			cat_light_armor generic
+			armor 
+			cat_1941_tanks 			
+			mio_cat_tech_light_armor_and_modules
+			cat_light_armor 
+			generic
 		}
 	}
+
 	
-	advanced_light_tank2_chassis = { #Leopard
-enable_equipment_modules = {
-	tank_close_support_gun3		
-tank_rocket_launcher_2
-tank_auto_cannon_3
-tank_medium_howitzer_3
-tank_medium_cannon_3
-		tank_heavy_howitzer3
-	tank_heavy_cannon_3
+	advanced_light_tank2_chassis = { # Leopard
+		enable_equipment_modules = {
+			tank_close_support_gun3
+			tank_rocket_launcher_2
+			tank_auto_cannon_3
+			tank_medium_howitzer_3
+			tank_medium_cannon_3
+			tank_heavy_howitzer3
+			tank_heavy_cannon_3
 			tank_anti_air_cannon_3
-							car_heavy_machine_gun_3
-				heavy_machine_gun_3
+			car_heavy_machine_gun_3
+			heavy_machine_gun_3
 			auto_loader
-	tank_high_velocity_cannon_m3
-	tank_high_velocity_cannon_h3
-	tank_high_velocity_cannon_l3
-					tank_super_heavy_cannon_3
-					tank_hydrostatic_engine_L
-					tank_hydrostatic_engine
-					tank_hydrostatic_engine_H
-					tank_hydrostatic_engine_SH
-								car_rocket_launcher_2
+			tank_high_velocity_cannon_m3
+			tank_high_velocity_cannon_h3
+			tank_high_velocity_cannon_l3
+			tank_super_heavy_cannon_3
+			tank_hydrostatic_engine_L
+			tank_hydrostatic_engine
+			tank_hydrostatic_engine_H
+			tank_hydrostatic_engine_SH
+			car_rocket_launcher_2
 			tank_radio_3
-			 
 			car_high_velocity_cannon_m3
 			car_medium_cannon_3
 			tank_small_cannon_3
 			car_medium_howitzer_3
 			car_auto_loader
-}
-	on_research_complete = {          
-		add_tech_bonus = {
-			name = "1943 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			ahead_reduction = 5
-			category = cat_1943_tanks
 		}
+
+		on_research_complete = {
+			# add_tech_bonus = {
+				# name = "1943 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1943_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank2_chassis = 1 popup = no }
+                set_technology = { advanced_medium_tank_chassis = 1 popup = no }
+                set_technology = { advanced_heavy_tank_chassis = 1 popup = no }
+                set_technology = { super_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car3 = 1 popup = no }
+            }
 		}
+
 		enable_equipments = {
 			light_tank_chassis_4
 			light_tank_destroyer_chassis_4
 			light_tank_artillery_chassis_4
 			light_tank_aa_chassis_4
 		}
+
 		path = {
 			leads_to_tech = advanced_medium_tank_chassis
 			research_cost_coeff = 0.99
 		}
-		
+
 		path = {
 			leads_to_tech = main_battle_tank_chassis
 			research_cost_coeff = 1
 		}
+
 		research_cost = 2
 		start_year = 1943
 		special_project_specialization = { specialization_land }
@@ -481,10 +516,14 @@ tank_medium_cannon_3
 		}
 
 		categories = {
-			armor cat_1943_tanks
-			cat_light_armor generic 			mio_cat_tech_light_armor_and_modules
+			armor
+			cat_1943_tanks
+			cat_light_armor
+			generic
+			mio_cat_tech_light_armor_and_modules
 		}
 	}
+
 	
 
 	basic_medium_tank_chassis = { #Panzer III
@@ -495,6 +534,7 @@ tank_medium_cannon_3
 			medium_tank_artillery_chassis_1
 			medium_tank_aa_chassis_1
 		}
+		
 		special_project_specialization = { specialization_land }
 
 		enable_subunits = {
@@ -518,88 +558,103 @@ tank_medium_cannon_3
 		
 		categories = {
 			armor generic
-			cat_medium_armor mio_cat_tech_medium_armor_and_modules
+			cat_medium_armor 
+			mio_cat_tech_medium_armor_and_modules
 		}
 	}
 
 
 
-	improved_medium_tank_chassis = { #Panzer IV
-enable_subunits = {
-light_flame_tank
+	improved_medium_tank_chassis = { # Panzer IV
+		enable_subunits = {
+			light_flame_tank
 			medium_flame_tank
 			heavy_flame_tank
+		}
 
-}
 		enable_equipments = {
 			medium_tank_chassis_2
 			medium_tank_destroyer_chassis_2
 			medium_tank_artillery_chassis_2
 			medium_tank_aa_chassis_2
 		}
+
 		path = {
 			leads_to_tech = amphibious_drive
 			research_cost_coeff = 1
 		}
-				special_project_specialization = { specialization_land }
 
-		
-		on_research_complete = {          
-		add_tech_bonus = {
-			name = "1940 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			ahead_reduction = 5
-			category = cat_1941_tanks
+		special_project_specialization = { specialization_land }
+
+		on_research_complete = {
+			# add_tech_bonus = {
+				# name = "1940 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1941_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank_chassis = 1 popup = no }
+                set_technology = { improved_medium_tank_chassis = 1 popup = no }
+                set_technology = { improved_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car2 = 1 popup = no }
+            }
 		}
-		}
-enable_equipment_modules = {
-ostketten
-tank_close_support_gun2
-easy_maintenance
-dozer_blade
-			
+
+		enable_equipment_modules = {
+			ostketten
+			tank_close_support_gun2
+			easy_maintenance
+			dozer_blade
 			tank_half_track_suspension
-				tank_radio_2  tank_module_improved_ergonomics mech_module_improved_ergonomics car_module_improved_ergonomics 
-				stabilizer
-					tank_heavy_howitzer2
-				tank_medium_howitzer_2
-				tank_medium_cannon_2
-								car_heavy_machine_gun_2
-				heavy_machine_gun_2
-tank_rocket_launcher
-		tank_auto_cannon_2
-		car_rocket_rails 
-tank_rocket_rails
+			tank_radio_2
+			tank_module_improved_ergonomics
+			mech_module_improved_ergonomics
+			car_module_improved_ergonomics
+			stabilizer
+			tank_heavy_howitzer2
+			tank_medium_howitzer_2
+			tank_medium_cannon_2
+			car_heavy_machine_gun_2
+			heavy_machine_gun_2
+			tank_rocket_launcher
+			tank_auto_cannon_2
+			car_rocket_rails
+			tank_rocket_rails
 			tank_heavy_cannon_2
 			tank_anti_air_cannon_2
-		tank_high_velocity_cannon_m2
-	tank_high_velocity_cannon_h2
-	tank_high_velocity_cannon_l2
-	tank_super_heavy_cannon_2
+			tank_high_velocity_cannon_m2
+			tank_high_velocity_cannon_h2
+			tank_high_velocity_cannon_l2
+			tank_super_heavy_cannon_2
 			car_rocket_launcher
-		tank_small_cannon_2
-		car_high_velocity_cannon_m2
-		car_medium_cannon_2 
-		car_medium_howitzer_2
-		car_stabilizer
-		car_module_camouflage_net
-tank_module_camouflage_net
-tank_module_improved_turning_mechanisms
-car_module_improved_turning_mechanisms
-}
+			tank_small_cannon_2
+			car_high_velocity_cannon_m2
+			car_medium_cannon_2
+			car_medium_howitzer_2
+			car_stabilizer
+			car_module_camouflage_net
+			tank_module_camouflage_net
+			tank_module_improved_turning_mechanisms
+			car_module_improved_turning_mechanisms
+		}
+
 		path = {
 			leads_to_tech = advanced_medium_tank_chassis
 			research_cost_coeff = 1
 		}
-				path = {
-			leads_to_tech =advanced_light_tank_chassis
+
+		path = {
+			leads_to_tech = advanced_light_tank_chassis
 			research_cost_coeff = 0.99
 		}
-path = {
+
+		path = {
 			leads_to_tech = improved_heavy_tank_chassis
 			research_cost_coeff = 0.99
 		}
+
 		research_cost = 2
 		start_year = 1940
 
@@ -609,12 +664,16 @@ path = {
 		}
 
 		categories = {
-			armor cat_1941_tanks mio_cat_tech_medium_armor_and_modules
-			cat_medium_armor generic
+			armor
+			cat_1941_tanks
+			mio_cat_tech_medium_armor_and_modules
+			cat_medium_armor
+			generic
 		}
 	}
 
-	advanced_medium_tank_chassis = { #Panther
+
+	advanced_medium_tank_chassis = { # Panther
 		special_project_specialization = { specialization_land }
 
 		enable_equipments = {
@@ -623,30 +682,30 @@ path = {
 			medium_tank_artillery_chassis_3
 			medium_tank_aa_chassis_3
 		}
+
 		enable_equipment_modules = {
-		tank_close_support_gun3
-		tank_radio_3
-tank_rocket_launcher_2
-tank_medium_howitzer_3
-tank_medium_cannon_3
-tank_auto_cannon_3
-		tank_heavy_howitzer3
-	tank_heavy_cannon_3
+			tank_close_support_gun3
+			tank_radio_3
+			tank_rocket_launcher_2
+			tank_medium_howitzer_3
+			tank_medium_cannon_3
+			tank_auto_cannon_3
+			tank_heavy_howitzer3
+			tank_heavy_cannon_3
 			tank_anti_air_cannon_3
-							car_heavy_machine_gun_3
-				heavy_machine_gun_3
+			car_heavy_machine_gun_3
+			heavy_machine_gun_3
 			auto_loader
-	tank_high_velocity_cannon_m3
-	tank_high_velocity_cannon_h3
-	tank_high_velocity_cannon_l3
-					tank_super_heavy_cannon_3
-							tank_hydrostatic_engine_L
-					tank_hydrostatic_engine
-					tank_hydrostatic_engine_H
-					tank_hydrostatic_engine_SH
-								car_rocket_launcher_2
+			tank_high_velocity_cannon_m3
+			tank_high_velocity_cannon_h3
+			tank_high_velocity_cannon_l3
+			tank_super_heavy_cannon_3
+			tank_hydrostatic_engine_L
+			tank_hydrostatic_engine
+			tank_hydrostatic_engine_H
+			tank_hydrostatic_engine_SH
+			car_rocket_launcher_2
 			tank_small_cannon_3
-			 
 			car_small_cannon_3
 			car_close_support_gun3
 			car_high_velocity_cannon_m3
@@ -654,18 +713,22 @@ tank_auto_cannon_3
 			car_medium_howitzer_3
 			car_auto_loader
 		}
+
 		path = {
 			leads_to_tech = main_battle_tank_chassis
 			research_cost_coeff = 1
 		}
+
 		path = {
 			leads_to_tech = advanced_heavy_tank_chassis
 			research_cost_coeff = 0.99
 		}
-				path = {
+
+		path = {
 			leads_to_tech = advanced_light_tank2_chassis
 			research_cost_coeff = 0.99
 		}
+
 		research_cost = 2
 		start_year = 1943
 
@@ -673,22 +736,36 @@ tank_auto_cannon_3
 			name = nsb_armour_folder
 			position = { x = 2 y = @1943 }
 		}
-	on_research_complete = {          
-		add_tech_bonus = {
-			name = "1943 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			ahead_reduction = 5
-			category = cat_1943_tanks
+
+		on_research_complete = {
+			# add_tech_bonus = {
+				# name = "1943 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1943_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank2_chassis = 1 popup = no }
+                set_technology = { advanced_medium_tank_chassis = 1 popup = no }
+                set_technology = { advanced_heavy_tank_chassis = 1 popup = no }
+                set_technology = { super_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car3 = 1 popup = no }
+            }
 		}
-		}
+
 		categories = {
-			armor cat_1943_tanks
-			cat_medium_armor generic mio_cat_tech_medium_armor_and_modules
+			armor
+			cat_1943_tanks
+			cat_medium_armor
+			generic
+			mio_cat_tech_medium_armor_and_modules
 		}
 	}
 
+
 	main_battle_tank_chassis = { #E-50 # Restoring this to the old value, The Community actually liked using this tank.
+	
 		special_project_specialization = { specialization_land }
 
 		enable_equipments = {
@@ -697,6 +774,7 @@ tank_auto_cannon_3
 			modern_tank_artillery_chassis_1
 			modern_tank_aa_chassis_1
 		}
+		
 		enable_equipment_modules = { 
 			tank_modern_tank_turret
 			tank_modern_cannon
@@ -711,6 +789,7 @@ tank_auto_cannon_3
 			tank_gas_turbine_engine_H 
 			car_gas_turbine_engine
 		}
+		
 		enable_subunits = {
 			modern_armor
 		}
@@ -724,13 +803,16 @@ tank_auto_cannon_3
 		}
 
 		categories = {
-			armor  generic mio_cat_tech_medium_armor_and_modules
+			armor  
+			generic 
+			mio_cat_tech_medium_armor_and_modules
 			cat_medium_armor
 		}
 	}
 
 
 	basic_heavy_tank_chassis = { #Grosstraktor
+	
 		special_project_specialization = { specialization_land }
 
 		enable_equipments = {
@@ -743,8 +825,6 @@ tank_auto_cannon_3
 		enable_subunits = {
 			heavy_armor
 		}
-
-		
 
 		path = {
 			leads_to_tech = improved_heavy_tank_chassis
@@ -761,62 +841,68 @@ tank_auto_cannon_3
 
 		categories = {
 			armor generic
-			cat_heavy_armor mio_cat_tech_heavy_armor_and_modules
+			cat_heavy_armor 
+			mio_cat_tech_heavy_armor_and_modules
 		}
 	}
 
-	improved_heavy_tank_chassis = { #Tiger
-enable_subunits = {
-light_flame_tank
+	improved_heavy_tank_chassis = { # Tiger
+		enable_subunits = {
+			light_flame_tank
 			medium_flame_tank
 			heavy_flame_tank
+		}
 
-}
 		enable_equipments = {
 			heavy_tank_chassis_2
 			heavy_tank_destroyer_chassis_2
 			heavy_tank_artillery_chassis_2
 			heavy_tank_aa_chassis_2
 		}
-		enable_equipment_modules = {  
-		car_module_camouflage_net
-tank_module_camouflage_net
-tank_module_improved_turning_mechanisms
-car_module_improved_turning_mechanisms
-		tank_close_support_gun2
-easy_maintenance
-dozer_blade
-tank_small_cannon_2
-			
+
+		enable_equipment_modules = {
+			car_module_camouflage_net
+			tank_module_camouflage_net
+			tank_module_improved_turning_mechanisms
+			car_module_improved_turning_mechanisms
+			tank_close_support_gun2
+			easy_maintenance
+			dozer_blade
+			tank_small_cannon_2
 			tank_half_track_suspension
-				tank_radio_2  tank_module_improved_ergonomics mech_module_improved_ergonomics car_module_improved_ergonomics 
-				stabilizer
-					tank_heavy_howitzer2
-				tank_medium_howitzer_2
-				tank_medium_cannon_2
-tank_rocket_launcher
-ostketten
-		tank_auto_cannon_2
+			tank_radio_2
+			tank_module_improved_ergonomics
+			mech_module_improved_ergonomics
+			car_module_improved_ergonomics
+			stabilizer
+			tank_heavy_howitzer2
+			tank_medium_howitzer_2
+			tank_medium_cannon_2
+			tank_rocket_launcher
+			ostketten
+			tank_auto_cannon_2
 			tank_heavy_cannon_2
-			car_rocket_rails 
-tank_rocket_rails
+			car_rocket_rails
+			tank_rocket_rails
 			tank_anti_air_cannon_2
-		tank_high_velocity_cannon_m2
-	tank_high_velocity_cannon_h2
-	tank_high_velocity_cannon_l2
-	tank_super_heavy_cannon_2
-					car_heavy_machine_gun_2
-				heavy_machine_gun_2
+			tank_high_velocity_cannon_m2
+			tank_high_velocity_cannon_h2
+			tank_high_velocity_cannon_l2
+			tank_super_heavy_cannon_2
+			car_heavy_machine_gun_2
+			heavy_machine_gun_2
 			car_rocket_launcher
-		car_high_velocity_cannon_m2
-		car_medium_cannon_2 
-		car_medium_howitzer_2
-		car_stabilizer
+			car_high_velocity_cannon_m2
+			car_medium_cannon_2
+			car_medium_howitzer_2
+			car_stabilizer
 		}
-path = {
+
+		path = {
 			leads_to_tech = improved_medium_tank_chassis
 			research_cost_coeff = 0.99
 		}
+
 		path = {
 			leads_to_tech = advanced_heavy_tank_chassis
 			research_cost_coeff = 1
@@ -834,25 +920,38 @@ path = {
 			name = nsb_armour_folder
 			position = { x = 5 y = @1940 }
 		}
-		on_research_complete = {          
-		add_tech_bonus = {
-			name = "1940 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			ahead_reduction = 5
-			category = cat_1941_tanks
+
+		on_research_complete = {
+			# add_tech_bonus = {
+				# name = "1940 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1941_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank_chassis = 1 popup = no }
+                set_technology = { improved_medium_tank_chassis = 1 popup = no }
+                set_technology = { improved_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car2 = 1 popup = no }
+            }
 		}
-		}
-				special_project_specialization = { specialization_land }
+
+		special_project_specialization = { specialization_land }
 
 		categories = {
-			armor cat_1941_tanks mio_cat_tech_heavy_armor_and_modules
-			cat_heavy_armor generic
+			armor
+			cat_1941_tanks
+			mio_cat_tech_heavy_armor_and_modules
+			cat_heavy_armor
+			generic
 		}
 	}
 
 
-	advanced_heavy_tank_chassis = { #King Tiger
+
+	advanced_heavy_tank_chassis = { # King Tiger
+	
 		special_project_specialization = { specialization_land }
 
 		enable_equipments = {
@@ -861,70 +960,87 @@ path = {
 			heavy_tank_artillery_chassis_3
 			heavy_tank_aa_chassis_3
 		}
+
 		enable_equipment_modules = {
-		tank_close_support_gun3
-		tank_hydrostatic_engine_L
-					tank_hydrostatic_engine
-					tank_hydrostatic_engine_H
-					tank_hydrostatic_engine_SH		
-		tank_heavy_howitzer3
-		tank_medium_cannon_3
-		tank_medium_howitzer_3
-		tank_radio_3
-tank_rocket_launcher_2
-				car_heavy_machine_gun_3
-				heavy_machine_gun_3
-	tank_heavy_cannon_3
-	tank_auto_cannon_3
+			tank_close_support_gun3
+			tank_hydrostatic_engine_L
+			tank_hydrostatic_engine
+			tank_hydrostatic_engine_H
+			tank_hydrostatic_engine_SH
+			tank_heavy_howitzer3
+			tank_medium_cannon_3
+			tank_medium_howitzer_3
+			tank_radio_3
+			tank_rocket_launcher_2
+			car_heavy_machine_gun_3
+			heavy_machine_gun_3
+			tank_heavy_cannon_3
+			tank_auto_cannon_3
 			tank_anti_air_cannon_3
 			auto_loader
-	tank_high_velocity_cannon_m3
-	tank_high_velocity_cannon_h3
-	tank_high_velocity_cannon_l3
-	tank_super_heavy_cannon_3
-				car_rocket_launcher_2
+			tank_high_velocity_cannon_m3
+			tank_high_velocity_cannon_h3
+			tank_high_velocity_cannon_l3
+			tank_super_heavy_cannon_3
+			car_rocket_launcher_2
 			tank_small_cannon_3
-			 
 			car_high_velocity_cannon_m3
 			car_medium_cannon_3
 			car_medium_howitzer_3
 			car_auto_loader
 		}
+
 		path = {
 			leads_to_tech = main_battle_tank_chassis
 			research_cost_coeff = 1
 		}
+
 		path = {
 			leads_to_tech = advanced_medium_tank_chassis
 			research_cost_coeff = 0.99
 		}
-				path = {
+
+		path = {
 			leads_to_tech = super_heavy_tank_chassis
 			research_cost_coeff = 0.99
 		}
+
 		research_cost = 2
 		start_year = 1943
-		on_research_complete = {          
-		add_tech_bonus = {
-			name = "1943 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			ahead_reduction = 5
-			category = cat_1943_tanks
+
+		on_research_complete = {
+			# add_tech_bonus = {
+				# name = "1943 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1943_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank2_chassis = 1 popup = no }
+                set_technology = { advanced_medium_tank_chassis = 1 popup = no }
+                set_technology = { advanced_heavy_tank_chassis = 1 popup = no }
+                set_technology = { super_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car3 = 1 popup = no }
+            }
 		}
-		}
+
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 5 y = @1943 }
 		}
 
 		categories = {
-			armor cat_1943_tanks mio_cat_tech_heavy_armor_and_modules
-			cat_heavy_armor generic
+			armor
+			cat_1943_tanks
+			mio_cat_tech_heavy_armor_and_modules
+			cat_heavy_armor
+			generic
 		}
 	}
 
-	super_heavy_tank_chassis = { #Maus
+
+	super_heavy_tank_chassis = { # Maus
 		special_project_specialization = { specialization_land }
 
 		path = {
@@ -946,71 +1062,93 @@ tank_rocket_launcher_2
 			leads_to_tech = sp_armored_lc_specialized_field_manuals_tech
 			research_cost_coeff = 1
 		}
+
 		enable_equipments = {
 			super_heavy_tank_chassis_1
 		}
-		enable_equipment_modules = { 
-		tank_medium_cannon_3
-					tank_hydrostatic_engine_L
-					tank_hydrostatic_engine
-					tank_hydrostatic_engine_H
-					tank_hydrostatic_engine_SH
-		tank_close_support_gun3
+
+		enable_equipment_modules = {
+			tank_medium_cannon_3
+			tank_hydrostatic_engine_L
+			tank_hydrostatic_engine
+			tank_hydrostatic_engine_H
+			tank_hydrostatic_engine_SH
+			tank_close_support_gun3
 			tank_radio_3
-tank_rocket_launcher_2
-	tank_heavy_cannon_3
+			tank_rocket_launcher_2
+			tank_heavy_cannon_3
 			tank_anti_air_cannon_3
 			tank_auto_cannon_3
-							car_heavy_machine_gun_3
-				heavy_machine_gun_3
-		tank_heavy_howitzer3
+			car_heavy_machine_gun_3
+			heavy_machine_gun_3
+			tank_heavy_howitzer3
 			auto_loader
-	tank_high_velocity_cannon_m3
-	tank_high_velocity_cannon_h3
-	tank_medium_howitzer_3
-	tank_high_velocity_cannon_l3
-	tank_super_heavy_cannon_3
-				car_rocket_launcher_2
+			tank_high_velocity_cannon_m3
+			tank_high_velocity_cannon_h3
+			tank_medium_howitzer_3
+			tank_high_velocity_cannon_l3
+			tank_super_heavy_cannon_3
+			car_rocket_launcher_2
 			tank_small_cannon_3
-			 
 			car_high_velocity_cannon_m3
 			car_medium_cannon_3
 			car_medium_howitzer_3
 			car_auto_loader
 		}
+
 		enable_subunits = {
 			super_heavy_armor
 			super_heavy_assault_company
 		}
-	path = {
+
+		path = {
 			leads_to_tech = main_battle_tank_chassis
 			research_cost_coeff = 1
 		}
 
 		research_cost = 2
 		start_year = 1943
+
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 8 y = @1943 }
 		}
-	on_research_complete = {          
-		add_tech_bonus = {
-			name = "1943 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			ahead_reduction = 5
-			category = cat_1943_tanks
+
+		on_research_complete = {
+			# add_tech_bonus = {
+				# name = "1943 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1943_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank2_chassis = 1 popup = no }
+                set_technology = { advanced_medium_tank_chassis = 1 popup = no }
+                set_technology = { advanced_heavy_tank_chassis = 1 popup = no }
+                set_technology = { super_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car3 = 1 popup = no }
+            }
 		}
-		}
-			categories = {
-			armor cat_1943_tanks mio_cat_tech_heavy_armor_and_modules
-			cat_heavy_armor generic
+
+		categories = {
+			armor
+			cat_1943_tanks
+			mio_cat_tech_heavy_armor_and_modules
+			cat_heavy_armor
+			generic
 		}
 	}
 
+
 	armor_tech_1 = {
 		enable_equipment_modules = {
-			tank_welded_armor mech_welded_armor tank_module_bolted_armor mech_module_bolted_armor car_module_bolted_armor   car_welded_armor
+			tank_welded_armor 
+			mech_welded_armor 
+			tank_module_bolted_armor 
+			mech_module_bolted_armor 
+			car_module_bolted_armor   
+			car_welded_armor
 		}
 		special_project_specialization = { specialization_land }
 
@@ -1022,10 +1160,12 @@ tank_rocket_launcher_2
 		on_research_complete = {
 			custom_effect_tooltip = armor_tech_1_tt
 		}
+		
 		show_effect_as_desc = yes
 
 		research_cost = 0.75
 		start_year = 1934
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = -17 y = @1934 }
@@ -1033,7 +1173,10 @@ tank_rocket_launcher_2
 
 
 		categories = {
-			armor generic armor_upgrade 			mio_cat_tech_light_armor_and_modules
+			armor
+			generic
+			armor_upgrade 			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
@@ -1046,6 +1189,7 @@ tank_rocket_launcher_2
 			armor_skirts
 			mech_armored_roof
 		}
+		
 		path = {
 			leads_to_tech = armor_tech_3
 			research_cost_coeff = 1
@@ -1054,17 +1198,22 @@ tank_rocket_launcher_2
 		on_research_complete = {
 			custom_effect_tooltip = armor_tech_2_tt
 		}
+		
 		show_effect_as_desc = yes
 
 		research_cost = 0.75
 		start_year = 1937
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = -17  y = @1937 }
 		}
 
 		categories = {
-			armor generic armor_upgrade 			mio_cat_tech_light_armor_and_modules
+			armor 
+			generic
+			armor_upgrade 			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
@@ -1082,17 +1231,22 @@ tank_rocket_launcher_2
 		on_research_complete = {
 			custom_effect_tooltip = armor_tech_3_tt
 		}
+		
 		show_effect_as_desc = yes
 
 		research_cost = 0.75
 		start_year = 1940
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = -17  y = @1940 }
 		}
 
 		categories = {
-			armor generic armor_upgrade 			mio_cat_tech_light_armor_and_modules
+			armor 
+			generic 
+			armor_upgrade 			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
@@ -1103,6 +1257,7 @@ tank_rocket_launcher_2
 
 		research_cost = 0.75
 		start_year = 1943
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = -17  y = @1943 }
@@ -1111,10 +1266,14 @@ tank_rocket_launcher_2
 		on_research_complete = {
 			custom_effect_tooltip = armor_tech_4_tt
 		}
+		
 		show_effect_as_desc = yes
 
 		categories = {
-			armor generic armor_upgrade			mio_cat_tech_light_armor_and_modules
+			armor 
+			generic 
+			armor_upgrade			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
@@ -1126,16 +1285,21 @@ tank_rocket_launcher_2
 		enable_equipment_modules = { 
 			ostketten
 		}
+		
 		path = {
 			leads_to_tech = engine_tech_2
 			research_cost_coeff = 1
 		}
+		
 		on_research_complete = {
 			custom_effect_tooltip = engine_tech_1_tt
 		}
+		
 		show_effect_as_desc = yes
+		
 		research_cost = 0.75
 		start_year = 1934
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 2 y = @1934 }
@@ -1143,7 +1307,10 @@ tank_rocket_launcher_2
 
 
 		categories = {
-			armor generic armor_upgrade 			mio_cat_tech_light_armor_and_modules
+			armor 
+			generic 
+			armor_upgrade 			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
@@ -1161,17 +1328,22 @@ tank_rocket_launcher_2
 		on_research_complete = {
 			custom_effect_tooltip = engine_tech_2_tt
 		}
+		
 		show_effect_as_desc = yes
 
 		research_cost = 0.75
 		start_year = 1937
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 2 y = @1937 }
 		}
 
 		categories = {
-			armor generic armor_upgrade 			mio_cat_tech_light_armor_and_modules
+			armor 
+			generic 
+			armor_upgrade 			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
@@ -1185,19 +1357,26 @@ tank_rocket_launcher_2
 			leads_to_tech = engine_tech_4
 			research_cost_coeff = 1
 		}
+		
 		on_research_complete = {
 			custom_effect_tooltip = engine_tech_3_tt
 		}
+		
 		show_effect_as_desc = yes
 		research_cost = 0.75
+		
 		start_year = 1940
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 2 y = @1940 }
 		}
 
 		categories = {
-			armor generic armor_upgrade 			mio_cat_tech_light_armor_and_modules
+			armor 
+			generic
+			armor_upgrade 			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
@@ -1208,28 +1387,27 @@ tank_rocket_launcher_2
 
 		research_cost = 0.75
 		start_year = 1943
+		
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 2 y = @1943 }
 		}
+		
 		on_research_complete = {
 			custom_effect_tooltip = engine_tech_4_tt
 		}
+		
 		show_effect_as_desc = yes
 
 		categories = {
-			armor generic armor_upgrade 			mio_cat_tech_light_armor_and_modules
+			armor 
+			generic 
+			armor_upgrade 			
+			mio_cat_tech_light_armor_and_modules
 			mio_cat_tech_medium_armor_and_modules
 			mio_cat_tech_heavy_armor_and_modules
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 
 	########################
 	### SPECIAL PROJECTS ###
