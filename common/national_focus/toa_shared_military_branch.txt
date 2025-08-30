@@ -514,64 +514,64 @@ shared_focus = {
 }
 
 
-shared_focus = {
-	id = SMB_experimental_weapons_department
-	icon = GFX_focus_rocketry
-	relative_position_id = SMB_army_professionalism
-	prerequisite = { focus = SMB_army_professionalism }
-	x = 0
-	y = 1
+# shared_focus = {
+	# id = SMB_experimental_weapons_department
+	# icon = GFX_focus_rocketry
+	# relative_position_id = SMB_army_professionalism
+	# prerequisite = { focus = SMB_army_professionalism }
+	# x = 0
+	# y = 1
 
-	cost = 5
+	# cost = 5
 
-	available = {
+	# available = {
 
-	}
+	# }
 
-	bypass = {
+	# bypass = {
 		
-	}
+	# }
 
-	ai_will_do = {
-			factor = 20
-		}
+	# ai_will_do = {
+			# factor = 20
+		# }
 
-	completion_reward = {
-			add_breakthrough_progress = {
-			specialization = specialization_air
-			value = 0.75
-		}
-		custom_effect_tooltip = generic_skip_one_line_tt
+	# completion_reward = {
+			# add_breakthrough_progress = {
+			# specialization = specialization_air
+			# value = 0.75
+		# }
+		# custom_effect_tooltip = generic_skip_one_line_tt
 
-		add_ideas = generic_secret_weapons_ns
-	}
-}
+		# add_ideas = generic_secret_weapons_ns
+	# }
+# }
 
-shared_focus = {
-	id = SMB_nuclear_program
-	icon = GFX_focus_wonderweapons
-	relative_position_id = SMB_experimental_weapons_department
-	prerequisite = { focus = SMB_experimental_weapons_department }
-	x = 0
-	y = 1
+# shared_focus = {
+	# id = SMB_nuclear_program
+	# icon = GFX_focus_wonderweapons
+	# relative_position_id = SMB_experimental_weapons_department
+	# prerequisite = { focus = SMB_experimental_weapons_department }
+	# x = 0
+	# y = 1
 
-	cost = 5
+	# cost = 5
 
 
-	completion_reward = {
-		add_breakthrough_progress = {
-			specialization = specialization_nuclear
-			value = 0.75
-		}
-	}   
-}  
+	# completion_reward = {
+		# add_breakthrough_progress = {
+			# specialization = specialization_nuclear
+			# value = 0.75
+		# }
+	# }   
+# }  
  
 shared_focus = {
 	id = SMB_special_forces
 	icon = GFX_focus_eng_special_air_service
 	relative_position_id = SMB_army_professionalism
-	prerequisite = { focus = SMB_army_professionalism }
-	x = -3
+	prerequisite = { focus = SMB_army_professionalism focus = SMB_jungle_pioneers  }
+	x = 1
 	y = 1
 
 	cost = 5 
@@ -581,214 +581,12 @@ shared_focus = {
 		add_doctrine_cost_reduction = {
 			name = JUNO_expand_the_special_foces
 			cost_reduction = 0.99
-			uses = 3
+			uses = 5
 			category = special_forces_doctrine
 		}
 	}
 }
 
-shared_focus = {
-	id = SMB_special_forces_option_1
-	icon = GFX_focus_SMB_special_forces_option_1
-	relative_position_id = SMB_special_forces
-	prerequisite = { focus = SMB_special_forces }
-	#mutually_exclusive = { focus = SMB_special_forces_option_2 focus = SMB_special_forces_option_3 }
-	x = -2
-	y = 1
-
-	cost = 5
-
-	allow_branch = {
-		always = no
-	}
-
-	completion_reward = {
-		
-			add_doctrine_cost_reduction = {
-				name = JUNO_expand_the_special_foces
-				cost_reduction = 0.25
-				uses = 1
-				category = special_forces_doctrine
-			}
-	}
-}
-
-shared_focus = {
-	id = SMB_special_forces_option_2
-	icon = {
-		trigger = {
-			original_tag = BRA
-		}
-		value = GFX_focus_BRA_corpo_navais
-	}
-	icon = {
-		trigger = {
-			NOT = {
-				original_tag = BRA
-			}
-		}
-		value = GFX_goal_generic_amphibious_assault
-	} 
-	relative_position_id = SMB_special_forces
-	prerequisite = { focus = SMB_special_forces }
-	#mutually_exclusive = { focus = SMB_special_forces_option_1 focus = SMB_special_forces_option_3 }
-	x = 1
-	y = 1
-
-	cost = 5
-
-
-	completion_reward = {
-		add_doctrine_cost_reduction = {
-			name = JUNO_expand_the_special_foces
-			cost_reduction = 0.99
-			uses = 1
-			category = special_forces_doctrine
-		}
-	}
-}
-
-shared_focus = {
-	id = SMB_special_forces_option_3
-	icon = GFX_focus_SMB_special_forces_option_3 
-	relative_position_id = SMB_special_forces
-	prerequisite = { focus = SMB_special_forces }
-	#mutually_exclusive = { focus = SMB_special_forces_option_1 focus = SMB_special_forces_option_2 }
-	x = -1
-	y = 1
-
-	cost = 5
-
-	completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = JUNO_expand_the_special_foces
-				cost_reduction = 0.99
-				uses = 1
-				category = special_forces_doctrine
-			}
-	}
-}
-
-shared_focus = {
-	id = SMB_special_forces_option_3_continuation
-	icon = GFX_goal_generic_build_airforce 
-	relative_position_id = SMB_special_forces_option_3
-	prerequisite = { focus = SMB_special_forces_option_3 }
-
-	x = 0
-	y = 1
-
-	cost = 5
- 
-
-	completion_reward = {
-		IF = {
-			limit = {
-				original_tag = BRA
-			}
-			custom_effect_tooltip = BRA_modify_brazilian_army_ns_intro
-			add_to_variable = { JUNO_army_modifier_special_forces_out_of_supply_factor = -0.15 tooltip = special_forces_out_of_supply_factor_tt }
-		}
-		ELSE = {
-			custom_effect_tooltip = ARG_modify_argentine_army_ns_intro
-			add_to_variable = { JUNO_army_modifier_special_forces_out_of_supply_factor = -0.15 tooltip = special_forces_out_of_supply_factor_tt }
-		}
-	}
-}
-
-shared_focus = {
-	id = SMB_special_forces_option_2_continuation 
-	icon = GFX_goal_generic_occupy_states_coastal 
-	relative_position_id = SMB_special_forces_option_2
-	prerequisite = { focus = SMB_special_forces_option_2 }
-
-	x = 0
-	y = 1
-
-	cost = 5
- 
-	ai_will_do = {
-			factor = 20
-		} 
-
-
-	completion_reward = {
-
-		IF = {
-			limit = {
-				original_tag = BRA
-			}
-			custom_effect_tooltip = BRA_modify_brazilian_army_ns_intro
-			add_to_variable = { JUNO_army_modifier_extra_marine_supply_grace = 48 tooltip = extra_marine_supply_grace_tt }
-		}
-		ELSE_IF = {
-			limit = {
-				original_tag = ARG
-			}
-			custom_effect_tooltip = ARG_modify_argentine_army_ns_intro
-			add_to_variable = { JUNO_army_modifier_extra_marine_supply_grace = 48 tooltip = extra_marine_supply_grace_tt }
-		}
-		ELSE = {
-			custom_effect_tooltip = JUNO_modify_south_american_army_ns_intro
-			add_to_variable = { JUNO_army_modifier_extra_marine_supply_grace = 48 tooltip = extra_marine_supply_grace_tt }
-		}
-	}
-}
-
-shared_focus = {
-	id = SMB_special_forces_option_1_continuation
-	icon = GFX_focus_SWE_beneath_sticks_and_stone 
-	relative_position_id = SMB_special_forces_option_1
-	prerequisite = { focus = SMB_special_forces_option_1 }
-
-	x = 0
-	y = 1
-
-	cost = 5
- 
-	available = {
-
-	}
-
-	bypass = {
-		 
-	}
-
-	ai_will_do = {
-			factor = 20
-		} 
-
-	completion_reward = {
-
-		IF = {
-			limit = { 
-				NOT = { has_tech = night_vision }
-				date > 1940.1.1
-			}
-			set_technology = { night_vision = 1 }
-		}
-		ELSE_IF = {
-			limit = { 
-				NOT = { has_tech = night_vision2 }
-				date > 1941.1.1
-			}
-			set_technology = { night_vision2 = 1 }
-		}	
-
-		IF = {
-			limit = {
-				original_tag = BRA
-			}
-			custom_effect_tooltip = BRA_modify_brazilian_army_ns_intro
-			add_to_variable = { JUNO_army_modifier_special_forces_cap = 0.1 tooltip = special_forces_cap_tt }
-		}
-		ELSE = {
-			custom_effect_tooltip = ARG_modify_argentine_army_ns_intro
-			add_to_variable = { JUNO_army_modifier_special_forces_cap = 0.1 tooltip = special_forces_cap_tt }
-		}
-		army_experience = 30
-	}
-}
 
 
 shared_focus = {

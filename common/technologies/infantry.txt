@@ -1028,22 +1028,28 @@ technologies = {
 		}		
 		
 	}
+	
 	building_limiter_tech = {
-			start_year = 1918
-	allow = {always = no	}
+		start_year = 1918
+		
+		allow = { always = no }
+		
 		enable_building = {
 			building = air_base
 			level = 4 #max is 80
 		}	
-				enable_building = {
+		
+		enable_building = {
 			building = rail_way
 			level = 5
 		}
+		
 		enable_building = {
 			building = supply_node
 			level = 1
 		}		
-}
+	}
+	
 	infantry_weapons = {
 
 	
@@ -1949,11 +1955,13 @@ category_armor_support_battalions = {
 
 		research_cost = 1.5
 		start_year = 1918
+		
 		folder = {
 			name = infantry_folder
 			position = { x = 0 y = -1 }
 		}
-				special_project_specialization = { specialization_land }
+		
+		special_project_specialization = { specialization_land }
 
 		categories = {
 			motorized_equipment
@@ -2142,6 +2150,7 @@ category_armor_support_battalions = {
 			infantry_tech generic
 		}
 	}
+	
 	motorized_rocket_unit = {
 
 		enable_subunits = {
@@ -2157,8 +2166,10 @@ category_armor_support_battalions = {
 	
 		research_cost = 1
 		start_year = 1939
+		
 		sub_tech_index = 0
-			special_project_specialization = { specialization_land }
+		
+		special_project_specialization = { specialization_land }
 	
 		categories = {
 			mot_rockets generic 
@@ -2171,6 +2182,7 @@ category_armor_support_battalions = {
 		enable_subunits = {
 			armored_car
 		}
+		
 		enable_equipment_modules = { 
 			car_design_simplification
 			car_pintle_hmg
@@ -2203,15 +2215,19 @@ category_armor_support_battalions = {
 			car_additional_machine_guns
 			car_sloped_armor
 		}
+		
 		allow_branch = { has_dlc = "La Resistance" }
+		
 		path = {
 			leads_to_tech = armored_car2
 			research_cost_coeff = 1
 		}
+		
 		special_project_specialization = { specialization_land }
 
 		research_cost = 1
 		start_year = 1914
+		
 		folder = {
 			name = infantry_folder
 			position = { x = 2 y = @1936 }
@@ -2228,92 +2244,131 @@ category_armor_support_battalions = {
 		enable_equipments = { 
 			armored_car_chassis_1
 		}
+
 		on_research_complete = {          
-		add_tech_bonus = {
-			name = "1940 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			category = cat_1941_tanks
+			# add_tech_bonus = {
+			# 	name = "1940 Tank Variety Bonus"
+			# 	bonus = 5.0
+			# 	uses = 1
+			# 	ahead_reduction = 5
+			# 	category = cat_1941_tanks
+			# }
+
+			FROM = {
+                set_technology = { advanced_light_tank_chassis = 1 popup = no }
+                set_technology = { improved_medium_tank_chassis = 1 popup = no }
+                set_technology = { improved_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car2 = 1 popup = no }
+				every_military_industrial_organization = {
+					add_mio_funds = 2000
+				}
+            }	
 		}
-		}
+
 		enable_equipment_modules = {
-		car_module_camouflage_net
-		car_module_improved_turning_mechanisms
-		tank_radio_2  tank_module_improved_ergonomics mech_module_improved_ergonomics car_module_improved_ergonomics 
-		tank_rocket_launcher
-		tank_auto_cannon_2
-		tank_small_cannon_2
-				heavy_machine_gun_2
-		tank_high_velocity_cannon_l2
-		tank_close_support_gun2
-		tank_high_velocity_cannon_m2
-		car_high_velocity_cannon_m2
-		car_rocket_rails 
-		tank_rocket_rails
-		car_medium_cannon_2
-		tank_medium_cannon_2 
-		
-		tank_medium_howitzer_2
-		car_stabilizer
-		}		
+			car_module_camouflage_net
+			car_module_improved_turning_mechanisms
+			tank_radio_2
+			tank_module_improved_ergonomics
+			mech_module_improved_ergonomics
+			car_module_improved_ergonomics
+			tank_rocket_launcher
+			tank_auto_cannon_2
+			tank_small_cannon_2
+			heavy_machine_gun_2
+			tank_high_velocity_cannon_l2
+			tank_close_support_gun2
+			tank_high_velocity_cannon_m2
+			car_high_velocity_cannon_m2
+			car_rocket_rails
+			tank_rocket_rails
+			car_medium_cannon_2
+			tank_medium_cannon_2
+			tank_medium_howitzer_2
+			car_stabilizer
+		}
+
 		path = {
 			leads_to_tech = armored_car3
 			research_cost_coeff = 1
 		}
+
 		special_project_specialization = { specialization_land }
 
 		research_cost = 2
 		start_year = 1940
+
 		folder = {
 			name = infantry_folder
 			position = { x = 2 y = @1940 }
 		}
-		
+
 		categories = {
-			armor generic cat_1941_tanks cat_armored_cars
+			armor
+			generic
+			cat_1941_tanks
+			cat_armored_cars
 		}
 	}
+
 
 	armored_car3 = {
 		enable_equipments = {
 			armored_car_chassis_2
 		}
-				on_research_complete = {          
-		add_tech_bonus = {
-			name = "1943 Tank Variety Bonus"
-			bonus = 5.0
-			uses = 1
-			category = cat_1943_tanks
+
+		on_research_complete = {
+			# add_tech_bonus = {
+				# name = "1943 Tank Variety Bonus"
+				# bonus = 5.0
+				# uses = 1
+				# ahead_reduction = 5
+				# category = cat_1943_tanks
+			# }
+            FROM = {
+                set_technology = { advanced_light_tank2_chassis = 1 popup = no }
+                set_technology = { advanced_medium_tank_chassis = 1 popup = no }
+                set_technology = { advanced_heavy_tank_chassis = 1 popup = no }
+                set_technology = { super_heavy_tank_chassis = 1 popup = no }
+                set_technology = { armored_car3 = 1 popup = no }
+            }
 		}
-		}
+
 		enable_equipment_modules = { 
 			tank_rocket_launcher_2
 			tank_radio_3
-				heavy_machine_gun_3
-			tank_auto_cannon_3 
+			heavy_machine_gun_3
+			tank_auto_cannon_3
 			tank_small_cannon_3
 			tank_high_velocity_cannon_l3
 			tank_close_support_gun3
 			tank_high_velocity_cannon_m3
 			tank_medium_cannon_3
 			car_high_velocity_cannon_m3
-			car_medium_cannon_3			
+			car_medium_cannon_3
 			tank_medium_howitzer_3
 			car_auto_loader
 			tank_hydrostatic_engine_L
 		}
+
 		research_cost = 2
 		start_year = 1943
+
 		folder = {
 			name = infantry_folder
 			position = { x = 2 y = @1943 }
 		}
-				special_project_specialization = { specialization_land }
+
+		special_project_specialization = { specialization_land }
 
 		categories = {
-			armor generic cat_1943_tanks cat_armored_cars
+			armor
+			generic
+			cat_1943_tanks
+			cat_armored_cars
 		}
 	}
+
 
 	mechanised_infantry = {
 
