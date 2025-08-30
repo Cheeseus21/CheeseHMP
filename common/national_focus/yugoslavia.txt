@@ -192,7 +192,7 @@ focus_tree = {
 						state = 675
                     }
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 4
 			}
 		}
 	}
@@ -555,9 +555,10 @@ focus_tree = {
                     OR = {
                         state = 107
                         state = 108
+						state = 414
                     }
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 4
                 add_building_construction = {
 				    type = infrastructure
 				    level = 1
@@ -879,7 +880,7 @@ focus_tree = {
         relative_position_id = YUG_end_the_regency
 		x = 1
 		y = 1
-		cost = 5
+		cost = 10
 		prerequisite = {
             focus = YUG_end_the_regency
         }
@@ -1129,7 +1130,6 @@ focus_tree = {
             focus = YUG_join_axis
         }
 		completion_reward = {
-            add_stability = 0.2
             add_ideas = YUG_idea_central_management
 	    }
     }
@@ -1306,7 +1306,7 @@ focus_tree = {
 		cost = 10
 		completion_reward = {
 			108 = {
-				add_extra_state_shared_building_slots = 5
+				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
@@ -1314,7 +1314,7 @@ focus_tree = {
 				}
                 add_building_construction = {
 					type = arms_factory
-					level = 3
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -1340,9 +1340,9 @@ focus_tree = {
 		completion_reward = {
 			add_research_slot = 1
 			add_tech_bonus = {
-				bonus = 1.0
-                ahead_reduction = 1.0
-				uses = 2
+				name = YUG_expand_the_university_of_zagreb
+				bonus = 1
+				uses = 4
 				category = industry
 			}
 		}
@@ -1386,9 +1386,11 @@ focus_tree = {
 		completion_reward = {
 			add_research_slot = 1
 			add_tech_bonus = {
-				bonus = 1.0
-				uses = 4
-				category= industry
+				name = YUG_expand_the_university_of_belgrade
+				bonus = 1
+                ahead_reduction = 2.0
+				uses = 2
+				category = industry
 			}
 		}
 	}
@@ -1540,7 +1542,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = YUG_the_five_year_plan
-		cost = 10
+		cost = 5
 		completion_reward = {
             104 = {
 				add_extra_state_shared_building_slots = 4
@@ -1563,7 +1565,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = YUG_expand_the_sarajevo_arsenals
-		cost = 5
+		cost = 10
 		completion_reward = {
 			custom_effect_tooltip = YUG_urbanized_state_tt
             hidden_effect = {
@@ -1580,13 +1582,7 @@ focus_tree = {
                     102 = {
 				        set_state_category = large_city
 			        }
-					163 = {
-				        set_state_category = city
-			        }
 					675 = {
-				        set_state_category = city
-			        }
-                    676 = {
 				        set_state_category = city
 			        }
                     104 = {
@@ -1604,10 +1600,10 @@ focus_tree = {
 					    set_state_category = large_city
 				    }
 					414 = {
-					    set_state_category = large_city
+					    set_state_category = city
 				    }
 					674 = {
-				        set_state_category = city
+				        set_state_category = large_town
 			        }	
 				    104 = {
 					    set_state_category = large_town
@@ -2065,7 +2061,10 @@ focus_tree = {
 			}
 			if = { 
 				limit = { has_dlc = "Man the Guns" }
-				set_technology = { coastal_defense_ships = 1 } 
+				set_technology = { 
+					coastal_defense_ships = 1
+					basic_ship_hull_heavy = 1
+				} 
 			}
 		}
 	}
