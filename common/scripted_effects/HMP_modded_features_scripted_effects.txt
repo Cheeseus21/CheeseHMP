@@ -3531,7 +3531,7 @@ HMP_startup_on_actions = {
     }
 
     every_country = { 
-        limit = { NOT = { OR = { tag = ITA tag = SOV } } }
+        limit = { NOT = { OR = { tag = ITA tag = ETH } } }
         add_ideas = qol_start_eff
     }
 
@@ -3545,7 +3545,7 @@ HMP_startup_on_actions = {
     ENG = { load_oob = "ENG_SEA_LION" }
 
     JAP = { add_ideas = fuel_sov }
-    SOV = { add_ideas = qol_start_eff_sov add_ideas = fuel_sov }
+    SOV = {  add_ideas = fuel_sov }
     GER = { add_ideas = fuel_sov }
     ENG = { add_ideas = fuel_eng }
     USA = { add_ideas = fuel_eng }
@@ -8459,20 +8459,20 @@ SOV_spawn_penal_divisions_effect = {
 	hidden_effect = {
 		capital_scope = {
 			create_unit = {
-				division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.3 start_equipment_factor = 0.01"
+				division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.3 "
 				owner = ROOT
 				count = 8
 			}
 		}
-		SOV = { add_equipment_to_stockpile = { type = infantry_equipment_2 amount = 8400 } add_equipment_to_stockpile = { type = anti_tank_equipment_2 amount = 1248 }   add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 80 }   add_equipment_to_stockpile = { type = support_equipment_1 amount = 480 }   add_equipment_to_stockpile = { type = anti_air_equipment_2 amount = 96 }    add_equipment_to_stockpile = { type = artillery_equipment_2 amount = 160 }   }
 		set_country_flag = SOV_penal_units_raised_flag
 	}
 }
+
 GER_spawn_penal_divisions_effect = {
 	hidden_effect = {
 		capital_scope = {
 			create_unit = {
-				division = "division_template = \"Strafbataillon\" start_experience_factor = 0.3"
+				division = "division_template = \"Strafbataillon\" start_experience_factor = 0.3 "
 				owner = ROOT
 				count = 8
 			}
@@ -8480,6 +8480,7 @@ GER_spawn_penal_divisions_effect = {
 		set_country_flag = SOV_penal_units_raised_flag
 	}
 }
+
 SOV_damage_relocated_military_factories_effect = {
 	if = {
 		limit = {

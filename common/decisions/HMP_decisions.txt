@@ -3050,13 +3050,13 @@ USA_balance_of_power_category = {
         }
         fire_only_once = yes
         complete_effect = {
-            if = {
-                limit = { NOT = { has_global_flag = war_in_the_west_start } }
-                add_power_balance_value = {
-                    id = USA_power_balance
-                    value = 0.15
-                }
-            }
+            # if = {
+                # limit = { NOT = { has_global_flag = war_in_the_west_start } }
+                # add_power_balance_value = {
+                    # id = USA_power_balance
+                    # value = 0.15
+                # }
+            # }
             set_global_flag = war_plan_silver_used
             every_country = {
                 limit = {
@@ -3086,13 +3086,13 @@ USA_balance_of_power_category = {
         }
         fire_only_once = yes
         complete_effect = {
-            if = {
-                limit = { NOT = { has_global_flag = war_in_the_west_start } }
-                add_power_balance_value = {
-                    id = USA_power_balance
-                    value = 0.15
-                }
-            }
+            # if = {
+                # limit = { NOT = { has_global_flag = war_in_the_west_start } }
+                # add_power_balance_value = {
+                    # id = USA_power_balance
+                    # value = 0.15
+                # }
+            # }
             set_global_flag = war_plan_black_used
             every_country = {
                 limit = {
@@ -3116,10 +3116,10 @@ USA_balance_of_power_category = {
         available = { has_completed_focus = USA_rainbow_plans }
         fire_only_once = yes
         complete_effect = {
-            add_power_balance_value = {
-                id = USA_power_balance
-                value = -0.3
-            }
+            # add_power_balance_value = {
+                # id = USA_power_balance
+                # value = -0.3
+            # }
             every_country = {
                 limit = {
                     OR = {
@@ -3153,10 +3153,10 @@ USA_balance_of_power_category = {
         complete_effect = {
             if = {
                 limit = { original_tag = USA }
-                add_power_balance_value = {
-                    id = USA_power_balance
-                    value = -0.25
-                }
+                # add_power_balance_value = {
+                    # id = USA_power_balance
+                    # value = -0.25
+                # }
                 every_country = {
                     limit = {
                         NOT = { original_tag = USA }
@@ -5592,15 +5592,19 @@ ger_wehrmacht_pfu = {
 		icon = generic_army_support
 
 		available = {
-		has_completed_focus = GER_the_great_turn
-		has_completed_focus = GER_propaganda_master
-		has_manpower > 100000
+			has_completed_focus = GER_the_great_turn
+			has_completed_focus = GER_propaganda_master
+			has_manpower > 100000
 		}
+		
 		days_remove = 90
+		
 		cost = 75
+		
 		fire_only_once = no
+		
 		complete_effect = {
-						custom_effect_tooltip = GER_the_kings_guard_1a_tt
+			custom_effect_tooltip = GER_the_kings_guard_1a_tt
 			hidden_effect = {
 				load_oob = "GER_volkssturmm"
 				add_to_variable = { GER_militias_cap = 10 }
@@ -5620,21 +5624,31 @@ ger_wehrmacht_pfu = {
 						count = 10
 					}
 				}
-				} 
+			} 
 		}
 	}
+	
 	GER_raise_penal_units = {
 		priority = 21
+		
 		icon = GFX_decision_generic_arrest
-		allowed = { 	original_tag = GER	}
+		
+		allowed = { 	
+			original_tag = GER	
+		}
+		
 		available = {
 			has_completed_focus = GER_strafbataillon
 		}
+		
 		cost = 75
-		days_remove = 60 
+		
+		days_remove = 60
+		
 		complete_effect = {
             GER_spawn_penal_divisions_effect = yes
 		}
+		
 		remove_effect = {
 			clr_country_flag = 	SOV_penal_units_raised_flag
 		}
