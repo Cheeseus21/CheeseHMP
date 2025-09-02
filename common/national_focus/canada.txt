@@ -231,7 +231,7 @@ focus_tree = {
             focus = CAN_invoke_the_war_measures_act
         }
         mutually_exclusive = {
-            focus = CAN_intervene_in_quebec_elections
+            focus = CAN_back_the_quebec_liberals
         }
         cost = 5
         completion_reward = {
@@ -259,7 +259,24 @@ focus_tree = {
         }
         cost = 5
         completion_reward = {
-            add_timed_idea = { idea = CAN_imperial_conference_dominion days = 540 }
+			if = {
+				limit = {
+					ENG = {
+						has_completed_focus = ENG_handle_the_imperial_security
+					}
+				}
+				remove_ideas = ENG_handle_the_imperial_security_idea
+				add_timed_idea = { 
+					idea = CAN_command_imperial_conference_dominion
+					days = 730
+				}
+			}
+			else = {
+            	add_timed_idea = { 
+					idea = CAN_imperial_conference_dominion
+					days = 540
+				}
+			}
         }
     }
     focus = {
@@ -448,79 +465,53 @@ focus_tree = {
         id = CAN_intervene_in_quebec_elections
         icon = GFX_goal_tfv_can_forced_quebec_conscription
         relative_position_id = CAN_st_lawrence_seaway_development
-        x = 4
+        x = 3
         y = 1
 		available = {	
 			has_war = yes
 		}
         prerequisite = {
             focus = CAN_st_lawrence_seaway_development
-            focus = CAN_invoke_the_war_measures_act
-        }
+		}
         mutually_exclusive = {
             focus = CAN_compromise_with_quebec
+        }
+        cost = 10
+        completion_reward = {
+			add_stability = -0.15
+			add_timed_idea = {
+				idea = CAN_political_gridlock
+				days = 70
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			retire_character = CAN_premier_of_quebec
+			custom_effect_tooltip = generic_skip_one_line_tt
+            CAN_mackenzie_king = {
+				add_country_leader_trait = CAN_political_opportunist
+			}
+        }
+    }
+	focus = {
+        id = CAN_back_the_quebec_liberals
+        icon = GFX_goal_generic_propaganda
+        relative_position_id = CAN_invoke_the_war_measures_act
+        x = -3
+        y = 1
+		available = {	
+			has_war = yes
+		}
+        prerequisite = {
+            focus = CAN_invoke_the_war_measures_act
+		}
+        mutually_exclusive = {
             focus = CAN_amend_the_constitution
         }
         cost = 10
         completion_reward = {
-			custom_effect_tooltip = CAN_quebec_crisis1_tt
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			effect_tooltip = {
-				add_timed_idea = {
-					idea = CAN_political_gridlock
-					days = 70
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			effect_tooltip = {
-				retire_character = CAN_premier_of_quebec
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = CAN_quebec_crisis_linebreak_tt
-			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = CAN_quebec_crisis2_tt
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			effect_tooltip = {
-				add_timed_idea = {
-					idea = CAN_quebec_resistance
-					days = 365
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = CAN_quebec_crisis_linebreak2_tt
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
 			add_stability = -0.15
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			hidden_effect = {
-				retire_character = CAN_premier_of_quebec
-				IF = {
-					limit = {
-						has_completed_focus = CAN_king_or_chaos
-					}
-					add_timed_idea = {
-						idea = CAN_political_gridlock
-						days = 70
-					}
-				}
-				else = {
-					add_timed_idea = {
-						idea = CAN_quebec_resistance
-						days = 365
-					}
-				}
-			}
-            CAN_mackenzie_king = {
-				add_country_leader_trait = CAN_political_opportunist
+			add_timed_idea = {
+				idea = CAN_quebec_resistance
+				days = 365
 			}
         }
     }
@@ -528,7 +519,7 @@ focus_tree = {
         id = CAN_dissolve_the_parliament
         icon = GFX_goal_generic_military_deal
         relative_position_id = CAN_intervene_in_quebec_elections
-        x = 0
+        x = 1
         y = 1
 		available = {
 			NOT = {
@@ -537,6 +528,7 @@ focus_tree = {
 		}
         prerequisite = {
             focus = CAN_intervene_in_quebec_elections
+			focus = CAN_back_the_quebec_liberals
         }
         cost = 10
         completion_reward = {
