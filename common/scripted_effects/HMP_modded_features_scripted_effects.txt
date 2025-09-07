@@ -2344,7 +2344,17 @@
         for_each_scope_loop = {
             array = ROOT.allies
             if = {
-                limit = { NOT = { original_tag = YUG   } } 
+                limit = {
+                    OR = {
+                        NOT = {
+                            original_tag = YUG
+                        }
+                        AND = {
+                            original_tag = YUG
+                            has_completed_focus = YUG_join_axis
+                        }
+                    }
+                }
                 add_to_war = {
                     targeted_alliance = ROOT
                     enemy = ENG
@@ -2363,21 +2373,31 @@
         }
     }
 
-    ROOT_call_against_yugo = {
-            for_each_scope_loop = {
-            array = GER.allies
-                add_to_war = {
-                    targeted_alliance = GER
-                    enemy = AOI
-                }
-        }
-    } 
+    #ROOT_call_against_yugo = {
+    #        for_each_scope_loop = {
+    #        array = GER.allies
+    #            add_to_war = {
+    #                targeted_alliance = GER
+    #                enemy = AOI
+    #            }
+    #    }
+    #} 
 
     ROOT_call_against_norway = {
             for_each_scope_loop = {
             array = ROOT.allies
             if = {
-                limit = { NOT = {  original_tag = YUG }  } 
+                limit = {
+                    OR = {
+                        NOT = {
+                            original_tag = YUG
+                        }
+                        AND = {
+                            original_tag = YUG
+                            has_completed_focus = YUG_join_axis
+                        }
+                    }
+                }
                 add_to_war = {
                     targeted_alliance = ROOT
                     enemy = NOR
@@ -2400,7 +2420,17 @@
         for_each_scope_loop = {
             array = ROOT.allies
             if = {
-                limit = { NOT = { original_tag = YUG  } } 
+                limit = {
+                    OR = {
+                        NOT = {
+                            original_tag = YUG
+                        }
+                        AND = {
+                            original_tag = YUG
+                            has_completed_focus = YUG_join_axis
+                        }
+                    }
+                }
                 add_to_war = {
                     targeted_alliance = ROOT
                     enemy = DEN
@@ -2414,7 +2444,17 @@
         for_each_scope_loop = {
             array = ROOT.allies
             if = {
-                limit = { NOT = {original_tag = YUG  } } 
+                limit = {
+                    OR = {
+                        NOT = {
+                            original_tag = YUG
+                        }
+                        AND = {
+                            original_tag = YUG
+                            has_completed_focus = YUG_join_axis
+                        }
+                    }
+                }
                 add_to_war = {
                     targeted_alliance = ROOT
                     enemy = BEL
@@ -2427,7 +2467,17 @@
         for_each_scope_loop = {
             array = ROOT.allies
             if = {
-                limit = { NOT= {  original_tag = YUG  } } 
+                limit = {
+                    OR = {
+                        NOT = {
+                            original_tag = YUG
+                        }
+                        AND = {
+                            original_tag = YUG
+                            has_completed_focus = YUG_join_axis
+                        }
+                    }
+                }
                 add_to_war = {
                     targeted_alliance = ROOT
                     enemy = HOL

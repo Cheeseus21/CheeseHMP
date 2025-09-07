@@ -7572,6 +7572,10 @@ focus = {
 									}
 								}
 							}
+							AND = {
+								tag = YUG
+								has_completed_focus = YUG_join_axis
+							}
 							tag = FIN
 						}
 					}
@@ -7693,6 +7697,13 @@ focus = {
 				if = {
 					limit = { country_exists = SPR is_in_faction_with = GER }
 					SPR = { add_to_war = { targeted_alliance = GER enemy = SOV } }
+				}
+				if = {
+					limit = {
+						country_exists = YUG
+						has_completed_focus = YUG_join_axis
+					}
+					YUG = { add_to_war = { targeted_alliance = GER enemy = SOV } }
 				}
 
 				FIN = {
