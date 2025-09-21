@@ -243,7 +243,6 @@ focus_tree = {
 			effect_tooltip = {
 				add_to_war = { targeted_alliance = ITA enemy = ENG }
 			}
-            custom_effect_tooltip = generic_skip_one_line_tt
 		    add_ideas = tot_economic_mobilisation
             custom_effect_tooltip = generic_skip_one_line_tt
             add_research_slot = 1
@@ -295,20 +294,58 @@ focus_tree = {
                     long_name = CRO_democratic_party_long
                     name = CRO_democratic_party
                 }
-				every_owned_state = {
-                	limit = {
-                	    OR = {
-                	        state = 107
-							state = 108
-							state = 303
-    	                }
-        	        }
+				102 = {
+            	    add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 3
+					    instant_build = yes
+            	    }
+				}
+				103 = {
+            	    add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 3
+					    instant_build = yes
+            	    }
+				}
+				105 = {
+            	    add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 3
+					    instant_build = yes
+            	    }
+				}
+				107 = {
+            	    add_extra_state_shared_building_slots = 6
+                	add_building_construction = {
+					    type = arms_factory
+					    level = 4
+					    instant_build = yes
+            	    }
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 2
+					    instant_build = yes
+            	    }
+				}
+				108 = {
             	    add_extra_state_shared_building_slots = 3
                 	add_building_construction = {
 					    type = arms_factory
 					    level = 2
 					    instant_build = yes
             	    }
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 1
+					    instant_build = yes
+            	    }
+				}
+				676 = {
+            	    add_extra_state_shared_building_slots = 1
 					add_building_construction = {
 					    type = industrial_complex
 					    level = 1
@@ -607,7 +644,7 @@ focus_tree = {
         }
         available = {
             GER = {
-                has_completed_focus = GER_demand_sudetenland
+                has_completed_focus = GER_fate_of_czechoslovakia
             }
         }
         completion_reward = {
@@ -621,9 +658,19 @@ focus_tree = {
 	            }
             }
             custom_effect_tooltip = generic_skip_one_line_tt
-            add_ideas = war_economy
-            custom_effect_tooltip = generic_skip_one_line_tt
-			add_political_power = 150
+			effect_tooltip = {
+				add_popularity = {
+                	ideology = fascism
+                	popularity = 0.2
+				}
+            }
+			custom_effect_tooltip = generic_skip_one_line_tt
+			YUG_prince_paul = {
+				swap_country_leader_traits = {
+					remove = prince_regent
+					add = unpopular_regent
+				}
+			}
             custom_effect_tooltip = generic_skip_one_line_tt
             remove_ideas = YUG_idea_croatian_resistance
             add_timed_idea = {
@@ -673,28 +720,65 @@ focus_tree = {
                 }
                 set_popularities = {
                     democratic = 15
-	                neutrality = 60
-	                fascism = 15
+	                neutrality = 40
+	                fascism = 35
 	                communism = 10
                 }
-				every_owned_state = {
-                	limit = {
-                	    OR = {
-                	        state = 102
-							state = 103
-							state = 109
-	                        state = 676
-    	                }
-        	        }
-            	    add_extra_state_shared_building_slots = 4
+				102 = {
+            	    add_extra_state_shared_building_slots = 2
+                	add_building_construction = {
+					    type = arms_factory
+					    level = 2
+					    instant_build = yes
+            	    }
+				}
+				103 = {
+            	    add_extra_state_shared_building_slots = 6
+                	add_building_construction = {
+					    type = arms_factory
+					    level = 1
+					    instant_build = yes
+            	    }
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 5
+					    instant_build = yes
+            	    }
+				}
+				109 = {
+            	    add_extra_state_shared_building_slots = 7
+                	add_building_construction = {
+					    type = arms_factory
+					    level = 5
+					    instant_build = yes
+            	    }
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 2
+					    instant_build = yes
+            	    }
+				}
+				303 = {
+            	    add_extra_state_shared_building_slots = 3
                 	add_building_construction = {
 					    type = arms_factory
 					    level = 3
 					    instant_build = yes
             	    }
+				}
+				673 = {
+            	    add_extra_state_shared_building_slots = 2
 					add_building_construction = {
 					    type = industrial_complex
-					    level = 1
+					    level = 2
+					    instant_build = yes
+            	    }
+				}
+				676 = {
+            	    add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 3
 					    instant_build = yes
             	    }
 				}
@@ -891,7 +975,7 @@ focus_tree = {
             focus = YUG_united_kingdom
         }
         available = {
-            date > 1941.01.01
+            date > 1941.09.06
         }
 		completion_reward = {
             add_stability = 0.1
@@ -964,20 +1048,41 @@ focus_tree = {
             focus = CRO_establish_the_banovina_of_croatia
         }
 		completion_reward = {
-			remove_ideas = YUG_idea_slovene_nationalism
+			if = {
+				limit = {
+					has_idea = YUG_idea_slovene_nationalism
+				}
+				remove_ideas = YUG_idea_slovene_nationalism
+			}
             swap_ideas = {
                 remove_idea = YUG_divided_nation2
                 add_idea = YUG_divided_nation3
             }
             custom_effect_tooltip = generic_skip_one_line_tt
-            effect_tooltip = {
-                ITA = {
-                    transfer_state = 102
-                    transfer_state = 676
-                }
-                GER = {
-                    transfer_state = 303
-                }
+			if = {
+				limit = {
+					has_completed_focus = CRO_establish_the_banovina_of_croatia
+				}
+				effect_tooltip = {
+                	GER = {
+                    	transfer_state = 303
+                	}
+					ITA = {
+                   		transfer_state = 102
+                  		transfer_state = 676
+                	}
+				}
+			}
+			else = {
+            	effect_tooltip = {
+                	GER = {
+						transfer_state = 102
+                    	transfer_state = 303
+                	}
+					    ITA = {
+                    	transfer_state = 676
+                	}
+				}
             }
             hidden_effect = {
 			    if = {
@@ -1031,7 +1136,12 @@ focus_tree = {
             focus = YUG_slovenia_for_support
         }
 		completion_reward = {
-			remove_ideas = YUG_idea_macedonian_opposition
+			if = {
+				limit = {
+					has_idea = YUG_idea_macedonian_opposition
+				}
+				remove_ideas = YUG_idea_macedonian_opposition
+			}
             if = {
                 limit = {
                     has_idea = YUG_divided_nation4
@@ -1243,7 +1353,7 @@ focus_tree = {
 		relative_position_id = YUG_expand_the_mining_industry
 		cost = 10
 		completion_reward = {
-			103 = {
+			109 = {
 				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = industrial_complex
@@ -1266,7 +1376,7 @@ focus_tree = {
 		relative_position_id = YUG_develop_civilian_industry
 		cost = 5
 		completion_reward = {
-			104 = {
+			103 = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
@@ -1365,7 +1475,7 @@ focus_tree = {
 			109 = {
 				add_resource = {
 					type = steel
-					amount = 60
+					amount = 45
 				}
 			}
 		}
@@ -1453,7 +1563,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = YUG_yugoslavian_rail_network
-		cost = 5
+		cost = 10
 		completion_reward = {
 			every_owned_state = {
                 limit = {
@@ -1486,20 +1596,20 @@ focus_tree = {
         }
 		bypass = {
 			NOT = { 
+				owns_state = 107
 				owns_state = 108
-				owns_state = 674
 			}
 		}
 		x = 1
 		y = 1
 		relative_position_id = YUG_yugoslavian_rail_network
-		cost = 5
+		cost = 10
 		completion_reward = {
 			every_owned_state = {
                 limit = {
                     OR = {
+                        state = 107
                         state = 108
-                        state = 674
                     }
                 }
                 add_extra_state_shared_building_slots = 2
@@ -1545,7 +1655,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = YUG_the_five_year_plan
-		cost = 5
+		cost = 10
 		completion_reward = {
             104 = {
 				add_extra_state_shared_building_slots = 4
@@ -1597,7 +1707,7 @@ focus_tree = {
 						has_completed_focus = YUG_join_axis
 					}
         	        107 = {
-					    set_state_category = megalopolis
+					    set_state_category = metropolis
 				    }
 					108 = {
 					    set_state_category = large_city
