@@ -11,10 +11,20 @@ hidden_ideas = {
 	}
 }
 country = { 
-POL_warsaw_uprising_idea = {
-	picture = FRA_scw_intervention_republicans_focus
-	modifier = { army_core_attack_factor = 0.25 army_core_defence_factor = 0.25 army_attack_factor = -0.25 army_defence_factor = -0.25 army_speed_factor = -0.2 supply_consumption_factor = -0.25 supply_combat_penalties_on_core_factor = -0.25 no_supply_grace = 72   }
-}
+	POL_warsaw_uprising_idea = {
+		picture = FRA_scw_intervention_republicans_focus
+		modifier = { 
+			army_core_attack_factor = 0.25 
+			army_core_defence_factor = 0.25 
+			army_attack_factor = -0.25 
+			army_defence_factor = -0.25 
+			army_speed_factor = -0.2 
+			supply_consumption_factor = -0.25 
+			supply_combat_penalties_on_core_factor = -0.25 
+			no_supply_grace = 72   
+		}
+	}
+	
 	POL_new_military_academy_idea = {
 
 		allowed = {
@@ -51,7 +61,7 @@ POL_warsaw_uprising_idea = {
 		picture = generic_agrarian_society
 
 		modifier = {
-			stability_weekly = -0.001
+			consumer_goods_expected_value = 0.2
 		}
 	}
 
@@ -89,13 +99,17 @@ POL_warsaw_uprising_idea = {
 		allowed_civil_war = {
 			always = no
 		}
+		
+		available = {
+			date < 1939.9.1
+		}
 
 		removal_cost = -1
 
 		picture = man_five_year_plan_industry
 
 		modifier = {
-			industrial_capacity_factory = 0.10
+			industrial_capacity_factory = 0.75
 		}
 	}
 
@@ -419,7 +433,6 @@ POL_warsaw_uprising_idea = {
 			political_advisor_cost_factor = 0.1
 			economy_cost_factor = 0.1
 			mobilization_laws_cost_factor = 0.1
-			drift_defence_factor = 0.05
 			neutrality_drift = 0.1
 		}
 	}
@@ -441,7 +454,6 @@ POL_warsaw_uprising_idea = {
 
 		modifier = {
 			political_power_factor = 0.1
-			drift_defence_factor = 0.1
 			neutrality_drift = 0.1
 		}
 	}
@@ -465,7 +477,6 @@ POL_warsaw_uprising_idea = {
 			political_advisor_cost_factor = -0.1
 			economy_cost_factor = -0.1
 			political_power_factor = 0.15
-			drift_defence_factor = 0.15
 			neutrality_drift = 0.15
 		}
 	}
@@ -489,7 +500,6 @@ POL_warsaw_uprising_idea = {
 			political_advisor_cost_factor = -0.2
 			economy_cost_factor = -0.2
 			political_power_factor = 0.15
-			drift_defence_factor = 0.25
 			neutrality_drift = 0.2
 			stability_factor = 0.1
 		}
@@ -514,7 +524,6 @@ POL_warsaw_uprising_idea = {
 			mobilization_laws_cost_factor = -0.2
 			high_command_cost_factor = -0.2
 			political_power_factor = 0.15
-			drift_defence_factor = 0.15
 			neutrality_drift = 0.15
 		}
 	}
@@ -538,7 +547,6 @@ POL_warsaw_uprising_idea = {
 			political_advisor_cost_factor = -0.1
 			economy_cost_factor = -0.1
 			political_power_factor = 0.15
-			drift_defence_factor = 0.15
 			democratic_drift = 0.1
 		}
 	}
@@ -562,7 +570,6 @@ POL_warsaw_uprising_idea = {
 			political_advisor_cost_factor = -0.2
 			economy_cost_factor = -0.2
 			political_power_factor = 0.15
-			drift_defence_factor = 0.25
 			democratic_drift = 0.2
 			stability_factor = 0.1
 		}
@@ -587,7 +594,6 @@ POL_warsaw_uprising_idea = {
 			mobilization_laws_cost_factor = -0.2
 			high_command_cost_factor = -0.2
 			political_power_factor = 0.15
-			drift_defence_factor = 0.15
 			democratic_drift = 0.15
 		}
 	}
@@ -611,7 +617,6 @@ POL_warsaw_uprising_idea = {
 			political_advisor_cost_factor = -0.1
 			economy_cost_factor = -0.1
 			political_power_factor = 0.15
-			drift_defence_factor = 0.15
 			fascism_drift = 0.1
 		}
 	}
@@ -635,7 +640,6 @@ POL_warsaw_uprising_idea = {
 			political_advisor_cost_factor = -0.2
 			economy_cost_factor = -0.2
 			political_power_factor = 0.15
-			drift_defence_factor = 0.25
 			fascism_drift = 0.2
 			stability_factor = 0.1
 		}
@@ -659,9 +663,7 @@ POL_warsaw_uprising_idea = {
 		modifier = {
 			mobilization_laws_cost_factor = -0.2
 			high_command_cost_factor = -0.2
-			resistance_damage_to_garrison = -0.15
 			political_power_factor = 0.15
-			drift_defence_factor = 0.15
 			fascism_drift = 0.15
 		}
 	}
@@ -744,8 +746,8 @@ POL_warsaw_uprising_idea = {
 		picture = SPR_collectivized_society
 
 		modifier = {
-			industrial_capacity_factory = 0.2
-			industrial_capacity_dockyard = 0.3
+			industrial_capacity_factory = 0.05
+			industrial_capacity_dockyard = 0.25
 		}
 	}
 
@@ -870,9 +872,8 @@ POL_warsaw_uprising_idea = {
 		picture = SPR_seize_the_gold_reserves
 
 		modifier = {
-			consumer_goods_expected_value = -0.1
-			industrial_capacity_factory = 0.1
-			industrial_capacity_dockyard = 0.1
+			production_factory_max_efficiency_factor = 0.1
+			production_factory_start_efficiency_factor = 0.1
 		}
 	}
 
@@ -885,6 +886,10 @@ POL_warsaw_uprising_idea = {
 
 		allowed_civil_war = {
 			has_government = neutrality
+		}
+		
+		available = {
+			date < 1939.9.1
 		}
 
 		removal_cost = -1

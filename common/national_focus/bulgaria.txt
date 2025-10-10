@@ -1311,7 +1311,8 @@ focus = {
 	focus = {
 		id = BUL_the_path_towards_a_greater_bulgaria
 
-		prerequisite = { focus = BUL_appoint_right_wing_ministers }
+		prerequisite = { focus = BUL_appoint_right_wing_ministers focus = BUL_the_tsars_regime }
+		
 		icon = GFX_focus_generic_strike_at_democracy1
 		relative_position_id = BUL_appoint_right_wing_ministers
 		x = -4
@@ -1319,7 +1320,10 @@ focus = {
 		cost = 5
 
 		available = {
-			fascism > 0.3
+			OR = {
+				fascism > 0.3
+				has_stability > 0.50
+			}
 		}
 		
 		completion_reward = {

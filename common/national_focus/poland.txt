@@ -19,7 +19,9 @@ focus_tree = {
 	############################
 	#### INDUSTRIAL SECTION ####
 	############################
-shared_focus = ALLIES_commonwealth_of_nations
+	
+	shared_focus = ALLIES_commonwealth_of_nations
+	
 	focus = {
 		id = POL_the_four_year_plan
 		icon = GFX_focus_POL_the_four_year_plan
@@ -28,16 +30,11 @@ shared_focus = ALLIES_commonwealth_of_nations
 		cost = 5
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-			add_tech_bonus = {
-				name = POL_the_four_year_plan
-				bonus = 1.0
-				uses = 1
-				category = construction_tech
-			}
-			add_timed_idea = {
-				idea = POL_four_year_plan_idea
-				days = 1460
-			}
+			add_ideas = POL_four_year_plan_idea
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = "This idea will last until 1939 September 1st."
 		}
 	}
 
@@ -160,12 +157,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 
 		completion_reward = {
 			add_offsite_building = { type = arms_factory level = 1 }
-			add_tech_bonus = {
-				name = POL_central_region_strategy
-				bonus = 3.0
-				uses = 1
-				category = industry
-			}
+
 		}
 
 	}
@@ -188,12 +180,6 @@ shared_focus = ALLIES_commonwealth_of_nations
 
 		completion_reward = {
 		    add_offsite_building = { type = industrial_complex level = 1 }
-			add_tech_bonus = {
-			name = POL_central_region_strategy
-			bonus = 3.0
-			uses = 1
-			category = industry
-			}
 		}
 	}
 
@@ -355,10 +341,11 @@ shared_focus = ALLIES_commonwealth_of_nations
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			add_timed_idea = {
-				idea = POL_central_defence_of_poland_idea
-				days = 280
-			}
+			add_ideas = POL_central_defence_of_poland_idea
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = "This idea will last until 1939 September 1st."
 		}
 	}
 
@@ -407,52 +394,50 @@ shared_focus = ALLIES_commonwealth_of_nations
 
 
 		completion_reward = {
-			random_owned_controlled_state = {
-				prioritize = { 10 }
-
-				if = {
-					limit = { ROOT = { controls_state = 88 } }
-					
-					build_railway = { #Warsaw to Krakow 
-						level = 2 
-						start_state = THIS
-						target_state = 88
-					}
-				}			
-				if = {
-					limit = { ROOT = { controls_state = 92 } }
-
-					build_railway = { #Warsaw to Lublin
-						level = 2 
-						start_state = THIS
-						target_state = 92
-					}
-				}
-				if = {
-					limit = { ROOT = { controls_state = 85 } }
+			add_offsite_building = { type = industrial_complex level = 1 }
 			
-					build_railway = { #Warsaw to Danzig 
-						level = 2 
-						start_state = THIS
-						target_state = 85
-					}
-				}	
-				if = {
-					limit = { ROOT = { controls_state = 784 } }
+			hidden_effect = {
+				random_owned_controlled_state = {
+					prioritize = { 10 }
 
-					build_railway = { #Warsaw to Wilno
-						level = 2 
-						start_state = THIS
-						target_state = 784
+					if = {
+						limit = { ROOT = { controls_state = 88 } }
+						
+						build_railway = { #Warsaw to Krakow 
+							level = 2 
+							start_state = THIS
+							target_state = 88
+						}
+					}			
+					if = {
+						limit = { ROOT = { controls_state = 92 } }
+
+						build_railway = { #Warsaw to Lublin
+							level = 2 
+							start_state = THIS
+							target_state = 92
+						}
 					}
-			    }
-			}
-				add_tech_bonus = {
-			    name = POL_warsaw_main_railway_station
-			    bonus = 3.0
-			    uses = 1
-			    category = industry
+					if = {
+						limit = { ROOT = { controls_state = 85 } }
+				
+						build_railway = { #Warsaw to Danzig 
+							level = 2 
+							start_state = THIS
+							target_state = 85
+						}
+					}	
+					if = {
+						limit = { ROOT = { controls_state = 784 } }
+
+						build_railway = { #Warsaw to Wilno
+							level = 2 
+							start_state = THIS
+							target_state = 784
+						}
+					}
 				}
+			}
 		}
 	}
 
@@ -472,7 +457,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-			army_experience = 35
+			army_experience = 50
 		}
 	}
 
@@ -492,42 +477,19 @@ shared_focus = ALLIES_commonwealth_of_nations
 			factor = 10
 		}
 		completion_reward = {
-			army_experience = 35
-		add_ideas = POL_new_military_academy_idea
+			add_ideas = POL_new_military_academy_idea
 		}
 	}
 
+
 	focus = {
-		id = POL_standardisation_of_equipment
-		icon = GFX_goal_generic_small_arms
+		id = POL_army_modernisation
+		icon = GFX_goal_generic_army_doctrines
 		prerequisite = { focus = POL_new_military_academy }
 		
 		x = 0
 		y = 1
 		relative_position_id = POL_new_military_academy
-		cost = 5
-
-		available_if_capitulated = yes
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		completion_reward = {
-			add_tech_bonus = {
-				name = POL_standardisation_of_equipment
-				bonus = 0.5
-				uses = 1
-				category = infantry_weapons
-			}
-			army_experience = 10
-		}
-	}
-
-	focus = {
-		id = POL_army_modernisation
-		icon = GFX_goal_generic_army_doctrines
-		prerequisite = { focus = POL_standardisation_of_equipment }
-		
-		x = 0
-		y = 1
-		relative_position_id = POL_standardisation_of_equipment
 		cost = 5
 
 		ai_will_do = {
@@ -537,15 +499,10 @@ shared_focus = ALLIES_commonwealth_of_nations
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH } 
 		completion_reward = {
-			army_experience = 10			
-			add_tech_bonus = {
-				name = POL_army_modernisation
-				bonus = 0.5
-				uses = 1
-				category = infantry_weapons
-			}
+			army_experience = 50
 		}
 	}
+
 
 	focus = {
 		id = POL_modernising_the_cavalry
@@ -626,18 +583,39 @@ shared_focus = ALLIES_commonwealth_of_nations
 				category = cat_1941_tanks
 				category = cat_1943_tanks
 			}
-			#50% armor research
+		}
+	}
+	
+	focus = {
+		id = POL_standardisation_of_equipment
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = POL_army_modernisation }
+		
+		x = 2
+		y = 1
+		relative_position_id = POL_army_modernisation
+		cost = 5
+
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = POL_standardisation_of_equipment
+				bonus = 0.5
+				uses = 4
+				category = infantry_weapons
+			}
 		}
 	}
 
 	focus = {
 		id = POL_artillery_modernisation
 		icon = GFX_goal_generic_army_artillery
-		prerequisite = { focus = POL_army_modernisation }
+		prerequisite = { focus = POL_standardisation_of_equipment }
 		
-		x = 3
+		x = 1
 		y = 1
-		relative_position_id = POL_army_modernisation
+		relative_position_id = POL_standardisation_of_equipment
 		cost = 5
 
 		ai_will_do = {
@@ -660,11 +638,11 @@ shared_focus = ALLIES_commonwealth_of_nations
 	focus = {
 		id = POL_anti_tank_guns
 		icon = GFX_goal_generic_army_artillery2
-		prerequisite = { focus = POL_army_modernisation }
+		prerequisite = { focus = POL_standardisation_of_equipment }
 		
-		x = 1
+		x = -1
 		y = 1
-		relative_position_id = POL_army_modernisation
+		relative_position_id = POL_standardisation_of_equipment
 		cost = 5
 
 		ai_will_do = {
@@ -690,7 +668,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		prerequisite = { focus = POL_study_foreign_tanks }
 		prerequisite = { focus = POL_anti_tank_guns }
 		
-		x = 4
+		x = 2
 		y = 1
 		relative_position_id = POL_study_foreign_tanks
 		cost = 5
@@ -709,16 +687,19 @@ shared_focus = ALLIES_commonwealth_of_nations
 	focus = {
 		id = POL_adaptive_designs
 		icon = GFX_goal_generic_production2
-		prerequisite = { focus = POL_attract_foreign_motors }
-		prerequisite = { focus = POL_anti_tank_guns }
+		prerequisite = { focus = POL_army_modernisation }
 		
 		x = 1
 		y = 1
-		relative_position_id = POL_attract_foreign_motors
+		relative_position_id = POL_army_modernisation
 		cost = 5
 
 		ai_will_do = {
 			factor = 10
+		}
+		
+		allow_branch = {
+			always = no
 		}
 
 		available = {
@@ -779,7 +760,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		id = POL_complete_april_constitution
 		icon = GFX_focus_POL_complete_april_constitution
 		
-		x = 40
+		x = 34
 		y = 0
 		cost = 5
 
@@ -973,8 +954,9 @@ shared_focus = ALLIES_commonwealth_of_nations
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			add_political_power = 75
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = POL_walery_slawek
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+
 			custom_effect_tooltip = available_military_high_command
 			show_ideas_tooltip = POL_kazimierz_switalski
 		}
@@ -997,11 +979,18 @@ shared_focus = ALLIES_commonwealth_of_nations
 				ideology = neutrality
 				popularity = -0.25
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			custom_effect_tooltip = available_political_advisor
 			show_ideas_tooltip = POL_stanislaw_wojciechowski
-			custom_effect_tooltip = available_political_advisor
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			show_ideas_tooltip = POL_joachim_stefan_bartoszewicz
-			custom_effect_tooltip = available_political_advisor
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			show_ideas_tooltip = POL_wanda_wasilewska
 		}
 	}
@@ -1163,11 +1152,14 @@ shared_focus = ALLIES_commonwealth_of_nations
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = POL_jerzy_rutkowski
 			add_ideas = {
 				POL_right_paramilitarism_idea
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = POL_jerzy_rutkowski
 		}
 	}
 
@@ -1255,10 +1247,10 @@ shared_focus = ALLIES_commonwealth_of_nations
 		id = POL_plan_west
 		icon = GFX_focus_POL_plan_west
 		prerequisite = { focus = POL_prepare_for_the_next_war }
-		x = 11
+		x = 7
 		y = 1
 		relative_position_id = POL_prepare_for_the_next_war
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 10
@@ -1270,9 +1262,10 @@ shared_focus = ALLIES_commonwealth_of_nations
 				has_completed_focus = POL_complete_plan_east
 			}
 		}
-
 		
 		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		
 		completion_reward = {
 			every_owned_state = {
 				limit = {
@@ -1293,10 +1286,10 @@ shared_focus = ALLIES_commonwealth_of_nations
 		id = POL_the_prusya_line
 		icon = GFX_focus_POL_prussia_line
 		prerequisite = { focus = POL_plan_west }
-		x = 4
+		x = 1
 		y = 1
 		relative_position_id = POL_plan_west
-		cost = 1
+		cost = 5
 		
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_west }
@@ -1367,7 +1360,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		id = POL_invest_anti_air
 		icon = GFX_goal_generic_air_doctrine
 		prerequisite = { focus = POL_plan_west }
-		x = 2
+		x = -1
 		y = 1
 		relative_position_id = POL_plan_west
 		cost = 5
@@ -1385,8 +1378,8 @@ shared_focus = ALLIES_commonwealth_of_nations
 		completion_reward = {
 			add_tech_bonus = {
 				name = POL_invest_anti_air
-				bonus = 1.01
-				uses = 3
+				bonus = 0.51
+				uses = 2
 				category = cat_anti_air
 			}
 		}
@@ -1399,7 +1392,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = -1
 		y = 1
 		relative_position_id = POL_the_prusya_line
-		cost = 1
+		cost = 5
 		
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_west }
@@ -1465,7 +1458,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = 1
 		y = 1
 		relative_position_id = POL_the_prusya_line
-		cost = 1
+		cost = 5
 		
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_west }
@@ -1519,7 +1512,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = 3
 		y = 1
 		relative_position_id = POL_the_prusya_line
-		cost = 1
+		cost = 5
 		
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_west }
@@ -1604,10 +1597,10 @@ shared_focus = ALLIES_commonwealth_of_nations
 		id = POL_local_western_plans
 		icon = GFX_goal_generic_occupy_states_ongoing_war
 		prerequisite = { focus = POL_plan_west }
-		x = 0
+		x = -3
 		y = 1
 		relative_position_id = POL_plan_west
-		cost = 1
+		cost = 5
 		
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_west }
@@ -1629,10 +1622,10 @@ shared_focus = ALLIES_commonwealth_of_nations
 		id = POL_sudeten_mountaineers
 		icon = GFX_focus_GRE_a_land_of_mountains
 		prerequisite = { focus = POL_plan_west }
-		x = 1
+		x = -2
 		y = 2
 		relative_position_id = POL_plan_west
-		cost = 1
+		cost = 5
 		
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_west }
@@ -1651,24 +1644,24 @@ shared_focus = ALLIES_commonwealth_of_nations
 				priority = 1
 				division_names_group = POL_MNT_01
 				regiments = {
-		mountaineers = { x = 0 y = 0 }
-		mountaineers = { x = 0 y = 1 }
-		mountaineers = { x = 0 y = 2 }
-		mountaineers = { x = 1 y = 0 }
-		mountaineers = { x = 1 y = 1 }
-		mountaineers = { x = 1 y = 2 }
-		mountaineers = { x = 2 y = 0 }
-		mountaineers = { x = 2 y = 1 }
-		mountaineers = { x = 2 y = 2 }
-		mountaineers = { x = 2 y = 3 }
-		artillery_brigade = { x = 3 y = 0 }
-		artillery_brigade = { x = 3 y = 1 }
-		artillery_brigade = { x = 3 y = 2 }
-		anti_tank_brigade = { x = 3 y = 3 }
-	}
-	support = {
-		anti_air = { x = 0 y = 0 } artillery  = { x = 0 y = 1 } anti_tank  = { x = 0 y = 2 } recon  = { x = 1 y = 0 } engineer  = { x = 1 y = 1 }
-	}
+					mountaineers = { x = 0 y = 0 }
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 0 y = 2 }
+					mountaineers = { x = 1 y = 0 }
+					mountaineers = { x = 1 y = 1 }
+					mountaineers = { x = 1 y = 2 }
+					mountaineers = { x = 2 y = 0 }
+					mountaineers = { x = 2 y = 1 }
+					mountaineers = { x = 2 y = 2 }
+					mountaineers = { x = 2 y = 3 }
+					artillery_brigade = { x = 3 y = 0 }
+					artillery_brigade = { x = 3 y = 1 }
+					artillery_brigade = { x = 3 y = 2 }
+					anti_tank_brigade = { x = 3 y = 3 }
+				}
+				support = {
+					anti_air = { x = 0 y = 0 } artillery  = { x = 0 y = 1 } anti_tank  = { x = 0 y = 2 } recon  = { x = 1 y = 0 } engineer  = { x = 1 y = 1 }
+				}
 			}
 			random_owned_controlled_state = {
 				prioritize = { 86 }
@@ -1689,10 +1682,10 @@ shared_focus = ALLIES_commonwealth_of_nations
 		id = POL_silesia_fortified_area
 		icon = GFX_goal_fortify_the_westwall
 		prerequisite = { focus = POL_plan_west }
-		x = 6
+		x = 3
 		y = 1
 		relative_position_id = POL_plan_west
-		cost = 1
+		cost = 5
 
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_west }
@@ -1751,7 +1744,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = 0
 		y = 1
 		relative_position_id = POL_the_prusya_army
-		cost = 0
+		cost = 5
 		prerequisite = {
 			focus = POL_the_prusya_army
 			focus = POL_silesia_fortified_area
@@ -1774,19 +1767,56 @@ shared_focus = ALLIES_commonwealth_of_nations
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_INDUSTRY } 
 		completion_reward = {
-			every_owned_state = {
-				limit = {
-					has_dynamic_modifier = {
-						modifier = POL_plan_modifier
-						scope = POL
-					}
+			# every_owned_state = {
+				# limit = {
+					# has_dynamic_modifier = {
+						# modifier = POL_plan_modifier
+						# scope = POL
+					# }
+				# }
+				# remove_dynamic_modifier = {
+					# modifier = POL_plan_modifier
+					# scope = POL
+				# }
+			# }
+			#custom_effect_tooltip = POL_complete_plan_west_tt
+			
+			division_template = {
+				name = "Dywizja West"
+				priority = 1
+				division_names_group = POL_MNT_01
+				regiments = {
+					mountaineers = { x = 0 y = 0 }
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 0 y = 2 }
+					mountaineers = { x = 1 y = 0 }
+					mountaineers = { x = 1 y = 1 }
+					mountaineers = { x = 1 y = 2 }
+					mountaineers = { x = 2 y = 0 }
+					mountaineers = { x = 2 y = 1 }
+					mountaineers = { x = 2 y = 2 }
+					mountaineers = { x = 2 y = 3 }
+					artillery_brigade = { x = 3 y = 0 }
+					artillery_brigade = { x = 3 y = 1 }
+					artillery_brigade = { x = 3 y = 2 }
+					anti_tank_brigade = { x = 3 y = 3 }
 				}
-				remove_dynamic_modifier = {
-					modifier = POL_plan_modifier
-					scope = POL
+				support = {
+					anti_air = { x = 0 y = 0 } artillery  = { x = 0 y = 1 } anti_tank  = { x = 0 y = 2 } recon  = { x = 1 y = 0 } engineer  = { x = 1 y = 1 }
 				}
 			}
-			custom_effect_tooltip = POL_complete_plan_west_tt
+			random_owned_controlled_state = {
+				prioritize = { 10 }
+				limit = { PREV = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Dywizja West\" division_template = \"Dywizja West\" start_experience_factor = 1.0" 
+					owner = PREV
+				}
+				create_unit = {
+					division = "name = \"Dywizja West\" division_template = \"Dywizja West\" start_experience_factor = 1.0" 
+					owner = PREV
+				}
+			}
 		}
 	}
 	
@@ -1796,11 +1826,19 @@ shared_focus = ALLIES_commonwealth_of_nations
 	focus = {
 		id = POL_plan_east
 		icon = GFX_focus_POL_plan_east
+		
 		prerequisite = { focus = POL_prepare_for_the_next_war }
+		
 		x = 9
 		y = 1
+		
 		relative_position_id = POL_prepare_for_the_next_war
-		cost = 1
+		
+		allow_branch = {
+			always = no
+		}
+		
+		cost = 5
 		
 		available = {
 			OR = {
@@ -1839,7 +1877,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = -2
 		y = 1
 		relative_position_id = POL_plan_east
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 10
@@ -1866,7 +1904,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = -1
 		y = 1
 		relative_position_id = POL_eastern_conscripts
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 10
@@ -1934,7 +1972,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = 1
 		y = 1
 		relative_position_id = POL_eastern_conscripts
-		cost = 1
+		cost = 5
 
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_east }
@@ -1998,7 +2036,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = -4
 		y = 1
 		relative_position_id = POL_plan_east
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 10
@@ -2083,7 +2121,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = -6
 		y = 1
 		relative_position_id = POL_plan_east
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 10
@@ -2148,7 +2186,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = -1
 		y = 1
 		relative_position_id = POL_fortification_of_belarus
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 10
@@ -2183,7 +2221,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = 0
 		y = 1
 		relative_position_id = POL_plan_east
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 10
@@ -2294,7 +2332,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		allow_branch = { has_dlc = "Man the Guns" }
 		
 		x = 25
-		y = 5
+		y = 8
 		
 		cost = 5
 		
@@ -2676,7 +2714,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = -1
 		y = 2
 		relative_position_id = POL_expand_polish_intelligence
-		cost = 1
+		cost = 5
 
 		available_if_capitulated = yes
 		search_filters = {  }
@@ -2696,7 +2734,7 @@ shared_focus = ALLIES_commonwealth_of_nations
 		x = 1 
 		y = 2
 		relative_position_id = POL_expand_polish_intelligence
-		cost = 1
+		cost = 5
 
 		available_if_capitulated = yes
 		search_filters = {  }
@@ -2850,8 +2888,13 @@ shared_focus = ALLIES_commonwealth_of_nations
 			add_political_power = 75
 			add_command_power = 50
 			custom_effect_tooltip = gdansk2_tt
+			
+			POL = {
+				add_to_variable = { var = international_city_recruitable_population_factor value = 0.5 }
+				add_to_variable = { var = international_city_local_factories value = 0.5 }
+			}
+			
 			hidden_effect = {
-				PER = { country_event = { id = italy.706  days = 1 }}
 				news_event = {
 					id = nsb_news.4
 					days = 1
@@ -2901,26 +2944,32 @@ shared_focus = ALLIES_commonwealth_of_nations
 		
 		bypass = {
 			OR = {
-				NOT = {
-					controls_state = 556
-				}
+				NOT = { controls_state = 556 }
 				556 = { is_demilitarized_zone = no }
 			}
 			has_civil_war = no
 		}
 
 		available_if_capitulated = yes
+
 		completion_reward = {
 			556 = {
 				set_state_name = "Gdańsk"
 			}
-			set_province_name = {
-				id = 362
-				name = "Gdańsk"
+			custom_effect_tooltip = gdansk_tt
+
+			POL = {
+				add_to_variable = { var = international_city_recruitable_population_factor value = 0.1 }
+				add_to_variable = { var = international_city_local_factories value = 0.1 }
 			}
-		custom_effect_tooltip = gdansk_tt
-		hidden_effect = { if = { limit = { check_variable = { var = POL.international_city_recruitable_population_factor compare = greater_than_or_equals value = -0.5 }}  POL =  { set_variable = { international_city_local_factories = 0 } set_variable = { international_city_recruitable_population_factor = 0 }}  } 
-			else ={ add_to_variable = { var = international_city_local_factories value = 0.5 }		add_to_variable = { var = international_city_recruitable_population_factor value = 0.5 }	}
+			
+			hidden_effect = {
+				set_province_name = {
+					id = 362
+					name = "Gdańsk"
+				}
+			}
 		}
 	}
+
 }		
