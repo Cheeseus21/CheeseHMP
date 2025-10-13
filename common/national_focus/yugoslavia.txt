@@ -399,41 +399,71 @@ focus_tree = {
                     }
                 }
                 if = { 
-                    limit = {
-                        NOT = {
-                            BUL = {
-                                controls_state = 106
-                            }
-                        }
-                    }
-                    BUL = {
-                        transfer_state = 106
-                    }
-                }
+                	limit = {
+                    	NOT = {
+                        	country_exists = BUL
+                    	}
+                	}
+                	GER = {
+                    	transfer_state = 106
+                	}
+            	}
+				else_if = {
+					limit = {
+						NOT = {
+							BUL = {
+        	                    controls_state = 106
+            	            }
+						}
+					}
+					BUL = {
+						transfer_state = 106
+					}
+				}
                 if = { 
-                    limit = {
-                        NOT = {
-                            HUN = {
-                                controls_state = 45
-                            }
-                        }
-                    }
-                    HUN = {
-                        transfer_state = 45
-                    }
-                }
-                if = { 
-                    limit = {
-                        NOT = {
-                            HUN = {
-                                controls_state = 514
-                            }
-                        }
-                    }
-                    HUN = {
-                        transfer_state = 514
-                    }
-                }
+                	limit = {
+                    	NOT = {
+                        	country_exists = HUN
+	                    }
+    	            }
+        	        GER = {
+            	        transfer_state = 45
+                	}
+            	}
+				else_if = {
+					limit = {
+						NOT = {
+							HUN = {
+                	            controls_state = 45
+            	            }
+						}
+					}
+					HUN = {
+						transfer_state = 45
+					}
+				}
+	            if = { 
+	                limit = {
+	                    NOT = {
+	                        country_exists = HUN
+	                    }
+            	    }
+                	GER = {
+ 	                   transfer_state = 514
+ 	               	}
+ 	            }
+				else_if = {
+					limit = {
+						NOT = {
+							HUN = {
+	                            controls_state = 514
+	                        }
+						}
+					}
+					HUN = {
+						transfer_state = 514
+					}
+				}
 				remove_state_core = 45
 				remove_state_core = 105
 				remove_state_core = 107
@@ -826,41 +856,71 @@ focus_tree = {
                     }
                 }
                 if = { 
-                    limit = {
-                        NOT = {
-                            BUL = {
-                                controls_state = 106
-                            }
-                        }
-                    }
-                    BUL = {
-                        transfer_state = 106
-                    }
-                }
+	                limit = {
+		                NOT = {
+    		                country_exists = BUL
+        	            }
+        		    }
+            		GER = {
+		                transfer_state = 106
+					}
+    	        }
+				else_if = {
+					limit = {
+						NOT = {
+							BUL = {
+	                            controls_state = 106
+	                        }
+						}
+					}
+					BUL = {
+						transfer_state = 106
+					}
+				}
 				if = { 
-                    limit = {
-                        NOT = {
-                            HUN = {
-                                controls_state = 45
-                            }
-                        }
-                    }
-                    HUN = {
-                        transfer_state = 45
-                    }
-                }
-                if = { 
-                    limit = {
-                        NOT = {
-                            HUN = {
-                                controls_state = 514
-                            }
-                        }
-                    }
-                    HUN = {
-                        transfer_state = 514
-                    }
-                }
+                	limit = {
+                    	NOT = {
+                        	country_exists = HUN
+	                    }
+    	            }
+        	        GER = {
+            	        transfer_state = 45
+                	}
+            	}
+				else_if = {
+					limit = {
+						NOT = {
+							HUN = {
+                	            controls_state = 45
+            	            }
+						}
+					}
+					HUN = {
+						transfer_state = 45
+					}
+				}
+	            if = { 
+	                limit = {
+	                    NOT = {
+	                        country_exists = HUN
+	                    }
+            	    }
+                	GER = {
+ 	                   transfer_state = 514
+ 	               	}
+ 	            }
+				else_if = {
+					limit = {
+						NOT = {
+							HUN = {
+	                            controls_state = 514
+	                        }
+						}
+					}
+					HUN = {
+						transfer_state = 514
+					}
+				}
 				remove_state_core = 102
 				remove_state_core = 103
 				remove_state_core = 109
@@ -1158,15 +1218,25 @@ focus_tree = {
             if = { 
                 limit = {
                     NOT = {
-                        BUL = {
-                            controls_state = 106
-                        }
+                        country_exists = BUL
                     }
                 }
-                BUL = {
+                GER = {
                     transfer_state = 106
                 }
             }
+			else_if = {
+				limit = {
+					NOT = {
+						BUL = {
+                            controls_state = 106
+                        }
+					}
+				}
+				BUL = {
+					transfer_state = 106
+				}
+			}
 	    }
     }
 
@@ -1201,27 +1271,47 @@ focus_tree = {
             if = { 
                 limit = {
                     NOT = {
-                        HUN = {
-                            controls_state = 45
-                        }
+                        country_exists = HUN
                     }
                 }
-                HUN = {
+                GER = {
                     transfer_state = 45
                 }
             }
+			else_if = {
+				limit = {
+					NOT = {
+						HUN = {
+                            controls_state = 45
+                        }
+					}
+				}
+				HUN = {
+					transfer_state = 45
+				}
+			}
             if = { 
                 limit = {
                     NOT = {
-                        HUN = {
-                            controls_state = 514
-                        }
+                        country_exists = HUN
                     }
                 }
-                HUN = {
+                GER = {
                     transfer_state = 514
                 }
             }
+			else_if = {
+				limit = {
+					NOT = {
+						HUN = {
+                            controls_state = 514
+                        }
+					}
+				}
+				HUN = {
+					transfer_state = 514
+				}
+			}
 	    }
     }
 
