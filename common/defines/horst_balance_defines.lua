@@ -1,7 +1,14 @@
+-----------------------------COAL ENERGY STUFF--------------------------------------
+
+NDefines.NGame.ENERGY_RESOURCE = "oil"						-- resource that will give country energy 
+NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 9.0		-- How much energy per coal produces
+NDefines.NProduction.BASE_COUNTRY_ENERGY_PRODUCTION = 10.0 			-- The base energy production of a country
+NDefines.NProduction.ENERGY_SCALING_COST_BY_FACTORY_COUNT = 0.0225 -- Scales energy cost based on the total number of factories
+NDefines.NProduction.BASE_ENERGY_COST = 0.25						-- How much energy per factory consumes
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 NDefines.NTechnology.BASE_YEAR_AHEAD_PENALTY_FACTOR = 2.3 -- Base year ahead penalty
 
-
+NDefines.NMilitary.PLAYER_ORDER_PLANNING_DECAY = 0				-- Amount of planning lost due to player manual order
 NDefines.NMilitary.PLANNING_MAX = 0.025 -- Vanilla is 0.30 ; nerfed along with entrenchment so both build up faster resulting in more dynamic gameplay with opportunities for faster recovery
 NDefines.NMilitary.UNIT_DIGIN_CAP = 0                           --   vanilla 10 | "how "deep" you can dig you can dig in until hitting max bonus
 NDefines.NMilitary.COMBAT_VALUE_ORG_IMPORTANCE = 0 		-- VANILLA 1 - changed to force tanks into battle first (most of the time) |   Multiplier on TotalOrganisation when determining the combat value of a division
