@@ -2387,6 +2387,8 @@ ship_fire_control_system_2 = {
 		add_stats = {
 			carrier_size = 3
 			build_cost_ic = 2000
+			carrier_surface_detection = 5
+			carrier_sub_detection = 2
 		}
 		manpower = 500 #outside the add_stats section for code reasons
 		multiply_stats = {
@@ -2405,6 +2407,8 @@ ship_fire_control_system_2 = {
 		add_stats = {
 			carrier_size = 3
 			build_cost_ic = 2000
+			carrier_surface_detection = 6
+			carrier_sub_detection = 3
 		}
 		mega_carrier = yes
 		manpower = 800 #outside the add_stats section for code reasons
@@ -2415,6 +2419,53 @@ ship_fire_control_system_2 = {
 			steel = 2
 		}
 		dismantle_cost_ic = 1000
+	}
+	
+	#ESCORT CARRIER
+
+	ship_escort_deck_space = {
+		abbreviation = "sdc"
+		category = ship_escort_deck_space
+		gfx = ship_escort_deck_space
+
+		add_equipment_type = capital_ship
+		add_stats = {
+			carrier_size = 1
+			build_cost_ic = 700
+			carrier_surface_detection = 2
+			carrier_sub_detection = 5
+		}
+		manpower = 250
+		multiply_stats = {
+			naval_speed = -0.05
+		}
+		build_cost_resources = {
+			steel = 1
+		}
+		dismantle_cost_ic = 350
+	}
+	
+	#SUBMARINE CARRIER
+
+	ship_submarine_deck_space = {
+		abbreviation = "sdd"
+		category = ship_submarine_deck_space
+		gfx = ship_deck_space
+		add_equipment_type = carrier
+
+		add_stats = {
+			submarine_carrier_size = 1
+			build_cost_ic = 350
+		}
+		manpower = 100 #outside the add_stats section for code reasons
+		multiply_stats = {
+			naval_speed = -0.05
+			sub_visibility = 0.1
+		}
+		build_cost_resources = {
+			steel = 1
+		}
+		dismantle_cost_ic = 250
 	}
 
 # Rocket Modules

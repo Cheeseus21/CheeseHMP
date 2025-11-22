@@ -247,15 +247,15 @@ POL_between_the_seas_states = {
 	}
 }
 
-# faction_controlled_between_the_seas_states = {
-	# input = collection:POL_between_the_seas_states
-	# name = COLLECTION_FACTION_BETWEEN_THE_SEAS_STATES
-	# operators = {
-		# limit = {
-			# is_controlled_by_ROOT_or_ally = yes
-		# }
-	# }
-# }
+faction_controlled_between_the_seas_states = {
+	input = collection:POL_between_the_seas_states
+	name = COLLECTION_FACTION_BETWEEN_THE_SEAS_STATES
+	operators = {
+		limit = {
+			is_controlled_by_ROOT_or_ally = yes
+		}
+	}
+}
 
 
 china_potential_core_states = {
@@ -520,16 +520,16 @@ states_in_asia_and_oceania = {
 	}
 	name = COLLECTION_STATES_IN_ASIA_AND_IN_OCEANIA
 }
-# faction_states_on_my_continent = {
-	# input = game:all_states
-	# operators = {
-		# limit = {
-			# is_on_same_continent_as = ROOT
-			# is_controlled_by_ROOT_or_ally = yes 
-		# }
-	# }
-	# name = COLLECTION_FACTION_STATES_MY_CONTINENT
-# }
+faction_states_on_my_continent = {
+	input = game:all_states
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			is_controlled_by_ROOT_or_ally = yes 
+		}
+	}
+	name = COLLECTION_FACTION_STATES_MY_CONTINENT
+}
 states_on_my_continent = {
 	input = game:all_states
 	operators = {
@@ -579,7 +579,25 @@ states_controlled_by_faction_member_and_core_holder = {
 	name = COLLECTION_STATES_CONTROLLED_BY_FACTION_MEMBER_AND_CORE_HOLDER
 }
 
+the_northern_mandate_states = {
+	input = game:all_states
+	operators = {
+		limit = {
+			CHI_northern_mandate_states = yes
+		}
+	}
+	name = COLLECTION_STATES_IN_ASIA_AND_IN_OCEANIA
+}
 
+the_southern_mandate_states = {
+	input = game:all_states
+	operators = {
+		limit = {
+			CHI_southern_mandate_states = yes
+		}
+	}
+	name = COLLECTION_STATES_IN_ASIA_AND_IN_OCEANIA
+}
 
 the_greater_game_states = {
 	input = game:all_states
@@ -686,15 +704,15 @@ controllable_balkan_states = {
 	name = COLLECTION_FACTION_BALKAN_STATES
 }
 
-# faction_controlled_balkan_states = {
-	# input = constant:state_groups.balkans
-	# operators = {
-		# limit = {
-			# is_controlled_by_ROOT_or_ally = yes 
-		# }
-	# }
-	# name = COLLECTION_FACTION_CONTROLLED_BALKAN_STATES
-# }
+faction_controlled_balkan_states = {
+	input = constant:state_groups.balkans
+	operators = {
+		limit = {
+			is_controlled_by_ROOT_or_ally = yes 
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_BALKAN_STATES
+}
 
 # Little Entente
 controllable_central_powers_border_states = {
@@ -888,30 +906,30 @@ controllable_mare_nostrum_states = {
 	name = COLLECTION_FACTION_MARE_NOSTRUM_STATES
 }
 
-# faction_controlled_mare_nostrum_states = {
-	# input = constant:state_groups.mare_nostrum_states
-	# operators = {
-		# limit = {
-			# is_controlled_by_ROOT_or_ally = yes 
-		# }
-	# }
-	# name = COLLECTION_FACTION_CONTROLLED_MARE_NOSTRUM_STATES
-# }
+faction_controlled_mare_nostrum_states = {
+	input = constant:state_groups.mare_nostrum_states
+	operators = {
+		limit = {
+			is_controlled_by_ROOT_or_ally = yes 
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_MARE_NOSTRUM_STATES
+}
 
 controllable_pax_romana_states = {
 	input = constant:state_groups.pax_romana_states
 	name = COLLECTION_FACTION_PAX_ROMANA_STATES
 }
 
-# faction_controlled_pax_romana_states = {
-	# input = constant:state_groups.pax_romana_states
-	# operators = {
-		# limit = {
-			# is_controlled_by_ROOT_or_ally = yes 
-		# }
-	# }
-	# name = COLLECTION_FACTION_CONTROLLED_PAX_ROMANA_STATES
-# }
+faction_controlled_pax_romana_states = {
+	input = constant:state_groups.pax_romana_states
+	operators = {
+		limit = {
+			is_controlled_by_ROOT_or_ally = yes 
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_PAX_ROMANA_STATES
+}
 
 
 # Soviet Union related
@@ -921,15 +939,15 @@ comintern_controllable_border_states = {
 
 }
 
-# comintern_controlled_border_states = {
-	# input = collection:comintern_controllable_border_states
-	# name = COLLECTION_CONTROLLED_COMINTERN_BORDER_STATES
-	# operators = {
-		# limit = {
-			# is_controlled_by_ROOT_or_ally = yes 
-		# }
-	# }
-# }
+comintern_controlled_border_states = {
+	input = collection:comintern_controllable_border_states
+	name = COLLECTION_CONTROLLED_COMINTERN_BORDER_STATES
+	operators = {
+		limit = {
+			is_controlled_by_ROOT_or_ally = yes 
+		}
+	}
+}
 
 neighboring_states_to_leader = {
 	input = game:all_states
