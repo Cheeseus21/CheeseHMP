@@ -29,105 +29,81 @@ faction_goal_undo_versailles = {
 		FROM = { original_tag = GER }
 	}
 	completed = {
-		OR = {
-			AND = {
-				original_tag = GER
-				has_army_manpower = {
-					size > 1000000
-				}
-				controls_state = 16
-				controls_state = 28
-
-			}
-			any_allied_country = {
-				original_tag = GER
-				has_army_manpower = {
-					size > 1000000
-				}
-				controls_state = 16
-				controls_state = 28
-			}
-		}
-		42 = { is_demilitarized_zone = no }
-		51 = { is_demilitarized_zone = no }
+		controls_state = 16
+		controls_state = 28
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
+        
 		every_faction_member = {
 			limit = {
 				original_tag = GER
 			}
 			add_faction_initiative = 1
 		}
+        
 		custom_effect_tooltip = generic_skip_one_line_tt
+        
 		every_faction_member = { 
 			tooltip = INFLUENCE_ABOVE_30_PERCENT
 			visible_when_empty = yes
 			limit = {
 				faction_influence_ratio > 0.3
 			}
-			add_war_support = 0.05
-			add_political_power = 50
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 9
-			is_historical_focus_on = yes
+			add_political_power = 150
 		}
 	}
 }
 
-faction_goal_secure_european_continent = {
-	name = secure_european_continent_goal_name
-	description = secure_european_continent_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	visible = {
-		FROM = {
-			original_tag = GER
-		}
-	}
-	completed = {
-		collection_size = {
-			input = {
-				input = constant:country_groups.continental_europe_1936
-				operators = {
-					limit = {
-						OR = {
-							is_in_faction_with = ROOT
-							has_capitulated = yes
-							exists = no
-							is_subject_of = ROOT 
-						}
-					}
-				}
-				name = COLLECTION_CONTINENTAL_EUROPE_DEFEATED_OR_FACTION_MEMBERS
-			}
-			value > 8
-		}
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		every_faction_member = { 
-			tooltip = INFLUENCE_ABOVE_30_PERCENT
-			visible_when_empty = yes
-			limit = {
-				faction_influence_ratio > 0.3
-			}
-			add_faction_initiative = 1
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 9
-			is_historical_focus_on = yes
-		}
-	}
-}
+# faction_goal_secure_european_continent = {
+	# name = secure_european_continent_goal_name
+	# description = secure_european_continent_goal_desc
+	# category = medium_term
+	# group = FOCUS_FILTER_ANNEXATION
+	# visible = {
+		# FROM = {
+			# original_tag = GER
+		# }
+	# }
+	# completed = {
+		# collection_size = {
+			# input = {
+				# input = constant:country_groups.continental_europe_1936
+				# operators = {
+					# limit = {
+						# OR = {
+							# is_in_faction_with = ROOT
+							# has_capitulated = yes
+							# exists = no
+							# is_subject_of = ROOT 
+						# }
+					# }
+				# }
+				# name = COLLECTION_CONTINENTAL_EUROPE_DEFEATED_OR_FACTION_MEMBERS
+			# }
+			# value > 8
+		# }
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# every_faction_member = { 
+			# tooltip = INFLUENCE_ABOVE_30_PERCENT
+			# visible_when_empty = yes
+			# limit = {
+				# faction_influence_ratio > 0.3
+			# }
+			# add_faction_initiative = 1
+		# }
+	# }
+	# ai_will_do = {
+		# base = 1
+		# modifier = {
+			# add = 9
+			# is_historical_focus_on = yes
+		# }
+	# }
+# }
 
 faction_goal_secure_north_africa = {
 	name = secure_north_africa_goal_name
@@ -226,20 +202,12 @@ faction_goal_high_seas_fleet = {
 				}
 				name = ALL_FACTION_MEMBERS
 			}
-			navy_experience = 50
 			add_tech_bonus = {
 				name = high_seas_fleet_tech_bonus
-				bonus = 0.5
-				uses = 2
+				bonus = 1
+				uses = 1
 				category = naval_equipment
 			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 1 # If they have a bunch of naval factories, go for it
-			num_of_naval_factories > 29
 		}
 	}
 }
@@ -297,20 +265,6 @@ faction_goal_the_arteries_of_trade = {
 			add_stability = 0.05
 		}
 	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 1 # Extra eager to do this as the main trade nations
-			OR = {
-				original_tag = ENG
-				original_tag = USA
-			}
-		}
-		modifier = {
-			factor = 2
-			is_historical_focus_on = yes
-		}
-	}
 }
 
 faction_goal_imperial_glory = {
@@ -363,56 +317,20 @@ faction_goal_imperial_glory = {
 					faction_members 
 					limit = {
 						owns_any_state_of = {
-							 1021
-							 118
-							 116
-							 286
-							 335
+                            1021
+                            118
+                            116
+                            286
+                            335
 						}
 					}
 				}
-				
 				name = OWNS_LISTED_STATE
 			}
 			custom_effect_tooltip = OWNS_LISTED_STATE
 			add_faction_initiative = 1
 			add_faction_influence_ratio = 0.05
 			add_stability = 0.05
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			add = 1 # The Empire cares a little
-			OR = {
-				original_tag = ENG
-				original_tag = CAN
-				original_tag = RAJ
-				original_tag = AST
-				original_tag = NZL
-				original_tag = MAL
-				original_tag = FRA
-				original_tag = HOL
-				original_tag = INS
-			}
-			is_historical_focus_on = yes
-		}
-		modifier = {
-			add = 1 # The Colonial Powers always care
-			OR = {
-				original_tag = ENG
-				original_tag = FRA
-				original_tag = HOL
-			}
-		}
-		modifier = {
-			add = 10 # The Colonial Powers always care a LOT on historical
-			OR = {
-				original_tag = ENG
-				original_tag = FRA
-				original_tag = HOL
-			}
-			is_historical_focus_on = yes
 		}
 	}
 }
@@ -1066,85 +984,85 @@ faction_goal_undoing_brest_litowsk = {
 
 ### Units/Deployment
 
-faction_goal_marine_corps = {
-	name = marine_corps_goal_name
-	description = marine_corps_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_NAVY_XP
-	available = {
-	}
-	completed = {
-		count_in_collection = {
-			collection = {
-				input = game:scope
-				operators = { faction_members }
-				name = FACTION
-			}
-			unit_category = category_amphibious_tanks
-			size > 9
-		}
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		every_collection_element = {
-			input = {
-				input = game:scope
-				operators = { 
-					faction_members 
-					limit = {
-						has_army_size = {
-							size > 0
-							unit_category = category_amphibious_tanks
-						}
-					}
-				}
-				name = ALL_FACTION_MEMBERS_WITH_1_AMPHIBIOUS
-			}
-			random_character = {
-				tooltip = ONE_GENERAL	
-				visible_when_empty = yes
-				limit = {
-					is_army_leader = yes
-					is_field_marshal = no
-					NOT = { has_trait = cavalry_officer }
-					NOT = { has_trait = panzer_leader }
-					NOT = { has_trait = invader }
-				}
-				gain_xp = 400
-				add_attack = 1
-				add_trait = { trait = invader }
-			}
-		}
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = ALL_FACTION_MEMBERS
-		every_faction_member = {
-			add_tech_bonus = {
-				name = marine_corps_tech_bonus
-				bonus = 0.5
-				uses = 1
-				category = marine_tech
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			add = 1
-			any_state = {
-				is_controlled_by_ROOT_or_ally = yes
-				is_coastal = yes
-			}
-		}
-		modifier = {
-			add = 2
-			any_state = {
-				is_controlled_by = ROOT
-				is_coastal = yes
-			}
-		}
-	}
-}
+# faction_goal_marine_corps = {
+	# name = marine_corps_goal_name
+	# description = marine_corps_goal_desc
+	# category = medium_term
+	# group = FOCUS_FILTER_NAVY_XP
+	# available = {
+	# }
+	# completed = {
+		# count_in_collection = {
+			# collection = {
+				# input = game:scope
+				# operators = { faction_members }
+				# name = FACTION
+			# }
+			# unit_category = category_amphibious_tanks
+			# size > 9
+		# }
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# every_collection_element = {
+			# input = {
+				# input = game:scope
+				# operators = { 
+					# faction_members 
+					# limit = {
+						# has_army_size = {
+							# size > 0
+							# unit_category = category_amphibious_tanks
+						# }
+					# }
+				# }
+				# name = ALL_FACTION_MEMBERS_WITH_1_AMPHIBIOUS
+			# }
+			# random_character = {
+				# tooltip = ONE_GENERAL	
+				# visible_when_empty = yes
+				# limit = {
+					# is_army_leader = yes
+					# is_field_marshal = no
+					# NOT = { has_trait = cavalry_officer }
+					# NOT = { has_trait = panzer_leader }
+					# NOT = { has_trait = invader }
+				# }
+				# gain_xp = 400
+				# add_attack = 1
+				# add_trait = { trait = invader }
+			# }
+		# }
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = ALL_FACTION_MEMBERS
+		# every_faction_member = {
+			# add_tech_bonus = {
+				# name = marine_corps_tech_bonus
+				# bonus = 0.5
+				# uses = 1
+				# category = marine_tech
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 0
+		# modifier = {
+			# add = 1
+			# any_state = {
+				# is_controlled_by_ROOT_or_ally = yes
+				# is_coastal = yes
+			# }
+		# }
+		# modifier = {
+			# add = 2
+			# any_state = {
+				# is_controlled_by = ROOT
+				# is_coastal = yes
+			# }
+		# }
+	# }
+# }
 
 faction_goal_submarine_force = {
 	name = submarine_force_goal_name
@@ -1162,76 +1080,22 @@ faction_goal_submarine_force = {
 				name = FACTION
 			}
 			unit = submarine
-			size > 99
+			size > 199
 		}
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
+
 		custom_effect_tooltip = generic_skip_one_line_tt
-		every_collection_element = {
-			input = {
-				input = game:scope
-				operators = { 
-					faction_members 
-					limit = {
-						has_army_size = {
-							size > 24
-							type = submarine
-						}
-					}
-				}
-				name = ALL_FACTION_MEMBERS_WITH_25_SUBMARINES
-			}
-			random_character = {
-				tooltip = ONE_ADMIRAL	
-				visible_when_empty = yes
-				limit = {
-					is_navy_leader = yes 
-					NOT = { has_trait = seawolf }
-					NOT = { has_trait = ironside }
-					NOT = { has_trait = battleship_adherent }
-					NOT = { has_trait = gunnery_expert }
-					NOT = { has_trait = aviation_enthusiast }
-				}
-				gain_xp = 400
-				add_attack = 1
-				add_trait = { trait = seawolf }
-			}
-			add_mastery = {
+		custom_effect_tooltip = ALL_FACTION_MEMBERS
+		every_faction_member = {
+            add_mastery = {
 				amount = 100
 				track = submarines
 			}
 		}
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = ALL_FACTION_MEMBERS
-		every_faction_member = {
-			add_tech_bonus = {
-				name = submarine_force_tech_bonus
-				bonus = 0.5
-				uses = 1
-				category = naval_equipment
-			}
-		}
 	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			add = 1 # Powers with no dockyards should probably not care about navy
-			num_of_naval_factories > 0
-		}
-		modifier = {
-			add = 1 # Powers with a less dockyard capacity should probably try to build subs rather than contest the high seas
-			num_of_naval_factories > 10
-		}
-		modifier = {
-			add = -1 # Powers with more dockyard capacity should probably try to contest the high seas instead of building subs
-			num_of_naval_factories > 25
-		}
-		modifier = {
-			add = -1 # Powers with more dockyard capacity should probably try to contest the high seas instead of building subs
-			num_of_naval_factories > 50
-		}
-	}
+
 }
 
 faction_goal_convoy_escort_force = {
@@ -1250,71 +1114,19 @@ faction_goal_convoy_escort_force = {
 				name = FACTION
 			}
 			unit = screen_ship
-			size > 99
+			size > 199
 		}
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
+
 		custom_effect_tooltip = generic_skip_one_line_tt
-		every_collection_element = {
-			input = {
-				input = game:scope
-				operators = { 
-					faction_members 
-					limit = {
-						has_army_size = {
-							size > 24
-							type = screen_ship
-						}
-					}
-				}
-				name = ALL_FACTION_MEMBERS_WITH_25_SCREENING_SHIPS
-			}
-			random_character = {
-				tooltip = ONE_ADMIRAL	
-				visible_when_empty = yes
-				limit = {
-					is_navy_leader = yes
-					NOT = { has_trait = fleet_protector }
-					NOT = { has_trait = seawolf }
-					NOT = { has_trait = ironside }
-					NOT = { has_trait = battleship_adherent }
-					NOT = { has_trait = gunnery_expert }
-					NOT = { has_trait = aviation_enthusiast }
-				}
-				gain_xp = 400
-				add_attack = 1
-				add_trait = { trait = fleet_protector }
-			}
+		custom_effect_tooltip = ALL_FACTION_MEMBERS
+		every_faction_member = {
 			add_mastery = {
 				amount = 100
 				track = screens
 			}
-		}
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = ALL_FACTION_MEMBERS
-		every_faction_member = {
-			add_tech_bonus = {
-				name = convoy_escort_force_tech_bonus
-				bonus = 0.5
-				uses = 1
-				category = naval_equipment
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			add = 1 # Powers with no dockyards should probably not care about navy
-			num_of_naval_factories > 0
-		}
-		modifier = {
-			add = 1 # Powers with threatened convoys should care more
-			convoy_threat > 0.2
-		}
-		modifier = {
-			add = 8 # Powers with very threatened convoys should care -a lot-
-			convoy_threat > 0.5
 		}
 	}
 }
@@ -1335,42 +1147,47 @@ faction_goal_air_superiority = {
 				name = FACTION
 			}
 			unit = fighter
-			size > 999
+			size > 9999
 		}
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		every_collection_element = {
-			input = {
-				input = game:scope
-				operators = { 
-					faction_members 
-					limit = {
-						has_army_size = {
-							size > 249
-							type = fighter
-						}
-					}
-				}
-				name = ALL_FACTION_MEMBERS_WITH_250_FIGHTERS
-			}
-			air_experience = 50
-			add_mastery = {
-				amount = 100
-				track = fighter_aircraft
-			}
-		}
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# every_collection_element = {
+			# input = {
+				# input = game:scope
+				# operators = { 
+					# faction_members 
+					# limit = {
+						# has_army_size = {
+							# size > 249
+							# type = fighter
+						# }
+					# }
+				# }
+				# name = ALL_FACTION_MEMBERS_WITH_250_FIGHTERS
+			# }
+			# air_experience = 50
+			# add_mastery = {
+				# amount = 100
+				# track = fighter_aircraft
+			# }
+		# }
 		custom_effect_tooltip = generic_skip_one_line_tt
 		custom_effect_tooltip = ALL_FACTION_MEMBERS
-		every_faction_member = {
-			add_tech_bonus = {
-				name = air_superiority_tech_bonus
-				bonus = 0.5
-				uses = 1
-				category = air_equipment
-			}
-		}
+        air_experience = 50
+        add_mastery = {
+            amount = 100
+            track = fighter_aircraft
+        }
+		# every_faction_member = {
+			# add_tech_bonus = {
+				# name = air_superiority_tech_bonus
+				# bonus = 1
+				# uses = 1
+				# category = air_equipment
+			# }
+		# }
 	}
 	ai_will_do = {
 		base = 0
@@ -1419,7 +1236,7 @@ faction_goal_industrial_expansion = {
 				name = FACTION_NAME
 			}
 			buildings = { industrial_complex }
-			size > 149
+			size > 499
 		}
 	}
 	complete_effect = {
@@ -1433,25 +1250,10 @@ faction_goal_industrial_expansion = {
 			}
 			add_tech_bonus = {
 				name = industrial_expansion_tech_bonus
-				bonus = 0.5
-				uses = 2
+				bonus = 1
+				uses = 1
 				category = industry
 			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 1 # If already big it's easy to grow
-			is_major = yes
-		}
-		modifier = {
-			add = 1 # If already big it's easy to grow
-			is_major = yes
-		}
-		modifier = {
-			add = 1 # Prioritize more earlier on - more pay-off
-			date < 1938.1.1
 		}
 	}
 }
@@ -1474,16 +1276,6 @@ faction_goal_industrial_research = {
 		all_allied_country = {
 			has_tech = construction4
 		}
-
-		collection_size = {
-				input = {
-					input = game:scope
-					operators =  { 
-						faction_members 
-					}
-				}
-				value > 4
-			}
 	}
 	complete_effect = {
 		add_faction_power_projection = 200
@@ -1495,26 +1287,6 @@ faction_goal_industrial_research = {
 				faction_influence_ratio > 0.3
 			}
 			add_faction_initiative = 1
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 1 # Prio for smaller factions (Easier to get everyone up then )
-			collection_size = {
-				input = {
-					input = game:scope
-					operators =  { 
-						faction_members 
-					}
-				}
-				value < 5
-			}
-		}
-		modifier = {
-			add = 1 # Prioritize during build up, but not too early
-			date > 1938.1.1
-			date < 1941.1.1
 		}
 	}
 }
@@ -1543,7 +1315,7 @@ faction_goal_a_military_base = {
 				name = FACTION_NAME
 			}
 			buildings = { arms_factory }
-			size > 149
+			size > 999
 		}
 	}
 	complete_effect = {
@@ -1557,21 +1329,10 @@ faction_goal_a_military_base = {
 			}
 			add_tech_bonus = {
 				name = a_military_base_tech_bonus
-				bonus = 0.5
-				uses = 2
-				category = excavation_tech
+				bonus = 1
+				uses = 1
+				category = industry
 			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			add = 1
-			date > 1938.1.1
-		}
-		modifier = {
-			add = 1
-			is_major = yes
 		}
 	}
 }
@@ -1641,538 +1402,539 @@ faction_goal_aggressive_defense = {
 ### Strategic Resources
 
 # Mexican Oil
-faction_goal_control_mexican_oil = {
-	name = control_mexican_oil_goal_name
-	description = control_mexican_oil_goal_desc
-	category = medium_term
-	group = resources_to_market_icon
-	allowed = {
+# faction_goal_control_mexican_oil = {
+	# name = control_mexican_oil_goal_name
+	# description = control_mexican_oil_goal_desc
+	# category = medium_term
+	# group = resources_to_market_icon
+	# allowed = {
 		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = MEX
-				is_in_faction_with = MEX
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 479
-				value < 2000
-			}
-		}
-	}
-	available = {
+	# }
+	# visible = {
+		# FROM = {
+			# NOT = {
+				# original_tag = MEX
+				# is_in_faction_with = MEX
+			# }
+		# }
+		# any_collection_element = {
+			# collection = {
+				 # input = game:scope
+				 # operators = { faction_members controlled_states }
+				 # name = FACTION_CONTROLLED_STATES
+			# }
+			# distance_to = {
+				# target = 479
+				# value < 2000
+			# }
+		# }
+	# }
+	# available = {
 
-	}
-	completed = {
-		480 = { is_controlled_by_ROOT_or_ally = yes }
-		479 = {	is_controlled_by_ROOT_or_ally = yes }
-		477 = {	is_controlled_by_ROOT_or_ally = yes }
-		476 = {	is_controlled_by_ROOT_or_ally = yes }		
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = {
-			visible_when_empty = yes
-			limit = {
-				OR = {
-					controls_state = 480
-					controls_state = 479
-					controls_state = 477
-					controls_state = 476
-				}
-			}
-			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 480
-					state = 479
-					state = 477
-					state = 476
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1 # Everyone should always kiiiinda care about oil
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = -1 # If the alliance is doing well with fuel avoid taking this...
-			fuel_ratio > 0.9
-			all_allied_country = {
-				fuel_ratio > 0.9
-			}
-		}
-		modifier = {
-			add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = oil
-				amount < 10
-				extracted = yes
-			}
-		}
-		modifier = {
-			add = 1 # Powers with low fuel should care about oil a bit more
-			fuel_ratio < 0.4
-		}
-		modifier = {
-			add = 1 # Powers with very low fuel should care about oil A LOT
-			fuel_ratio < 0.1
-		}
-		modifier = {
-			add = 5 # Massive boost in case low fuel and already at war anyway
-			fuel_ratio < 0.1
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-	}
-}
+	# }
+	# completed = {
+		# 480 = { is_controlled_by_ROOT_or_ally = yes }
+		# 479 = {	is_controlled_by_ROOT_or_ally = yes }
+		# 477 = {	is_controlled_by_ROOT_or_ally = yes }
+		# 476 = {	is_controlled_by_ROOT_or_ally = yes }		
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = TARGET_STATE_CONTROLLERS
+		# every_faction_member = {
+			# visible_when_empty = yes
+			# limit = {
+				# OR = {
+					# controls_state = 480
+					# controls_state = 479
+					# controls_state = 477
+					# controls_state = 476
+				# }
+			# }
+			# add_faction_initiative = 1
+		# }
+		# every_state = {
+			# limit = {
+				# OR = {
+					# state = 480
+					# state = 479
+					# state = 477
+					# state = 476
+				# }
+			# }
+			# if = {
+				# limit = {
+					# infrastructure < 5
+				# }
+				# add_building_construction = {
+					# type = infrastructure
+					# level = 1
+					# instant_build = yes
+				# }	
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 1 # Everyone should always kiiiinda care about oil
+		# modifier = {
+			# factor = 2 # Target of opportunity - already at war anyway
+			# 479 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+		# modifier = {
+			# add = -1 # If the alliance is doing well with fuel avoid taking this...
+			# fuel_ratio > 0.9
+			# all_allied_country = {
+				# fuel_ratio > 0.9
+			# }
+		# }
+		# modifier = {
+			# add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
+			# has_resources_in_collection = {
+				# collection = {
+						# input = game:scope
+						# operators =  { faction_members }
+						# name = FACTION
+				# }
+				# resource = oil
+				# amount < 10
+				# extracted = yes
+			# }
+		# }
+		# modifier = {
+			# add = 1 # Powers with low fuel should care about oil a bit more
+			# fuel_ratio < 0.4
+		# }
+		# modifier = {
+			# add = 1 # Powers with very low fuel should care about oil A LOT
+			# fuel_ratio < 0.1
+		# }
+		# modifier = {
+			# add = 5 # Massive boost in case low fuel and already at war anyway
+			# fuel_ratio < 0.1
+			# 479 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+	# }
+# }
 
 # Curacao Oil
-faction_goal_control_curacao_oil = {
-	name = control_curacao_oil_goal_name
-	description = control_curacao_oil_goal_desc
-	category = medium_term
-	group = resources_to_market_icon
-	allowed = {
+# faction_goal_control_curacao_oil = {
+	# name = control_curacao_oil_goal_name
+	# description = control_curacao_oil_goal_desc
+	# category = medium_term
+	# group = resources_to_market_icon
+	# allowed = {
 		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = HOL
-				is_in_faction_with = HOL
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 695
-				value < 2000
-			}
-		}
-	}
-	available = {
+	# }
+	# visible = {
+        # original_tag = JAP
+		# FROM = {
+			# NOT = {
+				# original_tag = HOL
+				# is_in_faction_with = HOL
+			# }
+		# }
+		# any_collection_element = {
+			# collection = {
+				 # input = game:scope
+				 # operators = { faction_members controlled_states }
+				 # name = FACTION_CONTROLLED_STATES
+			# }
+			# distance_to = {
+				# target = 695
+				# value < 2000
+			# }
+		# }
+	# }
+	# available = {
 
-	}
-	completed = {
-		695 = { is_controlled_by_ROOT_or_ally = yes }	
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_allied_country = {
-			visible_when_empty = yes
-			limit = {
-				controls_state = 695
-			}
-			add_faction_initiative = 1
-		}
-		695 = {
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1 # Everyone should always kiiiinda care about oil
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			695 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = -1 # If the alliance is doing well with fuel avoid taking this...
-			fuel_ratio > 0.9
-			all_allied_country = {
-				fuel_ratio > 0.9
-			}
-		}
-		modifier = {
-			add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = oil
-				amount < 10
-				extracted = yes
-			}
-		}
-		modifier = {
-			add = 1 # Powers with low fuel should care about oil a bit more
-			fuel_ratio < 0.4
-		}
-		modifier = {
-			add = 1 # Powers with very low fuel should care about oil A LOT
-			fuel_ratio < 0.1
-		}
-		modifier = {
-			add = 5 # Massive boost in case low fuel and already at war anyway
-			fuel_ratio < 0.1
-			695 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-	}
-}
+	# }
+	# completed = {
+		# 695 = { is_controlled_by_ROOT_or_ally = yes }	
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = TARGET_STATE_CONTROLLERS
+		# every_allied_country = {
+			# visible_when_empty = yes
+			# limit = {
+				# controls_state = 695
+			# }
+			# add_faction_initiative = 1
+		# }
+		# 695 = {
+			# if = {
+				# limit = {
+					# infrastructure < 5
+				# }
+				# add_building_construction = {
+					# type = infrastructure
+					# level = 1
+					# instant_build = yes
+				# }	
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 1 # Everyone should always kiiiinda care about oil
+		# modifier = {
+			# factor = 2 # Target of opportunity - already at war anyway
+			# 695 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+		# modifier = {
+			# add = -1 # If the alliance is doing well with fuel avoid taking this...
+			# fuel_ratio > 0.9
+			# all_allied_country = {
+				# fuel_ratio > 0.9
+			# }
+		# }
+		# modifier = {
+			# add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
+			# has_resources_in_collection = {
+				# collection = {
+						# input = game:scope
+						# operators =  { faction_members }
+						# name = FACTION
+				# }
+				# resource = oil
+				# amount < 10
+				# extracted = yes
+			# }
+		# }
+		# modifier = {
+			# add = 1 # Powers with low fuel should care about oil a bit more
+			# fuel_ratio < 0.4
+		# }
+		# modifier = {
+			# add = 1 # Powers with very low fuel should care about oil A LOT
+			# fuel_ratio < 0.1
+		# }
+		# modifier = {
+			# add = 5 # Massive boost in case low fuel and already at war anyway
+			# fuel_ratio < 0.1
+			# 695 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+	# }
+# }
 
 # Venezuelan Oil
-faction_goal_control_venezuelan_oil = {
-	name = control_venezuelan_oil_goal_name
-	description = control_venezuelan_oil_goal_desc
-	category = medium_term
-	group = resources_to_market_icon
-	allowed = {
+# faction_goal_control_venezuelan_oil = {
+	# name = control_venezuelan_oil_goal_name
+	# description = control_venezuelan_oil_goal_desc
+	# category = medium_term
+	# group = resources_to_market_icon
+	# allowed = {
 		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = VEN
-				is_in_faction_with = VEN
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 307
-				value < 2000
-			}
-		}
-	}
-	available = {
+	# }
+	# visible = {
+		# FROM = {
+			# NOT = {
+				# original_tag = VEN
+				# is_in_faction_with = VEN
+			# }
+		# }
+		# any_collection_element = {
+			# collection = {
+				 # input = game:scope
+				 # operators = { faction_members controlled_states }
+				 # name = FACTION_CONTROLLED_STATES
+			# }
+			# distance_to = {
+				# target = 307
+				# value < 2000
+			# }
+		# }
+	# }
+	# available = {
 
-	}
-	completed = {
-		489 = { is_controlled_by_ROOT_or_ally = yes }
-		307 = {	is_controlled_by_ROOT_or_ally = yes }	
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_allied_country = { 
-			visible_when_empty = yes
-			limit = {
-				OR = {
-					controls_state = 489
-					controls_state = 307
-				}
-			}
-			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 489
-					state = 307
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1 # Everyone should always kiiiinda care about oil
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			307 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = -1 # If the alliance is doing well with fuel avoid taking this...
-			fuel_ratio > 0.9
-			all_allied_country = {
-				fuel_ratio > 0.9
-			}
-		}
-		modifier = {
-			add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = oil
-				amount < 10
-				extracted = yes
-			}
-		}
-		modifier = {
-			add = 1 # Powers with low fuel should care about oil a bit more
-			fuel_ratio < 0.4
-		}
-		modifier = {
-			add = 1 # Powers with very low fuel should care about oil A LOT
-			fuel_ratio < 0.1
-		}
-		modifier = {
-			add = 5 # Massive boost in case low fuel and already at war anyway
-			fuel_ratio < 0.1
-			307 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-	}
-}
+	# }
+	# completed = {
+		# 489 = { is_controlled_by_ROOT_or_ally = yes }
+		# 307 = {	is_controlled_by_ROOT_or_ally = yes }	
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = TARGET_STATE_CONTROLLERS
+		# every_allied_country = { 
+			# visible_when_empty = yes
+			# limit = {
+				# OR = {
+					# controls_state = 489
+					# controls_state = 307
+				# }
+			# }
+			# add_faction_initiative = 1
+		# }
+		# every_state = {
+			# limit = {
+				# OR = {
+					# state = 489
+					# state = 307
+				# }
+			# }
+			# if = {
+				# limit = {
+					# infrastructure < 5
+				# }
+				# add_building_construction = {
+					# type = infrastructure
+					# level = 1
+					# instant_build = yes
+				# }	
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 1 # Everyone should always kiiiinda care about oil
+		# modifier = {
+			# factor = 2 # Target of opportunity - already at war anyway
+			# 307 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+		# modifier = {
+			# add = -1 # If the alliance is doing well with fuel avoid taking this...
+			# fuel_ratio > 0.9
+			# all_allied_country = {
+				# fuel_ratio > 0.9
+			# }
+		# }
+		# modifier = {
+			# add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
+			# has_resources_in_collection = {
+				# collection = {
+						# input = game:scope
+						# operators =  { faction_members }
+						# name = FACTION
+				# }
+				# resource = oil
+				# amount < 10
+				# extracted = yes
+			# }
+		# }
+		# modifier = {
+			# add = 1 # Powers with low fuel should care about oil a bit more
+			# fuel_ratio < 0.4
+		# }
+		# modifier = {
+			# add = 1 # Powers with very low fuel should care about oil A LOT
+			# fuel_ratio < 0.1
+		# }
+		# modifier = {
+			# add = 5 # Massive boost in case low fuel and already at war anyway
+			# fuel_ratio < 0.1
+			# 307 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+	# }
+# }
 
 # Guyanan Bauxite
-faction_goal_control_guyanan_bauxite = {
-	name = control_guyanan_bauxite_goal_name
-	description = control_guyanan_bauxite_goal_desc
-	category = medium_term
-	group = resources_to_market_icon
-	allowed = {
+# faction_goal_control_guyanan_bauxite = {
+	# name = control_guyanan_bauxite_goal_name
+	# description = control_guyanan_bauxite_goal_desc
+	# category = medium_term
+	# group = resources_to_market_icon
+	# allowed = {
 		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = ENG
-				is_in_faction_with = ENG
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 687
-				value < 2000
-			}
-		}
-	}
-	available = {
+	# }
+	# visible = {
+		# FROM = {
+			# NOT = {
+				# original_tag = ENG
+				# is_in_faction_with = ENG
+			# }
+		# }
+		# any_collection_element = {
+			# collection = {
+				 # input = game:scope
+				 # operators = { faction_members controlled_states }
+				 # name = FACTION_CONTROLLED_STATES
+			# }
+			# distance_to = {
+				# target = 687
+				# value < 2000
+			# }
+		# }
+	# }
+	# available = {
 
-	}
-	completed = {
-		687 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_allied_country = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 687
-			}
-			add_faction_initiative = 1
-		}
-		687 = {
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			687 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If low on aluminium
-			aluminium > 40
-		}
-		modifier = {
-			add = 1 # If very low on aluminium
-			aluminium > 10
-		}
-		modifier = {
-			add = 3 # If entire alliance is low on aluminium they should be heavily incentivized to taking more
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = aluminium
-				amount < 10
-				extracted = no # (optional, default: no) checks extracted amount instead of country balance
-			}
-		}
-	}
-}
+	# }
+	# completed = {
+		# 687 = { is_controlled_by_ROOT_or_ally = yes }
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = TARGET_STATE_CONTROLLERS
+		# every_allied_country = { 
+			# visible_when_empty = yes
+			# limit = {
+				# controls_state = 687
+			# }
+			# add_faction_initiative = 1
+		# }
+		# 687 = {
+			# if = {
+				# limit = {
+					# infrastructure < 5
+				# }
+				# add_building_construction = {
+					# type = infrastructure
+					# level = 1
+					# instant_build = yes
+				# }	
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 0
+		# modifier = {
+			# factor = 2 # Target of opportunity - already at war anyway
+			# 687 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+		# modifier = {
+			# add = 1 # If low on aluminium
+			# aluminium > 40
+		# }
+		# modifier = {
+			# add = 1 # If very low on aluminium
+			# aluminium > 10
+		# }
+		# modifier = {
+			# add = 3 # If entire alliance is low on aluminium they should be heavily incentivized to taking more
+			# has_resources_in_collection = {
+				# collection = {
+						# input = game:scope
+						# operators =  { faction_members }
+						# name = FACTION
+				# }
+				# resource = aluminium
+				# amount < 10
+				# extracted = no # (optional, default: no) checks extracted amount instead of country balance
+			# }
+		# }
+	# }
+# }
 
 # Surinamese Bauxite
-faction_goal_control_suriname_bauxite = {
-	name = control_suriname_bauxite_goal_name
-	description = control_suriname_bauxite_goal_desc
-	category = medium_term
-	group = resources_to_market_icon
-	allowed = {
+# faction_goal_control_suriname_bauxite = {
+	# name = control_suriname_bauxite_goal_name
+	# description = control_suriname_bauxite_goal_desc
+	# category = medium_term
+	# group = resources_to_market_icon
+	# allowed = {
 		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = HOL
-				is_in_faction_with = HOL
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 309
-				value < 2000
-			}
-		}
-	}
-	available = {
+	# }
+	# visible = {
+		# FROM = {
+			# NOT = {
+				# original_tag = HOL
+				# is_in_faction_with = HOL
+			# }
+		# }
+		# any_collection_element = {
+			# collection = {
+				 # input = game:scope
+				 # operators = { faction_members controlled_states }
+				 # name = FACTION_CONTROLLED_STATES
+			# }
+			# distance_to = {
+				# target = 309
+				# value < 2000
+			# }
+		# }
+	# }
+	# available = {
 
-	}
-	completed = {
-		309 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_allied_country = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 309
-			}
-			add_faction_initiative = 1
-		}
-		309 = {
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			309 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If low on aluminium
-			aluminium > 40
-		}
-		modifier = {
-			add = 1 # If very low on aluminium
-			aluminium > 10
-		}
-		modifier = {
-			add = 3 # If entire alliance is low on aluminium they should be heavily incentivized to taking more
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = aluminium
-				amount < 10
-				extracted = no # (optional, default: no) checks extracted amount instead of country balance
-			}
-		}
-	}
-}
+	# }
+	# completed = {
+		# 309 = { is_controlled_by_ROOT_or_ally = yes }
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = TARGET_STATE_CONTROLLERS
+		# every_allied_country = { 
+			# visible_when_empty = yes
+			# limit = {
+				# controls_state = 309
+			# }
+			# add_faction_initiative = 1
+		# }
+		# 309 = {
+			# if = {
+				# limit = {
+					# infrastructure < 5
+				# }
+				# add_building_construction = {
+					# type = infrastructure
+					# level = 1
+					# instant_build = yes
+				# }	
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 0
+		# modifier = {
+			# factor = 2 # Target of opportunity - already at war anyway
+			# 309 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+		# modifier = {
+			# add = 1 # If low on aluminium
+			# aluminium > 40
+		# }
+		# modifier = {
+			# add = 1 # If very low on aluminium
+			# aluminium > 10
+		# }
+		# modifier = {
+			# add = 3 # If entire alliance is low on aluminium they should be heavily incentivized to taking more
+			# has_resources_in_collection = {
+				# collection = {
+						# input = game:scope
+						# operators =  { faction_members }
+						# name = FACTION
+				# }
+				# resource = aluminium
+				# amount < 10
+				# extracted = no # (optional, default: no) checks extracted amount instead of country balance
+			# }
+		# }
+	# }
+# }
 
 # Lappland Metals
 faction_goal_control_lappland_metals = {
@@ -2197,7 +1959,7 @@ faction_goal_control_lappland_metals = {
 				 name = FACTION_CONTROLLED_STATES
 			}
 			distance_to = {
-				target = 918
+				target = 110
 				value < 2000
 			}
 		}
@@ -2206,8 +1968,8 @@ faction_goal_control_lappland_metals = {
 		
 	}
 	completed = {
-		666 = { is_controlled_by_ROOT_or_ally = yes }
-		918 = {	is_controlled_by_ROOT_or_ally = yes }	
+		110 = { is_controlled_by_ROOT_or_ally = yes }
+		#918 = {	is_controlled_by_ROOT_or_ally = yes }	
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -2216,92 +1978,12 @@ faction_goal_control_lappland_metals = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				OR = {
-					controls_state = 666
-					controls_state = 918
-				}
+				#OR = {
+					controls_state = 110
+					#controls_state = 918
+				#}
 			}
 			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 666
-					state = 918
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			918 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If low on resources
-			OR = {
-				tungsten < 40
-				steel < 40
-				chromium < 12
-			}
-		}
-		modifier = {
-			add = 1 # If very low on resources
-			OR = {
-				tungsten < 10
-				steel < 10
-				chromium < 5
-			}
-		}
-		modifier = {
-			add = 3 # If entire alliance is low on resources they should be heavily incentivized to taking more
-			OR = {
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = tungsten
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = steel
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = chromium
-					amount < 8
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-			}
 		}
 	}
 }
@@ -2320,13 +2002,16 @@ faction_goal_control_ploiesti_oil_fields = {
 			NOT = {
 				is_in_faction_with = ROM
 				original_tag = ROM
+                original_tag = JAP
+                original_tag = MAN
+                original_tag = SIA
 			}
 		}
 		any_collection_element = {
 			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
+				input = game:scope
+				operators = { faction_members controlled_states }
+				name = FACTION_CONTROLLED_STATES
 			}
 			distance_to = {
 				target = 46
@@ -2351,66 +2036,6 @@ faction_goal_control_ploiesti_oil_fields = {
 			}
 			add_faction_initiative = 1
 		}
-		46 = {
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1 # Everyone should always kiiiinda care about oil
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			46 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = -1 # If the alliance is doing well with fuel avoid taking this...
-			fuel_ratio > 0.9
-			all_allied_country = {
-				fuel_ratio > 0.9
-			}
-		}
-		modifier = {
-			add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = oil
-				amount < 10
-				extracted = yes
-			}
-		}
-		modifier = {
-			add = 1 # Powers with low fuel should care about oil a bit more
-			fuel_ratio < 0.4
-		}
-		modifier = {
-			add = 1 # Powers with very low fuel should care about oil A LOT
-			fuel_ratio < 0.1
-		}
-		modifier = {
-			add = 5 # Massive boost in case low fuel and already at war anyway
-			fuel_ratio < 0.1
-			46 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
 	}
 }
 
@@ -2428,6 +2053,7 @@ faction_goal_control_baku_oil_fields = {
 			NOT = {
 				original_tag = SOV
 				is_in_faction_with = SOV
+                is_in_faction_with = ENG
 			}
 		}
 		any_collection_element = {
@@ -2448,7 +2074,7 @@ faction_goal_control_baku_oil_fields = {
 	completed = {
 		229 = { is_controlled_by_ROOT_or_ally = yes }
 		232 = {	is_controlled_by_ROOT_or_ally = yes }
-		821 = { is_controlled_by_ROOT_or_ally = yes }
+		234 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -2460,77 +2086,10 @@ faction_goal_control_baku_oil_fields = {
 				OR = {
 					controls_state = 229
 					controls_state = 232
-					controls_state = 821
+					controls_state = 234
 				}
 			}
 			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 229
-					state = 232
-					state = 821
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1 # Everyone should always kiiiinda care about oil
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = -1 # If the alliance is doing well with fuel avoid taking this...
-			fuel_ratio > 0.9
-			all_allied_country = {
-				fuel_ratio > 0.9
-			}
-		}
-		modifier = {
-			add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = oil
-				amount < 10
-				extracted = yes
-			}
-		}
-		modifier = {
-			add = 1 # Powers with low fuel should care about oil a bit more
-			fuel_ratio < 0.4
-		}
-		modifier = {
-			add = 1 # Powers with very low fuel should care about oil A LOT
-			fuel_ratio < 0.1
-		}
-		modifier = {
-			add = 5 # Massive boost in case low fuel and already at war anyway
-			fuel_ratio < 0.1
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
 		}
 	}
 }
@@ -2547,15 +2106,16 @@ faction_goal_control_iraqi_oil = {
 	visible = {
 		FROM = {
 			NOT = {
-				original_tag = IRQ
-				is_in_faction_with = IRQ
+				original_tag = ENG
+				is_in_faction_with = ENG
+                is_in_faction_with = SOV
 			}
 		}
 		any_collection_element = {
 			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
+				input = game:scope
+				operators = { faction_members controlled_states }
+				name = FACTION_CONTROLLED_STATES
 			}
 			distance_to = {
 				target = 291
@@ -2567,9 +2127,7 @@ faction_goal_control_iraqi_oil = {
 
 	}
 	completed = {
-		291 = { is_controlled_by_ROOT_or_ally = yes }
-		676 = {	is_controlled_by_ROOT_or_ally = yes }
-		1010 = { is_controlled_by_ROOT_or_ally = yes }	
+		291 = { is_controlled_by_ROOT_or_ally = yes }	
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -2578,341 +2136,270 @@ faction_goal_control_iraqi_oil = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				OR = {
-					controls_state = 291
-					controls_state = 676
-					controls_state = 1010
-				}
+				controls_state = 291
 			}
 			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 291
-					state = 676
-					state = 1010
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1 # Everyone should always kiiiinda care about oil
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = -1 # If the alliance is doing well with fuel avoid taking this...
-			fuel_ratio > 0.9
-			all_allied_country = {
-				fuel_ratio > 0.9
-			}
-		}
-		modifier = {
-			add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = oil
-				amount < 10
-				extracted = yes
-			}
-		}
-		modifier = {
-			add = 1 # Powers with low fuel should care about oil a bit more
-			fuel_ratio < 0.4
-		}
-		modifier = {
-			add = 1 # Powers with very low fuel should care about oil A LOT
-			fuel_ratio < 0.1
-		}
-		modifier = {
-			add = 5 # Massive boost in case low fuel and already at war anyway
-			fuel_ratio < 0.1
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
 		}
 	}
 }
 
 # Persian Oil
-faction_goal_control_persian_oil = {
-	name = control_persian_oil_goal_name
-	description = control_persian_oil_goal_desc
-	category = medium_term
-	group = resources_to_market_icon
-	allowed = {
+# faction_goal_control_persian_oil = {
+	# name = control_persian_oil_goal_name
+	# description = control_persian_oil_goal_desc
+	# category = medium_term
+	# group = resources_to_market_icon
+	# allowed = {
 		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = PER
-				is_in_faction_with = PER
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 413
-				value < 2000
-			}
-		}
-	}
-	available = {
+	# }
+	# visible = {
+		# FROM = {
+			# NOT = {
+				# original_tag = PER
+				# is_in_faction_with = PER
+			# }
+		# }
+		# any_collection_element = {
+			# collection = {
+				 # input = game:scope
+				 # operators = { faction_members controlled_states }
+				 # name = FACTION_CONTROLLED_STATES
+			# }
+			# distance_to = {
+				# target = 413
+				# value < 2000
+			# }
+		# }
+	# }
+	# available = {
 
-	}
-	completed = {
-		411 = { is_controlled_by_ROOT_or_ally = yes }
-		412 = {	is_controlled_by_ROOT_or_ally = yes }
-		413 = { is_controlled_by_ROOT_or_ally = yes }	
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				OR = {
-					controls_state = 411
-					controls_state = 412
-					controls_state = 413
-				}
-			}
-			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 411
-					state = 412
-					state = 413
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1 # Everyone should always kiiiinda care about oil
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = -1 # If the alliance is doing well with fuel avoid taking this...
-			fuel_ratio > 0.9
-			all_allied_country = {
-				fuel_ratio > 0.9
-			}
-		}
-		modifier = {
-			add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
-			has_resources_in_collection = {
-				collection = {
-						input = game:scope
-						operators =  { faction_members }
-						name = FACTION
-				}
-				resource = oil
-				amount < 10
-				extracted = yes
-			}
-		}
-		modifier = {
-			add = 1 # Powers with low fuel should care about oil a bit more
-			fuel_ratio < 0.4
-		}
-		modifier = {
-			add = 1 # Powers with very low fuel should care about oil A LOT
-			fuel_ratio < 0.1
-		}
-		modifier = {
-			add = 5 # Massive boost in case low fuel and already at war anyway
-			fuel_ratio < 0.1
-			479 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-	}
-}
+	# }
+	# completed = {
+		# 411 = { is_controlled_by_ROOT_or_ally = yes }
+		# 412 = {	is_controlled_by_ROOT_or_ally = yes }
+		# 413 = { is_controlled_by_ROOT_or_ally = yes }	
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = TARGET_STATE_CONTROLLERS
+		# every_faction_member = { 
+			# visible_when_empty = yes
+			# limit = {
+				# OR = {
+					# controls_state = 411
+					# controls_state = 412
+					# controls_state = 413
+				# }
+			# }
+			# add_faction_initiative = 1
+		# }
+		# every_state = {
+			# limit = {
+				# OR = {
+					# state = 411
+					# state = 412
+					# state = 413
+				# }
+			# }
+			# if = {
+				# limit = {
+					# infrastructure < 5
+				# }
+				# add_building_construction = {
+					# type = infrastructure
+					# level = 1
+					# instant_build = yes
+				# }	
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 1 # Everyone should always kiiiinda care about oil
+		# modifier = {
+			# factor = 2 # Target of opportunity - already at war anyway
+			# 479 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+		# modifier = {
+			# add = -1 # If the alliance is doing well with fuel avoid taking this...
+			# fuel_ratio > 0.9
+			# all_allied_country = {
+				# fuel_ratio > 0.9
+			# }
+		# }
+		# modifier = {
+			# add = 1 # ...except if the faction has very few sources of oil to start with (might be full storages cuz not using their vehicles)
+			# has_resources_in_collection = {
+				# collection = {
+						# input = game:scope
+						# operators =  { faction_members }
+						# name = FACTION
+				# }
+				# resource = oil
+				# amount < 10
+				# extracted = yes
+			# }
+		# }
+		# modifier = {
+			# add = 1 # Powers with low fuel should care about oil a bit more
+			# fuel_ratio < 0.4
+		# }
+		# modifier = {
+			# add = 1 # Powers with very low fuel should care about oil A LOT
+			# fuel_ratio < 0.1
+		# }
+		# modifier = {
+			# add = 5 # Massive boost in case low fuel and already at war anyway
+			# fuel_ratio < 0.1
+			# 479 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+	# }
+# }
 
 # Chinese Metals
-faction_goal_control_chinese_metals = {
-	name = control_chinese_metals_goal_name
-	description = control_chinese_metals_goal_desc
-	category = medium_term
-	group = resources_to_market_icon
-	allowed = {
-	}
-	visible = {
-		FROM = {
-			is_independent_china_or_warlord = no
-		}
-		all_allied_country = {
-			is_independent_china_or_warlord = no
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 599
-				value < 2000
-			}
-		}
-	}
-	available = {
+# faction_goal_control_chinese_metals = {
+	# name = control_chinese_metals_goal_name
+	# description = control_chinese_metals_goal_desc
+	# category = medium_term
+	# group = resources_to_market_icon
+	# allowed = {
+	# }
+	# visible = {
+		# FROM = {
+			# is_independent_china_or_warlord = no
+		# }
+		# all_allied_country = {
+			# is_independent_china_or_warlord = no
+		# }
+		# any_collection_element = {
+			# collection = {
+				 # input = game:scope
+				 # operators = { faction_members controlled_states }
+				 # name = FACTION_CONTROLLED_STATES
+			# }
+			# distance_to = {
+				# target = 599
+				# value < 2000
+			# }
+		# }
+	# }
+	# available = {
 		
-	}
-	completed = {
-		592 = { is_controlled_by_ROOT_or_ally = yes }
-		593 = {	is_controlled_by_ROOT_or_ally = yes }
-		594 = { is_controlled_by_ROOT_or_ally = yes }
-		599 = { is_controlled_by_ROOT_or_ally = yes }		
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				OR = {
-					controls_state = 592
-					controls_state = 593
-					controls_state = 594
-					controls_state = 599
-				}
-			}
-			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 592
-					state = 593
-					state = 594
-					state = 599
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			599 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If low on resources
-			OR = {
-				tungsten < 40
-				steel < 40
-				chromium < 12
-			}
-		}
-		modifier = {
-			add = 1 # If very low on resources
-			OR = {
-				tungsten < 10
-				steel < 10
-				chromium < 5
-			}
-		}
-		modifier = {
-			add = 3 # If entire alliance is low on resources they should be heavily incentivized to taking more
-			OR = {
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = tungsten
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = steel
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = chromium
-					amount < 8
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-			}
-		}
-	}
-}
+	# }
+	# completed = {
+		# 592 = { is_controlled_by_ROOT_or_ally = yes }
+		# 593 = {	is_controlled_by_ROOT_or_ally = yes }
+		# 594 = { is_controlled_by_ROOT_or_ally = yes }
+		# 599 = { is_controlled_by_ROOT_or_ally = yes }		
+	# }
+	# complete_effect = {
+		# add_faction_power_projection = 100
+		# custom_effect_tooltip = generic_skip_one_line_tt
+		# custom_effect_tooltip = TARGET_STATE_CONTROLLERS
+		# every_faction_member = { 
+			# visible_when_empty = yes
+			# limit = {
+				# OR = {
+					# controls_state = 592
+					# controls_state = 593
+					# controls_state = 594
+					# controls_state = 599
+				# }
+			# }
+			# add_faction_initiative = 1
+		# }
+		# every_state = {
+			# limit = {
+				# OR = {
+					# state = 592
+					# state = 593
+					# state = 594
+					# state = 599
+				# }
+			# }
+			# if = {
+				# limit = {
+					# infrastructure < 5
+				# }
+				# add_building_construction = {
+					# type = infrastructure
+					# level = 1
+					# instant_build = yes
+				# }	
+			# }
+		# }
+	# }
+	# ai_will_do = {
+		# base = 0
+		# modifier = {
+			# factor = 2 # Target of opportunity - already at war anyway
+			# 599 = {
+				# owner = {
+					# has_war_with = ROOT
+				# }
+			# }
+		# }
+		# modifier = {
+			# add = 1 # If low on resources
+			# OR = {
+				# tungsten < 40
+				# steel < 40
+				# chromium < 12
+			# }
+		# }
+		# modifier = {
+			# add = 1 # If very low on resources
+			# OR = {
+				# tungsten < 10
+				# steel < 10
+				# chromium < 5
+			# }
+		# }
+		# modifier = {
+			# add = 3 # If entire alliance is low on resources they should be heavily incentivized to taking more
+			# OR = {
+				# has_resources_in_collection = {
+					# collection = {
+							# input = game:scope
+							# operators =  { faction_members }
+							# name = FACTION
+					# }
+					# resource = tungsten
+					# amount < 15
+					# extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				# }
+				# has_resources_in_collection = {
+					# collection = {
+							# input = game:scope
+							# operators =  { faction_members }
+							# name = FACTION
+					# }
+					# resource = steel
+					# amount < 15
+					# extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				# }
+				# has_resources_in_collection = {
+					# collection = {
+							# input = game:scope
+							# operators =  { faction_members }
+							# name = FACTION
+					# }
+					# resource = chromium
+					# amount < 8
+					# extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				# }
+			# }
+		# }
+	# }
+# }
 
 # Malayan Riches
 faction_goal_control_malayan_riches = {
@@ -2926,8 +2413,9 @@ faction_goal_control_malayan_riches = {
 	visible = {
 		FROM = {
 			NOT = {
-				original_tag = MAL
-				is_in_faction_with = MAL
+				original_tag = ENG
+				is_in_faction_with = ENG
+                is_in_faction_with = SOV
 			}
 		}
 		any_collection_element = {
@@ -2946,10 +2434,7 @@ faction_goal_control_malayan_riches = {
 		
 	}
 	completed = {
-		333 = { is_controlled_by_ROOT_or_ally = yes }
 		336 = {	is_controlled_by_ROOT_or_ally = yes }
-		1021 = { is_controlled_by_ROOT_or_ally = yes }
-		1024 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -2958,120 +2443,9 @@ faction_goal_control_malayan_riches = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				OR = {
-					controls_state = 333
-					controls_state = 336
-					controls_state = 1021
-					controls_state = 1024
-				}
+				controls_state = 336
 			}
 			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 333
-					state = 336
-					state = 1021
-					state = 1024
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			366 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If low on resources
-			OR = {
-				rubber < 40
-				tungsten < 40
-				steel < 12
-				aluminium < 8
-				fuel_ratio < 0.5
-			}
-		}
-		modifier = {
-			add = 1 # If very low on resources
-			OR = {
-				rubber < 10
-				tungsten < 10
-				steel < 8
-				aluminium < 5
-				fuel_ratio < 0.2
-			}
-		}
-		modifier = {
-			add = 3 # If entire alliance is low on resources they should be heavily incentivized to taking more
-			OR = {
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = rubber
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = tungsten
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = steel
-					amount < 8
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = aluminium
-					amount < 4
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = oil
-					amount < 10
-					extracted = yes  # (optional, default: no) checks extracted amount instead of country balance
-				}
-			}
 		}
 	}
 }
@@ -3088,8 +2462,11 @@ faction_goal_control_indonesian_riches = {
 	visible = {
 		FROM = {
 			NOT = {
-				original_tag = INS
-				is_in_faction_with = INS
+				original_tag = HOL
+                original_tag = GER
+				is_in_faction_with = ENG
+                is_in_faction_with = SOV
+                is_in_faction_with = GER
 			}
 		}
 		any_collection_element = {
@@ -3108,11 +2485,11 @@ faction_goal_control_indonesian_riches = {
 		
 	}
 	completed = {
-		334 = { is_controlled_by_ROOT_or_ally = yes }
+		321 = { is_controlled_by_ROOT_or_ally = yes }
 		335 = {	is_controlled_by_ROOT_or_ally = yes }
-		667 = {	is_controlled_by_ROOT_or_ally = yes }
-		672 = { is_controlled_by_ROOT_or_ally = yes }
-		673 = { is_controlled_by_ROOT_or_ally = yes }		
+		581 = {	is_controlled_by_ROOT_or_ally = yes }
+		334 = { is_controlled_by_ROOT_or_ally = yes }
+		342 = { is_controlled_by_ROOT_or_ally = yes }		
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -3122,117 +2499,14 @@ faction_goal_control_indonesian_riches = {
 			visible_when_empty = yes
 			limit = {
 				OR = {
-					controls_state = 334
+					controls_state = 321
 					controls_state = 335
-					controls_state = 667
-					controls_state = 672
-					controls_state = 673
+					controls_state = 581
+					controls_state = 334
+					controls_state = 342
 				}
 			}
 			add_faction_initiative = 1
-		}
-		every_state = {
-			limit = {
-				OR = {
-					state = 334
-					state = 335
-					state = 667
-					state = 672
-					state = 673
-				}
-			}
-			if = {
-				limit = {
-					infrastructure < 5
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}	
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			672 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If low on resources
-			OR = {
-				rubber < 40
-				aluminium < 12
-				fuel_ratio < 0.5
-			}
-		}
-		modifier = {
-			add = 1 # If very low on resources
-			OR = {
-				rubber < 10
-				aluminium < 5
-				fuel_ratio < 0.2
-			}
-		}
-		modifier = {
-			add = 3 # If entire alliance is low on resources they should be heavily incentivized to taking more
-			OR = {
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = rubber
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = tungsten
-					amount < 15
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = steel
-					amount < 8
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = aluminium
-					amount < 4
-					extracted = no # (optional, default: no) checks extracted amount instead of country balance
-				}
-				has_resources_in_collection = {
-					collection = {
-							input = game:scope
-							operators =  { faction_members }
-							name = FACTION
-					}
-					resource = oil
-					amount < 10
-					extracted = yes  # (optional, default: no) checks extracted amount instead of country balance
-				}
-			}
 		}
 	}
 }
@@ -3370,1063 +2644,20 @@ faction_goal_control_newfoundland_bases = {
 }
 
 # Bermuda
-faction_goal_control_bermuda = {
-	name = control_bermuda_goal_name
-	description = control_bermuda_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = ENG
-				is_in_faction_with = ENG
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 696
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		696 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 696
-			}
-			add_faction_initiative = 1
-		}
-		696 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			331 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transatlantic supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = north_america
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = europe
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-	}
-}
 
 # Bahamas
-faction_goal_control_bahamas_bases = {
-	name = control_bahamas_bases_goal_name
-	description = control_bahamas_bases_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_NAVY_XP
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = ENG
-				is_in_faction_with = ENG
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 693
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		690 = { is_controlled_by_ROOT_or_ally = yes }
-		693 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				OR = {
-					controls_state = 690
-					controls_state = 693
-				}
-			}
-			add_faction_initiative = 1
-		}
-		690 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = 10254
-			}
-		}
-		693 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			331 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transatlantic supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = north_america
-								is_on_continent = south_america
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = europe
-								is_on_continent = africa
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-	}
-}
 
 # Panama
-faction_goal_control_panama_canal = {
-	name = control_panama_canal_goal_name
-	description = control_panama_canal_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_NAVY_XP
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = USA
-				is_in_faction_with = USA
-			}
-		}
-		OR = {
-			any_collection_element = {
-				collection = {
-					 input = game:scope
-					 operators = { faction_members controlled_states }
-					 name = FACTION_CONTROLLED_STATES # a custom loc string that will be displayed
-				}
-				distance_to = {
-					target = 685
-					value < 2000
-				}
-			}
-			AND = {
-				685 = { is_controlled_by = USA }
-				has_war_with = USA
-				any_collection_element = {
-					collection = {
-						 input = game:scope
-						 operators = { faction_members controlled_states }
-						 name = FACTION_CONTROLLED_STATES # a custom loc string that will be displayed
-					}
-					distance_to = {
-						target = 685
-						value < 6000
-					}
-				}
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		685 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 685
-			}
-			add_faction_initiative = 1
-		}
-		685 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 7617
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 7617
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			685 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 2 # If major naval power seek to control access
-			has_navy_size = {
-				size > 20
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-		modifier = {
-			add = 10 # If USA
-			original_tag = USA
-		}
-	}
-}
 
 # Trinidad
-faction_goal_control_trinidad = {
-	name = control_trinidad_goal_name
-	description = control_trinidad_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = ENG
-				is_in_faction_with = ENG
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 691
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		691 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 691
-			}
-			add_faction_initiative = 1
-		}
-		691 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			691 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transatlantic supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = north_america
-								is_on_continent = south_america
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = europe
-								is_on_continent = africa
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-	}
-}
 
 # Azores
-faction_goal_control_azores = {
-	name = control_azores_goal_name
-	description = control_azores_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = POR
-				is_in_faction_with = POR
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 698
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		698 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 698
-			}
-			add_faction_initiative = 1
-		}
-		698 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			698 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transatlantic supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = north_america
-								is_on_continent = south_america
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = europe
-								is_on_continent = africa
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 2 # If at war with a north american power prioritize this for range
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-	}
-}
 
 # Iceland
-faction_goal_control_iceland = {
-	name = control_iceland_goal_name
-	description = control_iceland_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = DEN
-				is_in_faction_with = DEN
-				original_tag = ICE
-				is_in_faction_with = ICE
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 100
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		100 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 100
-			}
-			add_faction_initiative = 1
-		}
-		100 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			100 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transatlantic supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = north_america
-								is_on_continent = south_america
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = europe
-								is_on_continent = africa
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 2 # If at war with a north american power prioritize this for range
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-	}
-}
 
 # Faroe Islands
-faction_goal_control_faroe_islands = {
-	name = control_faroe_islands_goal_name
-	description = control_faroe_islands_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_NAVY_XP
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = DEN
-				is_in_faction_with = DEN
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 337
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		337 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 337
-			}
-			add_faction_initiative = 1
-		}
-		337 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			337 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transatlantic supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = north_america
-								is_on_continent = south_america
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = europe
-								is_on_continent = africa
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-	}
-}
 
 # Narvik
-faction_goal_control_narvik = {
-	name = control_narvik_goal_name
-	description = control_narvik_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = NOR
-				is_in_faction_with = NOR
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 144
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		144 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 144
-			}
-			add_faction_initiative = 1
-		}
-		144 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 192
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			144 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with USSR prioritize this
-			any_enemy_country = {
-				original_tag = SOV
-			}
-		}
-	}
-}
 
 # Danish Belts
 faction_goal_control_danish_belts = {
@@ -4440,19 +2671,8 @@ faction_goal_control_danish_belts = {
 	visible = {
 		FROM = {
 			NOT = {
-				original_tag = DEN
-				is_in_faction_with = DEN
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 37
-				value < 2000
+				original_tag = GER
+				is_in_faction_with = GER
 			}
 		}
 	}
@@ -4460,8 +2680,8 @@ faction_goal_control_danish_belts = {
 
 	}
 	completed = {
+        date > 1940.1.1 
 		37 = { is_controlled_by_ROOT_or_ally = yes }
-		911 = { is_controlled_by_ROOT_or_ally = yes }
 		99 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
@@ -4473,193 +2693,15 @@ faction_goal_control_danish_belts = {
 			limit = {
 				OR = {
 					controls_state = 37
-					controls_state = 911
 					controls_state = 99
 				}
 			}
 			add_faction_initiative = 1
 		}
-		37 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 2
-				province = 6287
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 2
-				province = 3260
-				instant_build = yes
-			}
-		}
-		911 = {
-			add_building_construction = {
-				type = coastal_bunker
-				level = 2
-				province = 3325
-				instant_build = yes
-			}
-		}
-		99 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = 394
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 2
-				province = 394
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 2
-				province = 3277
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			37 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with ENG and capital is on mainland Europe prioritize this
-			capital_scope = {
-				is_on_continent = europe
-			}
-			any_enemy_country = {
-				original_tag = ENG
-			}
-		}
-		modifier = {
-			add = 1 # If GER prioritize this
-			is_historical_focus_on = yes
-			original_tag = GER
-		}
 	}
 }
 
 # Brittany
-faction_goal_control_brittany_bases = {
-	name = control_brittany_bases_goal_name
-	description = control_brittany_bases_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = FRA
-				is_in_faction_with = FRA
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 14
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		14 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 14
-			}
-			add_faction_initiative = 1
-		}
-		14 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			14 = {
-				controller = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If GER or SOV prioritize this
-			is_historical_focus_on = yes
-			OR = {
-				original_tag = SOV
-				original_tag = GER
-			}
-		}
-	}
-}
 
 # Gibraltar
 faction_goal_control_gibraltar = {
@@ -4675,17 +2717,6 @@ faction_goal_control_gibraltar = {
 			NOT = {
 				original_tag = ENG
 				is_in_faction_with = ENG
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 118
-				value < 2000
 			}
 		}
 	}
@@ -4706,65 +2737,6 @@ faction_goal_control_gibraltar = {
 			}
 			add_faction_initiative = 1
 		}
-		118 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 4135
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 4135
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			118 = {
-				controller = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If GER or ITA prioritize this
-			is_historical_focus_on = yes
-			OR = {
-				original_tag = ITA
-				original_tag = GER
-			}
-		}
 	}
 }
 
@@ -4782,17 +2754,6 @@ faction_goal_control_malta = {
 			NOT = {
 				original_tag = ENG
 				is_in_faction_with = ENG
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 116
-				value < 2000
 			}
 		}
 	}
@@ -4813,84 +2774,6 @@ faction_goal_control_malta = {
 			}
 			add_faction_initiative = 1
 		}
-		116 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			116 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the mediterranean supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							is_on_continent = europe
-						}
-					}
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = middle_east
-								is_on_continent = africa
-							}
-						}
-					}
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If GER or ITA prioritize this
-			is_historical_focus_on = yes
-			OR = {
-				original_tag = ITA
-				original_tag = GER
-			}
-		}
 	}
 }
 
@@ -4908,17 +2791,6 @@ faction_goal_control_crete = {
 			NOT = {
 				original_tag = GRE
 				is_in_faction_with = GRE
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 182
-				value < 2000
 			}
 		}
 	}
@@ -4939,86 +2811,6 @@ faction_goal_control_crete = {
 			}
 			add_faction_initiative = 1
 		}
-		182 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			182 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the mediterranean supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							is_on_continent = europe
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = middle_east
-								is_on_continent = africa
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If GER or ITA prioritize this
-			is_historical_focus_on = yes
-			OR = {
-				original_tag = ITA
-				original_tag = GER
-			}
-		}
 	}
 }
 
@@ -5034,20 +2826,9 @@ faction_goal_control_cyprus = {
 	visible = {
 		FROM = {
 			NOT = {
-					original_tag = ENG
-					is_in_faction_with = ENG
-				}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 183
-				value < 2000
-			}
+                original_tag = ENG
+                is_in_faction_with = ENG
+            }
 		}
 	}
 	available = {
@@ -5067,349 +2848,12 @@ faction_goal_control_cyprus = {
 			}
 			add_faction_initiative = 1
 		}
-		183 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			182 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the mediterranean supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							is_on_continent = europe
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = middle_east
-								is_on_continent = africa
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If TUR prioritize this
-			OR = {
-				original_tag = TUR
-			}
-		}
-		modifier = {
-			add = 1 # If GER or ITA prioritize this
-			is_historical_focus_on = yes
-			OR = {
-				original_tag = ITA
-				original_tag = GER
-			}
-		}
 	}
 }
 
 # Bosporus
-faction_goal_control_bosporus = {
-	name = control_bosporus_goal_name
-	description = control_bosporus_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = TUR
-				is_in_faction_with = TUR
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 797
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		797 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 797
-			}
-			add_faction_initiative = 1
-		}
-		797 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 9833
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 9833
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 11829
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 11829
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 1155
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 1155
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 9947
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 9947
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			797 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If major naval power seek to control access
-			has_navy_size = {
-				size > 20
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with SOV prioritize this
-			any_enemy_country = {
-				original_tag = SOV
-			}
-		}
-		modifier = {
-			add = 1 # If SOV
-			original_tag = SOV
-		}
-	}
-}
 
 # Dardanelles
-faction_goal_control_dardanelles = {
-	name = control_dardanelles_goal_name
-	description = control_dardanelles_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = TUR
-				is_in_faction_with = TUR
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 340
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		340 = { is_controlled_by_ROOT_or_ally = yes }
-		341 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				OR = {
-					controls_state = 340
-					controls_state = 341
-				}
-			}
-			add_faction_initiative = 1
-		}
-		340 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 6864
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 6864
-				instant_build = yes
-			}
-		}
-		341 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = 849
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 849
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 849
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			340 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If major naval power seek to control access
-			has_navy_size = {
-				size > 20
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with SOV prioritize this
-			any_enemy_country = {
-				original_tag = SOV
-			}
-		}
-		modifier = {
-			add = 1 # If SOV
-			original_tag = SOV
-		}
-	}
-}
 
 # Suez Canal
 faction_goal_control_suez_canal = {
@@ -5422,22 +2866,9 @@ faction_goal_control_suez_canal = {
 	}
 	visible = {
 		FROM = {
-				NOT = {
+            NOT = {
 				original_tag = ENG
 				is_in_faction_with = ENG
-				original_tag = EGY
-				is_in_faction_with = EGY
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 446
-				value < 2000
 			}
 		}
 	}
@@ -5445,7 +2876,7 @@ faction_goal_control_suez_canal = {
 
 	}
 	completed = {
-		446 = { is_controlled_by_ROOT_or_ally = yes }
+		305 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -5454,378 +2885,16 @@ faction_goal_control_suez_canal = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 446
+				controls_state = 305
 			}
 			add_faction_initiative = 1
-		}
-		446 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = 12049
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 12049
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 12049
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = 4073
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 4073
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 4073
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			446 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 2 # If major naval power seek to control access
-			has_navy_size = {
-				size > 20
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 10 # If ENG
-			original_tag = ENG
 		}
 	}
 }
 
 # Gulf of Aden
-faction_goal_control_gulf_of_aden_bases = {
-	name = control_gulf_of_aden_bases_goal_name
-	description = control_gulf_of_aden_bases_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_ANNEXATION
-	allowed = {
-		
-	}
-	visible = {
-		FROM = {
-			NOT = {
-				original_tag = RAJ
-				is_in_faction_with = RAJ
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 992
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		992 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				controls_state = 992
-			}
-			add_faction_initiative = 1
-		}
-		992 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			992 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the suez supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = europe
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with ENG prioritize this
-			is_historical_focus_on = yes
-			any_enemy_country = {
-				original_tag = ENG
-			}
-		}
-	}
-}
 
 # Strait of Hormuz
-faction_goal_control_strait_of_hormuz = {
-	name = control_strait_of_hormuz_goal_name
-	description = control_strait_of_hormuz_goal_desc
-	category = medium_term
-	group = FOCUS_FILTER_NAVY_XP
-	allowed = {
-		always = yes
-	}
-	visible = {
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 1013
-				value < 2000
-			}
-		}
-	}
-	available = {
-
-	}
-	completed = {
-		412 = { is_controlled_by_ROOT_or_ally = yes }
-		1013 = { is_controlled_by_ROOT_or_ally = yes }
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = TARGET_STATE_CONTROLLERS
-		every_faction_member = { 
-			visible_when_empty = yes
-			limit = {
-				OR = {
-					controls_state = 412
-					controls_state = 1013
-				}
-			}
-			add_faction_initiative = 1
-		}
-		412 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 7982
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 7982
-				instant_build = yes
-			}
-		}
-		1013 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 13369
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = bunker
-				level = 1
-				province = 13369
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			1013 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the suez supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = europe
-								is_on_continent = asia
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE_OR_ASIA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = middle_east
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_MIDDLE_EAST
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with ENG prioritize this
-			is_historical_focus_on = yes
-			any_enemy_country = {
-				original_tag = ENG
-			}
-		}
-	}
-}
 
 # Ceylon
 faction_goal_control_ceylon = {
@@ -5841,17 +2910,6 @@ faction_goal_control_ceylon = {
 			NOT = {
 				original_tag = ENG
 				is_in_faction_with = ENG
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 422
-				value < 2000
 			}
 		}
 	}
@@ -5872,82 +2930,6 @@ faction_goal_control_ceylon = {
 			}
 			add_faction_initiative = 1
 		}
-		422 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			422 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = europe
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with ENG prioritize this
-			is_historical_focus_on = yes
-			any_enemy_country = {
-				original_tag = ENG
-			}
-		}
 	}
 }
 
@@ -5967,23 +2949,12 @@ faction_goal_control_singapore = {
 				is_in_faction_with = ENG
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 1021
-				value < 2000
-			}
-		}
 	}
 	available = {
 
 	}
 	completed = {
-		1021 = { is_controlled_by_ROOT_or_ally = yes }
+		336 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -5992,85 +2963,9 @@ faction_goal_control_singapore = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 1021
+				controls_state = 336
 			}
 			add_faction_initiative = 1
-		}
-		1021 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			1021 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = europe
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_EUROPE
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with ENG prioritize this
-			is_historical_focus_on = yes
-			any_enemy_country = {
-				original_tag = ENG
-			}
 		}
 	}
 }
@@ -6091,17 +2986,6 @@ faction_goal_control_manila = {
 				is_in_faction_with = PHI
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 327
-				value < 2000
-			}
-		}
 	}
 	available = {
 
@@ -6119,58 +3003,6 @@ faction_goal_control_manila = {
 				controls_state = 327
 			}
 			add_faction_initiative = 1
-		}
-		327 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 1
-				province = 10265
-				instant_build = yes
-			}
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			327 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with USA prioritize this
-			is_historical_focus_on = yes
-			any_enemy_country = {
-				original_tag = USA
-			}
 		}
 	}
 }
@@ -6191,17 +3023,6 @@ faction_goal_control_okinawa = {
 				is_in_faction_with = JAP
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 526
-				value < 2000
-			}
-		}
 	}
 	available = {
 
@@ -6219,51 +3040,6 @@ faction_goal_control_okinawa = {
 				controls_state = 526
 			}
 			add_faction_initiative = 1
-		}
-		526 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			526 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with JAP prioritize this
-			any_enemy_country = {
-				original_tag = JAP
-			}
 		}
 	}
 }
@@ -6284,23 +3060,12 @@ faction_goal_control_iwo_jima = {
 				is_in_faction_with = JAP
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 645
-				value < 2000
-			}
-		}
 	}
 	available = {
 
 	}
 	completed = {
-		645 = { is_controlled_by_ROOT_or_ally = yes }
+		560 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -6309,54 +3074,9 @@ faction_goal_control_iwo_jima = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 645
+				controls_state = 560
 			}
 			add_faction_initiative = 1
-		}
-		645 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			645 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with JAP prioritize this
-			any_enemy_country = {
-				original_tag = JAP
-			}
 		}
 	}
 }
@@ -6375,19 +3095,6 @@ faction_goal_control_caroline_islands = {
 			NOT = {
 				original_tag = JAP
 				is_in_faction_with = JAP
-				original_tag = FSM
-				is_in_faction_with = FSM
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 684
-				value < 2000
 			}
 		}
 	}
@@ -6395,7 +3102,7 @@ faction_goal_control_caroline_islands = {
 
 	}
 	completed = {
-		684 = { is_controlled_by_ROOT_or_ally = yes }
+		135 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -6404,94 +3111,9 @@ faction_goal_control_caroline_islands = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 684
+				controls_state = 135
 			}
 			add_faction_initiative = 1
-		}
-		684 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = 2489
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			684 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transpacific supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = north_america
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If at war with JAP prioritize this
-			any_enemy_country = {
-				original_tag = JAP
-			}
 		}
 	}
 }
@@ -6510,19 +3132,6 @@ faction_goal_control_guadalcanal = {
 			NOT = {
 				original_tag = AST
 				is_in_faction_with = AST
-				original_tag = SOL
-				is_in_faction_with = SOL
-			}
-		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 634
-				value < 2000
 			}
 		}
 	}
@@ -6530,7 +3139,7 @@ faction_goal_control_guadalcanal = {
 
 	}
 	completed = {
-		634 = { is_controlled_by_ROOT_or_ally = yes }
+		472 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -6539,91 +3148,9 @@ faction_goal_control_guadalcanal = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 634
+				controls_state = 472
 			}
 			add_faction_initiative = 1
-		}
-		634 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = 1269
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			634 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transpacific supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes
-							OR = {
-								is_on_continent = north_america
-								is_on_continent = asia
-							}
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA_OR_ASIA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = australia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_AUSTRALIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with an oceanian power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = australia
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = australia
-				}
-			}
 		}
 	}
 }
@@ -6644,23 +3171,12 @@ faction_goal_control_wake_island = {
 				is_in_faction_with = USA
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 632
-				value < 2000
-			}
-		}
 	}
 	available = {
 
 	}
 	completed = {
-		632 = { is_controlled_by_ROOT_or_ally = yes }
+		353 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -6669,97 +3185,9 @@ faction_goal_control_wake_island = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 632
+				controls_state = 353
 			}
 			add_faction_initiative = 1
-		}
-		632 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			632 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transpacific supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = north_america
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If at war with USA prioritize this
-			any_enemy_country = {
-				original_tag = USA
-			}
 		}
 	}
 }
@@ -6780,23 +3208,12 @@ faction_goal_control_midway_island = {
 				is_in_faction_with = USA
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 631
-				value < 2000
-			}
-		}
 	}
 	available = {
 
 	}
 	completed = {
-		631 = { is_controlled_by_ROOT_or_ally = yes }
+		420 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -6805,97 +3222,9 @@ faction_goal_control_midway_island = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 631
+				controls_state = 420
 			}
 			add_faction_initiative = 1
-		}
-		631 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			631 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transpacific supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = north_america
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If at war with USA prioritize this
-			any_enemy_country = {
-				original_tag = USA
-			}
 		}
 	}
 }
@@ -6916,23 +3245,12 @@ faction_goal_control_hawaii = {
 				is_in_faction_with = USA
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 629
-				value < 2000
-			}
-		}
 	}
 	available = {
 
 	}
 	completed = {
-		629 = { is_controlled_by_ROOT_or_ally = yes }
+		416 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -6941,104 +3259,9 @@ faction_goal_control_hawaii = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 629
+				controls_state = 416
 			}
 			add_faction_initiative = 1
-		}
-		629 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			629 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transpacific supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = north_america
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 2 # If major naval power you want it BADLY
-			has_navy_size = {
-				size > 20
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If at war with USA prioritize this
-			any_enemy_country = {
-				original_tag = USA
-			}
 		}
 	}
 }
@@ -7059,23 +3282,12 @@ faction_goal_control_attu_island = {
 				is_in_faction_with = USA
 			}
 		}
-		any_collection_element = {
-			collection = {
-				 input = game:scope
-				 operators = { faction_members controlled_states }
-				 name = FACTION_CONTROLLED_STATES
-			}
-			distance_to = {
-				target = 650
-				value < 2000
-			}
-		}
 	}
 	available = {
 
 	}
 	completed = {
-		650 = { is_controlled_by_ROOT_or_ally = yes }
+		296 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	complete_effect = {
 		add_faction_power_projection = 100
@@ -7084,102 +3296,9 @@ faction_goal_control_attu_island = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 650
+				controls_state = 296
 			}
 			add_faction_initiative = 1
-		}
-		650 = {
-			add_building_construction = {
-				type = anti_air_building
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = air_base
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 1
-				instant_build = yes
-				province = {
-					all_provinces = yes
-					limit_to_naval_base = yes
-				}
-			}
-		}
-	}
-	ai_will_do = {
-		base = 0
-		modifier = {
-			factor = 2 # Target of opportunity - already at war anyway
-			650 = {
-				owner = {
-					has_war_with = ROOT
-				}
-			}
-		}
-		modifier = {
-			add = 2 # If convoys being threatened try to secure the transpacific supply lines better
-			convoy_threat > 0.5
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = north_america
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_NORTH_AMERICA
-				}
-				value > 0
-			}
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_controlled_by_ROOT_or_ally = yes 
-							is_on_continent = asia
-						}
-					}
-					name = COLLECTION_FACTION_STATES_IN_ASIA
-				}
-				value > 0
-			}
-		}
-		modifier = {
-			add = 1 # If naval power seek to project it by expanding bases
-			has_navy_size = {
-				size > 5
-				type = capital_ship
-			}
-		}
-		modifier = {
-			add = 1 # If at war with a north american power prioritize this
-			NOT = {
-				any_controlled_state = {
-					is_on_continent = north_america
-				}
-			}
-			any_enemy_country = {
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-		}
-		modifier = {
-			add = 1 # If at war with USA prioritize this
-			any_enemy_country = {
-				original_tag = USA
-			}
-		}
-		modifier = {
-			add = 1 # If JAP prioritize this
-			is_historical_focus_on = yes
-			original_tag = JAP
 		}
 	}
 }
