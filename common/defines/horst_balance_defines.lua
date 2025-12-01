@@ -289,9 +289,9 @@ NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- 1,4,1 vanilla number of hours for a gun
 		1.0,	-- small guns
 	}
 
-NDefines.NNavy.SUPREMACY_PER_SHIP_PER_MANPOWER = 0						-- WAS 0.0005 supremacy of a ship is calculated using its IC, manpower and a base define
-NDefines.NNavy.SUPREMACY_PER_SHIP_PER_IC= 0
-NDefines.NNavy.SUPREMACY_PER_SHIP_BASE = 1
+--NDefines.NNavy.SUPREMACY_PER_SHIP_PER_MANPOWER = 0						-- WAS 0.0005 supremacy of a ship is calculated using its IC, manpower and a base define
+--NDefines.NNavy.SUPREMACY_PER_SHIP_PER_IC= 0
+--NDefines.NNavy.SUPREMACY_PER_SHIP_BASE = 1
 NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 10								-- base spotting percentage that comes from full radar coverage; vanilla is 5
 NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 15								-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
 NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SUB = 0.8					--vanilla 1.0	-- task force sub spotting value is multiplied by this and added to spotting percentage every hour; sub spotting value is average sub detection * average sub visibility enemy; the positive part of the surface detection hourly change equation when against a sub fleet.
@@ -337,7 +337,7 @@ NDefines.NNavy.SCREENING_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING				= 0 --Vani
 NDefines.NNavy.AA_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING					= 0 --Vanilla 0.7,  -- AA penalty at 0% positioning
 NDefines.NNavy.HIGHER_SHIP_RATIO_POSITIONING_PENALTY_FACTOR = 0.375 		--  0.25, -- if one side has more ships than the other, that side will get this penalty for each +100% ship ratio it has
 NDefines.NNavy.DAMAGE_PENALTY_ON_MINIMUM_POSITIONING 							= 0.7 --Vanilla 0.5,	-- damage penalty at 0% positioning 
-NDefines.NNavy.NAVAL_SUPREMACY_CAN_INVADE 								= 0.5 --Vanilla  0.5								-- required naval supremacy to perform invasions on an area
+--NDefines.NNavy.NAVAL_SUPREMACY_CAN_INVADE 								= 0.5 --Vanilla  0.5								-- required naval supremacy to perform invasions on an area
 NDefines.NNavy.BASE_ESCAPE_SPEED = 0.2                                   -- daily base escape speed (gained as percentagE)
 NDefines.NNavy.SPEED_TO_ESCAPE_SPEED = 1.5
 NDefines.NNavy.HIT_PROFILE_SPEED_FACTOR										= 0.4		-- factors speed value when determining it profile (Vis * HIT_PROFILE_MULT * Ship Hit Profile Mult)
