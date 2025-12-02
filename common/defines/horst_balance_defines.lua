@@ -1,18 +1,21 @@
+NDefines.NDiplomacy.EMBARGO_COST = 999
+NDefines.NDiplomacy.NAVAL_BLOCKADE_BASE_COST = 999
+
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 NDefines.NDoctrines.DEFAULT_REWARD_MASTERY = 50.0                         -- How much mastery is required for unlocking a doctrine reward, if no override is set
 NDefines.NDoctrines.BASE_MASTERY_GAIN_TARGET_MANPOWER = 100000.0           -- Beyond this amount of manpower contributing to mastery, mastery gain will start having diminishing returns (see doctrines documentation)
 NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0.1                     -- How much training contributes to doctrine mastery relative to combat/missions
-NDefines.NDoctrines.MAX_MONTHLY_MASTERY_GAIN = 50.0                        -- Monthly mastery gain will not exceed this value
+NDefines.NDoctrines.MAX_MONTHLY_MASTERY_GAIN = 10.0                        -- Monthly mastery gain will not exceed this value
 NDefines.NDoctrines.MIN_MASTERY_GAIN_PER_DAY = 0.0                         -- If we have any mastery gain, it will be boosted to be at least this much per day (lower cap)
 
 
 -----------------------------COAL ENERGY STUFF--------------------------------------
 
 NDefines.NGame.ENERGY_RESOURCE = "oil"						-- resource that will give country energy 
-NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 9.0		-- How much energy per coal produces
-NDefines.NProduction.BASE_COUNTRY_ENERGY_PRODUCTION = 10.0 			-- The base energy production of a country
-NDefines.NProduction.ENERGY_SCALING_COST_BY_FACTORY_COUNT = 0.0225 -- Scales energy cost based on the total number of factories
-NDefines.NProduction.BASE_ENERGY_COST = 0.05						-- How much energy per factory consumes
+NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 10.0		-- How much energy per coal produces
+NDefines.NProduction.BASE_COUNTRY_ENERGY_PRODUCTION = 12.0 			-- The base energy production of a country
+NDefines.NProduction.ENERGY_SCALING_COST_BY_FACTORY_COUNT = 0 -- Scales energy cost based on the total number of factories
+NDefines.NProduction.BASE_ENERGY_COST = 0.01						-- How much energy per factory consumes
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 NDefines.NTechnology.BASE_YEAR_AHEAD_PENALTY_FACTOR = 2.3 -- Base year ahead penalty
 

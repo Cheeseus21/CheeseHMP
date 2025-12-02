@@ -1,67 +1,275 @@
 DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
-	NOT = { date < 1939.1.1 } #dont remove bc of SCW!
-	#if = { limit = {ROOT = { tag = EFR   } } FROM = { the_axis = yes } }
-	if = { limit = {FROM = { tag = FRA   } }  FRA = { has_country_flag = france_is_kill }  } 
-	if = { limit = {FROM = { tag = NOR   } }  NOR = { has_country_flag = france_is_kill }  } 
-	if = { limit = { ROOT = { tag = USA } } has_war = yes }
-	if = { limit = {FROM = { the_axis = yes  } } 	NOT = { ROOT = { the_geacps= yes } } }
-	if = { limit = {FROM = { normally_played_allies = yes  } } 	NOT = { ROOT = {  the_geacps= yes } } }
-	if = { limit = {ROOT = { the_axis = yes  } } 	NOT = { FROM = { the_geacps= yes } } }
-	NOT = { ROOT = { OR = { tag = SOV  AND = { original_tag = FIN SOV = { controls_state = 195 } } tag = AOI } } } #LL potentially breaks many of these nations in balance
-	NOT = { FROM = { OR = { tag = SOV  AND = { original_tag = FIN SOV = { controls_state = 195 } } tag = AOI } } } #LL potentially breaks many of these nations in balance
-	#NOT = { ROOT = { OR = { tag = SOV  AND = { original_tag = FIN SOV = { controls_state = 195 }   } AND = { original_tag = EFR  EFR = { is_in_faction = yes NOT = { has_country_flag = EFR_torch_declared}  }  } tag = AOI } } } #LL potentially breaks many of these nations in balance #I AM KEEPING THIS CODE ARCHIVED
-	#NOT = { FROM = { OR = { tag = SOV  AND = { original_tag = FIN SOV = { controls_state = 195 }   } AND = { original_tag = EFR  EFR = { is_in_faction = yes NOT = { has_country_flag = EFR_torch_declared}  }  } tag = AOI } } } #LL potentially breaks many of these nations in balance #I AM KEEPING THIS CODE ARCHIVED
+	NOT = { date < 1939.1.1 } # dont remove bc of SCW!
+
+	if = { 
+		limit = { FROM = { tag = FRA } }  
+		FRA = { has_country_flag = france_is_kill }  
+	} 
+
+	if = { 
+		limit = { FROM = { tag = NOR } }  
+		NOR = { has_country_flag = france_is_kill }  
+	} 
+
+	if = { 
+		limit = { ROOT = { tag = USA } } 
+		has_war = yes 
+	}
+
+	if = { 
+		limit = { FROM = { the_axis = yes } } 
+		NOT = { ROOT = { the_geacps = yes } } 
+	}
+
+	if = { 
+		limit = { FROM = { normally_played_allies = yes } } 
+		NOT = { ROOT = { the_geacps = yes } } 
+	}
+
+	if = { 
+		limit = { ROOT = { the_axis = yes } } 
+		NOT = { FROM = { the_geacps = yes } } 
+	}
+
+	NOT = { 
+		ROOT = { 
+			OR = { 
+				tag = SOV  
+				AND = { 
+					original_tag = FIN 
+					SOV = { controls_state = 195 } 
+				} 
+				tag = AOI 
+			} 
+		} 
+	}
+
+	NOT = { 
+		FROM = { 
+			OR = { 
+				tag = SOV  
+				AND = { 
+					original_tag = FIN 
+					SOV = { controls_state = 195 } 
+				} 
+				tag = AOI 
+			} 
+		} 
+	}
 }
-DIPLOMACY_LEAVE_FACTION_ENABLE_TRIGGER = { always = no }
-DIPLOMACY_WAR_ENABLE_TRIGGER = {always = no }
-DIPLOMACY_GIVESTATECONTROL_ENABLE_TRIGGER = { NOT = { FROM = { tag = FIN } } }
-DIPLOMACY_ASKSTATECONTROL_ENABLE_TRIGGER = { always = no }
+
+DIPLOMACY_LEAVE_FACTION_ENABLE_TRIGGER = { 
+	always = no 
+}
+
+DIPLOMACY_WAR_ENABLE_TRIGGER = { 
+	always = no 
+}
+
+DIPLOMACY_GIVESTATECONTROL_ENABLE_TRIGGER = { 
+	NOT = { FROM = { tag = FIN } } 
+}
+
+DIPLOMACY_ASKSTATECONTROL_ENABLE_TRIGGER = { 
+	always = no 
+}
+
 DIPLOMACY_SEND_ATTACHE_ENABLE_TRIGGER = { 
- if = { limit = { ROOT ={ tag = RAJ } } NOT = { FROM = {  the_comintern = yes } } }
-	if = { limit = { ROOT = { OR = { normally_played_allies = yes  the_comintern = yes }}} NOT = { FROM = { OR = { the_axis = yes  the_geacps= yes }}}  }
-	if = { limit = { ROOT = { OR = { the_axis = yes the_geacps= yes}}} NOT = { FROM = { OR = { tag = DDR normally_played_allies = yes  the_comintern = yes }}}  }
+	if = { 
+		limit = { ROOT = { tag = RAJ } } 
+		NOT = { FROM = { the_comintern = yes } } 
+	}
+
+	if = { 
+		limit = { ROOT = { OR = { normally_played_allies = yes the_comintern = yes }}} 
+		NOT = { FROM = { OR = { the_axis = yes the_geacps = yes }}}  
+	}
+
+	if = { 
+		limit = { ROOT = { OR = { the_axis = yes the_geacps = yes }}} 
+		NOT = { FROM = { OR = { tag = DDR normally_played_allies = yes the_comintern = yes }}}  
+	}
 }
-DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = { always = no }
+
+DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = { 
+	always = no 
+}
+
 DIPLOMACY_SEND_EXP_FORCE_ENABLE_TRIGGER = {
-	NOT = { FROM = { OR = {  AND = { original_tag = EFR  EFR = { is_in_faction = yes NOT = { has_country_flag = EFR_torch_declared}  }  } original_tag = AOI  AND = { original_tag = FIN SOV = { controls_state = 195 }   } } } }
-	NOT = {  AND = { FROM = { has_tech = grand_battle_plan }  ROOT = { NOT = { has_tech = grand_battle_plan } }  }  }    
-	NOT = { ROOT = { tag = AOI }} NOT = { FROM = { tag = AOI}  } 
+	NOT = { 
+		FROM = { 
+			OR = {  
+				AND = { 
+					original_tag = EFR  
+					EFR = { 
+						is_in_faction = yes 
+						NOT = { has_country_flag = EFR_torch_declared }  
+					}  
+				} 
+				original_tag = AOI  
+				AND = { 
+					original_tag = FIN 
+					SOV = { controls_state = 195 } 
+				} 
+			} 
+		} 
+	}
+
+	NOT = {  
+		AND = { 
+			FROM = { has_tech = grand_battle_plan }  
+			ROOT = { NOT = { has_tech = grand_battle_plan } }  
+		}  
+	}    
+
+	NOT = { ROOT = { tag = AOI }} 
+	NOT = { FROM = { tag = AOI }}  
 }
-DIPLOMACY_GENERATE_WARGOAL_ENABLE_TRIGGER = { always = no }
-DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER  = { NOT = { AND = { ROOT = { the_axis = yes } FROM = { tag = DDR  } } } NOT = { AND = {ROOT = { OR = {  normally_played_allies =yes the_comintern = yes } }  FROM = { tag = SPR } }  }  has_global_flag = spanish_civil_war  has_game_rule ={  rule = horst_scw option = horst_scw_on  } OR = {  has_idea = SPR_vol_can has_idea = SPR_vol_can2 has_idea = SPR_vol_can3 has_idea = FRA_volunteer has_idea = NZL_2nzef_fra has_idea = NZL_2nzef has_idea = SAF_support_spain tag = GER tag = ITA tag = SOV  has_idea = BUL_volunteers_in_spain_nationalist has_idea = AST_support_spain  }     }
+
+DIPLOMACY_GENERATE_WARGOAL_ENABLE_TRIGGER = { 
+	always = no 
+}
+
+DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = { 
+	NOT = { 
+		AND = { 
+			ROOT = { the_axis = yes } 
+			FROM = { tag = DDR } 
+		} 
+	}
+
+	NOT = { 
+		AND = { 
+			ROOT = { OR = { normally_played_allies = yes the_comintern = yes } }  
+			FROM = { tag = SPR } 
+		}  
+	}
+
+	has_global_flag = spanish_civil_war  
+	has_game_rule = { rule = horst_scw option = horst_scw_on }  
+
+	OR = {  
+		has_idea = SPR_vol_can 
+		has_idea = SPR_vol_can2 
+		has_idea = SPR_vol_can3 
+		has_idea = FRA_volunteer 
+		has_idea = NZL_2nzef_fra 
+		has_idea = NZL_2nzef 
+		has_idea = SAF_support_spain 
+		tag = GER 
+		tag = ITA 
+		tag = SOV  
+		has_idea = BUL_volunteers_in_spain_nationalist 
+		has_idea = AST_support_spain  
+	}     
+}
+
 DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = { always = no } 
 DIPLOMACY_JOIN_ALLY_ENABLE_TRIGGER = { always = no } 
 
-DIPLOMACY_REQUEST_LICENSED_PRODUCTION_ENABLE_TRIGGER = {
+DIPLOMACY_REQUEST_LICENSED_PRODUCTION_ENABLE_TRIGGER = {}
 
-}
-DIPLOMACY_MANAGE_LICENSED_PRODUCTION_EXISTING_ENABLE_TRIGGER = { 
+DIPLOMACY_MANAGE_LICENSED_PRODUCTION_EXISTING_ENABLE_TRIGGER = {}
 
-}
 DIPLOMACY_REQUEST_ACCESS_TO_LICENCE_PRODUCTION_ENABLE_TRIGGER = { 
-	NOT = { ROOT = {has_completed_focus = SOV_the_permanent_revolution } } 
+	NOT = { ROOT = { has_completed_focus = SOV_the_permanent_revolution } } 
 }
-	DIPLOMACY_RETURN_EXP_FORCE_ENABLE_TRIGGER = {
-		NOT = { ROOT = { OR = { AND = { original_tag = EFR  EFR = { is_in_faction = yes NOT = { has_country_flag = EFR_torch_declared}  }  }original_tag = AOI  AND = { original_tag = FIN SOV = { controls_state = 195 }   } }} }
-		NOT = { FROM = { OR = { AND = { original_tag = EFR  EFR = { is_in_faction = yes NOT = { has_country_flag = EFR_torch_declared}  }  }original_tag = AOI   AND = { original_tag = FIN SOV = { controls_state = 195 }   } }} }
+
+DIPLOMACY_RETURN_EXP_FORCE_ENABLE_TRIGGER = {
+	NOT = { 
+		ROOT = { 
+			OR = { 
+				AND = { 
+					original_tag = EFR  
+					EFR = { 
+						is_in_faction = yes 
+						NOT = { has_country_flag = EFR_torch_declared }  
+					}  
+				}
+				original_tag = AOI  
+				AND = { 
+					original_tag = FIN 
+					SOV = { controls_state = 195 } 
+				} 
+			} 
+		} 
 	}
-	DIPLOMACY_REQUEST_EXP_FORCE_ENABLE_TRIGGER = {
-		OR = {
+
+	NOT = { 
+		FROM = { 
+			OR = { 
+				AND = { 
+					original_tag = EFR  
+					EFR = { 
+						is_in_faction = yes 
+						NOT = { has_country_flag = EFR_torch_declared }  
+					}  
+				}
+				original_tag = AOI  
+				AND = { 
+					original_tag = FIN 
+					SOV = { controls_state = 195 } 
+				} 
+			} 
+		} 
+	}
+}
+
+DIPLOMACY_REQUEST_EXP_FORCE_ENABLE_TRIGGER = {
+	OR = {
 		AND = { 
 			date > 1941.7.1 
 			NOT = { original_tag = FRA }
 		}
 		original_tag = FRA
-		}
-		NOT = { ROOT = { OR = {AND = { original_tag = EFR  EFR = { is_in_faction = yes NOT = { has_country_flag = EFR_torch_declared}  }  }  original_tag = AOI AND = { original_tag = FIN SOV = { controls_state = 195 }   } AND = { has_tech = grand_battle_plan NOT= { tag = FRA}  }  }} }
-	NOT = { FROM = { OR = { AND = { original_tag = EFR  EFR = { is_in_faction = yes NOT = { has_country_flag = EFR_torch_declared}  }  } original_tag = AOI     }}}
-}	
-DIPLOMACY_EMBARGO_ENABLE_TRIGGER = { 
-	always=  no 
+	}
+
+	NOT = { 
+		ROOT = { 
+			OR = {
+				AND = { 
+					original_tag = EFR  
+					EFR = { 
+						is_in_faction = yes 
+						NOT = { has_country_flag = EFR_torch_declared }  
+					}  
+				}
+				original_tag = AOI  
+				AND = { 
+					original_tag = FIN 
+					SOV = { controls_state = 195 } 
+				} 
+				AND = { 
+					has_tech = grand_battle_plan 
+					NOT = { tag = FRA }  
+				}  
+			} 
+		} 
+	}
+
+	NOT = { 
+		FROM = { 
+			OR = { 
+				AND = { 
+					original_tag = EFR  
+					EFR = { 
+						is_in_faction = yes 
+						NOT = { has_country_flag = EFR_torch_declared }  
+					}  
+				}
+				original_tag = AOI  
+			} 
+		} 
+	}
 }
-DIPLOMACY_REVOKE_EMBARGO_ENABLE_TRIGGER = { 
-	always=  no 
-}
+
+DIPLOMACY_EMBARGO_ENABLE_TRIGGER = { always = no }
+DIPLOMACY_REVOKE_EMBARGO_ENABLE_TRIGGER = { always = no }
 
 DIPLOMACY_REQUEST_INTERNATIONAL_MARKET_ACCESS_RIGHTS_ENABLE_TRIGGER = { always = no } 
 DIPLOMACY_REQUEST_EQUIPMENT_PURCHASE_ENABLE_TRIGGER = { always = no } 
+
+DIPLOMACY_REVOKE_OFFER_AIR_BASE_ACCESS_ENABLE_TRIGGER = { always = no }
+
+DIPLOMACY_AIR_BASE_ACCESS_ENABLE_TRIGGER = { always = no }
+DIPLOMACY_OFFER_AIR_BASE_ACCESS_ENABLE_TRIGGER = { always = no }
