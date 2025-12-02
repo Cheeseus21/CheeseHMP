@@ -22,7 +22,7 @@ technologies = {
 		
 		xp_research_type = army
 		xp_unlock_cost = 40
-
+				
 		path = {
 			leads_to_tech = ski_troops
 			research_cost_coeff = 1
@@ -37,7 +37,7 @@ technologies = {
 		research_cost = 2.25
 		
 		allow = {
-			has_tech = tech_mountaineers
+				has_tech = tech_mountaineers
 		}
 		categories = {
 			special_forces_doctrine
@@ -342,20 +342,31 @@ technologies = {
 	
 	###Marines
 	
-	special_forces_marines = {
+special_forces_marines = {
 		doctrine_name = "MARINES_DOCTRINE"
+
+		allow_branch = {
+			has_dlc = "Arms Against Tyranny"
+		}
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		#xor = { special_forces_mountaineers special_forces_paratroopers }
 		
 		force_use_small_tech_layout = yes
 		
 		allow = { 
-			has_tech = marines
+			AND = {
+				has_tech = marines
+				can_unlock_new_special_forces_tree = yes
+			}
 		}
-
+		
+		on_research_complete = {
+			remove_potential_special_forces_tree = yes
+		}
+		
 		path = {
 			leads_to_tech = marines_jungle_troops 
 			research_cost_coeff = 1
@@ -367,7 +378,6 @@ technologies = {
 		}
 		
 		naval_invasion_capacity = 5
-		
 		category_special_forces = {
 			max_organisation = 5
 		}
@@ -381,20 +391,34 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
+
 		
 		folder = {
 			name = special_forces_doctrine_folder
 			position = { x = 0 y = 0 }
 		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				tag = USA
+				NOT = { has_tech = special_forces_paratroopers }
+			}
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_jungle_troops = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		xor = { marines_shore_parties }
 		
@@ -418,7 +442,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -428,12 +452,19 @@ technologies = {
 			position = { x = -1 y = 2 }
 		}
 		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_shore_parties = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		xor = { marines_jungle_troops }
 		
@@ -457,7 +488,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -466,12 +497,20 @@ technologies = {
 			name = special_forces_doctrine_folder
 			position = { x = 1 y = 2 }
 		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_recon = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		force_use_small_tech_layout = yes
 		
@@ -485,8 +524,6 @@ technologies = {
 			research_cost_coeff = 1
 		}
 		
-		#unit_marine_design_cost_factor = -0.50
-
 		marine = {
 			max_organisation = 5
 		}
@@ -496,7 +533,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -505,13 +542,20 @@ technologies = {
 			name = special_forces_doctrine_folder
 			position = { x = 0 y = 4 }
 		}
-
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_commandoes = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		force_use_small_tech_layout = yes
 		
@@ -549,7 +593,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -558,12 +602,20 @@ technologies = {
 			name = special_forces_doctrine_folder
 			position = { x = -1 y = 6 }
 		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_expeditionary = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		force_use_small_tech_layout = yes
 
@@ -584,7 +636,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -593,12 +645,20 @@ technologies = {
 			name = special_forces_doctrine_folder
 			position = { x = 1 y = 6 }
 		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_commandos_demolition = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		force_use_small_tech_layout = yes
 
@@ -606,12 +666,7 @@ technologies = {
 			leads_to_tech = marines_commandoes_mechanised 
 			research_cost_coeff = 1
 		}
-		
-		path = {
-			leads_to_tech = marines_commandoes_mechanised_non_mtg
-			research_cost_coeff = 1
-		}
-		
+
 		marine_commando = {
 			max_organisation = 15
 			soft_attack = 0.15
@@ -623,7 +678,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 		
@@ -635,12 +690,20 @@ technologies = {
 			name = special_forces_doctrine_folder
 			position = { x = -1 y = 8 }
 		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_expeditionary_blowtorch = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		force_use_small_tech_layout = yes
 		
@@ -660,13 +723,13 @@ technologies = {
 		}
 		
 		shore_bombardment_bonus = 0.15
-			
+		
 		doctrine = yes	
 		research_cost = 2.25
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -675,22 +738,23 @@ technologies = {
 			name = special_forces_doctrine_folder
 			position = { x = 1 y = 8 }
 		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
 	}
 	
 	marines_commandoes_mechanised = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		force_use_small_tech_layout = yes
-		allow_branch = { has_dlc = "Man the Guns" }
-		
-		#amphibious_mechanized = {
-		#	soft_attack = 0.1
-		#	breakthrough = 0.1
-		#	max_organisation = 5
-		#}
-		
+
 		marine_commando = {
 			max_organisation = 15
 		}
@@ -702,7 +766,6 @@ technologies = {
 			}
 		}
 		
-		
 		on_research_complete = {
 			add_ideas = GEN_cheaper_amphib
 		}
@@ -712,7 +775,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -721,38 +784,20 @@ technologies = {
 			name = special_forces_doctrine_folder
 			position = { x = -1 y = 10 }
 		}
-	}
-	
-	marines_commandoes_mechanised_non_mtg = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
-		
-		force_use_small_tech_layout = yes
-		allow_branch = { not = { has_dlc = "Man the Guns" } }
-		
-		special_forces_attack_factor = 0.15
-		
-		doctrine = yes	
-		research_cost = 2.25
-		
-		categories = {
-			special_forces_doctrine
-			marine_tech
-			cat_marines_doctrine
+		ai_will_do = {
+			factor = 20
 		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
+		}
+	}
 
-		
-		folder = {
-			name = special_forces_doctrine_folder
-			position = { x = -1 y = 10 }
-		}
-	}
-	
 	marines_expeditionary_support = {
 		
-		xp_research_type = army
-		xp_unlock_cost = 40
+		xp_research_type = navy
+		xp_unlock_cost = 60
 		
 		force_use_small_tech_layout = yes
 		
@@ -790,7 +835,7 @@ technologies = {
 		
 		categories = {
 			special_forces_doctrine
-			marine_tech
+			#marine_tech
 			cat_marines_doctrine
 		}
 
@@ -798,6 +843,14 @@ technologies = {
 		folder = {
 			name = special_forces_doctrine_folder
 			position = { x = 1 y = 10 }
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		ai_research_weights = {
+			#artillery = 4.0
 		}
 	}
 	
