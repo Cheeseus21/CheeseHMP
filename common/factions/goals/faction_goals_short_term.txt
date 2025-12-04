@@ -233,76 +233,19 @@ faction_goal_unlock_research = {
 	category = short_term
 	group = FOCUS_FILTER_INTERNAL_AFFAIRS
 	available = {
-		#FROM = { num_faction_members > 2 }
 	}
 	visible = {
 		FROM = { has_faction_research_unlocked = no }
 	}
-	# select_effect = {
-		# set_temp_variable = { total_techs = 0 }
-		# every_collection_element = {
-			# input = {
-				# input = game:scope
-				# operators =  {
-					# faction_members
-				# }
-			# }
-			# add_to_temp_variable = { total_techs = num_researched_technologies }
-		# }
-		
-		# multiply_temp_variable = {
-			# var = total_techs
-			# value = 1.05
-		# }
-		# scope:faction = {
-			# set_variable = { unlock_military_techs_researched_target = total_techs }
-		# }
-	# }
+
 	completed = {
-		# scope:faction = {
-			# hidden_trigger = {
-				# tooltip_evaluation = eval
-				# set_temp_variable = { unlock_military_techs_researched_compare = 0 }			
-				# all_collection_elements = {
-					# collection = {
-						# input = game:scope
-						# operators =  { faction_members }
-					# }
-					# add_to_temp_variable = { unlock_military_techs_researched_compare = num_researched_technologies }
-				# }
-				# set_temp_variable = { unlock_military_techs_researched_compare_temp_target = unlock_military_techs_researched_compare }
-				# multiply_temp_variable = { unlock_military_techs_researched_compare_temp_target = 1.05 }
-			# }
-			# if = {
-				# limit = {
-					# has_variable = unlock_military_techs_researched_target
-				# }
-				# check_variable = {
-					# var = unlock_military_techs_researched_compare
-					# value = unlock_military_techs_researched_target
-					# compare = greater_than
-					# tooltip = "GOAL_T_TRIGGER_A"
-				# }
-			# }
-			# else = {
-				# check_variable = {
-					# var = unlock_military_techs_researched_compare
-					# value = unlock_military_techs_researched_compare_temp_target
-					# compare = greater_than
-					# tooltip = "GOAL_T_TRIGGER_A"
-				# }
-			# }
-		# }
-        
         date > 1937.1.1
 	}
 	complete_effect = {
 		set_faction_research_unlocked = yes
 		add_faction_initiative = 1
 	}
-	ai_will_do = {
-		base = 1000 # They should always do this if they can
-	}
+
 }
 
 faction_goal_unlock_military = {
@@ -311,74 +254,17 @@ faction_goal_unlock_military = {
 	category = short_term
 	group = FOCUS_FILTER_INTERNAL_AFFAIRS
 	available = {
-		#FROM = { num_faction_members > 2 }
 	}
 	visible = {
 		FROM = { has_faction_military_unlocked = no }
 	}
-	# select_effect = {
-		# set_temp_variable = { total_divs = 0 }
-		# every_collection_element = {
-			# input = {
-				# input = game:scope
-				# operators =  {
-					# faction_members
-				# }
-			# }
-			# add_to_temp_variable = { total_divs = num_armies }
-		# }
-		
-		# multiply_temp_variable = {
-			# var = total_divs
-			# value = 1.20
-		# }
-		# scope:faction = {
-			# set_variable = { unlock_target = total_divs }
-		# }
-	# }
+
 	completed = {
-		# scope:faction = {
-			# hidden_trigger = {
-				# tooltip_evaluation = eval
-				# set_temp_variable = { unlock_compare = 0 }			
-				# all_collection_elements = {
-					# collection = {
-						# input = game:scope
-						# operators =  { faction_members }
-					# }
-					# add_to_temp_variable = { unlock_compare = num_armies }
-					# set_temp_variable = { unlock_military_techs_researched_compare_temp_target = unlock_compare }
-					# multiply_temp_variable = { unlock_military_techs_researched_compare_temp_target = 1.20 }
-				# }
-			# }
-			# if = {
-				# limit = {
-					# has_variable = unlock_target
-				# }
-				# check_variable = {
-					# var = unlock_compare
-					# value = unlock_target
-					# compare = greater_than
-					# tooltip = "GOAL_T_TRIGGER_B"
-				# }
-			# }
-			# else = {
-				# check_variable = {
-					# var = unlock_compare
-					# value = unlock_military_techs_researched_compare_temp_target
-					# compare = greater_than
-					# tooltip = "GOAL_T_TRIGGER_B"
-				# }
-			# }
-		# }
         date > 1937.1.1
 	}
 	complete_effect = {
 		set_faction_military_unlocked = yes
 		add_faction_initiative = 1
-	}
-	ai_will_do = {
-		base = 1000 # They should always do this if they can
 	}
 }
 
@@ -1030,151 +916,6 @@ faction_goal_coastal_security = {
 ### War Waging
 
 
-
-# faction_goal_preemptive_strike_on_fascism = {
-	# name = preemptive_strike_on_fascism_goal_name
-	# description = preemptive_strike_on_fascism_goal_desc
-	# category = short_term
-	# group = FOCUS_FILTER_WAR_SUPPORT
-	# visible = {
-		# FROM = {
-			# NOT = {
-				# has_government = fascism
-			# }
-			# NOT = {
-				# any_enemy_country = {
-					# has_government = fascism
-				# }
-			# }
-		# }
-	# }
-	# available = {
-		# threat < 0.5
-	# }
-	# completed = {
-		# any_allied_country = {
-			# has_offensive_war = yes
-			# any_enemy_country = {
-				# has_government = fascism
-			# }
-		# }
-	# }
-	# complete_effect = {
-		# add_faction_power_projection = 100
-		# custom_effect_tooltip = generic_skip_one_line_tt
-		# custom_effect_tooltip = THE_FACTION_LEADER
-		# add_faction_initiative = 1
-		# custom_effect_tooltip = generic_skip_one_line_tt
-		# custom_effect_tooltip = ALL_FACTION_MEMBERS
-		# every_faction_member = {
-			# army_experience = 25
-			# add_war_support = 0.05
-		# }
-	# }
-	# ai_will_do = {
-		# base = 0
-		# modifier = {
-			# add = 1
-			# is_historical_focus_on = yes
-		# }
-	# }
-# }
-
-
-# faction_goal_war_on_communism = {
-	# name = war_on_communism_goal_name
-	# description = war_on_communism_goal_desc
-	# category = short_term
-	# group = FOCUS_FILTER_WAR_SUPPORT
-	# visible = {
-		# FROM = {
-			# NOT = {
-				# has_government = communism
-			# }
-		# }
-		# any_country = {
-			# has_government = communism
-			# is_on_same_continent_as = FROM
-		# }
-		# NOT = { original_tag = JAP } # they have their own goal 
-	# }
-	# completed = {
-		# OR = {
-			# any_enemy_country = {
-				# has_government = communism
-				# is_on_same_continent_as = ROOT
-			# }
-			# any_allied_country = {
-				# any_enemy_country = {
-					# has_government = communism
-					# is_on_same_continent_as = PREV
-				# }
-			# }
-		# }
-	# }
-	# complete_effect = {
-		# add_faction_power_projection = 100
-		# custom_effect_tooltip = generic_skip_one_line_tt
-		# custom_effect_tooltip = THE_FACTION_LEADER
-		# add_faction_initiative = 1
-		# custom_effect_tooltip = generic_skip_one_line_tt
-		# custom_effect_tooltip = ALL_FACTION_MEMBERS
-		# every_faction_member = {
-			# add_war_support = 0.05
-		# }
-	# }
-	# ai_will_do = {
-		# base = 1
-	# }
-# }
-
-# faction_goal_war_on_democracy = {
-	# name = war_on_democracy_goal_name
-	# description = war_on_democracy_goal_desc
-	# group = FOCUS_FILTER_WAR_SUPPORT
-	# category = short_term
-	# visible = {
-		# FROM = {
-			# NOT = {
-				# has_government = democratic
-			# }
-		# }
-		# any_country = {
-			# has_government = democratic
-			# is_on_same_continent_as = FROM
-		# }
-	# }
-	# completed = {
-		# OR = {
-			# any_enemy_country = {
-				# has_government = democratic
-				# is_on_same_continent_as = ROOT
-			# }
-			# any_allied_country = {
-				# any_enemy_country = {
-					# has_government = democratic
-					# is_on_same_continent_as = PREV
-				# }
-			# }
-		# }
-	# }
-	# complete_effect = {
-		# add_faction_power_projection = 100
-		# custom_effect_tooltip = generic_skip_one_line_tt
-		# custom_effect_tooltip = THE_FACTION_LEADER
-		# add_faction_initiative = 1
-		# custom_effect_tooltip = generic_skip_one_line_tt
-		# custom_effect_tooltip = ALL_FACTION_MEMBERS
-		# every_faction_member = {
-			# add_war_support = 0.05
-		# }
-	# }
-	# ai_will_do = {
-		# base = 1
-	# }
-# }
-
-
 ### Units
 
 faction_goal_an_armored_fist = {
@@ -1234,97 +975,6 @@ faction_goal_an_infantry_army = {
 
 ### Strategic Resources
 
-# Mexican Oil
-# faction_goal_develop_mexican_oil = {
-	# name = develop_mexican_oil_goal_name
-	# description = develop_mexican_oil_goal_desc
-	# category = short_term
-	# group = resources_to_market_icon
-	# allowed = {
-		
-	# }
-	# visible = {
-		# OR = {
-			# 480 = { is_controlled_by_ROOT_or_ally = yes }
-			# 479 = {	is_controlled_by_ROOT_or_ally = yes }
-			# 477 = {	is_controlled_by_ROOT_or_ally = yes }
-			# 476 = {	is_controlled_by_ROOT_or_ally = yes }	
-		# }
-	# }
-	# available = {
-		# FROM = {
-			# has_tech = excavation1
-			# has_tech = excavation2
-		# }
-		# 480 = { is_controlled_by_ROOT_or_ally = yes }
-		# 479 = {	is_controlled_by_ROOT_or_ally = yes }
-		# 477 = {	is_controlled_by_ROOT_or_ally = yes }
-		# 476 = {	is_controlled_by_ROOT_or_ally = yes }
-	# }
-	# completed = {
-		# 480 = {
-			# CONTROLLER = { has_tech = excavation3 }
-			# infrastructure > 4
-		# }
-		# 479 = {
-			# CONTROLLER = { has_tech = excavation3 }
-			# infrastructure > 4
-		# }
-		# 477 = {
-			# CONTROLLER = { has_tech = excavation3 }
-			# infrastructure > 4
-		# }
-		# 476 = {
-			# CONTROLLER = { has_tech = excavation3 }
-			# infrastructure > 4
-		# }
-	# }
-	# complete_effect = {
-		# add_faction_power_projection = 100
-		# every_state = {
-			# limit = {
-				# OR = {
-					# state = 480
-					# state = 479
-					# state = 477
-					# state = 476
-				# }
-			# }
-			# add_resource = {
-			    # type = oil
-			    # amount = 4
-			# }
-		# }
-	# }
-	# ai_will_do = {
-		# base = 1 # Everyone should always kiiiinda care about oil
-		# modifier = {
-			# add = 1 # State owners should care more
-			# OR = {
-				# controls_state = 480
-				# controls_state = 479
-				# controls_state = 477
-				# controls_state = 476
-			# }
-		# }
-		# modifier = {
-			# add = -1 # If the alliance is doing well with fuel avoid taking this...
-			# fuel_ratio > 0.9
-			# all_allied_country = {
-				# fuel_ratio > 0.9
-			# }
-		# }
-		# modifier = {
-			# add = 1 # Powers with low fuel should care about oil a bit more
-			# fuel_ratio < 0.4
-		# }
-		# modifier = {
-			# add = 1 # Powers with very low fuel should care about oil A LOT
-			# fuel_ratio < 0.1
-		# }
-	# }
-# }
-
 # Curacao Oil
 faction_goal_develop_curacao_oil = {
 	name = develop_curacao_oil_goal_name
@@ -1359,82 +1009,6 @@ faction_goal_develop_curacao_oil = {
 		}
 	}
 }
-
-# Venezuelan Oil
-# faction_goal_develop_venezuelan_oil = {
-	# name = develop_venezuelan_oil_goal_name
-	# description = develop_venezuelan_oil_goal_desc
-	# category = short_term
-	# group = resources_to_market_icon
-
-	# allowed = {
-		
-	# }
-	# visible = {
-		# OR = {
-			# 489 = { is_controlled_by_ROOT_or_ally = yes }
-			# 307 = {	is_controlled_by_ROOT_or_ally = yes }
-		# }
-	# }
-	# available = {
-		# FROM = {
-			# has_tech = excavation1
-			# has_tech = excavation2
-		# }
-		# 489 = { is_controlled_by_ROOT_or_ally = yes }
-		# 307 = {	is_controlled_by_ROOT_or_ally = yes }
-	# }
-	# completed = {
-		# 489 = {
-			# CONTROLLER = { has_tech = excavation3 }
-			# infrastructure > 4
-		# }
-		# 307 = {
-			# CONTROLLER = { has_tech = excavation3 }
-			# infrastructure > 4
-		# }
-	# }
-	# complete_effect = {
-		# add_faction_power_projection = 100
-		# every_state = {
-			# limit = {
-				# OR = {
-					# state = 489
-					# state = 307
-				# }
-			# }
-			# add_resource = {
-			    # type = oil
-			    # amount = 8
-			# }
-		# }
-	# }
-	# ai_will_do = {
-		# base = 1 # Everyone should always kiiiinda care about oil
-		# modifier = {
-			# add = 1 # State owners should care more
-			# OR = {
-				# controls_state = 489
-				# controls_state = 307
-			# }
-		# }
-		# modifier = {
-			# add = -1 # If the alliance is doing well with fuel avoid taking this...
-			# fuel_ratio > 0.9
-			# all_allied_country = {
-				# fuel_ratio > 0.9
-			# }
-		# }
-		# modifier = {
-			# add = 1 # Powers with low fuel should care about oil a bit more
-			# fuel_ratio < 0.4
-		# }
-		# modifier = {
-			# add = 1 # Powers with very low fuel should care about oil A LOT
-			# fuel_ratio < 0.1
-		# }
-	# }
-# }
 
 # Guyanan Bauxite
 faction_goal_develop_guyanan_bauxite = {
