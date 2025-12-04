@@ -4,45 +4,33 @@ air_subdoctrine_bomber_interception = {
     description = SUBDOCTRINE_BOMBER_INTERCEPTION_DESC
     icon = GFX_doctrine_home_defence_medium
 
-    xp_cost = 50
+    xp_cost = 150
     xp_type = air
 
     available = {
         always = yes
     }
 
-    ai_will_do = {
-
-        base = 1
-        modifier = {
-            factor = 0
-            is_major = no 
-        }
-    }
-
     # EFFECTS
-	category_heavy_fighter = {
-		air_attack = 0.1
-	}
+	air_intercept_efficiency = 0.0525
 
     rewards = {
 		night_interceptions = {
-			air_night_penalty = -0.15
+			air_night_penalty = -0.1
 		}
         dispersed_fighting = {
-			air_intercept_efficiency = 0.1
+			air_intercept_efficiency = 0.05
 		}
 		heavy_fighter_veteran_initiative = {
-			 air_ace_generation_chance_factor = 0.05
-			 air_mission_xp_gain_factor = 0.1
+			ace_effectiveness_factor = 0.05
 		}
 		high_altitude_approach = {
 			category_heavy_fighter = {
-				air_defence = 0.1
+				air_attack = 0.05
 			}
 		}
 		bomber_interception_patrols = {
-			air_interception_detect_factor = 0.15
+			air_interception_detect_factor = 0.05
 		}
     }
 }
@@ -53,48 +41,35 @@ air_subdoctrine_long_range_escort = {
     description = SUBDOCTRINE_LONG_RANGE_ESCORT_DESC
     icon = GFX_doctrine_air_offense_medium
 
-    xp_cost = 50
+    xp_cost = 150
     xp_type = air
 
     available = {
         always = yes
     }
-
-    ai_will_do = {
-
-        base = 1
-        modifier = {
-            factor = 50
-            original_tag = USA  
-        }
-        modifier = {
-            factor = 0
-            is_major = no 
-        }
-    }
-
+	
     # EFFECTS
-	air_escort_efficiency = 0.1
+	air_escort_efficiency = 0.05
 
     rewards = {
 		efficient_fly_routes = {
-			category_heavy_fighter = {
-				air_range = 0.1
-			}
+			air_escort_efficiency = 0.05
 		}
         mutual_air_cover = {
-			air_superiority_detect_factor = 0.15
+			air_superiority_detect_factor = 0.05
 		}
 		training_instructors = {
-			air_training_xp_gain_factor = 0.1
+			air_ace_generation_chance_factor = 0.05
 		}
 		fighter_baiting = {
 			category_heavy_fighter = {
-				air_agility = 0.1
+				air_agility = 0.05
 			}
 		}
 		far_reaching_airforce = {
-			air_range_factor = 0.05
+			category_heavy_fighter = {
+				air_range = 0.05
+			}
 		}
     }
 }
@@ -105,27 +80,11 @@ air_subdoctrine_operational_air_support = {
     description = SUBDOCTRINE_OPERATIONAL_AIR_SUPPORT_DESC
     icon = GFX_doctrine_ground_support_integration_medium
 
-    xp_cost = 50
+    xp_cost = 150
     xp_type = air
 
     available = {
         always = yes
-    }
-
-    ai_will_do = {
-
-        base = 1
-        modifier = {
-            factor = 50
-            OR = {
-            	original_tag = ENG  
-            	original_tag = FRA
-            }
-        }
-        modifier = {
-            factor = 2
-            is_major = no 
-        }
     }
 
     # EFFECTS
@@ -133,19 +92,18 @@ air_subdoctrine_operational_air_support = {
 
     rewards = {
 		efficient_support_crews = {
-			air_manpower_requirement_factor = -0.1
-			air_wing_xp_loss_when_killed_factor = -0.05
+			air_accidents_factor = -0.1
 		}
         ground_interdictions = {
-			army_bonus_air_superiority_factor = 0.1
+			army_bonus_air_superiority_factor = 0.05
 		}
 		operational_airforce_presence = {
-			air_power_projection_factor = 0.1
+			air_power_projection_factor = 0.05
 		}
 		heavy_fighter_support = {
 			category_heavy_fighter = {
 				air_agility = 0.05
-				air_attack = 0.05
+				air_defence = 0.05
 			}
 		}
 		tactical_bomber_preservation = {
@@ -163,53 +121,35 @@ air_subdoctrine_tactical_battlefield_support = {
     description = SUBDOCTRINE_TACTICAL_BATTLEFIELD_SUPPORT_DESC
     icon = GFX_doctrine_keypoint_bombing_medium
 
-    xp_cost = 50
+    xp_cost = 150
     xp_type = air
 
     available = {
         always = yes
     }
 
-    ai_will_do = {
-
-        base = 1
-        modifier = {
-            factor = 50
-            OR = {
-            	original_tag = GER  
-            	original_tag = JAP
-            	original_tag = ITA
-            }
-        }
-        modifier = {
-            factor = 0.5
-            is_major = no 
-        }
-    }
-
     # EFFECTS
-	category_tac_bomber = {
-		air_ground_attack = 0.1
-	}
+	air_cas_efficiency = 0.05
 
     rewards = {
 		keypoint_bombing = {
-			air_cas_present_factor = 0.1
+			category_tac_bomber = {
+				air_ground_attack = 0.05
+			}
 		}
         logistical_bombing= {
 			army_bonus_air_superiority_factor = 0.05
-			air_cas_efficiency = 0.05
 		}
 		ship_hunters = {
 			category_tac_bomber = {
-				naval_strike_attack = 0.1 
+				naval_strike_attack = 0.05 
 			}
 		}
 		dedicated_record_keeping = {
-			air_fuel_consumption_factor = -0.05
+			air_accidents_factor = -0.1
 		}
 		bomber_aces = {
-			ace_effectiveness_factor = 0.15
+			ace_effectiveness_factor = 0.05
 		}
     }
 }
@@ -220,33 +160,20 @@ air_subdoctrine_theater_interdiction = {
     description = SUBDOCTRINE_THEATER_INTERDICTION_DESC
     icon = GFX_doctrine_logistical_bombing_medium
 
-    xp_cost = 50
+    xp_cost = 150
     xp_type = air
 
     available = {
         always = yes
     }
 
-    ai_will_do = {
-
-        base = 1
-        modifier = {
-            factor = 50
-            original_tag = SOV 
-        }
-        modifier = {
-            factor = 0.5
-            is_major = no 
-        }
-    }
-
     # EFFECTS
-	air_strategic_bomber_bombing_factor = 0.15
+	air_strategic_bomber_bombing_factor = 0.05
 
     rewards = {
 		extended_reach = {
 			category_tac_bomber = {
-				air_range = 0.1
+				air_range = 0.05
 			}
 		}
         night_bombing = {
@@ -256,15 +183,13 @@ air_subdoctrine_theater_interdiction = {
 		precision_bombing = {
 			category_tac_bomber = {
 				air_bombing = 0.05
-				air_agility = 0.05
 			}
 		}
 		port_raids = {
-			port_strike = 0.2
+			port_strike = 0.05
 		}
 		improved_casualty_recovery = {
-			air_accidents_factor = -0.05
-			air_wing_xp_loss_when_killed_factor = -0.1
+			air_accidents_factor = -0.1
 		}
     }
 }
@@ -275,7 +200,7 @@ air_subdoctrine_aerial_reconnaissance = {
     description = SUBDOCTRINE_AERIAL_RECONNAISSANCE_DESC
     icon = GFX_doctrine_infiltration_bombing_medium
 
-    xp_cost = 50
+    xp_cost = 150
     xp_type = air
 
     visible = {
@@ -290,30 +215,28 @@ air_subdoctrine_aerial_reconnaissance = {
 
     # EFFECTS
 	category_scout_plane = {
-		air_agility = 0.1
+		air_agility = 0.25
 	}
 
     rewards = {
 		extended_reconnaissance_radius = {
 			category_scout_plane = {
-				air_range = 0.15
+				air_range = 0.25
 			}
 		}
         improved_observation_procedures = {
-			intel_from_combat_factor = 0.1
-			army_intel_factor = 0.1
+			army_intel_factor = 0.055
 		}
 		naval_recon = {
-			navy_intel_factor = 0.1
-			spotting_chance = 0.05
+			navy_intel_factor = 0.055
+			spotting_chance = 0.055
 		}
 		distant_aerial_observation = {
-			airforce_intel_factor = 0.1
-			air_mission_xp_gain_factor = 0.05
+			airforce_intel_factor = 0.055
 		}
 		well_coordinated_strikes = {
-			civilian_intel_factor = 0.1
-			air_strategic_bomber_bombing_factor = 0.05
+			civilian_intel_factor = 0.055
+			air_strategic_bomber_bombing_factor = 0.055
 		}
     }
 }

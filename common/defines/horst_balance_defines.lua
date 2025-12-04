@@ -1,21 +1,30 @@
+NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 0								-- base days needed to prepare a naval invasion
+NDefines.NNavy.NAVAL_INVASION_PLAN_CAP = 999									-- base cap of naval invasions can be planned at the same time
+NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 999							-- base cap of divisions that can be assigned in a naval invasion
+
 NDefines.NDiplomacy.EMBARGO_COST = 999
 NDefines.NDiplomacy.NAVAL_BLOCKADE_BASE_COST = 999
 
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
+
 NDefines.NDoctrines.DEFAULT_REWARD_MASTERY = 50.0                         -- How much mastery is required for unlocking a doctrine reward, if no override is set
 NDefines.NDoctrines.BASE_MASTERY_GAIN_TARGET_MANPOWER = 100000.0           -- Beyond this amount of manpower contributing to mastery, mastery gain will start having diminishing returns (see doctrines documentation)
-NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0.1                     -- How much training contributes to doctrine mastery relative to combat/missions
-NDefines.NDoctrines.MAX_MONTHLY_MASTERY_GAIN = 10.0                        -- Monthly mastery gain will not exceed this value
+NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0                     -- How much training contributes to doctrine mastery relative to combat/missions
+NDefines.NDoctrines.MAX_MONTHLY_MASTERY_GAIN = 12.5                        -- Monthly mastery gain will not exceed this value
 NDefines.NDoctrines.MIN_MASTERY_GAIN_PER_DAY = 0.0                         -- If we have any mastery gain, it will be boosted to be at least this much per day (lower cap)
-
+NDefines.NDoctrines.MASTERY_BANK_CONVERSION_RATE = 0.25                    -- The rate at which mastery gained when a track is finished or empty is "banked"
+NDefines.NDoctrines.MASTERY_BANK_MAX = 250.0                               -- The maximum amount of mastery that can be banke
+NDefines.NDoctrines.MILITARY_ATTACHE_MASTERY_TRANSFER_FACTOR = 0         -- For each mastery track, military attaches will add this fraction of their visiting country's mastery gain (from units only) in that track
+NDefines.NDoctrines.THEATER_COMMANDER_UNITS_MASTERY_GAIN_FACTOR_PER_SKILL = 0  -- Unit in a theater commander's theater will contribute this fraction of their mastery gain to the theater commander's country, for each skill point they have in attack + defense
 
 -----------------------------COAL ENERGY STUFF--------------------------------------
 
 NDefines.NGame.ENERGY_RESOURCE = "oil"						-- resource that will give country energy 
 NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 10.0		-- How much energy per coal produces
-NDefines.NProduction.BASE_COUNTRY_ENERGY_PRODUCTION = 12.0 			-- The base energy production of a country
+NDefines.NProduction.BASE_COUNTRY_ENERGY_PRODUCTION = 1000.0 			-- The base energy production of a country
 NDefines.NProduction.ENERGY_SCALING_COST_BY_FACTORY_COUNT = 0 -- Scales energy cost based on the total number of factories
 NDefines.NProduction.BASE_ENERGY_COST = 0.01						-- How much energy per factory consumes
+
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 NDefines.NTechnology.BASE_YEAR_AHEAD_PENALTY_FACTOR = 2.3 -- Base year ahead penalty
 
@@ -64,44 +73,44 @@ NDefines.NMilitary.LAND_SPEED_MODIFIER = 0.0260                  -- basic speed 
 NDefines.NMilitary.RETREAT_SPEED_FACTOR = 0.35 -- vanilla 0.25 
 NDefines.NMilitary.MIN_DIVISION_BRIGADE_HEIGHT = 5
 NDefines.NMilitary.UNIT_LEADER_TRAIT_SLOT_PER_LEVEL = { 			-- num extra traits on each level
-		0.0, -- field marshal
-		0.0, -- corps commander
-		0.0, -- navy general
-		0.0, -- operative
-	}	
+0.0, -- field marshal
+0.0, -- corps commander
+0.0, -- navy general
+0.0, -- operative
+}	
 NDefines.NMilitary.CASUALTIES_WS_P_PENALTY_DIVISOR = 100
 NDefines.NMilitary.SPEED_REINFORCEMENT_BONUS = 0.1
 NDefines.NMilitary.UNIT_LEADER_INITIAL_TRAIT_SLOT = { 				-- trait slot for 0 level leader
-		0.0, -- field marshal
-		0.0, -- corps commander
-		0.0, -- navy general
-		0.0, -- operative
-	}
+0.0, -- field marshal
+0.0, -- corps commander
+0.0, -- navy general
+0.0, -- operative
+}
 NDefines.NMilitary.PIERCING_THRESHOLDS = {	-- Our piercing / their armor must be this value to deal damage fraction equal to the index in the array below [higher number = higher penetration]. If armor is 0, 1.00 will be returned.
-		1.00,
-		0.90,
-		0.85,				
-		0.80,
-		0.75,		
-		0.70,
-		0.65,
-		0.60,
-		0.55,
-		0.50,			
-		0.00, --there isn't much point setting this higher than 0
+1.00,
+0.90,
+0.85,				
+0.80,
+0.75,		
+0.70,
+0.65,
+0.60,
+0.55,
+0.50,			
+0.00, --there isn't much point setting this higher than 0
 }
 NDefines.NMilitary.PIERCING_THRESHOLD_DAMAGE_VALUES = {	-- 0 armor will always receive maximum damage (so add overmatching at your own peril). the system expects at least 2 values, with no upper limit.
-		1.00,
-		0.90,
-		0.85,						
-		0.80,
-		0.75,				
-		0.70,
-		0.65,		
-		0.60,
-		0.55,	
-		0.50,	
-		0.50, --there isn't much point setting this higher than 0		
+1.00,
+0.90,
+0.85,						
+0.80,
+0.75,				
+0.70,
+0.65,		
+0.60,
+0.55,	
+0.50,	
+0.50, --there isn't much point setting this higher than 0		
 }
 ------------------------end of defines relevant to land combat
 NDefines.NBuildings.DESTRUCTION_COOLDOWN_IN_WAR = 9999 --anti-exploit
@@ -152,10 +161,10 @@ NDefines.NProduction.LICENSE_EQUIPMENT_TECH_SPEED_PER_YEAR = 0.00 	-- WAS 0.05, 
 ---------------------------------------------------------------
 
 NDefines.NProject.RECRUIT_SCIENTIST_COST = {						-- Amount of pp to hire a scientist based on available scientist
-	25,			-- pp cost if no available scientist
-	25,			-- pp cost if 1 available scientist
-	25,			-- pp cost if 2 available scientist
-	25			-- pp cost if more than 2 available scientist
+25,			-- pp cost if no available scientist
+25,			-- pp cost if 1 available scientist
+25,			-- pp cost if 2 available scientist
+25			-- pp cost if more than 2 available scientist
 }
 ------------------SUPPLY -------------------- 
 NDefines.NAir.AIR_WING_ATTACK_LOGISTICS_TRUCK_DAMAGE_FACTOR = 0.081 -- @30% vanilla 0.27  
@@ -226,59 +235,59 @@ NDefines.NNavy.NAVAL_COMBAT_AIR_LOW_AA_TARGET_SCORE = 0.01 -- vanilla 5
 NDefines.NNavy.NAVAL_COMBAT_AIR_SUB_DETECTION_EXTERNAL_FACTOR = 0.65
 --
 NDefines.NNavy.NAVY_PIERCING_THRESHOLDS = {					-- Our piercing / their armor must be this value to deal damage fraction equal to the index in the array below [higher number = higher penetration]. If armor is 0, 1.00 will be returned.
-		8.00,		
-		4.00,	
-		3.00,		
-		2.00,
-		1.00,
-		0.90,
-		0.80,
-		0.70,
-		0.60,
-		0.50,
-		0.40,
-		0.30,
-		0.20,
-		0.10,
-		0.00 --there isn't much point setting this higher than 0
+8.00,		
+4.00,	
+3.00,		
+2.00,
+1.00,
+0.90,
+0.80,
+0.70,
+0.60,
+0.50,
+0.40,
+0.30,
+0.20,
+0.10,
+0.00 --there isn't much point setting this higher than 0
 }
 
 
 NDefines.NNavy.NAVY_PIERCING_THRESHOLD_CRITICAL_VALUES = {	-- 0 armor will always receive maximum damage (so add overmatching at your own peril). the system expects at least 2 values, with no upper limit.
-		8.00,			
-		4.00,	
-		3.00,	
-		2.00,
-		1.00,
-		0.90,
-		0.80,
-		0.70,
-		0.60,
-		0.50,
-		0.40,
-		0.30,
-		0.20,
-		0.10,
-		0.00 -- For criticals, you could reduce crit chance unlike damage in army combat, but we do not for now.
+8.00,			
+4.00,	
+3.00,	
+2.00,
+1.00,
+0.90,
+0.80,
+0.70,
+0.60,
+0.50,
+0.40,
+0.30,
+0.20,
+0.10,
+0.00 -- For criticals, you could reduce crit chance unlike damage in army combat, but we do not for now.
 }
 
 NDefines.NNavy.NAVY_PIERCING_THRESHOLD_DAMAGE_VALUES = {	-- 0 armor will always receive maximum damage (so add overmatching at your own peril). the system expects at least 2 values, with no upper limit.
-		1.00,		
-		1.00,			
-		1.00,		
-		1.00,
-		1.00,
-		0.90,
-		0.80,
-		0.70,
-		0.60,
-		0.50,
-		0.40,
-		0.30,
-		0.20,
-		0.10,
-		0.10 -- 
-	}
+1.00,		
+1.00,			
+1.00,		
+1.00,
+1.00,
+0.90,
+0.80,
+0.70,
+0.60,
+0.50,
+0.40,
+0.30,
+0.20,
+0.10,
+0.10 -- 
+}
 
 
 NDefines.NNavy.MISSION_MAX_REGIONS = 5 			--vanilla 0 | Limit of the regions that can be assigned to naval mission. Set to 0 for unlimited.
@@ -287,10 +296,10 @@ NDefines.NNavy.CONVOY_EFFICIENCY_LOSS_MODIFIER = 0.8   --  WAS 1.25, reduced so 
 NDefines.NNavy.CONVOY_ATTACK_BASE_FACTOR	 = 0.08                        -- vanilla 0.15
 NDefines.NNavy.UNIT_TRANSFER_DETECTION_CHANCE_BASE = 16					-- daily base spotting speed against unit trans
 NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- 1,4,1 vanilla number of hours for a gun to be ready after shooting
-		1.0,	-- big guns
-		3.0,	-- torpedoes
-		1.0,	-- small guns
-	}
+1.0,	-- big guns
+3.0,	-- torpedoes
+1.0,	-- small guns
+}
 
 --NDefines.NNavy.SUPREMACY_PER_SHIP_PER_MANPOWER = 0						-- WAS 0.0005 supremacy of a ship is calculated using its IC, manpower and a base define
 --NDefines.NNavy.SUPREMACY_PER_SHIP_PER_IC= 0
@@ -310,23 +319,23 @@ NDefines.NNavy.DETECTION_CHANCE_MULT_BASE = 0.1								-- base multiplier value 
 NDefines.NNavy.DETECTION_CHANCE_MULT_RADAR_BONUS = 0.2						-- bonus for hourly change detection from radar buildings (NOT BASE). vanilla is 0.1
 NDefines.NNavy.DETECTION_CHANCE_MULT_AIR_SUPERIORITY_BONUS = 0.25			-- bonus from air superiority in hourly change detection (NOT BASE); vanilla is 0.25
 NDefines.NNavy.AIR_MISSION_SPOTTING_FACTORS = {								-- Multiplier for air-wings' spotting contribution per mission type; lower value means the 20% base detection chance is reached with more air wings! Vanilla
-		0.50, -- AIR_SUPERIORITY
-		0, -- CAS
-		0.25, -- INTERCEPTION
-		0, -- STRATEGIC_BOMBER
-		0.50, -- NAVAL_BOMBER
-		0, -- DROP_NUKE
-		0, -- PARADROP
-		0.25, -- NAVAL_KAMIKAZE
-		0, -- PORT_STRIKE
-		0, -- ATTACK_LOGISTICS
-		0, -- AIR_SUPPLY
-		0, -- TRAINING
-		0.25, -- NAVAL_MINES_PLANTING
-		0.50, -- NAVAL_MINES_SWEEPING
-		1.00, -- RECON
-		1.50, -- NAVAL_PATROL
-	}
+0.50, -- AIR_SUPERIORITY
+0, -- CAS
+0.25, -- INTERCEPTION
+0, -- STRATEGIC_BOMBER
+0.50, -- NAVAL_BOMBER
+0, -- DROP_NUKE
+0, -- PARADROP
+0.25, -- NAVAL_KAMIKAZE
+0, -- PORT_STRIKE
+0, -- ATTACK_LOGISTICS
+0, -- AIR_SUPPLY
+0, -- TRAINING
+0.25, -- NAVAL_MINES_PLANTING
+0.50, -- NAVAL_MINES_SWEEPING
+1.00, -- RECON
+1.50, -- NAVAL_PATROL
+}
 
 NDefines.NNavy.BASE_SPOTTING = 1												--base detection chance upon which hourly change modifiers are calculated (base detection chance can get modified through other variables), 1%
 
@@ -348,11 +357,11 @@ NDefines.NNavy.HIT_PROFILE_MULT 											= 65  	-- multiplies hit profile of e
 NDefines.NNavy.HEAVY_GUN_ATTACK_TO_SHORE_BOMBARDMENT = 0.05
 NDefines.NNavy.LIGHT_GUN_ATTACK_TO_SHORE_BOMBARDMENT = 0.025
 NDefines.NNavy.GUN_HIT_PROFILES = { -- hit profiles for guns, if target ih profile is lower the gun will have lower accuracy
-		80.0,	-- big guns
-		83.0,	-- torpedoes
-		45.0,	-- small guns
+80.0,	-- big guns
+83.0,	-- torpedoes
+45.0,	-- small guns
 }
-	
+
 NDefines.NTechnology.LICENSE_PRODUCTION_TECH_BONUS = 0	-- WAS 0.2 | LICENSES ARE FREE SO TECH BONUS IS TOO MUCH | License production tech bonus
 NDefines.NTechnology.BASE_RESEARCH_POINTS_SAVED = 10.0 -- Vanilla 30, reduced to decrease the value of research juggling and this competitive need to do it to the end of making macro easier with less skill variance.
 
@@ -383,17 +392,17 @@ NDefines.NNavy.AGGRESION_MULTIPLIER_FOR_COMBAT = 3	-- ships are more aggresive i
 -- high multiplier = stops fleets automatically retreating in combat (we only want players to manually retreat; perhaps rethink aggression settings later for better convoy defense behavior)
 
 NDefines.NNavy.AGGRESSION_SETTINGS_VALUES = { -- ships will use this values while deciding to attack enemies
-	0.0,	-- do not engage
-	0.5,	-- low
-	0.9,	-- medium
-	1.5,	-- high
-	2.0,	-- I am death incarnate!
+0.0,	-- do not engage
+0.5,	-- low
+0.9,	-- medium
+1.5,	-- high
+2.0,	-- I am death incarnate!
 }
 NDefines.NNavy.MIN_REPAIR_FOR_JOINING_COMBATS = { -- strikeforces/patrol forces will not join combats if they are not repaired enough
-		0.5,	-- do not repair
-		0.5,	-- low
-		0.7,	-- medium
-		0.9,	-- high
+0.5,	-- do not repair
+0.5,	-- low
+0.7,	-- medium
+0.9,	-- high
 }
 NDefines.NNavy.MIN_SHIPS_FOR_HIGHER_SHIP_RATIO_PENALTY                         = 30 --vanilla 0   -- the minimum fleet size in ships that a fleet must be before having the large fleet penalty applied to them   
 
@@ -448,10 +457,10 @@ NDefines.NResistance.RESISTANCE_TARGET_MODIFIER_PER_STABILITY_LOSS = 0
 NDefines.NIntel.DYNAMIC_INTEL_SOURCE_EVENT_MAXIMUMS = { 200, 200, 200, 200 } --Intel from events was 40
 NDefines.NIntel.DYNAMIC_INTEL_SOURCE_EVENT_ABSOLUTE_MAXIMUMS = { 200, 200, 200, 200 } --Intel from events was 50
 NDefines.NOperatives.OPERATIVE_SLOTS_FROM_FACTION_MEMBERS_FOR_SPY_MASTER = {  
-        0,     0, -- 0 operative for [0, 10)
-        0,      0, -- 0.25 operative for [10, 50)
-        0,     0, -- 0.5 operative for >= 50
-    }
+0,     0, -- 0 operative for [0, 10)
+0,      0, -- 0.25 operative for [10, 50)
+0,     0, -- 0.5 operative for >= 50
+}
 NDefines.NOperatives.TECH_STEAL_YEAR_FACTOR = 0.25
 NDefines.NOperatives.TECH_STEAL_EQUIPMENT_FACTOR = 0.5
 ---------------------------------------------------------------
