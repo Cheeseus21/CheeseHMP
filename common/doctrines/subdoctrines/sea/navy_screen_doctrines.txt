@@ -11,41 +11,33 @@ convoy_escort = {
         always = yes
     }
 
-    ai_will_do = { 
-        base = 1
-        modifier = {
-            factor = 95
-            original_tag = ENG
-        }
-    }
-
     # EFFECTS
-	convoy_escort_efficiency = 0.10
-	convoy_retreat_speed = 0.10
+	convoy_escort_efficiency = 0.05
+	convoy_retreat_speed = 0.05
 
     rewards = {
 		anti_submarine_sweep_training = {
 			destroyer = {
-				sub_detection = 0.10
+				sub_detection = 0.05
 			}
 		}
         escort_reclassification = {
 			destroyer = {
-				max_organisation = 10
+				max_organisation = 5
 			}
 		}
 		sweeping_duty = {
-			mines_sweeping_by_fleets_factor = 0.15
+			naval_detection = 0.1
 		}
 		creeping_attack = {
 			destroyer = {
-				sub_detection = 0.10
+				sub_detection = 0.05
 				lg_attack = 0.05
 			}
 		}
 		as_below_so_above = {
 			destroyer = {
-				anti_air_attack = 0.15
+				anti_air_attack = 0.1
 			}
 		}
     }
@@ -64,18 +56,6 @@ support_integrated_operations = {
         always = yes
     }
 
-    ai_will_do = { 
-        base = 1
-        modifier = {
-            factor = 95
-            original_tag = USA
-        }
-        modifier = {
-            factor = 95
-            original_tag = ITA
-        }
-    }
-
     # EFFECTS
 	screening_efficiency = 0.05
 	
@@ -83,7 +63,7 @@ support_integrated_operations = {
         first_line_of_defense = {
 			destroyer = {
 				max_organisation = 5
-				naval_torpedo_damage_reduction_factor = -0.15
+				naval_torpedo_damage_reduction_factor = -0.1
 			}
 		}
 		first_line_of_attack = {
@@ -95,19 +75,19 @@ support_integrated_operations = {
 		blue_water_training = {
 			equipment_bonus ={
                 ship_hull_cruiser = {
-				    naval_weather_penalty_factor = -0.25
+				    naval_weather_penalty_factor = -0.1
                 }
             }
 		}
 		fleet_coordination = {
-			screening_efficiency = 0.10
+			screening_efficiency = 0.05
 		}
 		early_warning = {
 			destroyer = {
-				surface_detection = 0.10
+				surface_detection = 0.05
 			}
 			light_cruiser = {
-				surface_detection = 0.10
+				surface_detection = 0.05
 			}
 		}
     }
@@ -129,47 +109,37 @@ hunter_killers = {
     visible = {
     	has_dlc = "No Compromise, No Surrender"
     }
-    ai_will_do = { 
-        base = 1
-        modifier = {
-            factor = 95
-            OR = {
-            	original_tag = FRA
-            	original_tag = SOV
-            }
-        }
-    }
 
     # EFFECTS
-	naval_coordination = 0.10 
+	naval_coordination = 0.05
 	
     rewards = {
 		search_and_destroy = {
 			destroyer = {
-				sub_detection = 0.15
+				sub_detection = 0.1
 			}
 		}
 		flotilla_leader = {
 			carrier = {
-				carrier_sub_detection = 0.15
+				carrier_sub_detection = 0.1
 			}
 		}
 		group_operations = {
 			destroyer = {
-				sub_attack = 0.10
+				sub_attack = 0.05
 			}
 		}
 		combat_readiness = {
 			carrier = {
-				max_organisation = 15
+				max_organisation = 10
 			}
 		}
 		escort_group_patrols = {
 			carrier = {
-				patrol_coordination = 0.20
+				patrol_coordination = 0.1
 			}
 			destroyer = {
-				patrol_coordination = 0.20
+				patrol_coordination = 0.1
 			}
 		}
     }
@@ -184,56 +154,51 @@ torpedo_primacy = {
     xp_cost = 0
     xp_type = navy
 
-    ai_will_do = { 
-        base = 0
-        modifier = {
-            factor = 95
-            original_tag = JAP
-        }
-    }
     available = {
    		always = yes
     }
+	
     visible = {
     	has_dlc = "No Compromise, No Surrender"
     }
-    naval_night_attack = 0.25
+	
+    naval_night_attack = 0.1
 
     rewards = {
 
     	modern_broadsides = {
     		destroyer = {
-    			torpedo_attack = 0.2
+    			torpedo_attack = 0.1
     		}
     	}
     	coordinated_fire_patterns = {
     		destroyer = {
-    			max_organisation = 20
+    			max_organisation = 10
     		}
     	}	
     	dedicated_torpedo_task_forces = {
     		light_cruiser = {
-    			sub_attack = 0.2
-    			torpedo_attack = 0.2
+    			sub_attack = 0.1
+    			torpedo_attack = 0.1
     		}
     		destroyer = {
-    			sub_attack = 0.2
+    			sub_attack = 0.1
     		}
 
     	}
     	improved_escort_role = {
     		destroyer = {
-    			sub_detection = 0.2
+    			sub_detection = 0.1
     		}
     	}
 
     	task_force_integration = {
     		light_cruiser =  {
-    			max_organisation = 20
+    			max_organisation = 10
     		}
     		heavy_cruiser = {
-    			max_organisation = 20
-    			sub_detection = 0.2
+    			max_organisation = 10
+    			sub_detection = 0.1
     		}
     	}
     }
@@ -255,43 +220,43 @@ anti_aircraft_cruisers = {
     visible = {
     	has_dlc = "No Compromise, No Surrender"
     }
-    navy_anti_air_attack_factor = 0.2
+    navy_anti_air_attack_factor = 0.1
 
     rewards = {
     	calibrated_deck_guns = {
     		light_cruiser = {
-    			anti_air_attack = 0.2
+    			anti_air_attack = 0.1
     		}
     	}
     	priority_air_targets = {
     		heavy_cruiser = {
-    			anti_air_attack = 0.2
+    			anti_air_attack = 0.1
     		}
     	}
     	evasion_techniques = {
     		heavy_cruiser = {
-    			naval_speed = 0.15
-    			max_organisation = 15
+    			naval_speed = 0.1
+    			max_organisation = 10
     		}
     		light_cruiser = {
     			surface_visibility = -0.05
-    			max_organisation = 15
+    			max_organisation = 10
     		}
     	}
 
     	air_interdiction_screening = {
     		destroyer = {
-    			anti_air_attack = 0.2
-    			lg_attack = 0.2
+    			anti_air_attack = 0.1
+    			lg_attack = 0.1
     		}
     	}
     	sustained_engagements = {
     		light_cruiser = {
-    			armor_value = 0.1
+    			armor_value = 0.05
     		}
     		destroyer = {
-    			max_strength = 0.1
-    			max_organisation = 20
+    			max_strength = 0.05
+    			max_organisation = 10
     		}
     	}
     }
@@ -315,44 +280,44 @@ screen_support_focus = {
     	has_dlc = "No Compromise, No Surrender"
     }
 
-    navy_max_range_factor = 0.1
+    navy_max_range_factor = 0.05
 
     rewards = {
     	close_support_integration = {
-    		naval_general_support_value_factor = 0.1
+    		naval_general_support_value_factor = 0.05
     		destroyer = {
-    			max_organisation = 30
+    			max_organisation = 10
     		}
     	}
     	sustainable_task_forces = {
-    		naval_general_support_factor = 0.1
+    		naval_general_support_factor = 0.05
     		light_cruiser = {
-    			naval_range = 0.1
+    			naval_range = 0.05
     		}
     	}
     	maintenance_routines = {
     		support_ship = {
-    			max_organisation = 20
-    			max_strength = 0.2
+    			max_organisation = 10
+    			max_strength = 0.1
     		}
 
 
     	}
     	protected_naval_expansion = {
     		destroyer = {
-    			naval_range = 0.1
+    			naval_range = 0.05
     		}
     		heavy_cruiser = {
-    			hg_attack = 0.1
+    			hg_attack = 0.05
     		}
 
     	}
     	patrol_pattern_improvements = {
     		destroyer = {
-    			patrol_coordination = 0.2
+    			patrol_coordination = 0.1
     		}
     		light_cruiser = {
-    			patrol_coordination = 0.2
+    			patrol_coordination = 0.1
     		}	
 
     	}
@@ -372,25 +337,25 @@ jeune_ecole = {
    		always = yes
     }
 
-    convoy_raiding_efficiency_factor = 0.3
+    convoy_raiding_efficiency_factor = 0.1
 
     rewards = {
 
     	commerce_raiding_priority = {
     		light_cruiser = {
     			convoy_raiding_coordination = 0.05
-    			max_organisation = 20
-    			lg_attack = 0.1
+    			max_organisation = 10
+    			lg_attack = 0.05
     		}
     	}
     	large_torpedo_boats = {
     		light_cruiser = {
-    			torpedo_attack = 0.1
+    			torpedo_attack = 0.05
     		}
             equipment_bonus = {
                 torpedo_cruiser = {
-                    torpedo_attack = 0.1
-                    lg_attack = 0.1
+                    torpedo_attack = 0.05
+                    lg_attack = 0.05
                     instant = yes
                 }
             }
@@ -398,24 +363,23 @@ jeune_ecole = {
     	total_economic_warfare = {
     		destroyer = {
     			convoy_raiding_coordination = 0.05
-    			max_organisation = 20
+    			max_organisation = 10
     		}
 
     	}
     	sea_scabs = {
-    		convoy_retreat_speed = 0.10
+    		convoy_retreat_speed = 0.05
     		destroyer = {
-    			naval_speed = 0.1
-    			patrol_coordination = 0.1
+    			naval_speed = 0.05
+    			patrol_coordination = 0.05
     		}
     	}
     	autonomous_cruisers = {
     		battle_cruiser = {
-    			hg_attack = 0.1
-    			naval_range = 0.1
-    			naval_speed = 0.1
-    			convoy_raiding_coordination = 0.1
-
+    			hg_attack = 0.05
+    			naval_range = 0.05
+    			naval_speed = 0.05
+    			convoy_raiding_coordination = 0.05
     		}
     	}
     }
@@ -433,38 +397,39 @@ patrol_boats = {
     available = {
    		always = yes
     }
+	
     visible = {
     	has_dlc = "No Compromise, No Surrender"
     }
 
-    naval_retreat_chance_after_initial_combat = 0.25
-    navy_max_range_factor = -0.10
+    naval_retreat_chance_after_initial_combat = 0.05
+    navy_max_range_factor = -0.05
 	destroyer = {
-    	naval_speed = 0.10
-    	fuel_consumption = -0.25
+    	naval_speed = 0.05
+    	fuel_consumption = -0.1
     	supply_consumption = -0.01
     }	
 
     rewards = {
 
     	hit_and_run = {
-    		naval_retreat_speed = 0.20	
+    		naval_retreat_speed = 0.1
     	}
     	small_craft_harassment = {
-    		amphibious_invasion_defence = 0.10
+    		amphibious_invasion_defence = 0.05
     		destroyer = {
-    		    torpedo_attack = 0.20
+    		    torpedo_attack = 0.1
     		}
     	}	
     	lie_in_wait = {		
 			destroyer = {
-				surface_visibility = -0.2
+				surface_visibility = -0.1
 			}
 		}
     	fast_sortie_turnaround = {
-    		naval_morale_factor = 0.10
+    		naval_morale_factor = 0.1
     		destroyer = {
-    			max_organisation = 10
+    			max_organisation = 5
     		}
     	}
     	home_waters_defense = {

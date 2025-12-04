@@ -20,16 +20,20 @@ new_mobile_warfare = {
     }
 
     # EFFECTS
-	planning_speed = 0.20
-	army_speed_factor = 0.10
 	enable_tactic = tactic_unexpected_thrust
+	army_speed_factor = 0.10
+	org_loss_when_moving = -0.2
+	land_reinforce_rate = 0.02
+	planning_speed = 0.5
 	
 
     milestones = {
         {
             #Infantry
-	        org_loss_when_moving = -0.1
-            land_reinforce_rate = 0.02
+	        category_light_infantry = {
+				max_organisation = 5
+				default_morale = 0.05
+			}
             enable_tactic = tactic_delay
 
             effect = {
@@ -48,9 +52,11 @@ new_mobile_warfare = {
         }
         {
             #Artillery/Support
-	        planning_speed = 0.1
-            org_loss_at_low_org_factor = -0.1
             enable_tactic = tactic_overwhelming_fire
+			category_line_artillery = {
+				max_organisation = 5
+				default_morale = 0.05
+			}
             effect = {
                 if = {
                     limit = {
@@ -68,6 +74,10 @@ new_mobile_warfare = {
         {
             #Armor
             enable_tactic = tactic_blitz
+			category_tanks = {
+				max_organisation = 5
+				default_morale = 0.05
+			}
 
             effect = {
                 if = {
@@ -85,8 +95,11 @@ new_mobile_warfare = {
         }
         {
             #Operations
-	        planning_speed = 0.25
             enable_tactic = tactic_backhand_blow   
+			category_army = {
+				max_organisation = 5
+				default_morale = 0.05
+			}
 
             effect = {
                 if = {
@@ -117,15 +130,6 @@ superior_firepower = {
     xp_cost = 0
     xp_type = army
 
-    ai_will_do = {
-        base = 1
-
-        modifier = {
-            factor = 0
-            is_major = no
-        }
-    }
-
     tracks = {
         infantry
         combat_support
@@ -135,19 +139,17 @@ superior_firepower = {
 
     # EFFECTS
     enable_tactic = tactic_overwhelming_fire
-    category_line_artillery = {
-        soft_attack = 0.05
-    }
-    category_support_artillery = {
-        soft_attack = 0.05
-    }
-
+    category_army = {
+		soft_attack = 0.1
+	}
 
     milestones = {
         {
             #Infantry
             enable_tactic = tactic_elastic_defense
-            supply_consumption_factor = -0.05
+            category_light_infantry = {
+				soft_attack = 0.05
+			}
 
             effect = {
                 if = {
@@ -165,11 +167,9 @@ superior_firepower = {
         }
         {
             #Artillery/Support
-            category_support_battalions = {
-                max_organisation = 5
-            }
-            planning_decay_rate_factor = -0.1
-            enable_tactic = tactic_barrage
+            category_line_artillery = {
+				soft_attack = 0.05
+			}
 
             effect = {
                 if = {
@@ -189,9 +189,9 @@ superior_firepower = {
         {
             #Armor
             enable_tactic = tactic_delay
-            category_army = {
-                default_morale = 0.1
-            }
+            category_tanks = {
+				soft_attack = 0.05
+			}
 
             effect = {
                 if = {
@@ -211,9 +211,8 @@ superior_firepower = {
             #Operations
             enable_tactic = tactic_tactical_withdrawal
             category_army = {
-                default_morale = 0.1
-            }
-            planning_decay_rate_factor = -0.1
+				soft_attack = 0.05
+			}
 
             effect = {
                 if = {
@@ -261,13 +260,15 @@ grand_battleplan = {
     enable_tactic = tactic_planned_attack
     
     max_planning = 0.05
-    command_power_gain = 0.25
+	max_dig_in_factor = 0.05
+	land_reinforce_rate = 0.02
+	max_dig_in_factor = 0.1
 
     milestones = {
         {
             #Infantry 
             enable_tactic = tactic_elastic_defense
-            max_dig_in_factor = 0.05
+			max_planning = 0.025
 
             effect = {
                 if = {
@@ -285,8 +286,8 @@ grand_battleplan = {
         }
         {
             #Artillery/Support
-            coordination_bonus = 0.1
             enable_tactic = tactic_overwhelming_fire
+			max_planning = 0.025
 
             effect = {
                 if = {
@@ -304,8 +305,10 @@ grand_battleplan = {
         }
         {
             #Armor
-            land_reinforce_rate = 0.02
             enable_tactic = tactic_breakthrough
+			max_planning = 0.025
+			
+			
             effect = {
                 if = {
                     limit = {
@@ -323,7 +326,7 @@ grand_battleplan = {
         }
         {
             #Operations
-            coordination_bonus = 0.1
+			max_planning = 0.025
 
             effect = {
                 if = {
@@ -355,10 +358,6 @@ mass_assault = {
     xp_cost = 0
     xp_type = army
 
-    ai_will_do = {
-        base = 1
-    }
-
     tracks = {
         infantry
         combat_support
@@ -367,8 +366,14 @@ mass_assault = {
     }
 
     # EFFECTS
-    no_supply_grace = 48
+    no_supply_grace = 168
     out_of_supply_factor = -0.10
+	minimum_training_level = -0.25
+	land_reinforce_rate = 0.05
+	weekly_casualties_war_support = 0.001
+	minimum_training_level = -0.25
+	dig_in_speed_factor = 0.25
+	conscription = 0.025
     enable_tactic = tactic_relentless_assault
     
 
@@ -376,6 +381,9 @@ mass_assault = {
         {
             #Infantry
             enable_tactic = tactic_human_wave_tactics
+			category_light_infantry = {
+				default_morale = 0.1
+			}
 
             effect = {
                 if = {
@@ -394,8 +402,9 @@ mass_assault = {
         {
             #Artillery/Support
             enable_tactic = tactic_elastic_defense
-            out_of_supply_factor = -0.05
-            minimum_training_level = -0.25
+			category_line_artillery = {
+				default_morale = 0.1
+			}
 
             effect = {
                 if = {
@@ -413,8 +422,10 @@ mass_assault = {
         }
         {
             #Armor
-            land_reinforce_rate = 0.02
             enable_tactic = tactic_overwhelming_fire
+			category_tanks = {
+				default_morale = 0.1
+			}
 
             effect = {
                 if = {
@@ -433,9 +444,10 @@ mass_assault = {
         {
             #Operations
             enable_tactic = tactic_backhand_blow
-            weekly_casualties_war_support = 0.001
-            minimum_training_level = -0.05
-            dig_in_speed_factor = 0.05
+			category_army = {
+				default_morale = 0.1
+			}
+            
 
             effect = {
                 if = {
