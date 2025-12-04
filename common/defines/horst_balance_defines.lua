@@ -5,12 +5,13 @@ NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 999							-- base cap of divis
 NDefines.NDiplomacy.EMBARGO_COST = 999
 NDefines.NDiplomacy.NAVAL_BLOCKADE_BASE_COST = 999
 
+NDefines.NMilitary.COHESION_IMMOBILE_PLANNING_SPEED_MULTIPLIER = 0	-- If using the 'immobile' cohesion setting, factor ALL planning speed growth by this
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 
 NDefines.NDoctrines.DEFAULT_REWARD_MASTERY = 50.0                         -- How much mastery is required for unlocking a doctrine reward, if no override is set
 NDefines.NDoctrines.BASE_MASTERY_GAIN_TARGET_MANPOWER = 100000.0           -- Beyond this amount of manpower contributing to mastery, mastery gain will start having diminishing returns (see doctrines documentation)
 NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0                     -- How much training contributes to doctrine mastery relative to combat/missions
-NDefines.NDoctrines.MAX_MONTHLY_MASTERY_GAIN = 12.5                        -- Monthly mastery gain will not exceed this value
+NDefines.NDoctrines.MAX_MONTHLY_MASTERY_GAIN = 15                       -- Monthly mastery gain will not exceed this value
 NDefines.NDoctrines.MIN_MASTERY_GAIN_PER_DAY = 0.0                         -- If we have any mastery gain, it will be boosted to be at least this much per day (lower cap)
 NDefines.NDoctrines.MASTERY_BANK_CONVERSION_RATE = 0.25                    -- The rate at which mastery gained when a track is finished or empty is "banked"
 NDefines.NDoctrines.MASTERY_BANK_MAX = 250.0                               -- The maximum amount of mastery that can be banke
