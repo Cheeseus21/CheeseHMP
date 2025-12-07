@@ -6,6 +6,7 @@ tags={
 	"Historical"
 	"National Focuses"
 }
+replace_path="gfx/interface/equipmentdesigner/graphic_db"
 replace_path="common/doctrines"
 replace_path="common/units/equipment/modules"
 replace_path="history/countries"

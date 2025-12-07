@@ -65,8 +65,8 @@ NDefines.NMilitary.ARMY_IDLE_FUEL_MULT = 0.0						-- fuel consumption ratio whil
 ---------------------------------------------------------------------------------------
 NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.017    --  0.032 vanilla   air global damage modifier
 NDefines.NMilitary.LAND_AIR_COMBAT_ORG_DAMAGE_MODIFIER = 0.015    --  0.032 vanilla   global damage modifier
-NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.045       -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
-NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.050       -- global damage modifier
+NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.040       -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
+NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.055       -- global damage modifier
 NDefines.NMilitary.FUEL_CAPACITY_DEFAULT_HOURS = 0 -- 
 NDefines.NMilitary.REINFORCE_CHANCE = 0.05
 NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.30
