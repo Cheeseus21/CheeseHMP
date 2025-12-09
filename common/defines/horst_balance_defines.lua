@@ -149,6 +149,7 @@ NDefines.NAir.DISRUPTION_DEFENCE_ATTACK_FACTOR = 0.00 --vanilla 0.5
 NDefines.NProduction.BASE_LICENSE_IC_COST = 0 -- Was 1, reduced to counter early game boosting, particularly cancerous Germany builds that force Bulgarias to build a battleship in the black sea for "shore bombardment" via license and imported steel from Germany
 NDefines.NProduction.LICENSE_IC_COST_YEAR_INCREASE = 0				-- IC cost equipment for every year of equipment after 1936
 NDefines.NProduction.LICENSE_EQUIPMENT_SPEED_NOT_FACTION = 0        -- WAS 0.1, removed because there are really only 2 factions in game | MIC speed modifier for licensed equipment for not being in faction
+NDefines.NProduction.LICENSE_EQUIPMENT_BASE_SPEED = -0.25				-- base MIC speed modifier for licensed equipment
 
 NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_VALUE = 0  -- The minimum number of factories we have to put on consumer goods, by value.
 NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_PERCENT = 0  -- The minimum number of factories we have to put on consumer goods, in percent.
