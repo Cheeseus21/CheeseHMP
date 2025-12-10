@@ -51,7 +51,7 @@ focus_tree = {
 		x = 0
 		y = 0
 		
-		cost = 5
+		cost = 10
 		
 		available = {
 		}
@@ -90,7 +90,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = CHI_dang_guo
 
-		cost = 5
+		cost = 10
 		
 		available = {
 		}
@@ -126,10 +126,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 
 		completion_reward = {
-			add_timed_idea = {
-				idea = idea_CHI_our_place
-				days = 365
-			}
+			add_stability = 0.1
 		}
 	}
 	focus = {
@@ -142,7 +139,7 @@ focus_tree = {
 		
 		relative_position_id = CHI_denounce_feudalism
 
-		cost = 5
+		cost = 10
 		
 		available = {
 		}
@@ -177,43 +174,6 @@ focus_tree = {
 
 		completion_reward = {
 			add_ideas = CHI_baojia
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			hidden_effect = {
-				delete_unit_template_and_units = {
-					division_template = "Baojia Juntuán"
-					disband = yes #if yes, will refund equipment/manpower.
-				}
-
-				division_template = {
-					name = "Baojia Juntuán"
-					division_names_group = CHI_INF_01
-					role = garrison
-					template_counter = 118
-					priority = 0 # garrison
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
-					}
-					support = {
-					}
-				}
-			}
-
-			random_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-				}
-				create_unit = {
-				    division = "name = \"Baojia Juntuán\" division_template = \"Baojia Juntuán\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
-				    owner = ROOT
-				    count = 3
-				}
-			}
-
 		}
 	}
 
@@ -236,10 +196,6 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_WAR_SUPPORT }
 	
 		completion_reward = {
-			add_war_support = 0.1
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-
 			add_ideas = CHI_tongzi_jun
 		}
 	}
@@ -254,7 +210,7 @@ focus_tree = {
 		
 		relative_position_id = CHI_one_nation_undivided
 		
-		cost = 5
+		cost = 10
 		
 		available = {
 			has_war_with = JAP
@@ -263,7 +219,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_WAR_SUPPORT }
 	
 		completion_reward = {
-			add_war_support = 0.05
+			add_war_support = 0.1
 			# unlock_decision_tooltip = {
 				# decision = CHI_demonstrate_our_resolve_decision
 				# show_effect_tooltip = yes 
@@ -318,7 +274,7 @@ focus_tree = {
 		
 		relative_position_id = CHI_introduce_the_baojia_system
 		
-		cost = 5
+		cost = 10
 		
 		available = {
 			has_war_with = JAP
@@ -350,7 +306,9 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-            
+            SOV = {
+				add_ideas = CHI_soviet_volunteers
+			}
 		}
 	}
 
@@ -373,7 +331,9 @@ focus_tree = {
 
 	
 		completion_reward = {
-            
+            USA = {
+				add_ideas = CHI_america_volunteers
+			}
 		}
 	}
 
@@ -431,7 +391,7 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_INDUSTRY}
 	
 		completion_reward = {
-
+			remove_ideas = CHI_corruption_in_the_administration_idea2
 		}
 	}
 	
@@ -454,11 +414,10 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY}
 	
 		completion_reward = {
-			# TODO_JNS Explain the decrease better
-			add_stability = -0.15
-            
+			remove_ideas = CHI_illicit_trade_idea
 		}
 	}
+	
 	focus = {
 		id = CHI_turn_a_blind_eye
 		icon = GFX_focus_generic_turning_a_blind_eye
@@ -470,7 +429,7 @@ focus_tree = {
 		
 		relative_position_id = CHI_decree_the_end_to_corruption
 		
-		cost = 5
+		cost = 10
 		
 		available = {
 		}
@@ -478,7 +437,10 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_INDUSTRY}
 	
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CHI_illicit_trade_idea
+				add_idea = CHI_illicit_trade_idea2
+			}
 		}
 	}
 
@@ -501,30 +463,16 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL }
 	
 		completion_reward = {
-			
-		}
-	}
-    
-	focus = {
-		id = CHI_from_many_to_one
-		icon = GFX_focus_generic_combined_arms
-		prerequisite = { focus = CHI_inspect_the_troops }
-	
-		x = 0
-		y = 1
-        
-		relative_position_id = CHI_inspect_the_troops
-        
-		cost = 10
-        
-		available = {
-		}
-	
-		search_filters = {FOCUS_FILTER_STABILITY}
-	
-		completion_reward = {
-			
-			
+			add_equipment_to_stockpile = { 
+				type = small_plane_airframe_1
+				amount = 800
+				producer = SOV
+			}
+			add_equipment_to_stockpile = { 
+				type = medium_plane_airframe_1
+				amount = 200
+				producer = SOV
+			}
 		}
 	}
 
@@ -546,7 +494,7 @@ focus_tree = {
 		search_filters = {}
 	
 		completion_reward = {
-            
+            set_technology = { masterful_blitz = 1 popup = no }
 		}
 	}
     
@@ -571,7 +519,13 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL }
 	
 		completion_reward = {
-			
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 5000 }
+			add_equipment_to_stockpile = { type = support_equipment_1 amount = 500 }
+			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 300 }
+			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 100 }
+			add_equipment_to_stockpile = { type = train_equipment_1 amount = 25 }
 		}
 	}
     
@@ -608,7 +562,7 @@ focus_tree = {
         
 		relative_position_id = CHI_send_the_first_lady_abroad
 
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -616,18 +570,15 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL }
 	
 		completion_reward = {
-			USA = {
-				country_event = {
-					id = wtt_china_shared.10
-					hours = 12
-				}
+			add_equipment_to_stockpile = { 
+				type = small_plane_airframe_1
+				amount = 800
+				producer = USA
 			}
-            
-            add_ace = {
-				name = Huang 
-				surname = Xinrui
-				callsign = "Buffalo" 
-				type = fighter_unique
+			add_equipment_to_stockpile = { 
+				type = small_plane_cas_airframe_1
+				amount = 200
+				producer = USA
 			}
 		}
 	}
@@ -666,13 +617,13 @@ focus_tree = {
 	focus = {
 		id = CHI_towards_a_professional_army
 		icon = GFX_focus_chi_army_reform
-		prerequisite = { focus = CHI_from_many_to_one }
+		prerequisite = { focus = CHI_inspect_the_troops }
 		mutually_exclusive = { focus = CHI_towards_a_popular_army }
 	
 		x = -1
 		y = 1
         
-		relative_position_id = CHI_from_many_to_one
+		relative_position_id = CHI_inspect_the_troops
         
 		cost = 10
         
@@ -693,13 +644,13 @@ focus_tree = {
 	focus = {
 		id = CHI_towards_a_popular_army
 		icon = GFX_focus_CHI_popular_army
-		prerequisite = { focus = CHI_from_many_to_one }
+		prerequisite = { focus = CHI_inspect_the_troops }
 		mutually_exclusive = { focus = CHI_towards_a_professional_army }
 	
 		x = 1
 		y = 1
         
-		relative_position_id = CHI_from_many_to_one
+		relative_position_id = CHI_inspect_the_troops
         
 		cost = 10
         
@@ -723,23 +674,24 @@ focus_tree = {
 	
 		x = -1
 		y = 1
+		
 		relative_position_id = CHI_send_the_first_lady_abroad
-		cost = 5
+		
+		cost = 10
+		
 		available = {
-			NOT = {
-				any_enemy_country = {
-					OR = {
-						controls_state = 325
-						controls_state = 671
-					}
-				}
-			}
 		}
 	
 		search_filters = {}
 
 		completion_reward = {
-			
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 5000 }
+			add_equipment_to_stockpile = { type = support_equipment_1 amount = 500 }
+			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 300 }
+			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 100 }
+			add_equipment_to_stockpile = { type = train_equipment_1 amount = 25 }
 		}
 	}
     
@@ -747,22 +699,8 @@ focus_tree = {
 		id = CHI_the_burma_road
 		icon = GFX_goal_generic_army_motorized
 		prerequisite = { focus = CHI_send_the_first_lady_abroad }
+		
 		available = {
-			NOT = {
-				any_enemy_country = {
-					OR = {
-						controls_state = 995
-						controls_state = 640
-						controls_state = 998
-						controls_state = 434
-						controls_state = 990
-						controls_state = 432
-						controls_state = 288
-						controls_state = 997
-						controls_state = 996
-					}
-				}
-			}
 		}
 	
 		x = 0
@@ -770,12 +708,18 @@ focus_tree = {
         
 		relative_position_id = CHI_send_the_first_lady_abroad
         
-		cost = 5
+		cost = 10
 	
 		search_filters = {FOCUS_FILTER_HISTORICAL}
 	
 		completion_reward = {
-			
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 5000 }
+			add_equipment_to_stockpile = { type = support_equipment_1 amount = 500 }
+			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 300 }
+			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 100 }
+			add_equipment_to_stockpile = { type = train_equipment_1 amount = 25 }
 		}
 	}
 
@@ -785,15 +729,6 @@ focus_tree = {
 		prerequisite = { focus = CHI_send_the_first_lady_abroad }
         
 		available = {
-			NOT = {
-				any_enemy_country = {
-					OR = {
-						controls_state = 601
-						controls_state = 434
-						controls_state = 747
-					}
-				}
-			}
 		}
 	
 		x = 1
@@ -801,13 +736,19 @@ focus_tree = {
         
 		relative_position_id = CHI_send_the_first_lady_abroad
         
-		cost = 5
+		cost = 10
 	
 		search_filters = {}
 
 	
 		completion_reward = {
-			
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 5000 }
+			add_equipment_to_stockpile = { type = support_equipment_1 amount = 500 }
+			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 250 }
+			add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 300 }
+			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 100 }
+			add_equipment_to_stockpile = { type = train_equipment_1 amount = 25 }
 		}
 	}
 
@@ -862,7 +803,7 @@ focus_tree = {
         
 		relative_position_id = CHI_towards_a_professional_army
         
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -955,7 +896,7 @@ focus_tree = {
         
 		relative_position_id = CHI_dang_guo
         
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -963,15 +904,7 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_HISTORICAL FOCUS_FILTER_ARMY_XP}
         
 		completion_reward = {
-			add_daily_mastery = {
-				amount = 0.5
-				days = 100
-				name =  CHI_military_affairs_commission_sea
-				track = infantry					
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
+			army_experience = 25
 		}
 	}
 
@@ -989,12 +922,16 @@ focus_tree = {
 		cost = 10
         
 		available = {
+			has_war_with = JAP
 		}
         
 		search_filters = {}
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CHI_corruption_in_the_armed_forces_idea
+				add_idea = CHI_corruption_in_the_armed_forces_idea1
+			}
 		}
 	}
     
@@ -1012,12 +949,16 @@ focus_tree = {
 		cost = 10
         
 		available = {
+			has_war_with = JAP
 		}
         
 		search_filters = {}
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CHI_corruption_in_the_armed_forces_idea
+				add_idea = CHI_corruption_in_the_armed_forces_idea2
+			}
 		}
 	}
 	
@@ -1039,7 +980,30 @@ focus_tree = {
 		search_filters = {}
 
 		completion_reward = {
-			 
+			if = {
+				limit = {
+					has_idea = CHI_corruption_in_the_armed_forces_idea1
+				}
+				swap_ideas = {
+					remove_idea = CHI_corruption_in_the_armed_forces_idea1
+					add_idea = CHI_corruption_in_the_armed_forces_idea3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = CHI_corruption_in_the_armed_forces_idea2
+				}
+				swap_ideas = {
+					remove_idea = CHI_corruption_in_the_armed_forces_idea2
+					add_idea = CHI_corruption_in_the_armed_forces_idea3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = CHI_corruption_in_the_armed_forces_idea
+					add_idea = CHI_corruption_in_the_armed_forces_idea3
+				}
+			}
 		}
 	}
 
@@ -1047,6 +1011,7 @@ focus_tree = {
 		id = CHI_reorganise_the_train
 		icon = GFX_focus_generic_supply_line
 		prerequisite = { focus = CHI_crackdown_on_corruption_in_recruitment }
+		mutually_exclusive = { focus = CHI_rely_on_locals }
 
 		x = -1
 		y = 1
@@ -1061,20 +1026,21 @@ focus_tree = {
 		search_filters = {}
 
 		completion_reward = {
-			
+			add_equipment_to_stockpile = { type = train_equipment_1 amount = 125 }
 		}
 	}
 	focus = {
 		id = CHI_rely_on_locals
 		icon = GFX_focus_ITA_grande_rivolta_rurale
 		prerequisite = { focus = CHI_crackdown_on_corruption_in_recruitment }
+		mutually_exclusive = { focus = CHI_reorganise_the_train }
 
 		x = 1
 		y = 1
         
 		relative_position_id = CHI_crackdown_on_corruption_in_recruitment
         
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -1082,7 +1048,7 @@ focus_tree = {
 		search_filters = {}
 
 		completion_reward = {
-			
+			add_ideas = CHI_rely_on_locals_idea
 		}
 	}
 
@@ -1099,38 +1065,12 @@ focus_tree = {
 		cost = 10
         
 		available = {
-			NOT = { has_completed_focus = CHI_decisive_battles}
 		}
 
 		search_filters = {FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			IF = {
-				limit = {
-					has_doctrine = defensive_postures
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 75
-					name =  CHI_protracted_warfare
-					track = infantry
-				}
-
-			}
-			ELSE_IF = {
-				limit ={
-					has_subdoctrine_in_track = infantry
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 50
-					name =  CHI_protracted_warfare
-					track = infantry
-				}
-			}
-			ELSE = {
-				set_sub_doctrine = defensive_postures
-			}
+			army_experience = 50
 		}
 	}
 
@@ -1147,39 +1087,17 @@ focus_tree = {
 		cost = 10
         
 		available = {
-			NOT = { has_completed_focus = CHI_protracted_warfare}
 		}
 
 		search_filters = {}
 
 		completion_reward = {
-			IF = {
-				limit = {
-					has_doctrine = deep_battle
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 75
-					name =  CHI_decisive_battles
-					track = operations
-				}
-
+			add_tech_bonus = {
+				name = GER_artillery_bombardment
+				bonus =  1
+				uses = 2
+				category = infantry_weapons
 			}
-			ELSE_IF = {
-				limit ={
-					has_subdoctrine_in_track = operations
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 50
-					name =  CHI_decisive_battles
-					track = operations
-				}
-			}
-			ELSE = {
-				set_sub_doctrine = deep_battle
-			}
-			
 		}
 	}
 
@@ -1193,7 +1111,7 @@ focus_tree = {
         
 		relative_position_id = CHI_decisive_battles
         
-		cost = 5
+		cost = 10
         
 		available = {
 
@@ -1202,6 +1120,13 @@ focus_tree = {
 		search_filters = {}
 
 		completion_reward = {
+			add_tech_bonus = {
+				name = GER_artillery_bombardment
+				bonus = 1
+				uses = 1
+				category = artillery
+			}
+
 			IF = {
 				limit = {
 					NOT = {
@@ -1229,7 +1154,7 @@ focus_tree = {
         
 		relative_position_id = CHI_decisive_battles
         
-		cost = 5
+		cost = 10
         
 		available = {
 
@@ -1238,51 +1163,15 @@ focus_tree = {
 		search_filters = {}
 
 		completion_reward = {
-			IF = {
-				limit = {
-					any_controlled_state = {
-						bunker > 1 
-					}
-				}
-				random_controlled_state = {
-					limit = {
-						bunker > 1 
-					}
-					damage_building = {
-						type = bunker
-						damage = 2
-					}
-				}
-				add_equipment_to_stockpile = { 
-					type = artillery_equipment
-					amount = 360
-					producer = CHI
-				}
+			add_tech_bonus = {
+				name = GER_artillery_bombardment
+				bonus =  1
+				uses = 1
+				category = artillery
 			}
-			ELSE_IF = {
-				limit = {
-					any_controlled_state = {
-						coastal_bunker > 1 
-					}
-				}
-				random_controlled_state = {
-					limit = {
-						coastal_bunker > 1 
-					}
-					damage_building = {
-						type = coastal_bunker
-						damage = 2
-					}
-				}
-				add_equipment_to_stockpile = { 
-					type = artillery_equipment
-					amount = 360
-					producer = CHI
-				}
-			}
-			ELSE = {
-				custom_effect_tooltip = CHI_repurpose_fort_artillery_tt
-			}
+			
+		
+			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 500 }
 		}
 	}
 
@@ -1338,6 +1227,10 @@ focus_tree = {
 					is_fully_controlled_by = ROOT 
 					is_coastal = yes
 				}
+				add_dynamic_modifier = {
+					modifier = CHI_bog_defensive_modifier
+					scope = CHI
+				}
 			}
 		}
 	}
@@ -1352,7 +1245,7 @@ focus_tree = {
         
 		relative_position_id = CHI_decisive_battles
         
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -1415,7 +1308,21 @@ focus_tree = {
 		search_filters = {}
 
 		completion_reward = {
-			
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					OR = {
+						state = 411
+						state = 482
+						state = 462
+						state = 680
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_bog_defensive_modifier
+					scope = CHI
+				}
+			}
 		}
 	}
 
@@ -1441,10 +1348,10 @@ focus_tree = {
 		completion_reward = {
 			IF = {
 				limit = { 
-					608 = { is_owned_and_controlled_by = ROOT } # Beijing
+					308 = { is_owned_and_controlled_by = ROOT } # Beijing
 					anti_air_building < 5
 				}
-				608 = {
+				308 = {
 					add_building_construction = {
 						type = anti_air_building
 						level = 1
@@ -1454,10 +1361,10 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					613 = { is_owned_and_controlled_by = ROOT } #  Shanghai
+					561 = { is_owned_and_controlled_by = ROOT } #  Shanghai
 					anti_air_building < 5
 				}
-				613 = {
+				561 = {
 					add_building_construction = {
 						type = anti_air_building
 						level = 1
@@ -1467,10 +1374,10 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					1035 = { is_owned_and_controlled_by = ROOT } #  Nanjing
+					462 = { is_owned_and_controlled_by = ROOT } #  Wuhan
 					anti_air_building < 5
 				}
-				1035 = {
+				462 = {
 					add_building_construction = {
 						type = anti_air_building
 						level = 1
@@ -1480,36 +1387,10 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					1036 = { is_owned_and_controlled_by = ROOT } #  Wuhan
+					677 = { is_owned_and_controlled_by = ROOT } #  Chongqing
 					anti_air_building < 5
 				}
-				1036 = {
-					add_building_construction = {
-						type = anti_air_building
-						level = 1
-						instant_build = yes
-					}
-				}
-			}
-			IF = {
-				limit = {
-					1037 = { is_owned_and_controlled_by = ROOT } #  Chongqing
-					anti_air_building < 5
-				}
-				1037 = {
-					add_building_construction = {
-						type = anti_air_building
-						level = 1
-						instant_build = yes
-					}
-				}
-			}
-			IF = {
-				limit = {
-					592 = { is_owned_and_controlled_by = ROOT } #  Guanzhou
-					anti_air_building < 5
-				}
-				592 = {
+				677 = {
 					add_building_construction = {
 						type = anti_air_building
 						level = 1
@@ -1542,16 +1423,15 @@ focus_tree = {
 		completion_reward = {
 			IF = {
 				limit = {
-					608 = { is_fully_controlled_by = ROOT }
+					272 = { is_fully_controlled_by = ROOT }
 				}
-				608 = { # Beijing
+				272 = { # Beijing
 					add_building_construction = {
 						type = bunker
 						level = 2
 						province = {
-							id = 9843
-							id = 11761
-							id = 10068
+							id = 4205
+							id = 10000
 						}
 						instant_build = yes
 					}
@@ -1559,14 +1439,14 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					743 = { is_fully_controlled_by = ROOT }
+					511 = { is_fully_controlled_by = ROOT }
 				}
-				743 = { # Qingdao
+				511 = { # Qingdao
 					add_building_construction = {
 						type = coastal_bunker
 						level = 2
 						province = {
-							id = 10000
+							id = 12067
 						}
 						instant_build = yes
 					}
@@ -1574,16 +1454,14 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					613 = { is_fully_controlled_by = ROOT }
+					561 = { is_fully_controlled_by = ROOT }
 				}
-				613 = { # Shanghai TODO_JNS Change if needed
+				561 = { # Shanghai TODO_JNS Change if needed
 					add_building_construction = {
 						type = coastal_bunker
 						level = 1
 						province = {
 							id = 7014
-							id = 12052
-							id = 12076
 						}
 						instant_build = yes
 					}
@@ -1591,14 +1469,30 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					596 = { is_fully_controlled_by = ROOT }
+					557 = { is_fully_controlled_by = ROOT }
 				}
-				596 = { # Zhejiang
+				557 = { # Zhejiang
 					add_building_construction = {
 						type = coastal_bunker
 						level = 1
 						province = {
-							id = 7191
+							id = 9974
+							id = 1055
+						}
+						instant_build = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					679 = { is_fully_controlled_by = ROOT }
+				}
+				679 = { # Fujian
+					add_building_construction = {
+						type = coastal_bunker
+						level = 1
+						province = {
+							id = 4196
 							id = 9974
 						}
 						instant_build = yes
@@ -1607,29 +1501,14 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					595 = { is_fully_controlled_by = ROOT }
+					474 = { is_fully_controlled_by = ROOT }
 				}
-				595 = { # Fujian
-					add_building_construction = {
-						type = coastal_bunker
-						level = 1
-						province = {
-							id = 4196
-						}
-						instant_build = yes
-					}
-				}
-			}
-			IF = {
-				limit = {
-					592 = { is_fully_controlled_by = ROOT }
-				}
-				592 = { # Guanzhou
+				474 = { # Guanzhou
 					add_building_construction = {
 						type = coastal_bunker
 						level = 2
 						province = {
-							id = 1047
+							id = 9938
 						}
 						instant_build = yes
 					}
@@ -1657,19 +1536,11 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_ARMY_XP}
 
 		completion_reward = {
-			IF = {
-				limit = {
-					has_dlc = "No Step Back"
-				}
-				IF = {
-					limit = {
-						has_idea = elevated_engineering_corps_spirit
-					}
-					army_experience = 35
-				}
-				ELSE = {
-					add_ideas = elevated_engineering_corps_spirit 
-				}
+			add_tech_bonus = {
+				name = GER_artillery_bombardment
+				bonus =  1
+				uses = 2
+				category = engineers_tech
 			}
 		}
 	}
@@ -1691,7 +1562,18 @@ focus_tree = {
 		search_filters = {}
 
 		completion_reward = {
-			
+			every_character = { 
+				limit = { 
+					OR = { 
+						is_corps_commander = yes 
+						is_field_marshal = yes 
+					}  
+					NOT = {
+						has_trait = ambusher
+					}
+				} 
+				add_trait = {trait = ambusher}
+			}
 		}
 	}
 
@@ -1709,7 +1591,7 @@ focus_tree = {
 		y = 0
 		relative_position_id = CHI_military_affairs_commission_sea
 
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 4
@@ -1733,12 +1615,8 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_AIR_XP }
 
-		ai_will_do = {
-			factor = 10 
-		}
-
 		completion_reward = {
-
+			air_experience = 50
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -1760,24 +1638,18 @@ focus_tree = {
 	focus = {
 		id = CHI_projecting_power
 		icon = GFX_goal_generic_air_bomber
-		mutually_exclusive = { focus = CHI_controlling_our_skies }
+		
 		x = -2
 		y = 1
+		
 		relative_position_id = CHI_rocaf
+		
 		prerequisite = { focus = CHI_rocaf }
 
 		cost = 10
 
-		ai_will_do = {
-			factor = 4
-		}
-
 		available = {
-			OR = {
-				has_doctrine = new_strategic_destruction
-				has_doctrine = new_battlefield_support
-				has_doctrine = new_operational_integrity
-			}
+
 		}
 
 		bypass = {
@@ -1792,37 +1664,14 @@ focus_tree = {
 		}
 
 		search_filters = {  }
-		ai_will_do = {
-			factor = 10 
-		}
+
 		completion_reward = {
-			IF = {
-				limit = {
-					has_doctrine = air_subdoctrine_deep_air_raids
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 75
-					name =  CHI_projecting_power
-					track = heavy_aircraft
-				}
-
+			add_tech_bonus = {
+				name = GER_tactical_bombers
+				bonus = 1
+				uses = 1
+				category = medium_air
 			}
-			ELSE_IF = {
-				limit ={
-					has_subdoctrine_in_track = heavy_aircraft
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 50
-					name =  CHI_projecting_power
-					track = heavy_aircraft
-				}
-			}
-			ELSE = {
-				set_sub_doctrine = air_subdoctrine_deep_air_raids
-			}
-
 		}
 	}
 
@@ -1860,12 +1709,11 @@ focus_tree = {
 			factor = 10 
 		}
 		completion_reward = {
-			
-			add_ace = {
-				name = Liu 
-				surname = Zhesheng
-				callsign = "Xingyun" # This is made up as nothing have been found for this.
-				type = fighter_unique
+			add_tech_bonus = {
+				name = GER_tactical_bombers
+				bonus = 1
+				uses = 1
+				category = medium_air
 			}
 		}
 	}
@@ -1873,24 +1721,18 @@ focus_tree = {
 	focus = {
 		id = CHI_controlling_our_skies
 		icon = GFX_goal_generic_defence # TODO_JNS figure out something better
-		mutually_exclusive = { focus = CHI_projecting_power }
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = CHI_rocaf
+		
 		prerequisite = { focus = CHI_rocaf }
 
 		cost = 10
 
-		ai_will_do = {
-			factor = 4
-		}
-
 		available = {
-			OR = {
-				has_doctrine = new_strategic_destruction
-				has_doctrine = new_battlefield_support
-				has_doctrine = new_operational_integrity
-			}
+
 		}
 
 		bypass = {
@@ -1910,32 +1752,12 @@ focus_tree = {
 			factor = 10 
 		}
 		completion_reward = {
-			IF = {
-				limit = {
-					has_doctrine = air_subdoctrine_fighter_homeland_defense
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 75
-					name =  CHI_controlling_our_skies
-					track = fighter_aircraft
-				}
+			add_tech_bonus = {
+				name = GER_air_innovation
+				uses = 1
+				bonus = 1
+				technology = improved_small_airframe
 			}
-			ELSE_IF = {
-				limit ={
-					has_subdoctrine_in_track = fighter_aircraft
-				}
-				add_daily_mastery = {
-					amount = 1
-					days = 50
-					name =  CHI_controlling_our_skies
-					track = fighter_aircraft
-				}
-			}
-			ELSE = {
-				set_sub_doctrine = air_subdoctrine_fighter_homeland_defense
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
 			
 		}
 	}
@@ -1974,12 +1796,11 @@ focus_tree = {
 			factor = 10 
 		}
 		completion_reward = {
-			
-			add_ace = {
-				name = Liu 
-				surname = Chuikang
-				callsign = "Pengju" # This is made up as nothing have been found for this.
-				type = fighter_unique
+			add_tech_bonus = {
+				name = GER_air_innovation
+				uses = 1
+				bonus = 1
+				technology = advanced_small_airframe
 			}
 		}
 	}
@@ -1988,17 +1809,16 @@ focus_tree = {
 		id = CHI_reorganise_the_central_armys_academy_aviation_corps
 		icon = GFX_focus_generic_military_academy # TODO_JNS figure out something better
 		prerequisite = { focus = CHI_rocaf }
+		
 		x = 2
 		y = 1
+		
 		relative_position_id = CHI_rocaf
 
 		cost = 10
 
-		ai_will_do = {
-			factor = 4
-		}
-
 		available = {
+			has_war_with = JAP
 		}
 
 		bypass = {
@@ -2014,11 +1834,12 @@ focus_tree = {
 		}
 
 		search_filters = {  }
-		ai_will_do = {
-			factor = 10 
-		}
+
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CHI_ROCAF
+				add_idea = CHI_ROCAF1
+			}
 		}
 	}
 
@@ -2026,15 +1847,13 @@ focus_tree = {
 		id = CHI_formalise_training_regime
 		icon = GFX_focus_CHI_formalise_training_regime
 		prerequisite = { focus = CHI_reorganise_the_central_armys_academy_aviation_corps }
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = CHI_reorganise_the_central_armys_academy_aviation_corps
 
 		cost = 10
-
-		ai_will_do = {
-			factor = 4
-		}
 
 		available = {
 		}
@@ -2052,11 +1871,12 @@ focus_tree = {
 		}
 
 		search_filters = {  }
-		ai_will_do = {
-			factor = 10 
-		}
+
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CHI_ROCAF1
+				add_idea = CHI_ROCAF2
+			}
 		}
 	}
 
@@ -2064,15 +1884,13 @@ focus_tree = {
 		id = CHI_conserve_our_pilots
 		icon = GFX_focus_generic_pilot_training
 		prerequisite = { focus = CHI_formalise_training_regime }
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = CHI_formalise_training_regime
 
 		cost = 10
-
-		ai_will_do = {
-			factor = 4
-		}
 
 		available = {
 		}
@@ -2090,11 +1908,9 @@ focus_tree = {
 		}
 
 		search_filters = {  }
-		ai_will_do = {
-			factor = 10 
-		}
+
 		completion_reward = {
-			
+			remove_ideas = CHI_ROCAF2
 		}
 	}
 
@@ -2115,7 +1931,7 @@ focus_tree = {
 		y = 0
 		relative_position_id = CHI_rocaf
 
-		cost = 5
+		cost = 10
 
 		available = {
 		}
@@ -2136,87 +1952,25 @@ focus_tree = {
 		prerequisite = { focus = CHI_republic_of_china_navy }
 	
 		x = -1
-		y = 2
+		y = 1
+		
 		relative_position_id = CHI_republic_of_china_navy
+		
 		cost = 10
+		
 		available = {
-			OR = {
-				controls_state = 597 # Shandong 
-				controls_state = 743 # Qingdao
-				controls_state = 598 # Jiangsu
-			}
+			
 		}
-			   	 
+
 		search_filters = { FOCUS_FILTER_INDUSTRY }
-		ai_will_do = {
-			factor = 10 
-		}
-	
+
 		completion_reward = {
-			IF = {
-				limit = {
-					743 = {
-						is_fully_controlled_by = ROOT
-						naval_base < 9
-					}
-				}
-				743 = {
-					add_building_construction = {
-						type = naval_base
-						level = 2
-						instant_build = yes
-						province = 10000
-					}
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
-				}
-			}
-			ELSE_IF = {
-				limit = {
-					597 = {
-						is_fully_controlled_by = ROOT
-						naval_base < 9
-					}
-				}
-				597 = {
-					add_building_construction = {
-						type = naval_base
-						level = 2
-						instant_build = yes
-						province = 4205
-					}
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
-				}
-			}
-			ELSE_IF = {
-				limit = {
-					598 = {
-						is_fully_controlled_by = ROOT
-						naval_base < 9
-					}
-				}
-				598 = {
-					add_building_construction = {
-						type = naval_base
-						level = 2
-						instant_build = yes
-						province = 4205
-					}
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
+			561 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
 				}
 			}
 		}
@@ -2228,106 +1982,27 @@ focus_tree = {
 		prerequisite = { focus = CHI_republic_of_china_navy }
 	
 		x = 1
-		y = 2
-		relative_position_id = CHI_republic_of_china_navy
-		cost = 10
-		available = {
-			OR = {
-				controls_state = 592 
-				controls_state = 593 
-				controls_state = 1033 
-			}
-		}
-			   	 
-		search_filters = {FOCUS_FILTER_INDUSTRY}
-		ai_will_do = {
-			factor = 10 
-		}
-	
-		completion_reward = {
-			IF = {
-				limit = {
-					592 = {
-						is_fully_controlled_by = ROOT
-						naval_base < 9
-					}
-				}
-				592 = {
-					add_building_construction = {
-						type = naval_base
-						level = 2
-						instant_build = yes
-						province = 1047
-					}
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
-				}
-			}
-			ELSE_IF = {
-				limit = {
-					593 = {
-						is_fully_controlled_by = ROOT
-						naval_base < 9
-					}
-				}
-				593 = {
-					add_building_construction = {
-						type = naval_base
-						level = 2
-						instant_build = yes
-						province = 9938
-					}
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
-				}
-			}
-			ELSE = {
-				1033 = {
-					add_building_construction = {
-						type = naval_base
-						level = 2
-						instant_build = yes
-						province = 10004
-					}
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
-				}
-			} 
-		}
-	}
-
-	focus = {
-		id = CHI_foreign_acquisition
-		icon = GFX_focus_generic_navy_research_bonus
-		prerequisite = { focus = CHI_republic_of_china_navy }
-	
-		x = 0
 		y = 1
+		
 		relative_position_id = CHI_republic_of_china_navy
-		cost = 5
+		
+		cost = 10
+		
 		available = {
+
 		}
-			   	 
-		search_filters = {}
-		ai_will_do = {
-			factor = 10 
-		}
-	
+
+		search_filters = {FOCUS_FILTER_INDUSTRY}
+
 		completion_reward = {
-			custom_effect_tooltip = ETH_purchase_obsolete_ships_tt
-			set_country_flag = generic_purchase_old_ships_flag
+			475 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -2339,7 +2014,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = CHI_develop_southern_naval_logistics
-		cost = 5
+		cost = 10
 		available = {
 		}
 			   	 
@@ -2364,7 +2039,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = CHI_develop_northern_naval_logistics
-		cost = 5
+		cost = 10
 		available = {
 		}
 			   	 
@@ -2385,7 +2060,7 @@ focus_tree = {
 		mutually_exclusive = { focus = CHI_dominate_the_enemy }
 	
 		x = -3
-		y = 4
+		y = 3
         
 		relative_position_id = CHI_republic_of_china_navy
         
@@ -2398,7 +2073,7 @@ focus_tree = {
 	
 		completion_reward = {
 			add_mastery = {
-				amount = 120
+				amount = 50
 				track = screens
 			}
 		}
@@ -2411,7 +2086,7 @@ focus_tree = {
 		mutually_exclusive = { focus = CHI_deny_the_enemy }
 	
 		x = 3
-		y = 4
+		y = 3
         
 		relative_position_id = CHI_republic_of_china_navy
         
@@ -2424,7 +2099,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_mastery = {
-				amount = 120
+				amount = 50
 				track = capital_ships
 			}
 		}
@@ -2437,38 +2112,22 @@ focus_tree = {
 	
 		x = 3
 		y = 1
+		
 		relative_position_id = CHI_deny_the_enemy
-		cost = 5
+		
+		cost = 10
+		
 		available = {
 		}
-			   	 
+
 		search_filters = {FOCUS_FILTER_MILITARY_CHARACTER}
-		ai_will_do = {
-			factor = 10 
-		}
-	
+
 		completion_reward = {
 			custom_effect_tooltip = CHI_promote_admiral_dingwen_tt
+			
 			custom_effect_tooltip = generic_skip_one_line_tt
-			IF = {
-				limit = {
-					has_completed_focus = CHI_deny_the_enemy
-				}
-				every_navy_leader = {
-					add_trait = { trait = green_water_expert } 
-				}
-			}
-			ELSE_IF = {
-				limit = {
-					has_completed_focus = CHI_dominate_the_enemy
-				}
-				every_navy_leader = {
-					add_trait = { trait = blue_water_expert }
-				}
-			}
-			ELSE = {
-				custom_effect_tooltip = CHI_promote_admiral_tt
-			}
+			
+			remove_ideas = CHI_ROCN_idea
 		}
 	}
 
@@ -2479,33 +2138,34 @@ focus_tree = {
 	
 		x = 0
 		y = 1
+		
 		relative_position_id = CHI_dominate_the_enemy
+		
 		cost = 10
+		
 		available = {
 		}
-			   	 
+
 		search_filters = { FOCUS_FILTER_RESEARCH }
-		ai_will_do = {
-			factor = 10 
-		}
+
 	
 		completion_reward = {
 			add_tech_bonus = {
 				name = CHI_heavy_ship_research
 				bonus = 1
-				uses = 1
+				uses = 2
 				category = bb_tech
 			}
 			add_tech_bonus = {
 				name = CHI_heavy_ship_research
 				bonus = 1
-				uses = 1
+				uses = 2
 				category = ca_tech
 			}
             add_tech_bonus = {
 				name = CHI_heavy_ship_research
 				bonus = 1
-				uses = 1
+				uses = 2
 				category = cv_tech
 			}
 		}
@@ -2532,7 +2192,7 @@ focus_tree = {
 
 			add_tech_bonus = {
 				name = CHI_strike_from_below
-				bonus = 0.5
+				bonus = 1
 				uses = 2
 				category = ss_tech
 			}
@@ -2570,18 +2230,19 @@ focus_tree = {
 		icon = GFX_focus_generic_navy_battleship2
 		prerequisite = { focus = CHI_heavy_ship_research }
 		mutually_exclusive = { focus = CHI_heavy_cruiser_focus }
+		
 		x = -1
 		y = 1
+		
 		relative_position_id = CHI_heavy_ship_research
+		
 		cost = 10
+		
 		available = {
-			has_tech = early_ship_hull_heavy
 		}
-			   	 
+
 		search_filters = {}
-		ai_will_do = {
-			factor = 10 
-		}
+
 	
 		completion_reward = {
             create_equipment_variant = {
@@ -2590,17 +2251,17 @@ focus_tree = {
                 name_group = CHI_BB_HISTORICAL
                 parent_version = 0
                 modules = {
-                    fixed_ship_battery_slot = ship_heavy_battery_1
-                    fixed_ship_anti_air_slot = ship_anti_air_1
-                    fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-                    fixed_ship_radar_slot = empty
-                    fixed_ship_engine_slot = heavy_ship_engine_1
-                    fixed_ship_secondaries_slot =ship_secondaries_1
-                    fixed_ship_armor_slot = ship_armor_bb_1
-                    front_1_custom_slot = ship_heavy_battery_1
-                    mid_1_custom_slot = empty
-                    mid_2_custom_slot = empty
-                    rear_1_custom_slot = empty
+                    fixed_ship_battery_slot = ship_heavy_battery_2
+					fixed_ship_anti_air_slot = ship_anti_air_2
+					fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+					fixed_ship_radar_slot = empty
+					fixed_ship_engine_slot = heavy_ship_engine_2
+					fixed_ship_secondaries_slot = ship_secondaries_2
+					fixed_ship_armor_slot = ship_armor_bb_1
+					front_1_custom_slot =   ship_heavy_battery_2
+					mid_1_custom_slot = ship_anti_air_2
+					mid_2_custom_slot = ship_airplane_launcher_1
+					rear_1_custom_slot = ship_heavy_battery_2
                 }
             }
 
@@ -2670,26 +2331,26 @@ focus_tree = {
 		completion_reward = {
             create_equipment_variant = {
                 name = "Chiang Class"
-                type = ship_hull_cruiser_coastal_defense_ship
+                type = ship_hull_cruiser_1
                 name_group = CHI_CA_HISTORICAL
                 parent_version = 0
                 modules = {
-                    front_1_custom_slot = ship_anti_air_1
-                    mid_1_custom_slot = ship_secondaries_1
-                    rear_1_custom_slot = empty
-                    fixed_ship_battery_slot = ship_medium_battery_1
-                    fixed_ship_anti_air_slot = ship_anti_air_1
-                    fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-                    fixed_ship_radar_slot = empty
-                    fixed_ship_engine_slot = cruiser_ship_engine_2
-                    fixed_ship_secondaries_slot = ship_secondaries_1
-                    fixed_ship_armor_slot = ship_armor_cruiser_1
+                    fixed_ship_battery_slot = ship_medium_battery_2
+					fixed_ship_anti_air_slot = ship_anti_air_2
+					fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+					fixed_ship_radar_slot = empty
+					fixed_ship_engine_slot = cruiser_ship_engine_2
+					fixed_ship_armor_slot = ship_armor_heavycruiser_2
+					fixed_ship_secondaries_slot = ship_secondaries_2
+					mid_1_custom_slot = ship_medium_battery_2
+					mid_2_custom_slot = ship_medium_battery_2
+					rear_1_custom_slot = ship_medium_battery_2
                 }
             }
 
             add_equipment_production = {
                 equipment = {
-                    type = ship_hull_cruiser_coastal_defense_ship
+                    type = ship_hull_cruiser_1
                     creator = "CHI"
                     version_name = "Chiang Class"	
                 }
@@ -2700,7 +2361,7 @@ focus_tree = {
 
             add_equipment_production = {
                 equipment = {
-                    type = ship_hull_cruiser_coastal_defense_ship
+                    type = ship_hull_cruiser_1
                     creator = "CHI"
                     version_name = "Chiang Class"	
                 }
@@ -2711,7 +2372,7 @@ focus_tree = {
 
             add_equipment_production = {
                 equipment = {
-                    type = ship_hull_cruiser_coastal_defense_ship
+                    type = ship_hull_cruiser_1
                     creator = "CHI"
                     version_name = "Chiang Class"	
                 }
@@ -2722,7 +2383,7 @@ focus_tree = {
 
             add_equipment_production = {
                 equipment = {
-                    type = ship_hull_cruiser_coastal_defense_ship
+                    type = ship_hull_cruiser_1
                     creator = "CHI"
                     version_name = "Chiang Class"	
                 }
@@ -2749,7 +2410,7 @@ focus_tree = {
         
 		relative_position_id = CHI_dang_guo
         
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -2823,7 +2484,7 @@ focus_tree = {
 		x = 5
 		y = 1
 		relative_position_id = CHI_promote_the_national_currency
-		cost = 5
+		cost = 10
 		available = {
 		}
 	
@@ -2850,43 +2511,28 @@ focus_tree = {
 	
 		x = 8
 		y = 1
+		
 		relative_position_id = CHI_promote_the_national_currency
+		
 		cost = 10
+		
 		available = {
-			has_war = yes
+			has_war_with = JAP
 		}
 	
 		search_filters = {FOCUS_FILTER_HISTORICAL FOCUS_FILTER_INDUSTRY}
-		ai_will_do = {
-			factor = 10 
-		}
-	
+
 		completion_reward = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					is_coastal = no #Because Japan is coming
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
 					level = 1
 					instant_build = yes
 				}
-			}
-
-			add_ai_strategy = { #All you need is guns - Guns is all you need
-				type = building_target
-				id = arms_factory
-				value = 50
 			}
 		}
 	}
@@ -2954,7 +2600,16 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_INDUSTRY }
 	
 		completion_reward = {
-			
+			add_stability = -0.1
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -2975,16 +2630,8 @@ focus_tree = {
 		}
 	
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -3001,28 +2648,20 @@ focus_tree = {
 	
 		x = 0
 		y = 1
+		
 		relative_position_id = CHI_initiate_the_gung_ho_movement
+		
 		cost = 10
+		
 		available = {
 		}
 
 		search_filters = {FOCUS_FILTER_HISTORICAL FOCUS_FILTER_INDUSTRY}
-		ai_will_do = {
-			factor = 10 
-		}
+
 	
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					is_coastal = no #Because Japan is coming
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 3
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -3030,9 +2669,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-
 		}
-
 	}
 
 	focus = {
@@ -3122,6 +2759,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_research_slot = 1
+			remove_ideas = CHI_neglected_countryside_idea
 		}
 	}
 
@@ -3132,18 +2770,26 @@ focus_tree = {
 	
 		x = -1
 		y = 1
+		
 		relative_position_id = CHI_finance_cooperatives
-		cost = 5
+		
+		cost = 10
+		
 		available = {
 		}
 	
 		search_filters = {FOCUS_FILTER_INDUSTRY}
-		ai_will_do = {
-			factor = 10 
-		}
 	
 		completion_reward = {
-			
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -3154,7 +2800,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = CHI_finance_cooperatives
-		cost = 5
+		cost = 10
 		available = {
 		}
 	
@@ -3164,7 +2810,15 @@ focus_tree = {
 		}
 	
 		completion_reward = {
-			
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -3178,7 +2832,7 @@ focus_tree = {
         
 		relative_position_id = CHI_find_foreign_financiers
         
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -3198,19 +2852,12 @@ focus_tree = {
 	
 		x = 0
 		y = 1
+		
 		relative_position_id = CHI_find_foreign_financiers
+		
 		cost = 10
+		
 		available = {
-			any_other_country = {
-				is_major = yes
-				has_opinion = {
-					target = ROOT 
-					value > 19
-				}
-				NOT = {
-					has_war_with = ROOT
-				}
-			}
 		}
 	
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY}
@@ -3221,8 +2868,8 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = CHI_invite_foreign_experts
-				bonus = 0.5
-				uses = 3
+				bonus = 1
+				uses = 2
 				category = industry
 			}
 		}
@@ -3239,7 +2886,7 @@ focus_tree = {
         
 		relative_position_id = CHI_redistribute_land
         
-		cost = 5
+		cost = 10
         
 		available = {
 		}
@@ -3247,17 +2894,9 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_INDUSTRY}
 
 		completion_reward = {
-			random_core_state = {
-				limit = {
-					is_controlled_by = ROOT
-				}
-				prioritize = { 750 } 
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
+			swap_ideas = {
+				remove_idea = CHI_inefficient_economy_idea
+				add_idea = CHI_inefficient_economy_idea1
 			}
 		}
 	}
@@ -3281,18 +2920,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 	
 		completion_reward = {
-			random_core_state = {
-				limit = {
-					is_controlled_by = ROOT
-				}
-				prioritize = { 750 } 
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
+			remove_ideas = CHI_inefficient_economy_idea
 		}
 	}
 
@@ -3314,16 +2942,8 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_INDUSTRY}
 	
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -3331,16 +2951,8 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 1
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -3370,7 +2982,15 @@ focus_tree = {
 		}
 	
 		completion_reward = {
-			
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -3393,26 +3013,16 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_INDUSTRY}
 	
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				# prioritize = { 605 602 620 } # TODO_JNS fix 
-				random_select_amount = 2
-				add_extra_state_shared_building_slots = 1
+			random_core_state = {
+				prioritize = { 677 678 325 680 462 }
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
 		}
-
 	}
 
 	focus = {
@@ -3435,14 +3045,11 @@ focus_tree = {
 
 		completion_reward = {
             random_core_state = {
-				limit = {
-					is_controlled_by = ROOT
-				}
-				prioritize = { 750 } 
-				add_extra_state_shared_building_slots = 1
+				prioritize = { 677 678 325 680 462 }
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -3459,10 +3066,7 @@ focus_tree = {
 		relative_position_id = CHI_found_a_modern_fertiliser_plant
 		cost = 10
 		available = {
-			controls_state = 607
-			607 = {
-				dam < 1
-			}
+			
 		}
 	
 		search_filters = {}
@@ -3471,7 +3075,7 @@ focus_tree = {
 		}
 	
 		completion_reward = {
-			607 = {
+			462 = {
 				add_building_construction = {
 					type = dam
 					level = 1
