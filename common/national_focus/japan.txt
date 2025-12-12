@@ -348,9 +348,6 @@ focus_tree = {
 			}
 
 			#custom_effect_tooltip = generic_skip_one_line_tt
-
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = JAP_mitsumasa_yonai
 			
 		}
 	}
@@ -638,13 +635,6 @@ focus_tree = {
 			add_to_variable = { JAP_industry_production_speed_industrial_complex_factor = 0.1 tooltip = production_speed_industrial_complex_factor_tt }
 			add_to_variable = { JAP_industry_production_speed_arms_factory_factor = 0.1 tooltip = production_speed_arms_factory_factor_tt }
 				
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = JAP_naoki_hoshino
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = JAP_gotaro_ogawa
-			
 		}
 	}
 
@@ -2080,6 +2070,57 @@ focus_tree = {
 			add_ideas = JAP_nanshin_ron_doctrine_I
 		}
 	}
+	
+	focus = {
+		id = JAP_intervene_in_china
+		icon = GFX_focus_jap_cast_the_die
+		
+		x = 1
+		y = 1
+        
+		relative_position_id = JAP_nanshin_ron
+
+		prerequisite = { focus = JAP_nanshin_ron }
+
+		cost = 0.2
+		
+		available = { 
+			date > 1938.1.1 
+		}
+		
+		completion_reward = {
+			
+			if = { 
+				limit = { 
+					has_game_rule = { 
+						rule = horst_china_war 
+						option = horst_china_war_on
+					} 
+				}
+				add_named_threat = { threat = 30 name = JAP_intervene_in_china }
+				
+				USA = { add_war_support = 0.15 } 
+				
+				declare_war_on = { target = CHI type = annex_everything }
+				
+			}
+			else = {
+				army_experience = 300
+				air_experience = 300
+				
+				add_war_support = 0.05
+			
+				add_named_threat = { threat = 30 name = JAP_intervene_in_china }
+				
+				HMP_script_china = yes
+				
+			}
+			
+			hidden_effect = { 
+				news_event = { days = 5 id = news.1 }
+			}
+		}
+	}
     
     focus = {
 		id = JAP_develop_the_chinese_resources
@@ -2089,9 +2130,9 @@ focus_tree = {
 		x = 1
 		y = 1
         
-		relative_position_id = JAP_nanshin_ron
+		relative_position_id = JAP_intervene_in_china
 
-		prerequisite = { focus = JAP_nanshin_ron }
+		prerequisite = { focus = JAP_intervene_in_china }
 
 		cost = 5
 
@@ -2196,42 +2237,56 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			if = { 
-				limit = { SIA = { is_ai = no } }
-				289 = {
-					add_extra_state_shared_building_slots = 4
-					add_building_construction = {
-						type = industrial_complex 
-						level = 2
-						instant_build = yes
-					}
-					add_building_construction = {
-						type = arms_factory 
-						level = 2
-						instant_build = yes
-					}			
-				}
-			}
-			else_if = { 
-				limit = { SIA = { is_ai = yes } }
-				every_state = {
-					limit = {
-						is_core_of = SIA
-						is_fully_controlled_by = SIA
-					}
-					remove_building = {
-						type = industrial_complex
-						level = 10
-					}
-					remove_building = {
-						type = arms_factory
-						level = 10
-					}
-				}
-				annex_country = { target = SIA transfer_troops = yes }
-				add_offsite_building = { type = industrial_complex level = 6 }
-				add_offsite_building = { type = arms_factory level = 3 }
-			}
+			# if = { 
+				# limit = { SIA = { is_ai = no } }
+				# 289 = {
+					# add_extra_state_shared_building_slots = 4
+					# add_building_construction = {
+						# type = industrial_complex 
+						# level = 2
+						# instant_build = yes
+					# }
+					# add_building_construction = {
+						# type = arms_factory 
+						# level = 2
+						# instant_build = yes
+					# }			
+				# }
+			# }
+			# else_if = { 
+				# limit = { SIA = { is_ai = yes } }
+				# every_state = {
+					# limit = {
+						# is_core_of = SIA
+						# is_fully_controlled_by = SIA
+					# }
+					# remove_building = {
+						# type = industrial_complex
+						# level = 10
+					# }
+					# remove_building = {
+						# type = arms_factory
+						# level = 10
+					# }
+				# }
+				# annex_country = { target = SIA transfer_troops = yes }
+				# add_offsite_building = { type = industrial_complex level = 6 }
+				# add_offsite_building = { type = arms_factory level = 3 }
+			# }
+            
+            289 = {
+                add_extra_state_shared_building_slots = 4
+                add_building_construction = {
+                    type = industrial_complex 
+                    level = 2
+                    instant_build = yes
+                }
+                add_building_construction = {
+                    type = arms_factory 
+                    level = 2
+                    instant_build = yes
+                }			
+            }
 		}
 	}
 
@@ -3164,7 +3219,7 @@ focus_tree = {
 	focus = {
 		id = JAP_approach_mitsui
 		icon = GFX_focus_JAP_approach_mitsui
-		overlay = GFX_focus_fast_overlay_generic_clock
+		#overlay = GFX_focus_fast_overlay_generic_clock
 		
 		enable_automatic_bypass = no
 
@@ -3241,7 +3296,7 @@ focus_tree = {
 	focus = {
 		id = JAP_approach_mitsubishi
 		icon = GFX_focus_JAP_approach_mitsubishi
-		overlay = GFX_focus_fast_overlay_generic_clock
+		#overlay = GFX_focus_fast_overlay_generic_clock
 		
 		enable_automatic_bypass = no
 
@@ -3323,7 +3378,7 @@ focus_tree = {
 	focus = {
 		id = JAP_approach_sumitomo
 		icon = GFX_focus_JAP_approach_sumitomo
-		overlay = GFX_focus_fast_overlay_generic_clock
+		#overlay = GFX_focus_fast_overlay_generic_clock
 		
 		enable_automatic_bypass = no
 
@@ -3404,7 +3459,7 @@ focus_tree = {
 	focus = {
 		id = JAP_approach_yasuda
 		icon = GFX_focus_JAP_approach_yasuda
-		overlay = GFX_focus_fast_overlay_generic_clock
+		#overlay = GFX_focus_fast_overlay_generic_clock
 		
 		enable_automatic_bypass = no
 
