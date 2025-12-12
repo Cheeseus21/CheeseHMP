@@ -783,8 +783,8 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = JAP_koichi_kido
+			#custom_effect_tooltip = available_political_advisor
+			#show_ideas_tooltip = JAP_koichi_kido
 		}
 	}
 
@@ -1390,10 +1390,8 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = JAP_yamauchi_sachiko
-				
-			
+			#custom_effect_tooltip = available_political_advisor
+			#show_ideas_tooltip = JAP_yamauchi_sachiko
 		}
 	}
 
@@ -2509,58 +2507,8 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_ARMY_XP FOCUS_FILTER_AIR_XP FOCUS_FILTER_MANPOWER }
 
 		completion_reward = {
-
-			hidden_effect = {
-
-				delete_unit_template_and_units = {
-					division_template = "Asano Brigade"
-					disband = yes #if yes, will refund equipment/manpower.
-				}
-
-				division_template = {
-					name = "Asano Brigade"
-					division_names_group = SOV_CAV_01
-					role = garrison
-					template_counter = 110
-					is_locked = no
-					regiments = {
-						cavalry = { x = 0 y = 0 }
-						cavalry = { x = 0 y = 1 }
-						cavalry = { x = 0 y = 2 }
-						cavalry = { x = 1 y = 0 }
-						cavalry = { x = 1 y = 1 }
-					}
-					support = {
-						recon = { x = 0 y = 0 }
-					}
-				}
-
-			}
-
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-					is_fully_controlled_by = ROOT
-				}
-				create_unit = {
-				    division = "name = \"Asano Brigade\" division_template = \"Asano Brigade\" start_experience_factor = 0.3 start_equipment_factor = 0.9"
-				    owner = ROOT
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			army_experience = 10
-			air_experience = 5
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			add_doctrine_cost_reduction = {
-				name = JAP_strike_north_doctrine
-				cost_reduction = 0.25
-				uses = 1
-				category = land_doctrine	
-			}
+			army_experience = 25
+			air_experience = 25
 
 			hidden_effect = {
 				set_country_flag = JAP_hokushin_ron_started_flag # Used to temporarily block the Nanshin-ron focuses
@@ -2665,12 +2613,11 @@ focus_tree = {
 		prerequisite = { focus = JAP_kantokuen }
 
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
+		
 		available = {
+			has_government = fascism
+			surrender_progress < 0.05 
+			SOV = {has_war_with = GER }
 			3 = {
 				state_is_fully_controlled_by_ROOT_or_subject = yes
 			}
@@ -2842,6 +2789,8 @@ focus_tree = {
 
 		available = {
 			has_government = fascism
+			surrender_progress < 0.05 
+			SOV = {has_war_with = GER }
 			OR = {
 				JAP = { 
 					has_full_control_of_state = 335
@@ -2874,8 +2823,6 @@ focus_tree = {
 					has_full_control_of_state = 439 
 				}
 			}
-			surrender_progress < 0.05 
-			SOV=  {has_war_with = GER }
 		}
 
 		will_lead_to_war_with = SOV
@@ -4261,19 +4208,13 @@ focus_tree = {
 		prerequisite = { focus = JAP_eastern_road_and_steel_expansion focus = JAP_establish_manchuria_airplane_manufacturing_company }
 
 		relative_position_id = JAP_eastern_road_and_steel_expansion
+		
 		x = 2
 		y = 1
 
 		cost = 5
 
-		ai_will_do = {
-			factor = 3
-		}
-
 		available = {
-			716 = {
-				state_is_fully_controlled_by_ROOT_or_subject = yes
-			}
 		}
 
 		bypass = {

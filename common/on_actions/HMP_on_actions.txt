@@ -204,6 +204,18 @@ on_actions = {
 	on_state_control_changed = {
 		effect = {
 			if = {
+				limit = {
+					FROM.FROM = { is_core_of = CHI }
+					ROOT = { NOT = { tag = CHI } }
+				}
+				FROM.FROM = {
+					set_building_level = { type = industrial_complex level = 3 } 
+					set_building_level = { type = arms_factory level = 3 }
+				}
+			}
+		}
+		effect = {
+			if = {
 				limit = { 
 					FROM.FROM = { is_libyan_state = yes }
 					FROM = { OR ={ is_in_faction_with = GER tag = GER } }

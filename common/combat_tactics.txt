@@ -804,10 +804,16 @@ tactic_barrage = { #Superior firepower attacker tactic
 tactic_masterful_blitz = { #Improved version of Blitz for Soviets
 	
 	is_attacker = yes
+	
 	trigger = {
 		is_attacker = yes
 		hardness > 0.5
 		phase = no
+		OR = {
+			has_trait = panzer_leader
+			skill_advantage > 1
+		}
+		OWNER = { NOT = { has_tech = masterful_blitz } } #Soviet improved version of blitz will replace this
 	}
 	
 	active = no
@@ -823,19 +829,18 @@ tactic_masterful_blitz = { #Improved version of Blitz for Soviets
 		}
 	}
 	
-	picture = SOV_tank_desant_blitz
+	picture = blitz
 	countered_by = tactic_elastic_defense
 	
 	attacker_movement_speed = 0.5
-	attacker = 0.2
-	defender = -0.2
+	attacker = 0.1
+	defender = -0.1
 }
 
 tactic_grand_banzai_charge = { #Special Japan attacker tactic
 	only_show_for = JAP
 
 	is_attacker = yes
-
 	trigger = {
 		tag = JAP
 		is_attacker = yes
@@ -849,7 +854,7 @@ tactic_grand_banzai_charge = { #Special Japan attacker tactic
 	base =  { factor = 4 }
 	picture = tactic_banzai_charge
 	
-	attacker_movement_speed = 0.1
+	attacker_movement_speed = 0.15
 	attacker = 0.3 
-	defender = 0.1
+	defender = 0.15
 }
