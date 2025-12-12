@@ -1,4 +1,161 @@
-﻿
+﻿add_namespace = SEA_japan
+add_namespace = SEA_japan_popup_events
+
+# The February 26 Incident - event for Japan, base version of the Kodoha event
+country_event = {
+	id = SEA_japan.1
+	title = SEA_japan.1.t
+	desc = SEA_japan.1.desc
+	picture = GFX_report_event_JAP_kodoha_coup_attempt_preparation 
+	
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	
+	# We want to go for the historical option :/
+	option = { 
+		name = SEA_japan.1.a
+
+		custom_effect_tooltip = JAP_kodoha_coup_will_fail_historically_tt
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = JAP_korekiyo_protected_flag
+				}
+			}
+			retire_character = JAP_takahashi_korekiyo
+			set_country_flag = JAP_takahashi_korekiyo_was_killed
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = JAP_watanabe_protected_flag
+				}
+			}
+			retire_character = JAP_jotaro_watanabe
+			set_country_flag = JAP_jotaro_watanabe_was_killed
+		}
+		IF = {
+			limit = {
+				has_dlc = "No Compromise, No Surrender"
+				OR = {
+					has_country_flag = JAP_watanabe_protected_flag
+					has_country_flag = JAP_korekiyo_protected_flag
+				}
+			}
+			# Due to one of the other assassinations failing, they will go harder for Saionji Kinmochi instead, killing him. 
+			retire_character = JAP_saionji_kinmochi
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		complete_national_focus = JAP_sea_purge_the_kodoha_faction
+
+		hidden_effect = {
+			set_country_flag = JAP_aizawas_trial_over_flag
+		}
+
+	}
+}
+
+# The Kyūjō Incident - event for JAP 
+country_event = {
+	id = SEA_japan_popup_events.43
+	title = SEA_japan_popup_events.43.t
+	desc = SEA_japan_popup_events.43.desc
+	picture = GFX_report_event_JAP_kodoha_coup_attempt_occupation
+	
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	# How dare they oppose the Emperors wish? 
+	option = {
+		name = SEA_japan_popup_events.43.a
+		ai_chance = { 
+			base = 100 
+		}
+
+		add_country_leader_role = {
+			character = JAP_naruhiko_higashikuni
+			promote_leader = yes
+			country_leader = {
+				ideology = emperor_fascism
+				expire = "1952.1.1.1"
+				traits = { JAP_noble_prime_minister }
+			}
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		IF = {
+			limit = {
+				has_idea = korechika_anami
+			}
+			remove_ideas = korechika_anami
+		}
+		retire_character = JAP_korechika_anami
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		swap_ideas = {
+			remove_idea = JAP_crumbling_military_cabinet_idea_2
+			add_idea = JAP_crumbling_military_cabinet_idea_3
+		}	
+
+		custom_effect_tooltip = JAP_unlock_surrender_broadcast_tt
+		
+		set_country_flag = JAP_kyujo_incident_rebels_lost_flag 
+
+		hidden_effect = {
+			JAP_tetsu_katayama = {
+				promote_character = {
+				    ideology = liberalism
+				}
+			}
+		}
+
+	}
+
+	# The dark clouds must disappear from the reign of the Emperor!
+	option = {
+		name = SEA_japan_popup_events.43.b
+		ai_chance = { 
+			base = 0 
+		}
+
+		add_country_leader_role = {
+			character = JAP_yasuhiko_asaka
+			promote_leader = yes
+			country_leader = {
+				ideology = emperor_fascism
+				expire = "1952.1.1.1"
+				traits = { JAP_noble_prime_minister }
+			}
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		swap_ideas = {
+			remove_idea = JAP_crumbling_military_cabinet_idea_2
+			add_idea = JAP_crumbling_military_cabinet_idea_4
+		}	
+
+		custom_effect_tooltip = JAP_unlock_japans_longest_day_tt
+		
+		set_country_flag = JAP_kyujo_incident_rebels_won_flag 
+
+		hidden_effect = {
+			JAP_tetsu_katayama = {
+				promote_character = {
+				    ideology = liberalism
+				}
+			}
+		}
+
+	}
+
+}
 
 add_namespace = WW_hungary
 add_namespace = wuw_HUN_news_events

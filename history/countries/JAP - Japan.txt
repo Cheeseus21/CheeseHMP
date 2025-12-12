@@ -19,17 +19,28 @@ set_variable = {
 
 anti_cross_faction_trade_japan = yes
 
+create_faction_from_template = faction_template_new_order_in_east_asia_faction
+
+
 set_major = yes
 add_timed_idea = { idea = NO_TRADE days = 1339 }
 add_ideas = {
-	state_shintoism
-	limited_exports
-	limited_conscription
-	partial_economic_mobilisation
-	JAP_interservice_rivalry_balanced		
-	JAP_zaibatsus
+	# state_shintoism
+	# limited_exports
+	# limited_conscription
+	# partial_economic_mobilisation
+	# JAP_interservice_rivalry_balanced		
+	# JAP_zaibatsus
+	# JAP_militarism
+	# MAN_south_manchuria_railway_company
+    # National Spirits
+    
+	#JAP_zaibatsus
 	JAP_militarism
-	MAN_south_manchuria_railway_company
+
+	#Hidden Ideas
+	JAP_separate_air_services
+	JAP_japanese_armor_doctrine
 }
 create_operative_leader = {
 		name = "Yoshiko Kawashima"
@@ -48,77 +59,23 @@ create_operative_leader = {
 		bypass_recruitment = no
 		available_to_spy_master = yes
 		nationalities = { JAP }
-	}
-	recruit_character = JAP_Okada_Keisuke
-	recruit_character = JAP_fumimaro_konoe
-recruit_character = JAP_hirohito
-recruit_character = JAP_tetsu_katayama
-recruit_character = JAP_masatake_okada
-recruit_character = JAP_kageaki_osumi
-recruit_character = JAP_isoroku_yamamoto
-recruit_character = JAP_mineichi_koga
-recruit_character = JAP_soemu_toyoda
-recruit_character = JAP_tadashige_daigo
+	}    
+
 recruit_character = JAP_zhang_haipeng
-recruit_character = JAP_shigeru_honjo
-recruit_character = JAP_masatane_kanda
-recruit_character = JAP_kanji_ishiwara
-recruit_character = JAP_kenkichi_ueda
-recruit_character = JAP_harukichi_hyakutake
-recruit_character = JAP_tomoyuki_yamashita
 recruit_character = JAP_hisaichi_terauchii
-recruit_character = JAP_seishiro_itagaki
-recruit_character = JAP_shunroku_hata
-recruit_character = JAP_shizuichi_tanaka
-recruit_character = JAP_kenji_doihara
-recruit_character = JAP_keisuke_fujie
-recruit_character = JAP_masaharu_homma
-recruit_character = JAP_otozo_yamada
-recruit_character = JAP_hitoshi_imamura
-recruit_character = JAP_takashi_sakai
-recruit_character = JAP_jo_iimura
-recruit_character = JAP_rikichi_ando
-recruit_character = JAP_naruhiko_higashikuni
-recruit_character = JAP_yasuji_okamura
-recruit_character = JAP_hatazo_adachi
-recruit_character = JAP_sadao_araki
-recruit_character = JAP_kiichiro_higuchi
-recruit_character = JAP_toshizo_nishio
-recruit_character = JAP_yoshijiro_umezu
-recruit_character = JAP_iwane_matsui
-recruit_character = JAP_kuniaki_koiso
-recruit_character = JAP_akira_muto
 recruit_character = JAP_zhang_jinghui
 recruit_character = JAP_aisin_gioro_xiqia
 recruit_character = JAP_yoshiko_kawashima
 recruit_character = JAP_jap_chief_entrenchment
-recruit_character = JAP_fushimi_hiroyasu
 recruit_character = JAP_jap_air_tacticalbombing
-recruit_character = JAP_mitsuo_fuchida
-recruit_character = JAP_korechika_anami
-recruit_character = JAP_osami_nagano
-recruit_character = JAP_torashiro_kawabe
-recruit_character = JAP_shigetaro_shimada
-recruit_character = JAP_yoshio_nishina
 recruit_character = JAP_gentlemen_jap
-recruit_character = JAP_kanin_kotohito
 recruit_character = JAP_jap_army_regrouping
-recruit_character = JAP_nishizo_tsukahara
-recruit_character = JAP_chuichi_nagumo
 recruit_character = JAP_jap_chief_manuever
-recruit_character = JAP_mitsumasa_yonai
 recruit_character = JAP_crusader_jap
-recruit_character = JAP_kingoro_hashimoto
-recruit_character = JAP_hiroshi_oshima
 recruit_character = JAP_jap_chief_planning
-recruit_character = JAP_takuo_godo
-recruit_character = JAP_hideo_itokawa
-recruit_character = JAP_hideki_tojo
-recruit_character = JAP_matome_ugaki
 recruit_character = JAP_intelligence_advisor
 recruit_character = JAP_jap_army_logistics
 recruit_character = JAP_stabber_jap
-recruit_character = JAP_hajime_sugiyama
 recruit_character = JAP_smooth_jap
 recruit_character = JAP_jap_army_commando
 recruit_character = JAP_mikawa
@@ -126,19 +83,382 @@ recruit_character = JAP_kakuta
 recruit_character = JAP_tanaka
 recruit_character = JAP_kurita
 recruit_character = JAP_yamaguchi
-recruit_character = JAP_gengo_hyakutake
-recruit_character = JAP_hiroaki_abe
-recruit_character = JAP_zengo_yoshida
-recruit_character = JAP_jisaburo_ozawa
-recruit_character = JAP_takeo_takagi
-recruit_character = JAP_nobutake_kondo
-recruit_character = JAP_shigeyoshi_inoue
+
+# Setup Politics 
+set_politics = {
+	ruling_party = neutrality
+	last_election = "1936.1.1"
+	election_frequency = 48
+	elections_allowed = yes
+}
+set_popularities = {
+	fascism = 35
+	neutrality = 40
+	democratic = 23
+	communism = 2
+}
+
+## STATE SHINTOISM
+add_dynamic_modifier = {
+	modifier = JAP_state_shinotism_dm
+}
+set_variable = { JAP_state_shinotism_surrender_limit = 0.1 } 
+set_variable = { JAP_state_shinotism_war_support_factor = 0.2 }
+set_variable = { JAP_state_shinotism_stability_factor = 0 }
+set_variable = { JAP_state_shinotism_pocket_penalty = 0 }
+set_variable = { JAP_state_shinotism_justify_war_goal_time = 0 }
+set_variable = { JAP_state_shinotism_research_speed_factor = 0 }
+
+# THE IMPERIAL ARMY
+add_dynamic_modifier = {
+	modifier = JAP_imperial_army_dm
+}
+set_variable = { JAP_army_army_infantry_attack_factor = 0 }
+set_variable = { JAP_army_army_morale_factor = 0 }
+set_variable = { JAP_army_army_attack_factor = 0 }
+set_variable = { JAP_army_army_defence_factor = 0 }
+set_variable = { JAP_army_initiative_factor = 0 }
+set_variable = { JAP_army_army_army_artillery_attack_factor = 0 }
+set_variable = { JAP_army_supply_consumption_factor = 0 }
+set_variable = { JAP_army_acclimatization_cold_climate_gain_factor = 0 }
+set_variable = { JAP_army_acclimatization_hot_climate_gain_factor = 0 }
+set_variable = { JAP_army_army_core_attack_factor = 0 }
+set_variable = { JAP_army_army_core_defence_factor = 0 }
+set_variable = { JAP_army_planning_speed = 0 }
+set_variable = { JAP_army_army_armor_attack_factor = 0 }
+set_variable = { JAP_army_army_armor_speed_factor = 0 }
+set_variable = { JAP_army_motorized_attack_factor = 0 }
+set_variable = { JAP_army_mechanized_attack_factor = 0 }
+set_variable = { JAP_army_org_loss_when_moving = 0 }
+set_variable = { JAP_army_army_org_factor = 0 }
+set_variable = { JAP_army_attrition = 0 }
+set_variable = { JAP_army_air_superiority_bonus_in_combat = 0 }
+set_variable = { JAP_army_coordination_bonus = 0 }
+set_variable = { JAP_army_conscription = 0 }
+set_variable = { JAP_army_training_time_factor = 0 }
+set_variable = { JAP_army_experience_loss_factor = 0 }
+set_variable = { JAP_army_max_planning_factor = 0 }
+set_variable = { JAP_army_conscription_factor = 0 }
+set_variable = { JAP_army_max_dig_in = 0 }
+set_variable = { JAP_army_dig_in_speed_factor = 0 }
+
+# THE IMPERIAL NAVY
+add_dynamic_modifier = {
+	modifier = JAP_imperial_navy_dm
+}
+set_variable = { JAP_navy_naval_torpedo_hit_chance_factor = 0 }
+#set_variable = { JAP_navy_naval_torpedo_screen_penetration_factor = 0.1 }
+set_variable = { JAP_navy_ships_at_battle_start = 0 }
+set_variable = { JAP_navy_navy_max_range_factor = 0 }
+set_variable = { JAP_navy_spotting_chance = 0 }
+set_variable = { JAP_navy_naval_detection = 0 }
+set_variable = { JAP_navy_naval_accidents_chance = 0 }
+set_variable = { JAP_navy_convoy_escort_efficiency = 0 }
+set_variable = { JAP_navy_naval_coordination = 0 }
+set_variable = { JAP_navy_naval_invasion_prep_speed = 0 }
+set_variable = { JAP_navy_amphibious_invasion = 0 }
+set_variable = { JAP_navy_naval_heavy_gun_hit_chance_factor = 0 }
+set_variable = { JAP_navy_navy_anti_air_attack_factor = 0 }
+set_variable = { JAP_navy_naval_mine_hit_chance = 0 }
+set_variable = { JAP_navy_naval_mines_damage_factor = 0 }
+set_variable = { JAP_navy_navy_org_factor = 0 }
+set_variable = { JAP_navy_experience_gain_navy_unit_factor = 0 }
+set_variable = { JAP_navy_repair_speed_factor = 0 }
+set_variable = { JAP_navy_refit_speed = 0 }
+set_variable = { JAP_navy_naval_ship_recovery_chance = 0}
+
+# THE IMPERIAL AIRFORCE SERVICES
+add_dynamic_modifier = {
+	modifier = JAP_army_and_naval_air_services_dm
+}
+set_variable = { JAP_airforce_air_nav_efficiency = 0 }
+set_variable = { JAP_airforce_air_wing_xp_loss_when_killed_factor = 0 }
+set_variable = { JAP_airforce_air_untrained_pilots_penalty_factor = 0 }
+set_variable = { JAP_airforce_air_cas_efficiency = 0 }
+set_variable = { JAP_airforce_sortie_efficiency = 0 }
+set_variable = { JAP_airforce_air_escort_efficiency = 0 }
+set_variable = { JAP_airforce_air_range_factor = 0 }
+set_variable = { JAP_airforce_air_defence_factor = 0 }
+set_variable = { JAP_airforce_mines_planting_by_air_factor = 0 }
+set_variable = { JAP_airforce_port_strike = 0 }
+set_variable = { JAP_airforce_air_mission_efficiency = 0 }
+set_variable = { JAP_airforce_air_accidents_factor = 0 }
+#set_variable = { JAP_airforce_navy_carrier_air_attack_factor = 0 }
+#set_variable = { JAP_airforce_navy_carrier_air_targetting_factor = 0 }
+
+# THE JAPANESE INDUSTRY
+add_dynamic_modifier = {
+	modifier = JAP_early_industrialization_efforts_dm
+}
+set_variable = { JAP_industry_industry_air_damage_factor = 0.25 } 
+set_variable = { JAP_industry_lack_of_resource_penalty_factor = 0.1 }
+set_variable = { JAP_industry_research_speed_factor = -0.03 }
+set_variable = { JAP_industry_consumer_goods_factor = 0.3 }
+set_variable = { JAP_industry_production_speed_industrial_complex_factor = 0 } 
+set_variable = { JAP_industry_production_speed_arms_factory_factor = 0 } 
+set_variable = { JAP_industry_production_speed_dockyard_factor = 0 }
+set_variable = { JAP_industry_production_speed_buildings_factor = 0 }
+set_variable = { JAP_industry_factory_energy_consumption = 0 }
+set_variable = { JAP_industry_industrial_capacity_dockyard = 0 }
+set_variable = { JAP_industry_industrial_capacity_factory = 0 }
+set_variable = { JAP_industry_local_resources_factor = 0 }
+set_variable = { JAP_industry_convoy_retreat_speed = 0 }
+set_variable = { JAP_industry_production_factory_max_efficiency_factor = 0 }
+set_variable = { JAP_industry_production_factory_efficiency_gain_factor = 0 }
+set_variable = { JAP_industry_special_project_speed_factor = 0 }
+set_variable = { JAP_industry_line_change_production_efficiency_factor = 0 }
+
+#ADVANCED WEAPON PROJECTS
+set_variable = { JAP_advanced_weapons_production_speed_land_facility_factor = 0 }
+set_variable = { JAP_advanced_weapons_production_speed_air_facility_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_tag_jet_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_tag_rocket_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_tag_tank_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_tag_artillery_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_tag_surface_ship_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_commercial_nuclear_reactor_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_nuclear_warheads_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_nuclear_bomb_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_production_speed_nuclear_reactor_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_air_intercontinental_bomber_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_air_intercontinental_bomber_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_air_mothership_aircraft_speed_factor = 0 }
+set_variable = { JAP_advanced_weapons_sp_nuclear_engines_speed_factor = 0 }
+
+add_dynamic_modifier = { modifier = JAP_showa_statism_modifier }
+# SHOWA STATISM
+set_variable = { JAP_showa_statism_stability_factor = 0 } 
+set_variable = { JAP_showa_statism_conscription_factor = 0 } 
+set_variable = { JAP_showa_statism_consumer_goods_factor = 0 } 
+set_variable = { JAP_showa_statism_political_power_factor = 0 } 
+set_variable = { JAP_showa_statism_fascism_drift = 0 } 
+#set_variable = { JAP_showa_statism_production_speed_industrial_complex_factor = 0 } 
+#set_variable = { JAP_showa_statism_production_speed_arms_factory_factor = 0 } 
+set_variable = { JAP_showa_statism_monthly_population = 0 } 
+set_variable = { JAP_showa_statism_industrial_capacity_dockyard = 0 } 
+set_variable = { JAP_showa_statism_industrial_capacity_factory = 0 } 
+set_variable = { JAP_showa_statism_weekly_casualties_war_support = 0 } 
+set_variable = { JAP_showa_statism_weekly_convoys_war_support = 0 } 
+set_variable = { JAP_showa_statism_weekly_bombing_war_support = 0 } 
+set_variable = { JAP_showa_statism_industry_repair_factor = 0 } 
+set_variable = { JAP_showa_statism_operative_slot = 0 } 
+
+# DAI TOA KYOUEIKEN
+set_variable = { JAP_east_asia_co_prosperity_sphere_autonomy_manpower_share_from_subjects = 0 } 
+set_variable = { JAP_east_asia_co_prosperity_sphere_resources_to_overlord_factor = 0 } 
+set_variable = { JAP_east_asia_co_prosperity_sphere_production_speed_rail_way_factor = 0 } 
+set_variable = { JAP_east_asia_co_prosperity_sphere_production_speed_supply_node_factor = 0 } 
+set_variable = { JAP_east_asia_co_prosperity_sphere_research_speed_factor = 0 } 
+set_variable = { JAP_east_asia_co_prosperity_sphere_non_core_manpower = 0 } 
+
+# THE IMPERIAL WAY
+set_variable = { JAP_the_imperial_way_war_support_factor = 0 } 
+set_variable = { JAP_the_imperial_way_drift_defence_factor = 0 } 
+set_variable = { JAP_the_imperial_way_conscription_factor = 0 } 
+set_variable = { JAP_the_imperial_way_political_advisor_cost_factor = 0 } 
+set_variable = { JAP_the_imperial_way_stability_factor = 0 } 
+set_variable = { JAP_the_imperial_way_army_core_defence_factor = 0 } 
+set_variable = { JAP_the_imperial_way_army_core_attack_factor = 0 } 
+set_variable = { JAP_the_imperial_way_consumer_goods_factor = 0 } 
+set_variable = { JAP_the_imperial_way_offensive_war_stability_factor = 0 } 
+
+# THE CIVILIAN CABINET
+set_variable = { JAP_civilian_cabinet_political_advisor_cost_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_high_command_cost_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_army_chief_cost_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_mobilization_laws_cost_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_consumer_goods_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_resource_trade_cost_bonus_per_factory = 0 } 
+set_variable = { JAP_civilian_cabinet_military_leader_cost_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_political_power_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_stability_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_war_support_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_military_industrial_organization_research_bonus = 0 } 
+set_variable = { JAP_civilian_cabinet_conscription = 0 } 
+set_variable = { JAP_civilian_cabinet_unit_leader_as_advisor_cp_cost_factor = 0 } 
+set_variable = { JAP_civilian_cabinet_army_leader_start_defense_level = 0 } 
+set_variable = { JAP_civilian_cabinet_justify_war_goal_time = 0 } 
+set_variable = { JAP_civilian_cabinet_democratic_drift = 0 } 
+
+# THE JAPANESE COMMUNIST PARTY
+set_variable = { JAP_communist_party_communism_drift = 0 } 
+set_variable = { JAP_communist_party_political_power_factor = 0 } 
+set_variable = { JAP_communist_party_conscription_factor = 0 } 
+set_variable = { JAP_communist_party_research_speed_factor = 0 } 
+set_variable = { JAP_communist_party_offensive_war_stability_factor = 0 } 
+set_variable = { JAP_communist_party_annex_cost_factor = 0 } 
+set_variable = { JAP_communist_party_puppet_cost_factor = 0 } 
+set_variable = { JAP_communist_party_defensive_war_stability_factor = 0 } 
+set_variable = { JAP_communist_party_operative_slot = 0 } 
+set_variable = { JAP_communist_party_enemy_operative_detection_chance_factor = 0 } 
+set_variable = { JAP_communist_party_enemy_operative_intel_extraction_rate = 0 } 
+set_variable = { JAP_communist_party_enemy_operative_capture_chance_factor = 0 } 
+set_variable = { JAP_communist_party_army_core_defence_factor = 0 } 
+set_variable = { JAP_communist_party_weekly_manpower = 0 } 
+
+# THE ROUNOUHA GOVERNMENT
+# The Same modifiers as the above plus some 
+
+
+# RESOURCES FOR INDUSTRY
+set_variable = { JAP_industrial_relocation_resources_country_resource_oil = 0 }
+set_variable = { JAP_industrial_relocation_resources_country_resource_tungsten = 0 }
+set_variable = { JAP_industrial_relocation_resources_country_resource_chromium = 0 }
+set_variable = { JAP_industrial_relocation_resources_country_resource_rubber = 0 }
+
+# EDUCATE THE PEASANTS 
+set_variable = { JAP_educating_the_peasants_modifier_research_speed_factor = 0.01 }
+set_variable = { JAP_educating_the_peasants_modifier_allies_count = 1 }
+
+## Other Variables
+set_variable = { JAP_democratic_state_flipping_cost_cost = 35 }
+set_variable = { JAP_communist_state_infiltrating_cost_cost = 20 }
+set_variable = { kwantung_army_timeout_time_var = 725 }
+set_variable = { JAP_levy_cap_max = 48 }
+set_variable = { JAP_levy_cap_min = 0 }
+set_variable = { JAP_levy_cap = 12 }
+set_variable = { JAP_levy_deployed = 0 }
+clamp_variable = {
+	var = JAP_levy_cap
+	min = JAP_levy_cap_min
+	max = JAP_levy_cap_max
+}
+set_variable = { JAP_economic_redistribtuion_level = 0 }
+set_variable = { JAP_economic_redistribtuion_min = 0 }
+set_variable = { JAP_economic_redistribtuion_max = 6 }
+clamp_variable = {
+	var = JAP_economic_redistribtuion_level
+	min = JAP_economic_redistribtuion_min
+	max = JAP_economic_redistribtuion_max
+}
+
+
+### Recruiting Characters ### 
+recruit_character = JAP_tetsu_katayama
+recruit_character = JAP_kyuichi_tokuda
+recruit_character = JAP_emperor_hirohito
+recruit_character = JAP_tomoyuki_yamashita
+recruit_character = JAP_shunroku_hata
+recruit_character = JAP_akira_muto
+recruit_character = JAP_kanji_ishiwara
+recruit_character = JAP_shizuichi_tanaka
+recruit_character = JAP_yasuji_okamura
+recruit_character = JAP_toshizo_nishio
+recruit_character = JAP_rikichi_ando
+recruit_character = JAP_naruhiko_higashikuni
+recruit_character = JAP_seishiro_itagaki
+recruit_character = JAP_takashi_sakai
+recruit_character = JAP_kenji_doihara
+recruit_character = JAP_kenkichi_ueda
+recruit_character = JAP_shigeru_honjo
+recruit_character = JAP_yoshijiro_umezu
+recruit_character = JAP_otozo_yamada
+recruit_character = JAP_hatazo_adachi
+recruit_character = JAP_iwane_matsui
+recruit_character = JAP_sadao_araki
+recruit_character = JAP_keisuke_fujie
+recruit_character = JAP_kiichiro_higuchi
+recruit_character = JAP_masaharu_homma
+recruit_character = JAP_harukichi_hyakutake
+recruit_character = JAP_jo_iimura
+recruit_character = JAP_hitoshi_imamura
+recruit_character = JAP_masatane_kanda
+recruit_character = JAP_kuniaki_koiso
+recruit_character = JAP_isoroku_yamamoto
+recruit_character = JAP_mineichi_koga
 recruit_character = JAP_kiyoshi_hasegawa
-recruit_character  = JAP_kijiro_nambu
-recruit_character  = JAP_keiji_fukuda
+recruit_character = JAP_shigeyoshi_inoue
+recruit_character = JAP_nobutake_kondo
+recruit_character = JAP_takeo_takagi
+recruit_character = JAP_soemu_toyoda
+recruit_character = JAP_jisaburo_ozawa
+recruit_character = JAP_zengo_yoshida
+recruit_character = JAP_hiroaki_abe
+recruit_character = JAP_tadashige_daigo
+recruit_character = JAP_gengo_hyakutake
+recruit_character = JAP_yoshitoshi_tokugawa
+recruit_character = JAP_fushimi_hiroyasu
+recruit_character = JAP_korechika_anami
+recruit_character = JAP_mitsuo_fuchida
+recruit_character = JAP_minoru_genda
+recruit_character = JAP_tateo_kato
+recruit_character = JAP_osami_nagano
+recruit_character = JAP_torashiro_kawabe
+recruit_character = JAP_shigetaro_shimada
+recruit_character = JAP_yoshio_nishina
+recruit_character = JAP_hideo_itokawa
+recruit_character = JAP_kanin_kotohito
+recruit_character = JAP_hideki_tojo
+recruit_character = JAP_matome_ugaki
+recruit_character = JAP_nishizo_tsukahara
+recruit_character = JAP_hajime_sugiyama
+recruit_character = JAP_chuichi_nagumo
+recruit_character = JAP_hino_kumazo
+recruit_character = JAP_takuo_godo
+recruit_character = JAP_chiune_sugihara
+
+recruit_character = JAP_kijiro_nambu
+recruit_character = JAP_keiji_fukuda
 recruit_character = JAP_jiro_horikoshi
 recruit_character = JAP_hideki_yukawa
 recruit_character = JAP_yoji_ito
+recruit_character = JAP_hideo_iwakuro
+recruit_character = JAP_yuzuru_hiraga
+recruit_character = JAP_keisuke_okada
+recruit_character = JAP_shun_akikusa
+recruit_character = JAP_koki_hirota
+recruit_character = JAP_kazushige_ugaki
+recruit_character = JAP_fumimaro_konoe
+recruit_character = JAP_senjuro_hayashi
+recruit_character = JAP_emperor_yasuhito
+recruit_character = JAP_tokugawa_iesato
+recruit_character = JAP_masafumi_arima
+recruit_character = JAP_tsuneyoshi_takeda
+recruit_character = JAP_yasuhiko_asaka
+recruit_character = JAP_isamu_cho
+recruit_character = JAP_hayao_tada
+recruit_character = JAP_nashimoto_morimasa
+recruit_character = JAP_michitaro_komatsubara
+recruit_character = JAP_takahashi_korekiyo
+
+
+recruit_character = JAP_yosuke_matsuoka
+recruit_character = JAP_masatoshi_okochi
+recruit_character = JAP_okinori_kaya
+recruit_character = JAP_koyata_iwasaki
+recruit_character = JAP_chikuhei_nakajima
+recruit_character = JAP_yoshisuke_aikawa
+recruit_character = JAP_kenjiro_matsumoto
+recruit_character = JAP_uzo_nishiyama
+recruit_character = JAP_wakatsuki_reijiro
+recruit_character = JAP_jotaro_watanabe
+recruit_character = JAP_masakazu_kawabe
+recruit_character = JAP_teijiro_toyoda
+recruit_character = JAP_chuuichi_nagumo
+recruit_character = JAP_tamon_yamaguchi
+recruit_character = JAP_toyoaki_horiuchi
+recruit_character = JAP_tadaichi_wakamatsu
+recruit_character = JAP_masanobu_tsuji
+
+### DLC-SPECIFIC CHARACTERS ###
+IF = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	recruit_character = JAP_ichiro_hatoyama
+	recruit_character = JAP_machida_chuuji
+	recruit_character = JAP_abe_isoo
+	recruit_character = JAP_hitoshi_yamakawa
+	recruit_character = JAP_kanson_arahata
+	recruit_character = JAP_yamakawa_kikue
+	recruit_character = JAP_empress_nagako
+	recruit_character = JAP_yoshio_kodama
+	recruit_character = JAP_adachi_kenzo
+	recruit_character = JAP_seigo_nakano
+
+	recruit_character = JAP_emperor_nobuhito
+
+}
 
 complete_special_project = {
 	project = sp:sp_naval_cruiser_submarine
@@ -338,13 +658,15 @@ set_division_template_cap = {  division_template = "Paratroopers" division_cap =
 
 set_naval_oob = "JAP_1936_naval"
 set_convoys = 400
-set_politics = {
-	ruling_party = fascism
-	last_election = "1936.1.1"
-	election_frequency = 48
-	elections_allowed = no
-}
-set_popularities = { fascism = 100 }
+# set_politics = {
+	# ruling_party = fascism
+	# last_election = "1936.1.1"
+	# election_frequency = 48
+	# elections_allowed = no
+# }
+# set_popularities = { fascism = 100 }
+
+
 		create_equipment_variant = {
 			name = "Soryu Class"
 			type = ship_hull_carrier_1

@@ -3448,7 +3448,9 @@ HMP_startup_on_actions = {
     set_global_flag = blocking_pauses
     
     if = {
-        limit = { has_game_rule = { rule = horst_scw option = horst_scw_on } }
+        limit = { 
+			has_game_rule = { rule = horst_scw option = horst_scw_on } 
+		}
 
         every_country = {
             limit = { NOT = { tag = USA } is_in_faction_with = ENG }
@@ -3469,22 +3471,6 @@ HMP_startup_on_actions = {
             add_equipment_to_stockpile = { type = support_equipment_1 amount = 1200 }
             add_equipment_to_stockpile = { type = special_equipment_1 amount = 1800 }
         }
-		POL = {
-			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 40000 }
-			add_equipment_to_stockpile = { type = support_equipment_1 amount = 1000 }
-			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 2000 }
-			add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 1000 }
-			add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 3000 }
-			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 1000 }
-			add_equipment_to_stockpile = { type = train_equipment_1 amount = 100 }
-		}
-		CHI = {
-			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 100000 }
-			add_equipment_to_stockpile = { type = support_equipment_1 amount = 500 }
-			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 500 }
-			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 400 }
-			add_equipment_to_stockpile = { type = train_equipment_1 amount = 25 }
-		}
 
         #SWE = { news_event = { id = horsttool.132 } }
 
@@ -3607,11 +3593,12 @@ HMP_startup_on_actions = {
     if = { limit = { YUG = { is_ai = yes } } YUG = { add_ideas = ai_imiter } }
     if = { limit = { HOL = { is_ai = yes } } HOL = { add_ideas = ai_imiter } }
     if = { limit = { POL = { is_ai = yes } } POL = { add_ideas = ai_imiter } }
+	if = { limit = { CHI = { is_ai = yes } } CHI = { add_ideas = ai_imiter } }
 
     ENG = { load_oob = "ENG_SEA_LION" }
 
     JAP = { add_ideas = fuel_sov }
-    SOV = {  add_ideas = fuel_sov }
+    SOV = { add_ideas = fuel_sov }
     GER = { add_ideas = fuel_sov }
     ENG = { add_ideas = fuel_eng }
     USA = { add_ideas = fuel_eng }
@@ -16481,3 +16468,229 @@ iraq_sf_doctrine = {
         }
     }
 }
+
+# ░░░░░██╗░█████╗░██████╗░░█████╗░███╗░░██╗  ░██████╗███████╗░█████╗░  ██████╗░██╗░░░░░░█████╗░
+# ░░░░░██║██╔══██╗██╔══██╗██╔══██╗████╗░██║  ██╔════╝██╔════╝██╔══██╗  ██╔══██╗██║░░░░░██╔══██╗
+# ░░░░░██║███████║██████╔╝███████║██╔██╗██║  ╚█████╗░█████╗░░███████║  ██║░░██║██║░░░░░██║░░╚═╝
+# ██╗░░██║██╔══██║██╔═══╝░██╔══██║██║╚████║  ░╚═══██╗██╔══╝░░██╔══██║  ██║░░██║██║░░░░░██║░░██╗
+# ╚█████╔╝██║░░██║██║░░░░░██║░░██║██║░╚███║  ██████╔╝███████╗██║░░██║  ██████╔╝███████╗╚█████╔╝
+# ░╚════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚══╝  ╚═════╝░╚══════╝╚═╝░░╚═╝  ╚═════╝░╚══════╝░╚════╝░
+
+JAP_add_or_modify_showa_statism = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_showa_statism_modifier } }
+		}
+		custom_effect_tooltip = JAP_add_showa_statism_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_showa_statism_modifier } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_showa_statism_modifier_tt
+	}
+}
+
+JAP_add_or_modify_state_shintoism = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_state_shinotism_dm } }
+		}
+		custom_effect_tooltip = JAP_add_state_shinotism_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_state_shinotism_dm } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_state_shinotism_modifier_tt
+	}
+}
+
+JAP_add_or_modify_early_industrialization = {
+	IF = {
+		limit = {
+			NOT = { 
+				has_dynamic_modifier = { modifier = JAP_early_industrialization_efforts_dm } 
+				has_dynamic_modifier = { modifier = JAP_the_economic_mirale_dm } 
+			}
+		}
+		custom_effect_tooltip = JAP_add_early_industrialization_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_early_industrialization_efforts_dm } }
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_early_industrialization_efforts_dm }
+		}
+		custom_effect_tooltip = JAP_modify_early_industrialization_modifier_tt
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_the_economic_mirale_dm }
+		}
+		custom_effect_tooltip = JAP_modify_economic_mirale_modifier_tt
+	}
+}
+
+JAP_add_or_modify_imperial_army = {
+	IF = {
+		limit = {
+			NOT = { 
+				has_dynamic_modifier = { 
+					modifier = JAP_imperial_army_dm 
+				} 
+				has_dynamic_modifier = { 
+					modifier = JAP_national_army_dm 
+				} 
+			}
+		}
+		custom_effect_tooltip = JAP_add_imperial_army_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_imperial_army_dm } }
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_imperial_army_dm } 
+		}
+		custom_effect_tooltip = JAP_modify_imperial_army_modifier_tt
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_national_army_dm } 
+		}
+		custom_effect_tooltip = JAP_modify_national_army_modifier_tt
+	}
+}
+
+JAP_add_or_modify_imperial_navy = {
+	IF = {
+		limit = {
+			NOT = { 
+				has_dynamic_modifier = { 
+					modifier = JAP_imperial_navy_dm 
+				} 
+				has_dynamic_modifier = { 
+					modifier = JAP_japanese_navy_dm 
+				} 
+			}
+		}
+		custom_effect_tooltip = JAP_add_imperial_navy_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_imperial_navy_dm } }
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_imperial_navy_dm }
+		}
+		custom_effect_tooltip = JAP_modify_imperial_navy_modifier_tt
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_japanese_navy_dm }
+		}
+		custom_effect_tooltip = JAP_modify_japanese_navy_modifier_tt
+	}
+}
+
+JAP_add_or_modify_army_and_naval_air_services = {
+	IF = {
+		limit = {
+			NOT = { 
+				has_dynamic_modifier = { 
+					modifier = JAP_army_and_naval_air_services_dm 
+				} 
+				has_dynamic_modifier = { 
+					modifier = JAP_japanese_airforce_dm 
+				} 
+			}
+		}
+		custom_effect_tooltip = JAP_add_army_and_naval_air_services_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_army_and_naval_air_services_dm } }
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_army_and_naval_air_services_dm }
+		}
+		custom_effect_tooltip = JAP_modify_army_and_naval_air_services_modifier_tt
+	}
+	ELSE_IF = {
+		limit = {
+			has_dynamic_modifier = { modifier = JAP_japanese_airforce_dm }
+		}
+		custom_effect_tooltip = JAP_modify_japanese_airforce_modifier_tt
+	}
+}
+
+JAP_add_or_modify_east_asia_co_prosperity_sphere = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_east_asia_co_prosperity_sphere_dm } }
+		}
+		custom_effect_tooltip = JAP_add_east_asia_co_prosperity_sphere_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_east_asia_co_prosperity_sphere_dm } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_east_asia_co_prosperity_sphere_modifier_tt
+	}
+}
+
+JAP_add_or_modify_imperial_way = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_the_imperial_way_dm } }
+		}
+		custom_effect_tooltip = JAP_add_the_imperial_way_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_the_imperial_way_dm } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_the_imperial_way_modifier_tt
+	}
+}
+
+JAP_add_or_modify_advanced_weapon_projects = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_advanced_weapon_projects_dm } }
+		}
+		custom_effect_tooltip = JAP_add_advanced_weapon_projects_dm
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_advanced_weapon_projects_dm } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_advanced_weapon_projects_dm
+	}
+}
+
+JAP_add_or_modify_civilian_cabinet = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_civilian_cabinet_modifier } }
+		}
+		custom_effect_tooltip = JAP_add_civilian_cabinet_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_civilian_cabinet_modifier } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_civilian_cabinet_modifier_tt
+	}
+}
+
+JAP_add_or_modify_communist_party_modifier = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_communist_party_modifier } }
+		}
+		custom_effect_tooltip = JAP_add_communist_party_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_communist_party_modifier } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_communist_party_modifier_tt
+	}
+}
+
+JAP_add_or_modify_rounouha_modifier = {
+	IF = {
+		limit = {
+			NOT = { has_dynamic_modifier = { modifier = JAP_rounouha_modifier } }
+		}
+		custom_effect_tooltip = JAP_add_rounouha_modifier_tt
+		hidden_effect = { add_dynamic_modifier = { modifier = JAP_rounouha_modifier } }
+	}
+	ELSE = {
+		custom_effect_tooltip = JAP_modify_rounouha_modifier_tt
+	}
+}
+
+
+
