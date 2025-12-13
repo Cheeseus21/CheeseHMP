@@ -12461,6 +12461,118 @@ GRE_declare_for_gre = {
             }
         }
     }
+	JAP_give_up_china_war = {
+    
+        icon = generic_operation
+        
+        allowed = {
+            tag = JAP
+        }
+        
+        available = {
+            date > 1938.6.1 
+        }
+        
+        fire_only_once = yes
+        
+        cost = 0
+        
+        visible = {
+            has_game_rule = { 
+				rule = horst_china_war 
+				option = horst_china_war_on
+			} 
+        }
+        
+        complete_effect = {	
+		
+			JAP = {
+				annex_country = { target = CHI transfer_troops = no }
+				add_ideas = armyandnavy_idea
+			}
+			
+			if = {
+				limit = {
+					date > 1941.1.1
+				}
+				JAP= {
+					add_ideas = armyandnavy_idea
+				}
+			}
+			
+            every_state = {
+				limit = {
+					is_core_of = CHI
+				}
+				FROM.FROM = {
+					set_building_level = { type = industrial_complex level = 2 } 
+					set_building_level = { type = arms_factory level = 2 }
+				}
+			}
+			
+			hidden_effect = {
+				USA = {
+					change_tag_from = CHI
+				}
+			}
+        }
+    }
+	CHI_give_up_china_war = {
+    
+        icon = generic_operation
+        
+        allowed = {
+            tag = CHI
+        }
+        
+        available = {
+            date > 1938.6.1 
+        }
+        
+        fire_only_once = yes
+        
+        cost = 0
+        
+        visible = {
+            has_game_rule = { 
+				rule = horst_china_war 
+				option = horst_china_war_on
+			} 
+        }
+        
+        complete_effect = {	
+		
+			JAP = {
+				annex_country = { target = CHI transfer_troops = no }
+				add_ideas = armyandnavy_idea
+			}
+			
+			if = {
+				limit = {
+					date > 1941.1.1
+				}
+				JAP= {
+					add_ideas = armyandnavy_idea
+				}
+			}
+			
+            every_state = {
+				limit = {
+					is_core_of = CHI
+				}
+				FROM.FROM = {
+					set_building_level = { type = industrial_complex level = 3 } 
+					set_building_level = { type = arms_factory level = 3 }
+				}
+			}
+			
+			hidden_effect = {
+				USA = {
+					change_tag_from = CHI
+				}
+			}
+        }
+    }
 	improved_worker_conditions = {
 		icon = generic_industry	
 		allowed = { normally_played_country = yes 	}
