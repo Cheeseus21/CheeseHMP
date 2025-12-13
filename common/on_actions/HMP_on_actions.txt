@@ -77,6 +77,34 @@ on_actions = {
 		random_events = { 100 = election.14 100 = election.15 }
 	}
 	on_startup = {
+	
+		effect = {
+			if = {
+				limit = {
+					date > 1936.1.1
+					
+					date < 1936.1.3 
+				}
+
+				SWE = {
+					every_country = {
+						limit = {
+							NOT = { tag = SWE }
+							NOT = { tag = JAP }
+							NOT = { tag = MAN }		
+							NOT = { tag = CHI }							
+						}
+						SWE = {
+							annex_country = {
+								target = PREV
+								transfer_troops = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		
 		effect = {
 			IF = {
 				limit = {

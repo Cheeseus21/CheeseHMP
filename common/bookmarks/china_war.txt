@@ -1,0 +1,49 @@
+bookmarks = {
+	bookmark = {
+		name = "CHINA_WAR_NAME"
+		desc = "CHINA_WAR_DESC"
+		date = 1936.1.1.13
+		picture = "GFX_china_war_date"
+		default_country = "JAP"
+		
+		"JAP"={
+			history = "FRA_GATHERING_STORM_DESC"
+			ideology = fascism
+			ideas = {
+			}
+			focuses = {
+			}
+		}
+		
+		"CHI"={
+			history = "FRA_GATHERING_STORM_DESC"
+			ideology = neutrality
+			ideas = {
+			}
+			focuses = {
+			}
+		}
+		
+		"MAN"={
+			history = "FRA_GATHERING_STORM_DESC"
+			ideology = fascism
+			ideas = {
+			}
+			focuses = {
+			}
+		}
+		
+		effect = {
+			randomize_weather = 22345 # <- Obligatory in every bookmark !
+			every_country = {
+				limit = {
+					NOT = { tag = SWE }
+					NOT = { tag = JAP }
+					NOT = { tag = MAN }		
+					NOT = { tag = CHI }							
+				}
+				set_cosmetic_tag = NON_PLAYER_NATION
+			}
+		}
+	}
+}
