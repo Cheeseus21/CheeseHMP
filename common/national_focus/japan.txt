@@ -680,7 +680,7 @@ focus_tree = {
 			}	
 			add_popularity = {
 				ideology = fascism
-				popularity = 0.2
+				popularity = 0.5
 			}
 
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -2596,32 +2596,32 @@ focus_tree = {
 				SOV = {
 					add_equipment_to_stockpile = {
 						type = infantry_equipment
-						amount = 100000
+						amount = 125000
 						producer = SOV
 					}
 					add_equipment_to_stockpile = {
 						type = anti_tank_equipment
-						amount = 7500
+						amount = 10000
 						producer = SOV
 					}
 					add_equipment_to_stockpile = {
 						type = artillery_equipment
-						amount = 6000
+						amount = 10000
 						producer = SOV
 					}
 					add_equipment_to_stockpile = {
 						type = support_equipment
-						amount = 5000
+						amount = 10000
 						producer = SOV
 					}
 					add_equipment_to_stockpile = {
 						type = anti_air_equipment
-						amount = 5000
+						amount = 10000
 						producer = SOV
 					}
 					add_equipment_to_stockpile = {
 						type = special_equipment_1
-						amount = 50000
+						amount = 100000
 						producer = SOV
 					}
 					load_oob = "SOV_JAP_ready_to_war"
@@ -4419,10 +4419,23 @@ focus_tree = {
 			army_experience = 25
 
 			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_tech_bonus = {
+				name = JAP_adopt_new_assault_doctrine
+				bonus = 1
+				uses = 4
+				category = artillery
+			}
+			add_tech_bonus = {
+				name = JAP_adopt_new_assault_doctrine
+				bonus = 1
+				uses = 4
+				category = infantry_weapons
+			}
 
-			JAP_add_or_modify_imperial_army = yes
-			add_to_variable = { JAP_army_army_morale_factor = 0.05 tooltip = army_morale_factor_tt }
-			add_to_variable = { JAP_army_army_org_factor = 0.05 tooltip = army_org_factor_tt }
+			#JAP_add_or_modify_imperial_army = yes
+			#add_to_variable = { JAP_army_army_morale_factor = 0.05 tooltip = army_morale_factor_tt }
+			#add_to_variable = { JAP_army_army_org_factor = 0.05 tooltip = army_org_factor_tt }
 			#add_to_variable = { JAP_army_experience_loss_factor = 0.05 tooltip = experience_loss_factor_tt }
 		}
 
@@ -4469,13 +4482,13 @@ focus_tree = {
 			add_tech_bonus = {
 				name = JAP_adopt_new_assault_doctrine
 				bonus = 1
-				uses = 8
+				uses = 4
 				category = artillery
 			}
 			add_tech_bonus = {
 				name = JAP_adopt_new_assault_doctrine
 				bonus = 1
-				uses = 8
+				uses = 4
 				category = infantry_weapons
 			}
 
@@ -4644,10 +4657,10 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			JAP_add_or_modify_imperial_army = yes
-			add_to_variable = { JAP_army_army_org_factor = 0.05 tooltip = army_org_factor_tt }
-			add_to_variable = { JAP_army_army_morale_factor = 0.05 tooltip = army_morale_factor_tt }
-			add_to_variable = { JAP_army_acclimatization_cold_climate_gain_factor = 0.1 tooltip = acclimatization_cold_climate_gain_factor_tt }
-            add_to_variable = { JAP_army_acclimatization_hot_climate_gain_factor = 0.1 tooltip = acclimatization_hot_climate_gain_factor_tt }
+			add_to_variable = { JAP_army_army_org_factor = 0.1 tooltip = army_org_factor_tt }
+			add_to_variable = { JAP_army_army_morale_factor = 0.1 tooltip = army_morale_factor_tt }
+			add_to_variable = { JAP_army_acclimatization_cold_climate_gain_factor = 0.25 tooltip = acclimatization_cold_climate_gain_factor_tt }
+            add_to_variable = { JAP_army_acclimatization_hot_climate_gain_factor = 0.25 tooltip = acclimatization_hot_climate_gain_factor_tt }
 		}
 	}
 
@@ -5052,17 +5065,14 @@ focus_tree = {
 		prerequisite = { focus = JAP_develop_new_fighters focus = JAP_modern_bombers }
 
 		relative_position_id = JAP_develop_new_fighters
+		
 		x = 1
 		y = 1
 
 		cost = 5
 
-		ai_will_do = {
-			factor = 3
-		}
-
 		available = {
-			has_war = yes
+			#has_war = yes
 		}
 
 		bypass = {
