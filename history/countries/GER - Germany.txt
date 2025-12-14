@@ -578,10 +578,15 @@ add_ideas = {
 1941.1.1.12 = {
 	set_research_slots = 6
 	
+	load_oob = "GER_NOR_SPAWN"
+	
 	declare_war_on = {
 		target = ENG
 		type = annex_everything
 	}
+	
+	if = { limit = { country_exists = HUN } HUN = { add_to_war = { targeted_alliance = GER enemy = ENG } } }
+	if = { limit = { country_exists = ROM } ROM = { add_to_war = { targeted_alliance = GER enemy = ENG } } }
 
 	EFR = {
 		set_country_flag = vichy_france_established
@@ -592,6 +597,8 @@ add_ideas = {
 	add_ideas = autarkic_economy
 	add_ideas = autarkic_economy_improved
 	add_ideas = war_economy
+	
+	add_ideas = GER_speer_reich_minister_of_armaments
 	
 	remove_ideas = NO_TRADE
 	remove_ideas = armyandnavy_idea

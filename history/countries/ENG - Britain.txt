@@ -288,10 +288,17 @@ set_variable = { ENG_rm_navy_intel_factor = 0 }
 set_variable = { ENG_rm_naval_invasion_prep_speed = 0 }
 add_dynamic_modifier = { modifier = ENG_royal_navy_dynamic_modifier }
 
+if = { 
+	limit = { 
+		NOT = {
+			has_global_flag = europe_only_start_date_flag 
+		}
+	} 
 country_event = { id = britain.22 days = 490 }
 country_event = { id = britain.16 days = 21 }
 country_event = { id = mtg_britain.1 days = 119 }
 country_event = { id = DOD_yugoslavia.20 days = 759 }
+}
 add_timed_idea = { idea = NO_TRADE days = 1339 }
 set_research_slots = 6
 set_stability = 0.8
