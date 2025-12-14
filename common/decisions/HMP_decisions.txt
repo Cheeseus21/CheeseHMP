@@ -6451,6 +6451,12 @@ propaganda_effortsx = {
 		icon = eng_install_government
 		allowed = {	OR = { original_tag = ENG original_tag = FRA original_tag = USA } 	}
 		days_remove = 120
+		
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+		}
 
 		visible = {	NOT = { FRA = { owns_state = 16 }}  check_variable = { FRA.FRA_legitimacy < 100 }	}
 		cost = 50
@@ -6901,6 +6907,11 @@ propaganda_effortsx = {
                 }
             }
         }
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+		}
         fire_only_once = yes
         complete_effect = {
             every_country = {
@@ -7104,6 +7115,9 @@ propaganda_effortsx = {
         fire_only_once = yes 
         visible = { 
             SWE = { controls_state = 412 } 
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
         }
 
         available = {
@@ -7213,7 +7227,11 @@ propaganda_effortsx = {
         
         allowed = { OR = { tag = EFR tag = GER tag = ITA tag = ENG } }
         
-        # visible = { date > 1948.1.1 }
+        visible = { 
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+		}
         
         available = {
             AND = {
@@ -8204,6 +8222,11 @@ propaganda_effortsx = {
 				AND = { ENG = { controls_state = 584 } date > 1941.8.1 }
 			}
 		}	
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+		}
 		fire_only_once = yes 
 		visible = { NOT = { EFR = { has_completed_focus = VIC_join_axis }}}
 		complete_effect ={
@@ -8220,6 +8243,12 @@ propaganda_effortsx = {
 				original_tag = ENG 
 				original_tag = USA 
 			} 
+		}
+		
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
 		}
 		
 		available = { always = no }
@@ -9203,6 +9232,12 @@ propaganda_effortsx = {
 
 		allowed = { 
 			original_tag = ENG
+		}
+		
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
 		}
 
 		cost = 0
@@ -12027,6 +12062,11 @@ axis_boost_minor = {
 		NOT = { has_global_flag = axis_minor_boosted } 
     }
 	allowed = {tag = GER } 
+	visible = {
+		NOT = {
+			has_global_flag = europe_only_start_date_flag
+		}
+	}
     icon = GFX_decision_ger_reichskommissariats
     cost = 0
     fire_only_once	= yes
@@ -12103,6 +12143,11 @@ commonwealth_boost_minor = {
     target_trigger = {
 		NOT = { has_global_flag = commonwealth_minor_boosted } 
     }
+	visible = {
+		NOT = {
+			has_global_flag = europe_only_start_date_flag
+		}
+	}
 	allowed = {tag = ENG } 
     icon = GFX_decision_generic_monarchy
     cost = 0
@@ -12910,7 +12955,10 @@ ENG_evacuation_decisions = {
 		}
 		
 		visible = {
-			has_completed_focus = ENG_egypt_fortification			
+			has_completed_focus = ENG_egypt_fortification	
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}			
 		}
 
 		fire_only_once = yes
@@ -12973,7 +13021,10 @@ ENG_evacuation_decisions = {
 		}
 		
 		visible = {
-			has_completed_focus = ENG_singapore_strategy		
+			has_completed_focus = ENG_singapore_strategy	
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}			
 		}
 
 		fire_only_once = yes
@@ -13202,6 +13253,9 @@ ENG_military_operations = {
 		
 		activation = {
 			has_completed_focus = ENG_gamble_on_south_china_sea
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
 		}
 		
 		available = {
@@ -16566,7 +16620,16 @@ icon = SOV_secure_the_administration
 		allowed = {
 			OR = { original_tag = SOV original_tag = FIN }
 		}
-		available = { SOV =  { has_completed_focus = SOV_baltic_security } }
+		available = { 
+			SOV =  { 
+				has_completed_focus = SOV_baltic_security 
+			} 
+		}
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+		}
 		war_with_on_remove  = FIN
 		fire_only_once = yes
 		days_remove = 90
@@ -16592,6 +16655,11 @@ icon = SOV_secure_the_administration
 				is_good = no
 		activation = {	 }
 		available = { someone_really_lost = yes   }
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+		}
 		days_mission_timeout = 100 
 		 complete_effect = {
 		 if =  { limit = { tag = FIN }

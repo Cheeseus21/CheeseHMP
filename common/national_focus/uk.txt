@@ -4552,12 +4552,14 @@ focus_tree = {
 		completion_reward = {
 		    create_equipment_variant = {
 				name = "Vanguard"
-				type = ship_hull_heavy_3
+				type = ship_hull_heavy_4
+				allow_without_tech = yes
 				parent_version = 0
 				modules = {
 					fixed_ship_battery_slot = ship_heavy_battery_3
 					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_3
+					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
+					fixed_ship_radar_slot = ship_radar_1
 					fixed_ship_engine_slot = heavy_ship_engine_4
 					fixed_ship_secondaries_slot = dp_ship_secondaries_2
 					fixed_ship_armor_slot = ship_armor_bc_3
@@ -4566,11 +4568,19 @@ focus_tree = {
 					mid_2_custom_slot = dp_ship_secondaries_2
 					mid_3_custom_slot = ship_airplane_launcher_2
 					rear_1_custom_slot = ship_heavy_battery_3
+					rear_2_custom_slot = ship_heavy_battery_3
 				}
 			}
-			
-			133 = {
-				custom_effect_tooltip = ENG_vanguard_tt_hms
+			add_equipment_production = {
+				equipment = {
+					type = ship_hull_heavy_4
+					creator = "ENG"
+					version_name = "Vanguard"
+				}
+				name = "Vanguard"
+				requested_factories = 1
+				progress = 0.9
+				amount = 1
 			}
 			
 			
@@ -5660,6 +5670,7 @@ focus_tree = {
 			create_equipment_variant = {
 				name = "Vanguard"
 				type = ship_hull_heavy_4
+				allow_without_tech = yes
 				parent_version = 0
 				modules = {
 					fixed_ship_battery_slot = ship_heavy_battery_3
@@ -5676,10 +5687,22 @@ focus_tree = {
 					rear_1_custom_slot = ship_heavy_battery_3
 				}
 			}
-				133 = {
-					custom_effect_tooltip = ENG_vanguard_tt_hms
+			add_equipment_production = {
+				equipment = {
+					type = ship_hull_heavy_4
+					creator = "ENG"
+					version_name = "Vanguard"
 				}
-				hidden_effect = { load_oob = "ENG_vanguard_hms" }
+				name = "Vanguard"
+				requested_factories = 1
+				progress = 0.9
+				amount = 1
+			}
+			
+			#133 = {
+			#	custom_effect_tooltip = ENG_vanguard_tt_hms
+			#}
+			#hidden_effect = { load_oob = "ENG_vanguard_hms" }
 		}
 	}
 

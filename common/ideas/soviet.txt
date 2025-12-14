@@ -2596,8 +2596,42 @@ ideas = {
 			}
 			
 			visible = {
-				has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 1 } #USA
-				has_country_flag = { flag = SOV_gosproyektstroy_level_3_flag value = 2 } #MIL
+				OR = {
+					AND = {
+						has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 1 } #USA
+						has_country_flag = { flag = SOV_gosproyektstroy_level_3_flag value = 2 } #MIL
+					}
+					#has_global_flag = europe_only_start_date_flag
+				}
+			}
+
+			cost = 100
+			
+			traits = { construction_company }
+			
+			modifier = {
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_infrastructure_factor = 0.05
+				production_speed_arms_factory_factor = 0.3
+				production_speed_dockyard_factor = 0.2
+				production_factory_max_efficiency_factor = 0.05
+				industrial_capacity_factory = 0.1
+				industrial_capacity_dockyard = 0.1
+			}
+		}
+		
+		SOV_gosproyektstroy_3_europe_only = {
+			
+			name = SOV_gosproyektstroy_1
+
+			picture = generic_industrial_concern_2
+
+			allowed = {
+				original_TAG = SOV
+			}
+			
+			visible = {
+				#has_global_flag = europe_only_start_date_flag
 			}
 
 			cost = 100

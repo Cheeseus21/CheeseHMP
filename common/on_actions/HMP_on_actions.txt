@@ -77,86 +77,7 @@ on_actions = {
 		random_events = { 100 = election.14 100 = election.15 }
 	}
 	on_startup = {
-		# effect = {
-			# if = {
-				# limit = {
-					# has_global_flag = europe_only_start_date_flag
-				# }
-				
-				# SWE = {
-					# every_country = {
-						# limit = {
-							# NOT = { tag = SWE }
-							# NOT = { tag = ENG }
-							# NOT = { tag = GER }		
-							# NOT = { tag = SOV }
-							# NOT = { tag = NOR }	
-							# NOT = { tag = FIN }
-							# NOT = { tag = FRA }
-							# NOT = { tag = HOL }
-							# NOT = { tag = BEL }
-							# NOT = { tag = DEN }
-							# NOT = { tag = HUN }
-							# NOT = { tag = ROM }
-						# }
-						# SWE = {
-							# annex_country = {
-								# target = PREV
-								# transfer_troops = yes
-							# }
-						# }
-					# }
-				# }
-					
-				# GER = {
-					# every_state = {
-						# limit = {
-							# OR = {
-								# is_core_of = FRA
-								# is_core_of = HOL
-								# is_core_of = BEL
-								# is_core_of = DEN
-								# is_core_of = NOR
-								# is_core_of = POL
-								# is_core_of = CZE
-							# }
-						# } 
-						# transfer_state_to = GER 
-					# }
-				# }
-				
-				# ENG = {
-					# transfer_state = 295
-				# }	
-			# }
-		# }
-	
-        # effect = {
-			# if = {
-				# limit = {
-					# has_global_flag = china_war_start_date_flag
-				# }
-				
-				# SWE = {
-					# every_country = {
-						# limit = {
-							# NOT = { tag = SWE }
-							# NOT = { tag = JAP }
-							# NOT = { tag = MAN }		
-							# NOT = { tag = CHI }							
-						# }
-						# SWE = {
-							# annex_country = {
-								# target = PREV
-								# transfer_troops = yes
-							# }
-						# }
-					# }
-				# }
-			# }
-		# }
-		
-		effect = {
+        effect = {
 			IF = {
 				limit = {
 					NOT = { has_dlc = "Trial of Allegiance" }
@@ -203,7 +124,349 @@ on_actions = {
 
 			# Trigger startup actions for Sweden
 			SWE = { HMP_startup_on_actions = yes }
+			
 		}
+    
+		effect = {
+            GER = {
+                if = {
+                    limit = { 
+                        has_global_flag = europe_only_start_date_flag 
+                    }
+                    
+                    set_variable = { mil_dist_count = 250 }
+                    set_variable = { civ_dist_count = 100 }
+
+                    # MILITARY FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { mil_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { mil_dist_count = 1 }
+                    }
+
+                    # CIVILIAN FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { civ_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = industrial_complex
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { civ_dist_count = 1 }
+                    }
+                }
+            }
+            SOV = {
+                if = {
+                    limit = { 
+                        has_global_flag = europe_only_start_date_flag 
+                    }
+                    
+                    set_variable = { mil_dist_count = 275 }
+                    set_variable = { civ_dist_count = 100 }
+
+                    # MILITARY FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { mil_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { mil_dist_count = 1 }
+                    }
+
+                    # CIVILIAN FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { civ_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = industrial_complex
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { civ_dist_count = 1 }
+                    }
+                }
+            }
+            ENG = {
+                if = {
+                    limit = { 
+                        has_global_flag = europe_only_start_date_flag 
+                    }
+                    
+                    set_variable = { mil_dist_count = 200 }
+                    set_variable = { civ_dist_count = 100 }
+
+                    # MILITARY FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { mil_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { mil_dist_count = 1 }
+                    }
+
+                    # CIVILIAN FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { civ_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = industrial_complex
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { civ_dist_count = 1 }
+                    }
+                }
+            }
+            HUN = {
+                if = {
+                    limit = { 
+                        has_global_flag = europe_only_start_date_flag 
+                    }
+                    
+                    set_variable = { mil_dist_count = 50 }
+                    set_variable = { civ_dist_count = 30 }
+
+                    # MILITARY FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { mil_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { mil_dist_count = 1 }
+                    }
+
+                    # CIVILIAN FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { civ_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = industrial_complex
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { civ_dist_count = 1 }
+                    }
+                }
+            }
+            ROM = {
+                if = {
+                    limit = { 
+                        has_global_flag = europe_only_start_date_flag 
+                    }
+                    
+                    set_variable = { mil_dist_count = 50 }
+                    set_variable = { civ_dist_count = 35 }
+
+                    # MILITARY FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { mil_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_owned_state  = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { mil_dist_count = 1 }
+                    }
+
+                    # CIVILIAN FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { civ_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_owned_state  = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = industrial_complex
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { civ_dist_count = 1 }
+                    }
+                }
+            }
+            FIN = {
+                if = {
+                    limit = { 
+                        has_global_flag = europe_only_start_date_flag 
+                    }
+                    
+                    set_variable = { mil_dist_count = 30 }
+                    set_variable = { civ_dist_count = 20 }
+
+                    # MILITARY FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { mil_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_owned_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { mil_dist_count = 1 }
+                    }
+
+                    # CIVILIAN FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { civ_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_owned_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = industrial_complex
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { civ_dist_count = 1 }
+                    }
+                }
+            }
+            MON = {
+                if = {
+                    limit = { 
+                        has_global_flag = europe_only_start_date_flag 
+                    }
+                    
+                    set_variable = { mil_dist_count = 30 }
+                    set_variable = { civ_dist_count = 20 }
+
+                    # MILITARY FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { mil_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { mil_dist_count = 1 }
+                    }
+
+                    # CIVILIAN FACTORY LOOP
+                    while_loop_effect = {
+                        limit = {
+                            check_variable = { civ_dist_count > 0 }
+                        }
+                        
+                        # Target a random core state
+                        random_core_state = {
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = industrial_complex
+                                level = 1
+                                instant_build = yes
+                            }
+                        }
+
+                        subtract_from_variable = { civ_dist_count = 1 }
+                    }
+                }
+            }
+            
+            SWE = { transfer_state = 167 }
+        }
 
 		effect = {
 			BRA = {

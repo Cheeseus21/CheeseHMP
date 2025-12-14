@@ -3387,7 +3387,247 @@
 # ╚█████╔╝██║░╚███║  ██║░░██║╚█████╔╝░░░██║░░░██║╚█████╔╝██║░╚███║██████╔╝
 # ░╚════╝░╚═╝░░╚══╝  ╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═════╝░
 
+HMP_distribute_mils_to_cores_effect = {
+    while_loop_effect = {
+        limit = {
+            # Check the permanent variable 
+            check_variable = { mil_dist_count > 0 }
+        }
+
+        random_core_state = {
+            limit = { is_controlled_by = ROOT } 
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+                type = arms_factory
+                level = 1
+                instant_build = yes
+            }
+        }
+
+        # Decrement the permanent variable
+        subtract_from_variable = { mil_dist_count = 1 }
+    }
+    
+    # Cleanup
+    clear_variable = mil_dist_count
+}
+
+HMP_distribute_civs_to_cores_effect = {
+    while_loop_effect = {
+        limit = {
+            check_variable = { civ_dist_count > 0 }
+        }
+
+        random_controlled_state = {
+            limit = { is_controlled_by = ROOT }
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+                type = industrial_complex
+                level = 1
+                instant_build = yes
+            }
+        }
+
+        subtract_from_variable = { civ_dist_count = 1 }
+    }
+    
+    # Cleanup
+    clear_variable = civ_dist_count
+}
+
 HMP_startup_on_actions = {
+	if = { 
+        limit = { 
+            has_global_flag = europe_only_start_date_flag 
+        } 
+        every_country = { 
+            limit = { 
+                OR = { 
+                    tag = GER 
+                    tag = SOV 
+                    tag = ENG 
+                    tag = HUN 
+                    tag = ROM 
+                    tag = FIN 
+                    tag = MON 
+                } 
+            }
+            army_experience = 1000
+            air_experience = 1000
+            add_political_power = 2000
+            add_stability = 0.65
+            add_war_support = 0.65
+            
+            add_daily_mastery = {
+				amount = 100
+				days = 172
+				name = europe_only_mastery_boost
+			}
+            
+            # From infantry.txt
+            set_technology = { infantry_weapons = 1 popup = no}
+            set_technology = { infantry_weapons1 = 1 popup = no}
+			set_technology = { infantry_weapons2 = 1 popup = no}
+            set_technology = { improved_infantry_weapons = 1 popup = no}
+			set_technology = { improved_infantry_weapons_2 = 1 popup = no}
+            set_technology = { support_weapons = 1 popup = no}
+            set_technology = { support_weapons2 = 1 popup = no}
+            set_technology = { support_weapons3 = 1 popup = no}
+            set_technology = { mechanised_infantry = 1 popup = no}
+            set_technology = { mechanised_infantry2 = 1 popup = no}
+            set_technology = { armored_car2 = 1 popup = no}
+            set_technology = { armored_car3 = 1 popup = no}
+
+            # From support.txt
+            set_technology = { tech_engineers2 = 1 popup = no}
+            set_technology = { tech_recon2 = 1 popup = no}
+            set_technology = { tech_military_police2 = 1 popup = no}
+            set_technology = { tech_maintenance_company2 = 1 popup = no}
+            set_technology = { tech_field_hospital2 = 1 popup = no}
+            set_technology = { tech_logistics_company2 = 1 popup = no}
+            set_technology = { tech_signal_company2 = 1 popup = no}
+            
+            # From artillery.txt
+            set_technology = { interwar_artillery = 1 popup = no}
+            set_technology = { artillery1 = 1 popup = no}
+			set_technology = { artillery2 = 1 popup = no}
+            set_technology = { interwar_antitank = 1 popup = no}
+            set_technology = { antitank1 = 1 popup = no}
+            set_technology = { antitank2 = 1 popup = no}
+            set_technology = { interwar_antiair = 1 popup = no}
+            set_technology = { antiair1 = 1 popup = no}
+            set_technology = { antiair2 = 1 popup = no}
+            set_technology = { rocket_artillery = 1 popup = no}
+            
+            # From NSB_armor.txt
+            set_technology = { advanced_light_tank_chassis = 1 popup = no}
+            set_technology = { advanced_light_tank2_chassis = 1 popup = no}
+            set_technology = { improved_medium_tank_chassis = 1 popup = no}
+            set_technology = { advanced_medium_tank_chassis = 1 popup = no}
+            set_technology = { improved_heavy_tank_chassis = 1 popup = no}
+            set_technology = { advanced_heavy_tank_chassis = 1 popup = no}
+            set_technology = { super_heavy_tank_chassis = 1 popup = no}
+            set_technology = { amphibious_drive = 1 popup = no}
+
+            # Armor Modules & Upgrades
+            set_technology = { armor_tech_1 = 1 popup = no}
+            set_technology = { engine_tech_1 = 1 popup = no}
+            set_technology = { armor_tech_2 = 1 popup = no}
+            set_technology = { engine_tech_2 = 1 popup = no}
+            
+            # From bba_air_techs.txt
+            set_technology = { improved_small_airframe = 1 popup = no}
+            set_technology = { advanced_small_airframe = 1 popup = no}
+            set_technology = { improved_medium_airframe = 1 popup = no}
+			set_technology = { basic_large_airframe = 1 popup = no}
+            set_technology = { improved_large_airframe = 1 popup = no}
+            
+            # Air Modules & Weapons
+            # set_technology = { heavy_mg_tech = 1 }
+            # set_technology = { cannon_tech = 1 }
+            # set_technology = { bomb_tech = 1 }
+            # set_technology = { engine_tech = 1 }
+            # set_technology = { range_tech = 1 }
+            
+            # From electronic_mechanical_engineering.txt
+            set_technology = { electronic_mechanical_engineering = 1 popup = no}
+            set_technology = { mechanical_computing = 1 popup = no}
+            set_technology = { radio = 1 popup = no}
+            set_technology = { radio_detection = 1 popup = no}
+            
+            # From industry.txt
+            set_technology = { basic_machine_tools = 1 popup = no}
+            set_technology = { improved_machine_tools = 1 popup = no}
+            set_technology = { advanced_machine_tools = 1 popup = no}
+            set_technology = { assembly_line_production = 1 popup = no}
+            set_technology = { construction1 = 1 popup = no}
+            set_technology = { construction2 = 1 popup = no}
+            set_technology = { construction3 = 1 popup = no}
+            set_technology = { concentrated_industry = 1 popup = no}
+            set_technology = { concentrated_industry2 = 1 popup = no}
+            set_technology = { concentrated_industry3 = 1 popup = no}
+            set_technology = { concentrated_industry4 = 1 popup = no}
+            set_technology = { fuel_silos = 1 popup = no}
+            set_technology = { synth_oil_experiments = 1 popup = no}
+            set_technology = { fuel_refining2 = 1 popup = no}
+            set_technology = { fuel_refining3 = 1 popup = no}
+			set_technology = { fuel_refining4 = 1 popup = no}
+			set_technology = { fuel_refining5 = 1 popup = no}
+        }
+        
+        SWE = {
+            give_resource_rights = { receiver = ENG state = 336 }
+            give_resource_rights = { receiver = ENG state = 333 }
+            give_resource_rights = { receiver = ENG state = 334 }
+            give_resource_rights = { receiver = ENG state = 487 }
+            give_resource_rights = { receiver = ENG state = 275 }
+            give_resource_rights = { receiver = ENG state = 375 }
+            
+            give_resource_rights = { receiver = GER state = 576 }
+            give_resource_rights = { receiver = GER state = 102 }
+            give_resource_rights = { receiver = GER state = 158 }
+            give_resource_rights = { receiver = GER state = 159 }
+            give_resource_rights = { receiver = GER state = 160 }
+            give_resource_rights = { receiver = GER state = 164 }
+            give_resource_rights = { receiver = GER state = 184 }
+            give_resource_rights = { receiver = GER state = 185 }
+            give_resource_rights = { receiver = GER state = 486 }
+        }
+        
+        46 = { add_resource = { type = oil amount = 24 } }
+        
+        111 = { 
+            add_resource = { 
+                type = steel amount = 32 
+            } 
+        }
+        111 = { 
+            add_resource = { 
+                type = tungsten amount = 18 
+            } 
+        }
+        111 = { 
+            add_resource = { 
+                type = rubber amount = 8 
+            } 
+        }
+        
+        GER = { 
+            add_timed_idea = { idea = europe_only_germany_idea  days = 172 }
+            capital_scope = {
+                add_dynamic_modifier = { modifier = GER_europe_only_african_fuel }
+            }
+        }
+		
+		SOV = { 
+            add_timed_idea = { idea = europe_only_soviet_idea  days = 172 }
+        }
+		
+		ENG = { 
+            add_timed_idea = { idea = europe_only_britain_idea  days = 172 }
+        }
+        
+        every_country = { 
+            limit = { 
+                OR = { 
+                    tag = HUN 
+                    tag = ROM
+                } 
+            }
+            add_timed_idea = { idea = europe_only_yellow_minor_idea  days = 172 }
+        }
+        
+        every_country = { 
+            limit = { 
+                OR = { 
+                    tag = FIN
+                    tag = MON
+                } 
+            }
+            add_timed_idea = { idea = europe_only_green_minor_idea  days = 172 }
+        }
+    }
+	
     if = { 
         limit = { has_game_rule = { rule = horst_mines option = horst_mines_on } }
         every_country = { 

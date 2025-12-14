@@ -519,50 +519,217 @@ add_to_faction = BRA
 add_to_faction = MEX
 
 set_faction_spymaster = yes	
-	1936.1.1.20 = {
-		
-		#add_equipment_to_stockpile = { type = small_plane_airframe variant_name = "Hawker Hurricane" amount = 500 }
-		PER = { country_event = { id = wtt_japan.109  days = 730  }  }
-		set_global_flag = war_in_the_west_start
-		add_ideas = ENG_no_asia_idea 
-		#RAJ = { 		add_ideas = ENG_no_asia_idea  }
-		SAF = { 		add_ideas = ENG_no_asia_idea  }
-		CAN = { 		add_ideas = ENG_no_asia_idea  }
-		HOL = { 
-			remove_ideas = {
-				hol_ernest_king
-				bureau_of_ordnance_spirit
-			}
+1936.1.1.20 = {
+	
+	#add_equipment_to_stockpile = { type = small_plane_airframe variant_name = "Hawker Hurricane" amount = 500 }
+	PER = { country_event = { id = wtt_japan.109  days = 730  }  }
+	set_global_flag = war_in_the_west_start
+	add_ideas = ENG_no_asia_idea 
+	#RAJ = { 		add_ideas = ENG_no_asia_idea  }
+	SAF = { 		add_ideas = ENG_no_asia_idea  }
+	CAN = { 		add_ideas = ENG_no_asia_idea  }
+	HOL = { 
+		remove_ideas = {
+			hol_ernest_king
+			bureau_of_ordnance_spirit
 		}
-		309 = { add_extra_state_shared_building_slots = 20 }
-		352 = { add_extra_state_shared_building_slots = 20 }
-		add_ideas = limited_conscription
-		set_autonomy = {
-			target = AST
-			autonomy_state = autonomy_free
-		}
-		remove_from_faction = AST
-		set_autonomy = {
-			target = NZL
-			autonomy_state = autonomy_free
-		}
-		remove_from_faction = NZL
-		remove_from_faction = BRA
-		remove_from_faction = USA 
-		remove_from_faction = MEX
-		remove_from_faction = RAJ
-		425 = { remove_building ={ type = industrial_complex level = 2  } }
-		621 = { remove_building ={ type = industrial_complex level = 1  } }		
-		427 = { remove_building ={ type = industrial_complex level = 2  } }
-		423 = { remove_building ={ type = industrial_complex level = 2  } }
-		622 = { remove_building ={ type = industrial_complex level = 2  } }	
-		430 = { remove_building ={ type = industrial_complex level = 2  } }	
-		324 = { remove_building ={ type = industrial_complex level = 3  } }	
-		
 	}
-	1936.1.1.14 = {
-		clr_global_flag = war_in_the_west_start
+	309 = { add_extra_state_shared_building_slots = 20 }
+	352 = { add_extra_state_shared_building_slots = 20 }
+	add_ideas = limited_conscription
+	set_autonomy = {
+		target = AST
+		autonomy_state = autonomy_free
 	}
+	remove_from_faction = AST
+	set_autonomy = {
+		target = NZL
+		autonomy_state = autonomy_free
+	}
+	remove_from_faction = NZL
+	remove_from_faction = BRA
+	remove_from_faction = USA 
+	remove_from_faction = MEX
+	remove_from_faction = RAJ
+	425 = { remove_building ={ type = industrial_complex level = 2  } }
+	621 = { remove_building ={ type = industrial_complex level = 1  } }		
+	427 = { remove_building ={ type = industrial_complex level = 2  } }
+	423 = { remove_building ={ type = industrial_complex level = 2  } }
+	622 = { remove_building ={ type = industrial_complex level = 2  } }	
+	430 = { remove_building ={ type = industrial_complex level = 2  } }	
+	324 = { remove_building ={ type = industrial_complex level = 3  } }	
+	
+}
+1936.1.1.21 = {
+	clr_global_flag = war_in_the_west_start
+}
+1941.1.1.12 = {
+	set_research_slots = 6
+	
+	retire_country_leader = yes
+	create_country_leader = {
+		name = "Winston Churchill"
+		desc = "POLITICS_WINSTON_CHURCHILL_DESC"
+		picture = "Portrait_Britain_Winston_Churchill.dds"
+		expire = "1965.1.1"
+		ideology = conservatism
+		traits = { british_bulldog }
+	}
+	
+	#add_ideas = stiff_upper_lip1
+	add_ideas = british_austerity_idea   
+	add_ideas = ENG_focus_on_the_empire_idea
+	add_ideas = war_economy
+	add_ideas = ENG_george_vi
+	
+	remove_ideas = NO_TRADE
+	remove_ideas = armyandnavy_idea
+	remove_ideas = ENG_no_asia_idea
+	remove_ideas = george_v
+	
+	add_to_variable = { ENG_re_special_forces_attack_factor = 0.08 }
+	add_to_variable = { ENG_re_special_forces_defence_factor = 0.08 }
+	add_to_variable = { ENG_re_army_artillery_attack_factor = 0.08 }
+	add_to_variable = { ENG_re_army_artillery_defence_factor = 0.08 }
+	add_to_variable = { ENG_re_modifier_max_planning = 0.1 }
+	add_to_variable = { ENG_re_modifier_armor_attack_factor = 0.08 }
+	add_to_variable = { ENG_re_modifier_armor_defence_factor = 0.08 }
+	
+	add_to_variable = { ENG_ra_air_superiority_efficiency = 0.1 }
+	add_to_variable = { ENG_ra_air_range_factor = 0.1 }
+	add_to_variable = { ENG_ra_air_accidents_factor = -0.4 }
+	
+	unlock_national_focus  = ENG_rearmament_program
+	unlock_national_focus  = shadow_scheme_focus
+	unlock_national_focus  = ENG_national_defence_contribution_act
+	complete_national_focus  = ENG_home_defence
+	complete_national_focus  = ENG_research_slot
+	complete_national_focus  = ENG_focus_on_homeland
+	unlock_national_focus  = ENG_expansion_of_royal_ordnance_factories
+	unlock_national_focus  = ENG_general_rearmament
+	unlock_national_focus  = ENG_imperial_policy
+	unlock_national_focus  = ENG_handle_the_imperial_security
+	unlock_national_focus  = ENG_centralize_cid1
+	unlock_national_focus  = ENG_centralize_imperial_conference
+	unlock_national_focus  = uk_commonwealth_focus
+	unlock_national_focus  = ENG_focus_on_the_empire
+	unlock_national_focus  = ENG_egypt_fortification
+	unlock_national_focus  = ENG_singapore_strategy
+	unlock_national_focus  = ENG_cabinet_war_rooms
+	unlock_national_focus  = ENG_compass
+	unlock_national_focus  = ENG_operation_brevity
+	unlock_national_focus  = ENG_operation_scimitar
+	unlock_national_focus  = ENG_operation_crusader
+	unlock_national_focus  = ENG_west_has_fallen
+	unlock_national_focus  = ENG_operation_vulcan
+	unlock_national_focus  = ENG_operation_husky
+	unlock_national_focus  = ENG_asian_operations
+	unlock_national_focus  = ENG_gamble_on_south_china_sea
+	unlock_national_focus  = ENG_burma_campaign
+	unlock_national_focus  = ENG_operation_dracula
+	unlock_national_focus  = ENG_the_only_sun
+	unlock_national_focus  = ENG_colonial_defence
+	unlock_national_focus  = uk_mediterranean_focus
+	unlock_national_focus  = ENG_african_campaign
+	unlock_national_focus  = ENG_asyut_fortification
+	unlock_national_focus  = ENG_khartoum_fortification
+	unlock_national_focus  = ENG_asian_campaign
+	unlock_national_focus  = ENG_create_defence_requirements_committee
+	unlock_national_focus  = ENG_create_bef
+	unlock_national_focus  = ENG_lobby_for_funds
+	unlock_national_focus  = ENG_request_for_more_reserves
+	unlock_national_focus  = ENG_partial_funds
+	unlock_national_focus  = ENG_blank_cheque_for_raf
+	unlock_national_focus  = ENG_radar_research
+	unlock_national_focus  = ENG_british_commonwealth_air_training_plan
+	unlock_national_focus  = ENG_full_funding
+	unlock_national_focus  = ENG_demands_from_the_royal_navy
+	unlock_national_focus  = ENG_two_power_standart
+	unlock_national_focus  = ENG_commission_for_more_ships
+	unlock_national_focus  = ENG_rule_the_waves
+	unlock_national_focus  = ENG_gather_the_rearmament_plans
+	unlock_national_focus  = ENG_army_demands
+	unlock_national_focus  = ENG_rusi
+	unlock_national_focus  = ENG_establish_royal_tank_regiment
+	unlock_national_focus  = ENG_expansion_of_tank_regiment
+	unlock_national_focus  = ENG_special_air_service1
+	unlock_national_focus  = ENG_long_range_desert_group
+	unlock_national_focus  = ENG_commandos
+	complete_national_focus  = ENG_full_funding_for_the_army
+	unlock_national_focus  = ENG_raf_demands
+	unlock_national_focus  = ENG_air_ministry_specifications
+	unlock_national_focus  = ENG_defence_scheme
+	unlock_national_focus  = ENG_more_specifications
+	unlock_national_focus  = ENG_bomber_development_program
+	unlock_national_focus  = ENG_air_staff_reports
+	unlock_national_focus  = ENG_full_plans_achieved
+	unlock_national_focus  = ENG_navy_demands
+	unlock_national_focus  = ENG_battleship_programs
+	unlock_national_focus  = ENG_carrier_programs
+	unlock_national_focus  = ENG_cruiser_programs
+	unlock_national_focus  = ENG_destroyer_programs
+	unlock_national_focus  = ENG_two_standarts_achieved
+	unlock_national_focus  = ENG_continental_intervention
+	unlock_national_focus  = ENG_mince
+	unlock_national_focus  = uk_scandinavian_focus
+	unlock_national_focus  = ENG_benelux_intervention
+	complete_national_focus  = ENG_maintaining_imperial_integrity
+	unlock_national_focus  = uk_iran_focus
+	unlock_national_focus  = uk_iraq_focus
+	unlock_national_focus  = crypto_bomb_focus
+	unlock_national_focus  = tizard_mission_focus
+	unlock_national_focus  = limited_rearmament_focus
+	unlock_national_focus  = ENG_motorized_focus
+	unlock_national_focus  = ENG_tank_focus
+	unlock_national_focus  = ENG_tank_focus2
+	unlock_national_focus  = ENG_tank_focus3
+	unlock_national_focus  = air_defense_focus
+	unlock_national_focus  = radar_focus
+	unlock_national_focus  = uk_industrial_focus
+	unlock_national_focus  = uk_extra_tech_slot
+	unlock_national_focus  = general_rearmament_focus
+	unlock_national_focus  = royal_ordinance_focus
+	unlock_national_focus  = uk_small_arms_focus
+	unlock_national_focus  = fighter_command_focus
+	unlock_national_focus  = air_rearmament_focus
+	unlock_national_focus  = ENG_chiefs_of_staff_committee
+	unlock_national_focus  = ENG_special_air_service
+	unlock_national_focus  = bomber_command_focus
+	unlock_national_focus  = coastal_command_focus
+	unlock_national_focus  = aircraft_production_focus
+	unlock_national_focus  = naval_rearmament_focus
+	unlock_national_focus  = ENG_secure_the_imperial_shipping_routes
+	unlock_national_focus  = uk_destroyer_focus
+	unlock_national_focus  = uk_waves_focus
+	unlock_national_focus  = uk_carrier_focus
+	unlock_national_focus  = uk_battleship_focus
+	unlock_national_focus  = uk_amphibious_focus
+	unlock_national_focus  = ENG_expand_the_repair_yards
+	unlock_national_focus  = ENG_vanguard
+	unlock_national_focus  = uk_empire_focus
+	unlock_national_focus  = ENG_imperial_conscription
+	unlock_national_focus  = uk_service_focus
+	unlock_national_focus  = uk_colonial_focus
+	unlock_national_focus  = uk_asia_focus
+	unlock_national_focus  = ENG_dieppe
+	unlock_national_focus  = ENG_prepare_for_the_inevitable
+	
+	
+	set_autonomy = {
+		target = AST
+		autonomy_state = autonomy_free
+	}
+	set_autonomy = {
+		target = NZL
+		autonomy_state = autonomy_free
+	}
+	remove_from_faction = AST
+	remove_from_faction = NZL
+	remove_from_faction = BRA
+	remove_from_faction = USA 
+	remove_from_faction = MEX
+	remove_from_faction = RAJ
+}
 	# Submarines #
 	create_equipment_variant = {
 		name = "S Class"
