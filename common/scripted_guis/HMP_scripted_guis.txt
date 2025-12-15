@@ -1,4 +1,28 @@
 scripted_gui = {
+	delete_button_blocker_window_gui = {
+		window_name = "delete_button_blocker_window"
+		context_type = player_context
+		parent_window_name = army_division_list_view
+
+		visible = {
+           has_global_flag = delete_button_flag
+           #always = yes
+		}
+		
+	}
+    
+    delete_button_blocker_window1_gui = {
+		window_name = "delete_button_blocker_window1"
+		context_type = player_context
+		#parent_window_name = content_window
+
+		visible = {
+           has_global_flag = delete_button_flag
+           #always = yes
+		}
+		
+	}
+
 	construction_speed_view_opener_menu = {
 		context_type = player_context
 		
@@ -259,11 +283,12 @@ scripted_gui = {
 		context_type = player_context
 		window_name = "pause_block_window"
 		parent_window_name = time_control_window
+		
 		visible = {
-		OR ={ 
-			AND = { SWE = { check_variable = { pause_blocker_variable = 2    } } NOT = { has_country_flag = host }     } 
-			AND = { SWE = { check_variable = { pause_blocker_variable = 3    } } NOT = { immune_to_pause_block = yes  }     } 
-		}
+			OR ={ 
+				AND = { SWE = { check_variable = { pause_blocker_variable = 2    } } NOT = { has_country_flag = host }     } 
+				AND = { SWE = { check_variable = { pause_blocker_variable = 3    } } NOT = { immune_to_pause_block = yes  }     } 
+			}
 		}
 	}
 	
@@ -793,10 +818,70 @@ HMP_soviet_lend_lease_system_ui = {
 
 			horsttool_helpbutton_click = { ROOT = { country_event = { id =  horsthelp.2 } } }
 			annex_override_click= { hidden_effect = { owner = { set_country_flag = { flag = annex_manual_override days = 30 value = 1    } } } }
-			pause_blocker_all_click = { SWE =  { clear_variable = pause_blocker_variable set_variable = { var = pause_blocker_variable value = 1 } } ROOT={clr_global_flag=blocking_pauses} }#ALL CAN PAUSE
-			pause_blocker_host_click = { SWE =  { clear_variable = pause_blocker_variable set_variable = { var = pause_blocker_variable value = 2 } } ROOT={clr_global_flag=blocking_pauses } } #ONLY HOST CAN USE PAUSE BUTTON
-			pause_blocker_major_click = {if={limit={ROOT={has_global_flag=blocking_pauses}} SWE =  { clear_variable = pause_blocker_variable set_variable = { var = pause_blocker_variable value = 3 } }  ROOT={clr_global_flag=blocking_pauses}} else = {ROOT={set_global_flag = blocking_pauses } } }#ONLY MAJORS CAN PAUSE
-						
+			
+			pause_blocker_all_click = {
+				SWE = {
+					clear_variable = pause_blocker_variable
+					set_variable = { var = pause_blocker_variable value = 1 }
+				}
+				ROOT = {
+					clr_global_flag = blocking_pauses
+				}
+			}
+
+			pause_blocker_host_click = {
+				SWE = {
+					clear_variable = pause_blocker_variable
+					set_variable = { var = pause_blocker_variable value = 2 }
+				}
+				ROOT = {
+					clr_global_flag = blocking_pauses
+				}
+			}
+
+			pause_blocker_major_click = {
+				if = {
+					limit = {
+						ROOT = { has_global_flag = blocking_pauses }
+					}
+					SWE = {
+						clear_variable = pause_blocker_variable
+						set_variable = { var = pause_blocker_variable value = 3 }
+					}
+					ROOT = {
+						clr_global_flag = blocking_pauses
+					}
+				}
+				else = {
+					ROOT = {
+						set_global_flag = blocking_pauses
+					}
+				}
+			}
+			
+			delete_button_blocker_button_click = {
+				if = {
+					limit = {
+						ROOT = { has_global_flag = delete_button_flag }
+					}
+					ROOT = {
+						clr_global_flag = delete_button_flag
+					}
+                    #every_country = {
+                    #    country_event = HMP_delete_event.2
+                    #}               
+				}
+				else = {
+					ROOT = {
+						set_global_flag = delete_button_flag
+					}
+                    #every_country = {
+                    #    country_event = HMP_delete_event.1
+                    #}  
+				}
+			}
+	
+				
 				cb_red_click ={if={limit={Root={has_global_flag=colorblindness}} set_variable={Root.selected_color=1} ROOT={clr_global_flag=colorblindness}} else={ROOT={set_global_flag=colorblindness}}	}
 				cb_orange_click={set_variable={Root.selected_color=2} ROOT={clr_global_flag=colorblindness}}
 				cb_yellow_click={set_variable={Root.selected_color=3} ROOT={clr_global_flag=colorblindness}}
