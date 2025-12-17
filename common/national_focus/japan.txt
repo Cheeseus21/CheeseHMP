@@ -3953,14 +3953,14 @@ focus_tree = {
 			328 = {
 				add_resource = {
 					type = aluminium
-					amount = 10
+					amount = 24
 				}
 			}
             
             496 = {
 				add_resource = {
 					type = steel
-					amount = 10
+					amount = 36
 				}
 			}
 
@@ -4181,6 +4181,21 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_MANPOWER }
 
 		completion_reward = {
+			527 = {
+				add_resource = {
+					type = tungsten
+					amount = 18
+				}
+			}
+			527 = {
+				add_resource = {
+					type = steel
+					amount = 32
+				}
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+		
 			
 			IF = {
 				limit = {
@@ -5087,7 +5102,7 @@ focus_tree = {
 
 		completion_reward = {
 
-			air_experience = 15
+			air_experience = 25
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -5495,46 +5510,35 @@ focus_tree = {
 
 		completion_reward = {
 
-			if = {
+			random_core_state = {
 				limit = {
-					282 = {
-						is_fully_controlled_by = ROOT
-						free_building_slots = {
-							building = dockyard
-							size > 2
-							include_locked = yes
-						}
+					is_fully_controlled_by = ROOT
+					NOT = {
+						has_state_category = small_island
+						has_state_category = tiny_island
 					}
 				}
-				282 = {
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
 				}
 			}
-			else = {
-				random_core_state = {
-					limit = {
-						is_fully_controlled_by = ROOT
-						NOT = {
-							has_state_category = small_island
-							has_state_category = tiny_island
-						}
-						free_building_slots = {
-							building = dockyard
-							size > 2
-							include_locked = yes
-						}
+			
+			random_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					NOT = {
+						has_state_category = small_island
+						has_state_category = tiny_island
 					}
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = {
-						type = dockyard
-						level = 3
-						instant_build = yes
-					}
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
 				}
 			}
 		}
@@ -5581,14 +5585,14 @@ focus_tree = {
 					}
 					free_building_slots = {
 						building = dockyard
-						size > 0
+						size > 2
 						include_locked = yes
 					}
 				}
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = dockyard
-					level = 1
+					level = 4
 					instant_build = yes
 				}
 			}
@@ -5685,6 +5689,29 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_NAVY_XP FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_IMPERIAL_INFLUENCE }
 
 		completion_reward = {
+			random_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					NOT = {
+						has_state_category = small_island
+						has_state_category = tiny_island
+					}
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+			
 			add_tech_bonus = {
 				name = JAP_focus_on_aircraft_carriers
 				bonus = 1
@@ -5794,6 +5821,29 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_NAVY_XP FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_IMPERIAL_INFLUENCE }
 
 		completion_reward = {
+			random_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					NOT = {
+						has_state_category = small_island
+						has_state_category = tiny_island
+					}
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+		
 			add_tech_bonus = {
 				name = JAP_balanced_naval_approach
 				bonus = 1.5
@@ -5842,6 +5892,29 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_NAVY_XP FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_IMPERIAL_INFLUENCE } 
 
 		completion_reward = {
+			random_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					NOT = {
+						has_state_category = small_island
+						has_state_category = tiny_island
+					}
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+		
 			add_tech_bonus = {
 				name = JAP_sea_battleship_initiative
 				bonus = 1
@@ -6518,26 +6591,46 @@ focus_tree = {
 
 		completion_reward = {
 			random_core_state = {
-                limit = {
-                    is_fully_controlled_by = ROOT
-                    is_coastal = yes
-                    NOT = {
-                        has_state_category = small_island
-                        has_state_category = tiny_island
-                    }
-                    free_building_slots = {
-                        building = dockyard
-                        size > 1
-                        include_locked = yes
-                    }
-                }
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = {
-                    type = dockyard
-                    level = 2
-                    instant_build = yes
-                }
-            }
+				limit = {
+					is_fully_controlled_by = ROOT
+					NOT = {
+						has_state_category = small_island
+						has_state_category = tiny_island
+					}
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
+            
+            random_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					NOT = {
+						has_state_category = small_island
+						has_state_category = tiny_island
+					}
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
 		}
 	}
 

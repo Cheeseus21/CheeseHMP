@@ -292,6 +292,21 @@ NDefines.NNavy.NAVY_PIERCING_THRESHOLD_DAMAGE_VALUES = {	-- 0 armor will always 
 0.10 -- 
 }
 
+NDefines.NNavy.CONVOY_BLOCKED_BY_ENEMY_CONTROLLED_REGION = true
+NDefines.NNavy.MAX_MISSION_PER_TASKFORCE = {  -- max mission region/taskforce ratio
+	0, -- HOLD (consumes fuel HOLD_MISSION_MOVEMENT_COST fuel while moving)
+	0, -- PATROL
+	4, -- STRIKE FORCE
+	1.5, -- CONVOY RAIDING
+	4, -- CONVOY ESCORT
+	2, -- MINES PLANTING
+	2, -- MINES SWEEPING
+	0, -- TRAIN
+	0, -- RESERVE_FLEET
+	10, -- NAVAL INVASION SUPPORT
+}
+
+
 
 NDefines.NNavy.MISSION_MAX_REGIONS = 5 			--vanilla 0 | Limit of the regions that can be assigned to naval mission. Set to 0 for unlimited.
 NDefines.NNavy.BASE_JOIN_COMBAT_HOURS			= 72 -- vanilla 8, hours to join combat
