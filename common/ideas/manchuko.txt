@@ -1,171 +1,110 @@
 ideas = {
+
+	hidden_ideas = {
+		trade_japan = {
+			targeted_modifier = {
+				tag = MAN
+				extra_trade_to_target_factor = 1
+			}
+		}
+	}
 	
 	country = {
+
+		MAN_great_campaigns = {
+			picture = chi_wargaming_division
+			available = { CHI = { exists = yes } }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = { 
+				industrial_capacity_factory = 0.75
+        		production_factory_max_efficiency_factor = 0.75
+				production_factory_efficiency_gain_factor = 0.75
+			}
+		}
+
+		MAN_opium_revenge = {
+			picture = SPA_crusade_against_democracy
+			allowed = {	always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			targeted_modifier = {
+				tag = ENG
+				attack_bonus_against = 0.1
+				defense_bonus_against = 0.1
+			}
+			targeted_modifier = {
+				tag = RAJ
+				attack_bonus_against = 0.1
+				defense_bonus_against = 0.1
+			}
+			targeted_modifier = {
+				tag = FRA
+				attack_bonus_against = 0.1
+				defense_bonus_against = 0.1
+			}
+		}
 
 		CHI_wargaming_division = {
 			picture = chi_wargaming_division
 			allowed = {	always = no	}
-			allowed_civil_war = {	always = yes	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-			modifier = {	max_command_power = 5	}
+			modifier = { 
+				training_time_factor = -0.1
+				experience_loss_factor = -0.1
+			}
 		}
-		CHI_chinese_general_staff = {
-			picture = general_staff
-			allowed = {	always = no	}
-			allowed_civil_war = {	always = yes	}
-			removal_cost = -1
-			modifier = {	army_leader_start_planning_level = 1	}
-		}
+
 		CHI_elite_mountaineers = {
 			picture = ast_volunteer_defence_corps
 			allowed = { always = no	}
-			allowed_civil_war = {	always = yes	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-			modifier = { special_forces_attack_factor = 0.05 special_forces_defence_factor = 0.05	}
-		}
-		CHI_french_drill = {
-			picture = generic_intel_bonus
-			allowed = {	always = no	}
-			allowed_civil_war = {	always = yes	}
-			removal_cost = -1
-			modifier = {	army_leader_start_defense_level = 1	}
-		}
-
-		CHI_modern_logistics = {
-
-			picture = FRA_motorized_focus
-			
-			allowed = {	always = no	}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				army_leader_start_logistics_level = 1
+			modifier = { 
+				special_forces_attack_factor = 0.05 
+				special_forces_defence_factor = 0.05
 			}
 		}
 
 		CHI_construction_battalions = {
-
-			picture = ast_all_in
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
+			picture = ast_all_in		
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-			
 			modifier = {
-				max_dig_in = 5
+				max_dig_in = 10
 			}
 		}
 
 		CHI_train_marines = {
-
 			picture = generic_infantry_bonus
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-			
 			modifier = {
-			special_forces_attack_factor = 0.05 
-			special_forces_defence_factor = 0.05
+				special_forces_attack_factor = 0.05 
+				special_forces_defence_factor = 0.05
 			}
-		}
-
-	
-			MAN_importjap = {
-	
-		available = {
-			}
-			
-			allowed = {
-				always = no
-			}
-	
-			removal_cost = -1
-
-			picture = man_five_year_plan_industry
-			
-			
-				targeted_modifier = {
-				tag = MAN
-		trade_cost_for_target_factor = -0.2
-	}
-	
-	}
-		MAN_agriculturaltrade = {
-	
-		available = {
-			}
-			
-			allowed = {
-				always = no
-			}
-	
-			removal_cost = -1
-
-			picture = man_five_year_plan_industry
-			
-			
-		modifier = { 	consumer_goods_expected_value = -0.06}
-		
-			
-	}
-	
+		}	
 
 		MAN_banditry = {
-
-			available = {
-	
-			}
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
 			picture = chi_army_corruption2
-			
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
 			modifier = {
 				stability_factor = -0.05
 				war_support_factor = -0.05
+				production_speed_buildings_factor = -0.1
 			}
 		}
 
 		MAN_kwantung_veto = {
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
 			picture = generic_secret_police
-			
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
 			modifier = {
 				political_advisor_cost_factor = 0.25
 				trade_laws_cost_factor = 0.25
@@ -174,352 +113,567 @@ ideas = {
 			}
 		}
 		
-
-		MAN_puppetstatus5 = { 
-		
-					picture = jap_zaibatsu
-
-		
-		targeted_modifier = {
-		tag = JAP
-		cic_to_target_factor = 0.25
-		}
-		}
-		
-			MAN_puppetstatus4 = { 
-			
-						picture = jap_zaibatsu
-
-		
-		targeted_modifier = {
-		tag = JAP
-		
-		cic_to_target_factor = 0.20
-		}
-		}
-		
-			MAN_puppetstatus3 = { 
-			
-						picture = jap_zaibatsu
-
-		
-		targeted_modifier = {
-		tag = JAP
-		
-		cic_to_target_factor = 0.15
-		}
-		}
-		
-			MAN_puppetstatus2 = { 
-			
-						picture = jap_zaibatsu
-
-		
-		targeted_modifier = {
-		tag = JAP
-		
-		cic_to_target_factor = 0.10
-		}
-		}
-
-			MAN_puppetstatus1 = { 
-			
-						picture = jap_zaibatsu
-
-		
-		targeted_modifier = {
-		tag = JAP
-		
-		cic_to_target_factor = 0.05
-		}
-		}
-		
-		
-		
-		
 		MAN_low_legitimacy_5 = {
-			
 			name = MAN_low_legitimacy
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
 			picture = man_low_legitimacy
-			
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
 			modifier = {
 				stability_factor = -0.25
 				war_support_factor = -0.25
-				##min_export = -1
 			}
 		}
-		
+
 		MAN_low_legitimacy_4 = {
-			
 			name = MAN_low_legitimacy
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
+			picture = man_low_legitimacy
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-
-			picture = man_low_legitimacy2
-			
 			modifier = {
 				stability_factor = -0.2
 				war_support_factor = -0.2
-				##min_export = -1
 			}
 		}
+
 		MAN_low_legitimacy_3 = {
-			
 			name = MAN_low_legitimacy
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
+			picture = man_low_legitimacy
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-
-			picture = man_low_legitimacy3
-			
 			modifier = {
 				stability_factor = -0.15
 				war_support_factor = -0.15
-				##min_export = -1
 			}
 		}
+
 		MAN_low_legitimacy_2 = {
-			
 			name = MAN_low_legitimacy
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
+			picture = man_low_legitimacy
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-
-			picture = man_low_legitimacy4
-			
 			modifier = {
 				stability_factor = -0.1
 				war_support_factor = -0.1
-				##min_export = -1
 			}
 		}
+
 		MAN_low_legitimacy_1 = {
-			
 			name = MAN_low_legitimacy
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
+			picture = man_low_legitimacy
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
 			removal_cost = -1
-
-			picture = man_low_legitimacy5
-			
 			modifier = {
 				stability_factor = -0.05
 				war_support_factor = -0.05
-				##min_export = -1
 			}
 		}
-		MAN_low_legitimacy_0 = {
-			
-			name = MAN_low_legitimacy
 
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
-			picture = man_low_legitimacy5
-			
-			modifier = {
-				##min_export = -1
-			}
-		}
-		MAN_mukden_military_academy = {
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
+		MAN_eight_banners = {
+			name = MAN_eight_banner_desc
 			picture = generic_army_war_college
-			
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_org_factor = 0.05
+				army_morale_factor = 0.05
+			}
+		}
+
+		MAN_eight_banners_chi1 = {
+			name = MAN_eight_banner_desc
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_org_factor = 0.1
+				army_morale_factor = 0.1
+			}
+		}
+
+		MAN_eight_banners_chi2 = {
+			name = MAN_eight_banner_desc
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_org_factor = 0.1
+				army_morale_factor = 0.1
+				political_power_factor = -0.1
+				stability_factor = 0.1
+			}
+		}
+
+		MAN_eight_banners_mon1 = {
+			name = MAN_eight_banner_desc
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_org_factor = 0.05
+				army_morale_factor = 0.05
+				conscription = 0.03
+			}
+		}
+
+		MAN_eight_banners_mon2 = {
+			name = MAN_eight_banner_desc
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_org_factor = 0.05
+				army_morale_factor = 0.05
+				conscription = 0.03
+				experience_loss_factor = -0.1
+				experience_gain_army_unit_factor = 0.1
+			}
+		}
+
+		MAN_chinese_banner1 = {
+			name = MAN_chinese_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_core_attack_factor = 0.05
+        		army_core_defence_factor = 0.05
+			}
+		}
+
+		MAN_chinese_banner2 = {
+			name = MAN_chinese_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_core_attack_factor = 0.05
+        		army_core_defence_factor = 0.05
+			}
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes 
+				}
+			}
+		}
+
+		MAN_chinese_banner3 = {
+			name = MAN_chinese_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_core_attack_factor = 0.05
+        		army_core_defence_factor = 0.05
+				supply_consumption_factor = -0.1
+				attrition = -0.1
+			}
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes 
+				}
+			}
+		}
+
+		MAN_chinese_banner4 = {
+			name = MAN_chinese_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_core_attack_factor = 0.1
+        		army_core_defence_factor = 0.1
+				supply_consumption_factor = -0.1
+				attrition = -0.1
+				army_infantry_attack_factor = 0.05
+				army_infantry_defence_factor = 0.05
+			}
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes 
+				}
+			}
+		}
+
+		MAN_manchu_banner1 = {
+			name = MAN_manchu_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.1
+        		war_support_factor = 0.1
+			}
+		}
+
+		MAN_manchu_banner2 = {
+			name = MAN_manchu_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.1
+        		war_support_factor = 0.1
+				army_infantry_attack_factor = 0.08
+				army_infantry_defence_factor = 0.08
+			}
+		}
+
+		MAN_manchu_banner3 = {
+			name = MAN_manchu_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.1
+        		war_support_factor = 0.1
+				army_infantry_attack_factor = 0.08
+				army_infantry_defence_factor = 0.08
+				conscription = 0.05
+				recon_factor = 0.05
+			}
+		}
+
+		MAN_manchu_banner4 = {
+			name = MAN_manchu_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.1
+        		war_support_factor = 0.1
+				army_infantry_attack_factor = 0.08
+				army_infantry_defence_factor = 0.08
+				conscription = 0.05
+				recon_factor = 0.05
+				coordination_bonus = 0.05
+				initiative_factor = 0.05
+			}
+		}
+
+		MAN_bordered_yellow_banner = {
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				special_forces_attack_factor = 0.08
+				special_forces_defence_factor = 0.08
+			}
+		}
+
+		MAN_plain_yellow_banner = {
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_artillery_attack_factor = 0.08
+				army_artillery_defence_factor = 0.08
+			}
+		}
+
+		MAN_plain_white_banner = {
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				max_planning = 0.1
+				planning_speed = 0.1
+			}
+		}
+
+		MAN_mongol_banner1 = {
+			name = MAN_mongol_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_speed_factor = 0.1
+        		army_attack_speed_factor = 0.1
+			}
+		}
+
+		MAN_mongol_banner2 = {
+			name = MAN_mongol_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_speed_factor = 0.1
+        		army_attack_speed_factor = 0.1
+				breakthrough_factor = 0.1
+				org_loss_when_moving = -0.1
+			}
+		}
+
+		MAN_mongol_banner3 = {
+			name = MAN_mongol_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_speed_factor = 0.1
+        		army_attack_speed_factor = 0.1
+				breakthrough_factor = 0.1
+				org_loss_when_moving = -0.1
+				cavalry_attack_factor = 0.08
+				cavalry_defence_factor = 0.08
+			}
+		}
+
+		MAN_mongol_banner4 = {
+			name = MAN_mongol_banner
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_speed_factor = 0.1
+        		army_attack_speed_factor = 0.1
+				breakthrough_factor = 0.1
+				org_loss_when_moving = -0.1
+				cavalry_attack_factor = 0.08
+				cavalry_defence_factor = 0.08
+			}
+			equipment_bonus = {
+				motorized_equipment = {
+					build_cost_ic = -0.1 instant = yes 
+				}
+				mech_chassis = {
+					build_cost_ic = -0.1 instant = yes 
+				}				
+				armor = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+		}
+
+		MAN_iron_horse_and_steel_arrows_idea = {
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_armor_attack_factor = 0.08
+				army_armor_defence_factor = 0.08
+				mechanized_attack_factor = 0.08
+				mechanized_defence_factor = 0.08
+				motorized_attack_factor = 0.08
+				motorized_defence_factor = 0.08
+			}
+		}
+		
+		MAN_mukden_military_academy_idea = {
+			picture = generic_army_war_college
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
 			modifier = {
 				max_command_power = 25
+				experience_gain_army_factor = 0.1 
 			}
 		}
 
 		MAN_national_defense_state = {
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
 			picture = ast_naval_auxiliary_patrol
-			
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
 			modifier = {
 				industrial_capacity_factory = 0.10
 				industrial_capacity_dockyard = 0.10
 				consumer_goods_expected_value = -0.05
 			}
 		}
-		
-			MAN_national_defense_statex = {
-	
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
-			picture = ast_naval_auxiliary_patrol
-			
-			modifier = {
-				industrial_capacity_factory = 0.2
-				industrial_capacity_dockyard = 0.2
-			}
-		}
 
 		MAN_five_people_armies = {
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
 			picture = generic_manpower_bonus
-			
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1		
 			modifier = {
-				conscription = 0.02
+				conscription = 0.15
 			}
 		}
 
-		MAN_five_year_plan_air = {
-
+		MAN_five_year_plan_2 = {
 			name = MAN_five_year_plan
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
-			picture = man_five_year_plan_air
-			
-			research_bonus = { air_equipment = 0.1 }
-
-			modifier = {
-				production_speed_arms_factory_factor = 0.05
-				production_speed_air_base_factor = 0.30
-			}
-		}
-		MAN_five_year_plan_tank = {
-
-			name = MAN_five_year_plan
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
 			picture = man_five_year_plan_tank
-
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1	
 			research_bonus = { 
 				armor = 0.1
 				air_equipment = 0.1
 			}
-			
 			modifier = {
 				production_speed_arms_factory_factor = 0.15
 				production_speed_air_base_factor = 0.30
 			}
 		}
-		MAN_five_year_plan_industry = {
 
+		MAN_five_year_plan_1 = {
 			name = MAN_five_year_plan
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				original_tag = MAN
-			}
-			
-			removal_cost = -1
-
 			picture = man_five_year_plan_industry
-			
-			research_bonus = { industry = 0.05 }
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			research_bonus = { 
+				industry = 0.1 
+			}
 			modifier = {
-				production_speed_industrial_complex_factor = 0.10
+				production_speed_industrial_complex_factor = 0.15
+			}
+		}
+
+		MAN_pu_yi_figurehead = {
+			picture = MAN_manchuria_henry_pu_yi
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			traits = { unpopular_figurehead }
+		}
+
+		MAN_domestic_investments_idea = {
+			picture = generic_foreign_capital
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				political_power_gain = -0.3
+				stability_factor = 0.2
+				consumer_goods_expected_value = -0.05
+			}
+		}
+
+		MAN_extend_compulsory_education_idea = {
+			picture = generic_research_bonus
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				conscription_factor = -0.1
+				research_speed_factor = 0.1
+			}
+		}
+
+		MAN_avenge_humiliation = {
+			picture = SPA_crusade_against_democracy
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_attack_factor = 0.1
+				army_defence_factor = 0.1
+			}
+		}
+
+		MAN_qing_army = {
+			picture = SPA_crusade_against_democracy
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				training_time_army_factor = -0.15
+				land_doctrine_cost_factor = -0.15	
+			}
+		}
+
+		MAN_son_of_heaven = {
+			picture = generic_research_bonus
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				army_core_attack_factor = 0.1
+        		army_core_defence_factor = 0.1
+				supply_consumption_factor = -0.1
+				attrition = -0.1
+				army_infantry_attack_factor = 0.05
+				army_infantry_defence_factor = 0.05
+				army_org_factor = 0.1
+				army_morale_factor = 0.1
+				army_infantry_attack_factor = 0.08
+				army_infantry_defence_factor = 0.08
+				army_artillery_attack_factor = 0.08
+				army_artillery_defence_factor = 0.08
+				special_forces_attack_factor = 0.08
+				special_forces_defence_factor = 0.08
+				cavalry_attack_factor = 0.08
+				cavalry_defence_factor = 0.08
+				army_armor_attack_factor = 0.08
+				army_armor_defence_factor = 0.08
+				mechanized_attack_factor = 0.08
+				mechanized_defence_factor = 0.08
+				motorized_attack_factor = 0.08
+				motorized_defence_factor = 0.08
+				recon_factor = 0.05
+				coordination_bonus = 0.05
+				initiative_factor = 0.05
+				army_speed_factor = 0.1
+        		army_attack_speed_factor = 0.1
+				breakthrough_factor = 0.1
+				org_loss_when_moving = -0.1
+				max_planning = 0.1
+				planning_speed = 0.1
+			}
+		}
+
+		MAN_the_celestial_empire = {
+			picture = generic_research_bonus
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = -0.1
+				industrial_capacity_factory = 0.1
+				production_factory_max_efficiency_factor = 0.1
+				production_speed_buildings_factor = 0.1
+				production_speed_industrial_complex_factor = 0.15
+				production_speed_arms_factory_factor = 0.15
+				production_speed_air_base_factor = 0.3
+				industrial_capacity_factory = 0.1
+				industrial_capacity_dockyard = 0.1
+			}
+		}
+
+		MAN_thousand_year_civilisation = {
+			picture = generic_research_bonus
+			allowed = { always = no	}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 1
+				war_support_factor = 1
+				political_power_factor = 1
+				conscription = 1
+				research_speed_factor = 1
 			}
 		}
 
 	}
-
 
 	naval_manufacturer = { 
 		designer = yes
@@ -696,25 +850,20 @@ MAN_mamc = {
 			traits = { medium_aircraft_manufacturer }
 		}
 	}
+
 	industrial_concern = {
-			MAN_showa_steel_works = {
+		MAN_showa_steel_works = {
 			picture = generic_industrial_concern_1			
-			allowed = { 
-			OR = {
-				tag = MAN
-				tag = SIA
-			}	}
-			research_bonus = {	industry = 0.15	}
+			allowed = { tag = MAN }
+			allowed_civil_war = { always = yes }
+			research_bonus = { industry = 0.15 }
 			traits = { industrial_concern }
 		}
 
 		MAN_western_refinery = {
 			picture = generic_refining_concern_1
-			allowed = { 
-			OR = {
-				tag = MAN
-				tag = SIA
-			} }
+			allowed = { tag = MAN }
+			allowed_civil_war = { always = yes }
 			research_bonus = {
 				industry = 0.1
 				synth_resources = 0.15
@@ -725,31 +874,28 @@ MAN_mamc = {
 
 		shanghai_electronics = {
 			picture = generic_electronics_concern_1
-			allowed = { 
-			OR = {
-				tag = MAN
-				tag = SIA
-			}
-				}
-			research_bonus = {	electronics = 0.15 }
+			allowed = { tag = MAN }
+			allowed_civil_war = { always = yes }
+			research_bonus = { electronics = 0.15 }
 			traits = { electronics_concern }
 		}
+		
 		MAN_south_manchuria_railway_company = {
+			picture = generic_industrial_concern_2				
+			allowed = { tag = MAN }
+			allowed_civil_war = { always = yes }
+			traits = { railway_company2 }
+		}
 
-			picture = generic_industrial_concern_2			
-			
+		MAN_mangyo = {
+			picture = MAN_south_manchuria_railway_company
+			allowed = { tag = MAN }
 			available = {
-				
+				has_completed_focus = MAN_tsr_mangyo
 			}
-
-			allowed = {
-				OR = { original_tag = MAN tag = SIA }
-			}
-
-			traits = {
-				railway_company2
-			}
-			cost = 150
+			allowed_civil_war = { always = yes }
+			traits = { construction_company_2 }
+			research_bonus = { industry = 0.15 }
 		}
 	}
 
