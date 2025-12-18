@@ -4791,31 +4791,52 @@ focus_tree = {
     
 	focus = {
 		id = ITA_war_with_greece
-		icon = GFX_focus_generic_attack_greece 
+		icon = GFX_focus_generic_attack_greece
 		prerequisite = { focus = ITA_pact_of_steel }
 		x = 1
 		y = 3
 		relative_position_id = ITA_pact_of_steel
 		cost = 1
+
 		available = {
 			date > 1940.10.20
-		} 
-		bypass = { GRE = { has_war = yes }  }
+		}
+
+		bypass = {
+			GRE = { has_war = yes }
+		}
+
 		will_lead_to_war_with = GRE
 
 		completion_reward = {
-		set_technology = { ita_no_transport =1   }
-		 declare_war_on = {
-                target = GRE
-                type = annex_everything
-            }
+			#set_technology = { ita_no_transport = 1 }
+			declare_war_on = {
+				target = GRE
+				type = annex_everything
+			}
 			activate_mission = ITA_subjugate_GRE
-			
-			add_named_threat = { threat = 4 name = ITA_italian_irredentism } #Comes from the old Claims in Yugoslavia focus
-			hidden_effect = { GRE ={ add_ideas =  GREECE_SURRENDER_PROGRESS activate_mission = ITA_subjugate_GRE   } set_country_flag = { flag =  greece_campaign days = 180 value =  1 }  if = { limit = { GRE = { is_ai = yes } } GRE = {  swap_ideas = { add_idea = GRE_sparta_warrior_spirit_ai remove_idea = GRE_sparta_warrior_spirit } } } }
+
+			add_named_threat = { threat = 4 name = ITA_italian_irredentism } # Comes from the old Claims in Yugoslavia focus
+
+			hidden_effect = {
+				GRE = {
+					add_ideas = GREECE_SURRENDER_PROGRESS
+					activate_mission = ITA_subjugate_GRE
+				}
+				set_country_flag = { flag = greece_campaign days = 180 value = 1 }
+				if = {
+					limit = { GRE = { is_ai = yes } }
+					GRE = {
+						swap_ideas = {
+							add_idea = GRE_sparta_warrior_spirit_ai
+							remove_idea = GRE_sparta_warrior_spirit
+						}
+					}
+				}
+			}
 		}
 	}
-	
+		
 	
 	
 

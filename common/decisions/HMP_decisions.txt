@@ -16621,80 +16621,163 @@ ITA_vallo_alpino_del_littorio_dec_cat = {
 }
 
 operations = {
-SOV_attack_finland = {
-icon = SOV_secure_the_administration
+	SOV_attack_finland = {
+		icon = SOV_secure_the_administration
+
 		allowed = {
-			OR = { original_tag = SOV original_tag = FIN }
+			OR = {
+				original_tag = SOV
+				original_tag = FIN
+			}
 		}
-		available = { 
-			SOV =  { 
-				has_completed_focus = SOV_baltic_security 
-			} 
+
+		available = {
+			SOV = {
+				has_completed_focus = SOV_baltic_security
+			}
 		}
+
 		visible = {
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}
 		}
-		war_with_on_remove  = FIN
+
+		war_with_on_remove = FIN
 		fire_only_once = yes
 		days_remove = 90
-		remove_effect = { 
-		if = { limit = { tag = FIN } 
-				FIN = { set_country_flag = winter_war_flag country_event = { id = finland.10 } } 
-			effect_tooltip  = {
-				SOV ={  set_country_flag = winter_war_flag complete_national_focus = SOV_secure_leningrad  } 
+
+		remove_effect = {
+			if = {
+				limit = { tag = FIN }
+				FIN = {
+					set_country_flag = winter_war_flag
+					country_event = { id = finland.10 }
+				}
+				effect_tooltip = {
+					SOV = {
+						set_country_flag = winter_war_flag
+						complete_national_focus = SOV_secure_leningrad
+					}
+				}
+			}
+
+			if = {
+				limit = { tag = SOV }
+				effect_tooltip = {
+					FIN = {
+						set_country_flag = winter_war_flag
+						country_event = { id = finland.10 }
+					}
+				}
+				SOV = {
+					set_country_flag = winter_war_flag
+					complete_national_focus = SOV_secure_leningrad
+				}
 			}
 		}
-		if = { limit = { tag = SOV } 
-			effect_tooltip  = {	FIN = { set_country_flag = winter_war_flag country_event = { id = finland.10 } } }
-				SOV ={  set_country_flag = winter_war_flag complete_national_focus = SOV_secure_leningrad  } 
-		}	
-		}
-}
-SOV_subjugate_finland = {
-icon = SOV_secure_the_administration 
+	}
+	SOV_subjugate_finland = {
+		icon = SOV_secure_the_administration
+
 		allowed = {
-		always = no OR = { 	original_tag = SOV 	original_tag = FIN }
+			always = no
+			OR = {
+				original_tag = SOV
+				original_tag = FIN
+			}
 		}
-				fire_only_once = yes
-				is_good = no
-		activation = {	 }
-		available = { someone_really_lost = yes   }
+
+		fire_only_once = yes
+		is_good = no
+		
+		activation = { }
+
+		available = {
+			someone_really_lost = yes
+		}
+
 		visible = {
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}
 		}
-		days_mission_timeout = 100 
-		 complete_effect = {
-		 if =  { limit = { tag = FIN }
-			effect_tooltip = {
-		 if = { limit = { OR = { FIN = { controls_state  = 213} FIN = { controls_state =  215} FIN = { controls_state  = 216} FIN = { controls_state  = 195 }  } } set_global_flag = winter_war_finnish_victory    }
-		 if = { limit = { OR = { SOV = { controls_state = 148} SOV = { controls_state  = 150} SOV = { controls_state = 111 }  } } set_global_flag = winter_war_soviet_victory    }
-				finnish_winter_war = yes					
-			}
-		 }
-		 if = { limit = { tag = SOV  } 
-		 if = { limit = { OR = { FIN = { controls_state  = 213} FIN = { controls_state =  215} FIN = { controls_state  = 216} FIN = { controls_state  = 195 }  } } set_global_flag = winter_war_finnish_victory    }
-		 if = { limit = { OR = { SOV = { controls_state = 148} SOV = { controls_state  = 150} SOV = { controls_state = 111 }  } } set_global_flag = winter_war_soviet_victory    }
-				finnish_winter_war = yes		 
-		 }
-		}
-		timeout_effect = {
-			 if = { limit = { tag = SOV } 
-			set_global_flag =winter_war_timed_out
-				finnish_winter_war = yes
+
+		days_mission_timeout = 100
+
+		complete_effect = {
+			# Effect if FIN completes it
+			if = {
+				limit = { tag = FIN }
+				effect_tooltip = {
+					if = {
+						limit = {
+							OR = {
+								FIN = { controls_state = 213 }
+								FIN = { controls_state = 215 }
+								FIN = { controls_state = 216 }
+								FIN = { controls_state = 195 }
+							}
+						}
+						set_global_flag = winter_war_finnish_victory
+					}
+					if = {
+						limit = {
+							OR = {
+								SOV = { controls_state = 148 }
+								SOV = { controls_state = 150 }
+								SOV = { controls_state = 111 }
+							}
+						}
+						set_global_flag = winter_war_soviet_victory
+					}
+					finnish_winter_war = yes
 				}
-				 if =  { limit = { tag = FIN }
-			effect_tooltip = {
-				set_global_flag =winter_war_timed_out
-				finnish_winter_war = yes		
 			}
+
+			# Effect if SOV completes it
+			if = {
+				limit = { tag = SOV }
+				if = {
+					limit = {
+						OR = {
+							FIN = { controls_state = 213 }
+							FIN = { controls_state = 215 }
+							FIN = { controls_state = 216 }
+							FIN = { controls_state = 195 }
+						}
+					}
+					set_global_flag = winter_war_finnish_victory
+				}
+				if = {
+					limit = {
+						OR = {
+							SOV = { controls_state = 148 }
+							SOV = { controls_state = 150 }
+							SOV = { controls_state = 111 }
+						}
+					}
+					set_global_flag = winter_war_soviet_victory
+				}
+				finnish_winter_war = yes
 			}
-				
 		}
-}
+
+		timeout_effect = {
+			if = {
+				limit = { tag = SOV }
+				set_global_flag = winter_war_timed_out
+				finnish_winter_war = yes
+			}
+			if = {
+				limit = { tag = FIN }
+				effect_tooltip = {
+					set_global_flag = winter_war_timed_out
+					finnish_winter_war = yes
+				}
+			}
+		}
+	}
 
 	SOV_directive_three_mission = { 
 		icon = generic_operation
@@ -16736,59 +16819,75 @@ icon = SOV_secure_the_administration
 
 
 ITA_subjugate_GRE = {
-icon = generic_ignite_civil_war 
-		allowed = {
-		always = no OR = { 	original_tag = ITA 	original_tag = GRE }
-		}
-				fire_only_once = yes
-				is_good = no
-		activation = {	 }
-		available = { ITA = {controls_state = 47   } }
-		days_mission_timeout = 180 
-		 complete_effect = {
-				if = { limit = { tag = ITA } 
-						add_war_support = 0.03
-			add_political_power = 50
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.05
-			}
-			add_ideas = ITA_italian_irredentism_ns
-			HMP_script_greece_1 = yes
-			}
-			else ={ 
-			effect_tooltip = {
-			ITA = { 
-						add_war_support = 0.03
-			add_political_power = 50
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.05
-			}
-			add_ideas = ITA_italian_irredentism_ns
-			HMP_script_greece_1 = yes
-			}
-			}
-			}
-		}
-		timeout_effect = {
-			if = { limit = { tag = ITA } 
+	icon = generic_ignite_civil_war
 
-				
-			effect_tooltip = {
-			GRE = { complete_national_focus = GRE_join_allies add_offsite_building = { type = arms_factory level = 3} }
+	allowed = {
+		always = no
+		OR = {
+			original_tag = ITA
+			original_tag = GRE
+		}
+	}
+
+	fire_only_once = yes
+	is_good = no
+
+	activation = { }
+
+	available = {
+		ITA = { controls_state = 47 }
+	}
+
+	days_mission_timeout = 180
+
+	complete_effect = {
+		if = {
+			limit = { tag = ITA }
+			add_war_support = 0.03
+			add_political_power = 50
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
 			}
-			}
-			
-			if = { limit = { tag = GRE } 
-			 complete_national_focus = GRE_join_allies  add_offsite_building = { type = arms_factory level = 3} 
+			add_ideas = ITA_italian_irredentism_ns
+			HMP_script_greece_1 = yes
+		}
+		else = {
 			effect_tooltip = {
 				ITA = {
-				
+					add_war_support = 0.03
+					add_political_power = 50
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.05
+					}
+					add_ideas = ITA_italian_irredentism_ns
+					HMP_script_greece_1 = yes
 				}
 			}
+		}
+	}
+
+	timeout_effect = {
+		if = {
+			limit = { tag = ITA }
+			effect_tooltip = {
+				GRE = {
+					complete_national_focus = GRE_join_allies
+					add_offsite_building = { type = arms_factory level = 3 }
+				}
 			}
 		}
+
+		if = {
+			limit = { tag = GRE }
+			complete_national_focus = GRE_join_allies
+			add_offsite_building = { type = arms_factory level = 3 }
+			effect_tooltip = {
+				ITA = { }
+			}
+		}
+	}
 }
 
 

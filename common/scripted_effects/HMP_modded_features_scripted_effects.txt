@@ -508,20 +508,20 @@
 
         # Allied rewards if SCW timed out
         if = { limit = { has_global_flag = scw_timed_out }
-            ENG = { air_experience = 50 army_experience = 50 add_political_power = 50 }
-            USA = { air_experience = 50 army_experience = 50 add_political_power = 50 }
-            FRA = { air_experience = 50 army_experience = 50 add_political_power = 50 }
-            SOV = { air_experience = 50 army_experience = 50 add_political_power = 50 }
+            #ENG = { add_offsite_building = { type = industrial_complex level = 2 } }
+            #USA = { add_offsite_building = { type = industrial_complex level = 2 } }
+            FRA = { add_offsite_building = { type = industrial_complex level = 4 } }
+            SOV = { add_offsite_building = { type = industrial_complex level = 4 } }
         }
 
         # If Soviets won SCW
         if = { limit = { has_global_flag = sov_won_scw }
             SPR = { add_ideas = spr_lost_idea }
             # SPR = { add_ideas = SPR_neutrality31 }
-            ENG = { air_experience = 50 army_experience = 100 add_political_power = 50 }
-            USA = { air_experience = 50 army_experience = 100 add_political_power = 50 }
-            FRA = { air_experience = 50 army_experience = 100 add_political_power = 50 }
-            SOV = { air_experience = 50 army_experience = 100 add_political_power = 50 }
+            #ENG = { add_offsite_building = { type = industrial_complex level = 4 } }
+            #USA = { add_offsite_building = { type = industrial_complex level = 4 } }
+            FRA = { add_offsite_building = { type = industrial_complex level = 8 } }
+            SOV = { add_offsite_building = { type = industrial_complex level = 8 } }
         }
 
         # If Axis won SCW
@@ -529,65 +529,60 @@
             SPR = { add_ideas = spr_won_idea add_ideas = SPR_neutrality }
 
             # Build industrial complexes in SPR cores based on date
-            if = { limit = { date < 1939.1.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
+			if = {
+				limit = { date < 1939.1.1 }
+				SPR = {
+					random_owned_controlled_state = {
+						limit = { is_core_of = SPR }
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					}
+				}
+			}
 
-            if = { limit = { date < 1938.10.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
+			if = {
+				limit = { date < 1938.6.1 }
+				SPR = {
+					random_owned_controlled_state = {
+						limit = { is_core_of = SPR }
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					}
+				}
+			}
 
-            if = { limit = { date < 1938.7.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
+			if = {
+				limit = { date < 1938.1.1 }
+				SPR = {
+					random_owned_controlled_state = {
+						limit = { is_core_of = SPR }
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					}
+				}
+			}
 
-            if = { limit = { date < 1938.4.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
+			if = {
+				limit = { date < 1937.6.1 }
+				SPR = {
+					random_owned_controlled_state = {
+						limit = { is_core_of = SPR }
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					}
+				}
+			}
 
-            if = { limit = { date < 1938.1.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
-
-            if = { limit = { date < 1937.10.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
-
-            if = { limit = { date < 1937.7.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
-
-            if = { limit = { date < 1937.4.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
-
-            if = { limit = { date < 1937.1.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
-
-            if = { limit = { date < 1936.10.1 } SPR = { random_owned_controlled_state = {
-                limit = { is_core_of = SPR }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            } } }
+			if = {
+				limit = { date < 1937.1.1 }
+				SPR = {
+					random_owned_controlled_state = {
+						limit = { is_core_of = SPR }
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					}
+				}
+			}
         }
 
         # Post-war events
@@ -815,12 +810,50 @@
 
     finnish_winter_war = {
         if = {
-            limit = { has_global_flag = winter_war_timed_out } #mission timed out meaning the war did not end early due to catastrophic failures
-            if = { limit = { SOV = { OR = { controls_state = 147 controls_state = 146 } }  } SOV = { country_event = { id = finland.8 }  } FIN = { country_event = { id = finland.7 } } }
-            if = { limit = { SOV = { controls_state = 147 } } SOV = { transfer_state = 147 } } #gives SOV Salla if it controls it
-            if = { limit = { SOV = { controls_state = 146 } } SOV = { transfer_state = 146 } } #gives SOV Karjala if it controls it
-            if = { limit = { NOT = { SOV = { OR = { controls_state = 147 controls_state = 146 } } } } SOV = { country_event = { id = finland.11 }  } FIN = { country_event = { id = finland.12 } } }
-        }
+			limit = { has_global_flag = winter_war_timed_out } # mission timed out meaning the war did not end early due to catastrophic failures
+
+			# Scenario 1: Soviet Union controls at least one key state (Salla or Karjala) -> Victory/Partial Victory Events
+			if = {
+				limit = {
+					SOV = {
+						OR = {
+							controls_state = 147
+							controls_state = 146
+						}
+					}
+				}
+				SOV = { country_event = { id = finland.8 } }
+				FIN = { country_event = { id = finland.7 } }
+			}
+
+			# Transfer Salla (147) to SOV if they currently control it
+			if = {
+				limit = { SOV = { controls_state = 147 } }
+				SOV = { transfer_state = 147 }
+			}
+
+			# Transfer Karjala (146) to SOV if they currently control it
+			if = {
+				limit = { SOV = { controls_state = 146 } }
+				SOV = { transfer_state = 146 }
+			}
+
+			# Scenario 2: Soviet Union failed to take any key states -> Defeat/Stalemate Events
+			if = {
+				limit = {
+					NOT = {
+						SOV = {
+							OR = {
+								controls_state = 147
+								controls_state = 146
+							}
+						}
+					}
+				}
+				SOV = { country_event = { id = finland.11 } }
+				FIN = { country_event = { id = finland.12 } }
+			}
+		}
         else = { #Soviets or Finland catastrophically failed, pay war repartions to Soviets or Finland; Sov loses immediately for losing ANY bordering state and pays 2 civs, Finland if they lose any states that arent Karjala, Petsamo, or Salla
             if = { 
                 limit = { 
@@ -3323,7 +3356,7 @@
             } 
         }
 
-        ITA = { set_technology = { ita_no_transport_off = 1 } }
+        #ITA = { set_technology = { ita_no_transport_off = 1 } }
     }
 
     HMP_script_china = {	
@@ -3718,11 +3751,11 @@ HMP_startup_on_actions = {
 
         FRA = {
             add_ideas = NZL_2nzef_fra
-            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 12000 }
-            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1200 }
-            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 400 }
-            add_equipment_to_stockpile = { type = support_equipment_1 amount = 1200 }
-            add_equipment_to_stockpile = { type = special_equipment_1 amount = 1800 }
+            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 18000 }
+            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1800 }
+            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 600 }
+            add_equipment_to_stockpile = { type = support_equipment_1 amount = 1800 }
+            add_equipment_to_stockpile = { type = special_equipment_1 amount = 2700 }
         }
 
         #SWE = { news_event = { id = horsttool.132 } }
@@ -3741,24 +3774,6 @@ HMP_startup_on_actions = {
             add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 600 }
             add_equipment_to_stockpile = { type = support_equipment_1 amount = 1800 }
             add_equipment_to_stockpile = { type = special_equipment_1 amount = 2700 }
-        }
-
-        every_country = {
-            limit = { 
-                OR = { 
-                    tag = BUL 
-                    tag = ROM 
-                    tag = AST 
-                    tag = NZL 
-                    tag = SAF 
-                    tag = CAN 
-                } 
-            }
-            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 6000 }
-            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 600 }
-            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 200 }
-            add_equipment_to_stockpile = { type = support_equipment_1 amount = 600 }
-            add_equipment_to_stockpile = { type = special_equipment_1 amount = 900 }
         }
     }
 
