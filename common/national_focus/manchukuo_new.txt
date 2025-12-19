@@ -488,7 +488,7 @@ focus_tree = {
 			MAN_low_legitimacy_level_down = yes
 			add_timed_idea = {
 				idea = ROM_fully_industralized
-				days = 365
+				days = 730
 			}
 		}
 	}
@@ -504,8 +504,10 @@ focus_tree = {
 		relative_position_id = MAN_national_defense_state
 		cost = 10
 		available = {
-            JAP = { controls_state = 308 }  
-            MAN = { controls_state = 308 }	
+			OR = {
+            	JAP = { controls_state = 308 }  
+            	MAN = { controls_state = 308 }
+			}
         }
 		completion_reward = {
 			IF = {
@@ -545,8 +547,12 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = MAN_tsr_move_capitals
-		cost = 5
+		cost = 10
 		completion_reward = {
+			MAN = {
+				transfer_state = 346
+				transfer_state = 492
+			}
 			set_politics = {
 				ruling_party = neutrality
 				elections_allowed = no
@@ -570,6 +576,7 @@ focus_tree = {
 					popularity = 1
 				}
 			}
+			custom_effect_tooltip = generic_skip_one_line_tt
 			hidden_effect = {
 				set_popularities = {
 					democratic = 0
@@ -578,6 +585,20 @@ focus_tree = {
 					communism = 0
 				}
 				remove_ideas = MAN_pu_yi_figurehead
+				JAP = {
+					add_offsite_building = { 
+						type = industrial_complex 
+						level = 4
+					}
+					add_offsite_building = { 
+						type = arms_factory 
+						level = 4
+					}
+					add_offsite_building = { 
+						type = dockyard 
+						level = 4
+					}
+				}
        		}
 		}
 	}
@@ -829,26 +850,19 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = MAN_tsr_a_new_self_strengthening_movement
-		bypass = { CHI = { exists = no } }
+		bypass = {
+			OR = {
+				has_global_flag = china_war_ended
+				NOT = { country_exists = CHI }
+			}
+		}
 		cost = 5
 		completion_reward = {
-			effect_tooltip = {
-				remove_ideas = ROM_fully_industralized
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
 			add_timed_idea = {
 				idea = MAN_great_campaigns
 				days = 365
 			}
 			custom_effect_tooltip = MAN_great_campaigns_tt
-			hidden_effect = {
-				if = {
-					limit = {
-						has_idea = ROM_fully_industralized
-					}
-					remove_ideas = ROM_fully_industralized
-				}
-			}
 		}
 	}
 
@@ -859,7 +873,7 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = MAN_the_new_great_campaigns
-		cost = 5
+		cost = 1
 		completion_reward = {
 			561 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
 			411 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
@@ -875,7 +889,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = MAN_the_new_great_campaigns
-		cost = 5
+		cost = 1
 		completion_reward = {
 			677 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
 			508 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
@@ -889,7 +903,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = MAN_the_new_great_campaigns
-		cost = 5
+		cost = 1
 		completion_reward = {
 			462 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
 			325 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
@@ -905,7 +919,7 @@ focus_tree = {
 		x = -1
 		y = 2
 		relative_position_id = MAN_the_new_great_campaigns
-		cost = 5
+		cost = 1
 		completion_reward = {
 			308 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
 			570 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
@@ -921,7 +935,7 @@ focus_tree = {
 		x = 1
 		y = 2
 		relative_position_id = MAN_the_new_great_campaigns
-		cost = 5
+		cost = 1
 		completion_reward = {
 			679 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
 			474 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
@@ -1320,7 +1334,7 @@ focus_tree = {
 		x = 0
 		y = 4
 		relative_position_id = MAN_empower_the_chinese_banner
-		cost = 5
+		cost = 10
 		completion_reward = {
 			effect_tooltip = {
 				add_field_marshal_role = { character = MAN_zeng_guofan }
@@ -1443,7 +1457,7 @@ focus_tree = {
 		x = 0
 		y = 4
 		relative_position_id = MAN_emphasize_the_manchu_banner
-		cost = 5
+		cost = 10
 		completion_reward = {
 			effect_tooltip = {
 				add_field_marshal_role = { character = MAN_guanwen }
@@ -1572,7 +1586,7 @@ focus_tree = {
 		x = 0
 		y = 4
 		relative_position_id = MAN_promote_the_mongol_banner
-		cost = 5
+		cost = 10
 		completion_reward = {
 			effect_tooltip = {
 				add_field_marshal_role = { character = MAN_sengge_rinchen }
@@ -1709,17 +1723,42 @@ focus_tree = {
 			496 = {
 				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
-						type = dockyard
-						level = 5
-						instant_build = yes
+					type = dockyard
+					level = 5
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_equipment_production = {
+				equipment = {
+					type = ship_hull_cruiser_1
+					creator = "JAP"
+					version_name = "Kuma/Nagara Class"
+				}
+				name = "Hai Wei"
+				requested_factories = 5
+				progress = 0.1
+				amount = 1
+			}
+			hidden_effect = {
+				create_equipment_variant = {
+					name = "Kuma/Nagara Class"
+					type = ship_hull_cruiser_1
+					name_group = JAP_CL_HISTORICAL
+					parent_version = 0
+					modules = {
+						fixed_ship_battery_slot = ship_light_medium_battery_2
+						fixed_ship_anti_air_slot = ship_anti_air_2
+						fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+						fixed_ship_radar_slot = empty
+						fixed_ship_engine_slot = cruiser_ship_engine_2
+						fixed_ship_armor_slot = ship_armor_cruiser_2
+						fixed_ship_secondaries_slot = ship_secondaries_2 
+						mid_1_custom_slot = ship_light_medium_battery_2
+						mid_2_custom_slot = ship_light_medium_battery_2
+						rear_1_custom_slot = ship_light_medium_battery_2
 					}
 				}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			create_ship = {
-				type = ship_hull_light_1
-				equipment_variant = "Momo Class"
-				creator = JAP
-				name = "Hai Wei"
 			}
 		}
 	}
@@ -1837,6 +1876,75 @@ focus_tree = {
 			surrender_progress < 0.01
 			OR = {
 				MAN = { 
+					has_full_control_of_state = 336
+				}
+				any_allied_country = { 	
+					has_full_control_of_state = 336
+				}
+			}
+			OR = {
+				MAN = {
+					has_full_control_of_state = 289
+				}
+				any_allied_country = { 	
+					has_full_control_of_state = 289
+				}
+			}
+			OR = {
+				MAN = {
+					has_full_control_of_state = 288
+				}
+				any_allied_country = { 	
+					has_full_control_of_state = 288
+				}
+			}
+			OR = {
+				MAN = {
+					has_full_control_of_state = 306
+				}
+				any_allied_country = { 	
+					has_full_control_of_state = 306
+				}
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = MAN_tsr_claim_the_mandate_of_heaven
+		cost = 10
+		completion_reward = {
+			add_stability = 1
+			add_war_support = 1
+		}
+	}
+
+	focus = {
+		id = MAN_imperial_legacy
+		icon = GFX_focus_JAP_expand_the_showa_research_association
+		prerequisite = { focus = MAN_all_under_heaven }
+		x = 0
+		y = 1
+		relative_position_id = MAN_all_under_heaven
+		cost = 20
+		completion_reward = {
+			add_country_leader_trait = MAN_gongzong
+			add_country_leader_trait = MAN_jingtianshaoyun
+			add_country_leader_trait = MAN_fuzhongzhizheng
+			add_country_leader_trait = MAN_shenwenxiewu
+			add_country_leader_trait = MAN_chunxiaohongren
+			add_country_leader_trait = MAN_jianjixiangong
+			add_country_leader_trait = MAN_wuhuangdi
+		}
+	}
+
+	
+	focus = {
+		id = MAN_imperial_divinity
+		icon = GFX_focus_JAP_expand_the_showa_research_association
+		prerequisite = { focus = MAN_imperial_legacy }
+		available = {
+			surrender_progress < 0.01
+			OR = {
+				MAN = { 
 					has_full_control_of_state = 335
 				}
 				any_allied_country = { 	
@@ -1870,42 +1978,8 @@ focus_tree = {
 		}
 		x = 0
 		y = 1
-		relative_position_id = MAN_tsr_claim_the_mandate_of_heaven
-		cost = 1
-		completion_reward = {
-			add_stability = 1
-			add_war_support = 1
-		}
-	}
-
-	focus = {
-		id = MAN_imperial_legacy
-		icon = GFX_focus_JAP_expand_the_showa_research_association
-		prerequisite = { focus = MAN_all_under_heaven }
-		x = 0
-		y = 1
-		relative_position_id = MAN_all_under_heaven
-		cost = 15
-		completion_reward = {
-			add_country_leader_trait = MAN_gongzong
-			add_country_leader_trait = MAN_jingtianshaoyun
-			add_country_leader_trait = MAN_fuzhongzhizheng
-			add_country_leader_trait = MAN_shenwenxiewu
-			add_country_leader_trait = MAN_chunxiaohongren
-			add_country_leader_trait = MAN_jianjixiangong
-			add_country_leader_trait = MAN_wuhuangdi
-		}
-	}
-
-	
-	focus = {
-		id = MAN_imperial_divinity
-		icon = GFX_focus_JAP_expand_the_showa_research_association
-		prerequisite = { focus = MAN_imperial_legacy }
-		x = 0
-		y = 1
 		relative_position_id = MAN_imperial_legacy
-		cost = 15
+		cost = 20
 		completion_reward = {
 			add_ideas = MAN_tianzi
 			add_ideas = MAN_tianchao
@@ -1928,7 +2002,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = MAN_imperial_divinity
-		cost = 15
+		cost = 10
 		completion_reward = {
 			set_major = yes
 			set_cosmetic_tag = MAN_restoredplus

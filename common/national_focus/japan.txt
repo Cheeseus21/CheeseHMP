@@ -1958,6 +1958,15 @@ focus_tree = {
 				USA = { add_war_support = 0.15 } 
 				
 				declare_war_on = { target = CHI type = annex_everything }
+				if = {
+                    limit = { country_exists = MAN }
+                    MAN = {
+                        add_to_war = {
+                            targeted_alliance = JAP
+                            enemy = CHI
+                        }
+                    }
+                }
 				
 			}
 			else = {
@@ -1981,7 +1990,6 @@ focus_tree = {
     focus = {
 		id = JAP_develop_the_chinese_resources
 		icon = GFX_goal_generic_construct_civilian
-		#mutually_exclusive = { focus = JAP_the_harakiri_debate }
         
 		x = 1
 		y = 1
@@ -2065,6 +2073,78 @@ focus_tree = {
                 add_resource = {
 					type = steel
 					amount = 56
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = JAP_rejuvenate_the_qing_dynasty
+		icon = GFX_focus_JAP_develop_the_south_seas_mandate
+		prerequisite = { focus = JAP_develop_the_chinese_resources }
+		x = 0
+		y = 1
+		relative_position_id = JAP_develop_the_chinese_resources
+		cost = 5
+		completion_reward = {
+			effect_tooltip = {
+				every_state = { 
+					limit = { OR = { is_core_of = CHI state = 346 state = 492 } }
+					transfer_state_to = MAN
+				}
+				if = {
+					limit = { has_global_flag = china_war_ended }
+					every_state = { 
+						limit = { is_core_of = CHI }
+						remove_building = {
+							type = arms_factory
+							level = 3
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 3
+						}
+					}
+					add_offsite_building = {
+						type = industrial_complex
+						level = 57
+					}
+					add_offsite_building = {
+						type = arms_factory
+						level = 57
+					}
+				}
+			}
+			hidden_effect = {
+				every_owned_state = { 
+					limit = { is_core_of = CHI }
+					add_core_of = MAN
+				}
+				every_owned_state = {
+					limit = { OR = { is_core_of = CHI state = 346 state = 492 } }
+					transfer_state_to = MAN
+				}
+				if = {
+					limit = { has_global_flag = china_war_ended }
+					every_owned_state = { 
+						limit = { is_core_of = CHI }
+						remove_building = {
+							type = arms_factory
+							level = 3
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 3
+						}
+					}
+					add_offsite_building = {
+						type = industrial_complex
+						level = 57
+					}
+					add_offsite_building = {
+						type = arms_factory
+						level = 57
+					}
 				}
 			}
 		}
