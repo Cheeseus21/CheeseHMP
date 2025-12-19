@@ -557,15 +557,21 @@ on_actions = {
 				limit = {
 					FROM.FROM = { is_core_of = CHI }
 					ROOT = { NOT = { tag = CHI } }
-					JAP = {
-						NOT = {
-							has_global_flag = china_war_ended
-						}
-					}
+					JAP = { NOT = { has_global_flag = china_war_ended } }
 				}
 				FROM.FROM = {
-					add_extra_state_shared_building_slots = 10
-					set_building_level = { type = industrial_complex level = 5 } 
+					# Add plenty of slots first so the game doesn't panic about limits
+					add_extra_state_shared_building_slots = 15
+					
+					# Wipe industry to 0 explicitly.
+					# This clears the state so the next command is always an "upgrade" (0 -> 5),
+					# which HoI4 handles much more reliably than a "downgrade".
+					set_building_level = { type = industrial_complex level = 0 }
+					set_building_level = { type = arms_factory level = 0 }
+					
+					# Set the desired level
+					# Since the state is now empty, this will cleanly set it to 5.
+					set_building_level = { type = industrial_complex level = 5 }
 					set_building_level = { type = arms_factory level = 5 }
 				}
 			}
