@@ -415,7 +415,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_alliance_with_the_kwantung_army
-		icon = GFX_goal_generic_occupy_states_ongoing_war
+		icon = GFX_SOV_the_berlin_moscow_axis_ccp_2d_sov_compatibility
 		prerequisite = { focus = MAN_pacify_the_countryside }
 		x = 0
 		y = 1
@@ -478,48 +478,33 @@ focus_tree = {
 	}
 
 	focus = {
-		id = MAN_tsr_move_capitals
-		icon = GFX_focus_CHI_a_new_middle_kingdom
-		
+		id = MAN_birthplace_of_the_manchus
+		icon = GFX_focus_generic_home_defense
 		prerequisite = { focus = MAN_national_defense_state }
 		prerequisite = { focus = MAN_great_city_of_mukden }
 		prerequisite = { focus = MAN_tsr_a_new_self_strengthening_movement }
-		
 		x = 2
 		y = 1
-		
 		relative_position_id = MAN_national_defense_state
-		
 		cost = 5
-		
-		available = {
-			has_global_flag = formed_qing
-        }
 		completion_reward = {
-			IF = {
-				limit = { JAP = { controls_state = 308 } }
-				MAN = { transfer_state = 308 }
-			}
 			set_capital = {
-				state = 308
+				state = 496
 				remember_old_capital = no
 			}
-			set_province_name = { id = 9843 name = PRC_beijing_capital_name }
+			add_ideas = MAN_late_qing
 		}
 	}
 
 	focus = {
 		id = MAN_the_two_emperors
 		icon = GFX_focus_generic_diplomatic_treaty
-		prerequisite = { focus = MAN_tsr_move_capitals }
-		
+		prerequisite = { focus = MAN_birthplace_of_the_manchus }
+		available = { has_global_flag = formed_qing }
 		x = 0
 		y = 1
-		
-		relative_position_id = MAN_tsr_move_capitals
-		
+		relative_position_id = MAN_birthplace_of_the_manchus
 		cost = 5
-		
 		completion_reward = {
 			effect_tooltip = {
 				add_country_leader_role = {
@@ -532,27 +517,59 @@ focus_tree = {
 					}
 				}
 			}
-						
 			set_politics = {
 				ruling_party = neutrality
 				elections_allowed = no
 			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
 			effect_tooltip = {
 				add_popularity = {
 					ideology = neutrality
 					popularity = 1
 				}
 			}
+			hidden_effect = {
+				set_popularities = {
+					democratic = 0
+					neutrality = 100
+					fascism = 0
+					communism = 0
+				}
+				remove_ideas = MAN_pu_yi_figurehead
+			}
+		}
+	}
+
+	focus = {
+		id = MAN_tsr_move_capitals
+		icon = GFX_focus_CHI_a_new_middle_kingdom
+		prerequisite = { focus = MAN_the_two_emperors }
+		x = 0
+		y = 1
+		relative_position_id = MAN_the_two_emperors
+		cost = 5
+		completion_reward = {
+			IF = {
+				limit = { JAP = { controls_state = 308 } }
+				MAN = { transfer_state = 308 }
+			}
+			set_capital = {
+				state = 308
+				remember_old_capital = no
+			}
+			set_province_name = { id = 9843 name = PRC_beijing_capital_name }
+			custom_effect_tooltip = generic_skip_one_line_tt
+			swap_ideas = {
+				remove_idea = MAN_late_qing
+				add_idea = MAN_great_qing
+			}
 		}
 	}
 
 	focus = {
 		id = MAN_expand_the_taimiao
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_RAJ_temple_entry_movements
 		prerequisite = { focus = MAN_the_two_emperors }
-		x = 3
+		x = 4
 		y = 1
 		relative_position_id = MAN_the_two_emperors
 		cost = 5
@@ -570,7 +587,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_restore_the_tiantan
-		icon = GFX_focus_RAJ_temple_entry_movements
+		icon = GFX_focus_PER_fund_imperial_excellency
 		prerequisite = { focus = MAN_expand_the_taimiao }
 		x = 0
 		y = 1
@@ -590,9 +607,9 @@ focus_tree = {
 
 	focus = {
 		id = MAN_rebuild_the_qingdongling
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_RAJ_protest_against_the_howell_monument
 		prerequisite = { focus = MAN_the_two_emperors }
-		x = 1
+		x = 2
 		y = 1
 		relative_position_id = MAN_the_two_emperors
 		cost = 5
@@ -610,7 +627,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_a_new_summer_palace
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_SOV_rebuild_the_savior_cathedral
 		prerequisite = { focus = MAN_rebuild_the_qingdongling }
 		x = 0
 		y = 1
@@ -630,19 +647,15 @@ focus_tree = {
 
 	focus = {
 		id = MAN_kangde
-		icon = GFX_focus_generic_strike_at_democracy1
+		icon = GFX_focus_AUS_bring_back_the_habsburg_rule
 		prerequisite = { focus = MAN_a_new_summer_palace }
 		prerequisite = { focus = MAN_restore_the_tiantan }
-		available = {
-			has_completed_focus = MAN_shadow_of_cixi
-		}
+		available = { has_completed_focus = MAN_shadow_of_cixi }
 		x = 1
 		y = 1
 		relative_position_id = MAN_a_new_summer_palace
 		cost = 5
-		completion_reward = {
-			add_country_leader_trait = kangde_emperor
-		}
+		completion_reward = { add_country_leader_trait = kangde_emperor }
 	}
 
 	focus = {
@@ -669,26 +682,18 @@ focus_tree = {
 		y = 1
 		relative_position_id = MAN_the_two_emperors
 		cost = 5
-		completion_reward = {
-			remove_country_leader_trait = shadow_of_cixi
-		}
+		completion_reward = { remove_country_leader_trait = shadow_of_cixi }
 	}
 
 	focus = {
 		id = MAN_avenge_the_century_of_humiliation
 		icon = GFX_focus_RAJ_clamp_down_on_corruption
-		
 		prerequisite = { focus = MAN_shadow_of_cixi }
-		
 		available = { JAP = { has_completed_focus = JAP_strike_the_southern_road } }
-		
 		x = 0
 		y = 1
-		
 		relative_position_id = MAN_shadow_of_cixi
-		
 		cost = 5
-		
 		completion_reward = {
 			add_timed_idea = {
 				idea = MAN_avenge_humiliation
@@ -700,12 +705,7 @@ focus_tree = {
 	focus = {
 		id = MAN_repudiate_the_treaty_of_aigun
 		icon = GFX_focus_BRA_repeale_national_security_law
-		
 		prerequisite = { focus = MAN_avenge_the_century_of_humiliation }
-		
-		x = 0
-		y = 2
-		
 		available = {
 			JAP = {
 				OR = {
@@ -714,11 +714,10 @@ focus_tree = {
 				}
 			}
 		}
-		
+		x = 0
+		y = 2
 		relative_position_id = MAN_avenge_the_century_of_humiliation
-		
 		cost = 10
-		
 		completion_reward = {
 			406 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
 			408 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
@@ -734,14 +733,10 @@ focus_tree = {
 		id = MAN_revenge_for_the_opium_wars
 		icon = GFX_focus_attack_britain
 		prerequisite = { focus = MAN_avenge_the_century_of_humiliation }
-		
 		x = -1
 		y = 1
-		
 		relative_position_id = MAN_avenge_the_century_of_humiliation
-		
 		cost = 10
-		
 		completion_reward = {
 			add_timed_idea = {
 				idea = MAN_opium_revenge
@@ -754,18 +749,10 @@ focus_tree = {
 		id = MAN_seize_the_treaty_ports
 		icon = GFX_focus_CHI_retake_the_coastal_cities
 		prerequisite = { focus = MAN_avenge_the_century_of_humiliation }
-		
 		x = 1
 		y = 1
-		
 		relative_position_id = MAN_avenge_the_century_of_humiliation
-		
-		available = {
-			#has_global_flag = formed_qing
-		}
-		
 		cost = 5
-		
 		completion_reward = {
 			MAN = {
 				transfer_state = 326
@@ -776,7 +763,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_the_new_great_campaigns
-		icon = GFX_focus_ETH_freedom_at_gunpoint
+		icon = GFX_goal_generic_occupy_states_ongoing_war
 		prerequisite = { focus = MAN_tsr_a_new_self_strengthening_movement }
 		x = 0
 		y = 2
@@ -799,7 +786,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_nanjing_campaign
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_ETH_freedom_at_gunpoint
 		prerequisite = { focus = MAN_the_new_great_campaigns }
 		x = -2
 		y = 1
@@ -815,7 +802,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_chongqing_campaign
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_ETH_freedom_at_gunpoint
 		prerequisite = { focus = MAN_the_new_great_campaigns }
 		x = 0
 		y = 1
@@ -829,7 +816,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_wuhan_campaign
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_ETH_freedom_at_gunpoint
 		prerequisite = { focus = MAN_the_new_great_campaigns }
 		x = 2
 		y = 1
@@ -845,7 +832,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_nothern_campaign
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_AFG_against_kabul
 		prerequisite = { focus = MAN_the_new_great_campaigns }
 		x = -1
 		y = 2
@@ -861,7 +848,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_southern_campaign
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_AFG_against_kabul
 		prerequisite = { focus = MAN_the_new_great_campaigns }
 		x = 1
 		y = 2
@@ -881,9 +868,7 @@ focus_tree = {
 		x = 20
 		y = 0
 		cost = 5
-		completion_reward = {
-			army_experience = 75
-		}
+		completion_reward = { army_experience = 75 }
 	}
 
 	focus = {
@@ -902,12 +887,6 @@ focus_tree = {
 					level = 2
 					instant_build = yes
 				}
-				#add_building_construction = {
-                #    type = land_facility
-                #    level = 1
-                #    instant_build = yes
-                #    province = 11771
-                #}
 			}
 		}
 	}
@@ -972,9 +951,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = MAN_army_modernization
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_mukden_military_academy_idea
-		}
+		completion_reward = { add_ideas = MAN_mukden_military_academy_idea }
 	}
 
 	focus =  {
@@ -1003,9 +980,7 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			army_experience = 50
-			
 			custom_effect_tooltip = generic_skip_one_line_tt
-			
 			add_ideas = CHI_wargaming_division
 		}
 	}
@@ -1106,7 +1081,7 @@ focus_tree = {
 
 	focus =  {
 		id = CHI_construction_battalions
-		icon = GFX_goal_generic_construction2
+		icon = GFX_focus_FIN_weapon_caches
 		prerequisite = { focus = CHI_heavy_weapons }
 		x = 0
 		y = 1
@@ -1136,14 +1111,12 @@ focus_tree = {
 		y = 4
 		relative_position_id = MAN_army_modernization
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_eight_banners
-		}
+		completion_reward = { add_ideas = MAN_eight_banners }
 	}
 
 	focus =  {
 		id = MAN_empower_the_chinese_banner
-		icon = GFX_goal_generic_build_tank
+		icon = GFX_focus_CHI_decisive_battles
 		prerequisite = { focus = MAN_the_modern_banner_armies }
 		mutually_exclusive = { 
 			focus = MAN_emphasize_the_manchu_banner
@@ -1153,9 +1126,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = MAN_the_modern_banner_armies
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_chinese_banner1
-		}
+		completion_reward = { add_ideas = MAN_chinese_banner1 }
 	}
 
 	focus =  {
@@ -1192,15 +1163,13 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_tsr_five_people_armies
-		icon = GFX_goal_generic_occupy_states_ongoing_war
+		icon = GFX_goal_generic_national_unity
 		prerequisite = { focus = CHI_focus_on_meritocratic_principles }
 		x = 0
 		y = 1
 		relative_position_id = CHI_focus_on_meritocratic_principles
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_five_people_armies
-		}
+		completion_reward = { add_ideas = MAN_five_people_armies }
 	}
 
 	focus =  {
@@ -1261,7 +1230,7 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_the_duke_hanjun
-		icon = GFX_goal_generic_national_unity
+		icon = GFX_SOV_fascist_youth_union_ccp_2d_sov_compatibility
 		prerequisite = { 
 			focus = MAN_incorporate_the_green_standard_army
 			focus = MAN_tsr_five_people_armies
@@ -1280,7 +1249,7 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_emphasize_the_manchu_banner
-		icon = GFX_goal_generic_build_tank
+		icon = GFX_focus_PRC_reorganize_divisions
 		prerequisite = { focus = MAN_the_modern_banner_armies }
 		mutually_exclusive = { 
 			focus = MAN_empower_the_chinese_banner
@@ -1290,53 +1259,45 @@ focus_tree = {
 		y = 1
 		relative_position_id = MAN_the_modern_banner_armies
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_manchu_banner1
-		}
+		completion_reward = { add_ideas = MAN_manchu_banner1 }
 	}
 
 	focus =  {
 		id = MAN_tsr_strengthen_the_manchukuo_imperial_army
-		icon = GFX_SOV_barrier_troops_ccp_2d_sov_compatibility
+		icon = GFX_focus_CHL_departemento_de_las_tropas_nacistas_de_asalto
 		prerequisite = { focus = MAN_emphasize_the_manchu_banner }
 		x = -1
 		y = 1
 		relative_position_id = MAN_emphasize_the_manchu_banner
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_bordered_yellow_banner
-		}
+		completion_reward = { add_ideas = MAN_bordered_yellow_banner }
 	}
 
 	focus =  {
 		id = MAN_expand_the_plain_yellow_banner
-		icon = GFX_focus_CHL_departemento_de_las_tropas_nacistas_de_asalto
+		icon = GFX_focus_SOV_mobilization_plan
 		prerequisite = { focus = MAN_tsr_strengthen_the_manchukuo_imperial_army }
 		x = 0
 		y = 1
 		relative_position_id = MAN_tsr_strengthen_the_manchukuo_imperial_army
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_plain_yellow_banner
-		}
+		completion_reward = { add_ideas = MAN_plain_yellow_banner }
 	}
 
 	focus =  {
 		id = MAN_reinforce_bannermen_identity
-		icon = GFX_focus_SOV_mobilization_plan
+		icon = GFX_SOV_barrier_troops_ccp_2d_sov_compatibility
 		prerequisite = { focus = MAN_expand_the_plain_yellow_banner }
 		x = 0
 		y = 1
 		relative_position_id = MAN_expand_the_plain_yellow_banner
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_plain_white_banner
-		}
+		completion_reward = { add_ideas = MAN_plain_white_banner }
 	}
 
 	focus =  {
 		id = MAN_reform_the_eight_banners
-		icon = GFX_focus_CHI_decisive_battles
+		icon = GFX_focus_PER_march_on_saadabad
 		prerequisite = { focus = MAN_emphasize_the_manchu_banner }
 		x = 1
 		y = 1
@@ -1352,7 +1313,7 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_assimilate_the_transfrontiermen
-		icon = GFX_focus_CHI_decisive_battles
+		icon = GFX_SOV_war_measures_in_the_east_ccp_2d_sov_compatibility
 		prerequisite = { focus = MAN_reform_the_eight_banners }
 		x = 0
 		y = 1
@@ -1368,7 +1329,7 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_enforce_segregation
-		icon = GFX_focus_CHI_decisive_battles
+		icon = GFX_focus_generic_infiltration
 		prerequisite = { focus = MAN_assimilate_the_transfrontiermen }
 		x = 0
 		y = 1
@@ -1403,7 +1364,7 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_promote_the_mongol_banner
-		icon = GFX_goal_generic_build_tank
+		icon = GFX_focus_HABSBURG_defensive_hussars
 		prerequisite = { focus = MAN_the_modern_banner_armies }
 		mutually_exclusive = { 
 			focus = MAN_emphasize_the_manchu_banner
@@ -1413,9 +1374,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = MAN_the_modern_banner_armies
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_mongol_banner1
-		}
+		completion_reward = { add_ideas = MAN_mongol_banner1 }
 	}
 
 	focus =  {
@@ -1436,7 +1395,7 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_first_among_equals
-		icon = GFX_focus_PRC_reorganize_divisions
+		icon = GFX_focus_generic_limited_social_mobilization
 		prerequisite = { focus = MAN_the_khorchin_mongols }
 		x = 0
 		y = 1
@@ -1458,9 +1417,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = MAN_first_among_equals
 		cost = 5
-		completion_reward = {
-			add_ideas = MAN_iron_horse_and_steel_arrows_idea
-		}
+		completion_reward = { add_ideas = MAN_iron_horse_and_steel_arrows_idea }
 	}
 
 	focus =  {
@@ -1513,20 +1470,15 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_the_duke_zhenguo
-		icon = GFX_focus_PRC_reorganize_divisions
-		
+		icon = GFX_SOV_the_southern_thrust_ccp_2d_sov_compatibility
 		prerequisite = { 
 			focus = MAN_iron_horse_and_steel_arrows
 			focus = MAN_the_modern_horde
-		}
-		
+		}		
 		x = 0
 		y = 4
-		
 		relative_position_id = MAN_promote_the_mongol_banner
-		
 		cost = 10
-		
 		completion_reward = {
 			effect_tooltip = {
 				add_field_marshal_role = { character = MAN_sengge_rinchen }
@@ -1538,19 +1490,12 @@ focus_tree = {
 	focus = {
 		id = MAN_air_modernization
 		icon = GFX_focus_JAP_strenghten_manchukuo_imperial_army
-		
 		prerequisite = { focus = MAN_tsr_reform_the_army }	
-		
 		x = 5
 		y = 1
-		
 		relative_position_id = MAN_tsr_reform_the_army
-		
 		cost = 5
-		
-		completion_reward = {
-			air_experience = 100
-		}
+		completion_reward = { air_experience = 100 }
 	}
 
 	focus = {
@@ -1566,9 +1511,7 @@ focus_tree = {
 				specialization = specialization_air
 				value = 1
 			}
-			
 			custom_effect_tooltip = generic_skip_one_line_tt
-			
 			custom_effect_tooltip = available_designer
 			show_ideas_tooltip = MAN_mamc_light
 			show_ideas_tooltip = MAN_mamc_medium
@@ -1614,14 +1557,12 @@ focus_tree = {
 	focus = {
 		id = MAN_navy_modernization
 		icon = GFX_focus_ARG_study_the_battle_of_the_river_plate
-		prerequisite = { focus = MAN_tsr_reform_the_army }	
+		prerequisite = { focus = MAN_tsr_reform_the_army }
+		available = { MAN = { controls_state = 492 } }
 		x = 7
 		y = 1
 		relative_position_id = MAN_tsr_reform_the_army
 		cost = 5
-		available = {
-			MAN = { controls_state = 492 }
-		}
 		completion_reward = {
 			add_tech_bonus = {
 				bonus = 1
@@ -1733,24 +1674,16 @@ focus_tree = {
 	focus = {
 		id = MAN_tsr_reestablish_the_qing_army
 		icon = GFX_focus_MAN_reestablish_the_imperial_army
-		
 		prerequisite = { 
 			focus = MAN_the_duke_hanjun
 			focus = MAN_duoluo_junwang
 			focus = MAN_the_duke_zhenguo
 		}
-		
-		available = {
-			has_global_flag = formed_qing
-		}
-		
+		available = { has_global_flag = formed_qing }
 		x = 0
 		y = 1
-		
 		relative_position_id = MAN_duoluo_junwang
-		
 		cost = 10
-		
 		completion_reward = {
 			add_ideas = MAN_qing_army
 			army_experience = 150
@@ -1760,21 +1693,13 @@ focus_tree = {
 	focus = {
 		id = MAN_tsr_claim_the_mandate_of_heaven
 		icon = GFX_focus_man_claim_the_mandate_of_heaven
-		
 		prerequisite = { focus = MAN_tsr_reclaim_the_empire }
 		prerequisite = { focus = MAN_tsr_reestablish_the_qing_army }
-		
-		x = 5
+		available = { has_global_flag = formed_qing }
+		x = 4
 		y = 1
-		
 		relative_position_id = MAN_tsr_reclaim_the_empire
-		
 		cost = 10
-		
-		available = {
-			has_global_flag = formed_qing
-		}
-		
 		completion_reward = {
 			set_cosmetic_tag = MAN_restored
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -1795,14 +1720,8 @@ focus_tree = {
 			hidden_effect = {
 				news_event = { id = wtt_news.44 days = 2 }
 				MAN_aisin_gioro_puyi = {
-					set_portraits = {
-						civilian = {
-							large = "GFX_portrait_man_henry_pu_yi_emperor" 
-						}
-					}
-					set_character_name = {
-						name = MAN_aisin_gioro_puyi_xuantong_name
-					}
+					set_portraits = { civilian = { large = "GFX_portrait_man_henry_pu_yi_emperor" } }
+					set_character_name = { name = MAN_aisin_gioro_puyi_xuantong_name }
 				}
 			}
 		}
@@ -1810,52 +1729,31 @@ focus_tree = {
 
 	focus = {
 		id = MAN_all_under_heaven
-		icon = GFX_focus_JAP_expand_the_showa_research_association
+		icon = GFX_focus_RAJ_the_sun_sets
 		prerequisite = { focus = MAN_tsr_claim_the_mandate_of_heaven }
-		
 		available = {
 			surrender_progress < 0.01
 			OR = {
-				MAN = { 
-					has_full_control_of_state = 336
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 336
-				}
+				MAN = { has_full_control_of_state = 336 }
+				any_allied_country = { has_full_control_of_state = 336 }
 			}
 			OR = {
-				MAN = {
-					has_full_control_of_state = 289
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 289
-				}
+				MAN = { has_full_control_of_state = 289 }
+				any_allied_country = { has_full_control_of_state = 289 }
 			}
 			OR = {
-				MAN = {
-					has_full_control_of_state = 288
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 288
-				}
+				MAN = { has_full_control_of_state = 288 }
+				any_allied_country = { has_full_control_of_state = 288 }
 			}
 			OR = {
-				MAN = {
-					has_full_control_of_state = 306
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 306
-				}
+				MAN = { has_full_control_of_state = 306 }
+				any_allied_country = { has_full_control_of_state = 306 }
 			}
 		}
-		
 		x = 0
 		y = 1
-		
 		relative_position_id = MAN_tsr_claim_the_mandate_of_heaven
-		
 		cost = 20
-		
 		completion_reward = {
 			add_stability = 1
 			add_war_support = 1
@@ -1864,17 +1762,12 @@ focus_tree = {
 
 	focus = {
 		id = MAN_imperial_legacy
-		icon = GFX_focus_JAP_expand_the_showa_research_association
-		
+		icon = GFX_focus_jap_manchurian_project
 		prerequisite = { focus = MAN_all_under_heaven }
-		
 		x = 0
 		y = 1
-		
 		relative_position_id = MAN_all_under_heaven
-		
 		cost = 25
-		
 		completion_reward = {
 			add_country_leader_trait = MAN_gongzong
 			add_country_leader_trait = MAN_jingtianshaoyun
@@ -1886,56 +1779,33 @@ focus_tree = {
 		}
 	}
 
-	
 	focus = {
 		id = MAN_imperial_divinity
-		icon = GFX_focus_JAP_expand_the_showa_research_association
-		
+		icon = GFX_focus_JAP_ministry_of_colonial_affairs
 		prerequisite = { focus = MAN_imperial_legacy }
-		
 		available = {
 			surrender_progress < 0.01
 			OR = {
-				MAN = { 
-					has_full_control_of_state = 335
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 335
-				}
+				MAN = { has_full_control_of_state = 335 }
+				any_allied_country = { has_full_control_of_state = 335 }
 			}
 			OR = {
-				MAN = {
-					has_full_control_of_state = 327
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 327 
-				}
+				MAN = { has_full_control_of_state = 327 }
+				any_allied_country = { has_full_control_of_state = 327  }
 			}
 			OR = {
-				MAN = {
-					has_full_control_of_state = 523
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 523 
-				}
+				MAN = { has_full_control_of_state = 523 }
+				any_allied_country = { has_full_control_of_state = 523 }
 			}
 			OR = {
-				MAN = {
-					has_full_control_of_state = 439
-				}
-				any_allied_country = { 	
-					has_full_control_of_state = 439 
-				}
+				MAN = { has_full_control_of_state = 439 }
+				any_allied_country = { has_full_control_of_state = 439 }
 			}
 		}
-		
 		x = 0
 		y = 1
-		
 		relative_position_id = MAN_imperial_legacy
-		
 		cost = 30
-		
 		completion_reward = {
 			add_ideas = MAN_tianzi
 			add_ideas = MAN_tianchao
@@ -1945,26 +1815,20 @@ focus_tree = {
 	focus = {
 		id = MAN_the_thousand_year_civilisation
 		icon = GFX_focus_RAJ_to_shake_the_world
-		
 		prerequisite = { focus = MAN_imperial_divinity }
-		
 		available = {
 			all_state = { 
 				OR = {
 					NOT = { is_core_of = ROOT }
-                    state = 524
-					is_controlled_by = ROOT
+					state = 524
+					is_fully_controlled_by = ROOT
 				}
 			}
 		}
-		
 		x = 0
 		y = 1
-		
 		relative_position_id = MAN_imperial_divinity
-		
 		cost = 40
-		
 		completion_reward = {
 			set_major = yes
 			set_cosmetic_tag = MAN_restoredplus
