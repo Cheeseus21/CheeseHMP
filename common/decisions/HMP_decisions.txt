@@ -24587,3 +24587,155 @@ X_ENG_propaganda_campaigns = {
 PACIFIC_WAR_CATEGORY_GUI_CATEGORY = {
 	
 }
+
+JAP_control_qing_decisions = {
+	JAP_increase_qing_tribute_mil = {
+
+		icon = GFX_decision_generic_monarchy 
+		
+		allowed = { tag = JAP }
+        
+        targets = { MAN }
+        
+		available = {
+            custom_trigger_tooltip = {
+                tooltip = JAP_control_qing_tt1
+                CAN = {
+                    check_variable = {
+                    var = JAP_control_qing_modifier_mil
+                    value = 0.50
+                    compare = less_than
+                    }
+                }
+            }
+		}
+		
+		visible = {
+			#has_completed_focus = JAP_rejuvenate_the_qing_dynasty
+			hidden_trigger = {
+				country_exists = MAN
+			}
+		}
+		
+		complete_effect = {
+            MAN = {
+                add_to_variable = { var = JAP_control_qing_modifier_mil value = 0.05 } 
+            }
+            custom_effect_tooltip = JAP_control_qing_increase_mil_tt
+		}
+	}
+    
+    JAP_decrease_qing_tribute_mil = {
+
+		icon = GFX_decision_generic_monarchy 
+		
+		allowed = { tag = JAP }
+        
+        targets = { MAN }
+
+		available = {
+            custom_trigger_tooltip = {
+                tooltip = JAP_control_qing_tt2
+                MAN = {
+                    NOT = {
+                        check_variable = {
+                        var = JAP_control_qing_modifier_mil
+                        value = 0
+                        compare = less_than_or_equals
+                        }
+                    }
+                }
+            }
+		}
+        
+        visible = {
+			#has_completed_focus = JAP_rejuvenate_the_qing_dynasty
+			hidden_trigger = {
+				country_exists = MAN
+			}
+		}
+		
+		complete_effect = {
+            MAN = {
+                subtract_from_variable = { var = JAP_control_qing_modifier_mil value = 0.05 } 
+            }
+            custom_effect_tooltip = JAP_control_qing_decrease_mil_tt
+		}
+	}
+    
+    ########################################
+    
+    JAP_increase_qing_tribute_civ = {
+
+		icon = GFX_decision_generic_monarchy 
+		
+		allowed = { tag = JAP }
+        
+        targets = { MAN }
+        
+		available = {
+            custom_trigger_tooltip = {
+                tooltip = JAP_control_qing_tt1
+                CAN = {
+                    check_variable = {
+                    var = JAP_control_qing_modifier_civ
+                    value = 0.50
+                    compare = less_than
+                    }
+                }
+            }
+		}
+		
+		visible = {
+			#has_completed_focus = ENG_imperial_policy
+			hidden_trigger = {
+				country_exists = MAN
+			}
+		}
+		
+		complete_effect = {
+            MAN = {
+                add_to_variable = { var = JAP_control_qing_modifier_civ value = 0.05 } 
+            }
+            custom_effect_tooltip = JAP_control_qing_increase_civ_tt
+		}
+	}
+    
+    JAP_decrease_qing_tribute_civ = {
+
+		icon = GFX_decision_generic_monarchy 
+		
+		allowed = { tag = JAP }
+        
+        targets = { MAN }
+
+		available = {
+            custom_trigger_tooltip = {
+                tooltip = JAP_control_qing_tt2
+                MAN = {
+                    NOT = {
+                        check_variable = {
+                        var = JAP_control_qing_modifier_civ
+                        value = 0
+                        compare = less_than_or_equals
+                        }
+                    }
+                }
+            }
+		}
+        
+        visible = {
+			#has_completed_focus = ENG_imperial_policy
+			hidden_trigger = {
+				country_exists = MAN
+			}
+		}
+		
+		complete_effect = {
+            MAN = {
+                subtract_from_variable = { var = JAP_control_qing_modifier_civ value = 0.05 } 
+            }
+            custom_effect_tooltip = JAP_control_qing_decrease_civ_tt
+		}
+	}
+}

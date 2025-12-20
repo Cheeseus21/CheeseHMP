@@ -2082,68 +2082,37 @@ focus_tree = {
 		id = JAP_rejuvenate_the_qing_dynasty
 		icon = GFX_focus_JAP_develop_the_south_seas_mandate
 		prerequisite = { focus = JAP_develop_the_chinese_resources }
+        
 		x = 0
 		y = 1
+        
 		relative_position_id = JAP_develop_the_chinese_resources
+        
+        available = {
+			has_global_flag = china_war_ended
+		}
+        
 		cost = 5
+        
 		completion_reward = {
-			effect_tooltip = {
-				every_state = { 
-					limit = { OR = { is_core_of = CHI state = 346 state = 492 } }
-					transfer_state_to = MAN
-				}
-				if = {
-					limit = { has_global_flag = china_war_ended }
-					every_state = { 
-						limit = { is_core_of = CHI }
-						remove_building = {
-							type = arms_factory
-							level = 3
-						}
-						remove_building = {
-							type = industrial_complex
-							level = 3
-						}
-					}
-					add_offsite_building = {
-						type = industrial_complex
-						level = 57
-					}
-					add_offsite_building = {
-						type = arms_factory
-						level = 57
-					}
-				}
-			}
+		
+            custom_effect_tooltip = JAP_rejuvenate_the_qing_dynasty_tt
+        
 			hidden_effect = {
-				every_owned_state = { 
-					limit = { is_core_of = CHI }
-					add_core_of = MAN
+				MAN = {
+					add_dynamic_modifier = { modifier = JAP_control_qing }
 				}
-				every_owned_state = {
-					limit = { OR = { is_core_of = CHI state = 346 state = 492 } }
-					transfer_state_to = MAN
-				}
-				if = {
-					limit = { has_global_flag = china_war_ended }
-					every_owned_state = { 
-						limit = { is_core_of = CHI }
-						remove_building = {
-							type = arms_factory
-							level = 3
-						}
-						remove_building = {
-							type = industrial_complex
-							level = 3
-						}
-					}
-					add_offsite_building = {
-						type = industrial_complex
-						level = 57
-					}
-					add_offsite_building = {
-						type = arms_factory
-						level = 57
+				
+				effect_tooltip = {
+					every_state = { 
+						limit = { 
+                            OR = { 
+                                is_core_of = CHI 
+                                state = 346 
+                                state = 492 
+                            } 
+                        }
+						transfer_state_to = MAN
 					}
 				}
 			}
