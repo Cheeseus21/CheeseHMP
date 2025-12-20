@@ -93,14 +93,7 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			add_ideas = songgotu_zhanshan
-			328 = {
-				add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-					type = industrial_complex
-					level = 3
-					instant_build = yes
-				}
-			}	
+			
 		}
 	}
 
@@ -113,7 +106,7 @@ focus_tree = {
 		relative_position_id = MAN_invite_japanese_investors
 		cost = 5
 		completion_reward = {
-			328 = {
+			496 = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
@@ -122,7 +115,7 @@ focus_tree = {
 				}		
 				add_resource = {
 					type = steel
-					amount = 56
+					amount = 12
 				}
 			}
 		}
@@ -137,29 +130,18 @@ focus_tree = {
 		relative_position_id = MAN_expand_showa_steel_works
 		cost = 5
 		completion_reward = {
-		    add_tech_bonus = {
-				name = "Develop Aluminum Sources"
-				bonus = 1.0
-				uses = 3
-				category = excavation_tech
-				}
 		    328 = {
-		        add_extra_state_shared_building_slots = 2
-			    add_building_construction = { 
-			    type = industrial_complex
-			    level = 2
-			    }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
 				add_resource = {
 					type = aluminium
-					amount = 48
-				}
-			}	
-			527 = {
-				add_resource = {
-					type = tungsten
 					amount = 12
 				}
-			}
+			}	
 		}
 	}
 
@@ -172,20 +154,14 @@ focus_tree = {
 		relative_position_id = MAN_invite_japanese_investors
 		cost = 5
 		completion_reward = {
-		random_owned_controlled_state = {
-			add_extra_state_shared_building_slots = 1
-			add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
 				}
 		    }
-			add_tech_bonus = {
-				name = MAN_tsr_strengthen_ties_with_nissan
-				bonus = 3
-				uses = 2
-				category = motorized_equipment
-			}
 		}
 	}
 
@@ -206,6 +182,9 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 		    add_ideas = MAN_mangyo
         }
 	}
@@ -220,10 +199,10 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			328 = {
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
-					level = 3
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -242,7 +221,7 @@ focus_tree = {
 			add_tech_bonus = {
 				name = MAN_trade_delegation
 				bonus = 1.0
-				uses = 4
+				uses = 2
 				category = industry
 			}
 		}
@@ -251,15 +230,20 @@ focus_tree = {
 	focus = {
 		id = MAN_national_defense_state
 		icon = GFX_focus_JAP_army_weapons_administration_hq
+		
 		prerequisite = { focus = MAN_develop_aluminum_sources }
 		prerequisite = { focus = MAN_tsr_mangyo }
 		prerequisite = { focus = MAN_trade_delegation }
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = MAN_tsr_mangyo
+		
 		cost = 10
+		
 		completion_reward = {
-			add_ideas = MAN_national_defense_state
+			#add_ideas = MAN_national_defense_state
 			add_ideas = tot_economic_mobilisation
 		}
 	}
@@ -404,10 +388,10 @@ focus_tree = {
 		cost = 10
 		completion_reward = {
 			496 = {
-				add_extra_state_shared_building_slots = 4
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 4
+					level = 2
 					instant_build = yes
 				}
 				set_state_category = metropolis
@@ -504,10 +488,7 @@ focus_tree = {
 		relative_position_id = MAN_national_defense_state
 		cost = 10
 		available = {
-			OR = {
-            	JAP = { controls_state = 308 }  
-            	MAN = { controls_state = 308 }
-			}
+			has_global_flag = formed_qing
         }
 		completion_reward = {
 			IF = {
@@ -519,24 +500,6 @@ focus_tree = {
 				remember_old_capital = no
 			}
 			set_province_name = { id = 9843 name = PRC_beijing_capital_name }
-			custom_effect_tooltip = generic_skip_one_line_tt
-			308 = {
-				add_extra_state_shared_building_slots = 4
-				add_building_construction = {
-					type = industrial_complex
-					level = 4
-					instant_build = yes
-				}
-				set_state_name = PRC_beijing_capital_name
-				set_state_category = megalopolis
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			496 = {
-				remove_building = {
-					type = industrial_complex
-					level = 4
-				}
-			}
 		}
 	}
 
@@ -549,15 +512,6 @@ focus_tree = {
 		relative_position_id = MAN_tsr_move_capitals
 		cost = 10
 		completion_reward = {
-			MAN = {
-				transfer_state = 346
-				transfer_state = 492
-			}
-			set_politics = {
-				ruling_party = neutrality
-				elections_allowed = no
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
 			effect_tooltip = {
 				add_country_leader_role = {
 					character = MAN_aisin_gioro_puyi
@@ -569,6 +523,12 @@ focus_tree = {
 					}
 				}
 			}
+						
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+			}
+			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			effect_tooltip = {
 				add_popularity = {
@@ -576,30 +536,6 @@ focus_tree = {
 					popularity = 1
 				}
 			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			hidden_effect = {
-				set_popularities = {
-					democratic = 0
-					neutrality = 100
-					fascism = 0
-					communism = 0
-				}
-				remove_ideas = MAN_pu_yi_figurehead
-				JAP = {
-					add_offsite_building = { 
-						type = industrial_complex 
-						level = 4
-					}
-					add_offsite_building = { 
-						type = arms_factory 
-						level = 4
-					}
-					add_offsite_building = { 
-						type = dockyard 
-						level = 4
-					}
-				}
-       		}
 		}
 	}
 
@@ -612,9 +548,8 @@ focus_tree = {
 		relative_position_id = MAN_the_two_emperors
 		cost = 5
 		completion_reward = {
-			add_stability = 0.05
 			308 = {
-				add_extra_state_shared_building_slots = 4
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
@@ -633,30 +568,12 @@ focus_tree = {
 		relative_position_id = MAN_expand_the_taimiao
 		cost = 5
 		completion_reward = {
-			add_stability = 0.05
-			effect_tooltip = {
-				add_offsite_building = { 
-					type = industrial_complex 
+			561 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
 					level = 2
-				}
-			}
-			hidden_effect = {
-				if = {
-					limit = { MAN = { controls_state = 561 } }
-					561 = {
-						add_extra_state_shared_building_slots = 4
-						add_building_construction = {
-							type = industrial_complex
-							level = 2
-							instant_build = yes
-						}
-					}
-				}
-				else = {
-					add_offsite_building = { 
-						type = industrial_complex 
-						level = 2
-					}
+					instant_build = yes
 				}
 			}
 		}
@@ -671,30 +588,12 @@ focus_tree = {
 		relative_position_id = MAN_the_two_emperors
 		cost = 5
 		completion_reward = {
-			add_war_support = 0.05
-			effect_tooltip = {
-				add_offsite_building = { 
-					type = arms_factory 
+			570 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
 					level = 2
-				}
-			}
-			hidden_effect = {
-				if = {
-					limit = { MAN = { controls_state = 570 } }
-					570 = {
-						add_extra_state_shared_building_slots = 4
-						add_building_construction = {
-							type = arms_factory
-							level = 2
-							instant_build = yes
-						}
-					}
-				}
-				else = {
-					add_offsite_building = { 
-						type = arms_factory 
-						level = 2
-					}
+					instant_build = yes
 				}
 			}
 		}
@@ -709,9 +608,8 @@ focus_tree = {
 		relative_position_id = MAN_rebuild_the_qingdongling
 		cost = 5
 		completion_reward = {
-			add_war_support = 0.05
 			308 = {
-				add_extra_state_shared_building_slots = 4
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
 					level = 2
@@ -770,16 +668,22 @@ focus_tree = {
 	focus = {
 		id = MAN_avenge_the_century_of_humiliation
 		icon = GFX_focus_RAJ_clamp_down_on_corruption
+		
 		prerequisite = { focus = MAN_shadow_of_cixi }
+		
 		available = { JAP = { has_completed_focus = JAP_strike_the_southern_road } }
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = MAN_shadow_of_cixi
+		
 		cost = 5
+		
 		completion_reward = {
 			add_timed_idea = {
 				idea = MAN_avenge_humiliation
-				days = 180
+				days = 60
 			}
 		}
 	}
@@ -787,9 +691,12 @@ focus_tree = {
 	focus = {
 		id = MAN_repudiate_the_treaty_of_aigun
 		icon = GFX_focus_BRA_repeale_national_security_law
+		
 		prerequisite = { focus = MAN_avenge_the_century_of_humiliation }
+		
 		x = 0
 		y = 2
+		
 		available = {
 			JAP = {
 				OR = {
@@ -798,16 +705,19 @@ focus_tree = {
 				}
 			}
 		}
+		
 		relative_position_id = MAN_avenge_the_century_of_humiliation
-		cost = 5
+		
+		cost = 10
+		
 		completion_reward = {
-			406 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
-			408 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
-			628 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
-			629 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
-			630 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
-			631 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
-			632 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 180 } }
+			406 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
+			408 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
+			628 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
+			629 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
+			630 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
+			631 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
+			632 = { add_dynamic_modifier = { scope = MAN modifier = great_campaigns days = 60 } }
 		}
 	}
 
@@ -815,14 +725,18 @@ focus_tree = {
 		id = MAN_revenge_for_the_opium_wars
 		icon = GFX_focus_attack_britain
 		prerequisite = { focus = MAN_avenge_the_century_of_humiliation }
+		
 		x = -1
 		y = 1
+		
 		relative_position_id = MAN_avenge_the_century_of_humiliation
-		cost = 5
+		
+		cost = 10
+		
 		completion_reward = {
 			add_timed_idea = {
 				idea = MAN_opium_revenge
-				days = 180
+				days = 60
 			}
 		}
 	}
@@ -831,10 +745,18 @@ focus_tree = {
 		id = MAN_seize_the_treaty_ports
 		icon = GFX_focus_CHI_retake_the_coastal_cities
 		prerequisite = { focus = MAN_avenge_the_century_of_humiliation }
+		
 		x = 1
 		y = 1
+		
 		relative_position_id = MAN_avenge_the_century_of_humiliation
+		
+		available = {
+			#has_global_flag = formed_qing
+		}
+		
 		cost = 5
+		
 		completion_reward = {
 			MAN = {
 				transfer_state = 326
@@ -965,17 +887,18 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			496 = {
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
 					level = 2
 					instant_build = yes
 				}
-				add_building_construction = {
-                    type = land_facility
-                    level = 1
-                    instant_build = yes
-                    province = 11771
-                }
+				#add_building_construction = {
+                #    type = land_facility
+                #    level = 1
+                #    instant_build = yes
+                #    province = 11771
+                #}
 			}
 		}
 	}
@@ -1071,6 +994,9 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			army_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			add_ideas = CHI_wargaming_division
 		}
 	}
@@ -1105,7 +1031,7 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = MAN_tank_invasion
-				bonus = 3
+				bonus = 1
 				uses = 2
 				category = cat_mechanized_equipment
 			}
@@ -1123,7 +1049,7 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = CHI_modern_logistics
-				bonus = 3
+				bonus = 1
 				uses = 2
 				technology = tech_field_hospital3
 				technology = tech_field_hospital4
@@ -1178,10 +1104,10 @@ focus_tree = {
 		relative_position_id = CHI_heavy_weapons
 		cost = 5
 		completion_reward = {
-			add_ideas = CHI_construction_battalions
+			#add_ideas = CHI_construction_battalions
 			add_tech_bonus = {
 				name = CHI_construction_battalions
-				bonus = 3
+				bonus = 1
 				uses = 2
 				category = engineers_tech
 			}
@@ -1579,14 +1505,19 @@ focus_tree = {
 	focus =  {
 		id = MAN_the_duke_zhenguo
 		icon = GFX_focus_PRC_reorganize_divisions
+		
 		prerequisite = { 
 			focus = MAN_iron_horse_and_steel_arrows
 			focus = MAN_the_modern_horde
 		}
+		
 		x = 0
 		y = 4
+		
 		relative_position_id = MAN_promote_the_mongol_banner
+		
 		cost = 10
+		
 		completion_reward = {
 			effect_tooltip = {
 				add_field_marshal_role = { character = MAN_sengge_rinchen }
@@ -1598,26 +1529,18 @@ focus_tree = {
 	focus = {
 		id = MAN_air_modernization
 		icon = GFX_focus_JAP_strenghten_manchukuo_imperial_army
+		
 		prerequisite = { focus = MAN_tsr_reform_the_army }	
+		
 		x = 5
 		y = 1
+		
 		relative_position_id = MAN_tsr_reform_the_army
+		
 		cost = 5
+		
 		completion_reward = {
 			air_experience = 100
-			328 = {
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-				add_building_construction = {
-                    type = air_facility
-                    level = 1
-                    instant_build = yes
-                    province = 4572
-                }
-			}
 		}
 	}
 
@@ -1634,16 +1557,12 @@ focus_tree = {
 				specialization = specialization_air
 				value = 1
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			custom_effect_tooltip = available_designer
 			show_ideas_tooltip = MAN_mamc_light
 			show_ideas_tooltip = MAN_mamc_medium
-			328 = {
-			    add_extra_state_shared_building_slots = 3
-			    add_building_construction = { 
-			        type = arms_factory
-			        level = 3
-			    }
-		    }
 		}
 	}
 
@@ -1695,18 +1614,21 @@ focus_tree = {
 			MAN = { controls_state = 492 }
 		}
 		completion_reward = {
-			492 = {
-				add_building_construction = {
-					type = dockyard
-					level = 5
-					instant_build = yes
-				}
-				add_building_construction = {
-                    type = naval_facility
-                    level = 1
-                    instant_build = yes
-                    province = 1150
-                }
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = cv_tech
+			}
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = bc_tech				
+				category = bb_tech
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = cl_tech
 			}
 		}
 	}
@@ -1774,7 +1696,7 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = CHI_modern_submarines
-				bonus = 3
+				bonus = 1
 				uses = 2
 				category = ss_tech
 			}
@@ -1792,7 +1714,7 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = CHI_order_destroyers
-				bonus = 3
+				bonus = 1
 				uses = 2
 				category = dd_tech
 			}
@@ -1802,15 +1724,24 @@ focus_tree = {
 	focus = {
 		id = MAN_tsr_reestablish_the_qing_army
 		icon = GFX_focus_MAN_reestablish_the_imperial_army
+		
 		prerequisite = { 
 			focus = MAN_the_duke_hanjun
 			focus = MAN_duoluo_junwang
 			focus = MAN_the_duke_zhenguo
 		}
+		
+		available = {
+			has_global_flag = formed_qing
+		}
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = MAN_duoluo_junwang
+		
 		cost = 10
+		
 		completion_reward = {
 			add_ideas = MAN_qing_army
 			army_experience = 150
@@ -1820,21 +1751,21 @@ focus_tree = {
 	focus = {
 		id = MAN_tsr_claim_the_mandate_of_heaven
 		icon = GFX_focus_man_claim_the_mandate_of_heaven
+		
 		prerequisite = { focus = MAN_tsr_reclaim_the_empire }
 		prerequisite = { focus = MAN_tsr_reestablish_the_qing_army }
+		
 		x = 5
 		y = 1
+		
 		relative_position_id = MAN_tsr_reclaim_the_empire
+		
 		cost = 10
+		
 		available = {
-			all_state = { 
-				OR = {
-					NOT = { is_core_of = ROOT }
-                    state = 524
-					is_controlled_by = ROOT
-				}
-			}
-		} 
+			has_global_flag = formed_qing
+		}
+		
 		completion_reward = {
 			set_cosmetic_tag = MAN_restored
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -1872,6 +1803,7 @@ focus_tree = {
 		id = MAN_all_under_heaven
 		icon = GFX_focus_JAP_expand_the_showa_research_association
 		prerequisite = { focus = MAN_tsr_claim_the_mandate_of_heaven }
+		
 		available = {
 			surrender_progress < 0.01
 			OR = {
@@ -1907,10 +1839,14 @@ focus_tree = {
 				}
 			}
 		}
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = MAN_tsr_claim_the_mandate_of_heaven
-		cost = 10
+		
+		cost = 20
+		
 		completion_reward = {
 			add_stability = 1
 			add_war_support = 1
@@ -1920,11 +1856,16 @@ focus_tree = {
 	focus = {
 		id = MAN_imperial_legacy
 		icon = GFX_focus_JAP_expand_the_showa_research_association
+		
 		prerequisite = { focus = MAN_all_under_heaven }
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = MAN_all_under_heaven
-		cost = 20
+		
+		cost = 25
+		
 		completion_reward = {
 			add_country_leader_trait = MAN_gongzong
 			add_country_leader_trait = MAN_jingtianshaoyun
@@ -1940,7 +1881,9 @@ focus_tree = {
 	focus = {
 		id = MAN_imperial_divinity
 		icon = GFX_focus_JAP_expand_the_showa_research_association
+		
 		prerequisite = { focus = MAN_imperial_legacy }
+		
 		available = {
 			surrender_progress < 0.01
 			OR = {
@@ -1976,10 +1919,14 @@ focus_tree = {
 				}
 			}
 		}
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = MAN_imperial_legacy
-		cost = 20
+		
+		cost = 30
+		
 		completion_reward = {
 			add_ideas = MAN_tianzi
 			add_ideas = MAN_tianchao
@@ -1989,7 +1936,9 @@ focus_tree = {
 	focus = {
 		id = MAN_the_thousand_year_civilisation
 		icon = GFX_focus_RAJ_to_shake_the_world
+		
 		prerequisite = { focus = MAN_imperial_divinity }
+		
 		available = {
 			all_state = { 
 				OR = {
@@ -1999,10 +1948,14 @@ focus_tree = {
 				}
 			}
 		}
+		
 		x = 0
 		y = 1
+		
 		relative_position_id = MAN_imperial_divinity
-		cost = 10
+		
+		cost = 40
+		
 		completion_reward = {
 			set_major = yes
 			set_cosmetic_tag = MAN_restoredplus
