@@ -1389,8 +1389,223 @@
 			}
 		}
 	}
+	
+	SOV_prewar_evac_logic = {
+		# ==========================================
+		# 1. EVACUATE MILITARY FACTORIES
+		# ==========================================
+		set_variable = { factories_moved_mil = 0 }
 
+		random_owned_state = {
+			limit = {
+				arms_factory > 0
+				
+				OR = {
+					state = 195 
+					state = 219
+					state = 217
+				}
+			}
+			remove_building = { type = arms_factory level = 1 }
+			ROOT = { set_variable = { factories_moved_mil = 1 } }
+		}
 
+		# Move Mil to Safe Zone
+		if = {
+			limit = { check_variable = { factories_moved_mil > 0 } }
+			
+			random_owned_state = {
+				limit = {
+					# YOUR TARGET IDS FOR MILS
+					OR = {
+						state = 573 
+                        state = 484
+                        state = 179 
+                        state = 572 
+                        state = 483 
+                        state = 571 
+                        state = 478
+                        state = 40
+                        state = 569 
+						state = 404
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		# ==========================================
+		# 2. EVACUATE CIVILIAN FACTORIES
+		# ==========================================
+		set_variable = { factories_moved_civ = 0 }
+
+		random_owned_state = {
+			limit = {
+				industrial_complex > 0 # This checks for Civs
+				
+				OR = {
+					state = 195 
+					state = 219
+					state = 217
+				}
+			}
+			remove_building = { type = industrial_complex level = 1 }
+			ROOT = { set_variable = { factories_moved_civ = 1 } }
+		}
+
+		# Move Civ to Safe Zone
+		if = {
+			limit = { check_variable = { factories_moved_civ > 0 } }
+			
+			random_owned_state = {
+				limit = {
+					# YOUR TARGET IDS FOR CIVS (Can be same or different)
+					OR = {
+						state = 573 
+                        state = 484
+                        state = 179 
+                        state = 572 
+                        state = 483 
+                        state = 571 
+                        state = 478
+                        state = 40
+                        state = 569 
+						state = 404
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		# Cleanup
+		clear_variable = factories_moved_mil
+		clear_variable = factories_moved_civ
+	}
+
+	SOV_evacuate_frontline_logic = {
+		# ==========================================
+		# 1. EVACUATE MILITARY FACTORIES
+		# ==========================================
+		set_variable = { factories_moved_mil = 0 }
+
+		random_owned_state = {
+			limit = {
+				# --- OWNERSHIP CHECK ---
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				
+				# --- LOCATION CHECK (Front OR Rear) ---
+				OR = {
+					frontline_military_district_state = yes
+					rearline_military_district_state = yes
+				}
+
+				# Must have something to move
+				arms_factory > 0
+			}
+			remove_building = { type = arms_factory level = 1 }
+			ROOT = { set_variable = { factories_moved_mil = 1 } }
+		}
+
+		# Move Mil to Specific Safe IDs
+		if = {
+			limit = { check_variable = { factories_moved_mil > 0 } }
+			
+			random_owned_state = {
+				limit = {
+					# LIST YOUR SAFE TARGET STATE IDS HERE
+					OR = {
+						state = 573 
+                        state = 484
+                        state = 179 
+                        state = 572 
+                        state = 483 
+                        state = 571 
+                        state = 478
+                        state = 40
+                        state = 569 
+						state = 404
+					}
+				}
+				# Add slot so it fits
+				add_extra_state_shared_building_slots = 1
+				
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		# ==========================================
+		# 2. EVACUATE CIVILIAN FACTORIES
+		# ==========================================
+		set_variable = { factories_moved_civ = 0 }
+
+		random_owned_state = {
+			limit = {
+				industrial_complex > 0
+				
+				# --- OWNERSHIP CHECK ---
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				
+				# --- LOCATION CHECK (Front OR Rear) ---
+				OR = {
+					frontline_military_district_state = yes
+					rearline_military_district_state = yes
+				}
+			}
+			remove_building = { type = industrial_complex level = 1 }
+			ROOT = { set_variable = { factories_moved_civ = 1 } }
+		}
+
+		# Move Civ to Specific Safe IDs
+		if = {
+			limit = { check_variable = { factories_moved_civ > 0 } }
+			
+			random_owned_state = {
+				limit = {
+					# SAME SAFE IDS
+					OR = {
+						state = 573 
+                        state = 484
+                        state = 179 
+                        state = 572 
+                        state = 483 
+                        state = 571 
+                        state = 478
+                        state = 40
+                        state = 569 
+						state = 404
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		# Cleanup
+		clear_variable = factories_moved_mil
+		clear_variable = factories_moved_civ
+	}
+	
     HMP_countenance = { 
         if = { 
             limit = { has_global_flag = war_in_the_west_start } 

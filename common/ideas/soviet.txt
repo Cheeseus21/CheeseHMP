@@ -16,10 +16,13 @@ ideas = {
 
 		disorganized_railway_system = {
 			picture = SOV_mixed_rail 
+			
 			modifier = { custom_modifier_tooltip = SOV_disorganized_railway_system_tt }
+			
 			on_remove = {
 				set_technology = {cap_sov2 = 1 popup = no } 
 			}
+			
 			modifier ={ 
 				production_speed_rail_way_factor = -1.5
 				production_speed_supply_node_factor = -1.5
@@ -36,6 +39,175 @@ ideas = {
 			modifier = { 
 				industrial_capacity_factory = 0.1
 				surrender_limit = 0.08
+			}
+		}
+		
+		SOV_military_engineering_university_idea = {
+			allowed = {	always = no	}
+			
+			picture = generic_fortify_the_borders
+			
+			removal_cost = -1
+			
+			modifier = { 
+				production_speed_bunker_factor = 0.25
+				production_speed_coastal_bunker_factor = 0.25
+			}
+		}
+		
+		SOV_order_270_idea = {
+			allowed = {	always = no	}
+			
+			picture = ger_the_great_red_menace
+			
+			removal_cost = -1
+			
+			modifier = { 
+				army_speed_factor = -0.1
+				dig_in_speed_factor = 0.5
+				army_defence_factor = 0.1
+				out_of_supply_factor = -0.5
+				pocket_penalty = -0.1
+				no_supply_grace = 168
+			}
+		}
+		
+		SOV_order_227_idea = {
+			allowed = {	always = no	}
+			
+			picture = ger_the_great_red_menace
+			
+			removal_cost = -1
+			
+			modifier = { 
+				mobilization_speed = 0.25
+				org_loss_when_moving = -0.1
+				pocket_penalty = -0.2
+				out_of_supply_factor = -1
+				army_defence_factor = 0.1
+				dig_in_speed_factor = 1	
+				no_supply_grace = 336
+				supply_consumption_factor = -0.1
+			}
+		}
+		
+		SOV_politburo = {
+			allowed = {	always = no	}
+			
+			picture = GFX_idea_POL_ideology_drift_defence
+			
+			removal_cost = -1
+			
+			modifier = { 
+				communism_drift = 0.1
+				political_power_factor = 0.1
+				economy_cost_factor = -0.2
+				trade_laws_cost_factor = -0.2
+				mobilization_laws_cost_factor = -0.2
+			}
+		}
+		
+		SOV_politburo1 = {
+			allowed = {	always = no	}
+			
+			picture = GFX_idea_POL_ideology_drift_defence
+			
+			removal_cost = -1
+			
+			modifier = { 
+				defensive_war_stability_factor = 0.25
+				communism_drift = 0.1
+				political_power_factor = 0.1
+				economy_cost_factor = -0.2
+				trade_laws_cost_factor = -0.2
+				mobilization_laws_cost_factor = -0.2
+				global_building_slots_factor =  0.1
+				max_surrender_limit_offset = 0.05
+			}
+		}
+		
+		SOV_great_purge = {
+			allowed = {	always = no	}
+			
+			picture = officers_purged
+			
+			removal_cost = -1
+			
+			modifier = { 
+				political_power_factor = -0.1
+				industrial_capacity_factory = -0.1
+				industrial_capacity_dockyard = -0.1
+				production_speed_buildings_factor = -0.1
+				experience_gain_army_factor = -0.1
+				experience_gain_air_factor = -0.1
+			}
+		}
+		
+		SOV_operation_jupiter_idea = {
+			allowed = {
+				always = no
+			}
+			
+			available = { date < 1942.6.21 }
+
+			removal_cost = -1
+
+			picture = GER_barbarossa_idea_1 
+
+			targeted_modifier = {
+				tag = GER
+				attack_bonus_against = 0.1
+				breakthrough_bonus_against = 0.1
+			}
+		}
+		
+		SOV_operation_saturn_idea = {
+			allowed = {
+				always = no
+			}
+			
+			available = { date < 1943.6.21 }
+
+			removal_cost = -1
+
+			picture = GER_barbarossa_idea_2
+
+			targeted_modifier = {
+				tag = GER
+				attack_bonus_against = 0.15
+				breakthrough_bonus_against = 0.15
+			}
+		}	
+		
+		SOV_operation_uranus_idea = {
+			allowed = {	always = no	}
+			
+			available = { date < 1944.6.21 }
+			
+			removal_cost = -1
+			
+			picture = generic_acquire_tanks
+
+			targeted_modifier = {
+				tag = GER
+				attack_bonus_against = 0.2
+				breakthrough_bonus_against = 0.2
+			}
+		}
+		
+		SOV_operation_mars_idea = {
+			allowed = {	always = no	}
+
+			available = { date < 1945.6.21 }
+			
+			removal_cost = -1
+			
+			picture = generic_acquire_tanks
+
+			targeted_modifier = {
+				tag = GER
+				attack_bonus_against = 0.25
+				breakthrough_bonus_against = 0.25
 			}
 		}
 		
@@ -123,9 +295,9 @@ ideas = {
 			picture = ARG_construction_guilds
 			removal_cost = -1
 			modifier = {
-				army_strength_factor = 0.2
+				#army_strength_factor = 0.2
 				industrial_capacity_factory = 0.2
-				army_attack_speed_factor = -0.2
+				army_defence_factor = 0.2
 			}
 		}
 		
@@ -135,9 +307,32 @@ ideas = {
 			picture = ETH_conservative_high_command
 			removal_cost = -1
 			modifier = {
+				army_strength_factor = 0.25
 				army_attack_factor = 0.25
-				winter_attrition_factor = -1
-				acclimatization_cold_climate_gain_factor = 1
+				#winter_attrition_factor = -1
+				#acclimatization_cold_climate_gain_factor = 1
+			}
+		}
+		
+		SOV_industrial_overdrive_idea = {
+			allowed = {	always = no	}
+			allowed_civil_war = {	always = yes	}
+			picture = FIN_finnish_federation_of_trade_unions
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_factory = 0.2
+				army_defence_factor = 0.2
+			}
+		}
+		
+		SOV_eternal_march_idea = {
+			allowed = {	always = no	}
+			allowed_civil_war = {	always = yes	}
+			picture = generic_communism_drift_bonus
+			removal_cost = -1
+			modifier = {
+				army_strength_factor = 0.25
+				army_attack_factor = 0.25
 			}
 		}
 		
@@ -1052,6 +1247,25 @@ ideas = {
 				supply_node_range = 0.1
 			}
 		}
+		
+		SOV_switch_to_guerilla_tactics_idea = {
+
+			picture = RAJ_partition_chaos_bad
+			
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Added via event
+			}
+			
+			available = { surrender_progress < 0.60 }
+
+			modifier = {
+				winter_attrition_factor = -1
+				out_of_supply_factor = -1
+				supply_node_range = 1
+			}
+		}
 
 		SOV_desperate_measures_ns = {
 			name = SOV_desperate_measures
@@ -1299,7 +1513,8 @@ ideas = {
 			
 			modifier = {
 				consumer_goods_expected_value = -0.05
-				production_cost_arms_factory_factor = -0.075
+				production_cost_arms_factory_factor = -0.1
+				production_factory_start_efficiency_factor = 0.1
 			}
 		}
 		
@@ -1581,8 +1796,6 @@ ideas = {
 				cic_to_overlord_factor = 0.5
 				mic_to_overlord_factor = 0.5
 				extra_trade_to_overlord_factor = 0.25
-				master_ideology_drift = 0.05
-				autonomy_manpower_share = -1
 			}
 		}
 
@@ -2433,7 +2646,7 @@ ideas = {
 			}
 			
 			available = {
-				has_completed_focus = SOV_improve_railway_network
+				#has_completed_focus = SOV_improve_railway_network
 			}
 
 			cost = 75
@@ -2464,7 +2677,7 @@ ideas = {
 			}
 			
 			available = {
-				has_completed_focus = SOV_improve_railway_network
+				#has_completed_focus = SOV_improve_railway_network
 			}
 			
 			cost = 75
@@ -2492,22 +2705,21 @@ ideas = {
  #     #  #    #       #  #####   #####   #    #    #    #       #  #      #         #    #    #####   #    #    #   
  #     #  #    #  #    #  #       #   #   #    #    #    #       #   #     #    #    #    #    #   #   #    #    #   
   #####    ####    ####   #       #    #   ####     #    ######  #    #    #     ####     #    #    #   ####     #   
-                                                                                                                     
-
+  
 		SOV_gosproyektstroy_1 = {
 			
 			picture = generic_industrial_concern_2
 
 			allowed = {
-				original_tag = SOV
+				always = no
 			}
 			
 			available = {
-				has_completed_focus = SOV_foreign_experts
+				always = no
 			}
 
 			visible = {
-				NOT = { has_country_flag = SOV_gosproyektstroy_level_2_flag }
+				always = no
 			}
 
 			cost = 100
@@ -2524,28 +2736,27 @@ ideas = {
 		}
 
 		SOV_gosproyektstroy_2_usa = {
-
+		
 			name = SOV_gosproyektstroy_1
 
 			picture = generic_industrial_concern_2
 
 			allowed = {
 				original_tag = SOV
+				#has_completed_focus = SOV_foreign_experts
 			}
-
-			visible = {
-				has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 1 } #USA
-				NOT = { has_country_flag = SOV_gosproyektstroy_level_3_flag }
-			}
-
-			cost = 100
 			
-			traits = { construction_company }
+			available = {
+				has_completed_focus = SOV_foreign_experts
+			}
+
+			cost = 150
+			
+			#traits = { construction_company }
 			
 			modifier = {
-				custom_modifier_tooltip = SOV_gosproyektstroy_1_tt
 				production_speed_industrial_complex_factor = 0.05
-				production_speed_infrastructure_factor = 0.05
+				production_speed_infrastructure_factor = 0.15
 				production_speed_arms_factory_factor = 0.3
 				production_speed_dockyard_factor = 0.2
 				production_factory_max_efficiency_factor = 0.1
@@ -2553,70 +2764,37 @@ ideas = {
 				industrial_capacity_dockyard = 0.1
 			}
 		}
-
-		SOV_gosproyektstroy_3_usa_civ = {
-			
+		
+		SOV_gosproyektstroy_2_eng = {
+		
 			name = SOV_gosproyektstroy_1
-
+			
 			picture = generic_industrial_concern_2
 
 			allowed = {
-				original_TAG = SOV
-				
-			}
-
-			visible = {
-				has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 1 } #USA
-				has_country_flag = { flag = SOV_gosproyektstroy_level_3_flag value = 1 } #CIV
-			}
-
-			cost = 100
-			
-			traits = { construction_company }
-			
-			modifier = {
-				production_speed_industrial_complex_factor = 0.15
-				production_speed_infrastructure_factor = 0.15
-				production_speed_arms_factory_factor = 0.05
-				production_speed_dockyard_factor = 0.05
-				production_factory_max_efficiency_factor = 0.05
-				consumer_goods_expected_value = -0.05
-			}
-		}
-
-		SOV_gosproyektstroy_3_usa_mil = {
-			
-			name = SOV_gosproyektstroy_1
-
-			picture = generic_industrial_concern_2
-
-			allowed = {
-				original_TAG = SOV
-				
+				original_tag = SOV
 			}
 			
-			visible = {
-				OR = {
-					AND = {
-						has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 1 } #USA
-						has_country_flag = { flag = SOV_gosproyektstroy_level_3_flag value = 2 } #MIL
-					}
-					#has_global_flag = europe_only_start_date_flag
-				}
+			available = {
+				has_completed_focus = SOV_foreign_experts
 			}
 
-			cost = 100
+			cost = 150
 			
-			traits = { construction_company }
+			#traits = { construction_company }
 			
 			modifier = {
 				production_speed_industrial_complex_factor = 0.05
-				production_speed_infrastructure_factor = 0.05
+				production_speed_infrastructure_factor = 0.15
 				production_speed_arms_factory_factor = 0.3
 				production_speed_dockyard_factor = 0.2
-				production_factory_max_efficiency_factor = 0.05
-				industrial_capacity_factory = 0.1
 				industrial_capacity_dockyard = 0.1
+				line_change_production_efficiency_factor = 0.15
+				production_lack_of_resource_penalty_factor = -0.15
+				production_factory_efficiency_gain_factor = 0.15
+				production_factory_start_efficiency_factor = 0.15
+				industrial_capacity_factory = 0.1
+				
 			}
 		}
 		
@@ -2648,109 +2826,4 @@ ideas = {
 				industrial_capacity_dockyard = 0.1
 			}
 		}
-
-
-		SOV_gosproyektstroy_2_eng = {
-
-			name = SOV_gosproyektstroy_1
-			
-			picture = generic_industrial_concern_2
-
-			allowed = {
-				original_tag = SOV
-			}
-
-			visible = {
-				has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 2 } #ENG
-				NOT = { has_country_flag = SOV_gosproyektstroy_level_3_flag }
-			}
-
-			cost = 100
-			
-			traits = { construction_company }
-			
-			modifier = {
-				production_speed_industrial_complex_factor = 0.05
-				production_speed_infrastructure_factor = 0.05
-				production_speed_arms_factory_factor = 0.3
-				production_speed_dockyard_factor = 0.25
-				industrial_capacity_dockyard = 0.1
-				line_change_production_efficiency_factor = 0.15
-				production_lack_of_resource_penalty_factor = -0.15
-				production_factory_efficiency_gain_factor = 0.15
-				production_factory_start_efficiency_factor = 0.15
-				industrial_capacity_factory = 0.1
-				
-			}
-		}
-
-		SOV_gosproyektstroy_3_eng_civ = {
-			
-			name = SOV_gosproyektstroy_1
-
-			picture = generic_industrial_concern_2
-
-			allowed = {
-				original_TAG = SOV
-				
-			}
-
-			visible = {
-				has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 2 } #ENG
-				has_country_flag = { flag = SOV_gosproyektstroy_level_3_flag value = 1 } #CIV
-			}
-
-			cost = 100
-			
-			traits = { construction_company }
-			
-			modifier = {
-				production_speed_industrial_complex_factor = 0.15
-				production_speed_infrastructure_factor = 0.15
-				production_speed_arms_factory_factor = 0.05
-				production_speed_dockyard_factor = 0.05
-				line_change_production_efficiency_factor = 0.13
-				production_lack_of_resource_penalty_factor = -0.13
-				production_factory_efficiency_gain_factor = 0.13
-				production_factory_start_efficiency_factor = 0.13
-				consumer_goods_expected_value = -0.05
-			}
-		}
-
-		SOV_gosproyektstroy_3_eng_mil = {
-			
-			name = SOV_gosproyektstroy_1
-
-			picture = generic_industrial_concern_2
-
-			allowed = {
-				original_TAG = SOV
-				
-			}
-
-			visible = {
-				has_country_flag = { flag = SOV_gosproyektstroy_level_2_flag value = 2 } #ENG
-				has_country_flag = { flag = SOV_gosproyektstroy_level_3_flag value = 2 } #MIL
-			}
-
-			cost = 100
-			
-			traits = { construction_company }
-			
-			modifier = {
-				production_speed_industrial_complex_factor = 0.05
-				production_speed_infrastructure_factor = 0.05
-				production_speed_arms_factory_factor = 0.3
-				production_speed_dockyard_factor = 0.25
-				industrial_capacity_dockyard = 0.1
-				line_change_production_efficiency_factor = 0.13
-				production_lack_of_resource_penalty_factor = -0.13
-				production_factory_efficiency_gain_factor = 0.13
-				production_factory_start_efficiency_factor = 0.13
-				industrial_capacity_factory = 0.1
-			}
-		}
-
-		
-
 }
