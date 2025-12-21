@@ -140,28 +140,51 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 
 	NOT = { 
 		AND = { 
-			ROOT = { OR = { normally_played_allies = yes the_comintern = yes } }  
+			ROOT = { 
+				OR = { 
+					normally_played_allies = yes 
+					the_comintern = yes 
+				} 
+			}  
 			FROM = { tag = SPR } 
 		}  
 	}
 
-	has_global_flag = spanish_civil_war  
-	has_game_rule = { rule = horst_scw option = horst_scw_on }  
+	OR = {
+		AND = {
+			has_global_flag = spanish_civil_war
+			has_game_rule = { rule = horst_scw option = horst_scw_on }
 
-	OR = {  
-		has_idea = SPR_vol_can 
-		has_idea = SPR_vol_can2 
-		has_idea = SPR_vol_can3 
-		has_idea = FRA_volunteer 
-		has_idea = NZL_2nzef_fra 
-		has_idea = NZL_2nzef 
-		has_idea = SAF_support_spain 
-		tag = GER 
-		tag = ITA 
-		tag = SOV  
-		has_idea = BUL_volunteers_in_spain_nationalist 
-		has_idea = AST_support_spain  
-	}     
+			OR = {
+				#has_idea = SPR_vol_can 
+				#has_idea = SPR_vol_can2 
+				#has_idea = SPR_vol_can3 
+				#has_idea = FRA_volunteer 
+				#has_idea = NZL_2nzef_fra 
+				#has_idea = NZL_2nzef 
+				#has_idea = SAF_support_spain 
+				tag = GER 
+				tag = ITA 
+				tag = SOV  
+				tag = FRA
+				#has_idea = BUL_volunteers_in_spain_nationalist 
+				#has_idea = AST_support_spain  
+			}
+		}
+		
+		AND = {
+			has_game_rule = {
+				rule = horst_china_war 
+				option = horst_china_war_on
+			}
+			
+			OR = {
+				tag = SOV 
+				tag = USA
+			}
+		}
+	}
+	
 }
 
 DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = { always = no } 
