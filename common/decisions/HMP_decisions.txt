@@ -18064,86 +18064,77 @@ SOV_industry_relocation = {
 
 	SOV_prewar_evacuation_mission = {
 		icon = generic_production_bonus
+		
 		allowed = { original_tag = SOV }
-		
-		# Visible if we are at peace and haven't reached 1941 yet
-		visible = {
-			has_war = no
-			date < 1941.6.21
-			has_completed_focus = SOV_move_industry_to_the_urals
+
+		cancel_trigger = {
+			OR = {
+				has_war = yes          # Stop if war starts
+				date > 1941.6.21       # Stop if date passes
+			}
 		}
-		
-		# Use a decision or focus to enable this initially
-		activation = {
+
+		activation = { 
 			has_war = no
+			date < 1941.6.22
 			has_completed_focus = SOV_move_industry_to_the_urals
 		}
 
-		days_mission_timeout = 7
+		available = { always = no }
+
+		days_mission_timeout = 15
 		
 		fire_only_once = no
 		
 		is_good = yes
 
 		timeout_effect = {
-			# Run the logic 3 times to hit 3 states (or 3 factories) at once
+			SOV_prewar_evac_logic = yes
+			SOV_prewar_evac_logic = yes
 			SOV_prewar_evac_logic = yes
 			SOV_prewar_evac_logic = yes
 			SOV_prewar_evac_logic = yes
 
-			# Loop: Restart mission if we are still at peace
-			if = {
-				limit = { has_war = no }
-				activate_mission = SOV_prewar_evacuation_mission
-			}
+			activate_mission = SOV_prewar_evacuation_mission
 		}
 	}
 	
 	SOV_ongoing_evacuation_mission = {
 		icon = generic_production_bonus
+		
 		allowed = {
 			original_tag = SOV
 		}
-		
-		# Visible only when war starts and before the end date
-		visible = {
-			has_war = yes
-			date < 1942.6.1
-			has_completed_focus = SOV_move_industry_to_the_urals
+
+		cancel_trigger = {
+			OR = {
+				has_war = no
+				date > 1942.7.21
+			}
 		}
-		
-		# This prevents the player from manually clicking it; it runs automatically
-		available = {
-			always = no
+
+		available = { always = no }
+
+		activation = { 
+			has_war = yes
+			date < 1942.7.21
 			has_completed_focus = SOV_move_industry_to_the_urals
 		}
 
-		# Automatically starts when these conditions are met
-		activation = {
-			has_war = yes
-			date < 1943.1.1
-		}
-
-		days_mission_timeout = 7 # How often the evacuation happens (e.g., monthly)
+		days_mission_timeout = 7 
 		
 		fire_only_once = no
 		
 		is_good = yes
 
 		timeout_effect = {
-			# 1. Run the evacuation logic (defined below)
+			SOV_evacuate_frontline_logic = yes
+			SOV_evacuate_frontline_logic = yes
 			SOV_evacuate_frontline_logic = yes
 			SOV_evacuate_frontline_logic = yes
 			SOV_evacuate_frontline_logic = yes
 
-			# 2. The Loop: If date is still valid, restart this mission immediately
-			if = {
-				limit = {
-					date < 1943.1.1
-					has_war = yes
-				}
-				activate_mission = SOV_ongoing_evacuation_mission
-			}
+			activate_mission = SOV_ongoing_evacuation_mission
 		}
 	}
 }
