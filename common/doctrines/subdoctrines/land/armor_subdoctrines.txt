@@ -19,7 +19,7 @@ armored_spearhead = {
 
     rewards = {
         force_concentration = {
-            category_all_armor = {
+            category_tanks = {
                 max_organisation = 10
             }
         }
@@ -29,7 +29,7 @@ armored_spearhead = {
             }
         }
         local_reserves = {
-            category_all_armor = {
+            category_tanks = {
                 default_morale = 0.1
             }
         }
@@ -69,12 +69,12 @@ armored_spearhead_no_lar = {
 
     rewards = {
         force_concentration = {
-            category_all_armor = {
+            category_tanks = {
                 max_organisation = 5
             }
         }
         armored_breakthrough_exploits = {
-            category_all_armor = {
+            category_tanks = {
                 breakthrough = 0.1
             }
         }
@@ -115,28 +115,29 @@ armored_infantry_support = {
 
     rewards = {
         mobile_reserves = {
-            category_self_propelled_artillery = {
+            category_tanks = {
                 soft_attack = 0.05
+				hard_attack = 0.05
             }
         }
         armored_cohorts = {
             category_tanks = {
-                max_organisation = 10
+                max_organisation = 5
             }
         }
         maintenance_routines = {
-            category_self_propelled_artillery = {
-                soft_attack = 0.05
+            category_tanks = {
+                default_morale = 0.05
             }
         }
         fuel_rationing = {
             category_tanks = {
-                default_morale = 0.1
+                max_organisation = 5
             }
         }
         mobile_armored_strongpoints = {
-            category_self_propelled_artillery = {
-                soft_attack = 0.05
+            category_tanks = {
+                default_morale = 0.05
             }
         }
     }
@@ -203,10 +204,7 @@ mobile_defense = {
         always = yes
     }
 
-    armored_engineer = {
-		defense = 0.1
-	}
-	
+
 	enable_tactic = tactic_backhand_blow
 
     rewards = {
@@ -275,13 +273,16 @@ armored_cavalry = {
             motorized = {
 				maximum_speed = 0.1
 			}
+			mechanized = {
+				maximum_speed = 0.1
+			}
         }
         speed_as_armour = {
             armored_car = {
-				max_strength = 8
+				max_strength = 2
 			}
 			light_armor = {
-				max_strength = 2
+				max_strength = 1
 			}
         }
         fighting_reconnaissance = {
@@ -346,50 +347,3 @@ armored_cavalry_no_lar = {
     }
 }
 
-tank_destroyer_force = {
-    track = armor
-    name = SUBDOCTRINE_TANK_DESTROYER_FORCE
-    description = SUBDOCTRINE_TANK_DESTROYER_FORCE_DESC
-    icon = GFX_doctrine_tank_destroyer_force_medium
-
-    xp_cost = 150
-    xp_type = army
-
-    visible = {
-        has_dlc = "No Compromise, No Surrender"
-    }
-
-    #enable_tactic = tactic_blitz
-	
-	enable_tactic = tactic_elastic_defense
-	
-    rewards = {
-        mobile_anti_tank = {
-            category_tank_destroyers = {
-                hard_attack = 0.05
-            }
-        }
-        committed_operational_units = {
-            category_tanks = {
-                max_organisation = 10
-            }
-        }
-        redeployment_priority = {
-            category_tank_destroyers = {
-                hard_attack = 0.05
-            }
-        }
-
-        independent_counterattacks = {
-            category_tanks = {
-                default_morale = 0.1
-            }
-        }
-
-        selfsufficient_battalion = {
-            category_tank_destroyers = {
-                hard_attack = 0.05
-            }
-        }
-    }
-}

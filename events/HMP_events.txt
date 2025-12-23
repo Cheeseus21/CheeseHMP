@@ -7,7 +7,10 @@ news_event = { #LEAGUE OF NATIONS IS DONE
 	picture = GFX_news_event_generic_panzer_attack
 	
 	major = yes
+	
 	is_triggered_only = yes
+	
+	fire_only_once = yes
 
 	option = {
 		name = buildfixer_event.0.a
@@ -2145,7 +2148,7 @@ country_event = {
 		ITA = { country_event = {  id = poland.353 days = 180 } }
 			}
 		goto_state = 397
-}
+    }
 }
 country_event = {
 	id = poland.353
@@ -2176,52 +2179,6 @@ country_event = {
 	
 	option = {
 		name = poland.100.a		
-
-		BEL = { 
-			load_oob = "BEL_spawn" 
-		}
-		FRA = { 
-			puppet = BEL 
-		}
-
-		ITA = {
-			if = { 
-				limit = { NOT = { has_tech = improved_medium_tank_chassis } }
-				set_technology = {
-					improved_medium_tank_chassis = 1 
-					mechanised_infantry = 1
-				}
-			}
-
-			country_event = { id = poland.352 }
-			recommended_support_armor = yes
-
-			hidden_effect = { 
-				delete_units = { 
-					division_template = "Compass Tanks" 
-					disband = no 
-				}
-
-				515 = { 
-					teleport_armies = { to_state = 448 }
-				}
-
-				load_oob = "ITA_COMPASS"
-
-				515 = { 
-					every_state_division = { 
-						add_history_entry = {
-							key = spanish_civil_war_veteran_medal_key
-							subject = "Division was awarded a medal for exemplerary combat performance during the Spanish Civil War"
-							allow = yes
-						}
-						add_unit_medal_to_latest_entry = {
-							unit_medals = ITA_compass_medal
-						}
-					}
-				}
-			}
-		}
 
 		if = { 
 			limit = { AOI = { is_ai = yes } }

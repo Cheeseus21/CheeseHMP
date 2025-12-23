@@ -190,67 +190,6 @@
         }
     }
 
-    arabia_front = {
-        hidden_effect = { 
-            set_global_flag = ARABIA_FRONT_DECISION
-
-            ENG = { 
-                transfer_state = 354
-                transfer_state = 604
-                transfer_state = 332
-                load_oob = "ENG_ARABIA"
-            } # always transfer the UK Arabian states
-
-            # Check if Axis (Germany) controls Iraq
-            if = { 
-                limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 291 } }   
-                if = { 
-                    limit = { ALB = { is_ai = no } country_exists = ALB } 
-                    ALB = { 
-                        transfer_state = 608
-                        add_state_core = 608     
-                        transfer_state = 552
-                        add_state_core = 552    
-                    }      
-                    ITA = { load_oob = "ITA_SAU_SPAWN_ITA_BIG" }
-                }
-                else = { 
-                    ITA = { 
-                        transfer_state = 608
-                        transfer_state = 552
-                        load_oob = "ITA_SAU_SPAWN_ITA_BIG"
-                    }   
-                }
-            }
-            else = { 
-                ENG = { transfer_state = 608 transfer_state = 552 } 
-            } # give UK Axis Arabian states by Iraq if no Axis control of Iraq yet
-
-            # Check if Axis controls Jordan
-            if = { 
-                limit = { any_country = { is_in_faction_with = GER GER = { has_government = fascism } controls_state = 455 } } 
-                if = { 
-                    limit = { ALB = { is_ai = no } country_exists = ALB }   
-                    ALB = {  
-                        transfer_state = 605
-                        add_state_core = 605    
-                        transfer_state = 506
-                        add_state_core = 506 
-                    } 
-                    ITA = { load_oob = "ITA_ARABIA" }            
-                }
-                else = {
-                    ITA = { transfer_state = 605 transfer_state = 506 load_oob = "ITA_ARABIA" }
-                }
-            }
-            else = {
-                ENG = { transfer_state = 605 transfer_state = 506 } 
-            } # give UK Axis Arabian states by Red Sea if no Axis control of Jordan
-
-            PER = { country_event = { id = mtg_netherlands.1244 hours = 2 } }
-        }
-    }
-
     USA_bop_remove_bop_effect = {
         remove_power_balance = { id = USA_power_balance }
     }
@@ -3756,6 +3695,8 @@ HMP_startup_on_actions = {
 			
 			complete_special_project = sp:sp_land_flamethrower_tank
 			complete_special_project = sp:sp_land_military_engineering_vehicles
+			complete_special_project = sp:sp_land_super_heavy_howitzer
+			complete_special_project = sp:sp_land_self_propelled_super_heavy_howitzer
 
             # Armor Modules & Upgrades
             set_technology = { armor_tech_1 = 1 popup = no}
@@ -3839,6 +3780,30 @@ HMP_startup_on_actions = {
                 type = rubber amount = 8 
             } 
         }
+		
+		43 = { 
+            add_resource = { 
+                type = steel amount = 60 
+            } 
+			add_resource = { 
+                type = tungsten amount = 24
+            } 
+        }
+		
+		82 = { 
+            add_resource = { 
+                type = steel amount = 48 
+            } 
+			add_resource = { 
+                type = tungsten amount = 24 
+            } 
+        }
+		
+		152 = { 
+            add_resource = { 
+                type = steel amount = 124 
+            } 
+        }
         
         GER = { 
             add_timed_idea = { idea = europe_only_germany_idea  days = 172 }
@@ -3910,9 +3875,14 @@ HMP_startup_on_actions = {
                 tag = CHI 
                 tag = SWE 
                 tag = BEL  
+				tag = GRE
             } 
         }
         drop_cosmetic_tag = yes
+    }
+	
+	AOI = {
+        set_cosmetic_tag = AOI_fascism
     }
     
     #TUR = { set_cosmetic_tag = TUR_neutrality }

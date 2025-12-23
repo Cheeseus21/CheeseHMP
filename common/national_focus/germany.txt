@@ -4836,6 +4836,38 @@ focus = {
             hidden_effect = { news_event = { hours = 6 id = news.25 } }	
 		}
 	}
+	
+	focus = {
+		id = GER_befriend_japan
+
+		icon = GFX_focus_chi_collaboration_with_the_japanese
+		alternate_icon = GFX_focus_GER_befriend_japan
+
+		prerequisite = { focus = GER_remilitarize_the_rhineland }
+
+		x = 4
+		y = 1
+		
+		relative_position_id = GER_remilitarize_the_rhineland
+		
+		cost = 2
+		
+		available_if_capitulated = yes
+
+		available = {
+			has_game_rule = { 
+				rule = horst_china_war 
+				option = horst_china_war_on
+			} 
+		}
+
+		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY_CHARACTER }
+
+		completion_reward = {
+			add_ideas = GER_support_japan
+		}
+	}
+
 
 	focus = {
 		id = GER_legion_condor
@@ -4843,7 +4875,7 @@ focus = {
 		prerequisite = { focus = GER_remilitarize_the_rhineland	}
 
 
-		x = 6
+		x = 8
 		y = 1
 		relative_position_id = GER_remilitarize_the_rhineland
 
@@ -5505,110 +5537,7 @@ focus = {
 			add_country_leader_trait = GER_loyalty_of_wehrmacht
 		}
 	}
-
-	# focus = {
-		# id = GER_an_invincible_army
-		# icon = GFX_focus_GER_german_army_invincible
-		# prerequisite = { focus = GER_demonstration_of_military_achievements }
 	
-		# x = 0
-		# y = 1
-		# relative_position_id = GER_demonstration_of_military_achievements
-		# cost = 5
-		# available = {
-			# NOT ={  ENG ={ controls_state  =305 } } 
-		# }
-
-		# search_filters = { FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_MANPOWER }
-
-		# completion_reward = {
-			# if = {
-				# limit = {
-					# has_country_leader_with_trait = GER_loyalty_of_wehrmacht
-				# }
-				# random_character = {
-					# limit = {
-						# is_country_leader = yes
-					# }
-					# swap_country_leader_traits = {
-						# remove = GER_loyalty_of_wehrmacht
-						# add = GER_supreme_commander_armed_forces
-					# }
-				# }
-			# }
-			# else_if = {
-				# limit = {
-					# NOT = { has_completed_focus = GER_demonstration_of_military_achievements }
-				# }
-				# effect_tooltip = {
-					# random_character = {
-						# limit = {
-							# is_country_leader = yes
-						# }
-						# swap_country_leader_traits = {
-							# remove = GER_loyalty_of_wehrmacht
-							# add = GER_supreme_commander_armed_forces
-						# }
-					# }
-				# }
-			# }
-			# else = {
-				# add_country_leader_trait = GER_supreme_commander_armed_forces
-			# }
-		# }
-	# }
-
-	# focus = {
-		# id = GER_the_supreme_leader
-		# icon = GFX_focus_GER_the_supreme_leader
-		# prerequisite = { focus = GER_an_invincible_army }
-		# x = 0
-		# y = 1
-		# relative_position_id = GER_an_invincible_army
-		# cost = 5
-		# available = {
-			# SOV = { surrender_progress > 0.25 }
-		# }
-
-		# search_filters = {}
-
-		# completion_reward = {
-			# if = {
-				# limit = {
-					# has_country_leader_with_trait = GER_supreme_commander_armed_forces
-				# }
-				# random_character = {
-					# limit = {
-						# is_country_leader = yes
-					# }
-					# swap_country_leader_traits = {
-						# remove = GER_supreme_commander_armed_forces
-						# add = GER_supreme_leader
-					# }
-				# }
-			# }
-			# else_if = {
-				# limit = {
-					# NOT = { has_completed_focus = GER_an_invincible_army }
-				# }
-				# effect_tooltip = {
-					# random_character = {
-						# limit = {
-							# is_country_leader = yes
-						# }
-						# swap_country_leader_traits = {
-							# remove = GER_supreme_commander_armed_forces
-							# add = GER_supreme_leader
-						# }
-					# }
-				# }
-			# }
-			# else = {
-				# add_country_leader_trait = GER_supreme_leader
-			# }
-		# }
-	# }
-
 	focus = {
 		id = GER_the_triumphant_will
 		icon = GFX_goal_support_fascism
@@ -6038,19 +5967,25 @@ focus = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_ANNEXATION }
 
 		completion_reward = {
-				custom_effect_tooltip = GER_decision_focus_tt
-		hidden_effect = {  ENG = { add_to_faction = HOL add_to_faction = BEL }  }
+			custom_effect_tooltip = GER_decision_focus_tt
+			hidden_effect = {  ENG = { add_to_faction = HOL add_to_faction = BEL }  }
 			declare_war_on = {
 				target = HOL
 				type = annex_everything
 			}
-				declare_war_on = {
+			declare_war_on = {
 				target = BEL
 				type = annex_everything
 			}	
-							hidden_effect = { 
-							ROOT_call_against_beligum = yes  ROOT_call_against_holland = yes news_event = { hours = 6 id = news.234 } 		every_country = { 	remove_ideas = GER_bel_neutrality }
-							}
+			hidden_effect = { 
+				ROOT_call_against_beligum = yes  
+				ROOT_call_against_holland = yes 
+				news_event = { hours = 6 id = news.234 } 		
+				every_country = { remove_ideas = GER_bel_neutrality }
+				FRA = { 
+					puppet = BEL 
+				}
+			}
 		}
 	}
 
@@ -7470,7 +7405,6 @@ focus = {
             every_country = { limit = { the_axis = yes } add_war_support = 0.05	}		
 		}
 	}
-
 
 	focus = {
 		id = GER_war_with_the_ussr

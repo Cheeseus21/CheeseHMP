@@ -105,7 +105,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_finish_the_five_year_plan
 		
-		cost = 2
+		cost = 5
 
 		available = {
 			custom_trigger_tooltip = { OR = { AND = { NOT = { has_global_flag = war_in_the_west_start  }  JAP = { has_war = yes } } AND = { has_start_date > 1936.1.1.12 date > 1941.1.1   }  }    tooltip = "The Empire of Japan has attacked the Allies"}
@@ -159,6 +159,64 @@ focus_tree = {
 			}		
 		}
 	}
+	
+	focus = {
+		id = SOV_war_measures_in_the_east
+		icon = GFX_focus_generic_little_entente
+		prerequisite = { focus = SOV_development_aid_for_eastern_allies }
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = SOV_development_aid_for_eastern_allies
+		
+		cost = 5
+
+		completion_reward = {
+			if = { 
+				limit = { country_exists = MON }
+				MON = {
+					add_timed_idea = { idea = SOV_war_measures_allies days = 1095 }
+				}
+				#add_relation_modifier = {
+				#	target = MON
+				#	modifier = stahlpakt73
+				#}
+			}
+			else = {
+				add_political_power = 100
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			630 = { 
+				set_building_level = {
+					type = bunker
+					level = 5
+					province = {
+						id = 4862
+						id = 12344
+						id = 4655
+						id = 10575
+						id = 7749
+					}
+					instant_build = yes
+				}
+			}
+
+			632 = {
+				set_building_level = {
+					type = bunker
+					level = 5
+					province = {
+						id = 8049
+						id = 10757
+					}
+					instant_build = yes
+				}
+			}
+		}
+	}
 
 	focus = {
 		id = SOV_third_five_year_plan
@@ -171,7 +229,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_finish_the_five_year_plan
 		
-		cost = 5
+		cost = 10
 
 		available = {
 
@@ -228,7 +286,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_third_five_year_plan
 		
-		cost = 5
+		cost = 10
 
 		available = {
 
@@ -343,7 +401,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_third_five_year_plan
 		
-		cost = 5
+		cost = 10
 
 		available = {
 
@@ -397,7 +455,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_shift_to_armaments_production
 		
-		cost = 5
+		cost = 10
 
 		available = {
 
@@ -450,7 +508,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_reorganize_the_pc_of_heavy_industry
 		
-		cost = 3
+		cost = 10
 
 		available = {
 			has_full_control_of_state = 219 #MOSCOW
@@ -536,12 +594,15 @@ focus_tree = {
 
 	focus = {
 		id = SOV_fourth_five_year_plan
-
 		icon = GFX_focus_generic_industry_3
+		
 		prerequisite = { focus = SOV_industrial_modernization focus = SOV_optimize_production_lines }
+		
 		x = 1
 		y = 1
+		
 		relative_position_id = SOV_industrial_modernization
+		
 		cost = 5
 
 		available = {
@@ -741,13 +802,16 @@ focus_tree = {
 
 	focus = {
 		id = SOV_national_specialists
-
 		icon = GFX_goal_generic_consumer_goods
+		
 		prerequisite = { focus = SOV_finish_the_five_year_plan }
+		
 		x = 3
 		y = 1
+		
 		relative_position_id = SOV_finish_the_five_year_plan
-		cost = 5
+		
+		cost = 10
 		
 		available = { 
 			NOT = { has_completed_focus = SOV_the_permanent_revolution }
@@ -769,18 +833,20 @@ focus_tree = {
 
 	focus = {
 		id = SOV_foreign_experts
-
 		icon = GFX_focus_spa_the_spanish_miracle
+		
 		prerequisite = { focus = SOV_finish_the_five_year_plan }
+		
 		x = 2
 		y = 0
+		
 		relative_position_id = SOV_national_specialists
-		cost = 5
+		
+		cost = 10
 
 		mutually_exclusive = { focus = SOV_national_specialists }
 
 		available = {
-
 		}
 		
 		search_filters = {FOCUS_FILTER_INDUSTRY}
@@ -801,31 +867,14 @@ focus_tree = {
 		icon = GFX_focus_research
 		
 		prerequisite = { focus = SOV_national_specialists focus = SOV_foreign_experts }		
-		x = 0
+		
+		x = 1
 		y = 1
 		
 		relative_position_id = SOV_national_specialists
 		
-		cost = 5
+		cost = 10
 
-		search_filters = {FOCUS_FILTER_RESEARCH}
-
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}
-	
-	focus = { 
-		id = SOV_leningrad_polytechnical_institute
-		icon = GFX_SOV_extra_tech_slot_early 
-		
-		prerequisite = { focus = SOV_national_specialists focus = SOV_foreign_experts }
-		
-		x = 2
-		y = 1
-		relative_position_id = SOV_national_specialists
-		cost = 5
-			
 		search_filters = {FOCUS_FILTER_RESEARCH}
 
 		completion_reward = {
@@ -837,14 +886,14 @@ focus_tree = {
 		id = SOV_national_academies_of_sciences
 		icon = GFX_focus_SOV_socialist_science
 		
-		prerequisite = { focus = SOV_the_ussr_academy_of_sciences focus = SOV_leningrad_polytechnical_institute }
+		prerequisite = { focus = SOV_the_ussr_academy_of_sciences }
 		
-		x = 1
+		x = 0
 		y = 1
 		
 		relative_position_id = SOV_the_ussr_academy_of_sciences
 		
-		cost = 5
+		cost = 10
 
 		available = {
 
@@ -867,7 +916,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_national_academies_of_sciences
 		
-		cost = 5
+		cost = 10
 
 		search_filters = {FOCUS_FILTER_RESEARCH}
 
@@ -2170,13 +2219,15 @@ focus_tree = {
 
 	focus = {
 		id = SOV_merge_tank_and_materiel_plants
-
 		icon = GFX_focus_SOV_merge_plants
+		
 		prerequisite = { focus = SOV_development_of_tankograd focus = SOV_pc_of_mortar_armament focus = SOV_soviet_artillery }
 
-		x = 0
+		x = -1
 		y = 1
+		
 		relative_position_id = SOV_pc_of_mortar_armament
+		
 		cost = 5
 
 		available = {
@@ -2228,17 +2279,37 @@ focus_tree = {
 		}
 	}
 	
+	focus = { 
+		id = SOV_leningrad_polytechnical_institute
+		icon = GFX_SOV_extra_tech_slot_early 
+		
+		prerequisite = { focus = SOV_development_of_tankograd focus = SOV_pc_of_mortar_armament focus = SOV_soviet_artillery }
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = SOV_pc_of_mortar_armament
+		
+		cost = 5
+
+		search_filters = {FOCUS_FILTER_RESEARCH}
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
 	focus = {
 		id = SOV_they_will_know_fear
 		icon = GFX_focus_generic_army_tanks2
-		prerequisite = { focus = SOV_merge_tank_and_materiel_plants }
+		prerequisite = { focus = SOV_merge_tank_and_materiel_plants focus = SOV_leningrad_polytechnical_institute }
 		
-		x = 0
+		x = 1
 		y = 1
 		
 		relative_position_id = SOV_merge_tank_and_materiel_plants
 		
-		cost = 1
+		cost = 5
 		
 		bypass = {has_completed_focus = SOV_the_permanent_revolution }
 		
@@ -2710,7 +2781,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_frontline_cities
 		
-		cost = 2
+		cost = 5
 
 		available = {
 			219 = {
@@ -2924,7 +2995,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_frontline_cities
 		
-		cost = 2
+		cost = 5
 
 		available = {
 			217 = {
@@ -3878,7 +3949,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_the_stalin_constitution
 		
-		cost = 20
+		cost = 30
 
 		available = {
 		}
@@ -4812,11 +4883,15 @@ focus_tree = {
 	focus = {
 		id = SOV_release_innocents
 		icon = GFX_focus_mex_arrest_general_cedillo
+		
 		prerequisite = { focus = SOV_a_new_theory_of_revolution focus = SOV_the_peoples_revolution  focus = SOV_strengthen_heavy_industry }
+		
 		x = -2
 		y = 1
+		
 		relative_position_id = SOV_strengthen_heavy_industry
-		cost = 5
+		
+		cost = 10
 
 		search_filters = {FOCUS_FILTER_POLITICAL FOCUS_FILTER_PROPAGANDA}
 
@@ -5425,61 +5500,6 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = { id = soviet.509 }
-		}
-	}
-
-	focus = {
-		id = SOV_war_measures_in_the_east
-		icon = GFX_focus_generic_little_entente
-		prerequisite = { focus = SOV_development_aid_for_eastern_allies }
-		x = 0
-		y = 1
-		relative_position_id = SOV_development_aid_for_eastern_allies
-		cost = 2
-
-		completion_reward = {
-			if = { 
-				limit = { country_exists = MON }
-				MON = {
-					add_timed_idea = { idea = SOV_war_measures_allies days = 1095 }
-				}
-				#add_relation_modifier = {
-				#	target = MON
-				#	modifier = stahlpakt73
-				#}
-			}
-			else = {
-				add_political_power = 100
-			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-			630 = { 
-				set_building_level = {
-					type = bunker
-					level = 5
-					province = {
-						id = 4862
-						id = 12344
-						id = 4655
-						id = 10575
-						id = 7749
-					}
-					instant_build = yes
-				}
-			}
-
-			632 = {
-				set_building_level = {
-					type = bunker
-					level = 5
-					province = {
-						id = 8049
-						id = 10757
-					}
-					instant_build = yes
-				}
-			}
 		}
 	}
 
