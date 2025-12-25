@@ -501,6 +501,9 @@ focus_tree = {
 		relative_position_id = MAN_national_defense_state
 		cost = 10
 		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			custom_effect_tooltip = generic_skip_one_line_tt
 			set_capital = {
 				state = 496
 				remember_old_capital = no
@@ -511,7 +514,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_the_two_emperors
-		icon = GFX_focus_generic_diplomatic_treaty
+		icon = GFX_focus_JAP_promote_pan_asianism
 		prerequisite = { focus = MAN_birthplace_of_the_manchus }
 		available = { has_global_flag = formed_qing }
 		x = 0
@@ -559,12 +562,12 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = MAN_the_two_emperors
-		cost = 5
+		cost = 10
 		completion_reward = {
-			IF = {
-				limit = { JAP = { controls_state = 308 } }
-				MAN = { transfer_state = 308 }
-			}
+			add_stability = 0.05
+			add_war_support = 0.05
+			custom_effect_tooltip = generic_skip_one_line_tt
+			MAN = { transfer_state = 308 }
 			set_capital = {
 				state = 308
 				remember_old_capital = no
@@ -580,7 +583,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_expand_the_taimiao
-		icon = GFX_focus_RAJ_temple_entry_movements
+		icon = GFX_focus_JAP_foreign_exchange_allocation_policy
 		prerequisite = { focus = MAN_the_two_emperors }
 		x = 4
 		y = 1
@@ -588,10 +591,10 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			308 = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -600,18 +603,18 @@ focus_tree = {
 
 	focus = {
 		id = MAN_restore_the_tiantan
-		icon = GFX_focus_PER_fund_imperial_excellency
+		icon = GFX_focus_PRC_usurp_control_over_yanan
 		prerequisite = { focus = MAN_expand_the_taimiao }
 		x = 0
 		y = 1
 		relative_position_id = MAN_expand_the_taimiao
 		cost = 5
 		completion_reward = {
-			561 = {
-				add_extra_state_shared_building_slots = 2
+			411 = {
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -620,7 +623,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_rebuild_the_qingdongling
-		icon = GFX_focus_RAJ_protest_against_the_howell_monument
+		icon = GFX_focus_JAP_empower_the_shogun
 		prerequisite = { focus = MAN_the_two_emperors }
 		x = 2
 		y = 1
@@ -628,10 +631,10 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			570 = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = arms_factory
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -640,7 +643,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_a_new_summer_palace
-		icon = GFX_focus_SOV_rebuild_the_savior_cathedral
+		icon = GFX_focus_JAP_the_spirit_of_the_imperial_nation
 		prerequisite = { focus = MAN_rebuild_the_qingdongling }
 		x = 0
 		y = 1
@@ -648,10 +651,10 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
 			308 = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = arms_factory
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -660,7 +663,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_kangde
-		icon = GFX_focus_AUS_bring_back_the_habsburg_rule
+		icon = GFX_focus_JAP_sea_the_showa_restoration
 		prerequisite = { focus = MAN_a_new_summer_palace }
 		prerequisite = { focus = MAN_restore_the_tiantan }
 		available = { has_completed_focus = MAN_shadow_of_cixi }
@@ -700,7 +703,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_avenge_the_century_of_humiliation
-		icon = GFX_focus_RAJ_clamp_down_on_corruption
+		icon = GFX_focus_CHI_punish_the_signatories
 		prerequisite = { focus = MAN_shadow_of_cixi }
 		available = { JAP = { has_completed_focus = JAP_strike_the_southern_road } }
 		x = 0
@@ -708,6 +711,7 @@ focus_tree = {
 		relative_position_id = MAN_shadow_of_cixi
 		cost = 5
 		completion_reward = {
+			add_war_support = 0.1
 			add_timed_idea = {
 				idea = MAN_avenge_humiliation
 				days = 60
@@ -717,7 +721,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_repudiate_the_treaty_of_aigun
-		icon = GFX_focus_BRA_repeale_national_security_law
+		icon = GFX_focus_PRC_dare_to_win
 		prerequisite = { focus = MAN_avenge_the_century_of_humiliation }
 		available = {
 			JAP = {
@@ -768,6 +772,8 @@ focus_tree = {
 		cost = 1
 		completion_reward = {
 			MAN = {
+				add_state_core = 326
+				add_state_core = 498
 				transfer_state = 326
 				transfer_state = 498
 			}
@@ -1228,7 +1234,7 @@ focus_tree = {
 
 	focus =  {
 		id = MAN_incorporate_the_green_standard_army
-		icon = GFX_goal_generic_build_tank
+		icon = GFX_focus_CHI_an_alternative_rooted_in_tradition
 		prerequisite = { focus = MAN_rely_on_locals }
 		x = 0
 		y = 1
@@ -1777,7 +1783,7 @@ focus_tree = {
 
 	focus = {
 		id = MAN_imperial_legacy
-		icon = GFX_focus_jap_manchurian_project
+		icon = GFX_focus_CHI_cradle_of_civilization
 		prerequisite = { focus = MAN_all_under_heaven }
 		x = 0
 		y = 1
