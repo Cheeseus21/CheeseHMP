@@ -2159,43 +2159,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			# if = { 
-				# limit = { SIA = { is_ai = no } }
-				# 289 = {
-					# add_extra_state_shared_building_slots = 4
-					# add_building_construction = {
-						# type = industrial_complex 
-						# level = 2
-						# instant_build = yes
-					# }
-					# add_building_construction = {
-						# type = arms_factory 
-						# level = 2
-						# instant_build = yes
-					# }			
-				# }
-			# }
-			# else_if = { 
-				# limit = { SIA = { is_ai = yes } }
-				# every_state = {
-					# limit = {
-						# is_core_of = SIA
-						# is_fully_controlled_by = SIA
-					# }
-					# remove_building = {
-						# type = industrial_complex
-						# level = 10
-					# }
-					# remove_building = {
-						# type = arms_factory
-						# level = 10
-					# }
-				# }
-				# annex_country = { target = SIA transfer_troops = yes }
-				# add_offsite_building = { type = industrial_complex level = 6 }
-				# add_offsite_building = { type = arms_factory level = 3 }
-			# }
-            
             289 = {
                 add_extra_state_shared_building_slots = 4
                 add_building_construction = {
@@ -2209,6 +2172,32 @@ focus_tree = {
                     instant_build = yes
                 }			
             }
+		}
+	}
+	
+	focus = {
+		id = JAP_move_to_indochina
+		icon = GFX_goal_generic_territory_or_war
+		
+		prerequisite = { focus = JAP_sea_pressure_siam }
+
+		x = 0
+		y = 1
+		
+		relative_position_id = JAP_sea_pressure_siam
+		
+		cost = 5
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			transfer_state = 286
+			transfer_state = 493
+			transfer_state = 497
+			transfer_state = 498
+			add_research_slot = 1
 		}
 	}
 
