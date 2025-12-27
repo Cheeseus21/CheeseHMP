@@ -1716,7 +1716,6 @@ focus_tree = {
 		icon = GFX_focus_man_claim_the_mandate_of_heaven
 		prerequisite = { focus = MAN_tsr_reclaim_the_empire }
 		prerequisite = { focus = MAN_tsr_reestablish_the_qing_army }
-		available = { has_global_flag = formed_qing }
 		x = 4
 		y = 1
 		relative_position_id = MAN_tsr_reclaim_the_empire
@@ -1724,20 +1723,6 @@ focus_tree = {
 		completion_reward = {
 			set_cosmetic_tag = MAN_restored
 			custom_effect_tooltip = generic_skip_one_line_tt
-			every_state = {
-				limit = {
-					OR = {
-						state = 628
-						state = 629
-						state = 630
-						state = 631
-						state = 632
-						state = 406
-						state = 408
-					}
-				}
-				add_core_of = ROOT
-			}
 			hidden_effect = {
 				news_event = { id = wtt_news.44 days = 2 }
 				MAN_aisin_gioro_puyi = {
@@ -1785,6 +1770,7 @@ focus_tree = {
 		id = MAN_imperial_legacy
 		icon = GFX_focus_CHI_cradle_of_civilization
 		prerequisite = { focus = MAN_all_under_heaven }
+		available = { JAP = { has_completed_focus = JAP_rejuvenate_the_qing_dynasty } }
 		x = 0
 		y = 1
 		relative_position_id = MAN_all_under_heaven
@@ -1830,6 +1816,22 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = MAN_tianzi
 			add_ideas = MAN_tianchao
+			hidden_effect = {
+				every_state = {
+				limit = {
+					OR = {
+						state = 628
+						state = 629
+						state = 630
+						state = 631
+						state = 632
+						state = 406
+						state = 408
+					}
+				}
+				add_core_of = ROOT
+			}
+			}
 		}
 	}
 
