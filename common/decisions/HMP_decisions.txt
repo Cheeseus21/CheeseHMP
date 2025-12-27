@@ -7996,98 +7996,43 @@ propaganda_effortsx = {
             }
         }
     }
-	
- 
-    # operation_oil = {
-        # icon = generic_civil_support
 
-        # allowed = {
-            # original_tag = ENG
-        # }
-
-        # cost = 0
-        # fire_only_once = yes
-
-        # available = {
-            # date > 1942.1.1
-			# ENG = {
-				# controls_state = 574
-			# }		
-            # OR = {
-               # has_war_with = JAP
-               # GER = { has_war_with = SOV }
-            # }
-            # GER = { has_government = fascism }
-            # any_country = {
-               # is_in_faction_with = GER
-               # OR = {
-                   # controls_state = 453
-                   # controls_state = 455
-                   # controls_state = 291
-               # }
-            # }
-        # }
-
-        # visible = {
-            # NOT = { has_global_flag = ARABIA_FRONT_DECISION }
-        # }
-
-        # complete_effect = {
-            # news_event = { id = news.1463 hours = 6 }
-            # custom_effect_tooltip = "We will open a new front in Arabia against the Axis."
-            # arabia_front = yes
-            # set_global_flag = ARABIA_FRONT_DECISION
-        # }
-    # }
-
-
-		
-	# operation_countenance = {
-	# icon = generic_operation
-        # allowed = {  OR = { original_tag = GER original_tag = ENG original_tag = JAP original_tag = ITA }    }
-        # cost = 0
-        # fire_only_once = yes 
-		# visible = { SWE = {controls_state = 412 }}
-        # available = {
-		# date > 1941.8.25 
-		# OR = {
-		# AND = { tag = ENG OR = { has_global_flag = war_in_the_west_start any_country = { OR ={ tag = ENG is_in_faction_with = ENG } controls_state = 444} any_country = { OR ={ tag = ENG is_in_faction_with = ENG } controls_state = 291}  }    }     
-		# AND = { tag = JAP any_country = { OR ={ tag = JAP is_in_faction_with = JAP } controls_state = 444}} 
-		# AND = { OR = { tag = GER tag = ITA   }  any_country = {is_in_faction_with = GER has_government = fascism  controls_state = 291} } 
-			# }
-		# }
-  
-		# complete_effect = {
-			# if = { limit = { OR =  { tag = GER tag = ITA } } set_global_flag = axis_clicked_first }
-				# if = { limit = { tag = ENG } set_global_flag = allies_clicked_first }
-					# if = { limit = { tag = JAP  } set_global_flag = geacps_clicked_first }
-			# ENG = { complete_national_focus = uk_iran_focus }
-				# }
-	# }
 	prepare_torch = {
 	    icon = generic_civil_support 
-        allowed = {   OR = {original_tag = ENG original_tag = USA    } }
-        available = {
-			NOT ={ has_global_flag = TORCH_IS_IN_PROGRESS_OR_HAPPENED }
+		
+        allowed = { 
 			OR = { 
-				NOT = { ITA = {  controls_state = 448  }   }
-				date > 1942.4.1 
-				AND = { ENG = { controls_state = 584 } date > 1941.8.1 }
+				original_tag = ENG 
+				original_tag = USA
+			} 
+		}
+		
+        available = {
+			NOT = { has_global_flag = TORCH_IS_IN_PROGRESS_OR_HAPPENED }
+			OR = { 
+				#NOT = { ITA = {  controls_state = 448 } }
+				date > 1941.1.1 
+				#AND = { ENG = { controls_state = 584 } date > 1941.8.1 }
 			}
 		}	
+		
 		visible = {
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}
 		}
+		
 		fire_only_once = yes 
+		
 		visible = { NOT = { EFR = { has_completed_focus = VIC_join_axis }}}
+		
 		complete_effect ={
-		set_global_flag = TORCH_IS_IN_PROGRESS_OR_HAPPENED
-		 EFR = { set_country_flag = EFR_at_war } 
+			set_global_flag = TORCH_IS_IN_PROGRESS_OR_HAPPENED
+			EFR = { set_country_flag = EFR_at_war } 
 			activate_mission = operation_torch
 		}
 	}
+	
 	operation_torch = {   
 		icon = generic_civil_support
 		
@@ -21784,7 +21729,7 @@ JAP_control_qing_decisions = {
 		available = {
             custom_trigger_tooltip = {
                 tooltip = JAP_control_qing_tt1
-                CAN = {
+                MAN = {
                     check_variable = {
                     var = JAP_control_qing_modifier_mil
                     value = 0.50
@@ -21860,7 +21805,7 @@ JAP_control_qing_decisions = {
 		available = {
             custom_trigger_tooltip = {
                 tooltip = JAP_control_qing_tt1
-                CAN = {
+                MAN = {
                     check_variable = {
                     var = JAP_control_qing_modifier_civ
                     value = 0.50
