@@ -1257,20 +1257,6 @@ country_event = {
 }
 
 country_event = {
-	id = mtg_netherlands.1531
-	title = mtg_netherlands.12.t
-	desc = mtg_netherlands.12.d
-	
-	picture = GFX_report_event_merchant_ship_01
-
-	is_triggered_only = yes
-	fire_only_once = yes
-	option = {
-		name = mtg_netherlands.1442.a
-		ALB = { change_tag_from = AOI }
-}
-}
-country_event = {
 	id = mtg_netherlands.1511
 	title = mtg_netherlands.12.t
 	desc = mtg_netherlands.12.d
@@ -2179,14 +2165,6 @@ country_event = {
 	
 	option = {
 		name = poland.100.a		
-
-		if = { 
-			limit = { AOI = { is_ai = yes } }
-			AOI = { 
-				iraq_gbp_doctrine = yes 
-				load_oob = "ETH_spawn"  
-			}
-		}
 
 		if = { 
 			limit = { POL = { is_ai = yes } }
@@ -3233,60 +3211,18 @@ name = iran.3.a
 }
 	}
 	
-	country_event = {
+country_event = {
 	id = iran.4
 	title = "The Allies and Soviets Invade Iran!"
 	desc = "The Soviet Union, United Kingdom, and Commonwealth forces jointly invaded Iran, linking the middle-eastern theatre and the British Raj directly to each other, as well as enabling massive shipments of lend-lease to the Soviet Union!"
 	picture = GFX_report_event_soviet_tanks_snow
-	
+
 	is_triggered_only = yes
-	
-option = {
-name = "Fanculo!"
-}
+
+	option = {
+		name = "Fanculo!"
 	}
-	
-	country_event = {
-	id = iran.5
-	title = "a"
-	desc = "a"
-	picture = GFX_report_event_soviet_tanks_snow
-	
-	is_triggered_only = yes
-	
-option = {
-name = "a"
-	
 }
-	}
-		country_event = {
-	id = iran.6
-	title = "Iraqi Army Doctrine"
-	desc = "Prior to our glorious revolution, we were trained by a foreign military advisor. Who did we hire?"
-	picture = GFX_report_event_soviet_tanks_snow
-	
-	is_triggered_only = yes
-	
-option = {
-trigger = { NOT = { OR = { has_tech = mobile_warfare has_tech = trench_warfare has_tech = superior_firepower } } }
-name = "We hired a Russian Advisor (MA)"
-	iraq_ma_doctrine = yes
-}
-
-option = {
-trigger = { NOT = { OR = { has_tech = mobile_warfare has_tech = mass_assault has_tech = superior_firepower } } }
-name = "We hired an Italian Advisor (GBP)"
-	iraq_gbp_doctrine = yes
-}
-
-option = {
-trigger = { NOT = { OR = { has_tech = mobile_warfare has_tech = trench_warfare has_tech = mass_assault } } }
-name = "We hired a Romanian Advisor (SF)"
-	iraq_sf_doctrine = yes 
-}
-
-
-	}
 	
 	
 add_namespace = wtt_japan
@@ -5960,40 +5896,51 @@ country_event = {
 	title = soviet.509.t
 	desc = soviet.509.d
 	picture = GFX_report_soviets_invade_manchuria
-	is_triggered_only =  yes
+	is_triggered_only = yes
+
 	option = {
 		name = soviet.509.a
-		CHI = { 
-		transfer_state = 451 
-set_politics = {
-	ruling_party = communism
-    elections_allowed = no
-}
-set_political_party = {
-    ideology = communism
-    popularity = 100
-}
-
-
-		} 
-		SOV = { add_to_faction = CHI }  
-					hidden_effect = { CHI = { catch_up_iraq_with_tech = yes  iraq_ma_doctrine = yes   set_cosmetic_tag = PRC_HORST remove_ideas = ai_imiter }}
-								CHI = {
-				load_oob = "CHI_PARTISANS"
-				declare_war_on = {
-                target = JAP
-                type = annex_everything
-            }
-						declare_war_on = {
-                target = MAN
-                type = annex_everything
-            }	
+		
+		CHI = {
+			transfer_state = 451
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
 			}
-			
-		every_state = { limit = { is_core_of = MAN } CHI = { add_state_core = PREV } }
+			set_political_party = {
+				ideology = communism
+				popularity = 100
+			}
+		}
+
+		SOV = { add_to_faction = CHI }
+
+		hidden_effect = {
+			CHI = {
+
+				set_cosmetic_tag = PRC_HORST
+				remove_ideas = ai_imiter
+			}
+		}
+
+		CHI = {
+			load_oob = "CHI_PARTISANS"
+			declare_war_on = {
+				target = JAP
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MAN
+				type = annex_everything
+			}
+		}
+
+		every_state = {
+			limit = { is_core_of = MAN }
+			CHI = { add_state_core = PREV }
+		}
 	}
 }
-
 
 country_event = {
 	id = soviet.1464
@@ -12527,145 +12474,6 @@ country_event = {
 		HMP_script_poland_3 = yes
 	}
 }
-
-
-
-country_event = { 
-	id = iraq_hist.1
-	title = iraq_hist.1.t
-	desc = iraq_hist.1.desc
-	picture = GFX_report_event_IRQ_golden_square_coup
-
-	is_triggered_only = yes
-
-
-	option = {
-		name = iraq_hist.1.a # Coup is defeated
-		add_stability = 0.05
-					GER = {
-				country_event = { id = iraq_hist.2 hours = 12 }
-			}
-			ITA = {
-				country_event = { id = iraq_hist.2 hours = 12 }
-			}
-
-		add_popularity = {
-			ideology = neutrality
-			popularity = -0.1
-		}
-	}
-}
-
-country_event = { # Notification of coup
-	id = iraq_hist.2
-	title = iraq_hist.2.t
-	desc = iraq_hist.2.desc
-	picture = GFX_report_event_IRQ_golden_square_coup
-
-	is_triggered_only = yes
-
-	option = {
-		name = iraq_hist.2.a # British option
-		trigger = {
-			original_tag = ENG
-		}
-					country_event = {
-						id = iraq_hist.6
-						days = 1
-			}
-	}
-
-	option = {
-		name = iraq_hist.2.b # gasp!
-				trigger = {
-		NOT = {	original_tag = ENG }
-		}
-	}
-
-	option = {
-		name = iraq_hist.2.c # Axis reaction
-		trigger = {
-			OR = {
-				original_tag = GER
-				original_tag = ITA 
-			}
-		}
-		
-		if = { limit = { tag = GER } #planes
-		add_political_power = -50
-				ALB = {
-			country_event = { id = iraq_hist.4 days = 1 random_hours = 16 }
-		}
-		}
-		if = { limit = { tag = ITA } #some bonus inf?
-		add_political_power = -50
-						ALB = {
-			country_event = { id = iraq_hist.5 days = 1 random_hours = 16 }
-		}
-		}
-
-	}
-}
-
-
-country_event = { # Axis send guns
-	id = iraq_hist.4
-	title = iraq_hist.4.t
-	desc = iraq_hist.4.desc
-	picture = GFX_report_event_tur_machine_gunners
-
-	is_triggered_only = yes
-
-	option = {
-		name = iraq_hist.4.a
-		add_equipment_to_stockpile = {
-			type = small_plane_airframe_1
-			variant_name = "Bf 109A"
-			amount = 600
-			producer = GER
-		}
-		add_equipment_to_stockpile = {
-			type = small_plane_cas_airframe_1
-			variant_name = "Ju 87"
-			amount = 100
-			producer = GER
-		}		
-	}
-}
-
-country_event = { # Axis send guns
-	id = iraq_hist.5
-	title = iraq_hist.5.t
-	desc = iraq_hist.5.desc
-	picture = GFX_report_event_tur_machine_gunners
-
-	is_triggered_only = yes
-
-	option = {
-		name = iraq_hist.5.a
-		load_oob = "IRQ_nationalists"	
-	}
-}
-country_event = {
-	id = iraq_hist.6 ## British launch invasion
-	title = iraq_hist.6.t
-	desc = iraq_hist.6.desc
-	picture = GFX_report_event_tur_machine_gunners
-
-	is_triggered_only = yes
-
-	option = {
-		name = iraq_hist.6.a
-		ENG = {
-			complete_national_focus = uk_iraq_focus
-		}
-	}
-
-	option = {
-		name = iraq_hist.6.b
-	}
-}
-
 
 
 add_namespace = AAT_norway

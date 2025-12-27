@@ -1699,15 +1699,95 @@ focus = {
 		completion_reward = {
 			custom_effect_tooltip = GER_decision_focus_tt			
 			add_ideas = GER_blau 	
-			if = { limit = { GER = {has_government = fascism } } hidden_effect={ every_country = { limit = { OR ={ AND = { is_in_faction_with = GER NOT = { OR = {  tag = YUG tag = AOI tag = EFR tag = ALB tag = ITA}} } AND = { tag = FIN has_war_with = SOV  }  } }  add_ideas = GER_blau   } }  }
+			if = {
+				limit = {
+					GER = { has_government = fascism }
+				}
+				hidden_effect = {
+					every_country = {
+						limit = {
+							OR = {
+								AND = {
+									is_in_faction_with = GER
+									NOT = {
+										OR = {
+											tag = YUG
+											tag = EFR
+											tag = ITA
+										}
+									}
+								}
+								AND = {
+									tag = FIN
+									has_war_with = SOV
+								}
+							}
+						}
+						add_ideas = GER_blau
+					}
+				}
+			}
+
 			custom_effect_tooltip = GER_barbarossa_others_text
-			custom_effect_tooltip =	GER_blau_text
+			custom_effect_tooltip = GER_blau_text
+
 			hidden_effect = {
-		    if = { limit = { EFR = { has_country_flag = EFR_torch_declared} country_exists = EFR NOT = { EFR ={ has_war_with = SOV } }  } EFR = { declare_war_on = { target = SOV type = annex_everything     } } }
-		    if = { limit = {  EFR = { has_country_flag = EFR_torch_declared} country_exists = YUG NOT = { YUG ={ has_war_with = SOV } }  } YUG = { declare_war_on = { target = SOV type = annex_everything     } } }
-			if = { limit = { NOT = { has_global_flag = war_in_the_west_start} AND = { NOT = { MAN = { controls_state = 472 }} JAP = { controls_state = 472 }}  }    JAP = { country_event ={  id = britain.4254 }     }   }
+				if = {
+					limit = {
+						EFR = { has_country_flag = EFR_torch_declared }
+						country_exists = EFR
+						NOT = {
+							EFR = { has_war_with = SOV }
+						}
+					}
+					EFR = {
+						declare_war_on = {
+							target = SOV
+							type = annex_everything
+						}
+					}
+				}
+				if = {
+					limit = {
+						EFR = { has_country_flag = EFR_torch_declared }
+						country_exists = YUG
+						NOT = {
+							YUG = { has_war_with = SOV }
+						}
+					}
+					YUG = {
+						declare_war_on = {
+							target = SOV
+							type = annex_everything
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = { has_global_flag = war_in_the_west_start }
+						AND = {
+							NOT = {
+								MAN = { controls_state = 472 }
+							}
+							JAP = { controls_state = 472 }
+						}
+					}
+					JAP = {
+						country_event = { id = britain.4254 }
+					}
+				}
+				
 				set_country_flag = BRAlicense
-				if = {   limit = { FIN = { is_ai =yes has_war_with = SOV }  }  FIN = { complete_national_focus = fin_join_axis }  }
+				
+				if = {
+					limit = {
+						FIN = {
+							is_ai = yes
+							has_war_with = SOV
+						}
+					}
+					FIN = { complete_national_focus = fin_join_axis }
+				}
 			}
 		}
 	}
@@ -1833,15 +1913,44 @@ focus = {
 		}
 
 		completion_reward = {
-		custom_effect_tooltip = GER_decision_focus_tt
-		add_ideas = GER_barbarossa_zit 	
-		if = { limit = { GER = {has_government = fascism } }  hidden_effect={ every_country = { limit = { OR ={ AND = {  is_in_faction_with = GER NOT = { OR = { tag = YUG tag = AOI tag = EFR tag = ALB tag = ITA }} } AND = { tag = FIN has_war_with = SOV  }  } }  add_ideas = GER_barbarossa_zit   } }  } 	
+			custom_effect_tooltip = GER_decision_focus_tt
+			add_ideas = GER_barbarossa_zit 	
+			if = {
+				limit = {
+					GER = { has_government = fascism }
+				}
+				hidden_effect = {
+					every_country = {
+						limit = {
+							OR = {
+								AND = {
+									is_in_faction_with = GER
+									NOT = {
+										OR = {
+											tag = YUG
+											tag = EFR
+											tag = ITA
+										}
+									}
+								}
+								AND = {
+									tag = FIN
+									has_war_with = SOV
+								}
+							}
+						}
+						add_ideas = GER_barbarossa_zit
+					}
+				}
+			}
 
 			custom_effect_tooltip = GER_barbarossa_others_text
-			custom_effect_tooltip = GER_barb_buff3_tt			
-					
-		
-        add_timed_idea = { idea = GER_tank_industry days = 45 }
+			custom_effect_tooltip = GER_barb_buff3_tt
+
+			add_timed_idea = {
+				idea = GER_tank_industry
+				days = 45
+			}
 		}
 	}
 
@@ -6179,9 +6288,7 @@ focus = {
                             NOT = {
                                 OR = {
                                     tag = YUG
-                                    tag = AOI
                                     tag = EFR
-                                    tag = ALB
                                     tag = ITA
                                 }
                             }
@@ -7219,38 +7326,6 @@ focus = {
 			}
 		}
 	}
-	
-	
-
-	# focus = {
-		# id = GER_fate_of_yugoslavia
-
-		# icon = GFX_focus_GER_fate_of_yugoslavia
-
-		# prerequisite = { focus = GER_anschluss }
-
-		# x = 4
-		# y = 1
-		# relative_position_id = GER_anschluss
-
-		# cost = 0
-		
-		# available = { EFR = { has_country_flag = vichy_france_established } }
-
-		# search_filters = { FOCUS_FILTER_ANNEXATION }	
-		
-		# completion_reward = {
-			# effect_tooltip = {
-				# declare_war_on = {
-					# target = YUG
-					# type = annex_everything
-				# }
-			# }
-			# hidden_effect = {
-				# ITA = { invade_yugoslavia_effect = yes	}
-			# }	
-		# }
-	# }
 
     focus = {
 		id = GER_fate_of_yugoslavia
@@ -7480,10 +7555,8 @@ focus = {
 								is_in_faction_with = GER
 								NOT = {
 									OR = {
-										tag = AOI
 										tag = EFR
 										tag = YUG
-										tag = ALB
 										tag = ITA
 									}
 								}
@@ -7576,15 +7649,6 @@ focus = {
 							}
 						}
 					}
-					if = {
-						limit = { country_exists = ALB YUG = { is_ai = no } }
-						ALB = {
-							declare_war_on = {
-								target = GRE
-								type = annex_everything
-							}
-						}
-					}
 				}
 				if = { 
 					limit = { 
@@ -7652,7 +7716,6 @@ focus = {
 					SOV_relocate_civ = yes
 				}
 
-				if = { limit = { country_exists = ALB } ALB = { add_to_war = { targeted_alliance = GER enemy = SOV } } }
 
 				if = {
 					limit = {

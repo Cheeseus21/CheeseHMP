@@ -39,7 +39,6 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 					original_tag = FIN 
 					SOV = { controls_state = 195 } 
 				} 
-				tag = AOI 
 			} 
 		} 
 	}
@@ -52,7 +51,6 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 					original_tag = FIN 
 					SOV = { controls_state = 195 } 
 				} 
-				tag = AOI 
 			} 
 		} 
 	}
@@ -106,7 +104,6 @@ DIPLOMACY_SEND_EXP_FORCE_ENABLE_TRIGGER = {
 						NOT = { has_country_flag = EFR_torch_declared }  
 					}  
 				} 
-				original_tag = AOI  
 				AND = { 
 					original_tag = FIN 
 					SOV = { controls_state = 195 } 
@@ -122,8 +119,6 @@ DIPLOMACY_SEND_EXP_FORCE_ENABLE_TRIGGER = {
 		}  
 	}    
 
-	NOT = { ROOT = { tag = AOI }} 
-	NOT = { FROM = { tag = AOI }}  
 }
 
 DIPLOMACY_GENERATE_WARGOAL_ENABLE_TRIGGER = { 
@@ -210,7 +205,6 @@ DIPLOMACY_RETURN_EXP_FORCE_ENABLE_TRIGGER = {
 						NOT = { has_country_flag = EFR_torch_declared }  
 					}  
 				}
-				original_tag = AOI  
 				AND = { 
 					original_tag = FIN 
 					SOV = { controls_state = 195 } 
@@ -229,7 +223,6 @@ DIPLOMACY_RETURN_EXP_FORCE_ENABLE_TRIGGER = {
 						NOT = { has_country_flag = EFR_torch_declared }  
 					}  
 				}
-				original_tag = AOI  
 				AND = { 
 					original_tag = FIN 
 					SOV = { controls_state = 195 } 
@@ -258,7 +251,6 @@ DIPLOMACY_REQUEST_EXP_FORCE_ENABLE_TRIGGER = {
 						NOT = { has_country_flag = EFR_torch_declared }  
 					}  
 				}
-				original_tag = AOI  
 				AND = { 
 					original_tag = FIN 
 					SOV = { controls_state = 195 } 
@@ -272,17 +264,10 @@ DIPLOMACY_REQUEST_EXP_FORCE_ENABLE_TRIGGER = {
 	}
 
 	NOT = { 
-		FROM = { 
-			OR = { 
-				AND = { 
-					original_tag = EFR  
-					EFR = { 
-						is_in_faction = yes 
-						NOT = { has_country_flag = EFR_torch_declared }  
-					}  
-				}
-				original_tag = AOI  
-			} 
+		original_tag = EFR  
+		EFR = { 
+			is_in_faction = yes 
+			NOT = { has_country_flag = EFR_torch_declared }  
 		} 
 	}
 }

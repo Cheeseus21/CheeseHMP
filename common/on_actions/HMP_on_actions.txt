@@ -108,7 +108,6 @@ on_actions = {
 			else_if = { limit = { has_game_rule = { rule = horst_host_country option = FRA } } set_variable = { host = FRA.id } }
 			else_if = { limit = { has_game_rule = { rule = horst_host_country option = SPR } } set_variable = { host = SPR.id } }
 			else_if = { limit = { has_game_rule = { rule = horst_host_country option = NOR } } set_variable = { host = NOR.id } }
-			else_if = { limit = { has_game_rule = { rule = horst_host_country option = AOI } } set_variable = { host = AOI.id } }
 			else_if = { limit = { has_game_rule = { rule = horst_host_country option = EFR } } set_variable = { host = EFR.id } }    
 			else_if = { limit = { has_game_rule = { rule = horst_host_country option = BUL } } set_variable = { host = BUL.id } }
 			else_if = { limit = { has_game_rule = { rule = horst_host_country option = BRA } } set_variable = { host = BRA.id } }
@@ -1251,24 +1250,9 @@ on_actions = {
 				GER = { country_event = { id = italy.600 } }
 
 				if = { 
-					limit = { AOI = { has_country_flag = host } } 
-					GER = { set_country_flag = host }  
-					AOI = { clr_country_flag = host }  
-				}
-
-				if = { 
 					limit = { YUG = { has_country_flag = host } } 
 					GER = { set_country_flag = host }  
 					YUG = { clr_country_flag = host }  
-				}
-
-				if = { 
-					limit = { country_exists = AOI }  
-					GER = { 
-						add_to_variable = { paratrooper_div_cap = 2 }  
-						set_division_template_cap = { division_template = "Paratroopers" division_cap = paratrooper_div_cap } 
-						annex_country = { target = AOI transfer_troops = yes } 
-					}	
 				}
 
 				ITA = { 

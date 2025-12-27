@@ -110,32 +110,27 @@ focus_tree = {
 
 		completion_reward = {
 			add_political_power = 100
+			
+			add_manpower = 250000
             
-            AOI = {
-                add_manpower = 100000
-                add_ideas = AOI_africa_orientale_italiana_idea
-            }
-            
-            hidden_effect = {
-                if = {
-                    limit = {
-                    AOI = {	has_full_control_of_state = 559 }
-                    }
-                    559 = { #SOMALILAND (Mogadishu)
-                        add_building_construction = {
-                            type = naval_base
-                            level = 2
-                            instant_build = yes
-                            province = 12991
-                        }
-                        set_building_level = {
-                            type = coastal_bunker
-                            level = 5
-                            province = 12991
-                        }
-                    }
-                }
-            }
+            if = {
+				limit = {
+					ITA = {	has_full_control_of_state = 559 }
+				}
+				559 = { #SOMALILAND (Mogadishu)
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+						province = 12991
+					}
+					set_building_level = {
+						type = coastal_bunker
+						level = 5
+						province = 12991
+					}
+				}
+			}
 		}
 	}
 
@@ -4559,34 +4554,46 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_ANNEXATION FOCUS_FILTER_STABILITY FOCUS_FILTER_MANPOWER}
 
 		completion_reward = {
-		if = { limit = { NOT ={ ALB = { controls_state =  626 } } }
-		annex_country = { target = ALB }
-		}
-			else = {transfer_state = 44 }	
-				add_named_threat = { threat = 2 name = ITA_albania_war_goal }
-				# The king is an idea
-				if = {
-					limit = {
-						has_idea = vittorio_emanuele
-					}
-					swap_ideas = {
-						remove_idea = vittorio_emanuele
-						add_idea = vittorio_emanuele_king_of_albania
+			if = {
+				limit = {
+					NOT = {
+						ALB = { controls_state = 626 }
 					}
 				}
-				else_if = {
-					limit = {
-						has_idea = vittorio_emanuele_emperor_of_ethiopia
-					}
-					swap_ideas = {
-						remove_idea = vittorio_emanuele_emperor_of_ethiopia
-						add_idea = vittorio_emanuele_albania_ethiopia
-					}
+				annex_country = { target = ALB }
+			}
+			else = { transfer_state = 44 }
+
+			add_named_threat = {
+				threat = 2
+				name = ITA_albania_war_goal
+			}
+
+			# The king is an idea
+			if = {
+				limit = {
+					has_idea = vittorio_emanuele
 				}
+				swap_ideas = {
+					remove_idea = vittorio_emanuele
+					add_idea = vittorio_emanuele_king_of_albania
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = vittorio_emanuele_emperor_of_ethiopia
+				}
+				swap_ideas = {
+					remove_idea = vittorio_emanuele_emperor_of_ethiopia
+					add_idea = vittorio_emanuele_albania_ethiopia
+				}
+			}
+
 			add_state_core = 44
-						44 = {
+
+			44 = {
 				add_extra_state_shared_building_slots = 2
-								add_building_construction = {
+				add_building_construction = {
 					type = infrastructure
 					level = 1
 					instant_build = yes
@@ -4600,12 +4607,18 @@ focus_tree = {
 					type = air_base
 					level = 20
 				}
-			}	
+			}
+
 			custom_effect_tooltip = ITA_blackshirts_div_cap_8_tt
+
 			hidden_effect = {
 				add_to_variable = { ITA_militias_cap = 8 }
-				set_division_template_cap = {  division_template = "Camicie Nere" division_cap = ITA_militias_cap }
+				set_division_template_cap = {
+					division_template = "Camicie Nere"
+					division_cap = ITA_militias_cap
+				}
 			}
+
 			44 = {
 				custom_effect_tooltip = ITA_albanian_fascist_militia_spawn_divs_tt
 				hidden_effect = {
@@ -4615,7 +4628,7 @@ focus_tree = {
 						count = 3
 					}
 				}
-			}			
+			}
 		}
 	}
 
@@ -4776,10 +4789,33 @@ focus_tree = {
 		cost = 1
 
 		completion_reward = {
-			custom_effect_tooltip = "We will recruit Iraqi nationalists for our cause (if no Iraq player you will receive spawn ins for Iran front whenever it is selected if you completed this focus)."
-			hidden_effect = { if = { limit = {  OR = { ALB ={ is_ai = no } AOI = { is_ai = no } } NOT= { AOI = { has_completed_focus = ETH_the_lessons_of_war }  } } ALB = { transfer_state = 626 change_tag_from = AOI } } if = { limit = { NOT = { ALB = { focus_progress = { focus = IRQ_revolution progress > 0.00 } } } ALB = { has_completed_focus  = IRQ_revolution }  } ALB = {	 complete_national_focus = IRQ_ita_revolution }	} ITA = {	set_autonomy = {   target = ALB   autonomy_state = autonomy_satellite}	} PER = { country_event = { id = mtg_netherlands.1531 hours = 0 } }  }
-			
-			hidden_effect = { if = { limit = { AND = { country_exists = EFR NOT = {EFR = { has_country_flag = EFR_torch_declared}} } } EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } }  }
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 25000 }
+			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 1500 }
+			add_equipment_to_stockpile = { type = support_equipment_1 amount = 1750 }
+			add_equipment_to_stockpile = { type = special_equipment_1 amount = 3000 }	
+			add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1250 }
+
+			hidden_effect = {
+				if = {
+					limit = {
+						AND = {
+							country_exists = EFR
+							NOT = {
+								EFR = { has_country_flag = EFR_torch_declared }
+							}
+						}
+					}
+					EFR = {
+						every_owned_state = {
+							limit = {
+								NOT = { has_state_flag = keep_milled }
+							}
+							set_demilitarized_zone = yes
+						}
+						26 = { set_demilitarized_zone = no }
+					}
+				}
+			}
 		}
 	}
     
