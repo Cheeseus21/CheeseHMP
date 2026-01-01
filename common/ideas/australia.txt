@@ -21,6 +21,110 @@ ideas = {
 			
 		}
 		
+		AST_battle_for_australia_idea = { 
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			picture = ast_volunteer_defence_corps
+			
+			modifier = { 
+				max_dig_in_factor = 0.1 
+				breakthrough_factor = 0.1
+				supply_consumption_factor = -0.25
+			}
+		}
+		
+		AST_refusal_of_conscription = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = disarmed_nation
+			
+		}
+		
+		AST_the_zone_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = chi_forced_conscription
+			
+			modifier = {
+				weekly_manpower = 25000
+			}
+			
+		}
+		
+		AST_national_insurance_scheme_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = ARG_civilian_economy_boost
+
+			modifier = {
+				stability_weekly = 0.01
+				consumer_goods_expected_value = 0.025
+			}
+			
+		}
+		
+		AST_hmas_assault_idea = {
+
+			name = ENG_special_air_service
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			modifier = {
+				special_forces_attack_factor = 0.08
+				special_forces_defence_factor = 0.08
+				army_artillery_attack_factor = 0.08
+				army_artillery_defence_factor = 0.08
+				army_armor_attack_factor = 0.08
+				army_armor_defence_factor = 0.08
+			}
+
+			picture = eng_special_air_service
+			
+			removal_cost = -1			
+			
+		}
+		
 		AST_annexation_balance_idea = { 
 			picture = stiff_upper_lip
 			modifier = { consumer_goods_expected_value = -0.05 }
@@ -68,7 +172,7 @@ ideas = {
 		}
 		
 		protected_by_papua = { 
-				picture = generic_fortify_the_borders
+			picture = generic_fortify_the_borders
 			available = { OR = { ENG = { controls_state = 523 } NZL = { controls_state = 523 } AST = { controls_state = 523 }  }}
 			modifier = { army_core_defence_factor = 1.5 army_core_attack_factor = 1.5 }
 		}
@@ -216,7 +320,7 @@ ideas = {
 			picture = generic_manpower_bonus
 			
 			modifier = {
-				conscription_factor = 0.25
+				conscription = 0.01
 			}
 		}
 
@@ -424,6 +528,29 @@ ideas = {
 			traits = { industrial_concern }
 			
 			modifier = {
+			}
+		}
+		
+		general_motors_holden = {
+
+			picture = USA_general_motors2
+			
+			allowed = {
+				original_TAG = AST
+			}
+			
+			visible = {
+				has_completed_focus = establish_gmh
+			}
+			
+			research_bonus = {
+				industry = 0.15
+			}
+			
+			traits = { industrial_concern }
+			
+			modifier = {
+				production_speed_buildings_factor = 0.1
 			}
 		}
 
