@@ -12649,16 +12649,9 @@ GRE_declare_for_gre = {
 
 		days_mission_timeout = 240
 		
-		days_remove = 240
-		
 		fire_only_once = no
 		
 		is_good = yes
-		
-		modifier = {
-			political_power_factor = -0.15
-			stability_weekly = 0.001
-		}
 
 		timeout_effect = {
 			subtract_from_variable = { var = AST_gd_consumer_goods_expected_value value = 0.025 }
@@ -12684,34 +12677,24 @@ GRE_declare_for_gre = {
 		}
 
 		available = { 
-			num_of_civilian_factories > temp_civs
+			num_of_civilian_factories > 49
 		}
 
-		days_mission_timeout = 240
-		
-		days_remove = 240
+		days_mission_timeout = 1460
 		
 		selectable_mission = no
 		
 		fire_only_once = no
 		
 		is_good = no
-		
-		modifier = {
-			stability_weekly = -0.001
-			production_speed_industrial_complex_factor = 0.25
-		}
-		
-		complete_effect = {
-			subtract_from_variable = { var = AST_gd_consumer_goods_expected_value value = 0.025 }
 
-			activate_mission = AST_theodore_spend_your_way_out_mission
+		complete_effect = {
+			remove_dynamic_modifier = { modifier = AST_great_depression }
 		}
 
 		timeout_effect = {
-			add_to_variable = { var = AST_gd_consumer_goods_expected_value value = 0.025 }
-
-			activate_mission = AST_theodore_spend_your_way_out_mission
+			add_political_power = -300
+			add_stability = -0.25
 		}
 	}
 	
