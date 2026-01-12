@@ -3427,13 +3427,8 @@ focus_tree = {
 		
 		available = {
 			date > 1941.11.22
-			NOT = {
-				date < 1942.3.1
-			}
 		}
-		
-		bypass = { date > 1942.3.1 }
-		
+
 		x = -1
 		y = 1
 		
@@ -3458,12 +3453,7 @@ focus_tree = {
 		
 		available = {
 			date > 1941.11.22
-			NOT = {
-				date < 1942.3.1
-			}
 		}
-		
-		bypass = { date > 1942.3.1 }
 		
 		x = 1
 		y = 1
@@ -3481,7 +3471,7 @@ focus_tree = {
 		id = SOV_operation_jupiter_focus
 		icon = GFX_SOV_a_new_theory_of_revolution_ccp_2d_sov_compatibility
 		
-		prerequisite = { focus = SOV_stockpile_for_the_next_attack focus = SOV_winter_offensive }
+		prerequisite = { focus = SOV_stockpile_for_the_next_attack focus = SOV_winter_offensive focus = SOV_rehabilitated_military  }
 		
 		x = 1
 		y = 1
@@ -3498,6 +3488,22 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 		
 			add_ideas = SOV_operation_jupiter_idea 
+			
+			custom_effect_tooltip = generic_skip_one_line_tt 
+			
+			if = { 
+				limit = {
+					has_idea = SOV_winter_offensive_idea
+				}
+				remove_ideas = SOV_winter_offensive_idea
+			}
+			
+			if = { 
+				limit = {
+					has_idea = SOV_stockpile_for_the_next_attack_idea
+				}
+				remove_ideas = SOV_stockpile_for_the_next_attack_idea
+			}
 		}
 	}
 	
@@ -3689,6 +3695,22 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			add_ideas = SOV_operation_saturn_idea
+			
+			custom_effect_tooltip = generic_skip_one_line_tt 
+			
+			if = { 
+				limit = {
+					has_idea = SOV_winter_offensive_idea
+				}
+				remove_ideas = SOV_winter_offensive_idea
+			}
+			
+			if = { 
+				limit = {
+					has_idea = SOV_stockpile_for_the_next_attack_idea
+				}
+				remove_ideas = SOV_stockpile_for_the_next_attack_idea
+			}
 		}
 	}
 	
@@ -3704,13 +3726,8 @@ focus_tree = {
 		
 		available = {
 			date > 1943.11.22
-			NOT = {
-				date < 1944.3.1
-			}
 		}
-		
-		bypass = { date > 1944.3.1 }
-		
+
 		x = -1
 		y = 1
 		
@@ -3733,13 +3750,8 @@ focus_tree = {
 		
 		available = {
 			date > 1943.11.22
-			NOT = {
-				date < 1944.3.1
-			}
 		}
-		
-		bypass = { date > 1944.3.1 }
-		
+
 		x = 1
 		y = 1
 		
@@ -3802,7 +3814,7 @@ focus_tree = {
 		id = SOV_the_glory_of_the_red_army
 		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
 		
-		prerequisite = { focus = SOV_industrial_overdrive focus = SOV_eternal_march }
+		prerequisite = { focus = SOV_industrial_overdrive focus = SOV_eternal_march focus = SOV_operation_saturn }
 		
 		x = 1
 		y = 1
@@ -3845,6 +3857,22 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			add_ideas = SOV_operation_uranus_idea 
+			
+			custom_effect_tooltip = generic_skip_one_line_tt 
+			
+			if = { 
+				limit = {
+					has_idea = SOV_eternal_march_idea
+				}
+				remove_ideas = SOV_eternal_march_idea
+			}
+			
+			if = { 
+				limit = {
+					has_idea = SOV_industrial_overdrive_idea
+				}
+				remove_ideas = SOV_industrial_overdrive_idea
+			}
 		}
 	}
 
