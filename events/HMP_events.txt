@@ -2924,7 +2924,7 @@ country_event = {
 	option = { # Option for Nationalists - Franco
 	set_global_flag = spanish_civil_war 
 		name = lar_spain.2.a
-		ENG = { add_ideas = partial_economic_mobilisation add_political_power = -150 } 
+		#ENG = { add_ideas = partial_economic_mobilisation add_political_power = -150 } 
 		SPR = { 
 		
 		remove_ideas = {  SPR_political_violence SPR_national_strikes_3 SPR_military_disloyalty }
@@ -3263,6 +3263,192 @@ country_event = {
 
 add_namespace = mtg_britain 
 
+
+# INSKIP AWARDS
+country_event = {
+	id = mtg_britain.3131
+	title = mtg_britain.3131.t
+	desc = mtg_britain.3131.d
+	picture = GFX_report_event_DEN_danish_politics
+
+	is_triggered_only = yes 
+	
+	fire_only_once = yes
+
+	option = {
+		name = mtg_britain.3131.a
+		
+		ENG = {
+			add_ideas = ENG_inskip_award_army
+		}
+	}
+	option = {
+		name = mtg_britain.3131.b
+		
+		ENG = {
+			add_ideas = ENG_inskip_award_air
+		}
+	}
+	option = {
+		name = mtg_britain.3131.c
+		
+		custom_effect_tooltip = ENG_modify_industry_tt
+		add_to_variable = { 
+			ENG_bi_production_speed_dockyard_factor = 0.05
+			tooltip = production_speed_dockyard_factor_tt
+		}
+		add_to_variable = { 
+			ENG_bi_industrial_capacity_dockyard = 0.1
+			tooltip = industrial_capacity_dockyard_tt
+		}
+	}
+}
+
+# IMPERIAL INFANTRY & IMPERIAL ARMORED
+country_event = {
+	id = mtg_britain.313131
+	title = mtg_britain.313131.t
+	desc = mtg_britain.313131.d
+	picture = GFX_report_event_DEN_danish_politics
+
+	is_triggered_only = yes 
+	
+	fire_only_once = yes
+
+	option = {
+		name = mtg_britain.313131.a
+		
+		CAN = {
+			mio:ALLIED_DOMINION_tank_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_tank_trait_1
+			}
+		}
+	}
+	option = {
+		name = mtg_britain.313131.b
+		
+		SAF = {
+			mio:ALLIED_DOMINION_tank_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_tank_trait_1
+			}
+		}
+	}
+	option = {
+		name = mtg_britain.313131.c
+		
+		RAJ = {
+			mio:ALLIED_DOMINION_tank_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_tank_trait_1
+			}
+		}
+	}
+	option = {
+		name = mtg_britain.313131.d
+		
+		AST = {
+			mio:ALLIED_DOMINION_tank_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_tank_trait_1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = mtg_britain.31313131
+	title = mtg_britain.31313131.t
+	desc = mtg_britain.31313131.d
+	picture = GFX_report_event_DEN_danish_politics
+
+	is_triggered_only = yes 
+	
+	fire_only_once = yes
+
+	option = {
+		name = mtg_britain.31313131.a
+		
+		CAN = {
+			add_manpower = 1000000
+			mio:ALLIED_DOMINION_infantry_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_infantry_trait_1
+			}
+			mio:ALLIED_DOMINION_artillery_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_artillery_trait_1
+			}
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		custom_effect_tooltip = ENG_modify_industry_tt
+		add_to_variable = { 
+			ENG_bi_non_core_manpower = 0.1
+			tooltip = non_core_manpower_tt
+		}  
+	}
+	option = {
+		name = mtg_britain.31313131.b
+		
+		SAF = {
+			add_manpower = 1000000
+			mio:ALLIED_DOMINION_infantry_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_infantry_trait_1
+			}
+			mio:ALLIED_DOMINION_artillery_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_artillery_trait_1
+			}
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		custom_effect_tooltip = ENG_modify_industry_tt
+		add_to_variable = { 
+			ENG_bi_non_core_manpower = 0.1
+			tooltip = non_core_manpower_tt
+		}  
+	}
+	option = {
+		name = mtg_britain.31313131.c
+		
+		RAJ = {
+			add_manpower = 1000000
+			mio:ALLIED_DOMINION_infantry_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_infantry_trait_1
+			}
+			mio:ALLIED_DOMINION_artillery_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_artillery_trait_1
+			}
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		custom_effect_tooltip = ENG_modify_industry_tt
+		add_to_variable = { 
+			ENG_bi_non_core_manpower = 0.1
+			tooltip = non_core_manpower_tt
+		}  
+	}
+	option = {
+		name = mtg_britain.31313131.d
+		
+		AST = {
+			add_manpower = 1000000
+			mio:ALLIED_DOMINION_infantry_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_infantry_trait_1
+			}
+			mio:ALLIED_DOMINION_artillery_organization = {
+				complete_mio_trait = generic_horst_ALLIED_DOMINION_artillery_trait_1
+			}
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		custom_effect_tooltip = ENG_modify_industry_tt
+		add_to_variable = { 
+			ENG_bi_non_core_manpower = 0.1
+			tooltip = non_core_manpower_tt
+		}  
+	}
+}
+
 # Abdication Crisis Edward VIII
 country_event = {
 	id = mtg_britain.3365
@@ -3279,6 +3465,7 @@ country_event = {
 		ENG = { transfer_state = 582 }
 	}
 }
+# REAL Abdication Crisis Edward VIII
 country_event = {
 	id = mtg_britain.1
 	title = mtg_britain.1.t
@@ -5326,7 +5513,7 @@ country_event = {
 		name = britain.193.a
 	}
 }
-# King dies
+# REAL King dies
 country_event = {
 	id = britain.16
 	title = britain.16.t
@@ -5337,19 +5524,20 @@ country_event = {
 
 	is_triggered_only = yes 
 
-	immediate = {
-		hidden_effect = {
-			remove_ideas = george_v
-			add_ideas = ENG_king_edward
-		}		
-	}
+	#immediate = {
+	#	hidden_effect = {
+	#		remove_ideas = george_v
+	#		add_ideas = ENG_king_edward
+	#	}		
+	#}
 	
 	option = {
 		name = britain.16.a
-		effect_tooltip = {
-			remove_ideas = george_v		
-			add_ideas = ENG_king_edward
-		}
+		complete_national_focus = ENG_death_of_george_fifth
+		#effect_tooltip = {
+		#	remove_ideas = george_v		
+		#	add_ideas = ENG_king_edward
+		#}
 	}
 }
 

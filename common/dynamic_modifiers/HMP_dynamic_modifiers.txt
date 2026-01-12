@@ -2415,6 +2415,56 @@ ARG_growing_nationalism_modifier = {
 	political_power_factor = ARG_growing_nationalism_political_power_factor
 }
 
+ENG_british_politics_dynamic_modifier = { #NATIONAL SPIRIT
+	enable = { always = yes }
+
+	icon = GFX_idea_eng_guided_by_britain
+
+	political_power_gain = ENG_bp_political_power_gain
+	political_power_factor = ENG_bp_political_power_factor
+	political_advisor_cost_factor = ENG_bp_political_advisor_cost_factor
+	economy_cost_factor = ENG_bp_economy_cost_factor
+	trade_laws_cost_factor = ENG_bp_trade_laws_cost_factor
+	mobilization_laws_cost_factor = ENG_bp_mobilization_laws_cost_factor
+	high_command_cost_factor = ENG_bp_high_command_cost_factor
+	war_support_factor = ENG_bp_war_support_factor
+	stability_factor = ENG_bp_stability_factor
+}
+
+ENG_british_industry_dynamic_modifier = { #NATIONAL SPIRIT
+	enable = { always = yes }
+
+	icon = GFX_idea_NORDIC_industry_monarchis
+
+	industrial_capacity_factory = ENG_bi_industrial_capacity_factory
+	industrial_capacity_dockyard = ENG_bi_industrial_capacity_dockyard
+	production_factory_start_efficiency_factor = ENG_bi_production_factory_start_efficiency_factor
+	production_factory_max_efficiency_factor = ENG_bi_production_factory_max_efficiency_factor
+	production_factory_efficiency_gain_factor = ENG_bi_production_factory_efficiency_gain_factor
+	production_lack_of_resource_penalty_factor = ENG_bi_production_lack_of_resource_penalty_factor
+	line_change_production_efficiency_factor = ENG_bi_line_change_production_efficiency_factor
+	conversion_cost_civ_to_mil_factor = ENG_bi_conversion_cost_civ_to_mil_factor
+	conversion_cost_mil_to_civ_factor = ENG_bi_conversion_cost_mil_to_civ_factor
+	local_building_slots = ENG_bi_local_building_slots
+	local_building_slots_factor = ENG_bi_local_building_slots_factor
+	equipment_conversion_speed = ENG_bi_equipment_conversion_speed
+	industry_repair_factor = ENG_bi_industry_repair_factor
+	industry_free_repair_factor = ENG_bi_industry_free_repair_factor
+	industry_air_damage_factor = ENG_bi_industry_air_damage_factor
+	
+	consumer_goods_expected_value = ENG_bi_consumer_goods_expected_value
+	
+	production_speed_buildings_factor = ENG_bi_production_speed_buildings_factor
+	production_speed_infrastructure_factor = ENG_bi_production_speed_infrastructure_factor
+	production_speed_industrial_complex_factor = ENG_bi_production_speed_industrial_complex_factor
+	production_speed_arms_factory_factor = ENG_bi_production_speed_arms_factory_factor
+	production_speed_dockyard_factor = ENG_bi_production_speed_dockyard_factor
+	
+	non_core_manpower = ENG_bi_non_core_manpower
+	
+	local_resources_factor = ENG_bi_local_resources_factor
+}
+
 ENG_british_army_dynamic_modifier = { #NATIONAL SPIRIT
 	enable = { always = yes }
 
@@ -2468,6 +2518,9 @@ ENG_british_army_dynamic_modifier = { #NATIONAL SPIRIT
 	heat_attrition_factor = ENG_re_heat_attrition_factor #-0.1
 	modifier_army_sub_unit_blackshirt_assault_battalion_defence_factor = ENG_re_modifier_army_sub_unit_blackshirt_assault_battalion_defence_factor
 	modifier_army_sub_unit_blackshirt_assault_battalion_attack_factor = ENG_re_modifier_army_sub_unit_blackshirt_assault_battalion_attack_factor
+    
+    army_infantry_attack_factor = ENG_re_army_infantry_attack_factor
+    army_infantry_defence_factor = ENG_re_army_infantry_defence_factor
 
 
 
@@ -2500,8 +2553,6 @@ ENG_royal_air_force_dynamic_modifier = { #NATIONAL SPIRIT
 	air_superiority_efficiency = ENG_ra_air_superiority_efficiency # 0.05
 	air_intercept_efficiency = ENG_ra_air_intercept_efficiency # 0.05
 	air_mission_xp_gain_factor = ENG_ra_air_mission_xp_gain_factor #0.05
-
-
 
 	#DANNES STUFF
 	air_agility_factor = ENG_ra_air_agility_factor
@@ -2543,6 +2594,48 @@ ENG_royal_navy_dynamic_modifier = { #NATIONAL SPIRIT
 	decryption_factor = ENG_rm_decryption_factor #0.05
 	navy_intel_factor = ENG_rm_navy_intel_factor #0.1
 	naval_invasion_prep_speed = ENG_rm_naval_invasion_prep_speed #0.15
+}
+
+
+ENG_mainland_focus = { 
+	enable = { always = yes } 
+	icon = GFX_modifiers_SOV_civilian_labor_in_defense
+
+	remove_trigger = {
+		ROOT = { NOT = { is_core_of = ROOT.controller } } # ROOT refers to the state on which the modifier is added
+	}
+
+	state_production_speed_buildings_factor = 0.1
+}
+
+ENG_empire_africa_focus = { 
+	enable = { always = yes } 
+	icon = GFX_modifiers_SOV_civilian_labor_in_defense
+
+	remove_trigger = {
+		ROOT = { NOT = { is_core_of = ROOT.controller } } # ROOT refers to the state on which the modifier is added
+	}
+
+	state_production_speed_buildings_factor = 0.5
+}
+
+ENG_empire_asia_focus = { 
+	enable = { always = yes } 
+	icon = GFX_modifiers_SOV_civilian_labor_in_defense
+
+	remove_trigger = {
+		ROOT = { NOT = { is_core_of = ROOT.controller } } # ROOT refers to the state on which the modifier is added
+	}
+
+	state_production_speed_buildings_factor = 0.5
+}
+
+
+ENG_colonial_recruitment = { 
+	enable = { always = yes } 
+	icon = GFX_modifiers_SOV_civilian_labor_in_defense
+
+	local_manpower = -0.8
 }
 
 USA_AOD = {
