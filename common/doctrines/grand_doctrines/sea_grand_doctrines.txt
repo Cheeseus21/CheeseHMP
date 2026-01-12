@@ -23,15 +23,12 @@ new_fleet_in_being = {
     }
 
     # EFFECTS
-	battleship = {
-		max_organisation = 5
-	}
-	navy_capital_ship_defence_factor = 0.05
+	navy_org_factor = 0.1
 	
     milestones = {
         {
-            #Capital Ships
-			convoy_escort_efficiency = 0.1
+            #Submarines
+			navy_submarine_attack_factor = 0.05
             effect = {
                 if = {
                     limit = {
@@ -47,8 +44,8 @@ new_fleet_in_being = {
             }
         }
         {
-            #Carriers
-	        navy_capital_ship_attack_factor = 0.05
+            #Screens
+	        navy_screen_attack_factor = 0.05
 
             effect = {
                 if = {
@@ -65,8 +62,8 @@ new_fleet_in_being = {
             }
         }
         {
-            #Screens
-			navy_anti_air_attack_factor = 0.05
+            #Carriers
+			navy_carrier_air_attack_factor = 0.05
 
             effect = {
                 if = {
@@ -83,9 +80,8 @@ new_fleet_in_being = {
             }
         }
         {
-            #Submarines
-	        naval_torpedo_reveal_chance_factor = -0.05
-			strike_force_movement_org_loss = -0.1
+            #Capital
+	        navy_capital_ship_attack_factor = 0.05
 
             effect = {
                 if = {
@@ -125,18 +121,15 @@ new_convoy_raiding = {
     }
 
     # EFFECTS
-	
-	
-	submarine = {
-		max_organisation = 5
-		surface_detection = 0.05
-	}
 	convoy_raiding_efficiency_factor = 0.1
 	
     milestones = {
         {
-            #Capital Ships
-			convoy_escort_efficiency = 0.05
+            #Submarines
+			submarine = {
+    			sub_visibility = -0.05
+				naval_speed = 0.05
+    		}
 
             effect = {
                 if = {
@@ -153,9 +146,19 @@ new_convoy_raiding = {
             }
         }
         {
-            #Carriers
-	        submarine_attack = 0.05
-			naval_torpedo_reveal_chance_factor = -0.05
+            #Screens
+			destroyer = {
+    			surface_visibility = -0.05
+				naval_speed = 0.05
+    		}
+	        light_cruiser = {
+    			surface_visibility = -0.05
+				naval_speed = 0.05
+    		}
+			heavy_cruiser = {
+    			surface_visibility = -0.05
+				naval_speed = 0.05
+    		}
 
             effect = {
                 if = {
@@ -172,9 +175,11 @@ new_convoy_raiding = {
             }
         }
         {
-            #Screens
-			strike_force_movement_org_loss = -0.1
-			naval_detection = 0.05
+            #Carriers
+			carrier = {
+    			surface_visibility = -0.05
+				naval_speed = 0.05
+    		}
 
             effect = {
                 if = {
@@ -191,10 +196,15 @@ new_convoy_raiding = {
             }
         }
         {
-            #Submarines
-	        sortie_efficiency = 0.1
-			naval_strike_targetting_factor = 0.05
-			convoy_raiding_efficiency_factor = 0.05
+            #Capitals
+	        battleship= {
+                surface_visibility = -0.05
+				naval_speed = 0.05
+            }
+			battle_cruiser = {
+				surface_visibility = -0.05
+				naval_speed = 0.05
+			}
 
             effect = {
                 if = {
@@ -234,17 +244,16 @@ new_base_strike = {
     }
 
     # EFFECTS
-	
-	
 	carrier = {
 		max_organisation = 10
 	}
-	port_strike = 0.1
 	
     milestones = {
         {
-            #Capital Ships
-			convoy_escort_efficiency = 0.1
+            #Submarines
+			carrier = {
+				sub_detection = 0.1
+			}
 
             effect = {
                 if = {
@@ -261,9 +270,10 @@ new_base_strike = {
             }
         }
         {
-            #Carriers
-	        naval_strike_targetting_factor = 0.05
-			naval_torpedo_reveal_chance_factor = -0.05
+            #Screens
+	        carrier = {
+				naval_speed = 0.1
+			}
 
             effect = {
                 if = {
@@ -280,9 +290,10 @@ new_base_strike = {
             }
         }
         {
-            #Screens
-			carrier_capacity_penalty_reduction = -0.05
-			naval_detection = 0.05
+            #Carriers
+			carrier = {
+				carrier_size = 0.1
+			}
 
             effect = {
                 if = {
@@ -299,10 +310,10 @@ new_base_strike = {
             }
         }
         {
-            #Submarines
-	        sortie_efficiency = 0.1
-			naval_strike_targetting_factor = 0.05
-			navy_carrier_air_agility_factor = 0.05
+            #Capitals
+	        carrier = {
+				max_strength = 0.1
+			}
 
             effect = {
                 if = {

@@ -12,23 +12,31 @@ air_subdoctrine_night_bombing = {
     }
 
     # EFFECTS
-	air_strategic_bomber_night_penalty = -0.1
+	air_bombing_targetting = -0.1
 
     rewards = {
 		night_raids = {
-			air_night_penalty = -0.1
+			air_strategic_bomber_night_penalty = -0.25
 		}
         stealth_approach = {
-			strategic_bomb_visibility = -0.1
+			category_strat_bomber = {
+				air_attack = 0.05
+			}
 		}
 		shared_principles = {
-			air_untrained_pilots_penalty_factor = -0.1
+			category_strat_bomber = {
+				air_range = 0.05
+			}
 		}
 		bombing_discipline = {
-			air_strategic_bomber_bombing_factor = 0.05
+			category_strat_bomber = {
+				air_bombing = 0.05
+			}
 		}
 		durable_airframes = {
-			air_strategic_bomber_defence_factor = 0.05
+			category_strat_bomber = {
+				air_defence = 0.05
+			}
 		}
     }
 }
@@ -47,26 +55,32 @@ air_subdoctrine_carpet_bombing = {
     }
 
     # EFFECTS
-	category_strat_bomber = {
-		air_bombing = 0.05
-	}
+	air_bombing_targetting = -0.1
 
     rewards = {
 		veteran_bomber_crews = {
-			ace_effectiveness_factor = 0.05
+			category_strat_bomber = {
+				air_bombing = 0.05
+			}
 		}
         breaking_the_spirit = {
-			army_bonus_air_superiority_factor = 0.05
+			category_strat_bomber = {
+				air_bombing = 0.05
+			}
 		}
 		destruction_campaigns = {
-			air_strategic_bomber_bombing_factor = 0.05
+			category_strat_bomber = {
+				air_bombing = 0.05
+			}
 		}
 		coordinated_air_operations = {
-			air_mission_efficiency = 0.05
+			category_strat_bomber = {
+				air_bombing = 0.05
+			}
 		}
 		defensive_formation = {
 			category_strat_bomber = {
-				air_attack = 0.05
+				air_defence = 0.1
 			}
 		}
     }
@@ -86,25 +100,31 @@ air_subdoctrine_deep_air_raids = {
     }
 
     # EFFECTS
-	category_strat_bomber = {
-		air_range = 0.05
-	}
+	strategic_bomb_visibility = 0.1
 
     rewards = {
 		bad_weather_operations = {
 			air_weather_penalty = -0.1
 		}
         effective_targetting = {
-			air_strategic_bomber_bombing_factor = 0.05
+			category_strat_bomber = {
+				air_bombing = 0.05
+			}
 		}
 		improved_mission_control = {
-			air_superiority_detect_factor = 0.05
+			category_strat_bomber = {
+				air_range = 0.1
+			}
 		}
 		escort_cooperation = {
-			air_escort_efficiency = 0.05
+			category_strat_bomber = {
+				air_defence = 0.05
+			}
 		}
 		long_range_missions = {
-			air_strategic_bomber_bombing_factor = 0.05
+			category_strat_bomber = {
+				air_range = 0.1
+			}
 		}
     }
 }
@@ -123,9 +143,7 @@ air_subdoctrine_flying_fortresses = {
     }
 
     # EFFECTS
-	category_strat_bomber = {
-		air_defence = 0.05
-	}
+	strategic_bomb_visibility = 0.1
 
     rewards = {
 		high_level_bombing = {
@@ -135,178 +153,23 @@ air_subdoctrine_flying_fortresses = {
 		}
         experienced_gunners = {
 			category_strat_bomber = {
-				air_defence = 0.05
+				air_attack = 0.05
 			}
 		}
 		pilot_rescue_missions = {
 			category_strat_bomber = {
 				air_defence = 0.05
+				air_attack = 0.05
 			}
 		}
 		extensive_training = {
-			air_ace_generation_chance_factor = 0.05
+			category_strat_bomber = {
+				air_attack = 0.05
+			}
 		}
 		safety_landing_procedures = {
-			air_accidents_factor = -0.1
-		}
-    }
-}
-
-air_subdoctrine_coastal_air_patrol = {
-    track = heavy_aircraft
-    name = SUBDOCTRINE_COASTAL_AIR_PATROL
-    description = SUBDOCTRINE_COASTAL_AIR_PATROL_DESC
-    icon = GFX_doctrine_carousel_bombing_medium
-
-    xp_cost = 150
-    xp_type = air
-
-    visible = {
-    	has_dlc = "By Blood Alone"
-    }
-
-    available = {
-        always = yes
-    }
-
-
-    # EFFECTS
-	maritime_patrol_plane = {
-		naval_strike_attack = 0.05
-	}
-
-    rewards = {
-		coastal_air_minelaying = {
-			maritime_patrol_plane = {
-				naval_strike_attack = 0.05
-			}
-		}
-        evasive_techniques = {
-			maritime_patrol_plane = {
-				air_agility = 0.05
-			}
-		}
-		efficient_maritime_patrols = {
-			maritime_patrol_plane = {
-				air_range = 0.05
-			}
-		}
-		fog_patrol = {
-			maritime_patrol_plane = {
-				air_defence = 0.05
-			}
-		}
-		improved_targetting_techniques = {
-			maritime_patrol_plane = {
-				naval_strike_targetting = 0.05
-			}
-		}
-    }
-}
-
-air_subdoctrine_open_ocean_air_patrol = {
-    track = heavy_aircraft
-    name = SUBDOCTRINE_OPEN_OCEAN_AIR_PATROL
-    description = SUBDOCTRINE_OPEN_OCEAN_AIR_PATROL_DESC
-    icon = GFX_doctrine_force_rotation_medium
-
-    xp_cost = 150
-    xp_type = air
-
-    visible = {
-    	has_dlc = "By Blood Alone"
-    }
-
-    available = {
-        always = yes
-    }
-
-    # EFFECTS
-	maritime_patrol_plane = {
-		air_range = 0.05
-	}
-
-    rewards = {
-		harbor_raids = {
-			port_strike = 0.05
-		}
-        aerial_minesweeping = {
-			maritime_patrol_plane = {
-				naval_strike_attack = 0.05
-			}
-		}
-		self_reliance = {
-			maritime_patrol_plane = {
-				air_range = 0.05
-			}
-		}
-		night_patrols = {
-			maritime_patrol_plane = {
-				air_range = 0.05
-			}
-		}
-		naval_destruction = {
-			maritime_patrol_plane = {
-				naval_strike_attack = 0.05
-			}
-		}
-    }
-}
-
-air_subdoctrine_heavy_aircraft_focus = {
-    track = heavy_aircraft
-    name = SUBDOCTRINE_HEAVY_AIRCRAFT_FOCUS
-    description = SUBDOCTRINE_HEAVY_AIRCRAFT_FOCUS_DESC
-    icon = GFX_doctrine_infrastructure_destruction_medium
-
-    xp_cost = 150
-    xp_type = air
-
-    visible = {
-    	has_dlc = "By Blood Alone"
-    }
-
-    available = {
-        always = yes
-    }
-
-    # EFFECTS
-	category_strat_bomber = {
-		air_agility = 0.05
-	}
-	maritime_patrol_plane = {
-		air_agility = 0.05
-	}
-
-    rewards = {
-		heavy_aircraft_application = {
-			air_mission_efficiency = 0.05
-		}
-        specialized_payloads = {
-			category_strat_bomber = {
-				air_bombing = 0.05
-			}
-			maritime_patrol_plane = {
-				naval_strike_attack = 0.05
-			}
-		}
-		developed_training_programs = {
-			air_untrained_pilots_penalty_factor = -0.1
-		}
-		long_range_missions = {
 			category_strat_bomber = {
 				air_defence = 0.05
-			}
-			maritime_patrol_plane = {
-				air_defence = 0.05
-			}
-		}
-		efficient_fuel_management = {
-			category_strat_bomber = {
-				air_range = 0.05
-			}
-			maritime_patrol_plane = {
-				air_range = 0.05
 			}
 		}
     }
