@@ -3,7 +3,7 @@ NDefines.NGame.COMBAT_LOG_MAX_MONTHS = 12				-- WAS 48 | drastically cuts down o
 NDefines.NGame.MESSAGE_TIMEOUT_DAYS = 14					     	 -- WAS 60 	| less messages lying around at the top of your screen
 NDefines.NGame.LAG_DAYS_FOR_LOWER_SPEED = 999					-- Days of client lag for decrease of gamespeed
 NDefines.NGame.LAG_DAYS_FOR_PAUSE = 999							-- Days of client lag for pause of gamespeed.
-NDefines.NGame.GAME_SPEED_SECONDS = { 6032.0 , 0.12, 0.23, 0.07, 0.0 } -- WAS 6000|0.25|0.2|0.05|0.0 vanilla is 2/0.5/0.2/0.1/0; Speed 1 is functionally a host enforced pause (100 minutes per hour), speed 2 is slightly slower in case of some extreme issues requiring it (you will almost never use this), speed 3 is unchanged as game is balanced around vanilla speed 3, speed 4 is for faster macro without slowdown, speed 5 is vanilla
+NDefines.NGame.GAME_SPEED_SECONDS = { 6033.0 , 0.12, 0.23, 0.07, 0.0 } -- WAS 6000|0.25|0.2|0.05|0.0 vanilla is 2/0.5/0.2/0.1/0; Speed 1 is functionally a host enforced pause (100 minutes per hour), speed 2 is slightly slower in case of some extreme issues requiring it (you will almost never use this), speed 3 is unchanged as game is balanced around vanilla speed 3, speed 4 is for faster macro without slowdown, speed 5 is vanilla
 NDefines.NGame.MISSION_REMOVE_FROM_INTERFACE_DEFAULT = 3		-- Default days before a mission is removed from the interface after having failed or completed
 ---------------------------------------------------------------
 NDefines.NTrade.ANTI_MONOPOLY_TRADE_FACTOR = 0					-- WAS -100 this group reduces the number of opinion/trade factor changes the game tracks| This is added to the factor value when anti-monopoly threshold is exceeded; cucks majors often if the value is vanilla
