@@ -53,6 +53,62 @@
 		}
 	}
 	
+	USA_arsenal_of_democracy_category = {
+	
+		USA_AOD_mil_construct = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 11999
+				}
+			}
+			
+			target_trigger = {
+				FROM = {
+					is_in_faction_with = ENG
+				}
+			}
+			
+			cancel_trigger = {
+				
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 12000
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_offsite_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				
+				custom_effect_tooltip = generic_skip_one_line_tt
+				
+				add_to_variable = { var = USA_AOD_consumer value = -0.005 }
+				custom_effect_tooltip = USA_AOD_consumer_tt
+				
+				clr_country_flag = USA_AOD_gun_order_flag
+			}
+		}
+	}
+	
 	prospect_for_resources_raj = {
 
 		develop_southern_madras_rubber_plantations = { #423 - SOUTHERN MADRAS
@@ -3095,13 +3151,7 @@ USA_balance_of_power_category = {
         allowed = { OR = { tag = USA tag = ENG } }
         visible = { NOT = { has_global_flag = war_plan_silver_used } }
         available = {
-            OR = {
-                USA = { has_completed_focus = USA_rainbow_plans }
-                AND = {
-                    has_completed_focus = ENG_commando_raids
-                    has_global_flag = war_in_the_west_start
-                }
-            }
+            USA = { has_completed_focus = USA_rainbow_plans }
         }
         fire_only_once = yes
         complete_effect = {
@@ -6046,201 +6096,336 @@ RAJ_population_decisions = {
 	}
 }
 
-support_commonwealth = { 
+support_commonwealth = {
 
+    # --- Infantry Equipment ---
+    commonwealth_guns_visible = {
+        icon = generic_form_nation
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { NOT = { has_country_flag = visible_guns } }
+                set_country_flag = visible_guns
+            }
+            else = {
+                clr_country_flag = visible_guns
+            }
+        }
+    }
 
-	commonwealth_guns_visible = {
-		icon = generic_form_nation
-		cost = 0
-		fire_only_once = no
-		complete_effect  = { 
-		if = { limit = { NOT =  {  has_country_flag = visible_guns }}  set_country_flag = visible_guns  }
-		else = { clr_country_flag = visible_guns }
-	}                              
-	}                                             
-		commonwealth_guns = {    	  
-		icon = generic_form_nation     
-		available = {  has_equipment = { infantry_equipment > 5000 }  }
-		   target_trigger = { 
-               FROM = {     is_in_faction_with = ENG  	NOT = { OR = { is_ai = yes tag = BRA tag = USA AND = { tag = FRA FRA = { owns_state = 16 }} }}     }
-          }  
-		 visible = { has_country_flag =  visible_guns }
-		cost = 0 
-		fire_only_once = no
-		complete_effect  = { 
-			send_equipment = {
-    equipment = infantry_equipment
-    amount = 5000
-    target = FROM
-} 
-	}
-	}
+    commonwealth_guns = {
+        icon = generic_form_nation
+        available = { has_equipment = { infantry_equipment > 5000 } }
+        target_trigger = {
+            FROM = {
+                is_in_faction_with = ENG
+                NOT = {
+                    OR = {
+                        is_ai = yes
+                        tag = BRA
+                        tag = USA
+                        AND = {
+                            tag = FRA
+                            FRA = { owns_state = 16 }
+                        }
+                    }
+                }
+            }
+        }
+        visible = { has_country_flag = visible_guns }
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            send_equipment = {
+                equipment = infantry_equipment
+                amount = 5000
+                target = FROM
+            }
+        }
+    }
 
-	commonwealth_arty_visible = {
-		icon = generic_form_nation
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-		if = { limit = { NOT =  { has_country_flag = visible_arty }}  set_country_flag = visible_arty  }
-		else = { clr_country_flag = visible_arty }
-	}
-	}
-		commonwealth_arty = {
-		icon = generic_form_nation
-		available = { has_equipment = { artillery_equipment > 750 }  }
-		   target_trigger = { 
-               FROM = {     is_in_faction_with = ENG  	NOT = { OR = { is_ai = yes tag = BRA tag = USA AND = { tag = FRA FRA = { owns_state = 16 }} }}     }
-          }
-		 		 visible = { has_country_flag =  visible_arty }
+    # --- Artillery ---
+    commonwealth_arty_visible = {
+        icon = generic_form_nation
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { NOT = { has_country_flag = visible_arty } }
+                set_country_flag = visible_arty
+            }
+            else = {
+                clr_country_flag = visible_arty
+            }
+        }
+    }
 
+    commonwealth_arty = {
+        icon = generic_form_nation
+        available = { has_equipment = { artillery_equipment > 750 } }
+        target_trigger = {
+            FROM = {
+                is_in_faction_with = ENG
+                NOT = {
+                    OR = {
+                        is_ai = yes
+                        tag = BRA
+                        tag = USA
+                        AND = {
+                            tag = FRA
+                            FRA = { owns_state = 16 }
+                        }
+                    }
+                }
+            }
+        }
+        visible = { has_country_flag = visible_arty }
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            send_equipment = {
+                equipment = artillery_equipment
+                amount = 750
+                target = FROM
+            }
+        }
+    }
 
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-			send_equipment = {
-    equipment = artillery_equipment
-    amount = 750
-    target = FROM
-}
-	}
-	}
-	commonwealth_rarty_visible = {
-		icon = generic_form_nation
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-		if = { limit = { NOT =  { has_country_flag = visible_rarty }}  set_country_flag = visible_rarty  }
-		else = { clr_country_flag = visible_rarty }
-	}
-	}
+    # --- Rocket Artillery ---
+    commonwealth_rarty_visible = {
+        icon = generic_form_nation
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { NOT = { has_country_flag = visible_rarty } }
+                set_country_flag = visible_rarty
+            }
+            else = {
+                clr_country_flag = visible_rarty
+            }
+        }
+    }
 
-		commonwealth_rarty = {
-		icon = generic_form_nation
-		available = { has_equipment = { rocket_artillery_equipment > 150   } }
-		   target_trigger = { 
-               FROM = {     is_in_faction_with = ENG  	NOT = { OR = { is_ai = yes tag = BRA tag = USA AND = { tag = FRA FRA = { owns_state = 16 }} }}     }
-          }
-		 		 visible = { has_country_flag =  visible_rarty }
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-			send_equipment = {
-    equipment = rocket_artillery_equipment
-    amount = 150
-    target = FROM
-}
-	}
-	}
-	commonwealth_aa_visible = {
-		icon = generic_form_nation
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-		if = { limit = { NOT =  { has_country_flag = visible_aa }}  set_country_flag = visible_aa  }
-		else = { clr_country_flag = visible_aa }
-	}
-	}
-	commonwealth_aa = {
-		icon = generic_form_nation
-		available = {  has_equipment = { anti_air_equipment > 400 }  } 
-		   target_trigger = { 
-               FROM = {     is_in_faction_with = ENG  	NOT = { OR = { is_ai = yes tag = BRA tag = USA AND = { tag = FRA FRA = { owns_state = 16 }} }}     }
-          }
-		 		 visible = { has_country_flag =  visible_aa }
+    commonwealth_rarty = {
+        icon = generic_form_nation
+        available = { has_equipment = { rocket_artillery_equipment > 150 } }
+        target_trigger = {
+            FROM = {
+                is_in_faction_with = ENG
+                NOT = {
+                    OR = {
+                        is_ai = yes
+                        tag = BRA
+                        tag = USA
+                        AND = {
+                            tag = FRA
+                            FRA = { owns_state = 16 }
+                        }
+                    }
+                }
+            }
+        }
+        visible = { has_country_flag = visible_rarty }
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            send_equipment = {
+                equipment = rocket_artillery_equipment
+                amount = 150
+                target = FROM
+            }
+        }
+    }
 
+    # --- Anti-Air ---
+    commonwealth_aa_visible = {
+        icon = generic_form_nation
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { NOT = { has_country_flag = visible_aa } }
+                set_country_flag = visible_aa
+            }
+            else = {
+                clr_country_flag = visible_aa
+            }
+        }
+    }
 
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-			send_equipment = {
-    equipment = anti_air_equipment
-    amount = 400
-    target = FROM
-}
-	}
-	}
-	commonwealth_at_visible = {
-		icon = generic_form_nation
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-		if = { limit = { NOT =  { has_country_flag = visible_at }}  set_country_flag = visible_at  }
-		else = { clr_country_flag = visible_at }
-	}
-	}
-	commonwealth_at = {
-		icon = generic_form_nation
-		available = { has_equipment = { anti_tank_equipment > 1000 }  }
-		   target_trigger = { 
-               FROM = {     is_in_faction_with = ENG  	NOT = { OR = { is_ai = yes tag = BRA tag = USA AND = { tag = FRA FRA = { owns_state = 16 }} }}     }
-          }
-		 visible = { has_country_flag =  visible_at }
+    commonwealth_aa = {
+        icon = generic_form_nation
+        available = { has_equipment = { anti_air_equipment > 400 } }
+        target_trigger = {
+            FROM = {
+                is_in_faction_with = ENG
+                NOT = {
+                    OR = {
+                        is_ai = yes
+                        tag = BRA
+                        tag = USA
+                        AND = {
+                            tag = FRA
+                            FRA = { owns_state = 16 }
+                        }
+                    }
+                }
+            }
+        }
+        visible = { has_country_flag = visible_aa }
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            send_equipment = {
+                equipment = anti_air_equipment
+                amount = 400
+                target = FROM
+            }
+        }
+    }
 
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-			send_equipment = {
-    equipment = anti_tank_equipment
-    amount = 1000
-    target = FROM
-}
-	}
-	}
-	commonwealth_moto_visible = {
-		icon = generic_form_nation
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-		if = { limit = { NOT =  { has_country_flag = visible_moto }}  set_country_flag = visible_moto  }
-		else = { clr_country_flag = visible_moto }
-	}
-	}
-	commonwealth_moto = {
-		icon = generic_form_nation
-		available = {has_equipment = { motorized_equipment > 500   } }
-		   target_trigger = { 
-               FROM = {     is_in_faction_with = ENG  	NOT = { OR = { is_ai = yes tag = BRA tag = USA AND = { tag = FRA FRA = { owns_state = 16 }} }}     }
-          }
-		 		 visible = { has_country_flag =  visible_moto }
+    # --- Anti-Tank ---
+    commonwealth_at_visible = {
+        icon = generic_form_nation
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { NOT = { has_country_flag = visible_at } }
+                set_country_flag = visible_at
+            }
+            else = {
+                clr_country_flag = visible_at
+            }
+        }
+    }
 
+    commonwealth_at = {
+        icon = generic_form_nation
+        available = { has_equipment = { anti_tank_equipment > 1000 } }
+        target_trigger = {
+            FROM = {
+                is_in_faction_with = ENG
+                NOT = {
+                    OR = {
+                        is_ai = yes
+                        tag = BRA
+                        tag = USA
+                        AND = {
+                            tag = FRA
+                            FRA = { owns_state = 16 }
+                        }
+                    }
+                }
+            }
+        }
+        visible = { has_country_flag = visible_at }
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            send_equipment = {
+                equipment = anti_tank_equipment
+                amount = 1000
+                target = FROM
+            }
+        }
+    }
 
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-			send_equipment = {
-    equipment = motorized_equipment
-    amount = 500
-    target = FROM
-}
-	}
-	}
+    # --- Motorized ---
+    commonwealth_moto_visible = {
+        icon = generic_form_nation
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { NOT = { has_country_flag = visible_moto } }
+                set_country_flag = visible_moto
+            }
+            else = {
+                clr_country_flag = visible_moto
+            }
+        }
+    }
 
-	commonwealth_supp_visible = {
-		icon = generic_form_nation
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-		if = { limit = { NOT =  { has_country_flag = visible_supp }}  set_country_flag = visible_supp  }
-		else = { clr_country_flag = visible_supp }
-	}
-	}
-	commonwealth_supp = {
-		icon = generic_form_nation
-		available = {  has_equipment = { support_equipment > 800 } }
-			   target_trigger = { 
-               FROM = {     is_in_faction_with = ENG  	NOT = { OR = { is_ai = yes tag = BRA tag = USA AND = { tag = FRA FRA = { owns_state = 16 }} }}     }
-          }
-		 		 visible = { has_country_flag =  visible_supp }
-		cost = 0
-		fire_only_once = no
-		complete_effect  = {
-			send_equipment = {
-    equipment = support_equipment
-    amount = 800
-    target = FROM
-}
-	}
-	}
+    commonwealth_moto = {
+        icon = generic_form_nation
+        available = { has_equipment = { motorized_equipment > 500 } }
+        target_trigger = {
+            FROM = {
+                is_in_faction_with = ENG
+                NOT = {
+                    OR = {
+                        is_ai = yes
+                        tag = BRA
+                        tag = USA
+                        AND = {
+                            tag = FRA
+                            FRA = { owns_state = 16 }
+                        }
+                    }
+                }
+            }
+        }
+        visible = { has_country_flag = visible_moto }
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            send_equipment = {
+                equipment = motorized_equipment
+                amount = 500
+                target = FROM
+            }
+        }
+    }
+
+    # --- Support Equipment ---
+    commonwealth_supp_visible = {
+        icon = generic_form_nation
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { NOT = { has_country_flag = visible_supp } }
+                set_country_flag = visible_supp
+            }
+            else = {
+                clr_country_flag = visible_supp
+            }
+        }
+    }
+
+    commonwealth_supp = {
+        icon = generic_form_nation
+        available = { has_equipment = { support_equipment > 800 } }
+        target_trigger = {
+            FROM = {
+                is_in_faction_with = ENG
+                NOT = {
+                    OR = {
+                        is_ai = yes
+                        tag = BRA
+                        tag = USA
+                        AND = {
+                            tag = FRA
+                            FRA = { owns_state = 16 }
+                        }
+                    }
+                }
+            }
+        }
+        visible = { has_country_flag = visible_supp }
+        cost = 0
+        fire_only_once = no
+        complete_effect = {
+            send_equipment = {
+                equipment = support_equipment
+                amount = 800
+                target = FROM
+            }
+        }
+    }
 }
 
 propaganda_effortsx = {
@@ -13055,7 +13240,7 @@ ENG_evacuation_decisions = {
 		}
 		
 		visible = {
-			has_completed_focus = ENG_egypt_fortification	
+			has_completed_focus = ENG_new_construction_projects_for_egypt	
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}			
@@ -13121,7 +13306,7 @@ ENG_evacuation_decisions = {
 		}
 		
 		visible = {
-			has_completed_focus = ENG_singapore_strategy	
+			has_completed_focus = ENG_singapore_sealane_investments	
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}			
@@ -13158,7 +13343,7 @@ ENG_evacuation_decisions = {
 			326 = { 
 				is_controlled_by = ENG
 			}
-            has_completed_focus = ENG_asian_campaign
+            has_completed_focus = ENG_hong_kong_international_trade
             has_war_with = JAP
 		}
 		
@@ -13175,7 +13360,7 @@ ENG_evacuation_decisions = {
 		}
 		
 		visible = {
-			has_completed_focus = ENG_asian_campaign
+			has_completed_focus = ENG_hong_kong_international_trade
 			#has_war_with = JAP
 			326 = { 
 				is_controlled_by = ENG
@@ -13208,144 +13393,6 @@ ENG_evacuation_decisions = {
 }
 
 ENG_military_operations = {
-	ENG_commando_raids_mission_brittany = {
-		
-		allowed = { tag = ENG }
-		
-		activation = {
-			has_completed_focus = ENG_commando_raids
-		}
-		
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_commando_raids_mission_brittany_tt
-				hidden_trigger = {
-					num_divisions_in_states = {
-						count > 5
-						states = { 14 }
-						types = { marine_commando }
-						exclude = { irregular_infantry }
-					}
-				}
-			}
-		}
-		
-		cancel_trigger = {
-			#if = { limit = { check_variable = { GER.festung_europa_max_dig_in > 0 } } }
-		}
-		
-		icon = GFX_decision_generic_operation
-		
-		is_good = no
-		
-		days_mission_timeout = 365
-		
-		fire_only_once = yes
-		
-		selectable_mission = no
-		
-		complete_effect = {
-			custom_effect_tooltip = ENG_commando_raids_mission_brittany_reward_tt
-			subtract_from_variable = { var = GER.festung_europa_max_dig_in value = 5 } 
-		}
-		
-		timeout_effect = {
-			
-		}
-	}
-
-	ENG_commando_raids_mission_normandy = {
-		
-		allowed = { tag = ENG }
-		
-		activation = {
-			has_completed_focus = ENG_commando_raids
-		}
-		
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_commando_raids_mission_normandy_tt
-				hidden_trigger = {
-					num_divisions_in_states = {
-						count > 5
-						states = { 15 }
-						types = { marine_commando }
-						exclude = { irregular_infantry }
-					}
-				}
-			}
-		}
-		
-		cancel_trigger = {
-			#if = { limit = { check_variable = { GER.festung_europa_max_dig_in > 0 } } }
-		}
-		
-		icon = GFX_decision_generic_operation
-		
-		is_good = no
-		
-		days_mission_timeout = 365
-		
-		fire_only_once = yes
-		
-		selectable_mission = no
-		
-		complete_effect = {
-			custom_effect_tooltip = ENG_commando_raids_mission_normandy_reward_tt
-			subtract_from_variable = { var = GER.festung_europa_max_dig_in value = 5 }  
-			set_global_flag = ENG_normandy_raid_done
-		}
-		
-		timeout_effect = {
-			
-		}
-	}
-	
-	ENG_commando_raids_mission_calais = {
-		
-		allowed = { tag = ENG }
-		
-		activation = {
-			has_completed_focus = ENG_commando_raids
-		}
-		
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_commando_raids_mission_calais_tt
-				hidden_trigger = {
-					num_divisions_in_states = {
-						count > 5
-						states = { 29 }
-						types = { marine_commando }
-						exclude = { irregular_infantry }
-					}
-				}
-			}
-		}
-		
-		cancel_trigger = {
-			#if = { limit = { check_variable = { GER.festung_europa_max_dig_in > 0 } } }
-		}
-		
-		icon = GFX_decision_generic_operation
-		
-		is_good = no
-		
-		days_mission_timeout = 365
-		
-		fire_only_once = yes
-		
-		selectable_mission = no
-		
-		complete_effect = {
-			custom_effect_tooltip = ENG_commando_raids_mission_calais_reward_tt
-			subtract_from_variable = { var = GER.festung_europa_max_dig_in value = 5 } 
-		}
-		
-		timeout_effect = {
-			
-		}
-	}
 	
 	ENG_gamble_on_south_china_sea = {
 		
