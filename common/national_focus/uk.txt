@@ -339,7 +339,7 @@ focus_tree = {
             custom_effect_tooltip = generic_skip_one_line_tt
             
             reduce_focus_completion_cost = {
-				focus = { ENG_contain_the_threats ENG_establish_armament_programs }
+				focus = { ENG_appease_the_threats ENG_subsidize_critical_industries }
 				cost = 35
 			}
             
@@ -396,6 +396,15 @@ focus_tree = {
 
 		completion_reward = {
             random_core_state = {
+				prioritize = { 126 338 129 128 130 132 }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_core_state = {
 				prioritize = { 126 338 129 128 130 132 }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
@@ -827,6 +836,18 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = ENG_modify_industry_tt
+            add_to_variable = { 
+				ENG_bi_production_speed_arms_factory_factor = 0.1
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+            add_to_variable = { 
+				ENG_bi_production_speed_industrial_complex_factor = -0.1
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
 		}
 	}
     
@@ -950,6 +971,9 @@ focus_tree = {
             custom_effect_tooltip = generic_skip_one_line_tt
         
             retire_country_leader = yes
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
             set_politics = { ruling_party = neutrality elections_allowed = no }
             set_party_name = { ideology = neutrality long_name = ENG_neutrality_party_kings_party_long name = ENG_neutrality_party_kings_party }
             add_popularity = { ideology = neutrality popularity = 0.5 }
@@ -992,6 +1016,10 @@ focus_tree = {
 
 		completion_reward = {
 			retire_country_leader = yes
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			promote_character = ENG_neville_chamberlain
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -1036,7 +1064,7 @@ focus_tree = {
 				tooltip = political_power_factor_tt
 			}
             add_to_variable = { 
-				ENG_bp_stability_factor = 0.1
+				ENG_bp_stability_factor = 0.15
 				tooltip = stability_factor_tt
 			}
 		}
@@ -1078,7 +1106,7 @@ focus_tree = {
 				tooltip = political_power_factor_tt
 			}
             add_to_variable = { 
-				ENG_bp_stability_factor = 0.1
+				ENG_bp_stability_factor = 0.15
 				tooltip = stability_factor_tt
 			}
 		}
@@ -1109,7 +1137,7 @@ focus_tree = {
 				tooltip = political_power_factor_tt
 			}
             add_to_variable = { 
-				ENG_bp_stability_factor = 0.1
+				ENG_bp_stability_factor = 0.2
 				tooltip = stability_factor_tt
 			}
 		}
@@ -1525,6 +1553,12 @@ focus_tree = {
             FRA = {
                 controls_state = 16
             }
+			custom_trigger_tooltip = {
+			tooltip = ENG_no_funds_tt
+				check_variable = {
+				ENG_funds > 0
+				}
+			}
         }
 
 		icon = GFX_focus_SWI_fortify_border_with_france
@@ -1537,84 +1571,19 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-            custom_effect_tooltip = ENG_bef_to_france_tt
+            #custom_effect_tooltip = ENG_bef_to_france_tt
         
-            if = {
-                limit = {
-                    has_completed_focus = ENG_a_continental_army
-                }
-            
-                hidden_effect = {
-                    delete_unit_template_and_units = {
-                        division_template = "BEF Forces"
-                        disband = yes #if yes, will refund equipment/manpower.
-                    }
-
-                    division_template = {
-                        name = "BEF Forces"
-                        is_locked = no
-                        
-                        regiments = {
-                            medium_armor = { x = 0 y = 0 } medium_armor = { x = 1 y = 0 } medium_armor = { x = 2 y = 0 }                                                mechanized = { x = 3 y = 0 }	mechanized = { x = 4 y = 0 }
-                            medium_armor = { x = 0 y = 1 } medium_armor = { x = 1 y = 1 } medium_armor = { x = 2 y = 1 }                                                mechanized = { x = 3 y = 1 }	mechanized = { x = 4 y = 1 }
-                            medium_armor = { x = 0 y = 2 } medium_armor = { x = 1 y = 2 } medium_armor = { x = 2 y = 2 }                                                mechanized = { x = 3 y = 2 }	mechanized = { x = 4 y = 2 }
-                            medium_tank_destroyer_brigade = { x = 0 y = 3 } medium_tank_destroyer_brigade = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 }	mechanized = { x = 3 y = 3 }	mechanized = { x = 4 y = 3 }
-                        }											
-                        support = { light_flame_tank = { x = 0 y = 0 } light_tank_recon = { x = 0 y = 1 }  logistics_company = { x = 0 y = 2 } maintenance_company = { x = 0 y = 3 } motorized_rocket_sup  = { x = 0 y = 4 } light_sp_artillery = { x = 0 y = 5 } }
-                    }
-
-                    16 = {
-                        create_unit = {
-                            division = "name = \"BEF Division 1\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                    }
-                }
-            }
-            else = {
-                hidden_effect = {
-                    delete_unit_template_and_units = {
-                        division_template = "BEF Forces"
-                        disband = yes #if yes, will refund equipment/manpower.
-                    }
-
-                    division_template = {
-                        name = "BEF Forces"
-                        is_locked = no
-                        
-                        regiments = {
-                            medium_armor = { x = 0 y = 0 } medium_armor = { x = 1 y = 0 } medium_armor = { x = 2 y = 0 }                                                mechanized = { x = 3 y = 0 }	mechanized = { x = 4 y = 0 }
-                            medium_armor = { x = 0 y = 1 } medium_armor = { x = 1 y = 1 } medium_armor = { x = 2 y = 1 }                                                mechanized = { x = 3 y = 1 }	mechanized = { x = 4 y = 1 }
-                            medium_armor = { x = 0 y = 2 } medium_armor = { x = 1 y = 2 } medium_armor = { x = 2 y = 2 }                                                mechanized = { x = 3 y = 2 }	mechanized = { x = 4 y = 2 }
-                            medium_tank_destroyer_brigade = { x = 0 y = 3 } medium_tank_destroyer_brigade = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 }	mechanized = { x = 3 y = 3 }	mechanized = { x = 4 y = 3 }
-                        }											
-                        support = { light_flame_tank = { x = 0 y = 0 } light_tank_recon = { x = 0 y = 1 }  logistics_company = { x = 0 y = 2 } maintenance_company = { x = 0 y = 3 } motorized_rocket_sup  = { x = 0 y = 4 } light_sp_artillery = { x = 0 y = 5 } }
-                    }
-
-                    16 = {
-                        create_unit = {
-                            division = "name = \"BEF Division 1\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                    }
-                }
-            }
+            country_event = { id = mtg_britain.00031000 days = 0 }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = {
+				limit = {
+					date < 1940.9.1
+				}
+				subtract_from_variable = {  var = ENG_funds value = 4 } 
+			    custom_effect_tooltip = ENG_subtract_funds_4_tt
+			}
 		}
 	}
     
@@ -1627,6 +1596,13 @@ focus_tree = {
         
         available = {
             date < 1940.1.1 
+			controls_state = 436
+			custom_trigger_tooltip = {
+			tooltip = ENG_no_funds_tt
+				check_variable = {
+				ENG_funds > 0
+				}
+			}
         }
 
 		icon = GFX_focus_IRQ_liberate_north_africa
@@ -1639,84 +1615,19 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-            custom_effect_tooltip = ENG_divert_resources_for_compass_tt
+            #custom_effect_tooltip = ENG_divert_resources_for_compass_tt
             
+			country_event = { id = mtg_britain.3100031 days = 0 }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			if = {
-                limit = {
-                    has_completed_focus = ENG_a_continental_army
-                }
-            
-                hidden_effect = {
-                    delete_unit_template_and_units = {
-                        division_template = "BEF Forces"
-                        disband = yes #if yes, will refund equipment/manpower.
-                    }
-
-                    division_template = {
-                        name = "BEF Forces"
-                        is_locked = no
-                        
-                        regiments = {
-                            medium_armor = { x = 0 y = 0 } medium_armor = { x = 1 y = 0 } medium_armor = { x = 2 y = 0 }                                                mechanized = { x = 3 y = 0 }	mechanized = { x = 4 y = 0 }
-                            medium_armor = { x = 0 y = 1 } medium_armor = { x = 1 y = 1 } medium_armor = { x = 2 y = 1 }                                                mechanized = { x = 3 y = 1 }	mechanized = { x = 4 y = 1 }
-                            medium_armor = { x = 0 y = 2 } medium_armor = { x = 1 y = 2 } medium_armor = { x = 2 y = 2 }                                                mechanized = { x = 3 y = 2 }	mechanized = { x = 4 y = 2 }
-                            medium_tank_destroyer_brigade = { x = 0 y = 3 } medium_tank_destroyer_brigade = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 }	mechanized = { x = 3 y = 3 }	mechanized = { x = 4 y = 3 }
-                        }											
-                        support = { light_flame_tank = { x = 0 y = 0 } light_tank_recon = { x = 0 y = 1 }  logistics_company = { x = 0 y = 2 } maintenance_company = { x = 0 y = 3 } motorized_rocket_sup  = { x = 0 y = 4 } light_sp_artillery = { x = 0 y = 5 } }
-                    }
-
-                    436 = {
-                        create_unit = {
-                            division = "name = \"BEF Division 1\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                    }
-                }
-            }
-            else = {
-                hidden_effect = {
-                    delete_unit_template_and_units = {
-                        division_template = "BEF Forces"
-                        disband = yes #if yes, will refund equipment/manpower.
-                    }
-
-                    division_template = {
-                        name = "BEF Forces"
-                        is_locked = no
-                        
-                        regiments = {
-                            medium_armor = { x = 0 y = 0 } medium_armor = { x = 1 y = 0 } medium_armor = { x = 2 y = 0 }                                                mechanized = { x = 3 y = 0 }	mechanized = { x = 4 y = 0 }
-                            medium_armor = { x = 0 y = 1 } medium_armor = { x = 1 y = 1 } medium_armor = { x = 2 y = 1 }                                                mechanized = { x = 3 y = 1 }	mechanized = { x = 4 y = 1 }
-                            medium_armor = { x = 0 y = 2 } medium_armor = { x = 1 y = 2 } medium_armor = { x = 2 y = 2 }                                                mechanized = { x = 3 y = 2 }	mechanized = { x = 4 y = 2 }
-                            medium_tank_destroyer_brigade = { x = 0 y = 3 } medium_tank_destroyer_brigade = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 }	mechanized = { x = 3 y = 3 }	mechanized = { x = 4 y = 3 }
-                        }											
-                        support = { light_flame_tank = { x = 0 y = 0 } light_tank_recon = { x = 0 y = 1 }  logistics_company = { x = 0 y = 2 } maintenance_company = { x = 0 y = 3 } motorized_rocket_sup  = { x = 0 y = 4 } light_sp_artillery = { x = 0 y = 5 } }
-                    }
-
-                    436 = {
-                        create_unit = {
-                            division = "name = \"BEF Division 1\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                        create_unit = {
-                            division = "name = \"BEF Division 2\" division_template = \"BEF Forces\" start_experience_factor = 0.5"
-                            owner = ENG
-                        }
-                    }
-                }
-            }
+				limit = {
+					date < 1940.9.1
+				}
+				subtract_from_variable = {  var = ENG_funds value = 4 } 
+			    custom_effect_tooltip = ENG_subtract_funds_4_tt
+			}
 		}
 	}
     
@@ -1847,19 +1758,19 @@ focus_tree = {
         
 		}
 		
-		prerequisite = { focus = ENG_bef_to_france focus = ENG_divert_resources_for_compass focus = ENG_compass focus = ENG_gamble_on_south_china_sea }
+		prerequisite = { focus = ENG_churchill_takes_command  }
 
 		continue_if_invalid = yes
 		available_if_capitulated = yes
 		
 		icon = GFX_focus_focus_fra_border
 		
-		x = 1
-		y = 1
+		x = 0
+		y = 2
         
 		cost = 1
         
-		relative_position_id = ENG_bef_to_france
+		relative_position_id = ENG_churchill_takes_command
 		
 		completion_reward = {
 			custom_effect_tooltip = ENG_prepare_for_dday_tt
@@ -2052,9 +1963,9 @@ focus_tree = {
 		icon = GFX_focus_generic_commonwealth_build_infantry
 		
 		available = {
-			NOT = {
-				has_global_flag = war_in_the_west_start
-			}
+			#NOT = {
+			#	has_global_flag = war_in_the_west_start
+			#}
 		}
         
 		x = 0
@@ -2068,48 +1979,199 @@ focus_tree = {
 			add_research_slot = -1
             
             custom_effect_tooltip = generic_skip_one_line_tt
-            
-            CAN = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-                add_offsite_building = {
-                    type = industrial_complex
-                    level = 4
-                }
-            }  
-            SAF = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-                add_offsite_building = {
-                    type = industrial_complex
-                    level = 4
-                }
-            }  
-            RAJ = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-                add_offsite_building = {
-                    type = industrial_complex
-                    level = 4
-                }
-            }  
-            AST = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-                add_offsite_building = {
-                    type = industrial_complex
-                    level = 4
-                }
-            }  
-            
+			
+			if = {
+				limit = {
+					has_global_flag = war_in_the_west_start
+				}
+				if = { 
+					limit = {
+						country_exists = CAN
+					}
+					CAN = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 8
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 8
+						}
+					}   
+				}
+				else = {
+					276 = {
+						add_extra_state_shared_building_slots = 16
+						add_building_construction = {
+							type = arms_factory
+							level = 8
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 8
+							instant_build = yes
+						}
+					}
+				}
+				
+				if = { 
+					limit = {
+						country_exists = SAF
+					}
+					SAF = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 8
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 8
+						}
+					}   
+				}
+				else = {
+					275 = {
+						add_extra_state_shared_building_slots = 16
+						add_building_construction = {
+							type = arms_factory
+							level = 8
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 8
+							instant_build = yes
+						}
+					}
+				} 
+			}
+			else = {
+				if = { 
+					limit = {
+						country_exists = CAN
+					}
+					CAN = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					276 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				}
+				
+				if = { 
+					limit = {
+						country_exists = SAF
+					}
+					SAF = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					275 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				} 
+				
+				if = { 
+					limit = {
+						country_exists = RAJ
+					}
+					RAJ = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					439 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				}
+				
+				if = { 
+					limit = {
+						country_exists = AST
+					}
+					AST = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					285 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				}
+			}
+				
             custom_effect_tooltip = generic_skip_one_line_tt
             
             add_timed_idea = { idea = ENG_handle_the_imperial_security_idea  days = 1235 }
@@ -2131,7 +2193,44 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-			country_event = { id = mtg_britain.31313131 days = 0}
+			if = {
+				limit = {
+					has_global_flag = war_in_the_west_start
+				}
+				CAN = {
+					add_manpower = 1000000
+					mio:ALLIED_DOMINION_infantry_organization = {
+						complete_mio_trait = generic_horst_ALLIED_DOMINION_infantry_trait_1
+					}
+					mio:ALLIED_DOMINION_artillery_organization = {
+						complete_mio_trait = generic_horst_ALLIED_DOMINION_artillery_trait_1
+					}
+				}
+				SAF = {
+					add_manpower = 1000000
+					mio:ALLIED_DOMINION_infantry_organization = {
+						complete_mio_trait = generic_horst_ALLIED_DOMINION_infantry_trait_1
+					}
+					mio:ALLIED_DOMINION_artillery_organization = {
+						complete_mio_trait = generic_horst_ALLIED_DOMINION_artillery_trait_1
+					}
+				}
+				
+				custom_effect_tooltip = generic_skip_one_line_tt
+		
+				custom_effect_tooltip = ENG_modify_industry_tt
+				add_to_variable = { 
+					ENG_bi_non_core_manpower = -0.2
+					tooltip = non_core_manpower_tt
+				}  
+				
+				hidden_effect = {
+					add_manpower = -2000000
+				}
+			}
+			else = {
+				country_event = { id = mtg_britain.31313131 days = 0 }
+			}
 		}
 	}
     
@@ -2150,7 +2249,24 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-			country_event = { id = mtg_britain.313131 days = 0}
+			if = {
+				limit = {
+					has_global_flag = war_in_the_west_start
+				}
+				CAN = {
+					mio:ALLIED_DOMINION_tank_organization = {
+						complete_mio_trait = generic_horst_ALLIED_DOMINION_tank_trait_1
+					}
+				}
+				SAF = {
+					mio:ALLIED_DOMINION_tank_organization = {
+						complete_mio_trait = generic_horst_ALLIED_DOMINION_tank_trait_1
+					}
+				}
+			}
+			else = {
+				country_event = { id = mtg_britain.313131 days = 0 }
+			}
 		}
 	}
     
@@ -4228,19 +4344,19 @@ focus_tree = {
 		completion_reward = {
 			random_core_state = {
 				prioritize = { 126 338 129 128 130 132 }
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
             random_core_state = {
 				prioritize = { 126 338 129 128 130 132 }
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -4290,9 +4406,9 @@ focus_tree = {
         mutually_exclusive = { focus = ENG_develop_our_homelands }
         
         available = {
-            NOT = {
-                has_global_flag = war_in_the_west_start
-            }
+            #NOT = {
+            #    has_global_flag = war_in_the_west_start
+            #}
         }
         
 		x = 6
@@ -4422,10 +4538,10 @@ focus_tree = {
 		    
 		
 		    136 = {
-                add_extra_state_shared_building_slots = 1
+                add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 				add_resource = {
@@ -4434,10 +4550,10 @@ focus_tree = {
 				}
 			}
             120 = {
-                add_extra_state_shared_building_slots = 1
+                add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 				add_resource = {
@@ -4470,18 +4586,18 @@ focus_tree = {
 		    
 		
 		    132 = {
-                add_extra_state_shared_building_slots = 1
+                add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
             130 = {
-                add_extra_state_shared_building_slots = 1
+                add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -4550,22 +4666,22 @@ focus_tree = {
 		    
 		
 		    119 = {
-                set_state_category = metropolis
-                add_extra_state_shared_building_slots = 1
+                add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
+				set_state_category = metropolis
 			}
             121 = {
-                set_state_category = metropolis
-                add_extra_state_shared_building_slots = 1
+                add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
+				set_state_category = metropolis
 			}
 		}
 	}
@@ -4686,6 +4802,10 @@ focus_tree = {
         
 		available = {  }
 		
+		bypass = {
+			has_global_flag = war_in_the_west_start
+		}
+		
 		x = 1
 		y = 1
         
@@ -4713,6 +4833,10 @@ focus_tree = {
 		prerequisite = { focus = ENG_singapore_sealane_investments }
         
 		available = {  }
+		
+		bypass = {
+			has_global_flag = war_in_the_west_start
+		}
 		
 		x = 0
 		y = 1
@@ -4752,31 +4876,197 @@ focus_tree = {
 
 		completion_reward = {
 		    
-		
-		    CAN = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-            }   
-            SAF = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-            }   
-            RAJ = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-            }   
-            AST = {
-                add_offsite_building = {
-                    type = arms_factory
-                    level = 4
-                }
-            }   
+			if = {
+				limit = {
+					has_global_flag = war_in_the_west_start
+				}
+				if = { 
+					limit = {
+						country_exists = CAN
+					}
+					CAN = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 8
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 8
+						}
+					}   
+				}
+				else = {
+					276 = {
+						add_extra_state_shared_building_slots = 16
+						add_building_construction = {
+							type = arms_factory
+							level = 8
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 8
+							instant_build = yes
+						}
+					}
+				}
+				
+				if = { 
+					limit = {
+						country_exists = SAF
+					}
+					SAF = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 8
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 8
+						}
+					}   
+				}
+				else = {
+					275 = {
+						add_extra_state_shared_building_slots = 16
+						add_building_construction = {
+							type = arms_factory
+							level = 8
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 8
+							instant_build = yes
+						}
+					}
+				} 
+			}
+			else = {
+				if = { 
+					limit = {
+						country_exists = CAN
+					}
+					CAN = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					276 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				}
+				
+				if = { 
+					limit = {
+						country_exists = SAF
+					}
+					SAF = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					275 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				} 
+				
+				if = { 
+					limit = {
+						country_exists = RAJ
+					}
+					RAJ = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					439 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				}
+				
+				if = { 
+					limit = {
+						country_exists = AST
+					}
+					AST = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 4
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 4
+						}
+					}   
+				}
+				else = {
+					285 = {
+						add_extra_state_shared_building_slots = 8
+						add_building_construction = {
+							type = arms_factory
+							level = 4
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 4
+							instant_build = yes
+						}
+					}
+				}
+			}
 		}
 	}
 
