@@ -31,6 +31,8 @@ NDefines.NProduction.BASE_ENERGY_COST = 0.01						-- How much energy per factory
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 NDefines.NTechnology.BASE_YEAR_AHEAD_PENALTY_FACTOR = 2.3 -- Base year ahead penalty
 
+NDefines.NMilitary.DAMAGE_SPLIT_ON_FIRST_TARGET = 0.50			--% of damage dealt to the first target in a combat. The rest will be split amongst subsequent targets. Modifiers can affect this up to a maximum of 0.9. That value must not be exposed as a define.
+
 NDefines.NMilitary.PLANNING_DECAY = 0.01
 NDefines.NMilitary.PLAYER_ORDER_PLANNING_DECAY = 0.03			-- Amount of planning lost due to player manual order
 NDefines.NMilitary.PLANNING_MAX = 0.025 -- Vanilla is 0.30 ; nerfed along with entrenchment so both build up faster resulting in more dynamic gameplay with opportunities for faster recovery
@@ -68,8 +70,8 @@ NDefines.NMilitary.ARMY_IDLE_FUEL_MULT = 0.0						-- fuel consumption ratio whil
 ---------------------------------------------------------------------------------------
 NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.017    --  0.032 vanilla   air global damage modifier
 NDefines.NMilitary.LAND_AIR_COMBAT_ORG_DAMAGE_MODIFIER = 0.015    --  0.032 vanilla   global damage modifier
-NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.040       -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
-NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.055       -- global damage modifier
+NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.035       -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
+NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.060       -- global damage modifier
 NDefines.NMilitary.FUEL_CAPACITY_DEFAULT_HOURS = 0 -- 
 NDefines.NMilitary.REINFORCE_CHANCE = 0.05
 NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.30
