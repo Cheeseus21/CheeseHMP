@@ -15,9 +15,24 @@ on_actions = {
 
 			# British coastline (not south) invasion
 			if = { 
-				limit = { british_coastline_not_south = yes } 
-				teleport_armies = { limit = { the_axis = yes } to_state = 507 }     
-				every_country = { delete_unit = { state = 507 disband = yes } } 
+				limit = { 
+					ENG = {
+						controls_state = 126
+					}
+					british_coastline_not_south = yes 
+				} 
+				teleport_armies = { 
+					limit = { 
+						the_axis = yes 
+					} 
+					to_state = 507 
+				}     
+				every_country = { 
+					delete_unit = { 
+						state = 507 
+						disband = yes
+					} 
+				} 
 				PREV = {
 					if = {
 						limit = { NOT = { OR = { state = 582 state = 323 } } }
@@ -29,13 +44,11 @@ on_actions = {
 					}
 					else = { transfer_state_to = ENG }
 					if = {
-						limit = { state = 323 NOR = { owns_state = 323 } }
-						transfer_state_to = NOR
+						limit = { state = 323 POL = { owns_state = 323 } }
+						transfer_state_to = POL
 					}
 					else = { transfer_state_to = ENG }
 				}
-
-    
 			}
 
 			# Invasion from SPR cores

@@ -170,6 +170,10 @@ focus_tree = {
 		cost = 10
 		
 		completion_reward = {
+			add_victory_points = {
+				province = 12503
+				value = 1000
+			}
 			set_capital = {
 				state = 331
 				remember_old_capital = yes
@@ -177,15 +181,10 @@ focus_tree = {
 			
 			set_state_owner = 331
 			
-			add_victory_points = {
-				province = 12503
-				value = 1000
+			331 = {
+				add_core_of = ENG
 			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-			add_manpower = 200000
-			
+
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			custom_effect_tooltip = ENG_fall_back_to_canada_tt
@@ -193,6 +192,14 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			custom_effect_tooltip = ENG_fall_back_to_canada_tt1
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = ENG_modify_industry_tt
+		    add_to_variable = { 
+				ENG_bi_non_core_manpower = 0.25
+				tooltip = non_core_manpower_tt
+			}  
 			
 			hidden_effect = {
 				331 = { 
@@ -1748,7 +1755,7 @@ focus_tree = {
 		available = { 
 			OR = {
 				date > 1942.10.1 
-				has_capitulated = yes
+				ENG = { surrender_progress > 0.25 }
 				SOV = { surrender_progress > 0.70 }
 				has_global_flag = JAPAN_CAPPED_FLAG
 			}
@@ -1796,7 +1803,7 @@ focus_tree = {
 		    has_global_flag = war_in_the_west_start
 		    OR = {
 				date > 1943.1.1 
-				has_capitulated = yes
+				ENG = { surrender_progress > 0.5 }
 				SOV = { surrender_progress > 0.75 }
 				#has_global_flag = JAPAN_CAPPED_FLAG
 			}
@@ -2664,7 +2671,7 @@ focus_tree = {
         
         icon = GFX_focus_ENG_vow
         
-        available_if_capitulated = yes
+        #available_if_capitulated = yes
         
         x = 3
         y = 1
@@ -2676,7 +2683,7 @@ focus_tree = {
         available = {
             OR = {
                 GER = { has_country_flag = blau_failed }
-                ENG = { has_capitulated = yes }
+                ENG = { surrender_progress > 0.5  }
             }
         }
 
