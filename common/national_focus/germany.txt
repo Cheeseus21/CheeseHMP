@@ -3411,15 +3411,13 @@ focus = {
 
 		x = -2
 		y = 1
+        
 		relative_position_id = GER_form_the_jagdwaffe
+        
 		cost = 5
+        
 		available = {
-			#GER_hermann_goring = {
-			#	is_air_chief = no
-			#}
-			#NOT = {
-			#	has_completed_focus = GER_ascension_of_goring
-			#}
+
 		}
 
 		search_filters = { FOCUS_FILTER_AIR_XP FOCUS_FILTER_MILITARY_CHARACTER }
@@ -8105,7 +8103,7 @@ focus = {
 		id = GER_ascension_of_todt
 		icon = GFX_focus_GER_ascension_of_todt
 		prerequisite = { focus = GER_fuhrerprinzip }
-		#mutually_exclusive = { focus = GER_ascension_of_speer focus = GER_ascension_of_goring }
+		mutually_exclusive = { focus = GER_ascension_of_speer focus = GER_ascension_of_goring }
 
 		x = -7
 		y = 1
@@ -8173,59 +8171,59 @@ focus = {
 				CHARACTER = GER_fritz_todt
 			}
 
-			if = { #Just to make it easy to debug stuff for development
-				limit = {
-					OR = {
-						check_variable = { GER_ascended_advisor_1 = 1 }
-						check_variable = { GER_ascended_advisor_2 = 1 }
-						check_variable = { GER_ascended_advisor_3 = 1 }
-					}
-				}
-				log = "Advisor was already there. STOP CHEATING!"
-			}
+			# if = { #Just to make it easy to debug stuff for development
+				# limit = {
+					# OR = {
+						# check_variable = { GER_ascended_advisor_1 = 1 }
+						# check_variable = { GER_ascended_advisor_2 = 1 }
+						# check_variable = { GER_ascended_advisor_3 = 1 }
+					# }
+				# }
+				# log = "Advisor was already there. STOP CHEATING!"
+			# }
 			
-			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
-				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
-				}
-				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 1 }
-					country_event = GER_inner_circle.01
-				}
+			# else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				# limit = {
+					# check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				# }
+				# hidden_effect = {
+					# set_variable = { GER_ascending_advisor = 1 }
+					# country_event = GER_inner_circle.01
+				# }
 
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_fritz_todt
-				}
-			}
+				# custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = {
+					# localization_key = GER_event_to_replace_ascended_advisor_tt
+					# EVENT = GER_inner_circle.01.t
+					# CHARACTER = GER_fritz_todt
+				# }
+			# }
 			
-			else = {
-				hidden_effect = {
-					add_ideas = GER_todt_reich_engineer
-				}
-				if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_1 = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_2 = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_3 = 1 }
-				}
-			}
+			# else = {
+				# hidden_effect = {
+					# add_ideas = GER_todt_reich_engineer
+				# }
+				# if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_1 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_1 = 1 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_2 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_2 = 1 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_3 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_3 = 1 }
+				# }
+			# }
 
 			hidden_effect = {
 				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
@@ -8280,26 +8278,6 @@ focus = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			# every_core_state = {
-				# limit = {
-					# is_fully_controlled_by = ROOT
-					# free_building_slots = {
-						# building = arms_factory
-						# size > 0
-						# include_locked = yes
-					# }
-				# }
-				# random_select_amount = 3
-				# add_extra_state_shared_building_slots = 1
-				# add_building_construction = {
-					# type = arms_factory
-					# level = 1
-					# instant_build = yes
-				# }
-			# }
-
-			# custom_effect_tooltip = generic_skip_one_line_tt
-			
 			if = {
 				limit = {
 					has_idea = GER_philipp_holzmann
@@ -8437,18 +8415,8 @@ focus = {
 				# }
 			# }
 
-            # custom_effect_tooltip = generic_skip_one_line_tt
-            
-            # add_tech_bonus = {
-				# bonus = 1.01
-				# ahead_reduction = 1
-				# uses = 1
-				# category = dispersed_industry_category
-                # category = concentrated_industry_category
-			# }
-
-
 			custom_effect_tooltip = generic_skip_one_line_tt
+            
 			custom_effect_tooltip = {
 				localization_key = GER_inner_circle_industrial_me_focuses_tt
 				FOCUS_1 = GER_plenipotentiary_of_armaments
@@ -8461,7 +8429,7 @@ focus = {
 		id = GER_ascension_of_speer
 		icon = GFX_focus_GER_ascension_of_speer
 		prerequisite = { focus = GER_fuhrerprinzip }
-		#mutually_exclusive = { focus = GER_ascension_of_todt focus = GER_ascension_of_goring }
+		mutually_exclusive = { focus = GER_ascension_of_todt focus = GER_ascension_of_goring }
 
 		x = 2
 		y = 0
@@ -8528,81 +8496,58 @@ focus = {
 				CHARACTER = GER_albert_speer
 			}
 
-			if = { #Just to make it easy to debug stuff for development
-				limit = {
-					OR = {
-						check_variable = { GER_ascended_advisor_1 = 2 }
-						check_variable = { GER_ascended_advisor_2 = 2 }
-						check_variable = { GER_ascended_advisor_3 = 2 }
-					}
-				}
-				log = "Advisor was already there. STOP CHEATING!"
-			}
-			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
-				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
-				}
-				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 2 }
-					country_event = GER_inner_circle.01
-				}
+			# if = { #Just to make it easy to debug stuff for development
+				# limit = {
+					# OR = {
+						# check_variable = { GER_ascended_advisor_1 = 2 }
+						# check_variable = { GER_ascended_advisor_2 = 2 }
+						# check_variable = { GER_ascended_advisor_3 = 2 }
+					# }
+				# }
+				# log = "Advisor was already there. STOP CHEATING!"
+			# }
+			# else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				# limit = {
+					# check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				# }
+				# hidden_effect = {
+					# set_variable = { GER_ascending_advisor = 2 }
+					# country_event = GER_inner_circle.01
+				# }
 
-				custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = generic_skip_one_line_tt
                 
-				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_albert_speer
-				}
-			}
-			else = {
-				hidden_effect = {
-					add_ideas = GER_speer_reich_architect
-				}
-				if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_1 = 2 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_2 = 2 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_3 = 2 }
-				}
-			}
-            
-            # custom_effect_tooltip = generic_skip_one_line_tt
-            
-            # add_breakthrough_progress = {
-                # specialization = specialization_land
-                # value = 1
-            # }
-            
-            # add_breakthrough_progress = {
-                # specialization = specialization_air
-                # value = 1
-            # }
-
-            # custom_effect_tooltip = generic_skip_one_line_tt
-            
-                # 59 = {
-                    # add_building_construction = {
-                        # type = air_facility
-                        # level = 1
-                        # instant_build = yes
-						# province = 6377
-                    # }						
-                # }
+				# custom_effect_tooltip = {
+					# localization_key = GER_event_to_replace_ascended_advisor_tt
+					# EVENT = GER_inner_circle.01.t
+					# CHARACTER = GER_albert_speer
+				# }
+			# }
+			# else = {
+				# hidden_effect = {
+					# add_ideas = GER_speer_reich_architect
+				# }
+				# if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_1 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_1 = 2 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_2 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_2 = 2 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_3 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_3 = 2 }
+				# }
+			# }
 
 			hidden_effect = {
 				country_event = { id = GER_inner_circle_speer.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
@@ -8662,25 +8607,6 @@ focus = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			# every_core_state = {
-				# limit = {
-					# is_fully_controlled_by = ROOT
-					# free_building_slots = {
-						# building = industrial_complex
-						# size > 0
-						# include_locked = yes
-					# }
-				# }
-				# random_select_amount = 2
-				# add_extra_state_shared_building_slots = 1
-				# add_building_construction = {
-					# type = industrial_complex
-					# level = 1
-					# instant_build = yes
-				# }
-			# }
-
-			# custom_effect_tooltip = generic_skip_one_line_tt
 			if = {
 				limit = {
 					has_idea = GER_philipp_holzmann
@@ -8704,9 +8630,8 @@ focus = {
 	focus = {
 		id = GER_plenipotentiary_of_armaments
 		icon = GFX_focus_GER_plenipotentiary_of_armaments
-		#prerequisite = { focus = GER_form_organization_todt focus = GER_employ_philipp_holzmann focus = GER_prioritize_the_four_year_plan }
+        prerequisite = { focus = GER_employ_philipp_holzmann }
 		mutually_exclusive = { focus = GER_autonomous_organization_todt focus = GER_plenipotentiary_of_the_four_year_plan }
-		prerequisite = { focus = GER_employ_philipp_holzmann }
 
 		text_icon = GER_inner_circle_focus_style
 
@@ -8814,15 +8739,7 @@ focus = {
 						# }
 				# }
 			# }
-            # custom_effect_tooltip = generic_skip_one_line_tt
-            
-            # add_tech_bonus = {
-				# bonus = 1.01
-				# ahead_reduction = 1
-				# uses = 1
-				# category = construction_tech
-			# }
-            
+
 			custom_effect_tooltip = generic_skip_one_line_tt
             
 			custom_effect_tooltip = {
@@ -8932,7 +8849,7 @@ focus = {
 				}
 			}
 
-			custom_effect_tooltip = generic_skip_one_line_tt
+			#custom_effect_tooltip = generic_skip_one_line_tt
 
 			# custom_effect_tooltip = available_military_high_command
 			# show_ideas_tooltip = GER_walter_dornberger
@@ -8971,7 +8888,7 @@ focus = {
 		id = GER_ascension_of_goring
 		icon = GFX_focus_GER_ascension_of_goring
 		prerequisite = { focus = GER_fuhrerprinzip }
-		#mutually_exclusive = { focus = GER_ascension_of_todt focus = GER_ascension_of_speer }
+		mutually_exclusive = { focus = GER_ascension_of_todt focus = GER_ascension_of_speer }
 
 		x = 2
 		y = 0
@@ -9039,57 +8956,57 @@ focus = {
 				CHARACTER = GER_hermann_goring
 			}
 
-			if = { #Just to make it easy to debug stuff for development
-				limit = {
-					OR = {
-						check_variable = { GER_ascended_advisor_1 = 3 }
-						check_variable = { GER_ascended_advisor_2 = 3 }
-						check_variable = { GER_ascended_advisor_3 = 3 }
-					}
-				}
-				log = "Advisor was already there. STOP CHEATING!"
-			}
-			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
-				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
-				}
-				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 3 }
-					country_event = GER_inner_circle.01
-				}
+			# if = { #Just to make it easy to debug stuff for development
+				# limit = {
+					# OR = {
+						# check_variable = { GER_ascended_advisor_1 = 3 }
+						# check_variable = { GER_ascended_advisor_2 = 3 }
+						# check_variable = { GER_ascended_advisor_3 = 3 }
+					# }
+				# }
+				# log = "Advisor was already there. STOP CHEATING!"
+			# }
+			# else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				# limit = {
+					# check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				# }
+				# hidden_effect = {
+					# set_variable = { GER_ascending_advisor = 3 }
+					# country_event = GER_inner_circle.01
+				# }
 
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_hermann_goring
-				}
-			}
-			else = {
-				hidden_effect = {
-					add_ideas = GER_goring_overseer_four_year_plan
-				}
-				if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_1 = 3 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_2 = 3 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_3 = 3 }
-				}
-			}
+				# custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = {
+					# localization_key = GER_event_to_replace_ascended_advisor_tt
+					# EVENT = GER_inner_circle.01.t
+					# CHARACTER = GER_hermann_goring
+				# }
+			# }
+			# else = {
+				# hidden_effect = {
+					# add_ideas = GER_goring_overseer_four_year_plan
+				# }
+				# if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_1 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_1 = 3 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_2 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_2 = 3 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_3 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_3 = 3 }
+				# }
+			# }
 
 			hidden_effect = {
 				country_event = { id = GER_inner_circle_goring.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
@@ -9149,23 +9066,6 @@ focus = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-				# 60 = {
-					# add_resource = {
-						# type = tungsten
-						# amount = 6
-					# }		
-                    # add_resource = {
-						# type = chromium
-						# amount = 6
-					# }	
-					# add_dynamic_modifier = { 
-						# modifier = GER_four_year_plan_initiative_modifier
-						# scope = GER
-					# }
-				# }
-
-			#custom_effect_tooltip = generic_skip_one_line_tt
-
 			if = {
 				limit = {
 					has_idea = GER_reichswerke
@@ -9298,18 +9198,6 @@ focus = {
 					# }
 				# }
 			# }
-			
-			# custom_effect_tooltip = generic_skip_one_line_tt
-			
-			# add_tech_bonus = {
-				# uses = 1
-				# ahead_reduction = 1
-				# bonus = 1
-				# technology = advanced_machine_tools
-				# technology = flexible_line
-				# technology = assembly_line_production
-				# technology = streamlined_line
-			# }
             
 			custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -9441,61 +9329,61 @@ focus = {
 				CHARACTER = GER_heinrich_himmler
 			}
 
-			if = { #Just to make it easy to debug stuff for development
-				limit = {
-					OR = {
-						check_variable = { GER_ascended_advisor_1 = 4 }
-						check_variable = { GER_ascended_advisor_2 = 4 }
-						check_variable = { GER_ascended_advisor_3 = 4 }
-					}
-				}
-				log = "Advisor was already there. STOP CHEATING!"
-			}
-			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
-				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
-				}
-				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 4 }
-					country_event = GER_inner_circle.01 #Replace Advisor
-				}
+			# if = { #Just to make it easy to debug stuff for development
+				# limit = {
+					# OR = {
+						# check_variable = { GER_ascended_advisor_1 = 4 }
+						# check_variable = { GER_ascended_advisor_2 = 4 }
+						# check_variable = { GER_ascended_advisor_3 = 4 }
+					# }
+				# }
+				# log = "Advisor was already there. STOP CHEATING!"
+			# }
+			# else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				# limit = {
+					# check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				# }
+				# hidden_effect = {
+					# set_variable = { GER_ascending_advisor = 4 }
+					# country_event = GER_inner_circle.01 #Replace Advisor
+				# }
 
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_heinrich_himmler
-				}
-			}
-			else = {
-				custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = {
+					# localization_key = GER_event_to_replace_ascended_advisor_tt
+					# EVENT = GER_inner_circle.01.t
+					# CHARACTER = GER_heinrich_himmler
+				# }
+			# }
+			# else = {
+				# custom_effect_tooltip = generic_skip_one_line_tt
 
-				country_event = GER_inner_circle_himmler.00 #Pick Himmler's branch (Can only be fired once)
+				# country_event = GER_inner_circle_himmler.00 #Pick Himmler's branch (Can only be fired once)
 				
-				hidden_effect = {
-					add_ideas = GER_himmler_director_reich_security
-				}
-				if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_1 = 4 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_2 = 4 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_3 = 4 }
-				}
-			}
+				# hidden_effect = {
+					# add_ideas = GER_himmler_director_reich_security
+				# }
+				# if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_1 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_1 = 4 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_2 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_2 = 4 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_3 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_3 = 4 }
+				# }
+			# }
 
 			hidden_effect = {
 				country_event = { id = GER_inner_circle_himmler.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
@@ -9556,25 +9444,13 @@ focus = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			GER_add_or_modify_military_intelligence_service = yes
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				add_to_variable = { 
-					GER_military_intelligence_service_intelligence_agency_defense = 0.25
-					tooltip = intelligence_agency_defense_tt
-				}
-				add_to_variable = { 
-					GER_military_intelligence_service_agency_upgrade_time = -0.25
-					tooltip = agency_upgrade_time_tt
-				}
+			custom_effect_tooltip = {
+				localization_key = GER_ascended_character_trait_swap_tt
+				CHARACTER = GER_heinrich_himmler
 			}
-			else = {
-				add_to_variable = { 
-					GER_military_intelligence_service_encryption_factor = 0.1
-					tooltip = encryption_factor_tt
-				}
+			swap_ideas = {
+				remove_idea = GER_himmler_director_reich_security
+				add_idea = GER_himmler_reichsfuhrer_ss_2
 			}
 		}
 	}
@@ -9628,7 +9504,7 @@ focus = {
 			}
 			swap_ideas = {
 				remove_idea = GER_himmler_director_reich_security
-				add_idea = GER_himmler_reichsfuhrer_ss
+				add_idea = GER_himmler_reichsfuhrer_ss_3
 			}
 
 			if = {
@@ -9748,18 +9624,10 @@ focus = {
 				localization_key = GER_ascended_character_trait_swap_tt
 				CHARACTER = GER_heinrich_himmler
 			}
-
-			add_doctrine_cost_reduction = {
-				name = GER_strengthen_the_waffen_ss
-				cost_reduction = 1
-				uses = 5
-				category = special_forces_doctrine
+			swap_ideas = {
+				remove_idea = GER_himmler_director_reich_security
+				add_idea = GER_himmler_reichsfuhrer_ss_1
 			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-
-			
 		}
 	}
 
@@ -9808,29 +9676,29 @@ focus = {
 		completion_reward = {
 			GER_heinrich_himmler = {
 				add_field_marshal_role = {
-		traits = { trait_engineer fortress_buster ranger logistics_wizard thorough_planner infantry_leader infantry_expert brilliant_strategist  aggressive_assaulter   winter_specialist organizer }
-		skill = 6
-		attack_skill = 4
-		defense_skill = 1
-		planning_skill = 7
-		logistics_skill = 8
-		}
+                    traits = { brilliant_strategist old_guard organizer adaptable inspirational_leader organisational_leader logistics_wizard thorough_planner harsh_leader }
+                    skill = 8
+                    attack_skill = 8
+                    defense_skill = 5
+                    planning_skill = 7
+                    logistics_skill = 7
+                }
 			}
 
-			custom_effect_tooltip = generic_skip_one_line_tt
-			GER_modify_army_modifier = yes
-			add_to_variable = { 
-				GER_military_modifier_army_sub_unit_militia_max_org_factor = 0.1
-				tooltip = modifier_army_sub_unit_militia_max_org_factor_tt
-			}
-			add_to_variable = { 
-				GER_military_modifier_army_sub_unit_militia_attack_factor = 0.05
-				tooltip = modifier_army_sub_unit_militia_attack_factor_tt
-			}
-			add_to_variable = { 
-				GER_military_modifier_army_sub_unit_militia_defence_factor = 0.05
-				tooltip = modifier_army_sub_unit_militia_defence_factor_tt
-			}
+			# custom_effect_tooltip = generic_skip_one_line_tt
+			# GER_modify_army_modifier = yes
+			# add_to_variable = { 
+				# GER_military_modifier_army_sub_unit_militia_max_org_factor = 0.1
+				# tooltip = modifier_army_sub_unit_militia_max_org_factor_tt
+			# }
+			# add_to_variable = { 
+				# GER_military_modifier_army_sub_unit_militia_attack_factor = 0.05
+				# tooltip = modifier_army_sub_unit_militia_attack_factor_tt
+			# }
+			# add_to_variable = { 
+				# GER_military_modifier_army_sub_unit_militia_defence_factor = 0.05
+				# tooltip = modifier_army_sub_unit_militia_defence_factor_tt
+			# }
 		}
 	}
 
@@ -9904,57 +9772,57 @@ focus = {
 				CHARACTER = GER_joseph_goebbels
 			}
 
-			if = { #Just to make it easy to debug stuff for development
-				limit = {
-					OR = {
-						check_variable = { GER_ascended_advisor_1 = 5 }
-						check_variable = { GER_ascended_advisor_2 = 5 }
-						check_variable = { GER_ascended_advisor_3 = 5 }
-					}
-				}
-				log = "Advisor was already there. STOP CHEATING!"
-			}
-			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
-				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
-				}
-				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 5 }
-					country_event = GER_inner_circle.01
-				}
+			# if = { #Just to make it easy to debug stuff for development
+				# limit = {
+					# OR = {
+						# check_variable = { GER_ascended_advisor_1 = 5 }
+						# check_variable = { GER_ascended_advisor_2 = 5 }
+						# check_variable = { GER_ascended_advisor_3 = 5 }
+					# }
+				# }
+				# log = "Advisor was already there. STOP CHEATING!"
+			# }
+			# else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				# limit = {
+					# check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				# }
+				# hidden_effect = {
+					# set_variable = { GER_ascending_advisor = 5 }
+					# country_event = GER_inner_circle.01
+				# }
 
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_joseph_goebbels
-				}
-			}
-			else = {
-				hidden_effect = {
-					add_ideas = GER_goebbels_reich_minister_of_propaganda
-				}
-				if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_1 = 5 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_2 = 5 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_3 = 5 }
-				}
-			}
+				# custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = {
+					# localization_key = GER_event_to_replace_ascended_advisor_tt
+					# EVENT = GER_inner_circle.01.t
+					# CHARACTER = GER_joseph_goebbels
+				# }
+			# }
+			# else = {
+				# hidden_effect = {
+					# add_ideas = GER_goebbels_reich_minister_of_propaganda
+				# }
+				# if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_1 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_1 = 5 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_2 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_2 = 5 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_3 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_3 = 5 }
+				# }
+			# }
 
 			hidden_effect = {
 				country_event = { id = GER_inner_circle_goebbels.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
@@ -10204,57 +10072,57 @@ focus = {
 				CHARACTER = GER_rudolf_hess
 			}
 
-			if = { #Just to make it easy to debug stuff for development
-				limit = {
-					OR = {
-						check_variable = { GER_ascended_advisor_1 = 6 }
-						check_variable = { GER_ascended_advisor_2 = 6 }
-						check_variable = { GER_ascended_advisor_3 = 6 }
-					}
-				}
-				log = "Advisor was already there. STOP CHEATING!"
-			}
-			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
-				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
-				}
-				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 6 }
-					country_event = GER_inner_circle.01
-				}
+			# if = { #Just to make it easy to debug stuff for development
+				# limit = {
+					# OR = {
+						# check_variable = { GER_ascended_advisor_1 = 6 }
+						# check_variable = { GER_ascended_advisor_2 = 6 }
+						# check_variable = { GER_ascended_advisor_3 = 6 }
+					# }
+				# }
+				# log = "Advisor was already there. STOP CHEATING!"
+			# }
+			# else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				# limit = {
+					# check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				# }
+				# hidden_effect = {
+					# set_variable = { GER_ascending_advisor = 6 }
+					# country_event = GER_inner_circle.01
+				# }
 
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_rudolf_hess
-				}
-			}
-			else = {
-				hidden_effect = {
-					add_ideas = GER_hess_party_chancellor
-				}
-				if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_1 = 6 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_2 = 6 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_3 = 6 }
-				}
-			}
+				# custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = {
+					# localization_key = GER_event_to_replace_ascended_advisor_tt
+					# EVENT = GER_inner_circle.01.t
+					# CHARACTER = GER_rudolf_hess
+				# }
+			# }
+			# else = {
+				# hidden_effect = {
+					# add_ideas = GER_hess_party_chancellor
+				# }
+				# if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_1 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_1 = 6 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_2 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_2 = 6 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_3 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_3 = 6 }
+				# }
+			# }
 
 			hidden_effect = {
 				country_event = { id = GER_inner_circle_hess.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
@@ -10341,57 +10209,57 @@ focus = {
 				CHARACTER = GER_martin_bormann
 			}
 
-			if = { #Just to make it easy to debug stuff for development
-				limit = {
-					OR = {
-						check_variable = { GER_ascended_advisor_1 = 7 }
-						check_variable = { GER_ascended_advisor_2 = 7 }
-						check_variable = { GER_ascended_advisor_3 = 7 }
-					}
-				}
-				log = "Advisor was already there. STOP CHEATING!"
-			}
-			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
-				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
-				}
-				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 7 }
-					country_event = GER_inner_circle.01
-				}
+			# if = { #Just to make it easy to debug stuff for development
+				# limit = {
+					# OR = {
+						# check_variable = { GER_ascended_advisor_1 = 7 }
+						# check_variable = { GER_ascended_advisor_2 = 7 }
+						# check_variable = { GER_ascended_advisor_3 = 7 }
+					# }
+				# }
+				# log = "Advisor was already there. STOP CHEATING!"
+			# }
+			# else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				# limit = {
+					# check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					# check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				# }
+				# hidden_effect = {
+					# set_variable = { GER_ascending_advisor = 7 }
+					# country_event = GER_inner_circle.01
+				# }
 
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_martin_bormann
-				}
-			}
-			else = {
-				hidden_effect = {
-					add_ideas = GER_bormann_secretary_to_the_fuhrer
-				}
-				if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_1 = 7 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_2 = 7 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
-					}
-					set_variable = { GER_ascended_advisor_3 = 7 }
-				}
-			}
+				# custom_effect_tooltip = generic_skip_one_line_tt
+				# custom_effect_tooltip = {
+					# localization_key = GER_event_to_replace_ascended_advisor_tt
+					# EVENT = GER_inner_circle.01.t
+					# CHARACTER = GER_martin_bormann
+				# }
+			# }
+			# else = {
+				# hidden_effect = {
+					# add_ideas = GER_bormann_secretary_to_the_fuhrer
+				# }
+				# if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_1 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_1 = 7 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_2 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_2 = 7 }
+				# }
+				# else_if = {
+					# limit = {
+						# check_variable = { GER_ascended_advisor_3 = 0 }
+					# }
+					# set_variable = { GER_ascended_advisor_3 = 7 }
+				# }
+			# }
 
 			hidden_effect = {
 				country_event = { id = GER_inner_circle_bormann.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
@@ -10910,7 +10778,7 @@ focus = {
 		}
 	}
 	
-			focus = {
+	focus = {
 		id = GER_steinercounteroffensive
 		icon = GFX_steiner2 
 		prerequisite = {   focus = GER_festungberlin focus = GER_festungdesdeutschenvaterland }
@@ -10932,7 +10800,7 @@ focus = {
 			}
 		}
 	
-}  
+	}  
 	
 
 }
