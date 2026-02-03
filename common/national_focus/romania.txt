@@ -764,10 +764,22 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			remove_ideas = ROM_the_resource_curse_1
-			remove_ideas = ROM_the_resource_curse_2
-			remove_ideas = ROM_the_resource_curse_3
-			remove_ideas = ROM_agrarian_economy_effectivized
+			if = {
+				limit = { has_idea = ROM_the_resource_curse_1 }
+				remove_ideas = ROM_the_resource_curse_1
+			}
+			if = {
+				limit = { has_idea = ROM_the_resource_curse_2 }
+				remove_ideas = ROM_the_resource_curse_2
+			}
+			if = {
+				limit = { has_idea = ROM_the_resource_curse_3 }
+				remove_ideas = ROM_the_resource_curse_3
+			}
+			if = {
+				limit = { has_idea = ROM_agrarian_economy_effectivized }
+				remove_ideas = ROM_agrarian_economy_effectivized
+			}
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
