@@ -8312,15 +8312,15 @@ focus = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			unlock_decision_tooltip = ot_steel
-			unlock_decision_tooltip = OT_fort
-			unlock_decision_tooltip = OT_coastal_fort
+            unlock_decision_tooltip = OT_tungsten
+            unlock_decision_tooltip = OT_chromium
+            unlock_decision_tooltip = OT_rails
 		}
 	}
 
 	focus = {
 		id = GER_autonomous_organization_todt
 		icon = GFX_focus_GER_autonomous_organization_todt
-		mutually_exclusive = { focus = GER_plenipotentiary_of_armaments focus = GER_plenipotentiary_of_the_four_year_plan }
 		prerequisite = { focus = GER_form_organization_todt }
 
 		text_icon = GER_inner_circle_focus_style
@@ -8429,14 +8429,6 @@ focus = {
 					# }
 				# }
 			# }
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-            
-			custom_effect_tooltip = {
-				localization_key = GER_inner_circle_industrial_me_focuses_tt
-				FOCUS_1 = GER_plenipotentiary_of_armaments
-				FOCUS_2 = GER_plenipotentiary_of_the_four_year_plan
-			}
 		}
 	}
 
@@ -8637,23 +8629,13 @@ focus = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			if = {
-				limit = {
-					has_idea = GER_philipp_holzmann
-				}
-				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_philipp_holzmann_improved
-				}
-			}
-			else = {
-				effect_tooltip = {
-					swap_ideas = {
-						remove_idea = GER_philipp_holzmann
-						add_idea = GER_philipp_holzmann_improved
-					}
-				}
-			}
+            effect_tooltip = {
+                custom_effect_tooltip = available_designer
+                show_ideas_tooltip = GER_philipp_holzmann_improved
+            }
+            hidden_effect = {
+                add_ideas = GER_philipp_holzmann_improved
+            }
 		}
 	}
 
@@ -8661,7 +8643,6 @@ focus = {
 		id = GER_plenipotentiary_of_armaments
 		icon = GFX_focus_GER_plenipotentiary_of_armaments
         prerequisite = { focus = GER_employ_philipp_holzmann }
-		mutually_exclusive = { focus = GER_autonomous_organization_todt focus = GER_plenipotentiary_of_the_four_year_plan }
 
 		text_icon = GER_inner_circle_focus_style
 
@@ -8770,13 +8751,6 @@ focus = {
 				# }
 			# }
 
-			custom_effect_tooltip = generic_skip_one_line_tt
-            
-			custom_effect_tooltip = {
-				localization_key = GER_inner_circle_industrial_me_focuses_tt
-				FOCUS_1 = GER_autonomous_organization_todt
-				FOCUS_2 = GER_plenipotentiary_of_the_four_year_plan
-			}
 		}
 	}
 
@@ -9134,7 +9108,6 @@ focus = {
 	focus = {
 		id = GER_plenipotentiary_of_the_four_year_plan
 		icon = GFX_focus_GER_plenipotentiary_of_the_four_year_plan
-		mutually_exclusive = { focus = GER_autonomous_organization_todt focus = GER_plenipotentiary_of_armaments }
 		prerequisite = { focus = GER_prioritize_the_four_year_plan }
 
 		text_icon = GER_inner_circle_focus_style
@@ -9243,14 +9216,6 @@ focus = {
 					# }
 				# }
 			# }
-            
-			custom_effect_tooltip = generic_skip_one_line_tt
-            
-			custom_effect_tooltip = {
-				localization_key = GER_inner_circle_industrial_me_focuses_tt
-				FOCUS_1 = GER_autonomous_organization_todt
-				FOCUS_2 = GER_plenipotentiary_of_armaments
-			}
 		}
 	}
 
@@ -9563,7 +9528,7 @@ focus = {
 				CHARACTER = GER_heinrich_himmler
 			}
 			swap_ideas = {
-				remove_idea = GER_himmler_director_reich_security
+				remove_idea = GER_himmler_reichsfuhrer_ss_2
 				add_idea = GER_himmler_reichsfuhrer_ss_3
 			}
 
@@ -9685,7 +9650,7 @@ focus = {
 				CHARACTER = GER_heinrich_himmler
 			}
 			swap_ideas = {
-				remove_idea = GER_himmler_director_reich_security
+				remove_idea = GER_himmler_reichsfuhrer_ss
 				add_idea = GER_himmler_reichsfuhrer_ss_1
 			}
 		}
@@ -10516,7 +10481,9 @@ focus = {
 
 		x = 1
 		y = 1
+        
 		relative_position_id = GER_optimize_reich_labour_service
+        
 		cost = @inner_circle_time_tier_2
 		
 		available = {
@@ -10710,12 +10677,12 @@ focus = {
 				}
 			}
 
-			if = {
-				limit = {
-					has_country_flag = GER_inner_circle_event_pending_flag
-				}
-				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
-			}
+			# if = {
+				# limit = {
+					# has_country_flag = GER_inner_circle_event_pending_flag
+				# }
+				# NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+			# }
 		}
 
 		#Focus will need to pause while events are pending

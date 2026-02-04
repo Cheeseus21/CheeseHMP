@@ -5162,94 +5162,139 @@ NOR_exile_decisions_category = {
 GER_org_todt_category = {
 	OT_steel = {
 		icon = GFX_decision_steel
+		
 		available = {  
 			has_completed_focus = GER_form_organization_todt
-			has_manpower > 100000
+			has_manpower > 50000
 		}
-		days_remove = 90
+		
+		days_remove = 30
+		
 		cost = 0
+		
 		fire_only_once = no
+		
 		complete_effect = {
-		add_manpower = -100000
+			add_manpower = -50000
 		}
-		remove_effect ={
-					every_owned_state = {
-					limit = {
-						has_resources_amount = {
-							resource = steel
-							amount > 0
-						}
+		
+		remove_effect = {
+			random_core_state = {
+				limit = {
+					OR = {
+						state = 51
+						state = 42
+						state = 65
+						state = 66
+						state = 67
 					}
-								add_resource = {
-				type = steel 
-				amount = 1
+				}
+				add_resource = {
+					type = steel 
+					amount = 20
+				}
 			}
-					}
-										60 = {
-						add_resource = {
-				type = tungsten 
-				amount = 2
-			}
-			add_resource = {
-				type = chromium 
-				amount = 2
-			}
-		}
 		}
 	}
+	
+	OT_tungsten = {
+		icon = GFX_decision_tungsten
+		
+		available = {  
+			has_completed_focus = GER_form_organization_todt
+			has_manpower > 50000
+		}
+		
+		days_remove = 30
+		
+		cost = 0
+		
+		fire_only_once = no
+		
+		complete_effect = {
+			add_manpower = -50000
+		}
+		
+		remove_effect = {
+			60 = {
+				limit = {
+					OR = {
+						state = 51
+						state = 42
+						state = 65
+						state = 66
+						state = 67
+					}
+				}
+				add_resource = {
+					type = tungsten 
+					amount = 10
+				}
+			}
+		}
+	}
+	
+	OT_chromium = {
+		icon = GFX_decision_chromium
+		
+		available = {  
+			has_completed_focus = GER_form_organization_todt
+			has_manpower > 50000
+		}
+		
+		days_remove = 30
+		
+		cost = 0
+		
+		fire_only_once = no
+		
+		complete_effect = {
+			add_manpower = -50000
+		}
+		
+		remove_effect = {
+			60 = {
+				limit = {
+					OR = {
+						state = 51
+						state = 42
+						state = 65
+						state = 66
+						state = 67
+					}
+				}
+				add_resource = {
+					type = chromium 
+					amount = 10
+				}
+			}
+		}
+	}
+
 	OT_rails = {
 		icon = GFX_decision_rubber 
+		
 		available = {
-			has_completed_focus = GER_war_with_the_ussr
 			has_completed_focus = GER_form_organization_todt
-			has_manpower > 100000
+			has_manpower > 50000
 		}
-			days_remove = 180
+		
+		days_remove = 180
+		
 		cost = 0
+		
 		fire_only_once = no
+		
 		modifier = {
 			production_cost_rail_way_factor = -0.1
 			production_cost_supply_node_factor = -0.1
 		}
+		
 		complete_effect = {
-		add_manpower = -100000
+			add_manpower = -50000
 		}
 	}	
-	
-	OT_coastal_fort = {
-		icon = GFX_decision_generic_mountain_fortification
-		available = {
-			has_completed_focus = GER_form_organization_todt
-			has_manpower > 100000
-		}
-			days_remove = 180
-		cost = 0
-		fire_only_once = no
-		modifier = {
-			production_cost_coastal_bunker_factor = -0.1
-		}
-		complete_effect = {
-		add_manpower =  -100000
-		}
-	}	
-	OT_fort = {
-		icon = GFX_decision_generic_mountain_fortification
-		available = {
-			has_completed_focus = GER_form_organization_todt
-			has_manpower > 100000
-		}
-			days_remove = 180
-		cost = 0
-		fire_only_once = no
-		modifier = {
-			production_cost_bunker_factor = -0.1
-		}
-		complete_effect = {
-		add_manpower =  -100000
-		}
-	}		
 }
-
 #####Germany#######  
 SS_recruitment_pfu = {
 	SS_recruitment_leibstandarte = { 

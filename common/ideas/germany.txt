@@ -40,8 +40,8 @@ ideas = {
 				production_factory_start_efficiency_factor = 0.1
 				production_factory_efficiency_gain_factor = 0.1
 				line_change_production_efficiency_factor = 0.1
-				production_factory_max_efficiency_factor = 0.05
-				production_speed_buildings_factor = 0.05
+				production_factory_max_efficiency_factor = 0.1
+				production_speed_buildings_factor = 0.1
 				industrial_capacity_factory = 0.0
 				global_building_slots_factor = 0
 				local_resources_factor = 0
@@ -62,13 +62,14 @@ ideas = {
 				# PP Cost
 				political_power_gain = -0.5
 
-				production_factory_start_efficiency_factor = 0.05
-				production_factory_efficiency_gain_factor = 0.05
-				line_change_production_efficiency_factor = 0.05
-				production_factory_max_efficiency_factor = 0.05
-				production_speed_buildings_factor = 0.05
+				production_factory_start_efficiency_factor = 0.0
+				production_factory_efficiency_gain_factor = 0.0
+				line_change_production_efficiency_factor = 0.0
+				production_factory_max_efficiency_factor = 0.0
+				production_speed_buildings_factor = 0.0
+                production_cost_industrial_complex_factor = -0.1
 				industrial_capacity_factory = 0.0
-				global_building_slots_factor = 0
+				global_building_slots_factor = 0.5
 				local_resources_factor = 0
 			}
 		}
@@ -87,13 +88,15 @@ ideas = {
 				# PP Cost
 				political_power_gain = -0.75
 
-				production_factory_start_efficiency_factor = 0.05
-				production_factory_efficiency_gain_factor = 0.05
-				line_change_production_efficiency_factor = 0.05
-				production_factory_max_efficiency_factor = 0.1
-				production_speed_buildings_factor = 0.05
+				production_factory_start_efficiency_factor = 0.0
+				production_factory_efficiency_gain_factor = 0.0
+				line_change_production_efficiency_factor = 0.0
+				production_factory_max_efficiency_factor = 0.0
+				production_speed_buildings_factor = 0.0
+                production_cost_arms_factory_factor = -0.1
+                production_cost_industrial_complex_factor = -0.1
 				industrial_capacity_factory = 0.0
-				global_building_slots_factor = 0
+				global_building_slots_factor = 1
 				local_resources_factor = 0
 				
 			}
@@ -112,11 +115,11 @@ ideas = {
 				# PP Cost
 				political_power_gain = -0.5
 
-				production_factory_start_efficiency_factor = 0.05
-				production_factory_efficiency_gain_factor = 0.05
-				line_change_production_efficiency_factor = 0.05
-				production_factory_max_efficiency_factor = 0.05
-				production_speed_buildings_factor = 0.05
+				production_factory_start_efficiency_factor = 0.2
+				production_factory_efficiency_gain_factor = 0.2
+				line_change_production_efficiency_factor = 0.2
+				production_factory_max_efficiency_factor = 0.0
+				production_speed_buildings_factor = 0.0
 				industrial_capacity_factory = 0.0
 				global_building_slots_factor = 0.0
 				local_resources_factor = 0.0
@@ -136,13 +139,13 @@ ideas = {
 				# PP Cost
 				political_power_gain = -0.75
 
-				production_factory_start_efficiency_factor = 0.05
-				production_factory_efficiency_gain_factor = 0.05
-				line_change_production_efficiency_factor = 0.05
-				production_factory_max_efficiency_factor = 0.05
-				production_speed_buildings_factor = 0.15
+				production_factory_start_efficiency_factor = 0.2
+				production_factory_efficiency_gain_factor = 0.2
+				line_change_production_efficiency_factor = 0.2
+				production_factory_max_efficiency_factor = 0.0
+				production_speed_buildings_factor = 0.2
 				industrial_capacity_factory = 0.0
-				global_building_slots_factor = 0.25
+				global_building_slots_factor = 0.0
 				local_resources_factor = 0.0
 			}
 		}
@@ -281,8 +284,8 @@ ideas = {
 				# PP Cost
 				political_power_gain = -0.1
 
-				war_support_factor = 0.05
-				stability_factor = 0.05
+				war_support_factor = 0.1
+				stability_factor = 0.1
 				fascism_drift = 0.1
 			}
 		}
@@ -305,7 +308,7 @@ ideas = {
 				
 				war_support_factor = 0.1
 				stability_factor = 0.1
-				fascism_drift = 0.2
+				fascism_drift = 0.5
 			}
 		}
 
@@ -327,7 +330,7 @@ ideas = {
 				
 				war_support_factor = 0.15
 				stability_factor = 0.15
-				fascism_drift = 0.3
+				fascism_drift = 0.5
 			}
 		}
 
@@ -349,7 +352,7 @@ ideas = {
 
 				war_support_factor = 0.2
 				stability_factor = 0.2
-				fascism_drift = 0.4
+				fascism_drift = 0.5
 			}
 		}
 
@@ -515,8 +518,13 @@ ideas = {
 				# PP Gain
 				political_power_gain = 0.5
 				
-				weekly_manpower = 2500
-				research_speed_factor = 0.05
+				conscription = 0.025
+				political_advisor_cost_factor = -0.5
+				army_chief_cost_factor = -0.5
+				navy_chief_cost_factor = -0.5
+				air_chief_cost_factor = -0.5
+				high_command_cost_factor = -0.5
+				theorist_cost_factor = -0.5
 			}
 		}
 
@@ -534,8 +542,13 @@ ideas = {
 				# PP Gain
 				political_power_gain = 0.75
 
-				weekly_manpower = 5000
-				research_speed_factor = 0.1
+				conscription = 0.05
+				political_advisor_cost_factor = -0.75
+				army_chief_cost_factor = -0.75
+				navy_chief_cost_factor = -0.75
+				air_chief_cost_factor = -0.75
+				high_command_cost_factor = -0.75
+				theorist_cost_factor = -0.75
 			}
 		}
 		
@@ -4094,17 +4107,20 @@ GER_western_trade_cooperation = {
 			}
 
 			visible = {
-				has_completed_focus = GER_employ_philipp_holzmann
+				#has_completed_focus = GER_employ_philipp_holzmann
+                always = no
 			}
 			
 			cost = 150
+            
+            research_bonus = {
+				industry = 0.05
+				synth_resources = 0.15
+			}
 
-			ai_will_do = {
-				base = 1
-				modifier = {
-					factor = 5
-					is_historical_focus_on = yes
-				}
+			modifier = {
+				production_speed_synthetic_refinery_factor = 0.1
+				production_speed_fuel_silo_factor = 0.1
 			}
 
 			#traits = { construction_company }
@@ -4150,43 +4166,43 @@ GER_western_trade_cooperation = {
 			}
 
 			visible = {
-				#AND = {
+				AND = {
 					has_completed_focus = GER_employ_philipp_holzmann
-					#NOT = { has_completed_focus = GER_plenipotentiary_of_armaments }
-				#}
+					NOT = { has_completed_focus = GER_plenipotentiary_of_armaments }
+				}
 			}
 			
 			cost = 150
 
-			#research_bonus = {
-			#	construction_tech = 0.15
-			#}
+			research_bonus = {
+				construction_tech = 0.15
+			}
 			
 			traits = { GER_philipp_holzmann_trait }
 		}
 
-		GER_philipp_holzmann_improved_2 = {
-			name = GER_philipp_holzmann
+		# GER_philipp_holzmann_improved_2 = {
+			# name = GER_philipp_holzmann
 
-			picture = GER_philipp_holzmann
+			# picture = GER_philipp_holzmann
 			
-			allowed = {
-				original_tag = GER
-				has_dlc = "Arms Against Tyranny"
-			}
+			# allowed = {
+				# original_tag = GER
+				# has_dlc = "Arms Against Tyranny"
+			# }
 
-			visible = {
-				has_completed_focus = GER_plenipotentiary_of_armaments
-			}
+			# visible = {
+				# has_completed_focus = GER_plenipotentiary_of_armaments
+			# }
 			
-			cost = 150
+			# cost = 150
 
 			#research_bonus = {
 			#	construction_tech = 0.15
 			#}
 			
-			traits = { GER_philipp_holzmann_trait_improved }
-		}
+			# traits = { GER_philipp_holzmann_trait_improved }
+		# }
 
 
 		GER_organization_todt = {
@@ -4279,10 +4295,14 @@ GER_western_trade_cooperation = {
 			cost = 150
 
 			research_bonus = {
-				excavation_tech = 0.25
+				excavation_tech = 0.5
+			}
+            
+            modifier = {
+                production_speed_synthetic_refinery_factor = 0.1
 			}
 			
-			traits = { conglomerate }
+			#traits = { conglomerate }
 			
 			ai_will_do = { factor = 8 }
 			
@@ -4308,16 +4328,16 @@ GER_western_trade_cooperation = {
 			cost = 100
 
 			research_bonus = {
-				excavation_tech = 0.25
+				excavation_tech = 0.5
 			}
 			
 			modifier = {
-
 				#production_lack_of_resource_penalty_factor = -0.25
+                production_speed_synthetic_refinery_factor = 0.1
+                production_cost_synthetic_refinery_factor = -0.1
 				conversion_cost_civ_to_mil_factor = -0.25
 				conversion_cost_mil_to_civ_factor = -0.25
 				local_resources_factor = 0.1
-				
 			}
 			
 			#traits = { GER_reichswerke_conglomerate }
