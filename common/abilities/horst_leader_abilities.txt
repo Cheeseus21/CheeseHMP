@@ -1,4 +1,33 @@
 ability = {
+	ger_force_attack = {
+		name = ABILITY_FORCE_ATTACK
+		desc = ABILITY_FORCE_ATTACK_DESC
+		
+		sound_effect = command_power_ability_offensive
+		
+		type = army_leader
+		
+		allowed = {
+			is_leading_army_group = no
+			OWNER = { has_completed_focus = GER_strengthen_the_waffen_ss }
+		}
+		
+		cost = 0.22
+		duration = 168
+		
+		one_time_effect = {
+			add_temporary_buff_to_units = {
+				combat_offense  = 0.1
+				combat_breakthrough = 0.1
+				str_damage_multiplier = 1
+				war_support_reduction_on_damage = 0.2
+				
+				days = 7
+				tooltip = ABILITY_LAST_STAND_TOOLTIP
+			}
+		}
+	}
+	
 	last_stand = {
 		name = ABILITY_LAST_STAND
 		desc = ABILITY_LAST_STAND_DESC		
