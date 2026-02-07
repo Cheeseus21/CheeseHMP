@@ -7478,6 +7478,143 @@ propaganda_effortsx = {
             }
         }
     }
+	
+	AXIS_form_reichskommisariat_balkan = {
+        icon = generic_operation
+		
+        allowed = { 
+			OR = {
+				original_tag = HUN
+				original_tag = ROM
+				original_tag = BUL
+			}
+		}
+		
+        available = {
+			custom_trigger_tooltip = {
+				tooltip = AXIS_form_reichskommisariat_balkan_tt
+				count_triggers = {
+					amount = 2
+					HUN = { is_ai = yes country_exists = HUN }
+					ROM = { is_ai = yes country_exists = ROM }
+					BUL = { is_ai = yes country_exists = BUL }
+				}
+			}
+        }
+		
+        visible = { 
+            count_triggers = {
+				amount = 2
+				HUN = { is_ai = yes country_exists = HUN }
+				ROM = { is_ai = yes country_exists = ROM }
+				BUL = { is_ai = yes country_exists = BUL }
+			}
+        }
+		
+        cost = 0
+		
+        fire_only_once = yes
+		
+        complete_effect = {
+            add_to_variable = { paratrooper_div_cap = 6 }
+            set_division_template_cap = {
+                division_template = "Paratroopers"
+                division_cap = paratrooper_div_cap
+            }
+			
+			set_cosmetic_tag = RKC
+            
+            add_research_slot = 1
+            
+			if = {
+				limit = {
+					HUN = { 
+						is_ai = yes
+					}
+				}
+				annex_country = {
+					target = HUN
+					transfer_troops = yes
+				}
+			}
+			
+			if = {
+				limit = {
+					ROM = { 
+						is_ai = yes
+					}
+				}
+				annex_country = {
+					target = ROM
+					transfer_troops = yes
+				}
+			}
+			
+			if = {
+				limit = {
+					BUL = { 
+						is_ai = yes
+					}
+				}
+				annex_country = {
+					target = BUL
+					transfer_troops = yes
+				}
+			}
+            
+            hidden_effect = {
+                fuel_system_refresh_list = yes
+				
+				every_state = {
+                    limit = { 
+						OR = {
+							is_core_of = HUN 
+							is_core_of = ROM 
+							is_core_of = BUL
+						}
+					}
+                    add_core_of = ROOT
+                }
+                
+                add_resource = {
+                    type = steel
+                    amount = 30
+                    state = 43
+                }
+                add_resource = {
+                    type = steel
+                    amount = 30
+                    state = 48
+                }
+                add_resource = {
+                    type = tungsten
+                    amount = 20
+                    state = 82
+                }
+                add_resource = {
+                    type = oil
+                    amount = 12
+                    state = 46
+                }
+
+                if = {
+                    limit = {
+                        AND = {
+                            EFR = { owns_state = 26 }
+                            NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+                        }
+                    }
+                    EFR = {
+                        every_owned_state = {
+                            limit = { NOT = { has_state_flag = keep_milled } }
+                            set_demilitarized_zone = yes
+                        }
+                        26 = { set_demilitarized_zone = no }
+                    }
+                }
+            }
+        }
+    }
 
 	
     GER_annex_hungary = {
@@ -8420,6 +8557,143 @@ propaganda_effortsx = {
 				hidden_effect = { finish_french_colony_focuses = yes   fuel_system_refresh_list = yes}
 				}	
 		}
+		
+		ALLIES_form_seac = {
+            icon = generic_operation
+
+            allowed = {
+                OR = {
+					original_tag = RAJ
+					original_tag = AST
+				}
+            }
+			
+            available = {
+				custom_trigger_tooltip = {
+					tooltip = AXIS_form_reichskommisariat_balkan_tt
+					count_triggers = {
+						amount = 2
+						RAJ = { is_ai = yes country_exists = HUN }
+						HOL = { is_ai = yes country_exists = ROM }
+						AST = { is_ai = yes country_exists = BUL }
+					}
+				}
+            }
+
+            visible = {
+				count_triggers = {
+					amount = 2
+					RAJ = { is_ai = yes country_exists = HUN }
+					HOL = { is_ai = yes country_exists = ROM }
+					AST = { is_ai = yes country_exists = BUL }
+				}
+			}
+			
+            fire_only_once = yes
+			
+            cost = 0
+
+            complete_effect = {
+                add_to_variable = { paratrooper_div_cap = 6 }
+                set_division_template_cap = { division_template = "Paratroopers" division_cap = paratrooper_div_cap }
+				
+				set_cosmetic_tag = SEAC
+                
+                add_research_slot = 1
+
+                if = {
+					limit = {
+						RAJ = { 
+							is_ai = yes
+						}
+					}
+					annex_country = {
+						target = RAJ
+						transfer_troops = yes
+					}
+				}
+				
+				if = {
+					limit = {
+						AST = { 
+							is_ai = yes
+						}
+					}
+					annex_country = {
+						target = AST
+						transfer_troops = yes
+					}
+				}
+				
+				if = {
+					limit = {
+						HOL = { 
+							is_ai = yes
+						}
+					}
+					transfer_state = 581
+					transfer_state = 321
+					transfer_state = 335
+					transfer_state = 334
+					transfer_state = 342
+					transfer_state = 575
+					transfer_state = 562
+					transfer_state = 516
+					transfer_state = 322
+					transfer_state = 317
+				}
+
+                hidden_effect = {
+                    fuel_system_refresh_list = yes
+                    
+                    set_global_flag = seac_formed
+					
+					every_state = {
+						limit = { 
+							OR = {
+								is_core_of = RAJ 
+								is_core_of = AST 
+							}
+						}
+						add_core_of = ROOT
+					}
+					
+					every_state = {
+						limit = {
+							OR = {
+                                state = 581
+                                state = 321
+                                state = 335
+                                state = 334
+                                state = 342
+                                state = 575
+                                state = 562
+                                state = 516
+                                state = 322
+                                state = 317
+                            }
+						}
+						add_core_of = ROOT
+					}
+					
+                    if = {
+                        limit = {
+                            AND = {
+                                EFR = { owns_state = 26 }
+                                NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+                            }
+                        }
+                        EFR = {
+                            every_owned_state = {
+                                limit = { NOT = { has_state_flag = keep_milled } }
+                                set_demilitarized_zone = yes
+                            }
+                            26 = { set_demilitarized_zone = no }
+                        }
+                    }
+                }
+            }
+        }
 
 		ENG_annex_POL = {
             icon = generic_operation
