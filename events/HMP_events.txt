@@ -6461,6 +6461,124 @@ country_event = {
 add_namespace = germany
 add_namespace = ger_heavy
 
+### Oster Conspiracy
+
+# Conspiracy successful, Civil War begins
+country_event = {
+	id = germany.73
+	title = germany.73.t
+	desc = germany.73.d
+	picture = GFX_report_event_german_reichstag_bombed
+
+	is_triggered_only = yes
+
+	option = { # Side with the Rebels
+		name = germany.73.a
+		trigger = { is_ai = no }
+
+		set_country_flag = german_rebels
+
+		kill_country_leader = yes
+
+		GER_wilhelm_iv = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = nazism
+					expire = "1965.1.1.1"
+					traits = { GER_wilhelm_last_hope }
+				}
+			}
+		}
+
+		#hidden_effect = {
+		#	news_event = { hours = 6 id = news.31 }
+		#}
+
+	}
+
+	option = { # Side with Himmler
+		name = germany.73.b
+		# Himmler becomes the new Fascist leader of Germany
+		kill_country_leader = yes
+
+		GER_heinrich_himmler = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = nazism
+					expire = "1965.1.1.1"
+					traits = { GER_himmler_last_hope }
+				}
+			}
+		}
+
+		#Manage Inner Circle
+		hidden_effect = {
+			GER_remove_himmler_effects = yes
+		}
+		
+		#hidden_effect = {
+		#	news_event = { hours = 6 id = news.31 }
+		#}
+
+	}
+
+	option = { # Side with Göring
+		name = germany.73.c
+
+		# Göring becomes the new Fascist leader of Germany
+		kill_country_leader = yes
+
+		GER_hermann_goring = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = nazism
+					expire = "1965.1.1.1"
+					traits = { GER_goring_last_hope }
+				}
+			}
+		}
+
+		#Manage Inner Circle
+		hidden_effect = {
+			GER_remove_goring_effects = yes
+			GER_replace_goring_as_prevailing_industrialist = yes
+		}
+
+		#hidden_effect = {
+		#	news_event = { hours = 6 id = news.31 }
+		#}
+
+	}
+
+	option = { # Side with Braun
+		name = germany.73.e
+
+		# Braun becomes the new Fascist leader of Germany
+		kill_country_leader = yes
+
+		GER_eva_braun = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = nazism
+					expire = "1965.1.1.1"
+					traits = { GER_iron_maiden }
+				}
+			}
+		}
+
+		#hidden_effect = {
+		#	news_event = { hours = 6 id = news.31 }
+		#}
+
+	}
+
+}
+
+################################################
 
 country_event = {
 	id = ger_heavy.1

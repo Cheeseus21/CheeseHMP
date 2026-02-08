@@ -1043,7 +1043,7 @@ focus_tree = {
 		icon = GFX_focus_generic_combined_arms
 		prerequisite = { focus = GER_the_four_year_plan }
 
-		x = 7
+		x = 8
 		y = 1
 		relative_position_id = GER_the_four_year_plan
 		cost = 5
@@ -4918,7 +4918,7 @@ focus = {
 		alternate_icon = GFX_focus_GER_remilitarize_the_rhineland_historical
 
 
-		x = 22
+		x = 24
 		y = 0
 		relative_position_id = GER_the_four_year_plan
 
@@ -5637,7 +5637,6 @@ focus = {
 
 		completion_reward = {
 			add_political_power = 50
-			add_war_support = 0.05
 			#add_research_slot = 1
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -6471,363 +6470,221 @@ focus = {
 		icon = GFX_GER_hitlers_meddling
 
 		available = {
-		custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
-		OR ={  
-			has_country_flag = blau_failed
-			NOT = { controls_state = 16 } 
-			NOT = { controls_state = 6 }
-			NOT = { controls_state = 7 }
-			surrender_progress > 0.2 
-			AND = { 
-			ROM = { surrender_progress > 0.2 }
-			country_exists = ROM
-			}
-			has_global_flag = ITA_cap 
+            custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+            OR = {  
+                custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+                OR = {  
+                    has_country_flag = blau_failed
+                    NOT = { controls_state = 16 } 
+                    NOT = { controls_state = 6 }
+                    NOT = { controls_state = 7 }
+                    surrender_progress > 0.2 
+                    AND = { 
+                        ROM = { surrender_progress > 0.2 }
+                        country_exists = ROM
+                    }
+                    has_global_flag = ITA_cap 
+                }
 			}
 			has_war_with = SOV
 			controls_province = 6521
 		}
 		 
 		prerequisite = { focus = GER_totaler_krieg }
-		x = 5
+		mutually_exclusive = { focus = GER_oster_conspiracy }
+		
+		x = 4
 		y = 1
+		
 		relative_position_id = GER_totaler_krieg
+		
 		cost = 1
 		
-	completion_reward = {
-        custom_effect_tooltip = endsieg_tt 
-        
-        custom_effect_tooltip = generic_skip_one_line_tt
-        
-        hidden_effect = { delete_unit_template_and_units = { division_template = "Endsieg Infanterie" } load_oob = "GER_army2" }
-        
-        add_timed_idea = {
-            idea = endsieg
-            days = 365
-        } 
-        
-        custom_effect_tooltip = generic_skip_one_line_tt
-        
-        if = { limit = { country_exists = HUN }    
-			HUN = { add_dynamic_modifier  = { modifier =  GER_war_exhaustion } }
-		}
-		if = { limit = { country_exists = CZE }    
-			CZE = { add_dynamic_modifier  = { modifier =  GER_war_exhaustion } }
+		completion_reward = {
+			custom_effect_tooltip = endsieg_tt 
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			hidden_effect = { delete_unit_template_and_units = { division_template = "Endsieg Infanterie" } load_oob = "GER_army2" }
+			
+			add_timed_idea = {
+				idea = endsieg
+				days = 365
+			} 
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = { limit = { country_exists = HUN }    
+				HUN = { add_dynamic_modifier  = { modifier =  GER_war_exhaustion } }
+			}
+			if = { limit = { country_exists = CZE }    
+				CZE = { add_dynamic_modifier  = { modifier =  GER_war_exhaustion } }
+			}	
+			
+			add_to_variable = { germany_war_army_core_attack_factor = 0.1	} 
+			add_to_variable = { germany_war_army_core_defence_factor = 0.1	} 
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			64 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					set_building_level = {
+						type = bunker
+						level = 8
+						province = 6521
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 3499
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 9456
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 11444
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 11505
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 9428
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 478
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 11415
+					}
+					set_building_level = {
+						type = bunker
+						level = 4
+						province = 9496
+					}
+				}
+			}
 		}	
-        
-        add_to_variable = { germany_war_army_core_attack_factor = 0.1	} 
-        add_to_variable = { germany_war_army_core_defence_factor = 0.1	} 
-        
-        custom_effect_tooltip = generic_skip_one_line_tt
-        
-        64 = {
-            if = {
-                limit = { is_controlled_by = ROOT }
-                set_building_level = {
-                    type = bunker
-                    level = 8
-                    province = 6521
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 6
-                    province = 3499
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 6
-                    province = 9456
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 6
-                    province = 11444
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 6
-                    province = 11505
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 6
-                    province = 9428
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 6
-                    province = 478
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 6
-                    province = 11415
-                }
-                set_building_level = {
-                    type = bunker
-                    level = 4
-                    province = 9496
-                }
-            }
-        }
-        
-        # hidden_effect = {
-            # 7 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 3211
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 391
-                    # }
-                # }
-            # }
+	}
+	
+	focus = { 
+		id = GER_oster_conspiracy
+		icon = GFX_focus_generic_anti_fascist_diplomacy
 
-            # 36 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6241
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 9363
-                    # }
-                # }
-            # }
+		available = {
+            custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+            OR = {  
+                custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }
+                OR = {  
+                    has_country_flag = blau_failed
+                    NOT = { controls_state = 16 } 
+                    NOT = { controls_state = 6 }
+                    NOT = { controls_state = 7 }
+                    surrender_progress > 0.2 
+                    AND = { 
+                        ROM = { surrender_progress > 0.2 }
+                        country_exists = ROM
+                    }
+                    has_global_flag = ITA_cap 
+                }
+			}
+			has_war_with = SOV
+			controls_province = 6521
+		}
+        
+		prerequisite = { focus = GER_totaler_krieg }
+		mutually_exclusive = { focus = GER_the_great_turn }
+		
+		x = 6
+		y = 1
+		
+		relative_position_id = GER_totaler_krieg
+		
+		cost = 1
+		
+		completion_reward = {
+            add_stability = -0.3
             
-            # 51 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 3512
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6469
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6570
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 529
-                    # }
-                # }
-
-            # }
-            # 55 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6444
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6488
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 589
-                    # }
-                # }
-
-            # }
-            # 50 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6568
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 3530
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6542
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6712
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 11640
-                    # }
-                # }
-
-            # }
-            # 64 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 8
-                        # province = 6521
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 6
-                        # province = 3499
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 6
-                        # province = 9456
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 6
-                        # province = 11444
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 6
-                        # province = 11505
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 6
-                        # province = 9428
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 6
-                        # province = 478
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 6
-                        # province = 11415
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 9496
-                    # }
-                # }
-            # }
-            # 65 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6441
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 514
-                    # }
-                # }
-
-            # }
-
-            # 63 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6282
-                    # }
-                # }
-
-            # }
-
-            # 62 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 3207
-                    # }
-                # }
-
-            # }
-
-            # 68 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 3572
-                    # }
-                # }
-
-            # }
-
-            # 66 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 3438
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6595
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 552
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 9570
-                    # }
-                # }
-
-            # }
-
-            # 67 = {
-                # if = {
-                    # limit = { is_controlled_by = ROOT }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 6512
-                    # }
-                    # set_building_level = {
-                        # type = bunker
-                        # level = 4
-                        # province = 9457
-                    # }
-                # }
-            # }
-        # }
+            custom_effect_tooltip = generic_skip_one_line_tt
+        
+			country_event = germany.73
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = { limit = { country_exists = HUN }    
+				HUN = { add_dynamic_modifier  = { modifier =  GER_war_exhaustion } }
+			}
+			if = { limit = { country_exists = CZE }    
+				CZE = { add_dynamic_modifier  = { modifier =  GER_war_exhaustion } }
+			}	
+			
+			add_to_variable = { germany_war_army_core_attack_factor = 0.1	} 
+			add_to_variable = { germany_war_army_core_defence_factor = 0.1	} 
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			64 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					set_building_level = {
+						type = bunker
+						level = 8
+						province = 6521
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 3499
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 9456
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 11444
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 11505
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 9428
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 478
+					}
+					set_building_level = {
+						type = bunker
+						level = 6
+						province = 11415
+					}
+					set_building_level = {
+						type = bunker
+						level = 4
+						province = 9496
+					}
+				}
+			}
 		}	
 	}
 	
@@ -6838,8 +6695,8 @@ focus = {
 		id = GER_festungdesdeutschenvaterland
 		icon = GFX_fortify 
 
-		prerequisite = { focus = GER_the_great_turn }
-		x = 1
+		prerequisite = { focus = GER_the_great_turn  focus = GER_oster_conspiracy }
+		x = 2
 		y = 1
 		relative_position_id = GER_the_great_turn
 		cost = 1
@@ -7021,8 +6878,8 @@ focus = {
 	focus = {
 		id = GER_festungberlin
 		icon = GFX_battle_of_berlin_1
-		prerequisite = { focus = GER_the_great_turn }
-		x = -1
+		prerequisite = { focus = GER_the_great_turn focus = GER_oster_conspiracy }
+		x = 0
 		y = 1
 		relative_position_id = GER_the_great_turn
 		cost = 1
@@ -10657,14 +10514,14 @@ focus = {
         
 		mutually_exclusive = { focus = GER_loyalty_to_the_fuhrer }
         
-		x = -2
+		x = -1
 		y = 5
         
 		relative_position_id = GER_fuhrerprinzip
         
 		cost = 5
         
-		allow_branch = { always = no } #we might revisit this -Thrasy
+		#allow_branch = { always = no } #we might revisit this -Thrasy
 
 		available = {
 			has_government = fascism
@@ -10731,7 +10588,7 @@ focus = {
 		icon = GFX_focus_GER_loyalty_to_the_fuhrer
 		prerequisite = { focus = GER_hegemony_of_the_ss focus = GER_wunderwaffe focus = GER_integration_of_puppet_economies focus = GER_propaganda_master focus = GER_total_control_over_domestic_affairs }
 		mutually_exclusive = { focus = GER_a_strong_successor }
-		x = 0
+		x = 1
 		y = 5
 		relative_position_id = GER_fuhrerprinzip
 		cost = 5
