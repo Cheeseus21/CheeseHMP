@@ -1518,32 +1518,60 @@ focus_tree = {
     
     focus = {
 		id = ENG_compass
-		
-		available = {always = no}
-		
-		continue_if_invalid = yes
-		
 		icon = GFX_focus_chi_british_cooperation
-		
 		x = -3
 		y = 1
-		
 		relative_position_id = ENG_churchill_takes_command
-		
 		cost = 0.2
-		
+
 		prerequisite = { focus = ENG_churchill_takes_command }
 
-		search_filters = {FOCUS_FILTER_RESEARCH}
+		available = { always = no }
+		
+		continue_if_invalid = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
 		
 		completion_reward = { 
-			every_country = { limit = { OR = { is_in_faction_with = ENG tag = NOR } NOT = { tag = USA  }  }   add_ideas = ENG_operation_compass }
-			hidden_effect = { 280 = {add_dynamic_modifier = {	scope = ENG modifier = GRE_Atlantean_defenses }  }  280 = {add_dynamic_modifier = {	scope = GRE modifier = GRE_Atlantean_defenses }  }  HOL = { add_ideas = anti_compass } POL ={ add_ideas = anti_compass }NOR = { add_ideas = anti_compass } FRA = { add_ideas = anti_compass }
-			if = { limit = { POL = { is_ai = yes } } PER = { transfer_state = 582 country_event = { id = mtg_britain.3365 days = 7 }  } }
-			else = { 582 = { add_building_construction = { type = arms_factory level = 8 instant_build = yes}}}
-			GER ={ add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 40000 producer = GER }  } 
-			every_state = { limit = { HMP_italy_debuff_wall = yes } add_dynamic_modifier = { scope = ITA modifier = ITA_italian_railways_modifier2 }    } 
-			every_state = { limit = { OR ={ state = 184 state = 186 state = 47 state = 486 state = 185   } } remove_dynamic_modifier = {  modifier = ITA_italian_railways_modifier2 }    } 
+			every_country = { 
+				limit = { 
+					OR = { 
+						is_in_faction_with = ENG 
+						tag = NOR 
+					} 
+					NOT = { tag = USA } 
+				} 
+				add_ideas = ENG_operation_compass 
+			}
+
+			hidden_effect = { 
+				280 = {
+					add_dynamic_modifier = { scope = ENG modifier = GRE_Atlantean_defenses } 
+				} 
+				280 = {
+					add_dynamic_modifier = { scope = GRE modifier = GRE_Atlantean_defenses } 
+				} 
+				
+				HOL = { add_ideas = anti_compass } 
+				POL = { add_ideas = anti_compass }
+				NOR = { add_ideas = anti_compass } 
+				FRA = { add_ideas = anti_compass }
+
+				if = { 
+					limit = { POL = { is_ai = yes } } 
+					PER = { 
+						transfer_state = 582 
+						country_event = { id = mtg_britain.3365 days = 7 } 
+					} 
+				}
+				else = { 
+					582 = { 
+						add_building_construction = { type = arms_factory level = 8 instant_build = yes }
+					}
+				}
+
+				GER = { 
+					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 40000 producer = GER } 
+				} 
 			}
 		}
 	}
