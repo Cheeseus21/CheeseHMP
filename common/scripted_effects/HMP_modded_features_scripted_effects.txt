@@ -3401,6 +3401,57 @@ HMP_distribute_civs_to_cores_effect = {
 HMP_startup_on_actions = {
 
 	if = { 
+		limit = { 
+			has_game_rule = { rule = level_20_airports option = enable_level_20_airports }
+		} 
+		every_country = { 
+			limit = { 
+				NOT = { has_tech = sov_air } 
+			} 
+			set_technology = { sov_air = 1 popup = yes }			
+		}
+	}
+	else = {
+		ITA = {
+			add_political_power = 1
+		}
+	}
+
+	if = { 
+		limit = { 
+			has_game_rule = { rule = horst_africa option = horst_small_africa }
+		} 
+		SWE = {
+			transfer_state = 397
+			transfer_state = 515
+			transfer_state = 606
+			transfer_state = 279
+			transfer_state = 602
+			transfer_state = 410
+			transfer_state = 424
+			transfer_state = 685
+		}
+	}
+	else_if = { 
+		limit = { 
+			has_game_rule = { rule = horst_africa option = horst_large_africa }
+		} 
+		ITA = {
+			transfer_state = 683
+		}
+		ENG = {
+			transfer_state = 686
+			transfer_state = 682
+			transfer_state = 442
+		}
+	}
+	else = {
+		ENG = {
+			add_political_power = 1
+		}
+	}
+
+	if = { 
         limit = { 
             has_global_flag = europe_only_start_date_flag 
         } 
