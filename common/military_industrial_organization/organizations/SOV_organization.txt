@@ -974,14 +974,53 @@ SOV_sevastopol_marine_plant_organization = {
 ##        ##       ##     ## ##   ### ##       ##    ## 
 ##        ######## ##     ## ##    ## ########  ######  
 
+SOV_horst_plane_organization = {
+	include = generic_horst_plane_organization
+	icon = GFX_idea_SOV_military_industrial_complex
+	
+	allowed = {	
+		original_tag = SOV
+	}
+	
+
+	available = {
+
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_planes
+		name = SOV_mio_trait_merge_planes
+		icon = GFX_generic_mio_trait_icon_build_cost_ic
+		special_trait_background = yes
+
+		position = { x=9 y=2 }
+		
+		visible = {
+			FROM = { original_tag = SOV }
+		}
+
+		available = {
+			FROM = {
+				has_completed_focus = SOV_merge_aircraft_plants
+			}
+		}
+
+		on_complete = {
+
+		}
+
+		equipment_bonus = {
+			build_cost_ic = -0.1
+		}
+	}
+}
+
 SOV_mig_design_bureau_organization = {
 	include = generic_light_aircraft_organization
 	icon = GFX_idea_mig_design_bureau
 	
 	allowed = {	
-		OR = {
-			tag = SOV
-		}
+		always = no
 	}
 	
 
@@ -1087,7 +1126,7 @@ SOV_ilyushin_design_bureau_organization = {
 	icon = GFX_idea_ilyushin_design_bureau
 	
 	allowed = {	
-			tag = SOV 
+		always = no
 	}
 	
 	add_trait = { 
@@ -1182,7 +1221,7 @@ SOV_ilyushin_design_bureau_organization_cas = {
 	icon = GFX_idea_ilyushin_design_bureau
 	
 	allowed = {	
-			tag = SOV 
+		always = no
 	}
 	
 	add_trait = { 
@@ -1276,7 +1315,7 @@ SOV_yakovlev_design_bureau_organization = {
 	icon = GFX_idea_yakovlev_design_bureau
 	
 	allowed = {	
-		original_tag = SOV
+		always = no
 	}
 
 	add_trait = { 
@@ -1370,7 +1409,7 @@ SOV_tupolev_design_bureau_organization = {
 	include = generic_heavy_aircraft_organization
 	icon = GFX_idea_tupolev_design_bureau
 	allowed = {	
-		original_tag = SOV
+		always = no
 	}
 
 	tree_header_text = {
