@@ -7373,12 +7373,17 @@ focus = {
 
 		completion_reward = {
 			custom_effect_tooltip = GER_decision_focus_tt
+			
 			if = {
 				limit = {
-					SOV = { NOT = { has_completed_focus = SOV_the_permanent_revolution } }
+					SOV = { has_completed_focus = SOV_the_builder_of_the_red_army }
 				}
-				else = {
-					SOV = { add_dynamic_modifier = { modifier = SOV_war_exhaustion } }
+				SOV = {
+					custom_effect_tooltip = generic_skip_one_line_tt
+				
+					add_timed_idea = { idea = trotsky_organization_buff  days = 150 }
+					
+					add_ideas = trotsky_war_support_nerf
 				}
 			}
 
@@ -10661,10 +10666,83 @@ focus = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-		add_timed_idea = { idea = GER_steiner_idea days = 30 } 	
+			add_timed_idea = { idea = GER_steiner_idea days = 30 } 	
 			custom_effect_tooltip = steiner_tt 
 			hidden_effect = {
-			load_oob = "GER_steiner_army"
+				division_template = {
+					name = "SS Steiner Panzer-Division"
+					division_names_group = GER_STEINER_01
+					
+					regiments = {
+						mechanized = { x = 0 y = 0 }
+						mechanized = { x = 0 y = 1 }
+						mechanized = { x = 0 y = 2 }
+						mechanized = { x = 0 y = 3 }
+						
+						mechanized = { x = 1 y = 0 }
+						mechanized = { x = 1 y = 1 }
+						mechanized = { x = 1 y = 2 }
+						mechanized = { x = 1 y = 3 }
+						
+						medium_armor = { x = 2 y = 0 }
+						medium_armor = { x = 2 y = 1 }
+						medium_armor = { x = 2 y = 2 }
+						medium_armor = { x = 2 y = 3 }
+						medium_armor = { x = 3 y = 0 }
+						medium_armor = { x = 3 y = 1 }
+						medium_armor = { x = 3 y = 2 }
+						medium_armor = { x = 3 y = 3 }
+						medium_armor = { x = 4 y = 0 }
+						medium_armor = { x = 4 y = 1 }
+						medium_armor = { x = 4 y = 2 }
+						medium_sp_anti_air_brigade = { x = 4 y = 3 }
+
+					}
+					
+					support = {
+						medium_flame_tank = { x = 0 y = 0 }
+						light_tank_recon = { x = 0 y = 1 } 
+						logistics_company = { x = 0 y = 2 } 
+						maintenance_company = { x = 0 y = 3 }
+						motorized_rocket_sup  = { x = 0 y = 4 } 
+						medium_sp_artillery = { x = 0 y = 5 }
+					}
+				}
+				
+				capital_scope = {
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"11. SS-Freiwilligen-Panzergrenadier-Division Nordland\" division_template = \"SS Steiner Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0"
+						owner = ROOT
+					}
+				}
 			}
 		}
 	
