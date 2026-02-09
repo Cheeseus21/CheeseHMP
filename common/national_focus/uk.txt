@@ -3130,29 +3130,14 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {	
-            create_equipment_variant = {
-                name = "Matilda II"
-                type = medium_tank_chassis_2
-                parent_version = 0
-                modules = {
-                    main_armament_slot=tank_medium_cannon_2
-                    special_type_slot_1=stabilizer
-                    special_type_slot_2=squeezebore_adaptor
-                    special_type_slot_3=tank_radio_2
-                    special_type_slot_4=secondary_turret_hmg
-                    turret_type_slot=tank_medium_one_man_tank_turret
-                    suspension_type_slot=tank_horstmann_suspension_M
-                    engine_type_slot=tank_gasoline_engine
-                    armor_type_slot=tank_welded_armor
-                    armor_shape_slot=flat_armor
-                }
-                upgrades = {
-                    tank_nsb_engine_upgrade = 11
-                    tank_nsb_armor_upgrade_medium = 0
-                }
-            }
-            
-            add_equipment_to_stockpile = { type = medium_tank_chassis amount = 500 variant_name = "Matilda II" }
+            every_military_industrial_organization = {
+				limit = {
+					OR = {
+						is_military_industrial_organization = ENG_tank_organization
+					}
+				}
+				complete_mio_trait = generic_horst_england_trait_1
+			}
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -3205,22 +3190,14 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {	
-            create_equipment_variant = {
-                name = "Bren Carrier"
-                type = mech_chassis_0
-                parent_version = 0
-                modules = {
-                    special_type_slot_1 = mech_engineer
-                    special_type_slot_2 = mech_machine_gun
-                    suspension_type_slot = mech_half_hydropneumatic_suspension
-                    engine_type_slot = tank_gasoline_engine_L
-                    armor_type_slot = mech_riveted_armor
-                }
-            }
-        
-		    add_equipment_to_stockpile = { type = mech_chassis amount = 750 variant_name = "Bren Carrier" }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
+			every_military_industrial_organization = {
+				limit = {
+					OR = {
+						is_military_industrial_organization = ENG_motorized_mechanized_organization
+					}
+				}
+				complete_mio_trait = generic_horst_england_trait_3
+			}
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -3328,28 +3305,14 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {	
-		    create_equipment_variant = {
-                name = "Churchill Mk 1."
-                type = heavy_tank_chassis_1
-                parent_version = 0
-                modules = {
-                    main_armament_slot = tank_heavy_cannon
-                    turret_type_slot = tank_heavy_two_man_tank_turret
-                    suspension_type_slot = tank_bogie_suspension_H
-                    armor_type_slot = tank_cast_armor
-                    engine_type_slot = tank_gasoline_engine_H
-                    special_type_slot_1 = tank_radio_2
-                    special_type_slot_2 = secondary_turret_small_cannon
-                    special_type_slot_3 = additional_machine_guns
-                    special_type_slot_4 = wet_ammo_storage
-                }
-                upgrades = {
-                    tank_nsb_engine_upgrade = 6
-                    tank_nsb_armor_upgrade = 11
-                }
-            }
-            
-            add_equipment_to_stockpile = { type = heavy_tank_chassis_1 amount = 500 variant_name = "Churchill Mk 1."  }
+		    every_military_industrial_organization = {
+				limit = {
+					OR = {
+						is_military_industrial_organization = ENG_tank_organization
+					}
+				}
+				complete_mio_trait = generic_horst_england_trait_2
+			}
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
