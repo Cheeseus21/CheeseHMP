@@ -7775,6 +7775,8 @@ propaganda_effortsx = {
             hidden_effect = {
                 fuel_system_refresh_list = yes
 				
+				set_global_flag = BALKAN_FORMED
+				
 				every_state = {
                     limit = { 
 						OR = {
@@ -8464,6 +8466,80 @@ propaganda_effortsx = {
             
             annex_country = {
                 target = SAF
+                transfer_troops = yes
+            }
+            
+            set_global_flag = CANSAF_annex
+            
+            hidden_effect = { ENG = { fuel_system_refresh_list = yes } }
+            if = {
+                limit = {
+                    AND = {
+                        EFR = { owns_state = 26 }
+                        NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+                    }
+                }
+                EFR = {
+                    every_owned_state = {
+                        limit = { NOT = { has_state_flag = keep_milled } }
+                        set_demilitarized_zone = yes
+                    }
+                    26 = { set_demilitarized_zone = no }
+                }
+            }
+        }
+    }
+	
+	SAF_annex_can = {
+        icon = generic_operation
+		
+        allowed = { original_tag = SAF }
+		
+		targets = { CAN }
+		
+        available = {
+            OR = {
+                CAN = { is_ai = yes }
+                has_country_flag = annex_manual_override
+            }
+        }
+		
+        cost = 0
+		
+        fire_only_once = yes
+		
+        visible = {
+            country_exists = CAN
+			OR = { 
+				CAN = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
+			}
+        }
+		
+        complete_effect = {
+            set_cosmetic_tag = CAN_ATLANTIC_DEMOCRATIC
+            
+            add_ideas = SPR_vol_can2
+            
+            hidden_effect = {
+                SAF = {
+                    complete_national_focus = CAN_mine_the_shield
+                    complete_national_focus = CAN_DOSCO
+                }
+            }
+            
+            every_state = {
+                limit = { is_core_of = CAN }
+                add_core_of = ROOT
+            }
+            
+            add_to_variable = { paratrooper_div_cap = 2 }
+            set_division_template_cap = { division_template = "Paratroopers" division_cap = paratrooper_div_cap }
+            
+            annex_country = {
+                target = CAN
                 transfer_troops = yes
             }
             
