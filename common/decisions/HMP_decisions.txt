@@ -7808,6 +7808,15 @@ propaganda_effortsx = {
                     amount = 12
                     state = 46
                 }
+                
+                if = {
+                    limit = {
+                        NOT = {
+                            original_tag = ROM
+                        }
+                    }
+                    give_resource_rights = { receiver = GER state = 46 }
+                }
 
                 if = {
                     limit = {
@@ -7828,27 +7837,66 @@ propaganda_effortsx = {
         }
     }
 
-	
+    GER_annex_slovakia = {
+        icon = generic_operation
+        
+        allowed = { original_tag = GER }
+        
+        available = { 
+            GER = { has_completed_focus = GER_fate_of_czechoslovakia }
+            CZE = { OR = { is_ai = yes has_country_flag = annex_manual_override } }
+        }
+        
+        visible = {
+			country_exists = CZE
+            CZE = { 
+                is_ai = yes 
+            } 
+        }
+        
+        cost = 0
+        
+        fire_only_once = yes
+        
+        complete_effect = {
+            add_to_variable = { paratrooper_div_cap = 2 }
+            set_division_template_cap = {
+                division_template = "Paratroopers"
+                division_cap = paratrooper_div_cap
+            }
+            
+            annex_country = {
+                target = CZE
+                transfer_troops = yes
+            }
+            
+            hidden_effect = { fuel_system_refresh_list = yes }
+        }
+    }
+    
     GER_annex_hungary = {
         icon = generic_operation
+        
         allowed = { original_tag = GER }
+        
         available = {
             OR = {
                 HUN = { is_ai = yes is_in_faction_with = GER }
                 has_country_flag = annex_manual_override
             }
         }
+        
         visible = { 
             country_exists = HUN 
-            OR = { 
-				HUN = { 
-					is_ai = yes 
-				} 
-				has_country_flag = annex_manual_override 
-			}
+            HUN = { 
+                is_ai = yes 
+            } 
         }
+        
         cost = 0
+        
         fire_only_once = yes
+        
         complete_effect = {
             add_to_variable = { paratrooper_div_cap = 2 }
             set_division_template_cap = {
@@ -7856,21 +7904,55 @@ propaganda_effortsx = {
                 division_cap = paratrooper_div_cap
             }
             
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
             annex_country = {
                 target = HUN
                 transfer_troops = yes
             }
             
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
+            if = {
+                limit = { date > 1939.1.1 date < 1939.9.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.06
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1938.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.045
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1937.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.03
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else = {
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.015
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            
             hidden_effect = {
                 fuel_system_refresh_list = yes
                 
-                if = {
-                    limit = { NOT = { HUN = { has_completed_focus = wuw_HUN_manred_weiss_steel_and_metal_works } } }
-                    43 = { add_resource = { type = steel amount = 30 } }
-                }
-                if = {
-                    limit = { NOT = { HUN = { has_completed_focus = wuw_HUN_expand_the_aluminum_industry } } }
-                    43 = { add_resource = { type = steel amount = 20 } }
+                43 = { 
+                    add_resource = { 
+                        type = steel 
+                        amount = 50 
+                    } 
                 }
                 
                 if = {
@@ -7892,62 +7974,32 @@ propaganda_effortsx = {
         }
     }
 
-	
-    GER_annex_slovakia = {
-        icon = generic_operation
-        allowed = { original_tag = GER }
-        available = { 
-            GER = { has_completed_focus = GER_fate_of_czechoslovakia }
-            CZE = { OR = { is_ai = yes has_country_flag = annex_manual_override } }
-        }
-        visible = {
-			country_exists = CZE
-            OR = { 
-				EFR = { 
-					is_ai = yes 
-				} 
-				has_country_flag = annex_manual_override 
-			}
-        }
-        cost = 0
-        fire_only_once = yes
-        complete_effect = {
-            add_to_variable = { paratrooper_div_cap = 2 }
-            set_division_template_cap = {
-                division_template = "Paratroopers"
-                division_cap = paratrooper_div_cap
-            }
-            annex_country = {
-                target = CZE
-                transfer_troops = yes
-            }
-            hidden_effect = { fuel_system_refresh_list = yes }
-        }
-    }
-
     
-    ITA_annex_romania = {
+    GER_annex_romania = {
         icon = generic_operation
+        
         allowed = {
             original_tag = GER
         }
+        
         available = {
             OR = {
                 ROM = { is_ai = yes }
                 has_country_flag = annex_manual_override
             }
         }
+        
         visible = {
             country_exists = ROM
-            OR = { 
-				ROM = { 
-					is_ai = yes 
-				} 
-				has_country_flag = annex_manual_override 
-			}
+            ROM = { 
+                is_ai = yes 
+            } 
         }
+        
         cost = 0
+        
         fire_only_once = yes
+        
         complete_effect = {
             add_to_variable = { paratrooper_div_cap = 2 }
             set_division_template_cap = {
@@ -7955,9 +8007,45 @@ propaganda_effortsx = {
                 division_cap = paratrooper_div_cap
             }
             
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
             annex_country = {
                 target = ROM
                 transfer_troops = yes
+            }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
+            if = {
+                limit = { date > 1939.1.1 date < 1939.9.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.06
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1938.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.045
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1937.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.03
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else = {
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.015
+                    tooltip =  consumer_goods_expected_value_tt
+                }
             }
             
             hidden_effect = {
@@ -7972,44 +8060,17 @@ propaganda_effortsx = {
                     transfer_state = 80
                 }
                 
-                if = {
-                    limit = {
-                        NOT = { ROM = { has_completed_focus = ROM_german_romanian_oil_exploitation_company } }
-                    }
-                    46 = { add_resource = { type = oil amount = 8 } }
+                46 = { 
+                    add_resource = { 
+                        type = oil 
+                        amount = 20 
+                    } 
                 }
-                if = {
-                    limit = {
-                        NOT = { ROM = { has_completed_focus = ROM_expand_the_axis_oil_trade } }
-                    }
-                    46 = { add_resource = { type = oil amount = 24 } }
-                }
-                if = {
-                    limit = {
-                        NOT = { ROM = { has_completed_focus = ROM_hunedoara_steel_works } }
-                    }
-                    82 = { add_resource = { type = steel amount = 16 } }
-                }
-                if = {
-                    limit = {
-                        NOT = { has_tech = excavation5 }
-                        ROM = { has_tech = excavation3 }
-                    }
-                    set_technology = { excavation3 = 1 }
-                }
-                if = {
-                    limit = {
-                        NOT = { has_tech = excavation5 }
-                        ROM = { has_tech = excavation4 }
-                    }
-                    set_technology = { excavation4 = 1 }
-                }
-                if = {
-                    limit = {
-                        NOT = { has_tech = excavation5 }
-                        ROM = { has_tech = excavation5 }
-                    }
-                    set_technology = { excavation5 = 1 }
+                82 = { 
+                    add_resource = { 
+                        type = steel 
+                        amount = 20 
+                    } 
                 }
                 
                 if = {
@@ -8030,74 +8091,12 @@ propaganda_effortsx = {
             }
         }
     }
-    
-    GER_annex_spr = { 
-		icon = generic_operation
-		allowed = {	original_tag = GER	}
-		available = { OR = { AND = { SPR = {  is_ai = yes }	}	 has_country_flag = annex_manual_override } }
-		visible =  { 
-            country_exists = SPR 
-            OR = { 
-				SPR = { 
-					is_ai = yes 
-				} 
-				has_country_flag = annex_manual_override 
-			}
-        } 
-		cost = 0		
-		fire_only_once = yes 
-		complete_effect = {
-			#add_manpower = 2000000
-			hidden_effect = {
-			    SPR_relocate_civs_mils = yes
-			    SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				SPR_relocate_civs_mils = yes
-				add_to_variable = { paratrooper_div_cap = 2 }  
-				set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
-				annex_country = {
-					target = SPR  
-					transfer_troops = yes 
-				}
-				release = SPR   
-				fuel_system_refresh_list = yes
-				SPR = { set_equipment_fraction = 0 }
-				hidden_effect = { GER = { country_event = { id = mtg_germany.1346 days = 1 }  } 
-					if = { 
-						limit = { AND = { EFR = {owns_state = 26 } NOT = { EFR = { has_country_flag = EFR_torch_declared } } } }	
-						EFR = { every_owned_state = {  limit = {  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } }
-					} 
-				}
-				add_resource = {
-					type = steel
-					amount = 55 
-					state = 153
-				}
-				add_resource = {
-					type = tungsten
-					amount = 60 
-					state = 153
-				}			
-				add_resource = {
-					type = chromium
-					amount = 50 
-					state = 153
-				}
-			}
-			custom_effect_tooltip = GER_annex_spain_tt
-		}
-	}
-    
+
     ITA_annex_bul = {
         icon = generic_operation
+        
+        allowed = { tag = GER }
+        
         available = {
             OR = {
                 BUL = {
@@ -8107,52 +8106,70 @@ propaganda_effortsx = {
                 has_country_flag = annex_manual_override
             }
         }
+        
         visible = { 
-			country_exists = BUL 
-			OR = { 
-				BUL = { 
-					is_ai = yes 
-				} 
-				has_country_flag = annex_manual_override 
-			}
+            country_exists = BUL
+			BUL = { 
+                is_ai = yes 
+            } 
 		}
-        allowed = { tag = GER }
+        
         fire_only_once = yes
+        
         cost = 0
 
         complete_effect = {
-            add_ideas = BUL_volunteers_in_spain_nationalist2
-
             add_to_variable = { paratrooper_div_cap = 2 }
             set_division_template_cap = {
                 division_template = "Paratroopers"
                 division_cap = paratrooper_div_cap
             }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
 
             annex_country = {
                 target = BUL
                 transfer_troops = yes
             }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
+            if = {
+                limit = { date > 1939.1.1 date < 1939.9.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.06
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1938.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.045
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1937.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.03
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else = {
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.015
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
 
             hidden_effect = {
                 GER = { fuel_system_refresh_list = yes }
 
-                if = {
-                    limit = { NOT = { BUL = { has_completed_focus = BUL_mineral_extraction_in_the_rhodopes } } }
-                    184 = { add_resource = { type = chromium amount = 9 } }
-                }
-
-                if = {
-                    limit = { NOT = { BUL = { has_completed_focus = BUL_light_metal_exploitation } } }
-                    48 = { add_resource = { type = aluminium amount = 8 } }
-                    48 = { add_resource = { type = steel amount = 4 } }
-                }
-
-                if = {
-                    limit = { NOT = { BUL = { has_completed_focus = BUL_steel_plant_in_pernik } } }
-                    48 = { add_resource = { type = steel amount = 6 } }
-                }
-
+                48 = { add_resource = { type = steel amount = 20 } }
 
                 if = {
                     limit = {
@@ -8172,36 +8189,179 @@ propaganda_effortsx = {
             }
         }
     }
-
-			ITA_form_rome = { 
+    
+    GER_annex_spr = { 
 		icon = generic_operation
-		allowed = { tag = ITA } #
-		visible = { always=  no }
+        
+		allowed = {	original_tag = GER	}
+        
 		available = { 
-			ITA = { 
-			OR = { has_full_control_of_state = 291 any_allied_country = { has_full_control_of_state = 291 }}
-			OR = { has_full_control_of_state = 436 any_allied_country = { has_full_control_of_state = 436 }}
-			OR = { has_full_control_of_state = 118 any_allied_country = { has_full_control_of_state = 118 }}
-			OR = { has_full_control_of_state = 183 any_allied_country = { has_full_control_of_state = 183 }}
-			} 
-		}
-				fire_only_once = yes
-				complete_effect = {
-					hidden_effect = {add_ideas = Romanum_Exclamatus } 
-					set_cosmetic_tag = Roman_Empire
-					news_event = { id = japan.681 days = 1 }
-					create_country_leader = {
-						name = "Imperator Benitus"
-						desc = "POLITICS_BENITO_MUSSOLINI_DESC"
-						picture = "Portrait_Italy_imperator.dds"
-						expire = "1965.1.1"
-						ideology = fascism_ideology
-						traits = {
-							Imperator_Romanorum
-						}
-					}
-				}
+            OR = {
+                SPR = { is_ai = yes }	 
+                has_country_flag = annex_manual_override 
+            }
+        }
+        
+		visible =  { 
+            country_exists = SPR 
+            OR = { 
+				SPR = { 
+					is_ai = yes 
+				} 
+				has_country_flag = annex_manual_override 
 			}
+        } 
+        
+		cost = 0		
+        
+		fire_only_once = yes 
+        
+		complete_effect = {
+			add_to_variable = { paratrooper_div_cap = 2 }  
+            set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
+            effect_tooltip = {
+                GER = {
+                    annex_country = {
+                        target = SPR  
+                        transfer_troops = yes 
+                    }
+                }
+            }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
+            if = {
+                limit = { date > 1939.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.06
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1938.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.045
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else_if = {
+                limit = { date > 1937.1.1 }
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.03
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+            else = {
+                GER_modify_industrial_modifier = yes
+                add_to_variable = {
+                    GER_industrial_consumer_goods_expected_value = 0.015
+                    tooltip =  consumer_goods_expected_value_tt
+                }
+            }
+			
+			hidden_effect = {
+                SPR_relocate_civs_mils = yes
+			    SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+				SPR_relocate_civs_mils = yes
+            
+                SWE = {
+                    annex_country = {
+                        target = SPR  
+                        transfer_troops = yes 
+                    }
+                }
+
+				SPR = { set_equipment_fraction = 0 }
+                
+                give_resource_rights = { receiver = GER state = 41 }
+                give_resource_rights = { receiver = GER state = 619 }
+                
+                fuel_system_refresh_list = yes
+                
+				if = { 
+                    limit = { 
+                        AND = { 
+                            EFR = { owns_state = 26 } 
+                            NOT = { 
+                                EFR = { 
+                                    has_country_flag = EFR_torch_declared 
+                                } 
+                            }
+                        } 
+                    }	
+                    EFR = { 
+                        every_owned_state = { 
+                            limit = {  
+                                NOT = { has_state_flag = keep_milled } 
+                            }  
+                            set_demilitarized_zone = yes 
+                        }                        
+                        26 = { set_demilitarized_zone = no } 
+                    }
+                }
+			}
+		}
+	}
+    
+
+	ITA_form_rome = { 
+        icon = generic_operation
+        allowed = { tag = ITA }
+        visible = { always = no }
+        available = { 
+            ITA = { 
+                OR = { 
+                    has_full_control_of_state = 291 
+                    any_allied_country = { has_full_control_of_state = 291 }
+                }
+                OR = { 
+                    has_full_control_of_state = 436 
+                    any_allied_country = { has_full_control_of_state = 436 }
+                }
+                OR = { 
+                    has_full_control_of_state = 118 
+                    any_allied_country = { has_full_control_of_state = 118 }
+                }
+                OR = { 
+                    has_full_control_of_state = 183 
+                    any_allied_country = { has_full_control_of_state = 183 }
+                }
+            } 
+        }
+        
+        fire_only_once = yes
+        
+        complete_effect = {
+            hidden_effect = { add_ideas = Romanum_Exclamatus } 
+            set_cosmetic_tag = Roman_Empire
+            news_event = { id = japan.681 days = 1 }
+            create_country_leader = {
+                name = "Imperator Benitus"
+                desc = "POLITICS_BENITO_MUSSOLINI_DESC"
+                picture = "Portrait_Italy_imperator.dds"
+                expire = "1965.1.1"
+                ideology = fascism_ideology
+                traits = {
+                    Imperator_Romanorum
+                }
+            }
+        }
+    }
 
 
 	GER_barbarossa_mission_moscow = { 

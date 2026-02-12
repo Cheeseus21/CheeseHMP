@@ -5830,6 +5830,24 @@ focus = {
 			FRA = { set_country_flag = start_legitimacy_counter }
 
 			556 = { remove_dynamic_modifier = { modifier = international_city } }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = annex_info
+			if = {
+                limit = {
+                    check_variable = {
+                        var = GER_industrial_consumer_goods_expected_value
+                        value = 0.01
+                        compare = greater_than_or_equals
+                    }
+                }
+                custom_effect_tooltip = GER_industrial_consumer_goods_expected_value_tt
+                set_variable = { 
+                    GER_industrial_consumer_goods_expected_value = 0
+                    tooltip = consumer_goods_expected_value_tt
+                }
+            }
 				
 			hidden_effect = {
 				if = {
