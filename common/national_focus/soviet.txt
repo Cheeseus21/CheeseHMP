@@ -3393,7 +3393,7 @@ focus_tree = {
 		cost = 1
 		available = { has_defensive_war = yes }
 		completion_reward = {
-			add_timed_idea = { idea = SOV_directive_three_idea days = 60 } 
+			add_timed_idea = { idea = SOV_directive_three_idea days = 30 } 
 		}
 	}
 
@@ -3459,6 +3459,10 @@ focus_tree = {
 		
 		completion_reward = {
 			add_timed_idea = { idea = SOV_stockpile_for_the_next_attack_idea days = 60 }
+			
+			if = { limit = { has_idea = SOV_directive_three_idea }
+				remove_ideas = SOV_directive_three_idea
+			}
 		}
 	}
 	
@@ -3484,7 +3488,11 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-			add_timed_idea = { idea = SOV_winter_offensive_idea days = 60 }
+			add_timed_idea = { idea = SOV_winter_offensive_idea days = 30 }
+			
+			if = { limit = { has_idea = SOV_directive_three_idea }
+				remove_ideas = SOV_directive_three_idea
+			}
 		}
 	}
 	
