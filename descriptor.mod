@@ -8,6 +8,8 @@ tags={
 }
 replace_path="gfx/interface/equipmentdesigner/graphic_db"
 replace_path="common/doctrines"
+replace_path="common/doctrines/subdoctrines"
+replace_path="common/doctrines/tracks"
 replace_path="common/units/equipment/modules"
 replace_path="history/countries"
 replace_path="history/states"

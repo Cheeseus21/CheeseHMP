@@ -1,0 +1,347 @@
+
+mobile_recon_and_assault = {
+    track = support
+    name = SUBDOCTRINE_MOBILE_RECON_AND_ASSAULT
+    description = SUBDOCTRINE_MOBILE_RECON_AND_ASSAULT_DESC
+    icon = GFX_doctrine_mobile_recon_assault_medium
+
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+        always = yes
+    }
+    	
+	enable_tactic = tactic_blitz
+
+    rewards = {
+        motorization_support = {
+            supply_consumption_factor = -0.05
+        }
+        long_range_reconnaissance = {
+            recon_factor = 2
+        }
+        mobile_operational_deployments = {
+            recon = {
+                breakthrough = 1
+            }
+            mot_recon = {
+                breakthrough = 1
+            }
+            armored_car_recon = {
+                breakthrough = 0.1
+            }
+            light_tank_recon = {
+                breakthrough = 0.1
+            }
+        }
+        self_propelled_support_elements = {
+            recon = {
+                soft_attack = 1
+            }
+            mot_recon = {
+                soft_attack = 1
+            }
+            armored_car_recon = {
+                soft_attack = 0.1
+            }
+            light_tank_recon = {
+                soft_attack = 0.1
+            }
+        }
+        deep_reconnaissance_focus = {
+            army_morale_factor = 0.1
+        }
+    }
+}
+
+mobile_recon_and_assault_no_lar = {
+    track = support
+    name = SUBDOCTRINE_MOBILE_RECON_AND_ASSAULT
+    description = SUBDOCTRINE_MOBILE_RECON_AND_ASSAULT_DESC
+    icon = GFX_doctrine_mobile_recon_assault_medium
+
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+        always = yes
+    }
+    visible = {
+        NOT = {
+            has_dlc = "La Resistance"
+        }
+    }
+
+    land_night_attack = 0.1
+
+    rewards = {
+        motorization_support = {
+            supply_consumption_factor = -0.1
+        }
+        long_range_reconnaissance = {
+            recon_factor = 2
+        }
+        mobile_operational_deployments = {
+            recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    breakthrough = 1
+                }
+            }
+            mot_recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    breakthrough = 1
+                }
+            }
+            armored_car_recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    breakthrough = 0.1
+                }
+            }
+            light_tank_recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    breakthrough = 0.1
+                }
+            }
+        }
+        self_propelled_support_elements = {
+            recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    maximum_speed = 0.1
+                }
+            }
+            mot_recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    maximum_speed = 0.1
+                }
+            }
+            armored_car_recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    maximum_speed = 0.1
+                }
+            }
+            light_tank_recon = {
+                battalion_mult = {
+                    category = category_line_artillery
+                    maximum_speed = 0.1
+                }
+            }
+        }
+        deep_reconnaissance_focus = {
+            army_morale_factor = 0.1
+        }
+    }
+}
+
+self_propelled_support = {
+
+    track = support
+    name = SUBDOCTRINE_SELF_PROPELLED_SUPPORT
+    description = SUBDOCTRINE_SELF_PROPELLED_SUPPORT_DESC
+    icon = GFX_doctrine_self_propelled_support_medium
+
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+       
+    }
+
+
+	enable_tactic = tactic_barrage
+	enable_tactic = tactic_overwhelming_fire
+
+    rewards = {
+        mobile_battery_management_platoons = {
+            category_self_propelled_artillery = {
+                max_organisation = 5
+            }
+            category_self_propelled_anti_air= {
+                max_organisation = 5
+            }
+            category_tank_destroyers = {
+                max_organisation = 5
+            }
+        }
+        screening_attacks = {
+            category_self_propelled_artillery = {
+                default_morale = 0.1
+            }
+            category_self_propelled_anti_air= {
+                default_morale = 0.1
+            }
+            category_tank_destroyers = {
+                default_morale = 0.1
+            }
+        }
+        all_terrain_mobility = {
+            category_self_propelled_artillery = {
+                maximum_speed = 0.1
+            }
+            category_self_propelled_anti_air= {
+                maximum_speed = 0.1
+            }
+            category_tank_destroyers = {
+                maximum_speed = 0.1
+            }
+        }
+        multirole_support_vehicles = {
+            category_self_propelled_artillery = {
+                soft_attack = 0.05
+            }
+            category_self_propelled_anti_air= {
+                air_attack = 0.05
+            }
+            category_tank_destroyers = {
+                hard_attack = 0.05
+            }
+        }
+        shoot_and_scoot = {
+            category_self_propelled_artillery = {
+                max_organisation = 5
+            }
+            category_self_propelled_anti_air= {
+                max_organisation = 5
+            }
+            category_tank_destroyers = {
+                max_organisation = 5
+            }
+        }
+
+    }
+
+    
+}
+
+siege_artillery = {
+    track = support
+    name = SUBDOCTRINE_SIEGE_ARTILLERY
+    description = SUBDOCTRINE_SIEGE_ARTILLERY_DESC
+    icon = GFX_doctrine_siege_artillery_medium
+
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+        #is_special_project_completed = sp:sp_land_super_heavy_howitzer
+    }
+
+	enable_tactic = tactic_barrage
+	enable_tactic = tactic_overwhelming_fire
+
+    rewards = {
+        fortress_busters = {
+            super_heavy_artillery = {
+                soft_attack = 0.1
+                hard_attack = 0.1
+            }
+            self_propelled_super_heavy_artillery = {
+                soft_attack = 0.1
+                hard_attack = 0.1
+            }
+        }
+        improved_transport_preparation = {
+            super_heavy_artillery = {
+                default_morale = 0.1
+            }
+            self_propelled_super_heavy_artillery = {
+                default_morale = 0.1
+            }
+        }
+        precomputed_firing_data = {
+            super_heavy_artillery = {
+                max_organisation = 10
+            }
+            self_propelled_super_heavy_artillery = {
+                max_organisation = 10
+            }
+
+        }
+        urban_strongpoint_sieges = {
+            super_heavy_artillery = {
+                breakthrough = 0.1
+            }
+            self_propelled_super_heavy_artillery = {
+                breakthrough = 0.1
+            }
+        }
+        mobile_artillery_command = {
+			super_heavy_artillery = {
+                defense = 0.1
+            }
+            self_propelled_super_heavy_artillery = {
+                defense = 0.1
+            }
+        }
+    }
+}
+
+field_engineering = {
+    track = support
+    name = SUBDOCTRINE_FIELD_ENGINEERING
+    description = SUBDOCTRINE_FIELD_ENGINEERING_DESC
+    icon = GFX_doctrine_field_engineering_medium
+
+    xp_cost = 150
+    xp_type = army
+    
+    enable_tactic = tactic_delay
+	
+    rewards = {
+        rapid_fire_lane_clearance = {
+            org_loss_when_moving = -0.1
+        }
+        sapper_fieldcraft = {
+			dig_in_speed_factor = 0.25
+        }
+        engineerdug_gun_emplacements = {
+            engineer = {
+                defense = 1
+            }
+			pioneer_support = {
+                defense = 1
+            }
+            assault_engineer = {
+                defense = 0.1
+            }
+            category_flame_armor = {
+                defense = 0.1
+            }
+        }
+        smoke_projector_training = {
+            engineer = {
+                breakthrough = 1
+            }
+			pioneer_support = {
+                breakthrough = 1
+            }
+            assault_engineer = {
+                breakthrough = 0.1
+            }
+            category_flame_armor = {
+                breakthrough = 0.1
+            }
+        }
+        charge_and_flame = {
+            engineer = {
+                soft_attack = 2
+            }
+            pioneer_support = {
+				soft_attack = 2
+            }
+			assault_engineer = {
+                soft_attack = 0.1
+            }
+            category_flame_armor = {
+                soft_attack = 0.1
+            }
+        }
+    }
+}
