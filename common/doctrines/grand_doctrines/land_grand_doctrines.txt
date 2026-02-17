@@ -83,6 +83,26 @@ new_mobile_warfare = {
                 }
             }
         }
+		{
+            #Support
+			category_support_battalions = {
+				max_organisation = 5
+				default_morale = 0.05
+			}
+            effect = {
+                if = {
+                    limit = {
+                        NOT = {
+                            has_variable = support_milestone_var
+                        }
+                    }
+                    set_variable = { support_milestone_var = 1 }
+                }
+                else = {
+                    add_to_variable = { support_milestone_var = 1 }
+                }
+            }
+        }
         {
             #Armor
 			category_tanks = {
@@ -202,6 +222,25 @@ superior_firepower = {
             }
 
         }
+		{
+            #Support
+			category_support_battalions = {
+				soft_attack = 0.05
+			}
+            effect = {
+                if = {
+                    limit = {
+                        NOT = {
+                            has_variable = support_milestone_var
+                        }
+                    }
+                    set_variable = { support_milestone_var = 1 }
+                }
+                else = {
+                    add_to_variable = { support_milestone_var = 1 }
+                }
+            }
+        }
         {
             #Armor
             category_tanks = {
@@ -317,6 +356,24 @@ grand_battleplan = {
                 }
                 else = {
                     add_to_variable = { artillery_milestone_var = 1 }
+                }
+            }
+        }
+		{
+            #Support
+			max_planning = 0.025
+			
+            effect = {
+                if = {
+                    limit = {
+                        NOT = {
+                            has_variable = support_milestone_var
+                        }
+                    }
+                    set_variable = { support_milestone_var = 1 }
+                }
+                else = {
+                    add_to_variable = { support_milestone_var = 1 }
                 }
             }
         }
@@ -445,6 +502,27 @@ mass_assault = {
                 }
                 else = {
                     add_to_variable = { artillery_milestone_var = 1 }
+                }
+            }
+        }
+		{
+            #Support
+			conscription = 0.01
+			category_support_battalions = {
+				default_morale = 0.1
+			}
+			
+            effect = {
+                if = {
+                    limit = {
+                        NOT = {
+                            has_variable = support_milestone_var
+                        }
+                    }
+                    set_variable = { support_milestone_var = 1 }
+                }
+                else = {
+                    add_to_variable = { support_milestone_var = 1 }
                 }
             }
         }
