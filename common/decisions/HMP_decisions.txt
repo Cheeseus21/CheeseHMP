@@ -7255,6 +7255,9 @@ propaganda_effortsx = {
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}
+            NOT = {
+				has_global_flag = countenance_launched
+			}
         }
 
         available = {
@@ -7271,6 +7274,7 @@ propaganda_effortsx = {
 			}
 		
             hidden_effect = {
+                set_global_flag = countenance_launched
 			
 				ENG = {
 					transfer_state = 412
@@ -7369,6 +7373,9 @@ propaganda_effortsx = {
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}
+            NOT = {
+				has_global_flag = countenance_launched
+			}
         }
 
         available = {
@@ -7385,6 +7392,7 @@ propaganda_effortsx = {
 			}
 		
             hidden_effect = {
+                set_global_flag = countenance_launched
 			
 				ENG = {
 					transfer_state = 412
@@ -7396,11 +7404,6 @@ propaganda_effortsx = {
 					complete_national_focus = uk_iran_focus
 					
 					country_event = { id = iran.3 }
-				}
-				
-				FROM = {  
-					delete_unit_template_and_units = { division_template = "Countenance Infantry" }   
-					load_oob = "ENG_Iran_Front" 
 				}
 				
 				ITA = {
@@ -7483,6 +7486,9 @@ propaganda_effortsx = {
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}
+            NOT = {
+				has_global_flag = countenance_launched
+			}
         }
 
         available = {
@@ -7501,6 +7507,7 @@ propaganda_effortsx = {
 			}
 		
             hidden_effect = {
+                set_global_flag = countenance_launched
 			
 				ENG = {
 					complete_national_focus = uk_iran_focus
@@ -9129,23 +9136,25 @@ propaganda_effortsx = {
 						add_core_of = ROOT
 					}
 					
-					every_state = {
-						limit = {
-							OR = {
-                                state = 581
-                                state = 321
-                                state = 335
-                                state = 334
-                                state = 342
-                                state = 575
-                                state = 562
-                                state = 516
-                                state = 322
-                                state = 317
-                            }
-						}
-						add_core_of = ROOT
-					}
+					# every_state = {
+						# limit = {
+							# OR = {
+                                # state = 581
+                                # state = 321
+                                # state = 335
+                                # state = 334
+                                # state = 342
+                                # state = 575
+                                # state = 562
+                                # state = 516
+                                # state = 322
+                                # state = 317
+                            # }
+						# }
+						# add_core_of = ROOT
+					# }
+                    
+                    remove_ideas = protected_by_papua
 					
                     if = {
                         limit = {
@@ -10018,7 +10027,6 @@ propaganda_effortsx = {
 				else = {  
 					count_triggers = { 
 						amount = 3 
-						OR = { NOT = { country_exists = RAJ } }
 						OR = { NOT = { country_exists = NOR } NOR = { is_ai = yes } }
 						OR = { NOT = { country_exists = SAF } SAF = { is_ai = yes } }
 						OR = { NOT = { country_exists = CAN } CAN = { is_ai = yes } }
