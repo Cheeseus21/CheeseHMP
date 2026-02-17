@@ -400,6 +400,308 @@ generic_horst_tank_organization = {
 	
 }
 
+generic_horst_tank_variant_organization = {
+	icon = GFX_idea_generic_tank_manufacturer_3
+
+	allowed = {
+		OR = {
+			original_tag = GER
+			original_tag = ITA
+			original_tag = SPR
+			original_tag = CZE
+			original_tag = EFR
+			original_tag = FIN
+			original_tag = ROM
+			original_tag = HUN
+			original_tag = DEN
+			original_tag = YUG
+			original_tag = BUL
+		
+			original_tag = ENG
+			original_tag = FRA
+			original_tag = USA
+			original_tag = CAN
+			original_tag = SAF
+			original_tag = AST
+			original_tag = RAJ
+			original_tag = HOL
+			original_tag = POL
+			original_tag = NOR
+			original_tag = BRA
+			
+			original_tag = JAP
+			original_tag = MAN
+			
+			original_tag = CHI
+		}
+	}
+  
+	equipment_type = { mio_cat_eq_all_tank_variants }
+    
+	#research_categories = { cat_1941_tanks cat_1943_tanks }
+
+	initial_trait = {
+		name = generic_horst_tank_variant_organization_initial_trait
+	}
+
+	trait = {
+		token = generic_horst_tank_variant_mio_trait_1
+		name = generic_horst_tank_variant_mio_trait_1
+		icon = GFX_generic_mio_department_icon_tank_general_at
+        
+        #mutually_exclusive = { generic_horst_tank_variant_mio_trait_2 generic_horst_tank_variant_mio_trait_3 }
+        
+        limit_to_equipment_type = { light_tank_destroyer_chassis medium_tank_destroyer_chassis heavy_tank_destroyer_chassis modern_tank_destroyer_chassis }
+		
+		position = { x=1 y=0 }
+
+		equipment_bonus = {
+            soft_attack = 0.05
+            hard_attack = 0.05
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_2
+		name = generic_horst_tank_variant_mio_trait_2
+		icon = GFX_generic_mio_department_icon_tank_general_spg
+        
+        #mutually_exclusive = { generic_horst_tank_variant_mio_trait_1 generic_horst_tank_variant_mio_trait_3 }
+        
+        limit_to_equipment_type = { light_tank_artillery_chassis medium_tank_artillery_chassis heavy_tank_artillery_chassis modern_tank_artillery_chassis }
+		
+		position = { x=4 y=0 }
+
+		equipment_bonus = {
+            soft_attack = 0.1
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_3
+		name = generic_horst_tank_variant_mio_trait_3
+		icon = GFX_generic_mio_department_icon_tank_general_aa
+        
+        #mutually_exclusive = { generic_horst_tank_variant_mio_trait_1 generic_horst_tank_variant_mio_trait_2 }
+        
+        limit_to_equipment_type = { light_tank_aa_chassis medium_tank_aa_chassis heavy_tank_artillery_chassis heavy_tank_aa_chassis modern_tank_aa_chassis }
+		
+		position = { x=7 y=0 }
+
+		equipment_bonus = {
+			build_cost_ic = -0.1
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_4
+		name = generic_horst_tank_variant_mio_trait_4
+		icon = GFX_generic_mio_trait_icon_breakthrough
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_1 }
+        
+        limit_to_equipment_type = { light_tank_destroyer_chassis medium_tank_destroyer_chassis heavy_tank_destroyer_chassis modern_tank_destroyer_chassis }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_5 }
+
+		position = { x=0 y=1 }
+
+		equipment_bonus = {
+			breakthrough = 0.25
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_5
+		name = generic_horst_tank_variant_mio_trait_5
+		icon = GFX_generic_mio_trait_icon_ap_attack
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_1 }
+        
+        limit_to_equipment_type = { light_tank_destroyer_chassis medium_tank_destroyer_chassis heavy_tank_destroyer_chassis modern_tank_destroyer_chassis }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_4 }
+
+		position = { x=2 y=1 }
+
+		equipment_bonus = {
+			soft_attack = 0.05
+            hard_attack = 0.05
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_6
+		name = generic_horst_tank_variant_mio_trait_6
+		icon = GFX_generic_mio_trait_icon_soft_attack
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_2 }
+        
+        limit_to_equipment_type = { light_tank_artillery_chassis medium_tank_artillery_chassis heavy_tank_artillery_chassis modern_tank_artillery_chassis }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_7 }
+
+		position = { x=3 y=1 }
+
+		equipment_bonus = {
+            soft_attack = 0.1
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_7
+		name = generic_horst_tank_variant_mio_trait_7
+		icon = GFX_generic_mio_trait_icon_hard_attack
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_2 }
+        
+        limit_to_equipment_type = { light_tank_artillery_chassis medium_tank_artillery_chassis heavy_tank_artillery_chassis modern_tank_artillery_chassis }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_6 }
+
+		position = { x=5 y=1 }
+
+		equipment_bonus = {
+            hard_attack = 2
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_8
+		name = generic_horst_tank_variant_mio_trait_8
+		icon = GFX_generic_mio_trait_icon_air_attack
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_3 }
+        
+        limit_to_equipment_type = { light_tank_aa_chassis medium_tank_aa_chassis heavy_tank_artillery_chassis heavy_tank_aa_chassis modern_tank_aa_chassis }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_9 }
+
+		position = { x=6 y=1 }
+
+		equipment_bonus = {
+			air_attack = 0.1
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_9
+		name = generic_horst_tank_variant_mio_trait_9
+		icon = GFX_generic_mio_trait_icon_air_defence
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_3 }
+        
+        limit_to_equipment_type = { light_tank_aa_chassis medium_tank_aa_chassis heavy_tank_artillery_chassis heavy_tank_aa_chassis modern_tank_aa_chassis }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_8 }
+
+		position = { x=8 y=1 }
+
+		equipment_bonus = {
+			breakthrough = 0.05
+            defense = 0.05
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_10
+		name = generic_horst_tank_variant_mio_trait_10
+		icon = GFX_generic_mio_department_icon_tank_general_quality
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_4 generic_horst_tank_variant_mio_trait_5 }
+        
+        limit_to_equipment_type = { light_tank_destroyer_chassis medium_tank_destroyer_chassis heavy_tank_destroyer_chassis modern_tank_destroyer_chassis }
+
+		position = { x=1 y=2 }
+
+		equipment_bonus = {
+			breakthrough = 0.05
+            defense = 0.05
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_11
+		name = generic_horst_tank_variant_mio_trait_11
+		icon = GFX_generic_mio_department_icon_tank_general_quality
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_6 generic_horst_tank_variant_mio_trait_7 }
+        
+        limit_to_equipment_type = { light_tank_artillery_chassis medium_tank_artillery_chassis heavy_tank_artillery_chassis modern_tank_artillery_chassis }
+
+		position = { x=4 y=2 }
+
+		equipment_bonus = {
+			breakthrough = 0.05
+            defense = 0.05
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_12
+		name = generic_horst_tank_variant_mio_trait_12
+		icon = GFX_generic_mio_department_icon_tank_general_quality
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_8 generic_horst_tank_variant_mio_trait_9 }
+        
+        limit_to_equipment_type = { light_tank_aa_chassis medium_tank_aa_chassis heavy_tank_artillery_chassis heavy_tank_aa_chassis modern_tank_aa_chassis }
+
+		position = { x=7 y=2 }
+
+		equipment_bonus = {
+			breakthrough = 0.05
+            defense = 0.05
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_13
+		name = generic_horst_tank_variant_mio_trait_13
+		icon = GFX_generic_mio_department_icon_tank_heavy_tank
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_10 generic_horst_tank_variant_mio_trait_11 generic_horst_tank_variant_mio_trait_12 }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_14 }
+
+		position = { x=3 y=3 }
+
+		equipment_bonus = {
+			reliability = 0.15
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_14
+		name = generic_horst_tank_variant_mio_trait_14
+		icon = GFX_generic_mio_department_icon_tank_heavy_tank
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_10 generic_horst_tank_variant_mio_trait_11 generic_horst_tank_variant_mio_trait_12 }
+        
+        mutually_exclusive = { generic_horst_tank_variant_mio_trait_13 }
+
+		position = { x=5 y=3 }
+
+		equipment_bonus = {
+			breakthrough = 0.05
+            defense = 0.05
+		}
+	}
+    
+    trait = {
+		token = generic_horst_tank_variant_mio_trait_15
+		name = generic_horst_tank_variant_mio_trait_15
+		icon = GFX_generic_mio_department_icon_tank_heavy_tank
+        
+        any_parent = { generic_horst_tank_variant_mio_trait_13 generic_horst_tank_variant_mio_trait_14 }
+
+		position = { x=4 y=4 }
+
+		production_bonus = {
+			production_efficiency_cap_factor = 0.05
+		}
+	}
+}
+
 # GENERIC TANK MANUFACTURER - Based on Daimler Benz
 generic_allies_tank_organization = {
 	icon = GFX_idea_USA_military_industrial_complex
