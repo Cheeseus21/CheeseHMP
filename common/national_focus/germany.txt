@@ -6161,41 +6161,15 @@ focus = {
         completion_reward = {
             custom_effect_tooltip = GER_decision_focus_tt
 
-            if = {
-                limit = {
-                    DEN = { is_ai = yes }
-                }
-                hidden_effect = {
-                    ENG = { add_to_faction = DEN }
-                }
-                declare_war_on = {
-                    target = DEN
-                    type = annex_everything
-                }
-                hidden_effect = {
-                    ROOT_call_against_denmark = yes
-                }
-            }
-            else = {
-                GER = { add_to_faction = DEN }
-                hidden_effect = {
-                    DEN = { remove_ideas = danish_king_badly_positioned }
-                }
-                DEN = {
-                    add_to_war = {
-                        targeted_alliance = GER
-                        enemy = FRA
-                    }
-                    add_to_war = {
-                        targeted_alliance = GER
-                        enemy = ENG
-                    }
-                    add_to_war = {
-                        targeted_alliance = GER
-                        enemy = BEL
-                    }
-                }
-            }
+			declare_war_on = {
+				target = DEN
+				type = annex_everything
+			}
+			
+			hidden_effect = {
+				ENG = { add_to_faction = DEN }
+				ROOT_call_against_denmark = yes
+			}
 
             hidden_effect = {
                 news_event = {
