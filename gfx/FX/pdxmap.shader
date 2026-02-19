@@ -396,26 +396,29 @@ PixelShader =
 			
 			vOut = DayNightWithBlend( vOut, vGlobeNormal, lerp(BORDER_NIGHT_DESATURATION_MAX, 1.0f, vBloomAlpha) );
 			
-			// Do not ask me how i managed to learn all of this under 10-20 minutes, It is a mystery even to me. - Cheeseus
-			// --- HORSTORICAL YELLOW-SAFE POP ---
-			// 1. Calculate basic luminance
+			// Do not ask me how i managed to learn all of this under 10-20 minutes, It is a mystery even to me. - Cheeseus"
+			// --- HORSTORICAL STABLE SATURATION ---
+			// 1. Basic Luminance
 			float3 vLuminanceWeights = float3(0.2126, 0.7152, 0.0722);
 			float luminance = dot(vOut, vLuminanceWeights);
 
-			// 2. Identify "Yellow" (High Red & Green, Low Blue)
-			// This mask is 1.0 for yellow and 0.0 for everything else
-			float yellowMask = saturate(vOut.r + vOut.g - vOut.b * 2.0f); 
+			// 2. Protection Masks
+			float blackMask = smoothstep(0.01, 0.10, luminance); // Protects deep blacks
+			float yellowMask = saturate(vOut.r + vOut.g - vOut.b * 2.0); // Identifies yellows
 
-			// 3. Apply Saturation
-			// We boost saturation normally, but REDUCE the boost if the color is yellow
-			float saturationStrength = lerp(1.3f, 1.05f, yellowMask); 
+			// 3. Simple Saturation (Lower strength for stability)
+			float saturationStrength = lerp(1.20, 1.02, yellowMask); 
 			float3 saturatedColor = lerp(vec3(luminance), vOut, saturationStrength);
 
-			// 4. Final Blend & Darken
-			// Use the luminance mask to protect the pure blacks/shadows
-			vOut = lerp(vOut, saturatedColor, saturate(luminance * 1.5f)); 
-			vOut *= 0.80f; 
-			// ------------------------------------
+			// 4. Apply and Clamp
+			// The clamp ensures no color channel "blows out" past 1.0
+			vOut = lerp(vOut, saturatedColor, blackMask);
+			vOut = saturate(vOut); 
+
+			// 5. Final Darken & Contrast
+			vOut = vOut * 0.85; // Global dimming
+			vOut = pow(vOut, 1.1); // Adds "punch" without messying the colors
+			// -------------------------------------
 			
 			DebugReturn(vOut, lightingProperties, fShadowTerm);
 
