@@ -396,6 +396,27 @@ PixelShader =
 			
 			vOut = DayNightWithBlend( vOut, vGlobeNormal, lerp(BORDER_NIGHT_DESATURATION_MAX, 1.0f, vBloomAlpha) );
 			
+			// Do not ask me how i managed to learn all of this under 10-20 minutes, It is a mystery even to me. - Cheeseus
+			// --- HORSTORICAL YELLOW-SAFE POP ---
+			// 1. Calculate basic luminance
+			float3 vLuminanceWeights = float3(0.2126, 0.7152, 0.0722);
+			float luminance = dot(vOut, vLuminanceWeights);
+
+			// 2. Identify "Yellow" (High Red & Green, Low Blue)
+			// This mask is 1.0 for yellow and 0.0 for everything else
+			float yellowMask = saturate(vOut.r + vOut.g - vOut.b * 2.0f); 
+
+			// 3. Apply Saturation
+			// We boost saturation normally, but REDUCE the boost if the color is yellow
+			float saturationStrength = lerp(1.3f, 1.05f, yellowMask); 
+			float3 saturatedColor = lerp(vec3(luminance), vOut, saturationStrength);
+
+			// 4. Final Blend & Darken
+			// Use the luminance mask to protect the pure blacks/shadows
+			vOut = lerp(vOut, saturatedColor, saturate(luminance * 1.5f)); 
+			vOut *= 0.80f; 
+			// ------------------------------------
+			
 			DebugReturn(vOut, lightingProperties, fShadowTerm);
 
 		#ifdef LOW_END_GFX
