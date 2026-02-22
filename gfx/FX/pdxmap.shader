@@ -416,8 +416,8 @@ PixelShader =
 			vOut = saturate(vOut); 
 
 			// 5. Final Darken & Contrast
-			vOut = vOut * 0.85; // Global dimming
-			vOut = pow(vOut, 1.1); // Adds "punch" without messying the colors
+			vOut = vOut * 0.90; // Global dimming
+			vOut.rgb = pow(vOut.rgb, vec3(1.1f)); // Adds "punch" without messying the colors
 			// -------------------------------------
 			
 			DebugReturn(vOut, lightingProperties, fShadowTerm);
