@@ -8660,57 +8660,79 @@ propaganda_effortsx = {
 			}
 		}
 
-		ENG_annex_ironclad = {	
+		ENG_annex_ironclad = {
 			icon = generic_operation
 
-			allowed = {	
+			allowed = {
 				original_tag = ENG
 			}
-					
-			available = {	
-				OR = { 	
-					date > 1941.5.5 	
-					custom_trigger_tooltip = { 
+
+			available = {
+				OR = {
+					date > 1941.5.5
+					custom_trigger_tooltip = {
 						tooltip = "Legitimacy is at least 60"
 						check_variable = { FRA.FRA_legitimacy > 59 }
-					}	
-				}	
+					}
+				}
 			}
-			
+
 			fire_only_once = yes
 			cost = 0
-					
-			visible = {		
-				NOT = { owns_state = 543 } 
+
+			visible = {
+				NOT = { owns_state = 543 }
 				has_cosmetic_tag = FRA_UK
 			}
 
-			complete_effect = {	
+			complete_effect = {
 				543 = { set_demilitarized_zone = no }
 				add_offsite_building = { type = arms_factory level = 2 }
 				add_offsite_building = { type = industrial_complex level = 1 }
 				transfer_state = 543
-				transfer_state = 295
-				543 = { add_building_construction = { type = naval_base level = 1 instant_build = yes }}
+				543 = {
+					add_building_construction = {
+						type = naval_base
+						level = 1
+						instant_build = yes
+					}
+				}
 
-				recalc_vichy_france_legitimacy = yes 
+				recalc_vichy_france_legitimacy = yes
 
-				hidden_effect = { 
-					if = { 
-						limit = { 
-							AND = { 
-								EFR = { owns_state = 26 } 
-								NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-							} 
+				hidden_effect = {
+					if = {
+						limit = {
+							BEL = { is_ai = yes }
 						}
-						EFR = { 
-							every_owned_state = {  
-								limit = { NOT = { has_state_flag = keep_milled } }   
-								set_demilitarized_zone = yes 
-							} 
-							26 = { set_demilitarized_zone = no } 
-						} 
-					} 
+						FRA = {	
+							transfer_state = 295
+							transfer_state = 687
+							transfer_state = 688
+							transfer_state = 689
+							transfer_state = 690
+							transfer_state = 691 
+							transfer_state = 692 
+						}
+					}
+				
+					if = {
+						limit = {
+							AND = {
+								EFR = { owns_state = 26 }
+								NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+							}
+						}
+						EFR = {
+							every_owned_state = {
+								limit = {
+									NOT = { has_state_flag = keep_milled }
+								}
+								set_demilitarized_zone = yes
+							}
+							26 = { set_demilitarized_zone = no }
+						}
+					}
 				}
 			}
 		}

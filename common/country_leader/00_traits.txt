@@ -1812,49 +1812,50 @@ leader_traits = {
 	BEL_determined_prime_minister = { 
 		sprite = 10
 		random = no
-		surrender_limit = 0.1
-		war_support_factor = 0.1
+		
+		war_support_factor = 0.15
 	}	
 
 	#Van Zeeland
 	BEL_corrupt_old_guard = { 
 		sprite = 10
 		random = no
-		stability_factor = 0.05
-		consumer_goods_expected_value = 0.1
 		
+		stability_factor = 0.05
+		consumer_goods_expected_value = 0.05
 	}	
 
 	#Janson
 	BEL_royal_appointee = { 
 		sprite = 10
 		random = no
-		stability_factor = 0.05
+		
+		stability_factor = 0.1
 	}	
 
 	#Spaak - PM
 	BEL_diplomatic_titan = { 
 		sprite = 10
 		random = no
-		resource_trade_cost_bonus_per_factory = 2
-		communism_drift = 0.01
+		
+		political_power_gain = 0.30
 	}	
 
 	#Vandervelde
 	BEL_le_patron = { 
 		sprite = 10
 		random = no
-		communism_drift = 0.01
-		fascism_drift = -0.01
-		join_faction_tension = -0.2
-		guarantee_tension = -0.2
+		
+		party_popularity_stability_factor = 0.25
+		communism_drift = 0.05
 	}	
 
 	#Degrelle - Prime Minister
 	BEL_belgian_inquisitor = { 
 		sprite = 10
 		random = no
-		fascism_drift = 0.03
+		
+		fascism_drift = 0.05
 		war_support_factor = 0.05
 	}	
 
@@ -1944,18 +1945,14 @@ leader_traits = {
 	BEL_canny_diplomat = { 
 		sprite = 10
 		random = no
-		resource_trade_cost_bonus_per_factory = 1
-		communism_drift = 0.01
-		trade_opinion_factor = 0.1
-		opinion_gain_monthly_factor = 0.05
-		opinion_gain_monthly_same_ideology_factor = 0.1
+		resource_trade_cost_bonus_per_factory = 10
 	}	
 
 	#de Man - Advisor
 	BEL_man_with_a_plan = { 
 		sprite = 10
 		random = no
-		communism_drift = 0.01
+		
 		production_factory_efficiency_gain_factor = 0.05
 		production_factory_max_efficiency_factor = 0.05
 	}
@@ -1992,8 +1989,9 @@ leader_traits = {
 	BEL_uranium_magnate = { 
 		sprite = 10
 		random = no
+		
 		sp_tag_nuclear_warfare_speed_factor = 0.1
-		sp_tag_nuclear_power_speed_factor = 0.15
+		sp_tag_nuclear_power_speed_factor = 0.1
 		local_resources_factor = 0.1
 		production_speed_nuclear_reactor_factor = 0.1
 	}
@@ -2020,43 +2018,42 @@ leader_traits = {
 	BEL_mobilization_proponent = { 
 		sprite = 10
 		random = no
-		mobilization_speed = 0.20
-		conscription_factor = 0.05
+		
+		mobilization_speed = 1
+		conscription_factor = 0.1
 	}
 
 	#Deveze
 	BEL_minister_of_national_defence_deveze = { 
 		sprite = 10
 		random = no
-		army_core_attack_factor = 0.1
-		army_org_factor = 0.05
+		
+		army_core_attack_factor = 0.05
 	}
 
 	#Nuyten
 	BEL_minister_of_national_defence_nuyten = { 
 		sprite = 10
 		random = no
-		army_core_defence_factor = 0.1
-		dig_in_speed_factor = 0.1
-		special_forces_cap_flat = 6
-		local_intel_to_enemies = 0.1
+		
+		army_core_defence_factor = 0.05
 	}
 
 	#Saive
 	BEL_arms_designer = { 
 		sprite = 10
 		random = no
-		industrial_capacity_factory = 0.05
-		research_speed_factor = 0.05
-		military_industrial_organization_funds_gain = 0.1
+		
+		research_speed_factor = 0.1
+		military_industrial_organization_funds_gain = 0.25
 	}
 
 	BEL_arms_designer_no_aat = { 
 		sprite = 10
 		random = no
-		industrial_capacity_factory = 0.05
-		research_speed_factor = 0.05
-		materiel_manufacturer_cost_factor = -0.1
+		
+		research_speed_factor = 0.1
+		military_industrial_organization_funds_gain = 0.25
 	}
 
 	#################################
@@ -10149,6 +10146,346 @@ tank_refurbishment_plant = { #NSB
 		ai_will_do = {
 			factor = 2
 		}
+	}
+	
+	######################
+	#######BELGIUM########
+	######################
+
+	### Industrial Traits
+
+	steelworks_and_machining_trait = {
+
+		random = no
+		country_resource_steel = 12
+		production_speed_rail_way_factor = 0.10
+		equipment_bonus = {
+			train_equipment = {
+				instant = yes
+				build_cost_ic = -0.20
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	energy_company_trait = {
+
+		country_resource_oil = 10 
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	banking_magnate_trait = {
+		random = no
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	### BELGIAN CHARACTERS ###
+
+	### Belgian Country Leaders ###
+
+	#Pierlot
+	BEL_determined_prime_minister = { 
+		sprite = 10
+		random = no
+		surrender_limit = 0.1
+		war_support_factor = 0.1
+		democratic_drift = 0.05
+	}	
+
+	#Van Zeeland
+	BEL_corrupt_old_guard = { 
+		sprite = 10
+		random = no
+		stability_factor = 0.05
+		consumer_goods_factor = 0.1
+		drift_defence_factor = 0.25
+	}	
+
+	#Janson
+	BEL_royal_appointee = { 
+		sprite = 10
+		random = no
+		stability_factor = 0.05
+	}	
+
+	#Spaak - PM
+	BEL_diplomatic_titan = { 
+		sprite = 10
+		random = no
+		resource_trade_cost_bonus_per_factory = 2
+		communism_drift = 0.01
+	}	
+
+	#Vandervelde
+	BEL_le_patron = { 
+		sprite = 10
+		random = no
+		communism_drift = 0.01
+		fascism_drift = -0.01
+		join_faction_tension = -0.2
+		guarantee_tension = -0.2
+	}	
+
+	#Degrelle - Prime Minister
+	BEL_belgian_inquisitor = { 
+		sprite = 10
+		random = no
+		fascism_drift = 0.03
+		war_support_factor = 0.05
+	}	
+
+	#Degrelle - Regent
+	BEL_belgian_fuhrer = { 
+		sprite = 10
+		random = no
+		fascism_drift = 0.05
+		war_support_factor = 0.10
+	}
+
+	#de Man
+	BEL_man_with_a_plan_leader = { 
+		sprite = 10
+		random = no
+		communism_drift = 0.03
+		production_factory_efficiency_gain_factor = 0.1
+		production_factory_max_efficiency_factor = 0.1
+	}	
+
+	#Leopold - King of the Belgians Trait
+	BEL_leopold_king_of_the_belgians = { 
+		sprite = 10
+		random = no
+		
+		recruitable_population_factor = 0.25
+		mobilization_speed = 1
+		stability_factor = 0.1
+		war_support_factor = 0.1
+		max_command_power_mult = 1
+	}		
+
+	#Leopold - Prisoner-King post surrender
+	BEL_leopold_prisoner_king = { 
+		sprite = 10
+		random = no
+		stability_factor = 0.1
+		war_support_factor = 0.1
+		max_command_power_mult = 1
+	}
+
+	#Leopold - Unknown Sympathies
+	BEL_leopold_unknown_sympathies = { 
+		sprite = 10
+		random = no
+		
+		stability_factor = -0.1
+		war_support_factor = -0.1
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.15
+	}
+
+	#Charles - Regent
+	BEL_royal_regent = { 
+		sprite = 10
+		random = no
+		
+		stability_factor = 0.1
+		political_power_gain = 0.1
+	}	
+
+	#Charles - Quiet Royal
+	BEL_quiet_royal = { 
+		sprite = 13
+		random = no
+		
+		stability_factor = 0.1
+		political_power_gain = 0.1
+	}	
+
+	BEL_charles_king_of_belgians = { #Charles Count of Flanders king trait
+		sprite = 10
+		random = no
+		
+		stability_factor = 0.1
+		political_power_gain = 0.1
+		breakthrough_factor = 0.1
+		army_speed_factor = 0.1
+	}
+
+	BEL_democratic_homecoming_trait = {
+		sprite = 10
+		random = no
+
+		army_core_attack_factor = 0.1
+		army_core_defence_factor = 0.1
+		democratic_drift = 0.1
+	}
+
+	### Belgian Advisors ###
+
+	#Spaak - Advisor 
+	BEL_canny_diplomat = { 
+		sprite = 13
+		random = no
+		resource_trade_cost_bonus_per_factory = 1
+		communism_drift = 0.01
+		trade_opinion_factor = 0.1
+		opinion_gain_monthly_factor = 0.05
+		opinion_gain_monthly_same_ideology_factor = 0.1
+	}	
+
+	#de Man - Advisor
+	BEL_man_with_a_plan = { 
+		sprite = 10
+		random = no
+		communism_drift = 0.01
+		production_factory_efficiency_gain_factor = 0.05
+		production_factory_max_efficiency_factor = 0.05
+	}
+
+	#Degrelle
+	BEL_fascist_firebrand = { 
+		sprite = 10
+		random = no
+		fascism_drift = 0.10
+		war_support_factor = 0.05
+	}
+
+	#Dewe
+	BEL_illusive_mastermind = { 
+		sprite = 15
+		random = no
+		
+		operative_slot = 2
+		agency_upgrade_time = -0.25
+		civilian_intel_factor = 0.05
+		army_intel_factor = 0.05
+		navy_intel_factor = 0.05
+		airforce_intel_factor = 0.05
+	}
+
+	#Sengier
+	BEL_uranium_magnate = { 
+		sprite = 10
+		random = no
+		sp_tag_nuclear_warfare_speed_factor = 0.1
+		sp_tag_nuclear_power_speed_factor = 0.15
+		local_resources_factor = 0.1
+		production_speed_nuclear_reactor_factor = 0.1
+	}
+
+	#Marchienne
+	BEL_ambassador_to_london = { 
+		sprite = 13
+		random = no
+		
+		democratic_drift = 0.1
+		war_support_factor = 0.15
+	}
+
+	#Vleeschauwer
+	BEL_minister_of_colonies = { 
+		sprite = 13
+		random = no
+		political_power_factor = -0.05
+		war_support_factor = 0.05
+		autonomy_gain_trade_factor = -0.25
+		autonomy_gain_warscore_factor = -0.15
+	}
+
+	#Burgen
+	BEL_mobilization_proponent = { 
+		sprite = 5
+		random = no
+		mobilization_speed = 0.20
+		conscription_factor = 0.05
+	}
+
+	#Deveze
+	BEL_minister_of_national_defence_deveze = { 
+		sprite = 9
+		random = no
+		army_core_attack_factor = 0.1
+		army_org_factor = 0.05
+	}
+
+	#Nuyten
+	BEL_minister_of_national_defence_nuyten = { 
+		sprite = 9
+		random = no
+		army_core_defence_factor = 0.1
+		dig_in_speed_factor = 0.1
+		special_forces_cap_flat = 6
+		local_intel_to_enemies = 0.1
+	}
+
+	#Saive
+	BEL_arms_designer = { 
+		sprite = 10
+		random = no
+		industrial_capacity_factory = 0.05
+		research_speed_factor = 0.05
+		military_industrial_organization_funds_gain = 0.1
+	}
+
+	BEL_arms_designer_no_aat = { 
+		sprite = 10
+		random = no
+		industrial_capacity_factory = 0.05
+		research_speed_factor = 0.05
+		materiel_manufacturer_cost_factor = -0.1
+	}
+	
+	JUNO_minister_of_foreign_affairs = {
+		random = no
+		sprite = 13
+			
+		opinion_gain_monthly_factor = 0.1
+		trade_opinion_factor = 0.1
+		resistance_damage_to_garrison = -0.05
+		enemy_justify_war_goal_time = 0.2
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	JUNO_minister_of_public_health = {
+		random = no
+		sprite = 13
+			
+		monthly_population = 0.1
+		stability_factor = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	
+	merchant_marine_manufacturer = {
+		random = no
+		equipment_bonus = {
+			convoy = {
+				reliability = 0.1 build_cost_ic = -0.25
+			}
+		}
+	}
+	
+	resource_development_company = {
+		random = no
+
+		global_building_slots_factor = 0.05
+		local_resources_factor = 0.1
+		production_lack_of_resource_penalty_factor = -0.1
 	}
 
 }

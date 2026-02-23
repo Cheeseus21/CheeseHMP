@@ -3946,11 +3946,7 @@ HMP_startup_on_actions = {
     RAJ = { give_resource_rights = { receiver = ENG state = 423 } }
 
     every_country = {
-        limit = { OR = { tag = NOR tag = GRE tag = FRA tag = HOL tag = POL } }
-        #every_state = {
-            #limit = { OR = { state = 105 state = 106 state = 107 state = 108 state = 414 state = 45 state = 303 state = 102 state = 459 state = 460 } }
-            #add_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION days = 1335 }
-        #}
+        limit = { OR = { tag = NOR tag = GRE tag = FRA tag = HOL tag = POL tag = BEL } }
         every_core_state = { limit = { NOT = { state = 352 } } add_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION days = 1335 } }
     }
 
@@ -4270,29 +4266,29 @@ HMP_capitulations_on_actions = {
         man_in_the_high_castle_NO_ASIA = yes   
     }
 
-	if = { 
-        limit = { 
-            original_tag = BEL 
-            NOT = { BEL = { has_country_flag = BEL_capped } } 
-        }
+	# if = { 
+        # limit = { 
+            # original_tag = BEL 
+            # NOT = { BEL = { has_country_flag = BEL_capped } } 
+        # }
 
-        BEL = {
-            delete_unit = { disband = yes }	
-            set_country_flag = BEL_capped	
-        }
+        # BEL = {
+            # delete_unit = { disband = yes }	
+            # set_country_flag = BEL_capped	
+        # }
 
-        PER = { 
-            country_event = { id = mtg_netherlands.331 hours = 2 } 	
-        }
+        # PER = { 
+            # country_event = { id = mtg_netherlands.331 hours = 2 } 	
+        # }
 
-        every_state = { 
-            limit = { is_core_of = BEL NOT = { state = 8 } } 
-            GER = { transfer_state = PREV }	
-        }
+        # every_state = { 
+            # limit = { is_core_of = BEL NOT = { state = 8 } } 
+            # GER = { transfer_state = PREV }	
+        # }
 
-        PER = { transfer_state = 8 } 
-        GER = { transfer_state = 8 }
-    }
+        # PER = { transfer_state = 8 } 
+        # GER = { transfer_state = 8 }
+    # }
 
     if = {
         limit = { 
@@ -5360,10 +5356,10 @@ horstorical_multiplayer_vichy_france = {
         every_state = { limit = { OR = { is_owned_by = FRA is_owned_by = BEL } } teleport_armies = { limit = { original_tag = BEL } to_state = 295 } } 
     }
 
-    if = { 
-        limit = { BEL = { owns_state = 6 } }
-        every_state = { limit = { is_core_of = BEL NOT = { state = 295 } } GER = { transfer_state = PREV } }
-    }
+    #if = { 
+    #    limit = { BEL = { owns_state = 6 } }
+    #    every_state = { limit = { is_core_of = BEL NOT = { state = 295 } } GER = { transfer_state = PREV } }
+    #}
 
     # Persian events
     PER = { 
@@ -5385,8 +5381,24 @@ horstorical_multiplayer_vichy_france = {
         # Central Africa - Gabon
         if = { limit = { FRA = { check_variable = { FRA_legitimacy < 20 } } } transfer_state = 510 510 = { set_demilitarized_zone = yes } }
         # Belgian Congo
-        if = { limit = { FRA = { check_variable = { FRA_legitimacy > 59 } } } FRA = { complete_national_focus = FRA_continue_the_fight transfer_state = 295 } }
+        if = { limit = { FRA = { check_variable = { FRA_legitimacy > 59 } } } FRA = { complete_national_focus = FRA_continue_the_fight } }
     }
+	
+	if = {
+		limit = {
+			BEL = { is_ai = yes }
+			FRA = { check_variable = { FRA_legitimacy > 59 } }
+		}
+		FRA = {	
+			transfer_state = 295
+			transfer_state = 687
+			transfer_state = 688
+			transfer_state = 689
+			transfer_state = 690
+			transfer_state = 691 
+			transfer_state = 692 
+		}
+	}
 
     # Germany adjustments
     GER = { 
@@ -5446,7 +5458,7 @@ horstorical_multiplayer_vichy_france_2 = {
         FRA = { remove_resource_rights = 497 }  
     }
 
-    BEL = { delete_unit_template_and_units = { division_template = "Infantry Division" disband = yes } }
+    #BEL = { delete_unit_template_and_units = { division_template = "Infantry Division" disband = yes } }
 
     GER = { add_to_faction = EFR add_ideas = VIC_aircraft_parts }
 
@@ -6102,24 +6114,59 @@ startup_events = {
 
 
 finish_french_colony_focuses = {
-    # If France controls state 539
-    if = {
-        limit = { FRA = { controls_state = 539 } }
+	# If France controls state 539
+	if = {
+		limit = { FRA = { controls_state = 539 } }
 
-        # Transfer various French colonies to France if not already controlled
-        if = { limit = { NOT = { FRA = { controls_state = 277 }}} FRA = { transfer_state = 277 } }
-        if = { limit = { NOT = { FRA = { controls_state = 445 }}} FRA = { transfer_state = 445 } }
-        if = { limit = { NOT = { FRA = { controls_state = 295 }}} FRA = { transfer_state = 295 } }
-        if = { limit = { NOT = { FRA = { controls_state = 543 }}} FRA = { transfer_state = 543 } }
-    }
+		# Transfer various French colonies to France if not already controlled
+		if = { 
+			limit = { NOT = { FRA = { controls_state = 277 } } } 
+			FRA = { transfer_state = 277 } 
+		}
+		if = { 
+			limit = { NOT = { FRA = { controls_state = 445 } } } 
+			FRA = { transfer_state = 445 } 
+		}
+		if = { 
+			limit = { NOT = { FRA = { controls_state = 543 } } } 
+			FRA = { transfer_state = 543 } 
+		}
+	}
 
-    # If England controls states 291 and 454
-    if = {
-        limit = { ENG = { controls_state = 291 controls_state = 454 } }
+	# Belgian AI logic 
+	if = {
+		limit = {
+			BEL = { is_ai = yes }
+		}
+		FRA = {
+			transfer_state = 295
+			transfer_state = 687
+			transfer_state = 688
+			transfer_state = 689
+			transfer_state = 690
+			transfer_state = 691
+			transfer_state = 692
+		}
+	}
 
-        # Transfer several states to France if not already controlled
-        if = { limit = { NOT = { FRA = { controls_state = 554 }}} FRA = { transfer_state = 589 transfer_state = 590 transfer_state = 591 transfer_state = 554 } }
-    }
+	# If England controls states 291 and 454
+	if = {
+		limit = { 
+			ENG = { controls_state = 291 }
+			ENG = { controls_state = 454 }
+		}
+
+		# Transfer Syria/Levant states to France if not already controlled
+		if = { 
+			limit = { NOT = { FRA = { controls_state = 554 } } } 
+			FRA = { 
+				transfer_state = 589 
+				transfer_state = 590 
+				transfer_state = 591 
+				transfer_state = 554 
+			} 
+		}
+	}
 }
 
 

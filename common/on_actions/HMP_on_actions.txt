@@ -1202,6 +1202,24 @@ on_actions = {
 					JAP = { complete_national_focus = JAP_move_to_indochina } 
 				}
 			}
+			
+			# BELGIUM CAP SCRIPT
+			if = {
+				limit = {
+					FROM = { tag = BEL }
+					FROM.FROM = { is_core_of = BEL }
+					BEL = { surrender_progress > 0.9 }
+					NOT = { BEL = { has_country_flag = belgium_is_kill } }
+				}
+
+				BEL = { 
+					set_country_flag = belgium_is_kill
+                    set_global_flag = fall_of_belgium
+					complete_national_focus = BEL_the_king_surrenders
+				}
+                
+                GER = { transfer_state = 6 transfer_state = 34 transfer_state = 8 }
+			}
 
 			# NETHERLANDS CAP SCRIPT
 			if = {

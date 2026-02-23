@@ -1601,6 +1601,7 @@ focus = {
 			}			
 		}
 	}
+	
 	focus = {
 		id = FRA_appeal_to_overseas_territories
 		icon = GFX_goal_generic_radar
@@ -1628,109 +1629,211 @@ focus = {
 			add_ideas = FRA_la_deluge 
 		}
 	}
+	
 	focus = {
 		id = FRA_intervention_in_north_africa
 		icon = GFX_goal_generic_position_armies
 		x = 0
 		y = 1
 
-		prerequisite = { 
+		prerequisite = {
 			focus = FRA_appeal_to_overseas_territories
 		}
 		relative_position_id = FRA_appeal_to_overseas_territories
-		
+
 		cost = 5
 
 		available = {
-	OR = {
-check_variable = {  FRA_legitimacy > 39  }    		date > 1940.8.5
-		}			
-				custom_trigger_tooltip = {
-					tooltip = "Has at least 40 legitimacy"
-					check_variable = { FRA_legitimacy > 39 }
-				}
+			OR = {
+				check_variable = { FRA_legitimacy > 39 }
+				date > 1940.8.5
+			}
+			custom_trigger_tooltip = {
+				tooltip = "Has at least 40 legitimacy"
+				check_variable = { FRA_legitimacy > 39 }
+			}
 		}
-		
-		bypass = {	OR = { NOT = { EFR = {controls_state = 277  }}	EFR = { has_country_flag = EFR_torch_declared }	}	}
 
+		bypass = {
+			OR = {
+				NOT = { EFR = { controls_state = 277 } }
+				EFR = { has_country_flag = EFR_torch_declared }
+			}
+		}
 
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
+
 		completion_reward = {
-			add_offsite_building = { type = arms_factory level = 3 } add_offsite_building = { type = industrial_complex level = 3 }	277 = { set_demilitarized_zone = no } transfer_state = 277 
-	
-			recalc_vichy_france_legitimacy = yes  
-			hidden_effect = { if = { limit = { AND = { EFR = {owns_state = 26} NOT = {EFR = { has_country_flag = EFR_torch_declared}} } }	EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }   set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } }
+			transfer_state = 277
+			
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+
+			recalc_vichy_france_legitimacy = yes
+			hidden_effect = {
+				277 = { set_demilitarized_zone = no }
+			
+				if = {
+					limit = {
+						AND = {
+							EFR = { owns_state = 26 }
+							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+						}
+					}
+					EFR = {
+						every_owned_state = {
+							limit = {
+								NOT = { has_state_flag = keep_milled }
+							}
+							set_demilitarized_zone = yes
+						}
+						26 = { set_demilitarized_zone = no }
+					}
+				}
+			}
 		}
 	}
+	
 	focus = {
 		id = FRA_intervention_in_west_africa
 		icon = GFX_goal_generic_position_armies
 		x = -1
 		y = 2
-		prerequisite = { 
+
+		prerequisite = {
 			focus = FRA_appeal_to_overseas_territories
 		}
 		relative_position_id = FRA_appeal_to_overseas_territories
-		
+
 		cost = 5
-		bypass = {	OR = { NOT = { EFR = {controls_state = 445  }}	EFR = { has_country_flag = EFR_torch_declared }	}	}
+
+		bypass = {
+			OR = {
+				NOT = { EFR = { controls_state = 445 } }
+				EFR = { has_country_flag = EFR_torch_declared }
+			}
+		}
 
 		available = {
-		OR = {
-check_variable = {  FRA_legitimacy > 79  }
-		date > 1941.8.5
+			OR = {
+				check_variable = { FRA_legitimacy > 79 }
+				date > 1941.8.5
+			}
+			custom_trigger_tooltip = {
+				tooltip = "Has at least 80 legitimacy"
+				check_variable = { FRA_legitimacy > 79 }
+			}
 		}
-					custom_trigger_tooltip = {
-					tooltip = "Has at least 80 legitimacy"
-					check_variable = { FRA_legitimacy > 79 }
-				}
-}		
-		
-		
+
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
+
 		completion_reward = {
-add_offsite_building = { type = arms_factory level = 3 } add_offsite_building = { type = industrial_complex level = 3 } 445 = { set_demilitarized_zone = no } transfer_state = 445
-recalc_vichy_france_legitimacy = yes 
-				hidden_effect = { if = { limit = { AND = { EFR = {owns_state = 26} NOT = {EFR = { has_country_flag = EFR_torch_declared}} } }	EFR = { every_owned_state = { limit ={  NOT = { has_state_flag = keep_milled } }   set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } }
+			transfer_state = 445
+			
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+			
+			recalc_vichy_france_legitimacy = yes
+			
+			hidden_effect = {
+				445 = { set_demilitarized_zone = no }
+				
+				if = {
+					limit = {
+						AND = {
+							EFR = { owns_state = 26 }
+							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+						}
+					}
+					EFR = {
+						every_owned_state = {
+							limit = {
+								NOT = { has_state_flag = keep_milled }
+							}
+							set_demilitarized_zone = yes
+						}
+						26 = { set_demilitarized_zone = no }
+					}
+				}
+			}
 		}
 	}
+	
 	focus = {
 		id = FRA_intervention_in_syria
 		icon = GFX_goal_generic_position_armies
 		x = 1
 		y = 2
-		prerequisite = { 
+
+		prerequisite = {
 			focus = FRA_appeal_to_overseas_territories
 		}
 		relative_position_id = FRA_appeal_to_overseas_territories
-		
+
 		cost = 5
 
 		available = {
-				ENG = { controls_state = 455 }
-				OR = { date > 1941.1.1 
-				AND = { 
-						check_variable = {  FRA_legitimacy > 99  }
-							custom_trigger_tooltip = {
-					tooltip = "Has 100 legitimacy"
+			ENG = { controls_state = 455 }
+			OR = {
+				date > 1941.1.1
+				AND = {
 					check_variable = { FRA_legitimacy > 99 }
-				}
-						date > 1940.7.1 
-						}
+					custom_trigger_tooltip = {
+						tooltip = "Has 100 legitimacy"
+						check_variable = { FRA_legitimacy > 99 }
 					}
-								
+					date > 1940.7.1
 				}
-		
-		bypass = {	OR = { NOT = { EFR = {controls_state = 554  }}	EFR = { has_country_flag = EFR_torch_declared }	}	}
+			}
+		}
+
+		bypass = {
+			OR = {
+				NOT = { EFR = { controls_state = 554 } }
+				EFR = { has_country_flag = EFR_torch_declared }
+			}
+		}
 
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
+
 		completion_reward = {
-		 554 = { set_demilitarized_zone = no }  590 = { set_demilitarized_zone = no }   589 = { set_demilitarized_zone = no }  591 = { set_demilitarized_zone = no }          add_offsite_building = { type = arms_factory level = 2 }  add_offsite_building = { type = industrial_complex level = 2 }
-		transfer_state = 554 transfer_state = 590 transfer_state = 589 transfer_state = 591    recalc_vichy_france_legitimacy = yes 
-				hidden_effect = { if = { limit = { AND = { EFR = {owns_state = 26} NOT = {EFR = { has_country_flag = EFR_torch_declared}} } }	EFR = { every_owned_state = { limit ={  NOT = { has_state_flag = keep_milled } }   set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } }
+			transfer_state = 554
+			transfer_state = 590
+			transfer_state = 589
+			transfer_state = 591
+			
+			add_offsite_building = { type = arms_factory level = 2 }
+			add_offsite_building = { type = industrial_complex level = 2 }
+			
+			recalc_vichy_france_legitimacy = yes
+			
+			hidden_effect = {
+				554 = { set_demilitarized_zone = no }
+			590 = { set_demilitarized_zone = no }
+			589 = { set_demilitarized_zone = no }
+			591 = { set_demilitarized_zone = no }
+			
+				if = {
+					limit = {
+						AND = {
+							EFR = { owns_state = 26 }
+							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+						}
+					}
+					EFR = {
+						every_owned_state = {
+							limit = {
+								NOT = { has_state_flag = keep_milled }
+							}
+							set_demilitarized_zone = yes
+						}
+						26 = { set_demilitarized_zone = no }
+					}
+				}
+			}
 		}
 	}
 
@@ -1740,64 +1843,160 @@ recalc_vichy_france_legitimacy = yes
 		x = -2
 		y = 1
 
-		prerequisite = { 
+		prerequisite = {
 			focus = FRA_appeal_to_overseas_territories
 		}
 		relative_position_id = FRA_appeal_to_overseas_territories
-		
+
 		cost = 5
 
 		available = {
-		OR = { check_variable = {  FRA_legitimacy > 19  } date > 1940.3.5 }		
-		custom_trigger_tooltip = {	tooltip = "Has at least 20 legitimacy" check_variable = { FRA_legitimacy > 19 } }
+			OR = {
+				check_variable = { FRA_legitimacy > 19 }
+				date > 1940.3.5
+			}
+			custom_trigger_tooltip = {
+				tooltip = "Has at least 20 legitimacy"
+				check_variable = { FRA_legitimacy > 19 }
+			}
 		}
-		
-		bypass = {	OR = { NOT = { EFR = {controls_state = 510  }}	EFR = { has_country_flag = EFR_torch_declared }	}	}
+
+		bypass = {
+			OR = {
+				NOT = { EFR = { controls_state = 510 } }
+				EFR = { has_country_flag = EFR_torch_declared }
+			}
+		}
 
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
+
 		completion_reward = {
- add_offsite_building = { type = arms_factory level = 3 } add_offsite_building = { type = industrial_complex level = 3 } 510 = { set_demilitarized_zone = no } transfer_state = 510
-recalc_vichy_france_legitimacy = yes 
-				hidden_effect = { if = { limit = { AND = { EFR = {owns_state = 26} NOT = {EFR = { has_country_flag = EFR_torch_declared}} } }	EFR = { every_owned_state = {   limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } }
+			transfer_state = 510
+			
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+			
+			recalc_vichy_france_legitimacy = yes
+			
+			hidden_effect = {
+				510 = { set_demilitarized_zone = no }
+			
+				if = {
+					limit = {
+						AND = {
+							EFR = { owns_state = 26 }
+							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+						}
+					}
+					EFR = {
+						every_owned_state = {
+							limit = {
+								NOT = { has_state_flag = keep_milled }
+							}
+							set_demilitarized_zone = yes
+						}
+						26 = { set_demilitarized_zone = no }
+					}
+				}
+			}
 		}
 	}
+	
 	focus = {
 		id = FRA_intervention_in_madagascar
 		icon = GFX_goal_generic_position_armies
 		x = 2
 		y = 1
 
-		prerequisite = { 
+		prerequisite = {
 			focus = FRA_appeal_to_overseas_territories
 		}
 		relative_position_id = FRA_appeal_to_overseas_territories
-		
+
 		cost = 5
 
 		available = {
-		ENG = { controls_state = 549}
-		OR = {
-		check_variable = {  FRA_legitimacy > 59  } 
-		date > 1941.5.5
+			ENG = { controls_state = 549 }
+			OR = {
+				check_variable = { FRA_legitimacy > 59 }
+				date > 1941.5.5
+			}
+			custom_trigger_tooltip = {
+				tooltip = "Has at least 60 legitimacy"
+				check_variable = { FRA_legitimacy > 59 }
+			}
 		}
-						custom_trigger_tooltip = {
-					tooltip = "Has at least 60 legitimacy"
-					check_variable = { FRA_legitimacy > 59 }
-				}
+
+		bypass = {
+			OR = {
+				NOT = { EFR = { controls_state = 543 } }
+				EFR = { has_country_flag = EFR_torch_declared }
+			}
 		}
-		
-		bypass = {	OR = { NOT = { EFR = {controls_state = 543  }}	EFR = { has_country_flag = EFR_torch_declared }	}	}
 
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
+
 		completion_reward = {
-		add_offsite_building = { type = arms_factory level = 3 } add_offsite_building = { type = industrial_complex level = 3 } 543 = { set_demilitarized_zone = no } transfer_state = 543 543 = { add_building_construction = {  type = naval_base level = 1 province = 5222 instant_build = yes }}	transfer_state = 295 
-			recalc_vichy_france_legitimacy = yes 
-				hidden_effect = { if = { limit = { AND = { EFR = {owns_state = 26} NOT = {EFR = { has_country_flag = EFR_torch_declared}} } }	EFR = { every_owned_state = {   limit ={  NOT = { has_state_flag = keep_milled } } set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } }
+			transfer_state = 543
+			
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = "If Belgium is AI, This focus will annex the Belgium Congo states."
+
+			recalc_vichy_france_legitimacy = yes
+			
+			hidden_effect = {
+				543 = { set_demilitarized_zone = no }
+				
+				543 = {
+					add_building_construction = {
+						type = naval_base
+						level = 1
+						province = 5222
+						instant_build = yes
+					}
+				}
+				
+				if = {
+					limit = {
+						BEL = { is_ai = yes }
+					}
+					FRA = {	
+						transfer_state = 295
+						transfer_state = 687
+						transfer_state = 688
+						transfer_state = 689
+						transfer_state = 690
+						transfer_state = 691 
+						transfer_state = 692 
+					}
+				}
+			
+				if = {
+					limit = {
+						AND = {
+							EFR = { owns_state = 26 }
+							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
+						}
+					}
+					EFR = {
+						every_owned_state = {
+							limit = {
+								NOT = { has_state_flag = keep_milled }
+							}
+							set_demilitarized_zone = yes
+						}
+						26 = { set_demilitarized_zone = no }
+					}
+				}
 			}
+		}
 	}
-	
 	
 	
 	
