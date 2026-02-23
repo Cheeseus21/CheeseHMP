@@ -6877,7 +6877,7 @@ propaganda_effortsx = {
                 transfer_troops = yes
             }
             hidden_effect = {
-                finish_french_colony_focuses = yes
+                #finish_french_colony_focuses = yes
                 fuel_system_refresh_list = yes
             }
         }
@@ -8117,7 +8117,7 @@ propaganda_effortsx = {
         }
         
         complete_effect = {
-            hidden_effect = { finish_french_colony_focuses = yes }
+            #hidden_effect = { finish_french_colony_focuses = yes }
             recalc_vichy_france_legitimacy = yes
             GER = { puppet = EFR }
             if = {
@@ -8207,20 +8207,42 @@ propaganda_effortsx = {
 	
 		case_anton_player = {  
 			icon = generic_civil_support
-			allowed = {  original_tag = EFR  }
+			allowed = { original_tag = EFR }
 			cost = 0
 			fire_only_once = yes
 			visible = { is_subject_of = GER }
 			complete_effect = {
-			add_to_variable = { paratrooper_div_cap = 2 } set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
-				if = { limit = { EFR = { has_country_flag = host } } GER = { set_country_flag = host }  EFR = { clr_country_flag = host }  }
+				add_to_variable = { paratrooper_div_cap = 2 } 
+				set_division_template_cap = {  
+					division_template = "Paratroopers" 
+					division_cap = paratrooper_div_cap 
+				}
+				if = { 
+					limit = { EFR = { has_country_flag = host } } 
+					GER = { set_country_flag = host }  
+					EFR = { clr_country_flag = host }  
+				}
 				hidden_effect = { 
-					if = { limit = { EFR = { controls_state = 554 } ENG = { OR = { controls_state = 291 controls_state = 455 controls_state = 454 }}}  FRA = { transfer_state = 554  transfer_state = 589  transfer_state = 590  transfer_state = 591 }         }
+					if = { 
+						limit = { 
+							EFR = { controls_state = 554 } 
+							ENG = { OR = { controls_state = 291 controls_state = 455 controls_state = 454 } }
+						}  
+						FRA = { 
+							transfer_state = 554  
+							transfer_state = 589  
+							transfer_state = 590  
+							transfer_state = 591 
+						}          
+					}
 				}
 				GER = { change_tag_from = EFR } 				
-				GER = { annex_country = { target = EFR  transfer_troops = yes }  	}
-				hidden_effect = { finish_french_colony_focuses = yes   fuel_system_refresh_list = yes}
-				}	
+				GER = { annex_country = { target = EFR transfer_troops = yes } }
+				hidden_effect = { 
+					#finish_french_colony_focuses = yes   
+					fuel_system_refresh_list = yes
+				}
+			}    
 		}
 		
 		ALLIES_form_seac = {
