@@ -1167,6 +1167,7 @@ focus_tree = {
 		completion_reward = {
 		
 		    random_owned_controlled_state = {
+				limit = { is_core_of = ROOT }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
@@ -1175,6 +1176,7 @@ focus_tree = {
 				}
 			}
 			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
@@ -1242,6 +1244,7 @@ focus_tree = {
 
 		completion_reward = {
             random_owned_controlled_state = {
+				limit = { is_core_of = ROOT }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
@@ -1251,6 +1254,7 @@ focus_tree = {
                 
 			}
             random_owned_controlled_state = {
+				limit = { is_core_of = ROOT }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
@@ -1423,6 +1427,7 @@ focus_tree = {
 			}
 			
 			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
@@ -1431,6 +1436,7 @@ focus_tree = {
 				}
 			}
 			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
@@ -4932,9 +4938,14 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_ANNEXATION}
 
 		completion_reward = {
-			#transfer_state = 177
 			set_country_flag = ITA_took_balearics
 			177 = { set_demilitarized_zone = no  set_building_level = { type = air_base level = 6 } }		
+			if = {
+				limit = {
+					177 = { is_owned_by = SWE }
+				}
+				transfer_state = 177
+			}
 		}
 	}
 
