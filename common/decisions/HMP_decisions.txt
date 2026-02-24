@@ -5945,44 +5945,42 @@ propaganda_effortsx = {
 	
 
 	operations = {
-		FRA_defensive_focus_decision = {
-			icon = GFX_decision_generic_army_support
+		ENG_ongoing_evacuation_mission = {
+			icon = generic_production_bonus
 			
-			allowed = { always = no }
-			
-			available = { 
-				has_completed_focus = FRA_defensive_focus 
-				surrender_progress > 0.1  
-				owns_state =16 
+			allowed = {
+				original_tag = ENG
 			}
-			
-			cost= 0
-			
-			fire_only_once = yes
-			
-			complete_effect= { 
-				add_timed_idea = { idea = FRA_defensive_focus_idea days = 15  }
+
+			cancel_trigger = {
+				OR = {
+					has_war = no
+					date > 1941.1.2
+				}
 			}
-		}
-		FRA_aggressive_focus_decision = {
-			icon = GFX_decision_infiltrate_state
-			
-			allowed = { always = no  }
-			
-			available ={ 
-				has_completed_focus = FRA_aggressive_focus 
-				surrender_progress < 0.1  
-				owns_state =16 
+
+			available = { always = no }
+
+			activation = { 
+				has_war = yes
+				date < 1941.1.1
+				has_completed_focus = ENG_focus_on_the_empire
 			}
+
+			days_mission_timeout = 7 
 			
-			cost= 0
+			fire_only_once = no
 			
-			fire_only_once = yes
-			
-			complete_effect= { 
-				add_timed_idea = { idea = FRA_aggressive_focus_idea days = 15  }
+			is_good = yes
+
+			timeout_effect = {
+				ENG_evacuate_logic = yes
+				ENG_evacuate_logic = yes
+
+				activate_mission = ENG_ongoing_evacuation_mission
 			}
 		}
+
 	khalkin_gol = {
 		icon = border_war
 		allowed = {	original_tag = JAP	}
