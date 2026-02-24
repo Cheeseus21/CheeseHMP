@@ -1186,20 +1186,6 @@ on_actions = {
 					news_event = { id = news.34 days = 0 }
 				}
 
-				# ENG = { 
-					# retire_country_leader = yes
-					# create_country_leader = {
-						# name = "Winston Churchill"
-						# desc = "POLITICS_WINSTON_CHURCHILL_DESC"
-						# picture = "Portrait_Britain_Winston_Churchill.dds"
-						# expire = "1965.1.1"
-						# ideology = conservatism
-						# traits = { british_bulldog }
-					# }
-					# add_stability = 0.1
-					# add_war_support = 0.1
-				# }
-
 				GER = { country_event = { id = france.14 } }
 
 				if = { 
@@ -1216,17 +1202,21 @@ on_actions = {
 					BEL = { surrender_progress > 0.9 }
 					NOT = { BEL = { has_country_flag = belgium_is_kill } }
 				}
-
+                
+                GER = { transfer_state = 6 transfer_state = 34 transfer_state = 8 }
+                
 				BEL = { 
 					set_country_flag = belgium_is_kill
                     set_global_flag = fall_of_belgium
+                    
 					complete_national_focus = BEL_the_king_surrenders
 					
 					add_state_core = 295
-					set_capital = { state = 295 }
+					set_capital = {
+						state = 295
+						remember_old_capital = yes
+					}
 				}
-                
-                GER = { transfer_state = 6 transfer_state = 34 transfer_state = 8 }
 			}
 
 			# NETHERLANDS CAP SCRIPT
