@@ -1639,6 +1639,47 @@ on_actions = {
 					track = heavy_aircraft
 				}
 			}
+			
+			# --- INCREASE CHURCHILL LOGIC ---
+            if = {
+                limit = {
+                    has_country_flag = churchill_path_count_start
+					has_completed_focus = ENG_churchill_war_economy
+                }
+                # Initialize if needed
+                if = {
+                    limit = { NOT = { check_variable = { ENG_bi_consumer_goods_expected_value > 0 } } }
+                    set_variable = { ENG_bi_consumer_goods_expected_value = 0 }
+                }
+                # Increase by 0.01
+                add_to_variable = { ENG_bi_consumer_goods_expected_value = 0.01 }
+                
+                # Cap at 20% (Optional)
+                if = {
+                    limit = { check_variable = { ENG_bi_consumer_goods_expected_value > 0.20 } }
+                    set_variable = { ENG_bi_consumer_goods_expected_value = 0.20 }
+                }
+            }
+            
+            # --- DECREASE CHURCHILL LOGIC ---
+            else = {
+                # Only decrease if the value is actually above zero
+                if = {
+                    limit = { 
+						check_variable = { ENG_bi_consumer_goods_expected_value > 0 } 
+						has_completed_focus = ENG_churchill_takes_command
+					}
+                    
+                    # Decrease by 0.01
+                    subtract_from_variable = { ENG_bi_consumer_goods_expected_value = 0.01 }
+                    
+                    # Ensure it doesn't go below zero
+                    if = {
+                        limit = { check_variable = { ENG_bi_consumer_goods_expected_value < 0 } }
+                        set_variable = { ENG_bi_consumer_goods_expected_value = 0 }
+                    }
+                }
+            }
 	    }
 	}
 	
