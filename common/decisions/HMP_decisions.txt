@@ -5945,41 +5945,6 @@ propaganda_effortsx = {
 	
 
 	operations = {
-		ENG_ongoing_evacuation_mission = {
-			icon = generic_production_bonus
-			
-			allowed = {
-				original_tag = ENG
-			}
-
-			cancel_trigger = {
-				OR = {
-					has_war = no
-					date > 1941.1.2
-				}
-			}
-
-			available = { always = no }
-
-			activation = { 
-				has_war = yes
-				date < 1941.1.1
-				has_completed_focus = ENG_focus_on_the_empire
-			}
-
-			days_mission_timeout = 7 
-			
-			fire_only_once = no
-			
-			is_good = yes
-
-			timeout_effect = {
-				ENG_evacuate_logic = yes
-				ENG_evacuate_logic = yes
-
-				activate_mission = ENG_ongoing_evacuation_mission
-			}
-		}
 
 	khalkin_gol = {
 		icon = border_war
@@ -6409,7 +6374,43 @@ propaganda_effortsx = {
             }
         }
     }
-    
+	
+	ENG_ongoing_evacuation_mission = {
+		icon = generic_production_bonus
+		
+		allowed = {
+			original_tag = ENG
+		}
+
+		cancel_trigger = {
+			OR = {
+				has_war = no
+				date > 1941.1.1
+			}
+		}
+
+		available = { always = no }
+
+		activation = { 
+			has_war = yes
+			#date < 1941.1.1
+			has_completed_focus = ENG_focus_on_the_empire
+		}
+
+		days_mission_timeout = 7 
+		
+		fire_only_once = no
+		
+		is_good = yes
+
+		timeout_effect = {
+			ENG_evacuate_logic = yes
+			ENG_evacuate_logic = yes
+
+			activate_mission = ENG_ongoing_evacuation_mission
+		}
+	}
+
     ENG_operation_countenance = {
         icon = generic_operation
 		

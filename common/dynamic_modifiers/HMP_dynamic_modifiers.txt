@@ -2594,7 +2594,8 @@ ENG_empire_africa_focus = {
 	icon = GFX_modifiers_SOV_civilian_labor_in_defense
 
 	remove_trigger = {
-		ROOT = { NOT = { is_core_of = ROOT.controller } } # ROOT refers to the state on which the modifier is added
+		# Cancel if the owner is at war
+		CONTROLLER = { has_war = yes }
 	}
 
 	state_production_speed_buildings_factor = 0.5
@@ -2605,7 +2606,8 @@ ENG_empire_asia_focus = {
 	icon = GFX_modifiers_SOV_civilian_labor_in_defense
 
 	remove_trigger = {
-		ROOT = { NOT = { is_core_of = ROOT.controller } } # ROOT refers to the state on which the modifier is added
+		# Cancel if the owner is at war
+		CONTROLLER = { has_war = yes }
 	}
 
 	state_production_speed_buildings_factor = 0.5
