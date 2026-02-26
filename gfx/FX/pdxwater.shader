@@ -345,6 +345,12 @@ PixelShader =
 				GradientBorderChannel1, GradientBorderChannel2, 0.0f, 
 				vGBCamDistOverride_GBOutlineCutoff.zw * GB_OUTLINE_CUTOFF_SEA,
 				vGBCamDistOverride_GBOutlineCutoff.xy, vBloomAlpha );
+				
+				// --- ADD THESE TWO LINES HERE ---
+				float3 Darkness = float3(0.0f, 0.0f, 0.0f);
+				refractiveColor.rgb = lerp(refractiveColor.rgb, Darkness, 0.65f); 
+				// --------------------------------
+				
 			secondary_color_mask( refractiveColor, normal, 
 				Input.uv - vRefractionDistortion * 0.001, 
 				ProvinceSecondaryColorMap, 

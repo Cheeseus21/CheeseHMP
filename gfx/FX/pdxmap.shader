@@ -396,6 +396,30 @@ PixelShader =
 			
 			vOut = DayNightWithBlend( vOut, vGlobeNormal, lerp(BORDER_NIGHT_DESATURATION_MAX, 1.0f, vBloomAlpha) );
 			
+			// Do not ask me how i managed to learn all of this under 10-20 minutes, It is a mystery even to me. - Cheeseus"
+			// --- HORSTORICAL STABLE SATURATION ---
+			// 1. Basic Luminance
+			float3 vLuminanceWeights = float3(0.2126, 0.7152, 0.0722);
+			float luminance = dot(vOut, vLuminanceWeights);
+
+			// 2. Protection Masks
+			float blackMask = smoothstep(0.01, 0.10, luminance); // Protects deep blacks
+			float yellowMask = saturate(vOut.r + vOut.g - vOut.b * 2.0); // Identifies yellows
+
+			// 3. Simple Saturation (Lower strength for stability)
+			float saturationStrength = lerp(1.20, 1.02, yellowMask); 
+			float3 saturatedColor = lerp(vec3(luminance), vOut, saturationStrength);
+
+			// 4. Apply and Clamp
+			// The clamp ensures no color channel "blows out" past 1.0
+			vOut = lerp(vOut, saturatedColor, blackMask);
+			vOut = saturate(vOut); 
+
+			// 5. Final Darken & Contrast
+			vOut = vOut * 0.90; // Global dimming
+			vOut.rgb = pow(vOut.rgb, vec3(1.1f)); // Adds "punch" without messying the colors
+			// -------------------------------------
+			
 			DebugReturn(vOut, lightingProperties, fShadowTerm);
 
 		#ifdef LOW_END_GFX
