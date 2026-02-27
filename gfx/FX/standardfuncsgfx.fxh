@@ -26,8 +26,8 @@ ConstantBuffer( 0, 0 )
 	float3		AmbientPosZ;
 	float3		AmbientNegZ;
 	float		CubemapIntensity;
-	float4		SunDiffuseIntensity
-	float4		MoonDiffuseIntensity
+	float4		SunDiffuseIntensity;
+	float4		MoonDiffuseIntensity;
 	float		GB_TextureHeight;
 };
 
@@ -89,7 +89,14 @@ PixelShader =
 	// Photoshop filters, kinda...
 	float3 HuePost( float H )
 	{
-		float X = 1 - abs( ( mod( H, 2 ) ) - 1 );
+		#ifdef PDX_OPENGL
+			// Mac/OpenGL side (strictly uses .0 decimals)
+			float X = 1.0 - abs( ( mod( H, 2.0 ) ) - 1.0 );
+		#else
+			// Windows/DirectX side (Reverted to pure old.fxh math)
+			float X = 1 - abs( ( mod( H, 2 ) ) - 1 );
+		#endif
+
 		if ( H < 1.0f )			return float3( 1.0f,    X, 0.0f );
 		else if ( H < 2.0f )	return float3(    X, 1.0f, 0.0f );
 		else if ( H < 3.0f )	return float3( 0.0f, 1.0f,    X );
@@ -116,18 +123,18 @@ PixelShader =
 		
 		float H = 0.0;
 		float S = 0.0;
-		if (diff != 0.0)
-		{
+		if (diff != 0.0) {
 			S = diff / Cmax;
+			if (Cmax == RGB.r) H = (RGB.g - RGB.b) / diff + 6.0;
+			else if (Cmax == RGB.g) H = (RGB.b - RGB.r) / diff + 2.0;
+			else H = (RGB.r - RGB.g) / diff + 4.0;
 			
-			if (Cmax == RGB.r)
-				H = (RGB.g - RGB.b) / diff + 6.0;
-			else if (Cmax == RGB.g)
-				H = (RGB.b - RGB.r) / diff + 2.0;
-			else
-				H = (RGB.r - RGB.g) / diff + 4.0;
+			#ifdef PDX_OPENGL
+				// ONLY Mac requires this strict modulo wrap
+				H = mod(H, 6.0);
+			#endif
+            // DirectX relies on the values occasionally exceeding 6.0, so we leave it alone!
 		}
-
 		return float3(H, S, Cmax);
 	}
 
@@ -638,8 +645,16 @@ PixelShader =
 	float3 CalculateSunDirection( float3 vWorldPos, float3 SunPos, float3 SecondSunPos, float3 MoonPos, float3 SecondMoonPos )
 	{
 		float vSelected = DayNightFactor( CalcGlobeNormal( vWorldPos.xz ), 0.0f, 0.0001f  );
-		float3 vSourcePos = lerp( float3(2800, SunPos.y, 1000), MoonPos, vSelected );
-		float3 vSecondSourcePos = lerp( float3(0, SecondSunPos.y, 1000), SecondMoonPos, vSelected );
+        
+        #ifdef PDX_OPENGL
+            // OLD VERSION (Mac)
+		    float3 vSourcePos = lerp( float3(2800, SunPos.y, 1000), MoonPos, vSelected );
+		    float3 vSecondSourcePos = lerp( float3(0, SecondSunPos.y, 1000), SecondMoonPos, vSelected );
+        #else
+            // NEW VERSION (Windows)
+		    float3 vSourcePos = lerp( SunPos, MoonPos, vSelected );
+		    float3 vSecondSourcePos = lerp( SecondSunPos, SecondMoonPos, vSelected );
+        #endif
 
 		if ( vWorldPos.x - vSourcePos.x > MAP_SIZE_X * 0.5 )
 		{
@@ -943,133 +958,136 @@ PixelShader =
 		return stripeVal;
 	}	
 	
-	float gradient_border_process_channel( out float3 vCh, float3 vInit, float vCamDist, float3 vNormal, float2 uv, in sampler2D gbTex, in sampler2D gbTex2, float vOutlineMult, float vOutlineCutoff, float vStrength )
-	{
-		vCh = vInit;
+	#ifdef PDX_OPENGL
+        // --- OLD VERSION (Mac/OpenGL) ---
+        float gradient_border_process_channel( out float3 vCh, float3 vInit, float vCamDist, float3 vNormal, float2 uv, in sampler2D gbTex, in sampler2D gbTex2, float vOutlineMult, float vOutlineCutoff, float vStrength )
+        {
+            vCh = vInit;
+            const float PulseSpeedMult = 3.5f;
+            float FX = tex2D( gbTex2, uv ).b;
+            vStrength *= lerp( lerp( 0.45f, 1.0f, 1.0f - FX ), 1.0f, ( sin( vGlobalTime * PulseSpeedMult ) + 1.0f ) / 2 );
+            float vFullWidth = 5.25f / 255.0f;
+            float vGradientWidth = 0.5f / 255.0f;
+            
+            float4 vGBDist = gradient_border_multisample_alpha( tex2D( gbTex, uv ), gbTex, uv );
+            float Alpha = vGBDist.a;
+            
+            float vColorOpacity = Levels( Alpha, 0.0f, vOutlineCutoff );
+            float vOutline = 1.0f - Levels( Alpha, vOutlineCutoff, 1.0f );
+            float vOldOutline = vOutline;
+            vOutline *= floor(vColorOpacity);
+            vOutline *= vOutlineMult;
+            
+            vColorOpacity = gradient_border_distance_to_alpha( vColorOpacity, vCamDist );
+            vColorOpacity *= floor(vOldOutline);
+            float vThick = smoothstep( 0.f, 1.f, Levels( Alpha, vOutlineCutoff - vFullWidth, vOutlineCutoff - vFullWidth + vGradientWidth ) ) ;
+            vThick *= floor(vOldOutline);
 
-		const float PulseSpeedMult = 3.5f;
-		float FX = tex2D( gbTex2, uv ).b;
-		vStrength *= lerp( lerp( 0.45f, 1.0f, 1.0f - FX ), 1.0f, ( sin( vGlobalTime * PulseSpeedMult ) + 1.0f ) / 2 );
+            float vMaxGradient = max(vColorOpacity, vOutline ); 
+            vCh = lerp( vCh, vGBDist.rgb, max( vMaxGradient, vThick )* vStrength);
+            vCh *= 1.15f;
+            vCh = min( vCh, float3( 1, 1, 1 ) );
+            vCh = lerp( vCh, vCh * .5, vThick );
 
-		float vFullWidth = 5.25f / 255.0f;//lerp( 5.25f, 0.01f, FX ) / 255.f;
-		float vGradientWidth = 0.5f / 255.0f;//lerp( 0.5f, 0.1f, FX ) / 255.f;
+            return max( vMaxGradient, vThick );
+        }
 
-		// Grab multisampled border color
-		float4 vGBDist = gradient_border_multisample_alpha( tex2D( gbTex, uv ), gbTex, uv );
+        void gradient_border_apply( inout float3 vColor, float3 vNormal, float2 vUV, 
+            in sampler2D TexCh1, in sampler2D TexCh2, 
+            float vOutlineMult, float2 vOutlineCutoff, float2 vCamDistOverride, inout float vBloomAlpha )
+        {
+            #ifndef GRADIENT_BORDERS
+                vBloomAlpha = 1.0f;
+                return;
+            #endif
 
-		float Alpha = vGBDist.a;
+            float vGBCamDist = gradient_border_camera_distance();
+            float vGBCamDistCh1 = saturate( ( vGBCamDist * int( 1.0f - vCamDistOverride.x ) ) + vCamDistOverride.x );
+            float vGBCamDistCh2 = saturate( ( vGBCamDist * int( 1.0f - vCamDistOverride.y ) ) + vCamDistOverride.y );
+            
+            float HalfPix = 0.5f / GB_TextureHeight;
+            vUV.y *= 0.5f - HalfPix;
+            float2 vUV2 = float2( vUV.x, vUV.y + 0.5f );
+            
+            float3 vGradMix;
+            float vAlpha1 = gradient_border_process_channel( vGradMix, vColor, vGBCamDistCh1, vNormal, vUV, TexCh1, TexCh2, vOutlineMult, vOutlineCutoff.x, GB_STRENGTH_CH1 );
+            
+            float TranspA = 1.0f - tex2D( TexCh2, vUV ).g;
+            vColor = lerp( vColor, vGradMix, ( GB_OPACITY_NEAR + ( 1.0f - vGBCamDist ) * ( GB_OPACITY_FAR - GB_OPACITY_NEAR ) ) * TranspA );
+            
+            float vAlpha2 = gradient_border_process_channel( vGradMix, vColor, vGBCamDistCh2, vNormal, vUV2, TexCh1, TexCh2, vOutlineMult, vOutlineCutoff.y, (1.0 - vAlpha1 * GB_STRENGTH_CH1 * GB_FIRST_LAYER_PRIORITY) * GB_STRENGTH_CH2 );
+            float TranspB = 1.0f - tex2D( TexCh2, vUV2 ).g;
+            vColor = lerp( vColor, vGradMix, ( GB_OPACITY_NEAR + ( 1.0f - vGBCamDist ) * ( GB_OPACITY_FAR - GB_OPACITY_NEAR ) ) * TranspB );
 
-		// Check how much color and how much outline there is
-		float vColorOpacity = Levels( Alpha, 0.0f, vOutlineCutoff );
-		float vOutline = 1.0f - Levels( Alpha, vOutlineCutoff, 1.0f );
-		float vOldOutline = vOutline;
-		vOutline *= floor(vColorOpacity);
-		vOutline *= vOutlineMult;
+            vBloomAlpha = 1.0f - max( vAlpha1, vAlpha2 );
+        }
+    #else
+        // Add the DirectX version of the helper function here!
+        float gradient_border_process_channel( out float3 vCh, float3 vInit, float vCamDist, float3 vNormal, float2 uv, in sampler2D gbTex, in sampler2D gbTex2, float vOutlineMult, float vOutlineCutoff, float vStrength )
+        {
+            vCh = vInit;
+            const float PulseSpeedMult = 3.5f;
+            float FX = tex2D( gbTex2, uv ).b;
+            vStrength *= lerp( lerp( 0.45f, 1.0f, 1.0f - FX ), 1.0f, ( sin( vGlobalTime * PulseSpeedMult ) + 1.0f ) / 2 );
+            float vFullWidth = 5.25f / 255.0f;
+            float vGradientWidth = 0.5f / 255.0f;
+            
+            float4 vGBDist = gradient_border_multisample_alpha( tex2D( gbTex, uv ), gbTex, uv );
+            float Alpha = vGBDist.a;
+            
+            float vColorOpacity = Levels( Alpha, 0.0f, vOutlineCutoff );
+            float vOutline = 1.0f - Levels( Alpha, vOutlineCutoff, 1.0f );
+            float vOldOutline = vOutline;
+            vOutline *= floor(vColorOpacity);
+            vOutline *= vOutlineMult;
+            
+            vColorOpacity = gradient_border_distance_to_alpha( vColorOpacity, vCamDist );
+            vColorOpacity *= floor(vOldOutline);
+            float vThick = smoothstep( 0.f, 1.f, Levels( Alpha, vOutlineCutoff - vFullWidth, vOutlineCutoff - vFullWidth + vGradientWidth ) ) ;
+            vThick *= floor(vOldOutline);
 
-			
-		// Convert "heightmap" to "fill" regarding camera distance (the whole magic in this function)
-		vColorOpacity = gradient_border_distance_to_alpha( vColorOpacity, vCamDist );
+            float vMaxGradient = max( vColorOpacity, vOutline );
+            vCh = lerp( vCh, vGBDist.rgb, max( vMaxGradient, vThick )* vStrength);
+            vCh *= 1.15f;
+            vCh = min( vCh, float3( 1, 1, 1 ) );
+            vCh = lerp( vCh, vCh * .5, vThick );
 
-		// Now when vOutline > 0 then vColorOpacity = 0, and other way around.
-		// Never both values will be > 0.
-		vColorOpacity *= floor(vOldOutline);
-	
+            return max( vMaxGradient, vThick );
+        }
 
-		float vThick = smoothstep( 0.f, 1.f, Levels( Alpha, vOutlineCutoff - vFullWidth, vOutlineCutoff - vFullWidth + vGradientWidth ) ) ;
-		
-		vThick *= floor(vOldOutline);
+        // Your perfectly fixed apply function
+        void gradient_border_apply( inout float3 vColor, float3 vNormal, float2 vUV, 
+            in sampler2D TexCh1, in sampler2D TexCh2, 
+            float vOutlineMult, float2 vOutlineCutoff, float2 vCamDistOverride, inout float vBloomAlpha )
+        {
+            #ifndef GRADIENT_BORDERS
+                vBloomAlpha = 1.0f;
+                return;
+            #endif
 
-		float vMaxGradient = max(vColorOpacity, vOutline );  // max(vOutline, max(0.2f, vColorOpacity));
-		vCh = lerp( vCh, vGBDist.rgb, max( vMaxGradient, vThick )* vStrength);
-
-		// Compensate the brightness since the 2nd layer is now black (not white) although it's alpha is 0
-		vCh *= 1.15f;
-		vCh = min( vCh, float3( 1, 1, 1 ) );
-
-		// Make the outline edge darker
-		vCh = lerp( vCh, vCh * .5, vThick );
-
-		return max( vMaxGradient, vThick );
-	}
-
-	void gradient_border_apply( inout float3 vColor, float3 vNormal, float2 vUV, 
-		in sampler2D TexCh1, in sampler2D TexCh2, 
-		float vOutlineMult, float2 vOutlineCutoff, float2 vCamDistOverride, inout float vBloomAlpha )
-	{
-
-	#ifndef GRADIENT_BORDERS
-		vBloomAlpha = 1.0f;
-		return;
-	#endif
-
-		// Check the distance of camera (value 0-1)
-		float vGBCamDist = gradient_border_camera_distance();
-
-		// Handle camera distance overriding (unique for each channel)
-		float vGBCamDistCh1 = saturate( ( vGBCamDist * int( 1.0f - vCamDistOverride.x ) ) + vCamDistOverride.x );
-		float vGBCamDistCh2 = saturate( ( vGBCamDist * int( 1.0f - vCamDistOverride.y ) ) + vCamDistOverride.y );
-
-		// Split UV to correct offset in height, as 1st channel is the top half part of the texture, and 2nd channel is bottom half
-		float HalfPix = 0.5f / GB_TextureHeight;
-		vUV.y *= 0.5f - HalfPix;
-		float2 vUV2 = float2( vUV.x, vUV.y + 0.5f );
-
-		// Calculate color and transparency of both channels
-		float3 vGradMix;
-		
-		float vAlpha1 = gradient_border_process_channel( vGradMix, vColor, vGBCamDistCh1, vNormal, vUV, TexCh1, TexCh2, vOutlineMult, vOutlineCutoff.x, GB_STRENGTH_CH1 );
-		// Now mix, the resultat with background
-		float TranspA = 1.0f - tex2D( TexCh2, vUV ).g;		
-		vColor = lerp( vColor, vGradMix, ( GB_OPACITY_NEAR + ( 1.0f - vGBCamDist ) * ( GB_OPACITY_FAR - GB_OPACITY_NEAR ) ) * TranspA );
-		
-		
-		float vAlpha2 = gradient_border_process_channel( vGradMix, vColor, vGBCamDistCh2, vNormal, vUV2, TexCh1, TexCh2, vOutlineMult, vOutlineCutoff.y, (1.0 - vAlpha1 * GB_STRENGTH_CH1 * GB_FIRST_LAYER_PRIORITY) * GB_STRENGTH_CH2 );
-		float TranspB = 1.0f - tex2D( TexCh2, vUV2 ).g;
-		vColor = lerp( vColor, vGradMix, ( GB_OPACITY_NEAR + ( 1.0f - vGBCamDist ) * ( GB_OPACITY_FAR - GB_OPACITY_NEAR ) ) * TranspB );
-		
-	//vColor = GetOverlay( vColor, ToLinear(vGradMix), 0.80);
-
-		// Return some alpha, so the postprocess will ignore gradient borders
-		// when applying season coloring overlay 
-		// (we don't want to affect the colors especially when camera is zoomed out, and
-		//  everything is 100% filled)
-		vBloomAlpha = 1.0f - max( vAlpha1, vAlpha2 );
-	}
-
-	/*
-	float gradient_border_process_channel( out float3 vCh, float3 vInit, float vCamDist, float3 vNormal, float2 uv, in sampler2D gbTex, float vOutlineMult, float vOutlineCutoff, float vStrength )
-	{
-		vCh = vInit;
-
-		// Grab multisampled border color
-		float4 vGBDist = gradient_border_multisample_alpha( tex2D( gbTex, uv ), gbTex, uv );
-		// Check how much color and how much outline there is
-		float vColorOpacity = Levels( vGBDist.a, 0.0f, vOutlineCutoff );
-		float vOutline = 1.0f - Levels( vGBDist.a, vOutlineCutoff, 1.0f );
-		float vOldOutline = vOutline;
-		vOutline *= floor(vColorOpacity);
-		vOutline *= vOutlineMult;
-
-			
-		// Convert "heightmap" to "fill" regarding camera distance (the whole magic in this function)
-		vColorOpacity = gradient_border_distance_to_alpha( vColorOpacity, vCamDist );
-
-		// Now when vOutline > 0 then vColorOpacity = 0, and other way around.
-		// Never both values will be > 0.
-		vColorOpacity *= floor(vOldOutline);
-	
-		float vFullWidth = 2.25f / 255.f;
-		float vGradientWidth = .5f / 255.f;
-
-		float vThick = smoothstep( 0.f, 1.f, Levels( vGBDist.a, vOutlineCutoff - vFullWidth, vOutlineCutoff - vFullWidth + vGradientWidth ) ) ;
-		//vThick *= floor(vOldOutline);
-		float vMaxGradient = max( vColorOpacity, vOutline );
-		vCh = lerp( vCh, vGBDist.rgb,vMaxGradient* vStrength);
-		vCh = lerp( vCh, vCh * .5, vThick );
-	
-		return max( vMaxGradient * 0.5, vThick );
-	}
-	*/
+            float vGBCamDist = gradient_border_camera_distance();
+            float vGBCamDistCh1 = saturate( ( vGBCamDist * int( 1.0f - vCamDistOverride.x ) ) + vCamDistOverride.x );
+            float vGBCamDistCh2 = saturate( ( vGBCamDist * int( 1.0f - vCamDistOverride.y ) ) + vCamDistOverride.y );
+            float HalfPix = 0.5f / GB_TextureHeight;
+            vUV.y *= 0.5f - HalfPix;
+            float2 vUV2 = float2( vUV.x, vUV.y + 0.5f );
+            float3 vGradMix;
+            
+            float vAlpha1 = gradient_border_process_channel( vGradMix, vColor, vGBCamDistCh1, vNormal, vUV, TexCh1, TexCh2, vOutlineMult, vOutlineCutoff.x, GB_STRENGTH_CH1 );
+            
+            // Your fix applied here
+            float TranspA = 1.0f - tex2D( TexCh2, vUV ).g;
+            vColor = lerp( vColor, vGradMix, ( GB_OPACITY_NEAR + ( 1.0f - vGBCamDist ) * ( GB_OPACITY_FAR - GB_OPACITY_NEAR ) ) * TranspA );
+            
+            float vAlpha2 = gradient_border_process_channel( vGradMix, vColor, vGBCamDistCh2, vNormal, vUV2, TexCh1, TexCh2, vOutlineMult, vOutlineCutoff.y, (1.0 - vAlpha1 * GB_STRENGTH_CH1 * GB_FIRST_LAYER_PRIORITY) * GB_STRENGTH_CH2 );
+            
+            // And your fix applied here
+            float TranspB = 1.0f - tex2D( TexCh2, vUV2 ).g;
+            vColor = lerp( vColor, vGradMix, ( GB_OPACITY_NEAR + ( 1.0f - vGBCamDist ) * ( GB_OPACITY_FAR - GB_OPACITY_NEAR ) ) * TranspB );
+            
+            vBloomAlpha = 1.0f - max( vAlpha1, vAlpha2 );
+        }
+    #endif
 	
 	float CalculateOccupationMask( in float2 uv )
 	{
@@ -1280,7 +1298,62 @@ PixelShader =
 		float3 M;
 		SampleWater( uv, vTime, B, M, normal, Lean1, Lean2 );
 	}	
+	
+    // --- STEP 5 GOES HERE ---
+    #ifndef PDX_OPENGL
+	void dominance_fx_apply(inout float3 Color, float3 Normal, float2 UV, in sampler2D TexDom1, in sampler2D TexDom2, in sampler2D TexDom3, float2 OutlineCutoff, float2 CameraDistOverride, float OutlineMult)
+	{
+		float HalfPix = 0.5f / GB_TextureHeight;
+		float2 GBUV = float2(UV.x, UV.y * 0.5f - HalfPix);
+		
+		float4 Sample = tex2D( TexDom2, GBUV );
+		float4 ColorMask = float4(ToGamma(Sample.rgb),saturate(ceil(Sample.a*2)*0.5f));
+		
+		const float FadeSpeed = 1.5f;
+		const float ContestedPulseSpeed = 2.5f;
+		const float MinFade = 0.2;
+		const float MaxFade = 0.23;
+		float3 EnemyColor = tex2D(TexDom3, float2(0,0)).rgb;
+		float3 FriendlyColor = tex2D(TexDom3, float2(1,0)).rgb;
+		
+		float Opacity = lerp( MinFade, MaxFade, ( sin( vGlobalTime * FadeSpeed ) + 1 ) * 0.5);
+		float ContestedIntensity = lerp( 0.8f, 1.5f, ( sin( vGlobalTime * FadeSpeed*2 ) + 1 ) * 0.5);
+		
+		float ContestedBy = round(Sample.a) * ( Sample.a * 4.f - 3.f );
+		float Control = round(ColorMask.r) * ( ColorMask.r * 4.f - 3.f );
+		float3 OverlayColor = abs(Control)*lerp(EnemyColor, FriendlyColor, (Control + 1)/2);
+		
+		float4 GBDist =  gradient_border_multisample_alpha(tex2D( TexDom1, GBUV ), TexDom1, GBUV );
+		float Alpha = GBDist.a;
+	
+		float IsRegionRelevant = saturate(abs(Control) + abs(ContestedBy))* (1- floor(Alpha));
+		if (IsRegionRelevant < 0.99) return;
+	
+		float ColorOpacity = Levels( Alpha, 0.0f, OutlineCutoff.x );
+		float Outline = 1.0f - Levels( Alpha,OutlineCutoff.x, 1.0f );
+		float OldOutline = Outline;
+		Outline *= floor(ColorOpacity);
+		if (Outline > 0) return;
+		Outline *= OutlineMult;
+
+		float GBCamDist = gradient_border_camera_distance();
+		float SaturatedCamDistOveride = saturate( ( GBCamDist * int( 1.0f - CameraDistOverride.x ) ) + CameraDistOverride.x );
+		ColorOpacity = gradient_border_distance_to_alpha( ColorOpacity, SaturatedCamDistOveride );
+		ColorOpacity *= floor(OldOutline);
+		float MaxGradient = max(ColorOpacity,Outline);
+		float OuterFade = max(1.f - (MaxGradient + 0.05f), 0.0f);
+		if (abs(ContestedBy) > 0.7f)
+		{
+			float3 ContestedColor = lerp(EnemyColor, FriendlyColor, (ContestedBy + 1)/2);
+			OverlayColor = lerp(OverlayColor, ContestedColor,saturate(MaxGradient * ContestedIntensity));
+			OuterFade = saturate(OuterFade * 2);
+		}
+
+		Color = lerp( Color, OverlayColor, Opacity * OuterFade);
+	}
+	#endif
+
 	]]
 
 }
-
+}
