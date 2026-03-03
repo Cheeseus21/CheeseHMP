@@ -17,8 +17,49 @@ news_event = { #LEAGUE OF NATIONS IS DONE
 	}
 }
 
+add_namespace = romania
 
+# Election of 1937
+country_event = {
+	id = romania.1
+	title = romania.1.t
+	desc = romania.1.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = { # King
+		name = romania.1.a
+		
+		complete_national_focus = ROM_the_royal_coup
+	}
+	
+	option = { # Fascist
+		name = romania.1.b
+		
+		complete_national_focus = ROM_assassination_of_carol
+	}
+}
 
+# Second Vienna Award - Northern Transylvania
+country_event = {
+	id = romania.2
+	title = romania.2.t
+	desc = romania.2.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = { # Accept demands
+		name = romania.2.a
+		HUN = {
+			country_event = { days = 1 id = hungary.2 }
+		}
+		BUL = {
+			country_event = { days = 14 id = bulgaria.4 }
+		}
+	}
+}
 
 
 

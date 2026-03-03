@@ -354,121 +354,7 @@ ideas = {
 			}
 			
 		}
-		ROM_king_carol_ii_hedonist = {
 
-			removal_cost = -1
-			
-			allowed = {
-				original_tag = ROM
-			}
-
-			allowed_civil_war = {
-				has_government = neutrality
-			}
-			available = { NOT = { has_completed_focus = ROM_force_the_king_to_abdicate } } 
-
-			modifier = {
-				stability_factor = -0.1 
-			}
-		}
-				ROM_king_carol_ii_consumer_penalty = { 
-
-			picture = ROM_carol_ii_greed
-
-			removal_cost = -1
-			
-			allowed = {
-				original_tag = ROM
-			}
-			available = { NOT = { has_completed_focus = ROM_force_the_king_to_abdicate } } 
-
-			allowed_civil_war = {
-				has_government = neutrality
-			}
-
-			modifier = {
-				stability_factor = -0.1 
-				consumer_goods_expected_value = 0.05
-			}
-		}
-
-		ROM_king_carol_ii_factory_penalty = { 
-
-			picture = ROM_carol_ii_greed
-
-			removal_cost = -1
-			
-			allowed = {
-				original_tag = ROM
-			}
-
-			available = { NOT = { has_completed_focus = ROM_force_the_king_to_abdicate } } 
-			allowed_civil_war = {
-				has_government = neutrality
-			}
-
-			modifier = {
-				industrial_capacity_factory = -0.1
-			}
-		}
-
-		ROM_king_carol_ii_factory_paid_with_pp = { 
-
-			picture = ROM_carol_ii_deal
-
-			removal_cost = -1
-			
-			allowed = {
-				original_tag = ROM
-			}
-			available = { NOT = { has_completed_focus = ROM_force_the_king_to_abdicate } } 
-
-			allowed_civil_war = {
-				has_government = neutrality
-			}
-
-			modifier = {
-				production_factory_efficiency_gain_factor = -0.05
-			}
-		}
-
-		ROM_king_carol_ii_paid_with_pp = { 
-
-			picture = ROM_carol_ii_deal
-
-			removal_cost = -1
-			
-			allowed = {
-				original_tag = ROM
-			}
-			available = { NOT = { has_completed_focus = ROM_force_the_king_to_abdicate } } 
-
-			allowed_civil_war = {
-				has_government = neutrality
-			}
-
-			modifier = {
-				consumer_goods_expected_value = 0.05
-			}
-		}
-
-		ROM_king_carol_ii_handled = {
-
-			picture = generic_king_handled
-
-			removal_cost = -1
-			
-			allowed = {
-				original_tag = ROM
-			}
-
-			allowed_civil_war = {
-				has_government = democratic
-			}
-			
-			modifier = {
-			}
-		}
 		ROM_white_squadron = {
 
 			picture = generic_air_bonus
@@ -608,7 +494,7 @@ ideas = {
 			}
 			
 			modifier = {
-				stability_factor = 0.05
+				stability_factor = 0.15
 			}
 		}
 		ROM_national_christian_party_in_power = {
@@ -871,7 +757,30 @@ ideas = {
 			}
 		}
 
-		ROM_revenge_against_soviet = {
+		ROM_war_against_communism = {
+
+			picture = anti_soviet_pact
+			
+			removal_cost = -1
+
+			allowed = {
+				original_tag = ROM
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					has_government = communism
+				}
+			}
+			
+			targeted_modifier = {
+				tag = SOV
+				attack_bonus_against = 0.05
+				defense_bonus_against = 0.05
+			}
+		}
+
+		ROM_germany_help_50 = {
 
 			picture = anti_soviet_pact
 			
@@ -888,12 +797,93 @@ ideas = {
 			}
 			
 			modifier = {
-				fascism_drift = 0.1
-				fascism_acceptance = 100
+				industrial_capacity_factory = 0.5
 			}
 		}
-
 		
+		ROM_germany_help_40 = {
+
+			picture = anti_soviet_pact
+			
+			removal_cost = -1
+
+			allowed = {
+				original_tag = ROM
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					has_government = communism
+				}
+			}
+			
+			modifier = {
+				industrial_capacity_factory = 0.4
+			}
+		}
+		
+		ROM_germany_help_30 = {
+
+			picture = anti_soviet_pact
+			
+			removal_cost = -1
+
+			allowed = {
+				original_tag = ROM
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					has_government = communism
+				}
+			}
+			
+			modifier = {
+				industrial_capacity_factory = 0.3
+			}
+		}
+		
+		ROM_germany_help_20 = {
+
+			picture = anti_soviet_pact
+			
+			removal_cost = -1
+
+			allowed = {
+				original_tag = ROM
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					has_government = communism
+				}
+			}
+			
+			modifier = {
+				industrial_capacity_factory = 0.2
+			}
+		}
+		
+		ROM_germany_help_10 = {
+
+			picture = anti_soviet_pact
+			
+			removal_cost = -1
+
+			allowed = {
+				original_tag = ROM
+			}
+
+			allowed_civil_war = {
+				NOT = {
+					has_government = communism
+				}
+			}
+			
+			modifier = {
+				industrial_capacity_factory = 0.1
+			}
+		}
 
 		ROM_fortify_the_borders = {
 
@@ -1298,33 +1288,31 @@ ideas = {
 	}
 
 	industrial_concern = {
-		ROM_reichswerke_hermann_goring = {
-
-			name = reichswerke_hermann_goring
-			picture = reichswerke_hermann_goring 
+		ROM_malaxa = {
+			
+			picture = generic_motorized_equipment_manufacturer_1
 
 			allowed = {
-					original_tag = ROM
+				original_TAG = ROM
 			}
-
-			traits = { trait_industrial_concern }
-
+			
 			available = {
-				has_completed_focus = ROM_reichswerke_subsidiary
+				has_completed_focus = ROM_malaxa1
 			}
-
-			modifier = {	
-			    fuel_gain_factor = -0.25
-				industrial_factory_donations = 2
-				military_factory_donations = 2
+			
+			research_bonus = {
+				industry = 0.15
 			}
-
-			ai_will_do = { 
-				factor = 100
+			
+			modifier = {
+				production_factory_max_efficiency_factor = 0.1
+				production_factory_start_efficiency_factor = 0.1
+				production_factory_efficiency_gain_factor = 0.1
 			}
-
-			cost = 100 
-		}		
+			
+			traits = { industrial_concern }
+			
+		}	
 		
 		ROM_ROMLOC = {
 		
@@ -1332,12 +1320,19 @@ ideas = {
 			
 			allowed = {
 				original_tag = ROM
-				has_dlc = "Death or Dishonor"
+			}
+			
+			available = {
+				has_completed_focus = ROM_romloc1
 			}
 			
 			research_bonus = {
 				industry = 0.15
-				
+			}
+			
+			modifier = {
+				consumer_goods_expected_value = -0.1
+				production_speed_buildings_factor = 0.1
 			}
 			
 			traits = { industrial_concern }

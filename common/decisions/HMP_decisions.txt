@@ -1,3 +1,213 @@
+	ROM_fuel_production_decisions = {
+		ROM_fuel_production_increase = {
+
+			icon = GFX_decision_oil
+
+			days_remove = 70
+			
+			allowed = { tag = ROM }
+
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = ROM_fuel_production_increase_tt_1
+					ROM = {
+						check_variable = {
+							var = ROM_bucharest_oilfields_number
+							value = 50
+							compare = less_than
+						}
+					}
+				}
+			}
+			
+			complete_effect = {
+				add_to_variable = { var = ROM_bucharest_oilfields_number value = 10 } 
+				subtract_from_variable = { var = ROM_ds_industrial_capacity_factory value = 0.1 } 
+				custom_effect_tooltip = ROM_fuel_production_increase_tt
+			}
+		}
+		
+		ROM_fuel_production_decrease = {
+
+			icon = GFX_decision_oil 
+			
+			days_remove = 70
+			
+			allowed = { tag = ROM }
+
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = ROM_fuel_production_increase_tt_2
+					ROM = {
+						NOT = {
+							check_variable = {
+								var = ROM_bucharest_oilfields_number
+								value = 0
+								compare = equals
+							}
+						}
+					}
+				}
+			}
+
+			complete_effect = {
+				subtract_from_variable = { var = ROM_bucharest_oilfields_number value = 10 } 
+				add_to_variable = { var = ROM_ds_industrial_capacity_factory value = 0.1 } 
+				custom_effect_tooltip = ROM_fuel_production_decrease_tt
+			}
+		}
+		
+		ROM_autarky_buff_10 = {
+
+			icon = GFX_decision_unknown
+			
+			cost = 100
+			
+			days_remove = 120
+			
+			allowed = { tag = ROM }
+
+			available = {
+				has_political_power > 99
+				has_completed_focus = ROM_the_romanian_autarky_efforts
+			}
+			
+			visible = {
+				ROM = {
+					check_variable = {
+						var = ROM_bucharest_oilfields_number
+						value = 10
+						compare = equals
+					}
+				}
+			}
+
+			modifier = {
+				industrial_capacity_factory = 0.1
+			}
+		}
+		
+		ROM_autarky_buff_20 = {
+
+			icon = GFX_decision_unknown 
+			
+			cost = 150
+			
+			days_remove = 120
+			
+			allowed = { tag = ROM }
+
+			available = {
+				has_political_power > 149
+				has_completed_focus = ROM_the_romanian_autarky_efforts
+			}
+			
+			visible = {
+				ROM = {
+					check_variable = {
+						var = ROM_bucharest_oilfields_number
+						value = 20
+						compare = equals
+					}
+				}
+			}
+
+			modifier = {
+				industrial_capacity_factory = 0.2
+			}
+		}
+		
+		ROM_autarky_buff_30 = {
+
+			icon = GFX_decision_unknown
+			
+			cost = 200
+			
+			days_remove = 120
+			
+			allowed = { tag = ROM }
+
+			available = {
+				has_political_power > 199
+				has_completed_focus = ROM_the_romanian_autarky_efforts
+			}
+			
+			visible = {
+				ROM = {
+					check_variable = {
+						var = ROM_bucharest_oilfields_number
+						value = 30
+						compare = equals
+					}
+				}
+			}
+
+			modifier = {
+				industrial_capacity_factory = 0.3
+			}
+		}
+		
+		ROM_autarky_buff_40 = {
+
+			icon = GFX_decision_unknown 
+			
+			cost = 250
+			
+			days_remove = 120
+			
+			allowed = { tag = ROM }
+
+			available = {
+				has_political_power > 249
+				has_completed_focus = ROM_the_romanian_autarky_efforts
+			}
+			
+			visible = {
+				ROM = {
+					check_variable = {
+						var = ROM_bucharest_oilfields_number
+						value = 40
+						compare = equals
+					}
+				}
+			}
+
+			modifier = {
+				industrial_capacity_factory = 0.4
+			}
+		}
+		
+		ROM_autarky_buff_50 = {
+
+			icon = GFX_decision_unknown 
+			
+			cost = 300
+			
+			days_remove = 120
+			
+			allowed = { tag = ROM }
+
+			available = {
+				has_political_power > 299
+				has_completed_focus = ROM_the_romanian_autarky_efforts
+			}
+			
+			visible = {
+				ROM = {
+					check_variable = {
+						var = ROM_bucharest_oilfields_number
+						value = 50
+						compare = equals
+					}
+				}
+			}
+
+			modifier = {
+				industrial_capacity_factory = 0.5
+			}
+		}
+	}
+	
 	JAP_kodoha_insurgency_decisions = {
 			### MISSIONS ###
 		
@@ -5945,6 +6155,105 @@ propaganda_effortsx = {
 	
 
 	operations = {
+		GER_help_romania_out = {
+
+			icon = GFX_decision_oil
+			
+			cost = 150
+			
+			days_remove = 120
+			
+			allowed = { tag = GER }
+
+			available = {
+				has_political_power > 149
+				has_completed_focus = ROM_joint_german_oil_exploitation_company
+			}
+			
+			visible = {
+				ROM = {
+					check_variable = {
+						var = ROM_bucharest_oilfields_number
+						value = 0
+						compare = greater_than
+					}
+				}
+			}
+			
+			complete_effect = {
+                ROM = { 
+                    if = {
+                        limit = {
+                            check_variable = {
+                                var = ROM_bucharest_oilfields_number
+                                value = 50
+                                compare = equals
+                            }
+                        }
+                        add_timed_idea = {
+                            idea = ROM_germany_help_50
+                            days = 120
+                        }
+                }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                var = ROM_bucharest_oilfields_number
+                                value = 40
+                                compare = equals
+                            }
+                        }
+                        add_timed_idea = {
+                            idea = ROM_germany_help_40
+                            days = 120
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                var = ROM_bucharest_oilfields_number
+                                value = 30
+                                compare = equals
+                            }
+                        }
+                        add_timed_idea = {
+                            idea = ROM_germany_help_30
+                            days = 120
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                var = ROM_bucharest_oilfields_number
+                                value = 20
+                                compare = equals
+                            }
+                        }
+                        add_timed_idea = {
+                            idea = ROM_germany_help_20
+                            days = 120
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                var = ROM_bucharest_oilfields_number
+                                value = 10
+                                compare = equals
+                            }
+                        }
+                        add_timed_idea = {
+                            idea = ROM_germany_help_10
+                            days = 120
+                        }
+                    }
+                }
+			}
+
+			modifier = {
+				consumer_goods_expected_value = 0.015
+			}
+		}
 
 	khalkin_gol = {
 		icon = border_war
