@@ -9,6 +9,8 @@ NDefines.NMilitary.COHESION_IMMOBILE_PLANNING_SPEED_MULTIPLIER = 1	-- If using t
 
 NDefines.NCountry.NAVY_USE_HOME_BASE_FOR_RANGE = false -- If true, will calculate task force range from home base, otherwise will calculate from any friendly naval base
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
+NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_BASE = 3			-- Base value of the commander region limit
+NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_SKILL_FACTOR = 0	-- An increase to the region limit per commander skill level
 
 NDefines.NDoctrines.DEFAULT_REWARD_MASTERY = 50.0                         -- How much mastery is required for unlocking a doctrine reward, if no override is set
 NDefines.NDoctrines.BASE_MASTERY_GAIN_TARGET_MANPOWER = 100000.0           -- Beyond this amount of manpower contributing to mastery, mastery gain will start having diminishing returns (see doctrines documentation)
@@ -57,13 +59,13 @@ NDefines.NMilitary.COMBAT_SUPPLY_LACK_DEFENDER_DEFEND = -0.25     -- vanilla -0.
 -------------------------------------- FUEL STUFF--------------------------------------
 NDefines.NMilitary.OUT_OF_FUEL_EQUIPMENT_MULT = 0.25 				-- vanilla 0.1 
 NDefines.NMilitary.OUT_OF_FUEL_SPEED_MULT = 0.25 					-- vanilla 0.4
-NDefines.NMilitary.FUEL_PENALTY_START_RATIO = 0.0					-- ratio of fuel in an army to start getting penalties
+NDefines.NMilitary.FUEL_PENALTY_START_RATIO = 0.1					-- ratio of fuel in an army to start getting penalties
 NDefines.NMilitary.SURPLUS_SUPPLY_RATIO_FOR_ZERO_FUEL_FLOW = 0.5	-- if a supply chunk has more supply needed than this ratio + 1 compared to its max supply flow, the units inside the chiunk will get no fuel
-NDefines.NMilitary.ARMY_MAX_FUEL_FLOW_MULT = 2.0					-- max fuel ratio that an army can get per hour, multiplied by supply situation
-NDefines.NMilitary.ARMY_FUEL_COST_MULT = 0.5						-- fuel cost multiplier for all army related stuff
+NDefines.NMilitary.ARMY_MAX_FUEL_FLOW_MULT = 1.0					-- max fuel ratio that an army can get per hour, multiplied by supply situation
+NDefines.NMilitary.ARMY_FUEL_COST_MULT = 1.0						-- fuel cost multiplier for all army related stuff
 NDefines.NMilitary.ARMY_COMBAT_FUEL_MULT =   1.0					-- fuel consumption ratio in combat (plus ARMY_MOVEMENT_FUEL_MULT if you are also moving. ie offensive combat)
 NDefines.NMilitary.ARMY_TRAINING_FUEL_MULT = 0.0					-- fuel consumption ratio while training
-NDefines.NMilitary.ARMY_MOVEMENT_FUEL_MULT = 0.5					-- fuel consumption ratio while moving
+NDefines.NMilitary.ARMY_MOVEMENT_FUEL_MULT = 1.0					-- fuel consumption ratio while moving
 NDefines.NMilitary.ARMY_NAVAL_TRANSFER_FUEL_MULT = 0.0				-- fuel consumption ratio while naval transferring
 NDefines.NMilitary.ARMY_STRATEGIC_DEPLOYMENT_FUEL_MULT = 0.0		-- fuel consumption ratio while doing strategic deployment
 NDefines.NMilitary.ARMY_IDLE_FUEL_MULT = 0.0						-- fuel consumption ratio while just existing
@@ -158,8 +160,13 @@ NDefines.NProduction.LICENSE_EQUIPMENT_BASE_SPEED = -0.25				-- base MIC speed m
 NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_VALUE = 0  -- The minimum number of factories we have to put on consumer goods, by value.
 NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_PERCENT = 0  -- The minimum number of factories we have to put on consumer goods, in percent.
 
-NDefines.NProduction.BASE_FACTORY_SPEED_MIL = 4.50 				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
-NDefines.NProduction.BASE_FACTORY_SPEED_NAV = 2.5				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
+NDefines.NProduction.BASE_FACTORY_SPEED = 4 				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
+NDefines.NProduction.BASE_FACTORY_SPEED_MIL = 4 				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
+NDefines.NProduction.BASE_FACTORY_SPEED_NAV = 2				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
+
+NDefines.NProduction.POWERED_FACTORY_SPEED = 4 				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
+NDefines.NProduction.POWERED_FACTORY_SPEED_MIL = 4				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
+NDefines.NProduction.POWERED_FACTORY_SPEED_NAV = 2 			--Powered factory speed multiplier.
 
 NDefines.NProduction.BASE_NAVAL_EQUIPMENT_CONVERSION_IC_COST_FACTOR = 0.075 --vanilla 0.2	-- Minimum fraction of an equipment type's base industry capacity cost to use when converting a naval equipment, such as through ship refitting.
 NDefines.NProduction.BASE_LAND_EQUIPMENT_CONVERSION_IC_COST_FACTOR = 0.45 --vanilla 0.9       -- Fraction of the chassis industry cost which is always included in the conversion cost.
@@ -185,20 +192,24 @@ NDefines.NAir.SECONDARY_DAMAGE_STRAT = 0.05  -- how much damage gets translated 
 NDefines.NAir.SECONDARY_DAMAGE_LOGISTICS = 0.25 -- how much damage gets translated to railway guns for logistic strike
 
 NDefines.NTechnology.USE_BONUS_REGRET_TIMER = 14
+
 --above defines are for logistic strikes; logistics strike nerfed
 NDefines.NSupply.COOLDOWN_DAYS_AFTER_MOVING_SUPPLY_CAPITAL = 7 -- vanilla 30  cooldown for moving supply again after last move
 NDefines.NSupply.DAYS_TO_START_GIVING_SUPPLY_AFTER_MOVING_SUPPLY_CAPITAL = 1  --vanilla 7 the country will start gaining supply after this many days moving its capital
 NDefines.NSupply.DAYS_TO_START_GIVING_FULL_SUPPLY_AFTER_MOVING_SUPPLY_CAPITAL =  2 -- vanilla 21  the country will reach max supply after this many days moving its capital
+
 --above defines make moving capitals for supply reasons easier, more QoL than game balance
-NDefines.NSupply.CAPITAL_SUPPLY_BASE = 60 -- base supply for capital -- USED TO BE 45
+NDefines.NSupply.CAPITAL_SUPPLY_BASE = 50 -- base supply for capital -- USED TO BE 45
 NDefines.NSupply.CAPITAL_SUPPLY_CIVILIAN_FACTORIES = 0 -- supply from one civilian factory
 NDefines.NSupply.CAPITAL_SUPPLY_MILITARY_FACTORIES = 0 -- supply from one military factory
 NDefines.NSupply.CAPITAL_SUPPLY_DOCKYARDS = 0 --supply from one naval factory
+
 --above avoids the capital region of some nations supporting a ridiculous amount of units and to standardize things, doesn't change game balance too much
-NDefines.NSupply.NAVAL_FLOW_PER_LEVEL = 12 -- vanilla 3; 12x5 =  60, same as hub + level 5 railway -- Used to be 9
+NDefines.NSupply.NAVAL_FLOW_PER_LEVEL = 10 -- vanilla 3; 12x5 =  60, same as hub + level 5 railway -- Used to be 9
+
 --NDefines.NSupply.NODE_FLOW_BONUS_PER_RAIL_LEVEL = 0.34
-NDefines.NSupply.RAILWAY_BASE_FLOW = 15.0 		-- how much base flow railway gives when a node connected to its capital/a naval node by a railway -- Used to be 15
-NDefines.NSupply.RAILWAY_FLOW_PER_LEVEL = 9.0 	-- how much additional flow a railway level gives -- Used to be 6
+NDefines.NSupply.RAILWAY_BASE_FLOW = 10.0 		-- how much base flow railway gives when a node connected to its capital/a naval node by a railway -- Used to be 15
+NDefines.NSupply.RAILWAY_FLOW_PER_LEVEL = 8.0 	-- how much additional flow a railway level gives -- Used to be 6
 NDefines.NSupply.RAILWAY_CONVERSION_COOLDOWN = 8 -- railways will be put on cooldown when they are captured by enemy and will not be usable during the cooldown
 NDefines.NCountry.REINFORCEMENT_MANPOWER_DELIVERY_SPEED = 500.0	-- vanilla 10 Modifier for army manpower reinforcement delivery speed (travel time)
 NDefines.NCountry.REINFORCEMENT_MANPOWER_CHUNK = 1            -- vanilla 0.1
