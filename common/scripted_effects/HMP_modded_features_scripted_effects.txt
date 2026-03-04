@@ -2010,7 +2010,7 @@
     # Shares intel with everyone in their specific faction
     share_intel_effect = {
         if = {
-            limit = { OR = { is_in_faction_with = GER tag = CZE tag = DEN tag = TUR tag = SPR tag = FIN tag = EFR } }
+            limit = { OR = { is_in_faction_with = GER tag = CZE tag = SPR tag = FIN tag = EFR } }
 
             JAP = {
                 if = { limit = { country_exists = JAP } share_intel_with_allies = yes }
@@ -2066,6 +2066,10 @@
 
             SOV = {
                 share_intel_with_allies = yes
+				
+				CHI = {
+                    if = { limit = { country_exists = CHI NOT = { is_in_faction_with = CHI } } share_intel_with_allies = yes }
+                }
 
                 NOR = {
                     if = { limit = { country_exists = NOR NOT = { is_in_faction_with = NOR } } share_intel_with_allies = yes }
@@ -2082,6 +2086,34 @@
             
             MON = {
                 share_intel_with_allies = yes
+				
+				CHI = {
+                    if = { limit = { country_exists = CHI NOT = { is_in_faction_with = CHI } } share_intel_with_allies = yes }
+                }
+
+                NOR = {
+                    if = { limit = { country_exists = NOR NOT = { is_in_faction_with = NOR } } share_intel_with_allies = yes }
+                }
+
+                GRE = {
+                    if = { limit = { country_exists = GRE NOT = { is_in_faction_with = GRE } } share_intel_with_allies = yes }
+                }
+
+                HOL = {
+                    if = { limit = { country_exists = HOL NOT = { is_in_faction_with = HOL } } share_intel_with_allies = yes }
+                }
+            }
+			
+			CHI = {
+                share_intel_with_allies = yes
+				
+				SOV = {
+                    if = { limit = { country_exists = NOR NOT = { is_in_faction_with = NOR } } share_intel_with_allies = yes }
+                }
+				
+				MON = {
+                    if = { limit = { country_exists = NOR NOT = { is_in_faction_with = NOR } } share_intel_with_allies = yes }
+                }
 
                 NOR = {
                     if = { limit = { country_exists = NOR NOT = { is_in_faction_with = NOR } } share_intel_with_allies = yes }
@@ -4144,15 +4176,17 @@ HMP_capitulations_on_actions = {
 		}
 		USA = {
 			change_tag_from = CHI
+			diplomatic_relation = { country = CHI relation = military_access active = no } 
+		}
+		SOV = {
+			diplomatic_relation = { country = CHI relation = military_access active = no } 
+		}
+		GER = {
+			diplomatic_relation = { country = JAP relation = military_access active = no } 
 		}
 		JAP = {
 			annex_country = { target = CHI transfer_troops = no }
 			add_ideas = armyandnavy_idea
-			diplomatic_relation = {
-				country = GER
-				relation = military_access
-				active = no
-			}
 		}
 		set_global_flag = china_war_ended
     }

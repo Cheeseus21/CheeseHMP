@@ -313,8 +313,285 @@
 				
 				add_to_variable = { var = USA_AOD_consumer value = -0.005 }
 				custom_effect_tooltip = USA_AOD_consumer_tt
+			}
+		}
+	}
+	
+	USA_arsenal_of_democracy_china_category = {
+		USA_AOD_china_mil_help = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 11999
+				}
+			}
+			
+			targets = { CHI }
+			
+			cancel_trigger = {
 				
-				clr_country_flag = USA_AOD_gun_order_flag
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 12000
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_offsite_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+			}
+		}
+		USA_AOD_china_gun_help = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 10499
+				}
+			}
+			
+			targets = { CHI }
+			
+			cancel_trigger = {
+				
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 10500
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 25000 }
+				}
+			}
+		}
+		USA_AOD_china_sup_help = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 10499
+				}
+			}
+			
+			targets = { CHI }
+			
+			cancel_trigger = {
+				
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 10500
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_equipment_to_stockpile = { type = support_equipment_1 amount = 3250 }
+				}
+			}
+		}
+		USA_AOD_china_arty_help = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 5999
+				}
+			}
+			
+			targets = { CHI }
+			
+			cancel_trigger = {
+				
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 6000
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 4000 }
+				}
+			}
+		}
+		USA_AOD_china_aa_help = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 8124
+				}
+			}
+			
+			targets = { CHI }
+			
+			cancel_trigger = {
+				
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 8125
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 3250 }
+				}
+			}
+		}
+		USA_AOD_china_at_help = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 7499
+				}
+			}
+			
+			targets = { CHI }
+			
+			cancel_trigger = {
+				
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 7500
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 3000 }
+				}
+			}
+		}
+		USA_AOD_china_plane_help = {
+			
+			allowed = { tag = USA }
+
+			available = {
+				has_equipment = {
+					ll_equipment_1 > 14999
+				}
+				CHI = {
+					has_completed_focus = CHI_international_squadron
+				}
+			}
+			
+			targets = { CHI }
+			
+			cancel_trigger = {
+				
+			}
+			
+			icon = GFX_decision_generic_operation
+			
+			is_good = no
+			
+			fire_only_once = no
+			
+			selectable_mission = yes
+			
+			complete_effect = {
+				hidden_effect = {
+					send_equipment = {
+						equipment = ll_equipment_1
+						amount = 15000
+						target = SWE
+					}
+				}
+				
+				FROM = {
+					add_equipment_to_stockpile = { 
+						type = small_plane_airframe_1
+						amount = 400
+						producer = USA
+					}
+				}
 			}
 		}
 	}
@@ -13101,72 +13378,72 @@ GRE_declare_for_gre = {
 			}
         }
     }
-	CHI_give_up_china_war = {
+	# CHI_give_up_china_war = {
     
-        icon = generic_operation
+        # icon = generic_operation
         
-        allowed = {
-            tag = CHI
-        }
+        # allowed = {
+            # tag = CHI
+        # }
         
-        available = {
-            date > 1938.1.1 
-        }
+        # available = {
+            # date > 1938.1.1 
+        # }
         
-        fire_only_once = yes
+        # fire_only_once = yes
         
-        cost = 0
+        # cost = 0
         
-        visible = {
-            has_game_rule = { 
-				rule = horst_china_war 
-				option = horst_china_war_on
-			} 
-        }
+        # visible = {
+            # has_game_rule = { 
+				# rule = horst_china_war 
+				# option = horst_china_war_on
+			# } 
+        # }
         
-        complete_effect = {	
-			set_global_flag = china_war_ended
+        # complete_effect = {	
+			# set_global_flag = china_war_ended
 		
-			JAP = {
-				annex_country = { target = CHI transfer_troops = no }
-				add_ideas = armyandnavy_idea
-			}
+			# JAP = {
+				# annex_country = { target = CHI transfer_troops = no }
+				# add_ideas = armyandnavy_idea
+			# }
 			
-			if = {
-				limit = {
-					date > 1941.1.1
-				}
-				JAP= {
-					add_ideas = armyandnavy_idea
-				}
-			}
+			# if = {
+				# limit = {
+					# date > 1941.1.1
+				# }
+				# JAP= {
+					# add_ideas = armyandnavy_idea
+				# }
+			# }
 			
-			every_state = {
-				limit = {
-					is_core_of = CHI
-				}
-				# Add plenty of slots first so the game doesn't panic about limits
-				add_extra_state_shared_building_slots = 15
+			# every_state = {
+				# limit = {
+					# is_core_of = CHI
+				# }
+				## Add plenty of slots first so the game doesn't panic about limits
+				# add_extra_state_shared_building_slots = 15
 					
-				# Wipe industry to 0 explicitly.
-				# This clears the state so the next command is always an "upgrade" (0 -> 5),
-				# which HoI4 handles much more reliably than a "downgrade".
-				set_building_level = { type = industrial_complex level = 0 }
-				set_building_level = { type = arms_factory level = 0 }
+				## Wipe industry to 0 explicitly.
+				## This clears the state so the next command is always an "upgrade" (0 -> 5),
+				## which HoI4 handles much more reliably than a "downgrade".
+				# set_building_level = { type = industrial_complex level = 0 }
+				# set_building_level = { type = arms_factory level = 0 }
 				
-				# Set the desired level
-				# Since the state is now empty, this will cleanly set it to 5.
-				set_building_level = { type = industrial_complex level = 5 }
-				set_building_level = { type = arms_factory level = 5 }
-			}
+				## Set the desired level
+				## Since the state is now empty, this will cleanly set it to 5.
+				# set_building_level = { type = industrial_complex level = 5 }
+				# set_building_level = { type = arms_factory level = 5 }
+			# }
 
-			hidden_effect = {
-				USA = {
-					change_tag_from = CHI
-				}
-			}
-        }
-    }
+			# hidden_effect = {
+				# USA = {
+					# change_tag_from = CHI
+				# }
+			# }
+        # }
+    # }
 
     AST_premiers_plan_mission = {
 		icon = generic_production_bonus

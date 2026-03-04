@@ -155,8 +155,6 @@ on_actions = {
 					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 3140 }
 					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 3850 }
 					add_equipment_to_stockpile = { type = train_equipment_1 amount = 320 }
-					
-					give_military_access = GER
 				}
 			}
 			
@@ -175,9 +173,51 @@ on_actions = {
 					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 1250 }
 					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 1325 }
 					add_equipment_to_stockpile = { type = train_equipment_1 amount = 55 }
+				}
+			}
+			
+			SOV = {
+                if = {
+                    limit = { 
+                        has_game_rule = { 
+							rule = horst_china_war 
+							option = horst_china_war_on
+						} 
+                    }
+					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 25000 }
+					add_equipment_to_stockpile = { type = support_equipment_1 amount = 2350 }
+					add_equipment_to_stockpile = { type = special_equipment_1 amount = 10000 }
+					add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 2125 }
+					add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 790 }
+					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 1755 }
+					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 1275 }
+					add_equipment_to_stockpile = { type = train_equipment_1 amount = 85 }
 					
-					give_military_access = SOV
-					give_military_access = USA
+					diplomatic_relation = { country = CHI relation = military_access active = yes } 
+				}
+			}
+			
+			USA = {
+                if = {
+                    limit = { 
+                        has_game_rule = { 
+							rule = horst_china_war 
+							option = horst_china_war_on
+						} 
+                    }
+					diplomatic_relation = { country = CHI relation = military_access active = yes } 
+				}
+			}
+			
+			GER = {
+                if = {
+                    limit = { 
+                        has_game_rule = { 
+							rule = horst_china_war 
+							option = horst_china_war_on
+						} 
+                    }
+					diplomatic_relation = { country = JAP relation = military_access active = yes } 
 				}
 			}
 		}
@@ -630,8 +670,8 @@ on_actions = {
 					
 					# Set the desired level
 					# Since the state is now empty, this will cleanly set it to 5.
-					set_building_level = { type = industrial_complex level = 5 }
-					set_building_level = { type = arms_factory level = 5 }
+					set_building_level = { type = industrial_complex level = 4 }
+					set_building_level = { type = arms_factory level = 4 }
 				}
 			}
 		}
