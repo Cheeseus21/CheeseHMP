@@ -49,7 +49,7 @@ focus_tree = {
 		mutually_exclusive = { focus = ROM_purge_the_camarilla }
         
         available = {
-            has_political_power > 149
+            has_political_power > 24
         }
 		
 		x = -1
@@ -63,7 +63,7 @@ focus_tree = {
 			#custom_effect_tooltip = ROM_support_the_camarilla_flag_tt
 			#set_country_flag = ROM_support_the_camarilla_flag
             
-            add_political_power = -150
+            add_political_power = -25
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 		
@@ -73,7 +73,7 @@ focus_tree = {
 				tooltip = political_power_factor_tt
 			}
 			add_to_variable = { 
-				ROM_ds_consumer_goods_expected_value = -0.025
+				ROM_ds_consumer_goods_expected_value = -0.05
 				tooltip = consumer_goods_expected_value_tt
 			}
 		}
@@ -206,6 +206,39 @@ focus_tree = {
 				ROM_ds_stability_factor = 0.1
 				tooltip = stability_factor_tt
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = {
+				limit = {
+					has_completed_focus = ROM_romanian_military_academy
+				}
+				custom_effect_tooltip = ROM_romanian_army_and_navy_tt
+				add_to_variable = { 
+					ROM_ran_army_infantry_attack_factor = -0.08
+					tooltip = army_infantry_attack_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_infantry_defence_factor = -0.08
+					tooltip = army_infantry_defence_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_artillery_attack_factor = -0.08
+					tooltip = army_artillery_attack_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_artillery_defence_factor = -0.08
+					tooltip = army_artillery_defence_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_armor_attack_factor = -0.08
+					tooltip = army_armor_attack_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_armor_defence_factor = -0.08
+					tooltip = army_armor_defence_factor_tt
+				}
+			}
 		}
 	}
 	
@@ -226,14 +259,22 @@ focus_tree = {
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
-			custom_effect_tooltip = ROM_romanian_domestic_situation_tt
-			add_to_variable = { 
-				ROM_ds_political_advisor_cost_factor = -0.25
-				tooltip = political_advisor_cost_factor_tt
+			if = {
+				limit = {
+					has_completed_focus = ROM_general_antonescu_takes_charge
+				}
+				add_political_power = 150
 			}
-            add_to_variable = { 
-				ROM_ds_stability_factor = 0.1
-				tooltip = stability_factor_tt
+			else = {
+				custom_effect_tooltip = ROM_romanian_domestic_situation_tt
+				add_to_variable = { 
+					ROM_ds_political_advisor_cost_factor = -0.25
+					tooltip = political_advisor_cost_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ds_stability_factor = 0.1
+					tooltip = stability_factor_tt
+				}
 			}
 		}
 	}
@@ -304,7 +345,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = ROM_romanian_domestic_situation_tt
 			add_to_variable = { 
-				ROM_ds_political_power_factor = 0.35
+				ROM_ds_political_power_factor = 0.1
 				tooltip = political_power_factor_tt
 			}
             add_to_variable = { 
@@ -376,7 +417,7 @@ focus_tree = {
             add_popularity = { ideology = fascism popularity = 0.1 }
 			custom_effect_tooltip = ROM_romanian_domestic_situation_tt
 			add_to_variable = { 
-				ROM_ds_political_power_factor = 0.1
+				ROM_ds_political_power_factor = 0.05
 				tooltip = political_power_factor_tt
 			}
             add_to_variable = { 
@@ -399,10 +440,10 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-            add_popularity = { ideology = fascism popularity = 0.1 }
+            add_popularity = { ideology = fascism popularity = 0.2 }
 			custom_effect_tooltip = ROM_romanian_domestic_situation_tt
 			add_to_variable = { 
-				ROM_ds_political_power_factor = 0.1
+				ROM_ds_political_power_factor = 0.05
 				tooltip = political_power_factor_tt
 			}
             add_to_variable = { 
@@ -429,14 +470,22 @@ focus_tree = {
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
-			custom_effect_tooltip = ROM_romanian_domestic_situation_tt
-			add_to_variable = { 
-				ROM_ds_political_advisor_cost_factor = -0.25
-				tooltip = political_advisor_cost_factor_tt
+			if = {
+				limit = {
+					has_completed_focus = ROM_general_antonescu_takes_charge
+				}
+				add_political_power = 150
 			}
-            add_to_variable = { 
-				ROM_ds_stability_factor = 0.1
-				tooltip = stability_factor_tt
+			else = {
+				custom_effect_tooltip = ROM_romanian_domestic_situation_tt
+				add_to_variable = { 
+					ROM_ds_political_advisor_cost_factor = -0.25
+					tooltip = political_advisor_cost_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ds_stability_factor = 0.1
+					tooltip = stability_factor_tt
+				}
 			}
 		}
 	}
@@ -455,10 +504,10 @@ focus_tree = {
 
 		completion_reward = {
             46 = {
-                add_extra_state_shared_building_slots = 2
+                add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -491,6 +540,14 @@ focus_tree = {
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
+					instant_build = yes
+				}
+			}
+			81 = {
+                add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -540,7 +597,7 @@ focus_tree = {
             
 			custom_effect_tooltip = ROM_romanian_domestic_situation_tt
 			add_to_variable = { 
-				ROM_ds_political_power_factor = 0.1
+				ROM_ds_political_power_factor = 0.05
 				tooltip = political_power_factor_tt
 			}
 		}
@@ -1768,31 +1825,42 @@ focus_tree = {
 			army_experience = 50
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
-		
-			custom_effect_tooltip = ROM_romanian_army_and_navy_tt
-            add_to_variable = { 
-				ROM_ran_army_infantry_attack_factor = 0.08
-				tooltip = army_infantry_attack_factor_tt
+			if = {
+				limit = {
+					has_completed_focus = ROM_the_iron_guard
+				}
+				custom_effect_tooltip = ROM_romanian_army_and_navy_tt
+				add_to_variable = { 
+					ROM_ran_experience_gain_army_factor = 0.1
+					tooltip = experience_gain_army_factor_tt
+				}
 			}
-			add_to_variable = { 
-				ROM_ran_army_infantry_defence_factor = 0.08
-				tooltip = army_infantry_defence_factor_tt
-			}
-			add_to_variable = { 
-				ROM_ran_army_artillery_attack_factor = 0.08
-				tooltip = army_artillery_attack_factor_tt
-			}
-			add_to_variable = { 
-				ROM_ran_army_artillery_defence_factor = 0.08
-				tooltip = army_artillery_defence_factor_tt
-			}
-			add_to_variable = { 
-				ROM_ran_army_armor_attack_factor = 0.08
-				tooltip = army_armor_attack_factor_tt
-			}
-			add_to_variable = { 
-				ROM_ran_army_armor_defence_factor = 0.08
-				tooltip = army_armor_defence_factor_tt
+			else = {
+				custom_effect_tooltip = ROM_romanian_army_and_navy_tt
+				add_to_variable = { 
+					ROM_ran_army_infantry_attack_factor = 0.08
+					tooltip = army_infantry_attack_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_infantry_defence_factor = 0.08
+					tooltip = army_infantry_defence_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_artillery_attack_factor = 0.08
+					tooltip = army_artillery_attack_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_artillery_defence_factor = 0.08
+					tooltip = army_artillery_defence_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_armor_attack_factor = 0.08
+					tooltip = army_armor_attack_factor_tt
+				}
+				add_to_variable = { 
+					ROM_ran_army_armor_defence_factor = 0.08
+					tooltip = army_armor_defence_factor_tt
+				}
 			}
 		}
 	}
