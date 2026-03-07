@@ -160,7 +160,7 @@ NDefines.NProduction.LICENSE_EQUIPMENT_BASE_SPEED = -0.25				-- base MIC speed m
 NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_VALUE = 0  -- The minimum number of factories we have to put on consumer goods, by value.
 NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_PERCENT = 0  -- The minimum number of factories we have to put on consumer goods, in percent.
 
-NDefines.NProduction.BASE_FACTORY_SPEED = 4 				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
+NDefines.NProduction.BASE_FACTORY_SPEED = 5 				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
 NDefines.NProduction.BASE_FACTORY_SPEED_MIL = 4 				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
 NDefines.NProduction.BASE_FACTORY_SPEED_NAV = 2				-- Base factory speed multiplier (how much hoi3 style IC each factory gives)
 
