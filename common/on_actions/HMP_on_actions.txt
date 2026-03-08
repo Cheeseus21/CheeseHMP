@@ -1234,53 +1234,6 @@ on_actions = {
 				}
 			}
 
-			# NETHERLANDS CAP SCRIPT
-			if = {
-				limit = {
-					FROM = { tag = HOL }
-					FROM.FROM = { state = 7 }
-					date < 1940.6.1
-				}
-
-				HOL = { tp_divs_out_of_holland = yes }
-				GER = { transfer_state = 35 transfer_state = 7 transfer_state = 36 }
-
-				if = { 
-					limit = { 
-						HOL = { is_ai = yes } 
-						NOT = {
-							has_global_flag = seac_formed
-						}
-					} 
-					HOL = { 
-						complete_national_focus = HOL_devour
-						complete_national_focus = HOL_continue_the_war_in_batavia
-						complete_national_focus = HOL_reinforce_java
-						complete_national_focus = HOL_reinforce_sumatra
-					}
-
-					PER = { transfer_state = 352 country_event = { id = usa.6243 days = 1 } }  
-				}
-				else_if = {
-					limit = { 
-						HOL = { is_ai = yes } 
-					} 
-					HOL = { 
-						complete_national_focus = HOL_devour
-						complete_national_focus = HOL_continue_the_war_in_batavia
-						complete_national_focus = HOL_reinforce_java
-						complete_national_focus = HOL_reinforce_sumatra
-					}
-
-					every_state = { 
-						limit = { is_owned_by = HOL NOT = { state = 352 } } 
-						ENG = { transfer_state = PREV }  
-					}
-
-					PER = { transfer_state = 352 country_event = { id = usa.6243 days = 1 } }  
-				}
-			}
-
 			# SWEDEN RESOURCES RIGHT
 			if = {
 				limit = { 
