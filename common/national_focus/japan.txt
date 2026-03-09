@@ -2193,11 +2193,63 @@ focus_tree = {
 		}
 
 		completion_reward = {
+			add_research_slot = 1
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			transfer_state = 286
 			transfer_state = 493
 			transfer_state = 497
 			transfer_state = 498
-			add_research_slot = 1
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = "If China War is still ongoing this focus will spawn 16 convert divisions into Vietnam."
+
+			hidden_effect = {
+				if = {
+					limit = {
+						has_war_with = CHI # Correctly checks for an active war, not just existence
+					}
+					
+					# Define the template
+					division_template = {
+						name = "Vietnam Convert"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+							infantry = { x = 2 y = 0 }
+							infantry = { x = 2 y = 1 }
+							infantry = { x = 2 y = 2 }
+							infantry = { x = 2 y = 3 }
+							infantry = { x = 3 y = 0 }
+							infantry = { x = 3 y = 1 }
+							infantry = { x = 3 y = 2 }
+							infantry = { x = 3 y = 3 }
+							infantry = { x = 4 y = 0 }
+							infantry = { x = 4 y = 1 }
+							infantry = { x = 4 y = 2 }
+							infantry = { x = 4 y = 3 }	
+						}
+					}
+					497 = {
+						create_unit = {
+							owner = ROOT
+							division = "name = \"Vietnam Convert\" division_template = \"Vietnam Convert\" start_equipment_factor = 0.1 location = 12319"
+							count = 16
+						}
+					}
+				}
+			}
 		}
 	}
 

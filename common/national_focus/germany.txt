@@ -4262,235 +4262,6 @@ focus = {
 		}
 	}
 	
-	# focus = {
-		# id = GER_re_establish_the_seekriegsleitung
-		# icon = GFX_goal_generic_build_navy
-		# prerequisite = { focus = GER_strengthen_the_kriegsmarine }
-
-		# x = 0
-		# y = 2
-		# relative_position_id = GER_strengthen_the_kriegsmarine
-		# cost = 5
-
-		# search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_MILITARY_CHARACTER }
-
-		# completion_reward = {
-			# GER_modify_navy_modifier = yes
-			# add_to_variable = { 
-				# GER_military_navy_max_range_factor = 0.1
-				# tooltip = navy_max_range_factor_tt
-			# }
-
-			# custom_effect_tooltip = generic_skip_one_line_tt
-			# custom_effect_tooltip = available_chief_of_navy
-			# show_ideas_tooltip = GER_rolf_carls
-		# }
-	# }
-	
-	# focus = {
-		# id = GER_marinestosstrupp
-		# icon = GFX_goal_generic_amphibious_assault
-		# prerequisite = { focus = GER_re_establish_the_seekriegsleitung }
-
-		# x = -1
-		# y = 1
-		# relative_position_id = GER_re_establish_the_seekriegsleitung
-		# cost = 5
-
-		# search_filters = { FOCUS_FILTER_RESEARCH }
-
-		# completion_reward = {
-				# add_doctrine_cost_reduction = {
-					# name = GER_marinestosstrupp
-					# cost_reduction = 1
-					# uses = 4
-					# category = cat_marines_doctrine
-				# }
-			
-			# add_tech_bonus = {
-				# name = GER_marinestosstrupp
-				# bonus = 1
-				# uses = 1
-				# category = marine_tech
-			# }
-
-		# }
-	# }
-	
-	# focus = {
-		# id = GER_atlantic_naval_bases
-		# icon = GFX_focus_generic_atlantic_coast
-		# prerequisite = { focus = GER_re_establish_the_seekriegsleitung }
-
-		# x = 1
-		# y = 1
-		# relative_position_id = GER_re_establish_the_seekriegsleitung
-		# cost = 5
-		# available = { #These states start out with naval bases in western France
-			# 14 = { #Brittany
-				# state_is_fully_controlled_by_ROOT_or_subject = yes
-			# }
-			# 23 = { #Poitou
-				# state_is_fully_controlled_by_ROOT_or_subject = yes
-			# }
-			# 19 = { #Aquitaine
-				# state_is_fully_controlled_by_ROOT_or_subject = yes
-			# }
-
-		# }
-
-		# search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_INDUSTRY }
-
-		# completion_reward = {
-			
-			# custom_effect_tooltip = GER_naval_bases_along_atlantic_coast_tt
-	
-			# every_state = {
-				# limit = { 
-						# atlantikwall_states = yes
-					# }
-				# add_building_construction = {
-					# type = naval_base
-					# level = 1
-					# instant_build = yes
-					# province = {
-						# all_provinces = yes
-						# limit_to_naval_base = yes
-				    # }
-				# }
-			# }
-			# every_state = {
-				# limit = { 
-						# atlantikwall_states = yes
-					# }
-				# add_building_construction = {
-					# type = coastal_bunker
-					# level = 1
-					# instant_build = yes
-					# province = {
-						# all_provinces = yes
-						# limit_to_naval_base = yes
-				    # }
-				# }
-			# }
-		# }
-	# }
-	
-	# focus = {
-		# id = GER_atlantic_naval_dominance
-		# icon = GFX_focus_generic_north_atlantic_fleet
-		# prerequisite = { focus = GER_marinestosstrupp focus = GER_atlantic_naval_bases}
-
-		# x = 1
-		# y = 1
-		# relative_position_id = GER_marinestosstrupp
-		# cost = 5
-		# available = {
-			# custom_trigger_tooltip = {
-				# tooltip = GER_controls_an_atantic_island_tt
-				# OR = {
-					# 669 = { #Jan Mayen
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 100 = { #Iceland
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 101 = { #Greenland
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 337 = { #Faroes
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 134 = { #Ireland
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 119 = { #North Ireland
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 178 = { #The Canaries
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 343 = { #The Azores
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 280 = { #Bermuda
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 350 = { #Madeira
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-					# 356 = { #Cape Verde
-						# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# }
-				# }
-			# }
-		# }
-
-		# search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		# completion_reward = {
-			# GER_modify_navy_modifier = yes
-			# add_to_variable = { 
-				# GER_military_navy_max_range_factor = 0.1
-				# tooltip = navy_max_range_factor_tt
-			# }
-
-			# custom_effect_tooltip = generic_skip_one_line_tt
-
-			# custom_effect_tooltip = GER_naval_bases_on_atlantic_islands_tt
-			# every_state = {
-				# limit = { 
-					# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# is_coastal = yes 
-					# naval_base < 10
-					# OR = { #Atlantic Islands from Greenland to Cape Verde
-						# state = 101
-						# state = 100
-						# state = 337
-						# state = 669
-						# state = 134
-						# state = 119
-						# state = 178
-					# }
-				# }
-				# add_building_construction = {
-					# type = naval_base
-					# level = 1
-					# instant_build = yes
-					# province = {
-						# all_provinces = yes
-						# limit_to_naval_base = yes
-				    # }
-				# }
-			# }
-			# every_state = {
-				# limit = { 
-					# state_is_fully_controlled_by_ROOT_or_subject = yes
-					# is_coastal = yes 
-					# coastal_bunker < 10
-					# OR = { #Atlantic Islands from Greenland to the Falklands
-						# state = 101
-						# state = 100
-						# state = 337
-						# state = 669
-						# state = 134
-						# state = 119
-						# state = 178
-					# }
-				# }
-				# add_building_construction = {
-					# type = coastal_bunker
-					# level = 1
-					# instant_build = yes
-					# province = {
-						# all_provinces = yes
-						# limit_to_naval_base = yes
-				    # }
-				# }
-			# }
-		# }
-	# }
-	
 	focus = {
 		id = GER_trade_interdiction
 
@@ -4865,34 +4636,6 @@ focus = {
 			}	
 		}
 	}
-	
-	# focus = {
-		# id = GER_seeherrschaft 
-		# icon = GFX_focus_GER_seeherrschaft
-		# prerequisite = { focus = GER_high_seas_fleet }
-		# prerequisite = { focus = GER_unrestricted_convoy_raiding }
-		
-		# x = 2
-		# y = 1
-		# relative_position_id = GER_high_seas_fleet
-
-		# cost = 5
-		# available = {
-		# }
-
-		# search_filters = { FOCUS_FILTER_MILITARY_CHARACTER }
-
-		# completion_reward = {
-
-			# add_ideas = GER_seeherrschaft_ns
-            
-            # custom_effect_tooltip = generic_skip_one_line_tt
-			
-			# unlock_decision_tooltip = ger_battle_of_atlantic
-		# }
-	# }
-	
-
 
 
 ##     ## ####  ######  ########  #######  ########  ####  ######     ###    ##          ##      ## ##      ## 
@@ -5732,7 +5475,7 @@ focus = {
 							tag = YUG
 						}
 					}
-					add_ideas = GER_bel_neutrality
+					#add_ideas = GER_bel_neutrality
 					add_ideas = GER_the_blitzkrieg
 				}
                 
@@ -6329,20 +6072,21 @@ focus = {
 			
 			completion_reward = {
 			news_event = { id = poland.1148 days = 3}
-			every_state = { limit = { atlantikwall_states = yes }
+			every_state = { 
+				limit = { atlantikwall_states = yes }
 				add_dynamic_modifier = { modifier = festung_europa } 
 
 				set_building_level = {
-						type = coastal_bunker
-						level = 7
-						province = {
-							all_provinces = yes
-							limit_to_coastal = yes
-							level < 7
-						}
+					type = coastal_bunker
+					level = 10
+					province = {
+						all_provinces = yes
+						limit_to_coastal = yes
+						level < 10
 					}
-				}		
-				hidden_effect = {
+				}
+			}		
+			hidden_effect = {	
 				every_state = { limit = { OR = { state = 143 state = 142 } }
 				#add_dynamic_modifier = { modifier = festung_europa  } 
 					set_building_level = {
@@ -6500,7 +6244,7 @@ focus = {
 			
 			#custom_effect_tooltip = generic_skip_one_line_tt
 			
-			hidden_effect = { delete_unit_template_and_units = { division_template = "Endsieg Infanterie" } load_oob = "GER_army2" }
+			#hidden_effect = { delete_unit_template_and_units = { division_template = "Endsieg Infanterie" } load_oob = "GER_army2" }
 			
 			#add_timed_idea = {
 			#	idea = endsieg

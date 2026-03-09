@@ -3458,9 +3458,22 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-			add_timed_idea = { idea = SOV_stockpile_for_the_next_attack_idea days = 60 }
+			if = {
+				limit = { 
+					NOT = { has_idea = SOV_operation_jupiter_idea } 
+					NOT = { has_idea = SOV_operation_saturn_idea } 
+					NOT = { has_idea = SOV_operation_uranus_idea } 
+					NOT = { has_idea = SOV_operation_mars_idea } 
+				}
+				add_timed_idea = { idea = SOV_stockpile_for_the_next_attack_idea days = 60 }
+			}
+			else = {
+				custom_effect_tooltip = "Nice try."
+				army_experience = 1
+			}
 			
-			if = { limit = { has_idea = SOV_directive_three_idea }
+			if = { 
+				limit = { has_idea = SOV_directive_three_idea }
 				remove_ideas = SOV_directive_three_idea
 			}
 		}
@@ -3488,7 +3501,19 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-			add_timed_idea = { idea = SOV_winter_offensive_idea days = 30 }
+			if = {
+				limit = { 
+					NOT = { has_idea = SOV_operation_jupiter_idea } 
+					NOT = { has_idea = SOV_operation_saturn_idea } 
+					NOT = { has_idea = SOV_operation_uranus_idea } 
+					NOT = { has_idea = SOV_operation_mars_idea } 
+				}
+				add_timed_idea = { idea = SOV_winter_offensive_idea days = 60 }
+			}
+			else = {
+				custom_effect_tooltip = "Nice try."
+				army_experience = 1
+			}
 			
 			if = { limit = { has_idea = SOV_directive_three_idea }
 				remove_ideas = SOV_directive_three_idea
@@ -3766,7 +3791,19 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-			add_timed_idea = { idea = SOV_industrial_overdrive_idea days = 90 }
+			if = {
+				limit = { 
+					NOT = { has_idea = SOV_operation_jupiter_idea } 
+					NOT = { has_idea = SOV_operation_saturn_idea } 
+					NOT = { has_idea = SOV_operation_uranus_idea } 
+					NOT = { has_idea = SOV_operation_mars_idea } 
+				}
+				add_timed_idea = { idea = SOV_industrial_overdrive_idea days = 60 }
+			}
+			else = {
+				custom_effect_tooltip = "Nice try."
+				army_experience = 1
+			}
 		}
 	}
 	
@@ -3790,7 +3827,19 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-			add_timed_idea = { idea = SOV_eternal_march_idea days = 90 }
+			if = {
+				limit = { 
+					NOT = { has_idea = SOV_operation_jupiter_idea } 
+					NOT = { has_idea = SOV_operation_saturn_idea } 
+					NOT = { has_idea = SOV_operation_uranus_idea } 
+					NOT = { has_idea = SOV_operation_mars_idea } 
+				}
+				add_timed_idea = { idea = SOV_eternal_march_idea days = 60 }
+			}
+			else = {
+				custom_effect_tooltip = "Nice try."
+				army_experience = 1
+			}
 		}
 	}
 	

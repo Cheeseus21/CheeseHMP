@@ -9,7 +9,7 @@ NDefines.NMilitary.COHESION_IMMOBILE_PLANNING_SPEED_MULTIPLIER = 1	-- If using t
 
 NDefines.NCountry.NAVY_USE_HOME_BASE_FOR_RANGE = false -- If true, will calculate task force range from home base, otherwise will calculate from any friendly naval base
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
-NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_BASE = 3			-- Base value of the commander region limit
+NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_BASE = 1			-- Base value of the commander region limit
 NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_SKILL_FACTOR = 0	-- An increase to the region limit per commander skill level
 
 NDefines.NDoctrines.DEFAULT_REWARD_MASTERY = 50.0                         -- How much mastery is required for unlocking a doctrine reward, if no override is set
@@ -210,12 +210,12 @@ NDefines.NSupply.NAVAL_FLOW_PER_LEVEL = 10 -- vanilla 3; 12x5 =  60, same as hub
 --NDefines.NSupply.NODE_FLOW_BONUS_PER_RAIL_LEVEL = 0.34
 NDefines.NSupply.RAILWAY_BASE_FLOW = 10.0 		-- how much base flow railway gives when a node connected to its capital/a naval node by a railway -- Used to be 15
 NDefines.NSupply.RAILWAY_FLOW_PER_LEVEL = 8.0 	-- how much additional flow a railway level gives -- Used to be 6
-NDefines.NSupply.RAILWAY_CONVERSION_COOLDOWN = 8 -- railways will be put on cooldown when they are captured by enemy and will not be usable during the cooldown
+NDefines.NSupply.RAILWAY_CONVERSION_COOLDOWN = 10 -- railways will be put on cooldown when they are captured by enemy and will not be usable during the cooldown
 NDefines.NCountry.REINFORCEMENT_MANPOWER_DELIVERY_SPEED = 500.0	-- vanilla 10 Modifier for army manpower reinforcement delivery speed (travel time)
-NDefines.NCountry.REINFORCEMENT_MANPOWER_CHUNK = 1            -- vanilla 0.1
+NDefines.NCountry.REINFORCEMENT_MANPOWER_CHUNK = 1            -- vanilla 0.1 Chunk size of manpower reinforcement delivery, in % of total manpower needed by the template.
 NDefines.NCountry.EQUIPMENT_UPGRADE_CHUNK_MAX_SIZE = 100			-- vanilla 10  Maximum chunk size of equipment upgrade distribution per update.
-NDefines.NMilitary.REINFORCEMENT_REQUEST_MAX_WAITING_DAYS = 2   -- Every X days the equipment will be sent, regardless if still didn't produced all that has been requested.
-NDefines.NMilitary.REINFORCEMENT_REQUEST_DAYS_FREQUENCY = 2	   -- How many days must pass until we may give another reinforcement request
+NDefines.NMilitary.REINFORCEMENT_REQUEST_MAX_WAITING_DAYS = 7   -- Every X days the equipment will be sent, regardless if still didn't produced all that has been requested.
+NDefines.NMilitary.REINFORCEMENT_REQUEST_DAYS_FREQUENCY = 7	   -- How many days must pass until we may give another reinforcement request
 ---------------------------------------------------------------
 NDefines.NCountry.GIE_EXILE_ARMY_LEADER_LEGITIMACY_LEVELS = {  	} --Legitimacy levels where a new army leader is received.
 NDefines.NCountry.GIE_CAPITULATION_WARSCORE_LEGITIMACY_FACTOR = 0    --Multiplies accumulated warscore with this factor for part of starting legitimacy.

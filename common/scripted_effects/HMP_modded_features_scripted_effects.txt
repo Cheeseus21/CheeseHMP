@@ -1461,6 +1461,101 @@
 		clear_variable = ENG_factories_moved_civ
 	}
 	
+	CHI_evacuate_logic = {
+		# ==========================================
+		# 1. EVACUATE MILITARY FACTORIES
+		# ==========================================
+		set_variable = { CHI_factories_moved_mil = 0 }
+
+		random_owned_state = {
+			limit = {
+				# --- OWNERSHIP CHECK ---
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				
+				# --- LOCATION CHECK ---
+				CHI_frontline_states = yes
+
+				# Must have something to move
+				arms_factory > 0
+			}
+			remove_building = { type = arms_factory level = 1 }
+			ROOT = { set_variable = { CHI_factories_moved_mil = 1 } }
+		}
+
+		# Move Mil to Specific Safe IDs
+		if = {
+			limit = { check_variable = { CHI_factories_moved_mil > 0 } }
+			
+			random_owned_state = {
+				limit = {
+					# LIST YOUR SAFE TARGET STATE IDS HERE
+					OR = {
+						state = 677
+                        state = 678 
+                        state = 508 
+					}
+				}
+				# Add slot so it fits
+				add_extra_state_shared_building_slots = 1
+				
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		# ==========================================
+		# 2. EVACUATE CIVILIAN FACTORIES
+		# ==========================================
+		set_variable = { CHI_factories_moved_civ = 0 }
+
+		random_owned_state = {
+			limit = {
+				# --- OWNERSHIP CHECK ---
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				
+				# --- LOCATION CHECK (Front OR Rear) ---
+				CHI_frontline_states = yes
+				
+				# Must have something to move
+				industrial_complex > 0
+			}
+			remove_building = { type = industrial_complex level = 1 }
+			ROOT = { set_variable = { CHI_factories_moved_civ = 1 } }
+		}
+
+		# Move Civ to Specific Safe IDs
+		if = {
+			limit = { check_variable = { CHI_factories_moved_civ > 0 } }
+			
+			random_owned_state = {
+				limit = {
+					# SAME SAFE IDS
+					OR = {
+						state = 677
+                        state = 678 
+                        state = 508 
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		# Cleanup
+		clear_variable = CHI_factories_moved_mil
+		clear_variable = CHI_factories_moved_civ
+	}
+	
     HMP_countenance = {
         if = { 
             limit = { has_global_flag = war_in_the_west_start } 
@@ -4177,12 +4272,15 @@ HMP_capitulations_on_actions = {
 		USA = {
 			change_tag_from = CHI
 			diplomatic_relation = { country = CHI relation = military_access active = no } 
+			set_rule = { can_send_volunteers = no }
 		}
 		SOV = {
 			diplomatic_relation = { country = CHI relation = military_access active = no } 
+			set_rule = { can_send_volunteers = no }
 		}
 		GER = {
 			diplomatic_relation = { country = JAP relation = military_access active = no } 
+			set_rule = { can_send_volunteers = no }
 		}
 		JAP = {
 			annex_country = { target = CHI transfer_troops = no }

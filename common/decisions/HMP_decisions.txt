@@ -6996,6 +6996,40 @@ propaganda_effortsx = {
 			activate_mission = ENG_ongoing_evacuation_mission
 		}
 	}
+	
+	CHI_ongoing_evacuation_mission = {
+		icon = generic_production_bonus
+		
+		allowed = {
+			original_tag = CHI
+		}
+
+		cancel_trigger = {
+			OR = {
+				has_war = no
+				date > 1941.1.1
+			}
+		}
+
+		available = { always = no }
+
+		activation = { 
+			has_war = yes
+		}
+
+		days_mission_timeout = 7 
+		
+		fire_only_once = no
+		
+		is_good = yes
+
+		timeout_effect = {
+			CHI_evacuate_logic = yes
+			CHI_evacuate_logic = yes
+
+			activate_mission = CHI_ongoing_evacuation_mission
+		}
+	}
 
     ENG_operation_countenance = {
         icon = generic_operation
@@ -7063,6 +7097,8 @@ propaganda_effortsx = {
 				ITA = {
 					transfer_state = 421
 					transfer_state = 413
+					
+					load_oob = "ITA_IRQ_Spawn_FOR_ITA" 
 					
 					#add_to_war = { targeted_alliance = GER enemy = SOV }
 					
@@ -8612,7 +8648,7 @@ propaganda_effortsx = {
 		}
 
 		available = {
-			date > 1941.8.25
+			date > 1942.1.1
 		}	
 
 		visible = {
@@ -8654,6 +8690,7 @@ propaganda_effortsx = {
 					transfer_state = 460 
 					transfer_state = 459 
 					transfer_state = 513 
+					load_oob = "ITA_TORCH_Spawn"
 				}
 
 				FROM = { 
@@ -13322,6 +13359,7 @@ GRE_declare_for_gre = {
         
         available = {
             date > 1938.1.1 
+			date < 1939.9.1 
         }
         
         fire_only_once = yes
@@ -13340,33 +13378,35 @@ GRE_declare_for_gre = {
 		
 			JAP = {
 				annex_country = { target = CHI transfer_troops = no }
-				add_ideas = armyandnavy_idea
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			if = {
 				limit = {
-					date > 1941.1.1
+					date < 1941.1.1
 				}
 				JAP= {
 					add_ideas = armyandnavy_idea
 				}
 			}
 			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
             every_state = {
 				limit = {
 					is_core_of = CHI
+					is_controlled_by = CHI
 				}
-				# Add plenty of slots first so the game doesn't panic about limits
+				
+				# Add slots to prevent capacity errors
 				add_extra_state_shared_building_slots = 10
-					
-				# Wipe industry to 0 explicitly.
-				# This clears the state so the next command is always an "upgrade" (0 -> 2),
-				# which HoI4 handles much more reliably than a "downgrade".
+				
+				# Wipe industry to 0 explicitly
 				set_building_level = { type = industrial_complex level = 0 }
 				set_building_level = { type = arms_factory level = 0 }
 				
-				# Set the desired level
-				# Since the state is now empty, this will cleanly set it to 5.
+				# Set the desired level (0 -> 2)
 				set_building_level = { type = industrial_complex level = 2 }
 				set_building_level = { type = arms_factory level = 2 }
 			}
