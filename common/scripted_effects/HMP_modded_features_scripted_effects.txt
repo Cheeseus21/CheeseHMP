@@ -4338,12 +4338,12 @@ HMP_capitulations_on_actions = {
 			complete_national_focus = BEL_the_king_surrenders
 			
 			transfer_state = 295
-				transfer_state = 687
-				transfer_state = 688
-				transfer_state = 689
-				transfer_state = 690
-				transfer_state = 691 
-				transfer_state = 692 
+			transfer_state = 687
+			transfer_state = 688
+			transfer_state = 689
+			transfer_state = 690
+			transfer_state = 691 
+			transfer_state = 692 
 			
 			add_state_core = 295
 			set_capital = {
@@ -4692,6 +4692,7 @@ fuel_system_refresh_list = {
                     AND = { ROOT = { tag = ENG } tag = NOR }
                     AND = { ROOT = { tag = ENG } tag = MON }
                     AND = { ROOT = { tag = ENG } tag = GRE }
+					AND = { ROOT = { tag = ENG } tag = BEL }
                     AND = { ROOT = { tag = GER } tag = FIN }
                     AND = { ROOT = { tag = GER } tag = DEN }
                 }
@@ -5629,7 +5630,18 @@ horstorical_multiplayer_vichy_france = {
 
     # Belgium teleportation for armies
     BEL = { 
-        every_state = { limit = { OR = { is_owned_by = FRA is_owned_by = BEL } } teleport_armies = { limit = { original_tag = BEL } to_state = 295 } } 
+        every_state = { 
+			limit = { 
+				OR = { 
+					is_owned_by = FRA 
+					is_owned_by = BEL 
+				} 
+			} 
+			teleport_armies = { 
+				limit = { original_tag = BEL } 
+				to_state = 295 
+			} 
+		} 
     }
 
     #if = { 
