@@ -6130,11 +6130,11 @@ propaganda_effortsx = {
 		fire_only_once = no
 		complete_effect = {
 			every_country = {
-			add_to_array = {
-				array = resources_produced_array
-				index = i
-				value = resource_produced@steel
-			}
+				add_to_array = {
+					array = resources_produced_array
+					index = i
+					value = resource_produced@steel
+				}
 			}
 		}
 	}
@@ -6143,12 +6143,26 @@ propaganda_effortsx = {
 		fire_only_once = no
 		complete_effect = {
 			every_country = {
-			add_to_array = {
-				array = resources_produced_array
-				index = i
-				value = resource_produced@aluminium
+				add_to_array = {
+					array = resources_produced_array
+					index = i
+					value = resource_produced@aluminium
+				}
 			}
-			}
+		}
+	}	
+	france_cap_script = { 
+		visible = { is_debug = yes }
+		fire_only_once = no
+		complete_effect = {
+			PER = { horstorical_multiplayer_france_capitulation_script = yes }
+		}
+	}	
+	france_tp_script = { 
+		visible = { is_debug = yes }
+		fire_only_once = no
+		complete_effect = {
+			PER = { tp_divs_out_of_france = yes }
 		}
 	}	
 	
@@ -6794,11 +6808,6 @@ propaganda_effortsx = {
             activate_mission = GER_desert_flower_mission1
             
             hidden_effect = {
-                554 = { set_state_flag = keep_milled set_demilitarized_zone = no }
-                589 = { set_state_flag = keep_milled set_demilitarized_zone = no }
-                590 = { set_state_flag = keep_milled set_demilitarized_zone = no }
-                591 = { set_state_flag = keep_milled set_demilitarized_zone = no }
-                
                 291 = {
                     set_building_level = {
                         type = infrastructure
@@ -6823,16 +6832,6 @@ propaganda_effortsx = {
                 if = {
                     limit = { NOT = { ALB = { owns_state = 291 } } }
                     ITA = { transfer_state = 592 transfer_state = 593 transfer_state = 594 transfer_state = 291 }
-                }
-
-                if = {
-                    limit = { AND = { NOT = { EFR = { has_country_flag = EFR_torch_declared } } EFR = { owns_state = 26 } } }
-                    EFR = {
-                        every_owned_state = {
-                            limit = { NOT = { has_state_flag = keep_milled } }
-                            26 = { set_demilitarized_zone = no }
-                        }
-                    }
                 }
             }
         }
@@ -6931,22 +6930,6 @@ propaganda_effortsx = {
                     limit = { ENG = { controls_province = 1544 } }
                     ENG = { load_oob = "ENG_SYR_Front_GAR" }
                     custom_effect_tooltip = "The Allies will have 1 month to prepare defenses in Syria!"
-                }
-            }
-
-            if = {
-                limit = {
-                    AND = {
-                        NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                        EFR = { owns_state = 26 }
-                    }
-                }
-                EFR = {
-                    every_owned_state = {
-                        limit = { NOT = { has_state_flag = keep_milled } }
-                        set_demilitarized_zone = yes
-                    }
-                    26 = { set_demilitarized_zone = no }
                 }
             }
 
@@ -7141,22 +7124,6 @@ propaganda_effortsx = {
 						load_oob = "ENG_Iran_Front_SOV"
 					} 
 				}
-				
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 } 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-						} 
-					}	
-					EFR = { 
-						every_owned_state = { 
-							limit = { NOT = { has_state_flag = keep_milled } }   
-							set_demilitarized_zone = yes 
-						}  
-						26 = { set_demilitarized_zone = no } 
-					} 
-				}  
 			}
         }
     }
@@ -7259,22 +7226,6 @@ propaganda_effortsx = {
 						load_oob = "ENG_Iran_Front_SOV"
 					} 
 				}
-				
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 } 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-						} 
-					}	
-					EFR = { 
-						every_owned_state = { 
-							limit = { NOT = { has_state_flag = keep_milled } }   
-							set_demilitarized_zone = yes 
-						}  
-						26 = { set_demilitarized_zone = no } 
-					} 
-				}  
 			}
         }
     }
@@ -7363,22 +7314,6 @@ propaganda_effortsx = {
 						load_oob = "ENG_Iran_Front_SOV"
 					} 
 				}
-				
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 } 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-						} 
-					}	
-					EFR = { 
-						every_owned_state = { 
-							limit = { NOT = { has_state_flag = keep_milled } }   
-							set_demilitarized_zone = yes 
-						}  
-						26 = { set_demilitarized_zone = no } 
-					} 
-				}  
 			}
         }
     }
@@ -7625,22 +7560,6 @@ propaganda_effortsx = {
                 }
                 
                 give_resource_rights = { receiver = GER state = 46 }
-
-                if = {
-                    limit = {
-                        AND = {
-                            EFR = { owns_state = 26 }
-                            NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                        }
-                    }
-                    EFR = {
-                        every_owned_state = {
-                            limit = { NOT = { has_state_flag = keep_milled } }
-                            set_demilitarized_zone = yes
-                        }
-                        26 = { set_demilitarized_zone = no }
-                    }
-                }
             }
         }
     }
@@ -7762,22 +7681,6 @@ propaganda_effortsx = {
                         amount = 50 
                     } 
                 }
-                
-                if = {
-                    limit = {
-                        AND = {
-                            EFR = { owns_state = 26 }
-                            NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                        }
-                    }
-                    EFR = {
-                        every_owned_state = {
-                            limit = { NOT = { has_state_flag = keep_milled } }
-                            set_demilitarized_zone = yes
-                        }
-                        26 = { set_demilitarized_zone = no }
-                    }
-                }
             }
         }
     }
@@ -7880,22 +7783,6 @@ propaganda_effortsx = {
                         amount = 20 
                     } 
                 }
-                
-                if = {
-                    limit = {
-                        AND = {
-                            EFR = { owns_state = 26 }
-                            NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                        }
-                    }
-                    EFR = {
-                        every_owned_state = {
-                            limit = { NOT = { has_state_flag = keep_milled } }
-                            set_demilitarized_zone = yes
-                        }
-                        26 = { set_demilitarized_zone = no }
-                    }
-                }
             }
         }
     }
@@ -7978,22 +7865,6 @@ propaganda_effortsx = {
                 GER = { fuel_system_refresh_list = yes }
 
                 48 = { add_resource = { type = steel amount = 20 } }
-
-                if = {
-                    limit = {
-                        EFR = {
-                            owns_state = 26
-                            NOT = { has_country_flag = EFR_torch_declared }
-                        }
-                    }
-                    EFR = {
-                        every_owned_state = {
-                            limit = { NOT = { has_state_flag = keep_milled } }
-                            set_demilitarized_zone = yes
-                        }
-                        26 = { set_demilitarized_zone = no }
-                    }
-                }
             }
         }
     }
@@ -8100,28 +7971,6 @@ propaganda_effortsx = {
                 give_resource_rights = { receiver = GER state = 619 }
                 
                 fuel_system_refresh_list = yes
-                
-				if = { 
-                    limit = { 
-                        AND = { 
-                            EFR = { owns_state = 26 } 
-                            NOT = { 
-                                EFR = { 
-                                    has_country_flag = EFR_torch_declared 
-                                } 
-                            }
-                        } 
-                    }	
-                    EFR = { 
-                        every_owned_state = { 
-                            limit = {  
-                                NOT = { has_state_flag = keep_milled } 
-                            }  
-                            set_demilitarized_zone = yes 
-                        }                        
-                        26 = { set_demilitarized_zone = no } 
-                    }
-                }
 			}
 		}
 	}
@@ -8235,66 +8084,126 @@ propaganda_effortsx = {
 	}
 
 
-			USA_join_the_war = { 
-	 	available = { OR = { date > 1940.12.15 uk_needs_help = yes } } 
-				allowed = {	original_tag = USA }
-				fire_only_once = yes
-				cost = 0	
-				complete_effect = { USA = { add_to_war = { targeted_alliance = ENG	enemy = GER	} }
-				hidden_effect = { 					
-				if = { limit = { ENG = {controls_state = 335 }} add_ideas = no_dutch_player ENG = { add_equipment_to_stockpile = { type = convoy_1 amount = 200   } }add_equipment_to_stockpile = { type = convoy_1 amount = 200   } }
-				if = { limit = { EFR = {owns_state = 26 } NOT = {EFR ={ has_country_flag = EFR_torch_declared }} }EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }   set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  }  } } }
-				}
-			}		 
-			
-	GER_dday = { 
-	 	available = {   	 
-			EFR = { has_country_flag = vichy_france_established }  	
-			has_manpower > 2300040	
-			date < 1941.11.21		
+	USA_join_the_war = { 
+		allowed = {	
+			original_tag = USA 
 		}
-		allowed = {	original_tag = GER }
+		
+		available = { 
+			OR = { 
+				date > 1940.12.15 
+				uk_needs_help = yes 
+			} 
+		} 
+		
+		fire_only_once = yes
+		cost = 0	
+		
+		complete_effect = { 
+			USA = { 
+				add_to_war = { 
+					targeted_alliance = ENG	
+					enemy = GER	
+				} 
+			}
+			
+			hidden_effect = { 					
+				
+				# Dutch capitulation/control checks
+				if = { 
+					limit = { 
+						ENG = { controls_state = 335 } 
+					} 
+					
+					add_ideas = no_dutch_player 
+					
+					ENG = { 
+						add_equipment_to_stockpile = { 
+							type = convoy_1 
+							amount = 200   
+						} 
+					}
+					
+					add_equipment_to_stockpile = { 
+						type = convoy_1 
+						amount = 200   
+					} 
+				}
+			}
+		}
+	}		 
+
+	GER_dday = { 
+		available = {    
+			EFR = { has_country_flag = vichy_france_established }   
+			has_manpower > 2300040  
+			date < 1941.11.21       
+		}
+
+		allowed = { 
+			original_tag = GER 
+		}
+
 		fire_only_once = yes
 		cost = 0
-		visible = {	} 
-		complete_effect = {	
-			hidden_effect = { 
-				add_manpower  = -1000000  
-				add_manpower  = -1000000 
-				add_manpower  = -300040 
+		visible = { } 
+
+		complete_effect = { 
+			hidden_effect = {  
+				add_manpower = -1000000  
+				add_manpower = -1000000 
+				add_manpower = -300040 
+				
 				delete_unit_template_and_units = {
 					division_template = "Atlantik Infanterie"
 					disband = yes 
 				}
-		    }
-		load_oob = "ITA_dday_inf"
+			}
+			load_oob = "ITA_dday_inf"
 		}
 	}
 
-		GER_failed_africa = {
-			allowed = {	original_tag = GER 	}
-			icon = GFX_decision_oil
-			available = { has_war = yes	}
-			days_remove = -1
-			fire_only_once = no
-			cost = 0
-			modifier = { fuel_gain_factor_from_states = 4.0	industrial_capacity_factory = -0.30 } 
-			complete_effect = { remove_decision = GER_failed_africa_cancel  }
-			remove_effect = { } 
-		}	
-		GER_failed_africa_cancel = { 
-			allowed = {	original_tag = GER 	}
-			icon = GFX_decision_oil 
-			available = { has_war = yes	} 
-			fire_only_once = no
-			days_remove = -1
-			cost = 0 
-			visible = { has_decision = GER_failed_africa }
-			modifier = {  }
-			complete_effect = {   remove_decision = GER_failed_africa }
-			remove_effect = { }
-		}			
-		 
+	GER_failed_africa = {
+		allowed = { original_tag = GER }
+		icon = GFX_decision_oil
+		available = { has_war = yes }
+		days_remove = -1
+		fire_only_once = no
+		cost = 0
+
+		modifier = { 
+			fuel_gain_factor_from_states = 4.0
+			industrial_capacity_factory = -0.30 
+		}
+
+		complete_effect = { 
+			remove_decision = GER_failed_africa_cancel 
+		}
+		
+		remove_effect = { } 
+	}
+
+	GER_failed_africa_cancel = { 
+		allowed = { original_tag = GER }
+		icon = GFX_decision_oil 
+		available = { has_war = yes } 
+		fire_only_once = no
+		days_remove = -1
+		cost = 0 
+		
+		visible = { 
+			has_decision = GER_failed_africa 
+		}
+
+		modifier = { }
+
+		complete_effect = {   
+			remove_decision = GER_failed_africa 
+		}
+		
+		remove_effect = { }
+	}			
+	 
 	GER_jaegernotprogramm = { 
 		icon = generic_air
 
@@ -8394,22 +8303,6 @@ propaganda_effortsx = {
 			hidden_effect = { 
 				ENG = { fuel_system_refresh_list = yes } 
 			}
-
-			if = { 
-				limit = { 
-					AND = { 
-						EFR = { owns_state = 26 } 
-						NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-					} 
-				}	
-				EFR = { 
-					every_owned_state = {  
-						limit = { NOT = { has_state_flag = keep_milled } }  
-						set_demilitarized_zone = yes 
-					} 
-					26 = { set_demilitarized_zone = no } 
-				} 
-			}
 		} 
 	}
 
@@ -8470,21 +8363,6 @@ propaganda_effortsx = {
             set_global_flag = CANSAF_annex
             
             hidden_effect = { ENG = { fuel_system_refresh_list = yes } }
-            if = {
-                limit = {
-                    AND = {
-                        EFR = { owns_state = 26 }
-                        NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                    }
-                }
-                EFR = {
-                    every_owned_state = {
-                        limit = { NOT = { has_state_flag = keep_milled } }
-                        set_demilitarized_zone = yes
-                    }
-                    26 = { set_demilitarized_zone = no }
-                }
-            }
         }
     }
 	
@@ -8544,21 +8422,6 @@ propaganda_effortsx = {
             set_global_flag = CANSAF_annex
             
             hidden_effect = { ENG = { fuel_system_refresh_list = yes } }
-            if = {
-                limit = {
-                    AND = {
-                        EFR = { owns_state = 26 }
-                        NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                    }
-                }
-                EFR = {
-                    every_owned_state = {
-                        limit = { NOT = { has_state_flag = keep_milled } }
-                        set_demilitarized_zone = yes
-                    }
-                    26 = { set_demilitarized_zone = no }
-                }
-            }
         }
     }
 	
@@ -8607,21 +8470,7 @@ propaganda_effortsx = {
             }
             hidden_effect = { 
                 ENG = { fuel_system_refresh_list = yes }
-                if = {
-                    limit = {
-                        AND = {
-                            EFR = { owns_state = 26 }
-                            NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                        }
-                    }
-                    EFR = {
-                        every_owned_state = {
-                            limit = { NOT = { has_state_flag = keep_milled } }
-                            set_demilitarized_zone = yes
-                        }
-                        26 = { set_demilitarized_zone = no }
-                    }
-                }
+
                 CAN = {
                     complete_national_focus = CAN_polymer_corporation
                     complete_national_focus = CAN_mine_the_shield
@@ -8670,6 +8519,10 @@ propaganda_effortsx = {
 			custom_effect_tooltip = prepare_torch_tt
 
 			hidden_effect = { 
+				GER = {
+					set_country_flag = TORCH_DECLARED
+				}
+			
 				EFR = { 
 					set_country_flag = EFR_torch_declared 
 					set_country_flag = EFR_at_war
@@ -9016,22 +8869,7 @@ propaganda_effortsx = {
 					# }
                     
                     remove_ideas = protected_by_papua
-					
-                    if = {
-                        limit = {
-                            AND = {
-                                EFR = { owns_state = 26 }
-                                NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                            }
-                        }
-                        EFR = {
-                            every_owned_state = {
-                                limit = { NOT = { has_state_flag = keep_milled } }
-                                set_demilitarized_zone = yes
-                            }
-                            26 = { set_demilitarized_zone = no }
-                        }
-                    }
+
                 }
             }
         }
@@ -9137,22 +8975,9 @@ propaganda_effortsx = {
 
                 hidden_effect = {
                     set_country_flag = RAJ_ANNEXED
+					
                     fuel_system_refresh_list = yes
-                    if = {
-                        limit = {
-                            AND = {
-                                EFR = { owns_state = 26 }
-                                NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                            }
-                        }
-                        EFR = {
-                            every_owned_state = {
-                                limit = { NOT = { has_state_flag = keep_milled } }
-                                set_demilitarized_zone = yes
-                            }
-                            26 = { set_demilitarized_zone = no }
-                        }
-                    }
+
                     if = {
                         limit = {
                             has_idea = stiff_upper_lip
@@ -9251,21 +9076,6 @@ propaganda_effortsx = {
 
                 hidden_effect = {
                     fuel_system_refresh_list = yes
-                    if = {
-                        limit = {
-                            AND = {
-                                EFR = { owns_state = 26 }
-                                NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                            }
-                        }
-                        EFR = {
-                            every_owned_state = {
-                                limit = { NOT = { has_state_flag = keep_milled } }
-                                set_demilitarized_zone = yes
-                            }
-                            26 = { set_demilitarized_zone = no }
-                        }
-                    }
                 }
             }
         }
@@ -9314,23 +9124,6 @@ propaganda_effortsx = {
 				transfer_state = 590
 				transfer_state = 591
 				recalc_vichy_france_legitimacy = yes
-				hidden_effect = {
-					if = { 
-						limit = { 
-							AND = { 
-								EFR = { owns_state = 26 }
-								NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-							}
-						}
-						EFR = { 
-							every_owned_state = {  
-								limit = { NOT = { has_state_flag = keep_milled } }
-								set_demilitarized_zone = yes 
-							}
-							26 = { set_demilitarized_zone = no }
-						}
-					}
-				}
 			}
 		}
 
@@ -9389,24 +9182,6 @@ propaganda_effortsx = {
 							transfer_state = 692 
 						}
 					}
-				
-					if = {
-						limit = {
-							AND = {
-								EFR = { owns_state = 26 }
-								NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-							}
-						}
-						EFR = {
-							every_owned_state = {
-								limit = {
-									NOT = { has_state_flag = keep_milled }
-								}
-								set_demilitarized_zone = yes
-							}
-							26 = { set_demilitarized_zone = no }
-						}
-					}
 				}
 			}
 		}
@@ -9443,24 +9218,6 @@ propaganda_effortsx = {
 			transfer_state = 510
 			
 			recalc_vichy_france_legitimacy = yes 
-
-			hidden_effect = { 
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 }
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-						} 
-					}
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }   
-							set_demilitarized_zone = yes 
-						}
-						26 = { set_demilitarized_zone = no }
-					}
-				}
-			}
 		}
 	}
 	
@@ -9496,24 +9253,6 @@ propaganda_effortsx = {
 			transfer_state = 277
 			
 			recalc_vichy_france_legitimacy = yes 
-
-			hidden_effect = { 
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 }
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-						}
-					}
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }
-							set_demilitarized_zone = yes 
-						}
-						26 = { set_demilitarized_zone = no }
-					}
-				}
-			}
 		}
 	}
 	
@@ -9549,24 +9288,6 @@ propaganda_effortsx = {
 			transfer_state = 445
 		
 			recalc_vichy_france_legitimacy = yes 
-
-			hidden_effect = { 
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 }
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-						}
-					}
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }
-							set_demilitarized_zone = yes 
-						}
-						26 = { set_demilitarized_zone = no }
-					}
-				}
-			}
 		}
 	}
 		
@@ -9612,25 +9333,6 @@ propaganda_effortsx = {
 			annex_country = {
 				target = NOR
 				transfer_troops = yes 
-			}
-
-			hidden_effect = { 
-				fuel_system_refresh_list = yes
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 }
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-						}
-					}
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }
-							set_demilitarized_zone = yes 
-						}
-						26 = { set_demilitarized_zone = no }
-					}
-				}
 			}
 		}
 	}
@@ -9678,21 +9380,6 @@ propaganda_effortsx = {
 
 			hidden_effect = { 
 				fuel_system_refresh_list = yes
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 }
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-						}
-					}
-					EFR = { 
-						every_owned_state = { 
-							limit = { NOT = { has_state_flag = keep_milled } }
-							set_demilitarized_zone = yes 
-						}
-						26 = { set_demilitarized_zone = no }
-					}
-				}
 			}
 		}
 	}
@@ -9739,21 +9426,6 @@ propaganda_effortsx = {
 
 			hidden_effect = { 
 				fuel_system_refresh_list = yes
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 }
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-						}
-					}
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }
-							set_demilitarized_zone = yes 
-						}
-						26 = { set_demilitarized_zone = no }
-					}
-				}
 			}
 		}
 	}
@@ -10154,21 +9826,6 @@ propaganda_effortsx = {
 
 			hidden_effect = {  
 				ENG = { fuel_system_refresh_list = yes }
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 } 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-						} 
-					}
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }  
-							set_demilitarized_zone = yes 
-						} 
-						26 = { set_demilitarized_zone = no } 
-					} 
-				} 
 			}
 		}
 	}
@@ -10221,21 +9878,6 @@ propaganda_effortsx = {
 
 			hidden_effect = { 
 				GER = { fuel_system_refresh_list = yes }
-				if = { 
-					limit = { 
-						EFR = { 
-							owns_state = 26 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-						} 
-					} 
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }  
-							set_demilitarized_zone = yes 
-						} 
-						26 = { set_demilitarized_zone = no } 
-					} 
-				} 
 			}
 		}
 	}
@@ -10302,69 +9944,78 @@ propaganda_effortsx = {
 	
 	
 	SAF_rhodesia = {
-allowed = {original_tag = SAF}
-	available = {
-		has_completed_focus = SAF_secure_interests_in_africa
-		545 = { is_fully_controlled_by = ENG }
-		542 = { is_fully_controlled_by = ENG }
-		}	
+		allowed = { original_tag = SAF }
+
+		available = {
+			has_completed_focus = SAF_secure_interests_in_africa
+			545 = { is_fully_controlled_by = ENG }
+			542 = { is_fully_controlled_by = ENG }
+		}
+
 		cost = 0
-		
+
 		complete_effect = {
-				transfer_state = 545 
-				transfer_state = 542 
-				545 = { add_extra_state_shared_building_slots = 2 }
-				542 = { add_extra_state_shared_building_slots = 2 }		
-				hidden_effect = { country_event = { id =  mtg_netherlands.332 days = 2}}
-			hidden_effect = { if = { limit = { AND = { EFR = { owns_state = 26 } NOT = {EFR = { has_country_flag = EFR_torch_declared}} } } EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } } 
+			transfer_state = 545 
+			transfer_state = 542 
+			545 = { add_extra_state_shared_building_slots = 2 }
+			542 = { add_extra_state_shared_building_slots = 2 }
+
+			hidden_effect = { 
+				country_event = { id = mtg_netherlands.332 days = 2 }
+			}
+		}
+	}
+	
+	SAF_zambia = {
+		allowed = { original_tag = SAF }
+
+		available = {
+			has_completed_focus = SAF_secure_interests_in_africa
+			283 = { is_fully_controlled_by = ENG }
+			292 = { is_fully_controlled_by = ENG }
+			545 = { is_fully_controlled_by = SAF }
+			542 = { is_fully_controlled_by = SAF }
 		}
 
-}
-SAF_zambia = {
-allowed = {original_tag = SAF}
-	available = {
-		has_completed_focus = SAF_secure_interests_in_africa
-		283 = { is_fully_controlled_by = ENG }
-		292 = { is_fully_controlled_by = ENG }
-		545 = { is_fully_controlled_by = SAF }
-		542 = { is_fully_controlled_by = SAF }
-		}	
-		cost = 0		
-		complete_effect = {
-		transfer_state = 283 
-		transfer_state = 292
-		283 = { add_extra_state_shared_building_slots = 2 }
-		292 = { add_extra_state_shared_building_slots = 2 }
-		hidden_effect = { country_event = { id =  mtg_netherlands.333 days = 2 }}
-			hidden_effect = { if = { limit = { AND = { EFR = { owns_state = 26 } NOT = {EFR = { has_country_flag = EFR_torch_declared}} } } EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } } 
-		}
-}
-
-SAF_east_africa = {
-allowed = { original_tag = SAF }
-	available = {
-		has_completed_focus = SAF_secure_interests_in_africa
-		546 = { is_fully_controlled_by = ENG }
-		547 = { is_fully_controlled_by = ENG }
-		548 = { is_fully_controlled_by = ENG }
-		283 = { is_fully_controlled_by = SAF }
-		292 = { is_fully_controlled_by = SAF }
-		}
 		cost = 0
+
 		complete_effect = {
-		transfer_state = 546 
-		transfer_state = 547
-		transfer_state = 548 
-		546 = { add_extra_state_shared_building_slots = 2 }
-		547 = { add_extra_state_shared_building_slots = 2 }
-		548 = { add_extra_state_shared_building_slots = 2 }
-			hidden_effect = { if = { limit = { AND = { EFR = { owns_state = 26 } NOT = {EFR = { has_country_flag = EFR_torch_declared}} } } EFR = { every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } } } 
+			transfer_state = 283 
+			transfer_state = 292
+			283 = { add_extra_state_shared_building_slots = 2 }
+			292 = { add_extra_state_shared_building_slots = 2 }
+
+			hidden_effect = { 
+				country_event = { id = mtg_netherlands.333 days = 2 } 
+			} 
+		}
+	}
+
+	SAF_east_africa = {
+		allowed = { original_tag = SAF }
+
+		available = {
+			has_completed_focus = SAF_secure_interests_in_africa
+			546 = { is_fully_controlled_by = ENG }
+			547 = { is_fully_controlled_by = ENG }
+			548 = { is_fully_controlled_by = ENG }
+			283 = { is_fully_controlled_by = SAF }
+			292 = { is_fully_controlled_by = SAF }
 		}
 
-}
+		cost = 0
 
-		
-		
+		complete_effect = {
+			transfer_state = 546 
+			transfer_state = 547
+			transfer_state = 548 
+
+			546 = { add_extra_state_shared_building_slots = 2 }
+			547 = { add_extra_state_shared_building_slots = 2 }
+			548 = { add_extra_state_shared_building_slots = 2 } 
+		}
+	}
+
 	AST_annex_nzl = {
 		icon = generic_operation
 
@@ -10410,25 +10061,6 @@ allowed = { original_tag = SAF }
 
 			add_manpower = 250000
 			annex_country = { target = NZL transfer_troops = yes }     
-
-			hidden_effect = { 
-				ENG = { fuel_system_refresh_list = yes }
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 } 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-						} 
-					} 
-					EFR = { 
-						every_owned_state = {   
-							limit = { NOT = { has_state_flag = keep_milled } }  
-							set_demilitarized_zone = yes 
-						} 
-						26 = { set_demilitarized_zone = no } 
-					} 
-				} 
-			}
 		}
 	}
 
@@ -10490,25 +10122,6 @@ allowed = { original_tag = SAF }
 			}
 
 			copy_australian_at_equipment_research = yes
-
-			hidden_effect = { 
-				ENG = { fuel_system_refresh_list = yes }
-				if = { 
-					limit = { 
-						AND = { 
-							EFR = { owns_state = 26 } 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-						} 
-					} 
-					EFR = { 
-						every_owned_state = {  
-							limit = { NOT = { has_state_flag = keep_milled } }  
-							set_demilitarized_zone = yes 
-						} 
-						26 = { set_demilitarized_zone = no } 
-					} 
-				} 
-			}
 		}
 	}
 }
@@ -13296,25 +12909,7 @@ GRE_declare_for_gre = {
                 JAP = {
                     fuel_system_refresh_list = yes
                 }
-                if = {
-                    limit = {
-                        AND = {
-                            EFR = { owns_state = 26 }
-                            NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-                        }
-                    }
-                    EFR = {
-                        every_owned_state = {
-                            limit = {
-                                NOT = { has_state_flag = keep_milled }
-                            }
-                            set_demilitarized_zone = yes
-                        }
-                        26 = {
-                            set_demilitarized_zone = no
-                        }
-                    }
-                }
+
                 MAN = {
                     complete_national_focus = MAN_collective_farms
                     complete_national_focus = MAN_expand_showa_steel_works

@@ -1691,25 +1691,7 @@
                 ENG = { load_oob = "ENG_Iran_Front2" }  
             } # The Allies invade Iran first
         }
-        
-        # Allies get new commanders
-        hidden_effect = { 
-            if = { 
-                limit = { 
-                    AND = { 
-                        EFR = { owns_state = 26 } 
-                        NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-                    } 
-                }	
-                EFR = { 
-                    every_owned_state = { 
-                        limit = { NOT = { has_state_flag = keep_milled } }   
-                        set_demilitarized_zone = yes 
-                    }  
-                    26 = { set_demilitarized_zone = no } 
-                } 
-            }  
-        }	
+	
     }
 
 
@@ -1966,23 +1948,6 @@
             add_building_construction = { 
                 type = arms_factory level = 1 
                 instant_build = yes 
-            }
-        }
-    }
-
-    tp_divs_out_of_france = {
-        every_state = {
-            limit = {
-                OR = {
-                    is_core_of = FRA
-                    is_core_of = BEL
-                    is_core_of = GER
-                    vichy_state = yes
-                }
-            }
-            teleport_armies = {
-                limit = { is_in_faction_with = ENG }
-                to_state = 436
             }
         }
     }
@@ -3519,13 +3484,6 @@
 
         hidden_effect = { 
             fuel_system_refresh_list = yes 
-            if = { 
-                limit = { AND = { EFR = { owns_state = 26 } NOT = { EFR = { has_country_flag = EFR_torch_declared } } } } 
-                EFR = { 
-                    every_owned_state = { limit = { NOT = { has_state_flag = keep_milled } } set_demilitarized_zone = yes } 
-                    26 = { set_demilitarized_zone = no } 
-                } 
-            } 
         }
 
         #ITA = { set_technology = { ita_no_transport_off = 1 } }
@@ -4185,9 +4143,38 @@ HMP_startup_on_actions = {
     RAJ = { give_resource_rights = { receiver = ENG state = 423 } }
 
     every_country = {
-        limit = { OR = { tag = NOR tag = GRE tag = FRA tag = HOL tag = POL tag = BEL } }
-        every_core_state = { limit = { NOT = { state = 352 } } add_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION days = 1335 } }
-    }
+		limit = { 
+			# Specifies the countries to target
+			OR = { 
+				tag = NOR 
+				tag = GRE 
+				tag = FRA 
+				tag = HOL 
+				tag = POL 
+				tag = BEL 
+			} 
+		}
+
+		every_core_state = { 
+			limit = { 
+				NOT = { state = 352 } 
+				NOT = { state = 313 }
+				NOT = { state = 21 }
+				NOT = { state = 32 }
+				NOT = { state = 20 }
+				NOT = { state = 22 }
+				NOT = { state = 26 }
+				NOT = { state = 25 }
+				NOT = { state = 33 }
+				NOT = { state = 31 }
+			} 
+			
+			add_dynamic_modifier = { 
+				modifier = ANTI_STATE_CONSTRUCTION 
+				days = 1335 
+			} 
+		}
+	}
 
     669 = { remove_dynamic_modifier = { modifier = ANTI_STATE_CONSTRUCTION } }
 
@@ -4216,7 +4203,6 @@ HMP_startup_on_actions = {
             give_resource_rights = { receiver = ENG state = 334 }
             give_resource_rights = { receiver = ENG state = 335 }
             give_resource_rights = { receiver = ENG state = 284 }
-            give_resource_rights = { receiver = FRA state = 497 }
         }
     }
 
@@ -5505,201 +5491,56 @@ man_in_the_high_castle_NO_ASIA = {
 # ██║░░░░░██║░░██║██║░░██║██║░╚███║╚█████╔╝███████╗  ██║██████╔╝  ██████╔╝███████╗██║░░██║██████╔╝
 # ╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░╚════╝░╚══════╝  ╚═╝╚═════╝░  ╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░
 
-# This code teleports divisions out of France, checks for AI Vichy rewards and generally cleans up the capitulation process.
-horstorical_multiplayer_vichy_france = {
-    EFR = { 
-        tp_divs_out_of_vichy = yes
-        add_ideas = EFR_work_service
-        add_ideas = FRA_mandatory_work_service
-        add_ideas = VIC_produce_aircraft_parts
-    }
-
+horstorical_multiplayer_france_capitulation_script = {
+	# GERMANY STUFF
+	GER = { add_to_faction = EFR }
     if = { 
-        limit = { EFR = { is_ai = yes } } 
-
-        # Germany AI builds
-        GER = { add_offsite_building = { type = industrial_complex level = 5 } }
-
-        # Italy AI builds in specific states
-        ITA = { 
-            159 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-            158 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-            39 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-            314 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-            160 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-            161 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-            162 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-            157 = { 
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-        }
-    }
-
-    # French tank variants
-    create_equipment_variant = {
-        name = "Renault AMC 35"
-        type = medium_tank_chassis_1
-        parent_version = 0
-        modules = {
-            main_armament_slot = tank_medium_cannon_2
-            turret_type_slot = tank_medium_two_man_tank_turret
-            suspension_type_slot = tank_christie_suspension_M
-            armor_type_slot = tank_welded_armor
-            engine_type_slot = tank_diesel_engine
-            special_type_slot_1 = stabilizer
-            special_type_slot_2 = tank_radio_2
-            special_type_slot_3 = smoke_launchers
-            special_type_slot_4 = easy_maintenance
-            armor_shape_slot = flat_armor
-        }
-        upgrades = {
-            tank_nsb_engine_upgrade = 5
-            tank_nsb_armor_upgrade_medium = 8
-        }
-        icon = "GFX_FRA_improved_medium_tank_medium"
-    }
-
-    create_equipment_variant = {
-        name = "1936 FCM"
-        type = light_tank_chassis_2
-        parent_version = 0
-        modules = {
-            main_armament_slot = tank_small_cannon_2
-            turret_type_slot = tank_light_two_man_tank_turret
-            suspension_type_slot = tank_christie_suspension_L
-            armor_type_slot = tank_riveted_armor
-            engine_type_slot = tank_diesel_engine_L
-            special_type_slot_1 = stabilizer
-            special_type_slot_2 = tank_radio_2
-            special_type_slot_3 = smoke_launchers
-            special_type_slot_4 = additional_machine_guns
-            armor_shape_slot = flat_armor
-        }
-        upgrades = {
-            tank_nsb_engine_upgrade = 5
-            tank_nsb_armor_upgrade_light = 5
-        }
-        icon = "GFX_FRA_improved_light_tank_medium"
-    }
-
-    # French equipment stockpiles
-    add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 40000 producer = FRA }
-    add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 4000 producer = FRA }
-    add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 2000 producer = FRA }
-    add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 5000 producer = FRA }
-    add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 1500 producer = FRA }
-    add_equipment_to_stockpile = { type = support_equipment_1 amount = 1000 producer = FRA }
-    add_equipment_to_stockpile = { type = medium_tank_chassis_1 variant_name = "Renault AMC 35" amount = 1000 producer = FRA }
-    add_equipment_to_stockpile = { type = light_tank_chassis_2 variant_name = "1936 FCM" amount = 1200 producer = FRA }
-
-    # Hidden tech effects
-    hidden_effect = {
-        if = { limit = { NOT = { has_tech = improved_light_tank_chassis } } set_technology = { improved_light_tank_chassis = 1 popup = no } }
-        if = { limit = { NOT = { has_tech = basic_medium_tank_chassis } } set_technology = { basic_medium_tank_chassis = 1 popup = no } }
-    }
-
-    # Belgium teleportation for armies
-    BEL = { 
-        every_state = { 
-			limit = { 
-				OR = { 
-					is_owned_by = FRA 
-					is_owned_by = BEL 
-				} 
+        limit = { 
+			country_exists = NOR 
+			GER = { 
+				NOT = { controls_state = 110 } 
 			} 
-			teleport_armies = { 
-				limit = { original_tag = BEL } 
-				to_state = 295 
-			} 
-		} 
+		}  
+        GER = { activate_decision = GER_weserbung_operation2 }   
     }
+	
+	# VICHY FRANCE STUFF
+	if = {
+		limit = {
+			EFR = { is_ai = yes }
+		}
+		GER = {
+			annex_country = { target = EFR } 
+		}
+		ITA = {
+			### NORTH AFRICA (demilitarized zones) ###
+			transfer_state = 460
+			460 = { set_demilitarized_zone = yes }
+			transfer_state = 513
+			513 = { set_demilitarized_zone = yes }
+			transfer_state = 459
+			459 = { set_demilitarized_zone = yes }
+			transfer_state = 461
+			461 = { set_demilitarized_zone = yes }
+		}	
+	}
+	else = {
+		EFR = {
+			set_country_flag = vichy_france_established
+			add_to_war = { targeted_alliance = GER enemy = ENG }
+			
+			### NORTH AFRICA (demilitarized zones) ###
+			460 = { set_demilitarized_zone = yes }
+			513 = { set_demilitarized_zone = yes }
+			459 = { set_demilitarized_zone = yes }
+			461 = { set_demilitarized_zone = yes }
+		}
+	}
 
-    #if = { 
-    #    limit = { BEL = { owns_state = 6 } }
-    #    every_state = { limit = { is_core_of = BEL NOT = { state = 295 } } GER = { transfer_state = PREV } }
-    #}
-
-    # Persian events
-    PER = { 
-        country_event = { id = mtg_netherlands.1141 hours = 3 } 
-        country_event = { id = mtg_netherlands.1142 hours = 6 }   
-    }
-
-    # Initial French flags and ideas
-    FRA = { clr_country_flag = start_legitimacy_counter add_ideas = FRA_defeatism }
-
-    # Vichy-controlled colonial states based on legitimacy
-    EFR = { 
-        # West Africa
-        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 80 } } } transfer_state = 445 445 = { set_demilitarized_zone = yes } }
-        # Madagascar
-        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 60 } } } transfer_state = 543 543 = { set_demilitarized_zone = yes } }
-        # Central Africa - BET
-        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 40 } } } transfer_state = 277 277 = { set_demilitarized_zone = yes } }
-        # Central Africa - Gabon
-        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 20 } } } transfer_state = 510 510 = { set_demilitarized_zone = yes } }
-        # Belgian Congo
-        if = { limit = { FRA = { check_variable = { FRA_legitimacy > 59 } } } FRA = { complete_national_focus = FRA_continue_the_fight } }
-    }
-
-    # Germany adjustments
-    GER = { 
-        if = { limit = { FRA = { check_variable = { FRA_legitimacy < 40 } } } complete_national_focus = GER_reintegrate_luxemburg_and_alsace_lorraine }
-        set_cosmetic_tag = GER_greater_german_reich
-        diplomatic_relation = { country = EFR relation = non_aggression_pact active = yes }
-        add_ideas = VIC_guest_workers
-        transfer_state = 28
-        transfer_state = 17
-        transfer_state = 27
-        transfer_state = 18
-        transfer_state = 24
-        transfer_state = 16
-        transfer_state = 267
-        transfer_state = 15
-        transfer_state = 30
-        transfer_state = 23
-        transfer_state = 14
-        transfer_state = 19
-        transfer_state = 29
-    }
-
-    # France leader and idea cleanup
+	# France leader and idea cleanup
     FRA = {
-        remove_ideas = FRA_protected_by_the_maginot_line
-        remove_ideas = FRA_protected_by_the_maginot_line_defensive
-        remove_ideas = FRA_protected_by_the_maginot_line_offensive
-        remove_ideas = FRA_victors_of_wwi2
-        remove_ideas = FRA_full_employment
+		set_technology = { ita_no_transport_off = 1 }
+
         create_country_leader = {
             name = "Charles de Gaulle"
             desc = "POLITICS_CHARLES_DE_GAULLE_DESC"
@@ -5709,130 +5550,38 @@ horstorical_multiplayer_vichy_france = {
             traits = { }
         }
     }
-
-    hidden_effect = { PER = { country_event = { id = italy.3524 days = 10 } } }
+	
+	# Italian claims include territory from Tunisia, Corsica, and South Eastern France occupied in 1942
+	ITA = { 
+		complete_national_focus = ITA_request_control_of_french_territories 
+	
+		transfer_state = 313
+		transfer_state = 577
+		transfer_state = 397
+		transfer_state = 458
+		transfer_state = 1
+	}
+	
+	ENG = { complete_national_focus = ENG_compass }
 }
 
-
-# This code establishes Vichy France and territorial claims
-horstorical_multiplayer_vichy_france_2 = {
-    FRA = { 
-        delete_unit_template_and_units = { division_template = "Fortress Division" disband = no }    
-        set_technology = { france_cheap_inf_off = 1 popup = no } 
-        FRA_jean_de_lattre_de_tassigny = { remove_unit_leader_trait = ranger } 
-    }
-
-    ITA = { complete_national_focus = ITA_request_control_of_french_territories } 
-    # Italian claims include territory from Tunisia, Corsica, and South Eastern France occupied in 1942
-
-    if = {
-        limit = { has_start_date > 1936.1.1 }  
-        FRA = { remove_resource_rights = 497 }  
-    }
-
-    #BEL = { delete_unit_template_and_units = { division_template = "Infantry Division" disband = yes } }
-
-    GER = { add_to_faction = EFR add_ideas = VIC_aircraft_parts }
-
-    ENG = { complete_national_focus = ENG_compass }
-
-    EFR = {
-        set_country_flag = vichy_france_established
-        add_to_war = { targeted_alliance = GER enemy = ENG }
-        add_equipment_to_stockpile = { type = convoy_1 amount = 200 producer = EFR }
-        add_dynamic_modifier = { modifier = vichy_legitimacy }
-
-        ### SOUTHERN FRANCE ###
-        transfer_state = 26
-        add_state_core = 26
-        set_capital = { state = 26 } 
-        transfer_state = 33
-        add_state_core = 33
-        transfer_state = 507
-        add_state_core = 507
-        transfer_state = 20
-        add_state_core = 20
-        transfer_state = 25
-        add_state_core = 25
-        transfer_state = 31
-        add_state_core = 31
-        transfer_state = 22
-        add_state_core = 22
-        transfer_state = 32
-        add_state_core = 32
-        transfer_state = 21
-        add_state_core = 21
-
-        ### NORTH AFRICA (demilitarized zones) ###
-        transfer_state = 460
-        460 = { set_demilitarized_zone = yes }
-        transfer_state = 513
-        513 = { set_demilitarized_zone = yes }
-        transfer_state = 459
-        459 = { set_demilitarized_zone = yes }
-        transfer_state = 461
-        461 = { set_demilitarized_zone = yes }
-
-        ### SYRIA (demilitarized zones) ###
-        transfer_state = 554
-        554 = { set_demilitarized_zone = yes }
-        transfer_state = 590
-        590 = { set_demilitarized_zone = yes }
-        transfer_state = 591
-        591 = { set_demilitarized_zone = yes }
-        transfer_state = 589
-        589 = { set_demilitarized_zone = yes }
-    }
-}
-
-# This code checks the rewards for high legitimacy
-horstorical_multiplayer_vichy_france_3 = {
-    FRA = { set_technology = { ita_no_transport_off = 1 } }
-
-    # FRA legitimacy milestones for offsite buildings and focus completions
-    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 19 } } }
-        FRA = { add_offsite_building = { type = arms_factory level = 3 } }
-    }
-
-    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 39 } } }
-        FRA = { add_offsite_building = { type = arms_factory level = 3 } }
-    }
-
-    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 59 } } }
-        FRA = { 
-            543 = { add_building_construction = { type = naval_base level = 1 province = 5222 instant_build = yes } }
-            add_offsite_building = { type = arms_factory level = 3 } 
-        }
-    }
-
-    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 79 } } }
-        FRA = { complete_national_focus = FRA_appeal_to_the_french_nation add_offsite_building = { type = arms_factory level = 3 } }
-    }
-
-    if = { limit = { FRA = { check_variable = { FRA_legitimacy > 99 } } }
-        FRA = { complete_national_focus = FRA_appeal_to_overseas_territories }
-    }
-
-    FRA = { transfer_state = 301 }
-
-    EFR = { 
-        recalc_vichy_france_legitimacy = yes 
-        21 = { set_demilitarized_zone = yes }
-        22 = { set_demilitarized_zone = yes }
-        31 = { set_demilitarized_zone = yes }
-        25 = { set_demilitarized_zone = yes }
-        33 = { set_demilitarized_zone = yes }
-        32 = { set_demilitarized_zone = yes }
-        20 = { set_demilitarized_zone = yes }
-        507 = { set_demilitarized_zone = yes }
-        hidden_effect = { remove_ideas = fix_slot_issues }
-    }
-
-    # Activate Weserbung Operation if Norway exists but Germany doesn’t control state 110
-    if = { 
-        limit = { country_exists = NOR GER = { NOT = { controls_state = 110 } } }  
-        GER = { activate_decision = GER_weserbung_operation2 }   
-    }
+tp_divs_out_of_france = {
+	every_state = {
+		limit = {
+			OR = {
+				is_core_of = FRA
+				is_core_of = BEL
+				is_core_of = GER
+				is_core_of = EFR
+			}
+		}
+		teleport_armies = {
+			limit = { 
+				is_in_faction_with = ENG
+			}
+			to_state = 10748
+		}
+	}
 }
 
 HMP_script_norway_cap = {

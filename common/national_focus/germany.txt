@@ -5917,44 +5917,16 @@ focus = {
                     hours = 6
                     id = news.233
                 }
-
-                if = {
-                    limit = {
-                        AND = {
-                            NOT = {
-                                EFR = { has_country_flag = EFR_torch_declared }
-                            }
-                            EFR = { owns_state = 26 }
-                        }
-                    }
-                    DEN = {
-                        add_to_war = {
-                            targeted_alliance = ENG
-                            enemy = EFR
-                        }
-                    }
-                    EFR = {
-                        every_owned_state = {
-                            limit = {
-                                NOT = { has_state_flag = keep_milled }
-                            }
-                            set_demilitarized_zone = yes
-                        }
-                        26 = { set_demilitarized_zone = no }
-                    }
-                }
             }
         }
     }
 
 
 
-focus = {
+	focus = {
 		id = GER_operation_weserubung2
-
 		icon = GFX_focus_GER_operation_wesserubung
 		alternate_icon = GFX_focus_GER_operation_wesserubung_historical
-
 		prerequisite = { focus = GER_operation_weserubung }
 		x = 0
 		y = 1
@@ -5962,7 +5934,7 @@ focus = {
 		cost = 4
 
 		available = {
-			always=  no
+			always = no
 		}
 
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_HISTORICAL FOCUS_FILTER_ANNEXATION }
@@ -5973,21 +5945,44 @@ focus = {
 
 		completion_reward = {
 			custom_effect_tooltip = GER_decision_focus_tt
-	hidden_effect = { 	
-		NOR = { if =  { limit = { NOT ={ NOR = { has_completed_focus = NOR_fascist_invasion_of_norway } is_ai = no } } complete_national_focus = NOR_fascist_invasion_of_norway }  }
-
-
-
-	}	
+			
+			hidden_effect = { 	
+				NOR = { 
+					if = { 
+						limit = { 
+							NOT = { 
+								NOR = { has_completed_focus = NOR_fascist_invasion_of_norway } 
+								is_ai = no 
+							} 
+						} 
+						complete_national_focus = NOR_fascist_invasion_of_norway 
+					}  
+				}
+			}	
+			
 			declare_war_on = {
 				target = NOR
 				type = annex_everything
 			}	
-	hidden_effect= { 
-								ROOT_call_against_norway = yes 
-				if = { limit = { AND = { NOT = {EFR = { has_country_flag = EFR_torch_declared}} EFR = {owns_state = 26 }} } EFR = { add_to_war = { targeted_alliance = GER enemy = NOR } every_owned_state = {  limit ={  NOT = { has_state_flag = keep_milled } }  set_demilitarized_zone = yes } 26 = { set_demilitarized_zone = no  } } }  
-
-	}
+			
+			hidden_effect = { 
+				ROOT_call_against_norway = yes 
+				
+				if = { 
+					limit = { 
+						AND = { 
+							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
+							EFR = { owns_state = 26 } 
+						} 
+					} 
+					EFR = { 
+						add_to_war = { 
+							targeted_alliance = GER 
+							enemy = NOR 
+						} 
+					} 
+				}  
+			}
 		}
 	}
 
@@ -7285,19 +7280,7 @@ focus = {
 						}
 					}
 				}
-				if = { 
-					limit = { 
-						NOT = {
-							has_global_flag = europe_only_start_date_flag 
-						}
-					} 
-					ITA = {
-						transfer_state = 32
-						transfer_state = 21
-					}
-				}
-					
-				
+
 				country_event = { id = news.153 days = 1 }
 
 				ENG = {
@@ -7349,20 +7332,6 @@ focus = {
 					SOV_relocate_mil = yes
 					SOV_relocate_civ = yes
 					SOV_relocate_civ = yes
-				}
-
-
-				if = {
-					limit = {
-						NOT = { EFR = { has_country_flag = EFR_torch_declared } }
-					}
-					EFR = {
-						every_owned_state = {
-							limit = { NOT = { has_state_flag = keep_milled } }
-							set_demilitarized_zone = yes
-						}
-						26 = { set_demilitarized_zone = no }
-					}
 				}
 
 				if = {

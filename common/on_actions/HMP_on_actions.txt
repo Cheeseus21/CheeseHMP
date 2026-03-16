@@ -1215,14 +1215,18 @@ on_actions = {
 
 				tp_divs_out_of_france = yes
 
-				PER = { horstorical_multiplayer_vichy_france = yes }
+				PER = { horstorical_multiplayer_france_capitulation_script = yes }
 
 				FRA = {
 					add_state_core = 539
 					set_capital = { state = 539 }
+					
 					country_event = { id = france.10 }
+					
 					set_global_flag = fall_of_france
+					
 					set_cosmetic_tag = FRA_FREE
+					
 					news_event = { id = news.34 days = 0 }
 				}
 
@@ -1509,17 +1513,112 @@ on_actions = {
 	
 	on_weekly_SOV = {
 		effect = {
-			JAP = { calc_japanese_pacific_navy_bonus = yes } 
-				if = { limit = { NOT= { EFR= { has_country_flag = vichy_france_established } } }
-					577 = { set_demilitarized_zone = yes } 397 = { set_demilitarized_zone = yes }
+			JAP = { 
+				calc_japanese_pacific_navy_bonus = yes 
+			} 
+			
+			# VICHY DEMILITARIZED ZONE CODE
+			if = { 
+				limit = {
+					NOT = {
+						EFR = { has_country_flag = vichy_france_established }   
+					}
 				}
-			if = { limit = { date > 1939.9.1 NOT = { SPR = { has_country_flag = SPR_violated }}} 600 = { set_demilitarized_zone = yes }   }
-			if = { limit = { date > 1939.9.1 NOT = { ITA = { has_country_flag = ITA_took_balearics }}} 177 = { set_demilitarized_zone = yes }   }			
-			if = { limit = { date > 1939.9.1 ENG = { controls_state = 118 	divisions_in_state = { type = infantry   size < 1   state = 118 } } } ENG = { country_event = { id = mtg_netherlands.1147 days = 1 }}  }
-			if = {	limit = { HOL = { has_completed_focus = HOL_continue_the_war_in_batavia }}	HOL = { add_to_variable = {	THIS.prca_tokens = THIS.prca_tokens_weekly	}	THIS_clamp_max_tokens = yes	}	}
+				577 = { set_demilitarized_zone = yes } 
+				397 = { set_demilitarized_zone = yes }
+				458 = { set_demilitarized_zone = yes }
+				460 = { set_demilitarized_zone = yes }
+				513 = { set_demilitarized_zone = yes }
+				459 = { set_demilitarized_zone = yes }
+				461 = { set_demilitarized_zone = yes }
+			}
+			else_if = { 
+				limit = {
+					NOT = {
+						GER = { has_country_flag = TORCH_DECLARED }   
+					}
+					EFR = { has_country_flag = vichy_france_established }   
+				}
+				577 = { set_demilitarized_zone = no } 
+				397 = { set_demilitarized_zone = no }
+				458 = { set_demilitarized_zone = no }
+				460 = { set_demilitarized_zone = yes }
+				513 = { set_demilitarized_zone = yes }
+				459 = { set_demilitarized_zone = yes }
+				461 = { set_demilitarized_zone = yes }
+			}
+			else_if = {
+				limit = {
+					GER = { has_country_flag = TORCH_DECLARED }   
+					EFR = { has_country_flag = vichy_france_established } 
+				}
+				577 = { set_demilitarized_zone = no } 
+				397 = { set_demilitarized_zone = no }
+				458 = { set_demilitarized_zone = no }
+				460 = { set_demilitarized_zone = no }
+				513 = { set_demilitarized_zone = no }
+				459 = { set_demilitarized_zone = no }
+				461 = { set_demilitarized_zone = no }
+			}
+			
+			# SPANISH WEST AFRICA DEMIL CODE
+			if = { 
+				limit = { 
+					date > 1939.9.1 
+					NOT = { 
+						SPR = { has_country_flag = SPR_violated }
+					}
+				} 
+				600 = { set_demilitarized_zone = yes }   
+			}
+			
+			# BALEARES DEMIL CODE
+			if = { 
+				limit = { 
+					date > 1939.9.1 
+					NOT = { 
+						ITA = { has_country_flag = ITA_took_balearics }
+					}
+				} 
+				177 = { set_demilitarized_zone = yes }   
+			}			
+			
+			# GIBRALTAR WARNING CODE
+			if = { 
+				limit = { 
+					date > 1939.9.1 
+					ENG = { 
+						controls_state = 118 	
+						divisions_in_state = { 
+							type = infantry   
+							size < 1   
+							state = 118 
+						} 
+					} 
+				} 
+				ENG = { 
+					country_event = { 
+						id = mtg_netherlands.1147 
+						days = 1 
+					}
+				}  
+			}
+			
+			# NETHERLANDS PROPAGANDA CODE
+			if = {	
+				limit = { 
+					HOL = { has_completed_focus = HOL_continue_the_war_in_batavia }
+				}	
+				HOL = { 
+					add_to_variable = {	
+						THIS.prca_tokens = THIS.prca_tokens_weekly	
+					}	
+					THIS_clamp_max_tokens = yes	
+				}	
+			}
 		}
 	}
-	
+		
 	on_weekly = {
 		effect = {
 			if = { 
