@@ -57,15 +57,6 @@ on_actions = {
 				teleport_armies = { limit = { tag = SPR } to_state = 41 } 
 			}
 
-			# Specific state teleport for Axis if date < 1940.1.1
-			if = { 
-				limit = { OR = { state = 313 state = 21 } date < 1940.1.1 } 
-				teleport_armies = { limit = { the_axis = yes } to_state = FROM } 
-				PREV = { 
-					if = { limit = { FRA = { owns_state = 21 } } } transfer_state_to = FRA  
-				}     
-			}
-
 			# Marine demolition effect
 			if = {
 				limit = {

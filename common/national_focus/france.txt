@@ -35,6 +35,49 @@
 		}
 	}
 	
+	########## Expand the Citizenship ##########
+	
+	focus = {
+		id = FRA_expand_the_citizenship
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = FRA_economic_stagnation }
+		
+		cost = 10
+		
+		x = -2
+		y = 1
+
+		relative_position_id = FRA_economic_stagnation
+
+		completion_reward = {
+			custom_effect_tooltip = FRA_domestic_situation_tt
+			add_to_variable = { 
+				FRA_ds_non_core_manpower = 0.25
+				tooltip = non_core_manpower_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_the_blum_viollette_proposal
+		icon = GFX_focus_FRA_blumvio
+		prerequisite = { focus = FRA_economic_stagnation }
+		
+		cost = 10
+		
+		x = 2
+		y = 1
+
+		relative_position_id = FRA_economic_stagnation
+
+		completion_reward = {
+			add_state_core = 461 
+			add_state_core = 459 
+			add_state_core = 460 
+			add_state_core = 513
+		}
+	}
+	
 	########## MANTIGNON AGREEMENT ##########
 	
 	focus = {
@@ -283,8 +326,7 @@
 		relative_position_id = FRA_stop_the_capital_flight
 		
 		completion_reward = {
-			add_political_power = 120
-			add_stability = -0.05
+			add_political_power = 25
 			add_popularity = {
 				ideology = neutrality 
 				popularity = -1
@@ -293,6 +335,10 @@
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			custom_effect_tooltip = FRA_domestic_situation_tt
+			add_to_variable = { 
+				FRA_ds_consumer_goods_expected_value = -0.025
+				tooltip = consumer_goods_expected_value_tt
+			}
 			add_to_variable = { 
 				FRA_ds_economy_cost_factor = -0.1
 				tooltip = economy_cost_factor_tt
@@ -582,7 +628,7 @@
 		
 		cost = 5
 		
-		x = 6
+		x = 7
 		y = 0
 		
 		relative_position_id = FRA_economic_stagnation
@@ -652,7 +698,7 @@
 
 	focus = {
 		id = FRA_edouard_as_defense_minister
-		icon = GFX_focus_FRA_blumvio
+		icon = GFX_focus_generic_industrialists
 		prerequisite = { focus = FRA_nationalize_armaments_industry }
 		prerequisite = { focus = FRA_popular_front }
 		
@@ -670,6 +716,58 @@
 			
 			custom_effect_tooltip = available_political_advisor
 			show_ideas_tooltip = FRA_zivony_peshkov
+		}
+	}
+	
+	focus = {
+		id = FRA_support_the_finns
+		icon = GFX_focus_invite_finland
+		prerequisite = { focus = FRA_edouard_as_defense_minister }
+
+		available = {
+			custom_trigger_tooltip = {  date > 1939.11.30 tooltip = "The Winter War has started"}
+		}
+		
+		cost = 5
+		
+		x = 2
+		y = 1
+		
+		relative_position_id = FRA_edouard_as_defense_minister
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			army_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			FIN = {
+				add_offsite_building = { type = arms_factory level = 2 }
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_arms_purchases_in_the_us
+		icon = GFX_FRA_Launch_the_Tax_Reform
+		prerequisite = { focus = FRA_edouard_as_defense_minister }
+		
+		cost = 10
+		
+		x = -2
+		y = 1
+		
+		relative_position_id = FRA_edouard_as_defense_minister
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 2 }
 		}
 	}
 	
@@ -751,7 +849,14 @@
 		icon = GFX_focus_BEL_government_resigns
 		prerequisite = { focus = FRA_nine_billion_franc_plan focus = FRA_fourteen_billion_franc_plan }
 		
-		cost = 5
+		available = {
+			has_political_power > 149
+		}
+		
+		continue_if_invalid = no
+		cancel_if_invalid = no
+		
+		cost = 10
 		
 		x = 1
 		y = 1
@@ -759,6 +864,10 @@
 		relative_position_id = FRA_nine_billion_franc_plan
 		
 		completion_reward = {
+			add_political_power = -150
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+		
 			add_country_leader_role = {
 				character = FRA_edouard_daladier
 				promote_leader = yes
@@ -768,6 +877,10 @@
 					#traits = { stout_defender }
 				}
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_ideas = partial_economic_mobilisation
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
@@ -805,7 +918,7 @@
 		
 			custom_effect_tooltip = FRA_army_and_navy_tt
 			add_to_variable = { 
-				FRA_ran_land_bunker_effectiveness_factor = 0.25
+				FRA_ran_land_bunker_effectiveness_factor = 0.1
 				tooltip = land_bunker_effectiveness_factor_tt
 			}
 
@@ -931,13 +1044,13 @@
 		
 		cost = 5
 		
-		x = 11
+		x = 13
 		y = 0
 		
 		relative_position_id = FRA_economic_stagnation
 		
 		completion_reward = {
-			army_experience = 25
+			army_experience = 50
 		}
 	}
 	
@@ -954,6 +1067,10 @@
 		relative_position_id = FRA_army_of_the_third_republic
 		
 		completion_reward = {
+			army_experience = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			add_tech_bonus = {
 				name = FRA_light_medium_armor
 				bonus = 1
@@ -983,6 +1100,10 @@
 		relative_position_id = FRA_army_of_the_third_republic
 		
 		completion_reward = {
+			army_experience = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			add_tech_bonus = {
 				name = FRA_artillery_focus
 				bonus = 0.75
@@ -1012,6 +1133,10 @@
 		relative_position_id = FRA_char_d_assaut
 		
 		completion_reward = {
+			army_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			custom_effect_tooltip = FRA_army_and_navy_tt
 			add_to_variable = { 
 				FRA_ran_conscription = 0.02
@@ -1034,6 +1159,10 @@
 		relative_position_id = FRA_char_d_assaut
 		
 		completion_reward = {
+			army_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			custom_effect_tooltip = FRA_army_and_navy_tt
 			add_to_variable = { 
 				FRA_ran_army_core_attack_factor = 0.05
@@ -1060,6 +1189,10 @@
 		relative_position_id = FRA_a_colonial_army
 		
 		completion_reward = {
+			army_experience = 50
+				
+			custom_effect_tooltip = generic_skip_one_line_tt
+
 			custom_effect_tooltip = FRA_army_and_navy_tt
 			add_to_variable = { 
 				FRA_ran_army_core_attack_factor = 0.05
@@ -1086,6 +1219,10 @@
 		relative_position_id = FRA_a_colonial_army
 		
 		completion_reward = {
+			army_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			custom_effect_tooltip = FRA_army_and_navy_tt
 			add_to_variable = { 
 				FRA_ran_max_dig_in_factor = 0.1
@@ -1139,18 +1276,19 @@
 		
 		completion_reward = {
 			army_experience = 25
-		
+			
 			custom_effect_tooltip = generic_skip_one_line_tt
 		
-			custom_effect_tooltip = FRA_army_and_navy_tt
-			add_to_variable = { 
-				FRA_ran_land_bunker_effectiveness_factor = 0.25
-				tooltip = land_bunker_effectiveness_factor_tt
-			}
-			add_to_variable = { 
-				FRA_ran_production_speed_bunker_factor = 0.5
-				tooltip = production_speed_bunker_factor_tt
-			}
+			custom_effect_tooltip = GER_fortify_the_vaterland_tt
+        
+            hidden_effect = {
+                set_technology = { basic_fortification_tech = 1 popup = no }
+                set_technology = { land_fort_tech_1 = 1 popup = no }
+                set_technology = { land_fort_tech_2 = 1 popup = no }
+                set_technology = { coastal_fort_tech_1 = 1 popup = no }
+                set_technology = { coastal_fort_tech_2 = 1 popup = no }
+            }
+
 		}
 	}
 	
@@ -1198,7 +1336,7 @@
 		id = FRA_air_dominance
 		icon = GFX_goal_generic_air_fighter2
 		
-		x = 16
+		x = 18
 		y = 0
 		
 		relative_position_id = FRA_economic_stagnation
@@ -1287,7 +1425,7 @@
 		id = FRA_naval_rearmament
 		icon = GFX_goal_generic_construct_naval_dockyard
 		
-		x = 22
+		x = 24
 		y = 0
 		
 		cost = 2
@@ -1695,6 +1833,21 @@
 			custom_effect_tooltip = generic_skip_one_line_tt
 		
 			add_ideas = tot_economic_mobilisation
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			ENG = { 
+				add_relation_modifier = {
+				target = FRA
+				modifier = stahlpakt5
+			    }
+			}
+			USA = { 
+				add_relation_modifier = {
+				target = FRA
+				modifier = stahlpakt5
+			    }
+			}
 			
 			hidden_effect = {
 				set_variable = { FRA_ds_surrender_limit = 0 }
