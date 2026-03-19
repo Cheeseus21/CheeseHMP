@@ -3829,100 +3829,82 @@ GER_hilfskreuzer_cat = {
 
 USA_balance_of_power_category = {
     
-    USA_execute_war_plan_silver = {
-        icon = generic_operation
-        allowed = { OR = { tag = USA tag = ENG } }
-        visible = { NOT = { has_global_flag = war_plan_silver_used } }
-        available = {
-            USA = { has_completed_focus = USA_rainbow_plans }
-        }
-        fire_only_once = yes
-        complete_effect = {
-            # if = {
-                # limit = { NOT = { has_global_flag = war_in_the_west_start } }
-                # add_power_balance_value = {
-                    # id = USA_power_balance
-                    # value = 0.15
+    # USA_execute_war_plan_silver = {
+        # icon = generic_operation
+        # allowed = { OR = { tag = USA tag = ENG } }
+        # visible = { NOT = { has_global_flag = war_plan_silver_used } }
+        # available = {
+            # USA = { has_completed_focus = USA_rainbow_plans }
+        # }
+        # fire_only_once = yes
+        # complete_effect = {
+            # set_global_flag = war_plan_silver_used
+            # every_country = {
+                # limit = {
+                    # OR = {
+                        # tag = ENG
+                        # tag = USA
+                        # is_in_faction_with = ENG
+                    # }
+                # }
+                # add_timed_idea = {
+                    # idea = war_plan_silver
+                    # days = 182
                 # }
             # }
-            set_global_flag = war_plan_silver_used
-            every_country = {
-                limit = {
-                    OR = {
-                        tag = ENG
-                        tag = USA
-                        is_in_faction_with = ENG
-                    }
-                }
-                add_timed_idea = {
-                    idea = war_plan_silver
-                    days = 182
-                }
-            }
-        }
-    }
+        # }
+    # }
 
-    USA_execute_war_plan_black = {
-        icon = generic_operation
-        allowed = { OR = { tag = USA tag = ENG } }
-        visible = { NOT = { has_global_flag = war_plan_black_used } }
-        available = {
-            OR = {
-                USA = { has_completed_focus = USA_rainbow_plans }
-                has_completed_focus = ENG_overlord_states
-            }
-        }
-        fire_only_once = yes
-        complete_effect = {
-            # if = {
-                # limit = { NOT = { has_global_flag = war_in_the_west_start } }
-                # add_power_balance_value = {
-                    # id = USA_power_balance
-                    # value = 0.15
+    # USA_execute_war_plan_black = {
+        # icon = generic_operation
+        # allowed = { OR = { tag = USA tag = ENG } }
+        # visible = { NOT = { has_global_flag = war_plan_black_used } }
+        # available = {
+            # OR = {
+                # USA = { has_completed_focus = USA_rainbow_plans }
+                # has_completed_focus = ENG_overlord_states
+            # }
+        # }
+        # fire_only_once = yes
+        # complete_effect = {
+            # set_global_flag = war_plan_black_used
+            # every_country = {
+                # limit = {
+                    # OR = {
+                        # tag = ENG
+                        # tag = USA
+                        # is_in_faction_with = ENG
+                    # }
+                # }
+                # add_timed_idea = {
+                    # idea = war_plan_black
+                    # days = 182
                 # }
             # }
-            set_global_flag = war_plan_black_used
-            every_country = {
-                limit = {
-                    OR = {
-                        tag = ENG
-                        tag = USA
-                        is_in_faction_with = ENG
-                    }
-                }
-                add_timed_idea = {
-                    idea = war_plan_black
-                    days = 182
-                }
-            }
-        }
-    }
+        # }
+    # }
 
-    USA_execute_war_plan_orange = {
-        icon = generic_operation
-        allowed = { tag = USA }
-        available = { has_completed_focus = USA_rainbow_plans }
-        fire_only_once = yes
-        complete_effect = {
-            # add_power_balance_value = {
-                # id = USA_power_balance
-                # value = -0.3
+    # USA_execute_war_plan_orange = {
+        # icon = generic_operation
+        # allowed = { tag = USA }
+        # available = { has_completed_focus = USA_rainbow_plans }
+        # fire_only_once = yes
+        # complete_effect = {
+            # every_country = {
+                # limit = {
+                    # OR = {
+                        # tag = ENG
+                        # tag = USA
+                        # is_in_faction_with = ENG
+                    # }
+                # }
+                # add_timed_idea = {
+                    # idea = war_plan_yellowx
+                    # days = 182
+                # }
             # }
-            every_country = {
-                limit = {
-                    OR = {
-                        tag = ENG
-                        tag = USA
-                        is_in_faction_with = ENG
-                    }
-                }
-                add_timed_idea = {
-                    idea = war_plan_yellowx
-                    days = 182
-                }
-            }
-        }
-    }
+        # }
+    # }
 
     emergency_shipbuilding_program = {
         icon = GFX_decision_generic_merge_plant_ship
@@ -5659,7 +5641,7 @@ ger_luftwaffe_pfu = {
 
 		available = {
             NOT = { has_war_with = SOV } 
-            EFR = { has_country_flag = vichy_france_established }  
+            date > 1940.1.1  
             #has_completed_focus = GER_bob
 		}
 
@@ -7578,62 +7560,112 @@ propaganda_effortsx = {
             country_event = { id = wtt_news.42 hours = 6}
 		}
 	}
-    
-    GER_annex_vichy = {
+	
+	GER_annex_vichy = {
         icon = generic_operation
+        
         allowed = { original_tag = GER }
+        
         available = {
-            AND = {
-                OR = { EFR = { is_ai = yes } has_country_flag = annex_manual_override }
-                OR = {
-                    EFR = { is_puppet_of = GER }
-                    AND = {
-                        EFR = { is_puppet = no has_country_flag = EFR_torch_declared is_in_faction_with = GER }
-                    }
-                }
+			date > 1940.1.1
+            OR = {
+				AND ={
+					EFR = { 
+						is_ai = yes 
+					}
+					EFR = { 
+						is_in_faction_with = GER 
+					}
+				}
+                has_country_flag = annex_manual_override
             }
         }
+        
         visible = { 
             country_exists = EFR 
-            OR = { 
-				EFR = { 
-					is_ai = yes 
-				} 
-				has_country_flag = annex_manual_override 
-			}
+            EFR = { 
+                is_ai = yes 
+            } 
         }
+        
         cost = 0
+        
         fire_only_once = yes
+        
         complete_effect = {
-            if = {
-                limit = { EFR = { has_country_flag = host } }
-                GER = { set_country_flag = host }
-                EFR = { clr_country_flag = host }
-            }
-            hidden_effect = {
-                if = {
-                    limit = {
-                        EFR = { controls_state = 554 }
-                        ENG = { OR = { controls_state = 291 controls_state = 455 controls_state = 454 } }
-                    }
-                    FRA = { transfer_state = 554 transfer_state = 589 transfer_state = 590 transfer_state = 591 }
-                }
-            }
             add_to_variable = { paratrooper_div_cap = 2 }
             set_division_template_cap = {
                 division_template = "Paratroopers"
                 division_cap = paratrooper_div_cap
             }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
             annex_country = {
                 target = EFR
                 transfer_troops = yes
             }
+
             hidden_effect = {
-                #finish_french_colony_focuses = yes
                 fuel_system_refresh_list = yes
             }
         }
     }
+    
+    # GER_annex_vichy = {
+        # icon = generic_operation
+        # allowed = { original_tag = GER }
+        # available = {
+            # AND = {
+                # OR = { EFR = { is_ai = yes } has_country_flag = annex_manual_override }
+                # OR = {
+                    # EFR = { is_puppet_of = GER }
+                    # AND = {
+                        # EFR = { is_puppet = no has_country_flag = EFR_torch_declared is_in_faction_with = GER }
+                    # }
+                # }
+            # }
+        # }
+        # visible = { 
+            # country_exists = EFR 
+            # OR = { 
+				# EFR = { 
+					# is_ai = yes 
+				# } 
+				# has_country_flag = annex_manual_override 
+			# }
+        # }
+        # cost = 0
+        # fire_only_once = yes
+        # complete_effect = {
+            # if = {
+                # limit = { EFR = { has_country_flag = host } }
+                # GER = { set_country_flag = host }
+                # EFR = { clr_country_flag = host }
+            # }
+            # hidden_effect = {
+                # if = {
+                    # limit = {
+                        # EFR = { controls_state = 554 }
+                        # ENG = { OR = { controls_state = 291 controls_state = 455 controls_state = 454 } }
+                    # }
+                    # FRA = { transfer_state = 554 transfer_state = 589 transfer_state = 590 transfer_state = 591 }
+                # }
+            # }
+            # add_to_variable = { paratrooper_div_cap = 2 }
+            # set_division_template_cap = {
+                # division_template = "Paratroopers"
+                # division_cap = paratrooper_div_cap
+            # }
+            # annex_country = {
+                # target = EFR
+                # transfer_troops = yes
+            # }
+            # hidden_effect = {
+                # fuel_system_refresh_list = yes
+            # }
+        # }
+    # }
 	
 	AXIS_form_reichskommisariat_balkan = {
         icon = generic_operation
@@ -8331,7 +8363,7 @@ propaganda_effortsx = {
 
 	GER_dday = { 
 		available = {    
-			EFR = { has_country_flag = vichy_france_established }   
+			date > 1940.1.1  
 			has_manpower > 2300040  
 			date < 1941.11.21       
 		}
@@ -8771,65 +8803,64 @@ propaganda_effortsx = {
 				
 				FROM = { country_event = { id = usa.996 days = 0 } }
 				
-				GER = { activate_mission = GER_case_anton }
+				#GER = { activate_mission = GER_case_anton }
 				
 				news_event = { id = news.4001 }
 			}
 		}
 	}
 	
-	GER_case_anton = {
-        icon = generic_prepare_civil_war
+	# GER_case_anton = {
+        # icon = generic_prepare_civil_war
         
-        allowed = { OR = { tag = EFR tag = GER tag = ITA tag = ENG } }
+        # allowed = { OR = { tag = EFR tag = GER tag = ITA tag = ENG } }
         
-        visible = { 
-			NOT = {
-				has_global_flag = europe_only_start_date_flag
-			}
-		}
+        # visible = { 
+			# NOT = {
+				# has_global_flag = europe_only_start_date_flag
+			# }
+		# }
         
-        available = {
-            AND = {
-                NOT = { ITA = { controls_state = 460 } }
-                NOT = { EFR = { controls_state = 460 } }
-            }
-        }
+        # available = {
+            # AND = {
+                # NOT = { ITA = { controls_state = 460 } }
+                # NOT = { EFR = { controls_state = 460 } }
+            # }
+        # }
         
-        activation = {
-            AND = {
-                EFR = { has_war_with = ENG has_country_flag = EFR_torch_declared }
-                NOT = { EFR = { has_completed_focus = VIC_join_axis } }
-                NOT = { OR = { is_puppet_of = GER is_in_faction_with = GER } }
-            }
-        }
+        # activation = {
+            # AND = {
+                # EFR = { has_war_with = ENG has_country_flag = EFR_torch_declared }
+                # NOT = { EFR = { has_completed_focus = VIC_join_axis } }
+                # NOT = { OR = { is_puppet_of = GER is_in_faction_with = GER } }
+            # }
+        # }
 		
-        days_mission_timeout = 30
+        # days_mission_timeout = 30
         
-        timeout_effect = {
-            if = {
-                limit = { EFR = { is_ai = no } }
-                EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.2 } }
-                recalc_vichy_france_legitimacy = yes
-            }
-            else = {
-                GER = { activate_decision = GER_annex_vichy }
-            }
-        }
+        # timeout_effect = {
+            # if = {
+                # limit = { EFR = { is_ai = no } }
+                # EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.2 } }
+                # recalc_vichy_france_legitimacy = yes
+            # }
+            # else = {
+                # GER = { activate_decision = GER_annex_vichy }
+            # }
+        # }
         
-        complete_effect = {
-            #hidden_effect = { finish_french_colony_focuses = yes }
-            recalc_vichy_france_legitimacy = yes
-            GER = { puppet = EFR }
-            if = {
-                limit = { EFR = { is_ai = no } }
-                EFR = { add_ideas = CHI_illegal_regime }
-            }
-            else = {
-                GER = { activate_decision = GER_annex_vichy }
-            }
-        }
-    }
+        # complete_effect = {
+            # recalc_vichy_france_legitimacy = yes
+            # GER = { puppet = EFR }
+            # if = {
+                # limit = { EFR = { is_ai = no } }
+                # EFR = { add_ideas = CHI_illegal_regime }
+            # }
+            # else = {
+                # GER = { activate_decision = GER_annex_vichy }
+            # }
+        # }
+    # }
 
 	ENG_violate_spanish_sov = {
 		icon = generic_civil_support
@@ -9206,7 +9237,7 @@ propaganda_effortsx = {
                     FRA = { is_ai = yes }
                     has_country_flag = annex_manual_override
                 }
-                EFR = { has_country_flag = vichy_france_established }
+                date > 1940.1.1
             }
 
             fire_only_once = yes
@@ -9713,7 +9744,7 @@ propaganda_effortsx = {
 
 		available = {
 			has_country_leader = { ruling_only = yes name = "Winston Churchill" }
-		 EFR = { has_country_flag = vichy_france_established }  
+			date > 1940.1.1
 		}
 
 		cost = 25
@@ -13770,7 +13801,7 @@ ENG_evacuation_decisions = {
 			447 = { 
 				is_controlled_by = ENG
 			}
-            EFR = { has_country_flag = vichy_france_established }
+            date > 1940.1.1
 			has_war_with = GER
 		}
 		

@@ -3514,13 +3514,16 @@ focus_tree = {
 		icon = GFX_focus_generic_combined_arms
 		prerequisite = { focus = ITA_italo_balbo_focus }
 		#mutually_exclusive = { focus = ITA_reinforce_regia_aeronautica }
-		relative_position_id = ITA_italo_balbo_focus
+		
 		x = -1
 		y = 1
+		
+		relative_position_id = ITA_italo_balbo_focus
 
 		cost = 5
+		
 		available = {
-			EFR = { NOT = { has_country_flag = vichy_france_established} }
+			date > 1940.1.1
 		}
 		
 		search_filters = {FOCUS_FILTER_ARMY_XP FOCUS_FILTER_INDUSTRY FOCUS_FILTER_BALANCE_OF_POWER}
@@ -3544,9 +3547,7 @@ focus_tree = {
 
 		cost = 5
 		available = { 
-            EFR = { 
-                NOT = { has_country_flag = vichy_france_established}	
-            }
+			date > 1940.1.1
         }	
 
 		search_filters = {FOCUS_FILTER_AIR_XP FOCUS_FILTER_INDUSTRY FOCUS_FILTER_BALANCE_OF_POWER}

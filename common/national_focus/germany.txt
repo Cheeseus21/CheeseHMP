@@ -5615,11 +5615,6 @@ focus = {
 				PER = { country_event = { id = finland.20 days = 285 } }
 				FRA = { add_timed_idea = { idea = FRA_ITA_neutrality days = 90 } }
 				ITA = { add_timed_idea = { idea = ITA_FRA_neutrality days = 90 } }
-				
-				every_country = {
-					limit = { NOT = { OR = { tag = FIN tag = GRE tag = SOV } } }
-					add_ideas = battle_of_alamein
-				}
 
 				enable_compass_mechanic = yes
 				set_global_flag = LoN_disbanded_flag
@@ -5693,7 +5688,7 @@ focus = {
         cost = 5
 
         available = {
-            EFR = { has_country_flag = vichy_france_established }
+            date > 1940.1.1
         }
 
         search_filters = {
@@ -6028,15 +6023,17 @@ focus = {
 		id = GER_atlantikwall
 		icon = GFX_focus_GER_atlantikwall
 		prerequisite = { focus = GER_war_with_france }
+		
 		x = 1
 		y = 1
+		
 		relative_position_id = GER_war_with_france
+		
 		cost = 5
-	
-		available = { EFR = { has_country_flag = vichy_france_established }  }
+
+		completion_reward = {
+			news_event = { id = poland.1148 days = 3 }
 			
-			completion_reward = {
-			news_event = { id = poland.1148 days = 3}
 			every_state = { 
 				limit = { atlantikwall_states = yes }
 				add_dynamic_modifier = { modifier = festung_europa } 
@@ -6050,14 +6047,18 @@ focus = {
 						level < 10
 					}
 				}
-			}		
+			}
+			
 			hidden_effect = {	
-				every_state = { limit = { OR = { state = 143 state = 142 } }
-				#add_dynamic_modifier = { modifier = festung_europa  } 
+				every_state = { 
+					limit = { OR = { state = 143 state = 142 } }
+					#add_dynamic_modifier = { modifier = festung_europa } 
+					
 					set_building_level = {
-							type = anti_air_building
-							level = 4
-						}
+						type = anti_air_building
+						level = 4
+					}
+					
 					set_building_level = {
 						type = coastal_bunker
 						level = 6
@@ -6704,7 +6705,7 @@ focus = {
 		completion_reward = {
             GER_modify_industrial_modifier = yes
 			add_to_variable = {
-				GER_industrial_consumer_goods_expected_value = -0.01
+				GER_industrial_consumer_goods_expected_value = -0.05
 				tooltip =  consumer_goods_expected_value_tt
 			}
 			
@@ -6917,7 +6918,7 @@ focus = {
 		cost = 0
 		
 		available = { 
-			EFR = { has_country_flag = vichy_france_established } 
+			date > 1940.1.1
 			YUG = { is_ai = yes }
 		}
 
