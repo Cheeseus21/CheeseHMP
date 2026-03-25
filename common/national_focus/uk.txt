@@ -342,14 +342,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_political_power = 50
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-            reduce_focus_completion_cost = {
-				focus = { ENG_appease_the_threats ENG_subsidize_critical_industries }
-				cost = 35
-			}
-            
+
             custom_effect_tooltip = generic_skip_one_line_tt
             
 			custom_effect_tooltip = ENG_modify_politics_tt
@@ -615,13 +608,6 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = -300
 
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-            reduce_focus_completion_cost = {
-				focus = { ENG_contain_the_threats ENG_establish_armament_programs }
-				cost = 35
-			}
-            
             custom_effect_tooltip = generic_skip_one_line_tt
             
 			custom_effect_tooltip = ENG_modify_politics_tt
@@ -926,13 +912,6 @@ focus_tree = {
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
-            reduce_focus_completion_cost = {
-				focus = { ENG_focus_on_the_empire ENG_new_construction_projects_for_egypt ENG_invest_into_iraqian_oil_companies ENG_singapore_sealane_investments ENG_hong_kong_international_trade ENG_dominion_investment_projects }
-				cost = 35
-			}
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
             remove_ideas = ENG_king_edward
 		}
 	}
@@ -959,13 +938,6 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			promote_character = ENG_neville_chamberlain
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-            reduce_focus_completion_cost = {
-				focus = { ENG_develop_our_homelands ENG_develop_southern_scotland ENG_develop_northern_england ENG_fix_northern_englands_unemployment_crisis ENG_fix_southern_englands_housing_crisis ENG_stable_economy }
-				cost = 35
-			}
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -1185,7 +1157,7 @@ focus_tree = {
     focus = {
 		id = ENG_contain_the_threats
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		prerequisite = { focus = ENG_kings_party focus = ENG_edward_abdicates }
         
@@ -1216,7 +1188,7 @@ focus_tree = {
     focus = {
 		id = ENG_establish_armament_programs
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		prerequisite = { focus = ENG_contain_the_threats }
 
@@ -1259,7 +1231,7 @@ focus_tree = {
     focus = {
 		id = ENG_appease_the_threats
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		prerequisite = { focus = ENG_kings_party focus = ENG_edward_abdicates }
         
@@ -1290,7 +1262,7 @@ focus_tree = {
     focus = {
 		id = ENG_subsidize_critical_industries
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		prerequisite = { focus = ENG_appease_the_threats }
 
@@ -2689,7 +2661,32 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-			army_experience = 100
+			add_tech_bonus = {
+				name = GER_panzergrenadier
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				name = GER_panzergrenadier
+				bonus = 1
+				uses = 1
+				category = artillery
+			}
+			add_tech_bonus = {
+				name = GER_panzergrenadier
+				bonus = 1
+				uses = 1
+				category = cat_1941_tanks
+			}
+			add_tech_bonus = {
+				name = GER_panzergrenadier
+				bonus = 1
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			if = {
 				limit = {
@@ -2733,23 +2730,10 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {	
-            add_tech_bonus = {
-                name = GER_soviet_treaty
-                bonus = 1.0
-                uses = 1
-                ahead_reduction = 0.5
-                category = infantry_weapons
-            }
-            add_tech_bonus = {
-                name = GER_soviet_treaty
-                bonus = 1.0
-                uses = 1
-                ahead_reduction = 0.5
-                category = artillery
-            }            
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
+			army_experience = 100
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+		
 		    custom_effect_tooltip = ENG_modify_army_tt
 		    add_to_variable = { 
 				ENG_re_army_infantry_attack_factor = 0.08
@@ -2812,23 +2796,10 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {	
-		    add_tech_bonus = {
-                name = GER_soviet_treaty
-                bonus = 1.0
-                uses = 1
-                ahead_reduction = 0.5
-                category = cat_1941_tanks
-            }
-            add_tech_bonus = {
-                name = GER_soviet_treaty
-                bonus = 1.0
-                uses = 1
-                ahead_reduction = 0.5
-                technology = mechanised_infantry
-            }            
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
+			army_experience = 100
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
             custom_effect_tooltip = ENG_modify_army_tt
 		    add_to_variable = { 
 				ENG_re_army_attack_factor = 0.1
@@ -2956,7 +2927,7 @@ focus_tree = {
 	}
     
     focus = {
-		id = ENG_tank_development
+		id = ENG_mechanized_development
         
 		prerequisite = { focus = ENG_side_with_the_reformist focus = ENG_stick_with_the_old_guard }
 
@@ -2975,7 +2946,7 @@ focus_tree = {
 		continue_if_invalid = yes
 		available_if_capitulated = yes
 		
-		icon = GFX_focus_generic_tank_assembly
+		icon = GFX_focus_generic_mechanized
 		
 		x = 2
 		y = 2
@@ -2986,11 +2957,10 @@ focus_tree = {
 		
 		completion_reward = {	
 		    add_tech_bonus = {
-				name = ENG_tank_development
-				bonus = 1.0
+				name = GER_panzergrenadier
+				bonus = 1
 				uses = 2
-				category = cat_1941_tanks
-				category = cat_1943_tanks	
+				category = cat_mechanized_equipment
 			}	
             
             custom_effect_tooltip = generic_skip_one_line_tt
@@ -3011,7 +2981,6 @@ focus_tree = {
 		prerequisite = { focus = ENG_side_with_the_reformist }
 
 		available = {
-            date > 1938.1.1
 		    OR = {
 		        custom_trigger_tooltip = {
 			    tooltip = ENG_no_funds_tt
@@ -3044,6 +3013,15 @@ focus_tree = {
 				}
 				complete_mio_trait = generic_horst_england_trait_1
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_tech_bonus = {
+                name = GER_soviet_treaty
+                bonus = 1.0
+                uses = 1
+				category = cat_1943_tanks
+            }
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -3066,12 +3044,11 @@ focus_tree = {
 	}
     
     focus = {
-		id = ENG_mechanized_forces
+		id = ENG_mobile_warfare_doctrine
         
 		prerequisite = { focus = ENG_side_with_the_reformist }
 
 		available = {
-            date > 1938.1.1
 		    OR = {
 		        custom_trigger_tooltip = {
 			    tooltip = ENG_no_funds_tt
@@ -3086,7 +3063,7 @@ focus_tree = {
 		continue_if_invalid = yes
 		available_if_capitulated = yes
 		
-		icon = GFX_focus_generic_mechanized
+		icon = GFX_focus_generic_tank_air_support
 		
 		x = 0
 		y = 2
@@ -3096,21 +3073,25 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {	
-			every_military_industrial_organization = {
-				limit = {
-					OR = {
-						is_military_industrial_organization = ENG_motorized_mechanized_organization
-					}
-				}
-				complete_mio_trait = generic_horst_england_trait_3
-			}
+			# every_military_industrial_organization = {
+				# limit = {
+					# OR = {
+						# is_military_industrial_organization = ENG_motorized_mechanized_organization
+					# }
+				# }
+				# complete_mio_trait = generic_horst_england_trait_3
+			# }
             
-            custom_effect_tooltip = generic_skip_one_line_tt
+            # custom_effect_tooltip = generic_skip_one_line_tt
             
             custom_effect_tooltip = ENG_modify_army_tt
 		    add_to_variable = { 
 				ENG_re_army_morale_factor = 0.1
 				tooltip = army_morale_factor_tt
+			}
+			add_to_variable = { 
+				ENG_re_army_speed_factor = 0.1
+				tooltip = army_speed_factor_tt
 			}
             
             custom_effect_tooltip = generic_skip_one_line_tt
@@ -3147,8 +3128,8 @@ focus_tree = {
 		
 		icon = GFX_focus_generic_army_doctrines_2
 		
-		x = 1
-		y = 1
+		x = 0
+		y = 2
         
 		relative_position_id = ENG_stick_with_the_old_guard
 		
@@ -3203,8 +3184,8 @@ focus_tree = {
 		
 		icon = GFX_SOV_reorganize_the_pc_of_heavy_industry_ccp_2d_sov_compatibility
 		
-		x = 0
-		y = 2
+		x = 1
+		y = 1
         
 		relative_position_id = ENG_stick_with_the_old_guard
 		
@@ -3221,6 +3202,15 @@ focus_tree = {
 			}
             
             custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_tech_bonus = {
+                name = GER_soviet_treaty
+                bonus = 1.0
+                uses = 1
+				category = cat_1943_tanks
+            }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
             
             custom_effect_tooltip = ENG_modify_army_tt
             add_to_variable = { 
@@ -3872,7 +3862,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = ENG_gather_the_rearmament_plans
 		
-		cost = 5
+		cost = 10
 		
 		completion_reward = {
 		    add_tech_bonus = {
@@ -3939,9 +3929,10 @@ focus_tree = {
 		
 		x = -1
 		y = 1
+		
 		relative_position_id = ENG_navy_demands
 		
-		cost = 5
+		cost = 10
 		
 		completion_reward = {
 		    add_tech_bonus = {
@@ -3985,9 +3976,10 @@ focus_tree = {
 		
 		x = -2
 		y = 2
+		
 		relative_position_id = ENG_navy_demands
 		
-		cost = 5
+		cost = 10
 		
 		completion_reward = {
 		    add_tech_bonus = {
@@ -4011,55 +4003,10 @@ focus_tree = {
 	
 	######################################################################################################################################################
 	
-	# focus = {
-		# id = ENG_submarine_projects
-		# prerequisite = { focus = ENG_navy_demands }
-		# available = {
-		    # OR = {
-		        # custom_trigger_tooltip = {
-			    # tooltip = ENG_no_funds_tt
-		            # check_variable = {
-                    # ENG_funds > 0
-                    # }
-				# }
-				# date > 1940.9.1
-			# }
-		# }
-
-		# continue_if_invalid = yes
-		# available_if_capitulated = yes
-		
-		# icon = GFX_focus_generic_cruiser_submarines
-		
-		# x = 0
-		# y = 2
-		# relative_position_id = ENG_navy_demands
-		
-		# cost = 5
-		
-		# completion_reward = {
-		    # add_tech_bonus = {
-				# name = ENG_carrier_programs_bonus
-				# bonus = 1.25
-				# uses = 2
-				# category = ss_tech
-			# }
-			
-			# if = {
-				# limit = {
-					# date < 1940.9.1
-				# }
-				# subtract_from_variable = {  var = ENG_funds value = 1 } 
-			    # custom_effect_tooltip = ENG_subtract_funds_tt
-			# }
-		# }
-	# }
-	
-	######################################################################################################################################################
-	
 	focus = {
 		id = ENG_cruiser_programs
 		prerequisite = { focus = ENG_navy_demands }
+		
 		available = {
 		    OR = {
 		        custom_trigger_tooltip = {
@@ -4071,6 +4018,7 @@ focus_tree = {
 				date > 1940.9.1
 			}
 		}
+		
 		continue_if_invalid = yes
 		available_if_capitulated = yes
 		
@@ -4078,9 +4026,10 @@ focus_tree = {
 		
 		x = 1
 		y = 1
+		
 		relative_position_id = ENG_navy_demands
 		
-		cost = 5
+		cost = 10
 		
 		completion_reward = {
 		    add_tech_bonus = {
@@ -4105,6 +4054,7 @@ focus_tree = {
 	focus = {
 		id = ENG_destroyer_programs
 		prerequisite = { focus = ENG_navy_demands }
+		
 		available = {
 		    OR = {
 		        custom_trigger_tooltip = {
@@ -4124,9 +4074,10 @@ focus_tree = {
 		
 		x = 2
 		y = 2
+		
 		relative_position_id = ENG_navy_demands
 		
-		cost = 5
+		cost = 10
 		
 		completion_reward = {
 		    add_tech_bonus = {
@@ -4174,9 +4125,10 @@ focus_tree = {
 		
 		x = 2
 		y = 1
+		
 		relative_position_id = ENG_carrier_programs
 		
-		cost = 5
+		cost = 10
 		
 		completion_reward = {
 		    create_equipment_variant = {
@@ -4246,16 +4198,20 @@ focus_tree = {
     focus = {
 		id = ENG_develop_our_homelands
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
 
 		icon = GFX_focus_generic_home_defense
         
         mutually_exclusive = { focus = ENG_focus_on_the_empire }
+		
+		available = {
+			has_completed_focus = ENG_the_abdication_crisis
+		}
         
 		x = 25
 		y = 6
 
-		cost = 10
+		cost = 5
 		
 		available_if_capitulated = yes
 
@@ -4317,24 +4273,22 @@ focus_tree = {
     focus = {
 		id = ENG_focus_on_the_empire
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
 
 		icon = GFX_focus_on_empire
         
         mutually_exclusive = { focus = ENG_develop_our_homelands }
         
-        available = {
-            #NOT = {
-            #    has_global_flag = war_in_the_west_start
-            #}
-        }
+		available = {
+			has_completed_focus = ENG_the_abdication_crisis
+		}
         
 		x = 6
 		y = 0
 
 		relative_position_id = ENG_develop_our_homelands
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
             add_political_power = 150
@@ -4366,7 +4320,7 @@ focus_tree = {
     focus = {
 		id = ENG_develop_southern_scotland
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_eng_concessions_to_the_trade_unions
         
@@ -4379,7 +4333,7 @@ focus_tree = {
         
 		relative_position_id = ENG_develop_our_homelands
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    
@@ -4402,7 +4356,7 @@ focus_tree = {
     focus = {
 		id = ENG_develop_northern_england
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_on_mainland
         
@@ -4415,7 +4369,7 @@ focus_tree = {
         
 		relative_position_id = ENG_develop_our_homelands
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    every_core_state = {
@@ -4441,7 +4395,7 @@ focus_tree = {
     focus = {
 		id = ENG_fix_northern_englands_unemployment_crisis
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_generic_full_employment
         
@@ -4454,7 +4408,7 @@ focus_tree = {
         
 		relative_position_id = ENG_develop_northern_england
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    132 = {
@@ -4479,7 +4433,7 @@ focus_tree = {
     focus = {
 		id = ENG_fix_southern_englands_housing_crisis
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_usa_guarantee_the_american_dream
         
@@ -4492,7 +4446,7 @@ focus_tree = {
         
 		relative_position_id = ENG_develop_northern_england
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    random_core_state = {
@@ -4519,7 +4473,7 @@ focus_tree = {
     focus = {
 		id = ENG_stable_economy
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_goal_generic_consumer_goods
         
@@ -4533,7 +4487,7 @@ focus_tree = {
         
 		relative_position_id = ENG_fix_northern_englands_unemployment_crisis
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
             add_political_power = 100
@@ -4550,7 +4504,7 @@ focus_tree = {
     focus = {
 		id = ENG_new_construction_projects_for_egypt
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_generic_the_suez
         
@@ -4563,7 +4517,7 @@ focus_tree = {
         
 		relative_position_id = ENG_focus_on_the_empire
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    
@@ -4589,7 +4543,7 @@ focus_tree = {
     focus = {
 		id = ENG_invest_into_iraqian_oil_companies
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_IRQ_anglo_iraqi_oil_expansion
         
@@ -4602,7 +4556,7 @@ focus_tree = {
         
 		relative_position_id = ENG_new_construction_projects_for_egypt
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    
@@ -4625,7 +4579,7 @@ focus_tree = {
     focus = {
 		id = ENG_singapore_sealane_investments
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_GER_south_east_asian_natural_wealth
         
@@ -4642,7 +4596,7 @@ focus_tree = {
         
 		relative_position_id = ENG_focus_on_the_empire
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    
@@ -4657,7 +4611,7 @@ focus_tree = {
     focus = {
 		id = ENG_hong_kong_international_trade
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_generic_british_trade
         
@@ -4674,7 +4628,7 @@ focus_tree = {
         
 		relative_position_id = ENG_singapore_sealane_investments
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    
@@ -4689,12 +4643,11 @@ focus_tree = {
     focus = {
 		id = ENG_dominion_investment_projects
         
-        overlay = GFX_focus_fast_overlay_generic_clock
+        #overlay = GFX_focus_fast_overlay_generic_clock
         
 		icon = GFX_focus_eng_bring_the_dominions_back_into_the_fold
         
-		prerequisite = { focus = ENG_invest_into_iraqian_oil_companies }
-        prerequisite = { focus = ENG_hong_kong_international_trade }
+		prerequisite = { focus = ENG_invest_into_iraqian_oil_companies focus = ENG_hong_kong_international_trade }
         
 		available = {  }
 		
@@ -4703,7 +4656,7 @@ focus_tree = {
         
 		relative_position_id = ENG_invest_into_iraqian_oil_companies
         
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 		    
@@ -4910,7 +4863,7 @@ focus_tree = {
 		x = 3
 		y = 1
         
-		cost = 5
+		cost = 10
         
 		relative_position_id = ENG_stable_economy
         
@@ -5014,7 +4967,7 @@ focus_tree = {
 		x = 1
 		y = 1
         
-		cost = 5
+		cost = 10
         
 		relative_position_id = ENG_keep_the_rearmament_limited
 		
