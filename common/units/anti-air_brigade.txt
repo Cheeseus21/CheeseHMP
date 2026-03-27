@@ -5,22 +5,18 @@
 sub_units = {
 
 	anti_air_brigade = {
-		abbreviation = "ANA"
-		sprite = infantry
+		abbreviation      = "ANA"
+		sprite            = infantry
 		map_icon_category = infantry
-		priority = 301
-		ai_priority = 10
-		active = yes
+		priority          = 301
+		ai_priority       = 10
+		active            = yes
 
+		group             = infantry
 		type = {
 			infantry
 			anti_air
 		}
-		
-		maximum_speed = 0.6	
-		transport = anti_air_equipment
-		group = infantry
-		
 		categories = {
 			category_army
 			category_line_artillery
@@ -28,195 +24,118 @@ sub_units = {
 			category_anti_air
 		}		
 		
-		combat_width = 1
-		
-		# Size Definitions
-		max_organisation = -10
-		default_morale = 0.1
-		max_strength = 0.6
-		manpower = 500
-		training_time = 60
-		weight = 0.125
-		
-		supply_consumption = 0.1
-
+		combat_width      = 1
+		transport         = anti_air_equipment
 		need = {
 			anti_air_equipment = 24
 		}
 		
-		deep_desert = { 
-			attack = 0.15
-			defence = 0.15
-			movement = 0.1
-		}
-		forest = {
-			attack = -0.1
-			movement = -0.1
-		}
-		jungle = {
-			attack = -0.3
-			movement = -0.2
-		}
-		marsh = {
-			attack = -0.2
-			movement = -0.2
-		}
-		river = {
-			attack = -0.2
-			movement = -0.2
-		}
-		amphibious = {
-			attack = -0.4
-		}
+		# Size Definitions
+		max_organisation   = 0
+		default_morale     = 0.1
+		max_strength       = 5
+		manpower           = 500
+		training_time      = 60
+		weight             = 0.125
+		supply_consumption = 0.1
+		
+		deep_desert = { attack =  0.15   defence =  0.15   movement =  0.1  }
+		forest      = { attack = -0.1                      movement = -0.1  }
+		jungle      = { attack = -0.3                      movement = -0.2  }
+		marsh       = { attack = -0.2                      movement = -0.2  }
+		river       = { attack = -0.2                      movement = -0.2  }
+		amphibious  = { attack = -0.4                                       }
 	}
 
 	mot_anti_air_brigade = {
-		abbreviation = "MAA"
-		sprite = infantry
+		abbreviation      = "MAA"
+		sprite            = infantry
 		map_icon_category = infantry
-		priority = 301
-		ai_priority = 10
-		active = yes
+		priority          = 301
+		ai_priority       = 10
+		active            = yes
 
+		group             = mobile
 		type = {
 			motorized
 			anti_air
 		}
-		
-		group = mobile
-		
 		categories = {
 			category_army
 			category_line_artillery
 			category_anti_air
 		}		
 		
-		combat_width = 1
-		
-		# Size Definitions
-		max_organisation = 0
-		default_morale = 0.1
-		max_strength = 0.6
-		manpower = 500
-		training_time = 60
-		weight = 0.125
-				
-		supply_consumption = 0.15
-		transport = motorized_equipment
-		
+		combat_width      = 1
+		transport         = motorized_equipment
 		need = {
-			anti_air_equipment = 24
+			anti_air_equipment  = 24
 			motorized_equipment = 24
 		}
 		
-		deep_desert = {
-			attack = -0.7 
-			defence = -0.9	
-			movement = -0.2  
-		}
-		forest = {
-			attack = -0.1
-		}
-		mountain = {
-			attack = -0.6
-			defence = -0.7
-		}
-		jungle = {
-			attack = -0.4
-			defence = -0.7
-		}
-		marsh = {
-			attack = -0.1
-			defence = -0.15
-			defence = -0.2
-		}
-		urban = {
-			attack = -0.2
-			defence = -0.25
-		}
-		river = {
-			attack = -0.2
-			movement = -0.2
-		}
-		amphibious = {
-			attack = -1.2
-		}
+		# Size Definitions
+		max_organisation   = 0
+		default_morale     = 0.1
+		max_strength       = 5
+		manpower           = 500
+		training_time      = 60
+		weight             = 0.125
+		supply_consumption = 0.15
+		
+		deep_desert = { attack = -0.7    defence = -0.9    movement = -0.2  }
+		forest      = { attack = -0.1                                       }
+		mountain    = { attack = -0.6    defence = -0.7                     }
+		jungle      = { attack = -0.4    defence = -0.7                     }
+		marsh       = { attack = -0.1    defence = -0.15   defence = -0.2   }
+		urban       = { attack = -0.2    defence = -0.25                    }
+		river       = { attack = -0.2                      movement = -0.2  }
+		amphibious  = { attack = -1.2                                       }
 	}
 	
 	mech_anti_air = {
-		sprite = infantry
+		sprite            = infantry
 		map_icon_category = infantry
-		priority = 301
-		ai_priority = 10
-		active = yes
+		priority          = 301
+		ai_priority       = 10
+		active            = yes
 		
+		group             = mobile
 		type = {
 			mechanized
 			anti_air
 		}
-		
-		breakthrough = -0.5
-		group = mobile
-		
 		categories = {
 			category_army
 			category_anti_air
 			category_line_artillery
 		}		
 		
+		combat_width      = 1
+		transport         = mech_chassis
+		need = {
+			anti_air_equipment = 24
+			mech_chassis       = 24
+		}
 		essential = {
 			mech_chassis
 		}	
 		
-		combat_width = 1		
-		
 		# Size Definitions
-		max_organisation = 0
-		default_morale = 0.1
-		max_strength = 0.6
-		manpower = 500
-		training_time = 60
-		weight = 0.125
-		
+		max_organisation   = 0
+		default_morale     = 0.1
+		max_strength       = 5
+		manpower           = 500
+		training_time      = 60
+		weight             = 0.125
 		supply_consumption = 0.18
-		transport = mech_chassis
 		
-		need = {
-			anti_air_equipment = 24
-			mech_chassis = 24
-		}
-		
-		deep_desert = {
-			attack = -0.7 
-			defence = -0.9	
-			movement = -0.2  
-		}
-		forest = {
-			attack = -0.1
-		}
-		mountain = {
-			attack = -0.6
-			defence = -0.7
-		}
-		jungle = {
-			attack = -0.4
-			defence = -0.7
-		}
-		marsh = {
-			attack = -0.1
-			defence = -0.15
-			defence = -0.2
-		}
-		urban = {
-			attack = -0.2
-			defence = -0.25
-		}
-		river = {
-			attack = -0.2
-			movement = -0.2
-		}
-		amphibious = {
-			attack = -1.2
-		}
+		deep_desert = { attack = -0.7    defence = -0.9    movement = -0.2  }
+		forest      = { attack = -0.1                                       }
+		mountain    = { attack = -0.6    defence = -0.7                     }
+		jungle      = { attack = -0.4    defence = -0.7                     }
+		marsh       = { attack = -0.1    defence = -0.15   defence = -0.2   }
+		urban       = { attack = -0.2    defence = -0.25                    }
+		river       = { attack = -0.2                      movement = -0.2  }
+		amphibious  = { attack = -1.2                                       }
 	}	
 }

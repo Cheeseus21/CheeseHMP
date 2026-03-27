@@ -1,21 +1,22 @@
 sub_units = {
 
 	super_heavy_artillery = {
-		abbreviation = "SHART"
-		sprite = super_heavy_artillery
+		abbreviation      = "SHART"
+		sprite            = super_heavy_artillery
 		map_icon_category = infantry
-		priority = 0
-		ai_priority = 0
-		active = yes
-		affects_speed = yes
+		priority          = 0
+		ai_priority       = 0
+		active            = yes
+		affects_speed     = yes
+		maximum_speed     = 0.6
+		can_be_parachuted = no
+		same_support_type = artillery # TODO_Manu: Need code support to add a new type super_heavy_artillery
 
+		group             = support
 		type = {
 			infantry
 			support
 		}
-		
-		group = support
-		
 		categories = {
 			category_support_battalions
 			category_army
@@ -23,46 +24,40 @@ sub_units = {
 			category_support_artillery
 		}
 
-
-		combat_width = 0
-		
+		combat_width      = 0
 		essential = {
 			super_heavy_artillery_equipment
 		}
-
 		need = {
 			super_heavy_artillery_equipment = 4
 		}
-		manpower = 1000
-		training_time = 180
-		max_organisation = 0
-		default_morale = 0.1
-		max_strength = 0.2
-		weight = 0.1
-		
+
+		manpower           = 1000
+		training_time      = 180
+		max_organisation   = 0
+		default_morale     = 0.1
+		max_strength       = 0.2
+		weight             = 0.1
 		supply_consumption = 0.25
-
-		can_be_parachuted = no
-
-		same_support_type = artillery # TODO_Manu: Need code support to add a new type super_heavy_artillery
 	}
 
 	self_propelled_super_heavy_artillery = {
-		abbreviation = "SPSHART"
-		sprite = self_propelled_super_heavy_artillery
+		abbreviation      = "SPSHART"
+		sprite            = self_propelled_super_heavy_artillery
 		map_icon_category = infantry
-		priority = 0
-		ai_priority = 0
-		active = yes
-		affects_speed = no
+		priority          = 0
+		ai_priority       = 0
+		active            = yes
+		affects_speed     = yes
+		maximum_speed     = 2
+		can_be_parachuted = no
+		same_support_type = artillery # TODO_Manu: Need code support to add a new type super_heavy_artillery
 
+		group             = support
 		type = {
 			infantry
 			support
 		}
-		
-		group = support
-		
 		categories = {
 			category_support_battalions
 			category_army
@@ -70,169 +65,153 @@ sub_units = {
 			category_support_artillery
 		}
 
-
-		combat_width = 0
-
+		combat_width      = 0
 		essential = {
 			self_propelled_super_heavy_artillery_equipment
 		}
-
 		need = {
 			self_propelled_super_heavy_artillery_equipment = 4
 		}
 
-		manpower = 1000
-		training_time = 180
-		max_organisation = 0
-		default_morale = 0.1
-		max_strength = 0.2
-		weight = 0.1
-		
+		manpower           = 1000
+		training_time      = 180
+		max_organisation   = 0
+		default_morale     = 0.1
+		max_strength       = 0.2
+		weight             = 0.1
 		supply_consumption = 0.35
-
-		can_be_parachuted = no
-
-		same_support_type = artillery # TODO_Manu: Need code support to add a new type super_heavy_artillery
 	}
-	artillery = {
-		abbreviation = "ART"
-		sprite = artillery
-		map_icon_category = infantry
-		priority = 0
-		ai_priority = 0
-		active = yes
 
+	artillery = {
+		abbreviation      = "ART"
+		sprite            = artillery
+		map_icon_category = infantry
+		priority          = 0
+		ai_priority       = 0
+		active            = yes
+		affects_speed     = yes
+		maximum_speed     = 0.6
+		can_be_parachuted = yes
+		same_support_type = artillery
+
+		group             = support
 		type = {
 			infantry
 			support
 		}
-		maximum_speed = 2
-		group = support
-		
 		categories = {
 			category_support_battalions
 			category_army
 			category_artillery
 		}
-		same_support_type = artillery
 
-
-		combat_width = 0
+		combat_width      = 0
 		need = {
 			artillery_equipment = 12
 		}
-		manpower = 300
-		training_time = 120
-		max_organisation = 20
-		default_morale = 0.1
-		max_strength = 0.2
-		weight = 0.1
-		
+
+		manpower           = 300
+		training_time      = 120
+		max_organisation   = 20
+		default_morale     = 0.1
+		max_strength       = 0.2
+		weight             = 0.1
 		supply_consumption = 0.16
 
 		# Support nerfs to combat abilities
-		defense = -0.4
-		breakthrough = -0.4
-		soft_attack = -0.4
-		hard_attack = -0.4
-
-
-		can_be_parachuted = yes
+		defense            = -0.4
+		breakthrough       = -0.4
+		soft_attack        = -0.4
+		hard_attack        = -0.4
 	}
+
 	rocket_artillery = {
-		abbreviation = "RART"
-		sprite = "artillery"
+		abbreviation      = "RART"
+		sprite            = "artillery"
 		map_icon_category = infantry
-		priority = 0
-		ai_priority = 0
-		active = yes
-		affects_speed = yes
+		priority          = 0
+		ai_priority       = 0
+		active            = yes
+		affects_speed     = yes
+		maximum_speed     = 0.6
+		can_be_parachuted = yes
+		same_support_type = rocket_artillery
 		
+		group             = support
 		type = {
 			infantry
 			support
 		}
-		maximum_speed = 0.6
-		group = support
-
 		categories = {
 			category_support_battalions
 			category_army
 			category_artillery
 		}		
-		same_support_type = rocket_artillery
 
-		combat_width = 0
-
+		combat_width      = 0
 		need = {
 			rocket_artillery_equipment = 12
 		}
 
-		manpower = 300
-		training_time = 120
-		max_organisation = 0
-		default_morale = 0.1
-		max_strength = 0.2
-		weight = 0.1
-		
+		manpower           = 300
+		training_time      = 120
+		max_organisation   = 0
+		default_morale     = 0.1
+		max_strength       = 0.2
+		weight             = 0.1
 		supply_consumption = 0.16
 
 		# Support nerfs to combat abilities
-		defense = -0.5
-		breakthrough = -0.5
-		soft_attack = -0.5
-		hard_attack = -0.5
-		can_be_parachuted = yes
+		defense            = -0.4
+		breakthrough       = -0.4
+		soft_attack        = -0.4
+		hard_attack        = -0.4
 	}
+
 	motorized_rocket_sup = {
-		sprite = motorized
+		sprite            = motorized
 		map_icon_category = infantry
-		priority = 0
-		ai_priority = 100
-		active = yes
+		priority          = 0
+		ai_priority       = 100
+		active            = yes
+		affects_speed     = yes
+		maximum_speed     = 2
+		same_support_type = rocket_artillery
+
+		group             = support
 		type = {
 			artillery
 			motorized
 			support
 			rocket
 		}
-		affects_speed = no
-		group = support
-		same_support_type = rocket_artillery
-
 		categories = {
 			category_army
 			category_support_battalions
 			category_artillery
 		}		
-		combat_width = 0
 
+		combat_width      = 0
 		need = {
 			motorized_rocket_equipment = 16
-			motorized_equipment = 10
+			motorized_equipment        = 16
 		}
-		defense = -0.25
-		breakthrough = -0.25
-		soft_attack = -0.25
-		hard_attack = -0.25
-		manpower = 400
-		max_organisation = 5
-		default_morale = 0.1
-		max_strength = 0
-		training_time = 60
-		weight = 0.125
 
+		manpower           = 400
+		training_time      = 60
+		max_organisation   = 5
+		default_morale     = 0.1
+		max_strength       = 0
+		weight             = 0.125
 		supply_consumption = 0.20	
 		
-		amphibious = {
-			attack = -0.05
-		}
-						deep_desert = { 
-			attack = -0.05
-			defence = -0.05 
-		}
+		# Support nerfs to combat abilities
+		defense            = -0.25
+		breakthrough       = -0.25
+		soft_attack        = -0.25
+		hard_attack        = -0.25
+		
+		deep_desert = { attack = -0.05   defence = -0.05 }
+		amphibious  = { attack = -0.05                   }
 	}
-	
-	
-	
 }
