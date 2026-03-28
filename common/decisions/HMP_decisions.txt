@@ -6491,30 +6491,7 @@ propaganda_effortsx = {
 		}
 	}
 
-	
-	public_support_for_fra = {
-		icon = eng_install_government
-		allowed = {	OR = { original_tag = ENG original_tag = FRA original_tag = USA } 	}
-		days_remove = 120
-		
-		visible = {
-			NOT = {
-				has_global_flag = europe_only_start_date_flag
-			}
-		}
-
-		visible = {	NOT = { FRA = { owns_state = 16 }}  check_variable = { FRA.FRA_legitimacy < 100 }	}
-		cost = 50
-		complete_effect = {
-			if = { limit = { OR = { tag = USA tag = ENG } NOT ={ has_global_flag = war_in_the_west_start } }   add_to_variable =  { var = FRA.FRA_legitimacy value = 10 }  custom_effect_tooltip = "French Legitimacy will increase by 10"    }
-			if ={ limit = { tag = FRA } custom_effect_tooltip = "French Legitimacy will increase by 5"  add_to_variable =  { var = FRA.FRA_legitimacy value = 5 }        }
-			if = { limit = {  tag = ENG   has_global_flag = war_in_the_west_start }    add_to_variable =  { var = FRA.FRA_legitimacy value = 20 }  custom_effect_tooltip = "French Legitimacy will increase by 20"    }
-		}
-	}
-
-
-
-		emergency_factory_conversion_defensive = {
+	emergency_factory_conversion_defensive = {
 		icon = generic_industry
 		allowed = { AND = { normally_played_country = yes NOT = { tag = FRA } } }
 
