@@ -342,7 +342,7 @@ focus_tree = {
                 custom_effect_tooltip = HUN_the_kings_guard_1b_tt
                 hidden_effect = {
                     create_unit = {
-                        division = "division_template = \"Royal Guard\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+                        division = "division_template = \"Royal Guard\" start_experience_factor = 0.4 start_equipment_factor = 0.1"
                         owner = ROOT
                         count = 20
                     }
@@ -478,79 +478,31 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			custom_effect_tooltip = HUN_rongyos_garda_militia_recruitment
-
+			custom_effect_tooltip = HUN_the_kings_guard_1a_tt
 			hidden_effect = {
 				delete_unit_template_and_units = {
-					division_template = "Rongyos Gárda"
-					disband = yes #if yes, will refund equipment/manpower.
-				}
-
-				division_template = {
-					name = "Rongyos Gárda"
-					division_names_group = HUN_MIL_01
-					role = garrison
-					template_counter = 90
-					is_locked = yes
-					force_allow_recruiting = yes
-					division_cap = 12
-                    
-					regiments = { 
-                        militia = { x = 0 y = 0 } militia = { x = 1 y = 0 } militia = { x = 2 y = 0 } anti_tank_brigade = { x = 3 y = 0 } artillery_brigade = { x = 4 y = 0 }
-                        militia = { x = 0 y = 1 } militia = { x = 1 y = 1 } militia = { x = 2 y = 1 } anti_tank_brigade = { x = 3 y = 1 } artillery_brigade = { x = 4 y = 1 }
-                        militia = { x = 0 y = 2 } militia = { x = 1 y = 2 } militia = { x = 2 y = 2 } anti_tank_brigade = { x = 3 y = 2 } artillery_brigade = { x = 4 y = 2 }
-                        militia = { x = 0 y = 3 } militia = { x = 1 y = 3 } militia = { x = 2 y = 3 } 	
-                        militia = { x = 0 y = 4 } militia = { x = 1 y = 4 }	
-                        
-                    }
-                    
-                    support = { 
-                        engineer = { x = 0 y = 0 } artillery = { x = 0 y = 1 } signal_company = { x = 0 y = 2 } anti_air = { x = 0 y = 3 } recon= { x = 0 y = 4 } logistics_company = { x = 0 y = 5 }
-                    }
-				}
-
-				random_owned_state = {
-					limit = {
-						is_controlled_by = ROOT
-						is_core_of = ROOT
-					}
-					create_unit = {
-					    division = "name = \"Rongyos Gárda 'Lajtabánság'\" division_template = \"Rongyos Gárda\" start_experience_factor = 0.4 start_equipment_factor = 1"
-					    owner = ROOT
-					    officer = {
-					    	name = HUN_miklos_kozma
-					    	portraits = {
-					    		army = {
-					    			large = GFX_portrait_HUN_miklos_kozma
-					    			small = GFX_portrait_HUN_miklos_kozma_small
-					    		}
-					    	}
-					    }
-					}
-					create_unit = {
-					    division = "name = \"Rongyos Gárda 'Sopron'\" division_template = \"Rongyos Gárda\" start_experience_factor = 0.3 start_equipment_factor = 1"
-					    owner = ROOT
-					    officer = {
-					    	name = HUN_ivan_hejjas
-					    	portraits = {
-					    		army = {
-					    			large = GFX_portrait_HUN_ivan_hejjas
-					    			small = GFX_portrait_HUN_ivan_hejjas_small
-					    		}
-					    	}
-					    }
-					}
-					create_unit = {
-					    division = "name = \"Rongyos Gárda 'Komárno'\" division_template = \"Rongyos Gárda\" start_experience_factor = 0.2 start_equipment_factor = 1"
-					    owner = ROOT
-					    officer = {
-					    	name = HUN_huszein_durics_hilmi
-					    }
-					}
-				}
+                    division_template = "Royal Guard"
+                    disband = yes 
+                }
+				load_oob = "HUN_royal" 
+				add_to_variable = { HUN_militias_cap = 20 }
+				set_division_template_cap = {  division_template = "Royal Guard" division_cap = HUN_militias_cap }
 			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
+            random_controlled_state = { #Create a few more Blackshirt Divs
+                limit = {
+                    is_core_of = ROOT
+                    is_fully_controlled_by = ROOT
+                }
+                prioritize = { 43 }
+                custom_effect_tooltip = HUN_the_kings_guard_1b_tt
+                hidden_effect = {
+                    create_unit = {
+                        division = "division_template = \"Royal Guard\" start_experience_factor = 0.4 start_equipment_factor = 0.1"
+                        owner = ROOT
+                        count = 20
+                    }
+                }
+            } 
 		}
 	}
 

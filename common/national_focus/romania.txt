@@ -823,7 +823,7 @@ focus_tree = {
 		prerequisite = { focus = ROM_declare_state_of_emergency }
 		prerequisite = { focus = ROM_national_legionary_state_horst }
 		
-		x = 2
+		x = 1
 		y = 1
         
 		relative_position_id = ROM_declare_state_of_emergency
@@ -832,6 +832,48 @@ focus_tree = {
 
 		completion_reward = {
 			add_ideas = ROM_war_against_communism
+		}
+	}
+	
+	focus = {
+		id = ROM_activate_the_royal_guard
+		icon = GFX_SOV_capital_of_the_tsars_ccp_2d_sov_compatibility
+		prerequisite = { focus = ROM_declare_state_of_emergency }
+		prerequisite = { focus = ROM_national_legionary_state_horst }
+		
+		x = 3
+		y = 1
+        
+		relative_position_id = ROM_declare_state_of_emergency
+		
+		cost = 5
+
+		completion_reward = {
+			custom_effect_tooltip = HUN_the_kings_guard_1a_tt
+			hidden_effect = {
+				delete_unit_template_and_units = {
+                    division_template = "Royal Guard"
+                    disband = yes 
+                }
+				load_oob = "HUN_royal" 
+				add_to_variable = { ROM_militias_cap = 20 }
+				set_division_template_cap = {  division_template = "Royal Guard" division_cap = ROM_militias_cap }
+			}
+            random_controlled_state = { #Create a few more Blackshirt Divs
+                limit = {
+                    is_core_of = ROOT
+                    is_fully_controlled_by = ROOT
+                }
+                prioritize = { 46 }
+                custom_effect_tooltip = HUN_the_kings_guard_1b_tt
+                hidden_effect = {
+                    create_unit = {
+                        division = "division_template = \"Royal Guard\" start_experience_factor = 0.4 start_equipment_factor = 0.1"
+                        owner = ROOT
+                        count = 20
+                    }
+                }
+            } 
 		}
 	}
 	

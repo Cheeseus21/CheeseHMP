@@ -262,21 +262,7 @@ focus_tree = {
 		continue_if_invalid = yes
 
 		completion_reward = {
-            if = { limit = { has_game_rule = { rule = horst_scw option = horst_scw_off } }
-                add_to_variable = { var = SPR_scw_stab value = 0.3  }
-                custom_effect_tooltip = scw_stab_30_tt		
-            }
-            else = {
-                165 = {
-                    add_extra_state_shared_building_slots = 2
-                    add_building_construction = {
-                        type = industrial_complex 
-                        level = 2
-                        instant_build = yes 
-                    }
-                }
-            }
-            if = { 
+			if = { 
                 limit = { has_war = no }
                 custom_effect_tooltip = SPR_the_kings_guard_1a_tt
                 hidden_effect = {
@@ -297,7 +283,7 @@ focus_tree = {
                     custom_effect_tooltip = SPR_the_kings_guard_1b_tt
                     hidden_effect = {
                         create_unit = {
-                            division = "division_template = \"Militant Falangists\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+                            division = "division_template = \"Militant Falangists\" start_experience_factor = 0.4 start_equipment_factor = 0.1"
                             owner = ROOT
                             count = 20
                         }
@@ -324,10 +310,27 @@ focus_tree = {
                     custom_effect_tooltip = SPR_the_kings_guard_11b_tt
                     hidden_effect = {
                         create_unit = {
-                            division = "division_template = \"Militant Falangists\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+                            division = "division_template = \"Militant Falangists\" start_experience_factor = 0.4 start_equipment_factor = 0.1"
                             owner = ROOT
                             count = 8
                         }
+                    }
+                }
+            }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+		
+            if = { limit = { has_game_rule = { rule = horst_scw option = horst_scw_off } }
+                add_to_variable = { var = SPR_scw_stab value = 0.3  }
+                custom_effect_tooltip = scw_stab_30_tt		
+            }
+            else = {
+                165 = {
+                    add_extra_state_shared_building_slots = 2
+                    add_building_construction = {
+                        type = industrial_complex 
+                        level = 2
+                        instant_build = yes 
                     }
                 }
             }
