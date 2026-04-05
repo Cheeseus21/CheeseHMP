@@ -2420,11 +2420,30 @@
 		relative_position_id = FRA_industrial_evacuation
 		
 		completion_reward = {
-			custom_effect_tooltip = FRA_domestic_situation_tt
-			add_to_variable = { 
-				FRA_ds_local_building_slots_factor = 0.5
-				tooltip = local_building_slots_factor_tt
+			every_state = {
+				limit = {
+					OR = {
+						state = 539
+						state = 510
+						state = 277
+						state = 445
+						state = 543
+						state = 589
+						state = 590
+						state = 591
+						state = 554
+					}
+				}
+				add_extra_state_shared_building_slots = 2
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = FRA_domestic_situation_tt
+			#add_to_variable = { 
+			#	FRA_ds_local_building_slots_factor = 0.5
+			#	tooltip = local_building_slots_factor_tt
+			#}
 			add_to_variable = { 
 				FRA_ds_production_speed_buildings_factor = 0.1
 				tooltip = production_speed_buildings_factor_tt
