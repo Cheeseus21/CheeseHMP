@@ -17226,7 +17226,7 @@ ITA_vallo_alpino_del_littorio_dec_cat = {
 }
 
 operations = {
-	SOV_attack_finland = {
+	winter_war_decision = {
 		icon = SOV_secure_the_administration
 
 		allowed = {
@@ -17237,9 +17237,8 @@ operations = {
 		}
 
 		available = {
-			SOV = {
-				has_completed_focus = SOV_baltic_security
-			}
+			date > 1939.11.30
+			date < 1941.1.1
 		}
 
 		visible = {
@@ -17248,214 +17247,683 @@ operations = {
 			}
 		}
 
-		war_with_on_remove = FIN
 		fire_only_once = yes
-		days_remove = 90
-
+		
 		remove_effect = {
 			if = {
-				limit = { tag = FIN }
-				FIN = {
-					set_country_flag = winter_war_flag
-					country_event = { id = finland.10 }
+				limit = {
+					has_game_rule = { 
+						rule = horst_winter_war 
+						option = winter_war_on
+					} 
 				}
-				effect_tooltip = {
-					SOV = {
-						set_country_flag = winter_war_flag
-						complete_national_focus = SOV_secure_leningrad
+				set_global_flag = winter_war_on
+			
+				add_named_threat = { threat = 7.5 name = winter_war_threat }
+				
+				if = {
+					limit = {
+						tag = FIN
 					}
+					declare_war_on = {
+						target = SOV
+						type = annex_everything
+					}
+				}
+				if = {
+					limit = {
+						tag = SOV
+					}
+					declare_war_on = {
+						target = FIN
+						type = annex_everything
+					}
+				}
+				
+				custom_effect_tooltip = generic_skip_one_line_tt
+				
+				activate_mission = soviet_winter_war_mission
+				activate_mission = finland_winter_war_mission	
+				
+				hidden_effect = {
+					FIN = { country_event = { id = finland.10 } }
 				}
 			}
-
-			if = {
-				limit = { tag = SOV }
-				effect_tooltip = {
-					FIN = {
-						set_country_flag = winter_war_flag
-						country_event = { id = finland.10 }
-					}
-				}
+			else = {
 				SOV = {
-					set_country_flag = winter_war_flag
-					complete_national_focus = SOV_secure_leningrad
+					transfer_state = 502
+					transfer_state = 147
+					transfer_state = 146
 				}
 			}
 		}
 	}
-	SOV_subjugate_finland = {
+	
+	FIN_winter_war_give_up = {
 		icon = SOV_secure_the_administration
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			has_global_flag = winter_war_on
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+			NOT = {
+				has_game_rule = { 
+					rule = horst_winter_war 
+					option = winter_war_off
+				} 
+			}
+		}
+
+		fire_only_once = yes
+		
+		remove_effect = {
+			custom_effect_tooltip = FIN_winter_war_give_up_tt
+			
+			clr_global_flag = winter_war_on
+			
+			hidden_effect = {
+				SOV = {
+					add_offsite_building = { type = industrial_complex level = 5 }
+					
+					# Define the template
+					division_template = {
+						name = "Winter War Veterans"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+							infantry = { x = 2 y = 0 }
+							infantry = { x = 2 y = 1 }
+							infantry = { x = 2 y = 2 }
+							infantry = { x = 2 y = 3 }
+							infantry = { x = 3 y = 0 }
+							infantry = { x = 3 y = 1 }
+							infantry = { x = 3 y = 2 }
+							infantry = { x = 3 y = 3 }
+							infantry = { x = 4 y = 0 }
+							infantry = { x = 4 y = 1 }
+							infantry = { x = 4 y = 2 }
+							infantry = { x = 4 y = 3 }	
+						}
+					}
+					219 = {
+						create_unit = {
+							owner = SOV
+							division = "name = \"Winter War Veterans\" division_template = \"Winter War Veterans\" start_experience_factor = 1 start_equipment_factor = 0.1"
+							count = 10
+						}
+					}
+				}
+				
+				SOV = {
+					if = {
+						limit = {
+							controls_state = 502
+						}
+						502 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 147
+						}
+						147 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 146
+						}
+						146 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+				}
+				
+				SOV = { 
+					white_peace = {
+						tag = FIN 
+					} 
+				}
+				
+				SOV = { country_event = { id = finland.8 days = 1 } }
+				FIN = { country_event = { id = finland.7 days = 1 } }
+				SOV = { complete_national_focus = SOV_secure_leningrad }
+				FIN = { complete_national_focus = FIN_the_truce }
+			}
+		}
+	}
+	
+	SOV_winter_war_give_up = {
+		icon = SOV_secure_the_administration
+
+		allowed = {
+			original_tag = SOV
+		}
+
+		available = {
+			has_global_flag = winter_war_on
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = europe_only_start_date_flag
+			}
+			NOT = {
+				has_game_rule = { 
+					rule = horst_winter_war 
+					option = winter_war_off
+				} 
+			}
+		}
+
+		fire_only_once = yes
+		
+		remove_effect = {
+			custom_effect_tooltip = SOV_winter_war_give_up_tt
+			
+			clr_global_flag = winter_war_on
+			
+			hidden_effect = {
+				FIN = {
+					add_offsite_building = { type = industrial_complex level = 5 }
+					
+					# Define the template
+					division_template = {
+						name = "Winter War Veterans"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+							infantry = { x = 2 y = 0 }
+							infantry = { x = 2 y = 1 }
+							infantry = { x = 2 y = 2 }
+							infantry = { x = 2 y = 3 }
+							infantry = { x = 3 y = 0 }
+							infantry = { x = 3 y = 1 }
+							infantry = { x = 3 y = 2 }
+							infantry = { x = 3 y = 3 }
+							infantry = { x = 4 y = 0 }
+							infantry = { x = 4 y = 1 }
+							infantry = { x = 4 y = 2 }
+							infantry = { x = 4 y = 3 }	
+						}
+					}
+					219 = {
+						create_unit = {
+							owner = FIN
+							division = "name = \"Winter War Veterans\" division_template = \"Winter War Veterans\" start_experience_factor = 1 start_equipment_factor = 0.1"
+							count = 10
+						}
+					}
+				}
+				
+				SOV = {
+					if = {
+						limit = {
+							controls_state = 502
+						}
+						502 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 147
+						}
+						147 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 146
+						}
+						146 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+				}
+				
+				SOV = { 
+					white_peace = {
+						tag = FIN 
+					} 
+				}
+
+				SOV = { country_event = { id = finland.8 days = 1 } }
+				FIN = { country_event = { id = finland.7 days = 1 } }
+				SOV = { complete_national_focus = SOV_secure_leningrad }
+				FIN = { complete_national_focus = FIN_the_truce }
+			}
+		}
+	}
+	
+	# ----------------------------------------
+	# 1. SOVIET UNION MISSION
+	# ----------------------------------------
+	soviet_winter_war_mission = {
+		allowed = {
+			tag = SOV
+		}
+
+		fire_only_once = yes
+
+		activation = {
+			has_global_flag = winter_war_on
+		}
+
+		days_mission_timeout = 90
+		
+		is_good = no
+
+		available = {
+			OR = {
+				111 = { is_controlled_by = SOV }
+				148 = { is_controlled_by = SOV }
+			}
+		}
+
+		cancel_trigger = {
+			NOT = { has_global_flag = winter_war_on }
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = FIN_winter_war_give_up_tt
+			
+			clr_global_flag = winter_war_on
+			
+			hidden_effect = {
+				SOV = {
+					add_offsite_building = { type = industrial_complex level = 5 }
+					
+					# Define the template
+					division_template = {
+						name = "Winter War Veterans"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+							infantry = { x = 2 y = 0 }
+							infantry = { x = 2 y = 1 }
+							infantry = { x = 2 y = 2 }
+							infantry = { x = 2 y = 3 }
+							infantry = { x = 3 y = 0 }
+							infantry = { x = 3 y = 1 }
+							infantry = { x = 3 y = 2 }
+							infantry = { x = 3 y = 3 }
+							infantry = { x = 4 y = 0 }
+							infantry = { x = 4 y = 1 }
+							infantry = { x = 4 y = 2 }
+							infantry = { x = 4 y = 3 }	
+						}
+					}
+					219 = {
+						create_unit = {
+							owner = SOV
+							division = "name = \"Winter War Veterans\" division_template = \"Winter War Veterans\" start_experience_factor = 1 start_equipment_factor = 0.1"
+							count = 10
+						}
+					}
+				}
+				
+				SOV = {
+					if = {
+						limit = {
+							controls_state = 502
+						}
+						502 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 147
+						}
+						147 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 146
+						}
+						146 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+				}
+				
+				SOV = { 
+					white_peace = {
+						tag = FIN 
+					} 
+				}
+				
+				SOV = { country_event = { id = finland.8 days = 1 } }
+				FIN = { country_event = { id = finland.7 days = 1 } }
+				SOV = { complete_national_focus = SOV_secure_leningrad }
+				FIN = { complete_national_focus = FIN_the_truce }
+
+			}
+		}
+
+		timeout_effect = {
+			SOV = {
+				if = {
+					limit = {
+						controls_state = 502
+					}
+					502 = {
+						set_state_flag = soviet_won_this
+					}
+				}
+
+				if = {
+					limit = {
+						controls_state = 147
+					}
+					147 = {
+						set_state_flag = soviet_won_this
+					}
+				}
+
+				if = {
+					limit = {
+						controls_state = 146
+					}
+					146 = {
+						set_state_flag = soviet_won_this
+					}
+				}
+			}
+			
+			SOV = { 
+				white_peace = {
+					tag = FIN 
+				} 
+			}
+			
+			SOV = { country_event = { id = finland.8 days = 1 } }
+			FIN = { country_event = { id = finland.7 days = 1 } }
+			SOV = { complete_national_focus = SOV_secure_leningrad }
+			FIN = { complete_national_focus = FIN_the_truce }
+
+		}
+	}
+
+	# ----------------------------------------
+	# 2. FINLAND MISSION
+	# ----------------------------------------
+	finland_winter_war_mission = {
+		allowed = {
+			tag = FIN
+		}
+
+		fire_only_once = yes
+
+		activation = {
+			has_global_flag = winter_war_on
+		}
+
+		days_mission_timeout = 90
+		
+		is_good = no
+
+		available = {
+			OR = {
+				213 = { is_controlled_by = FIN }
+				195 = { is_controlled_by = FIN }
+			}
+		}
+
+		cancel_trigger = {
+			NOT = { has_global_flag = winter_war_on }
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = SOV_winter_war_give_up_tt
+			
+			clr_global_flag = winter_war_on
+			
+			hidden_effect = {
+				FIN = {
+					add_offsite_building = { type = industrial_complex level = 5 }
+					
+					# Define the template
+					division_template = {
+						name = "Winter War Veterans"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+							infantry = { x = 2 y = 0 }
+							infantry = { x = 2 y = 1 }
+							infantry = { x = 2 y = 2 }
+							infantry = { x = 2 y = 3 }
+							infantry = { x = 3 y = 0 }
+							infantry = { x = 3 y = 1 }
+							infantry = { x = 3 y = 2 }
+							infantry = { x = 3 y = 3 }
+							infantry = { x = 4 y = 0 }
+							infantry = { x = 4 y = 1 }
+							infantry = { x = 4 y = 2 }
+							infantry = { x = 4 y = 3 }	
+						}
+					}
+					219 = {
+						create_unit = {
+							owner = FIN
+							division = "name = \"Winter War Veterans\" division_template = \"Winter War Veterans\" start_experience_factor = 1 start_equipment_factor = 0.1"
+							count = 10
+						}
+					}
+				}
+				
+				SOV = {
+					if = {
+						limit = {
+							controls_state = 502
+						}
+						502 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 147
+						}
+						147 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+
+					if = {
+						limit = {
+							controls_state = 146
+						}
+						146 = {
+							set_state_flag = soviet_won_this
+						}
+					}
+				}
+				
+				SOV = { 
+					white_peace = {
+						tag = FIN 
+					} 
+				}
+
+				SOV = { country_event = { id = finland.8 days = 1 } }
+				FIN = { country_event = { id = finland.7 days = 1 } }
+				SOV = { complete_national_focus = SOV_secure_leningrad }
+				FIN = { complete_national_focus = FIN_the_truce }
+			}
+		}
+
+		timeout_effect = {
+			SOV = {
+				if = {
+					limit = {
+						controls_state = 502
+					}
+					502 = {
+						set_state_flag = soviet_won_this
+					}
+				}
+
+				if = {
+					limit = {
+						controls_state = 147
+					}
+					147 = {
+						set_state_flag = soviet_won_this
+					}
+				}
+
+				if = {
+					limit = {
+						controls_state = 146
+					}
+					146 = {
+						set_state_flag = soviet_won_this
+					}
+				}
+			}
+				
+			SOV = { 
+				white_peace = {
+					tag = FIN 
+				} 
+			}
+			
+			SOV = { country_event = { id = finland.8 days = 1 } }
+			FIN = { country_event = { id = finland.7 days = 1 } }
+			SOV = { complete_national_focus = SOV_secure_leningrad }
+			FIN = { complete_national_focus = FIN_the_truce }
+		}
+	}
+	
+	ITA_subjugate_GRE = {
+		icon = generic_ignite_civil_war
 
 		allowed = {
 			always = no
 			OR = {
-				original_tag = SOV
-				original_tag = FIN
+				original_tag = ITA
+				original_tag = GRE
 			}
 		}
 
 		fire_only_once = yes
 		is_good = no
-		
+
 		activation = { }
 
 		available = {
-			someone_really_lost = yes
+			ITA = { controls_state = 47 }
 		}
 
-		visible = {
-			NOT = {
-				has_global_flag = europe_only_start_date_flag
-			}
-		}
-
-		days_mission_timeout = 100
+		days_mission_timeout = 180
 
 		complete_effect = {
-			# Effect if FIN completes it
 			if = {
-				limit = { tag = FIN }
-				effect_tooltip = {
-					if = {
-						limit = {
-							OR = {
-								FIN = { controls_state = 213 }
-								FIN = { controls_state = 215 }
-								FIN = { controls_state = 216 }
-								FIN = { controls_state = 195 }
-							}
-						}
-						set_global_flag = winter_war_finnish_victory
-					}
-					if = {
-						limit = {
-							OR = {
-								SOV = { controls_state = 148 }
-								SOV = { controls_state = 150 }
-								SOV = { controls_state = 111 }
-							}
-						}
-						set_global_flag = winter_war_soviet_victory
-					}
-					finnish_winter_war = yes
+				limit = { tag = ITA }
+				add_war_support = 0.03
+				add_political_power = 50
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.05
 				}
+				add_ideas = ITA_italian_irredentism_ns
+				HMP_script_greece_1 = yes
 			}
-
-			# Effect if SOV completes it
-			if = {
-				limit = { tag = SOV }
-				if = {
-					limit = {
-						OR = {
-							FIN = { controls_state = 213 }
-							FIN = { controls_state = 215 }
-							FIN = { controls_state = 216 }
-							FIN = { controls_state = 195 }
+			else = {
+				effect_tooltip = {
+					ITA = {
+						add_war_support = 0.03
+						add_political_power = 50
+						add_popularity = {
+							ideology = fascism
+							popularity = 0.05
 						}
+						add_ideas = ITA_italian_irredentism_ns
+						HMP_script_greece_1 = yes
 					}
-					set_global_flag = winter_war_finnish_victory
 				}
-				if = {
-					limit = {
-						OR = {
-							SOV = { controls_state = 148 }
-							SOV = { controls_state = 150 }
-							SOV = { controls_state = 111 }
-						}
-					}
-					set_global_flag = winter_war_soviet_victory
-				}
-				finnish_winter_war = yes
 			}
 		}
 
 		timeout_effect = {
 			if = {
-				limit = { tag = SOV }
-				set_global_flag = winter_war_timed_out
-				finnish_winter_war = yes
-			}
-			if = {
-				limit = { tag = FIN }
+				limit = { tag = ITA }
 				effect_tooltip = {
-					set_global_flag = winter_war_timed_out
-					finnish_winter_war = yes
-				}
-			}
-		}
-	}
-
-
-ITA_subjugate_GRE = {
-	icon = generic_ignite_civil_war
-
-	allowed = {
-		always = no
-		OR = {
-			original_tag = ITA
-			original_tag = GRE
-		}
-	}
-
-	fire_only_once = yes
-	is_good = no
-
-	activation = { }
-
-	available = {
-		ITA = { controls_state = 47 }
-	}
-
-	days_mission_timeout = 180
-
-	complete_effect = {
-		if = {
-			limit = { tag = ITA }
-			add_war_support = 0.03
-			add_political_power = 50
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.05
-			}
-			add_ideas = ITA_italian_irredentism_ns
-			HMP_script_greece_1 = yes
-		}
-		else = {
-			effect_tooltip = {
-				ITA = {
-					add_war_support = 0.03
-					add_political_power = 50
-					add_popularity = {
-						ideology = fascism
-						popularity = 0.05
+					GRE = {
+						complete_national_focus = GRE_join_allies
+						add_offsite_building = { type = arms_factory level = 3 }
 					}
-					add_ideas = ITA_italian_irredentism_ns
-					HMP_script_greece_1 = yes
+				}
+			}
+
+			if = {
+				limit = { tag = GRE }
+				complete_national_focus = GRE_join_allies
+				add_offsite_building = { type = arms_factory level = 3 }
+				effect_tooltip = {
+					ITA = { }
 				}
 			}
 		}
 	}
-
-	timeout_effect = {
-		if = {
-			limit = { tag = ITA }
-			effect_tooltip = {
-				GRE = {
-					complete_national_focus = GRE_join_allies
-					add_offsite_building = { type = arms_factory level = 3 }
-				}
-			}
-		}
-
-		if = {
-			limit = { tag = GRE }
-			complete_national_focus = GRE_join_allies
-			add_offsite_building = { type = arms_factory level = 3 }
-			effect_tooltip = {
-				ITA = { }
-			}
-		}
-	}
-}
 
 
 
