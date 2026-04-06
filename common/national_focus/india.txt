@@ -1864,7 +1864,10 @@ focus_tree = {
                 name = RAJ_industrial_expansion
                 bonus = 1
                 uses = 1
-                category = industry
+                technology = advanced_machine_tools
+                technology = flexible_line
+                technology = assembly_line_production
+                technology = streamlined_line
             }     
 		}
 	}
@@ -2313,7 +2316,7 @@ focus = {
 		y = 1
 		relative_position_id = RAJ_integrate_princely_railways
 		available = {  }
-		cost = 10
+		cost = 5
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -2321,16 +2324,6 @@ focus = {
 
 		completion_reward = {
 			add_political_power = 75
-            hidden_effect = {
-                423 = {
-                    add_extra_state_shared_building_slots = 4
-                    add_building_construction = {
-                        type = industrial_complex
-                        level = 2
-                        instant_build = yes
-                    }
-                }
-            }
 		}
 	}
 	
@@ -2342,7 +2335,7 @@ focus = {
 		y = 1
 		relative_position_id = RAJ_clamp_down_on_corruption
 
-		cost = 5
+		cost = 10
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -2364,17 +2357,6 @@ focus = {
                     type = industrial_complex
                     level = 2
                     instant_build = yes
-                }
-            }
-            
-            hidden_effect = {
-                425 = {
-                    add_extra_state_shared_building_slots = 4
-                    add_building_construction = {
-                        type = industrial_complex
-                        level = 2
-                        instant_build = yes
-                    }
                 }
             }
 		}
@@ -2450,7 +2432,7 @@ focus = {
 		y = 1
 		relative_position_id = RAJ_ishapore_arsenal
 
-		cost = 5
+		cost = 10
 
 		available = {
 	
@@ -2575,11 +2557,6 @@ focus = {
         completion_reward = {
             add_political_power = 100
             add_stability = 0.1
-            hidden_effect = {
-                add_political_power = 150
-                add_stability = 0.05
-                add_war_support = 0.15
-            }
         }
     }
 
@@ -2630,17 +2607,6 @@ focus = {
                     instant_build = yes
                 }
             }
-
-            hidden_effect = {
-                428 = {
-                    add_extra_state_shared_building_slots = 4
-                    add_building_construction = {
-                        type = industrial_complex
-                        level = 2
-                        instant_build = yes
-                    }
-                }
-            }
         }
     }
 
@@ -2659,26 +2625,6 @@ focus = {
         completion_reward = {
             #unlock_decision_category_tooltip = RAJ_population_decisions
             custom_effect_tooltip = RAJ_enable_local_industrialization
-            hidden_effect = {
-                435 = {
-                    add_resource = {
-                        type = chromium
-                        amount = 32
-                    }
-                }
-                431 = {
-                    add_resource = {
-                        type = tungsten
-                        amount = 16
-                    }
-                }
-                429 = {
-                    add_resource = {
-                        type = steel
-                        amount = 40
-                    }
-                }
-            }
         }
     }
 
@@ -2725,6 +2671,7 @@ focus = {
                     instant_build = yes
                 }
             }
+<<<<<<< HEAD
 
             hidden_effect = {
                 429 = {
@@ -2744,6 +2691,8 @@ focus = {
                     }
                 }
             }
+=======
+>>>>>>> parent of 4aae6b0 (grow patch pls remove after the game ty)
         }
     }
 
@@ -2760,6 +2709,7 @@ focus = {
         search_filters = { FOCUS_FILTER_STABILITY }
 
         completion_reward = {
+            #add_stability = 0.1
 
             426 = {
                 add_extra_state_shared_building_slots = 2
@@ -2767,18 +2717,6 @@ focus = {
                     type = industrial_complex
                     level = 2
                     instant_build = yes
-                }
-            }
-
-            hidden_effect = {
-                add_stability = 0.1
-                426 = {
-                    add_extra_state_shared_building_slots = 4
-                    add_building_construction = {
-                        type = industrial_complex
-                        level = 2
-                        instant_build = yes
-                    }
                 }
             }
         }
@@ -2873,16 +2811,6 @@ focus = {
                 bonus = 1
                 uses = 2
                 category = industry
-            }
-
-            hidden_effect = {
-                add_tech_bonus = {
-                    name = RAJ_rural_mechanization_program
-                    bonus = 1.5
-                    uses = 4
-                    category = cat_production
-                    category = dispersed_industry_category
-                }
             }
         }
     }
@@ -3105,7 +3033,7 @@ focus = {
             hidden_effect = {
                 every_owned_state = {
                     limit = { has_state_flag = RAJ_industrialized_this_state }
-                    add_extra_state_shared_building_slots = 2
+                    add_extra_state_shared_building_slots = 1
                 }
             }
         }
@@ -3241,10 +3169,6 @@ focus = {
                     specialization = specialization_nuclear
                     value = 0.75
                 }
-            }
-
-            hidden_effect = {
-                add_to_variable = { RAJ_a_loyal_government_research_speed_factor = 0.2 tooltip = research_speed_factor_tt }
             }
         }
     }
