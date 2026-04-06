@@ -2349,7 +2349,13 @@ focus = {
 		available_if_capitulated = no
 
 		completion_reward = {
-            423 = {
+			#custom_effect_tooltip = RAJ_enable_local_industrialization
+            
+            random_core_state = {
+                limit = {
+                    is_fully_controlled_by = ROOT
+                    infrastructure < 5
+                }
                 add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = industrial_complex
@@ -2358,7 +2364,11 @@ focus = {
                 }
             }
             
-            425 = {
+            random_core_state = {
+                limit = {
+                    is_fully_controlled_by = ROOT
+                    infrastructure < 5
+                }
                 add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = industrial_complex
@@ -2622,7 +2632,17 @@ focus = {
                 add_idea = RAJ_imperial_industry_initiative
             }
 
-            428 = {
+            every_owned_state = {
+                limit = {
+                    is_fully_controlled_by = ROOT
+                    industrial_complex > 0
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                random_select_amount = 1
                 add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = industrial_complex
@@ -2706,10 +2726,32 @@ focus = {
             }
             
             remove_ideas = idea_RAJ_great_depression_1
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
 
-            429 = {
+            # custom_effect_tooltip = generic_skip_one_line_tt
+            # if = {
+                # limit = {
+                    # has_idea = idea_RAJ_great_depression_1
+                # }
+                # remove_ideas = idea_RAJ_great_depression_1
+                # custom_effect_tooltip = generic_skip_one_line_tt
+                # add_timed_idea = {
+                    # idea = idea_RAJ_great_depression_2
+                    # days = 1095
+                # }
+            # }
+
+           custom_effect_tooltip = generic_skip_one_line_tt
+            every_owned_state = {
+                limit = {
+                    is_fully_controlled_by = ROOT
+                    industrial_complex > 0
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                random_select_amount = 1
                 add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = industrial_complex
@@ -2717,7 +2759,17 @@ focus = {
                     instant_build = yes
                 }
             }
-            439 = {
+            every_owned_state = {
+                limit = {
+                    is_fully_controlled_by = ROOT
+                    industrial_complex > 0
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                random_select_amount = 1
                 add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = industrial_complex
@@ -2760,8 +2812,25 @@ focus = {
         search_filters = { FOCUS_FILTER_STABILITY }
 
         completion_reward = {
+<<<<<<< HEAD
 
             426 = {
+=======
+            #add_stability = 0.1
+            
+            
+            every_owned_state = {
+                limit = {
+                    is_fully_controlled_by = ROOT
+                    industrial_complex > 0
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                random_select_amount = 1
+>>>>>>> parent of f78a2f0 (india state fix so no civs spawn in frontline states)
                 add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = industrial_complex
