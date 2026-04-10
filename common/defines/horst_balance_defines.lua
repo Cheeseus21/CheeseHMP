@@ -8,6 +8,7 @@ NDefines.NDiplomacy.NAVAL_BLOCKADE_BASE_COST = 999
 NDefines.NMilitary.COHESION_IMMOBILE_PLANNING_SPEED_MULTIPLIER = 1	-- If using the 'immobile' cohesion setting, factor ALL planning speed growth by this
 
 NDefines.NCountry.NAVY_USE_HOME_BASE_FOR_RANGE = false -- If true, will calculate task force range from home base, otherwise will calculate from any friendly naval base
+NDefines.NCountry.DEFAULT_COASTAL_PROTECTION_STABILITY = 0		-- Default stability when the coastal states are fully protected
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_BASE = 1			-- Base value of the commander region limit
 NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_SKILL_FACTOR = 0	-- An increase to the region limit per commander skill level

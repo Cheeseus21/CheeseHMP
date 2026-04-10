@@ -4634,6 +4634,13 @@ focus = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 
             hidden_effect = { news_event = { hours = 6 id = news.25 } }	
+			
+			GER_modify_industrial_modifier = yes
+            add_to_variable = { 
+                GER_industrial_production_factory_max_efficiency_factor = 0.1
+                tooltip = production_factory_max_efficiency_factor_tt
+            }
+			custom_effect_tooltip = "This modifier will be gone when Danzig or War is declared."
 		}
 	}
 	
@@ -5629,6 +5636,14 @@ focus = {
 					limit = { FIN = { is_ai = yes } }
 					FIN = { baltic_winter = yes }
 				}
+				
+				hidden_effect = {
+					GER_modify_industrial_modifier = yes
+					add_to_variable = { 
+						GER_industrial_production_factory_max_efficiency_factor = -0.1
+						tooltip = production_factory_max_efficiency_factor_tt
+					}
+				}
 			}
 		}
 	}
@@ -5888,21 +5903,6 @@ focus = {
 			
 			hidden_effect = { 
 				ROOT_call_against_norway = yes 
-				
-				if = { 
-					limit = { 
-						AND = { 
-							NOT = { EFR = { has_country_flag = EFR_torch_declared } } 
-							EFR = { owns_state = 26 } 
-						} 
-					} 
-					EFR = { 
-						add_to_war = { 
-							targeted_alliance = GER 
-							enemy = NOR 
-						} 
-					} 
-				}  
 			}
 		}
 	}
