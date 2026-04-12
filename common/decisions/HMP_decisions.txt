@@ -7124,7 +7124,6 @@ propaganda_effortsx = {
 		timeout_effect = {
 			ENG_evacuate_logic = yes
 			ENG_evacuate_logic = yes
-			ENG_evacuate_logic = yes
 
 			activate_mission = ENG_ongoing_evacuation_mission
 		}
@@ -9438,52 +9437,52 @@ propaganda_effortsx = {
 		}
 	}
 
-	ENG_annex_greece = {
-		icon = generic_operation
+	# ENG_annex_greece = {
+		# icon = generic_operation
 
-		allowed = {	
-			original_tag = ENG
-		}
+		# allowed = {	
+			# original_tag = ENG
+		# }
 		
-		targets = { GRE }
+		# targets = { GRE }
 
-		available = {	
-			OR = { 
-				GRE = { is_ai = yes }
-				has_country_flag = annex_manual_override
-			}
-			NOT = { GRE = { owns_state = 47 } }
-		} 
+		# available = {	
+			# OR = { 
+				# GRE = { is_ai = yes }
+				# has_country_flag = annex_manual_override
+			# }
+			# NOT = { GRE = { owns_state = 47 } }
+		# } 
 
-		cost = 0
+		# cost = 0
 
-		visible = {
-			country_exists = GRE
-			OR = { 
-				GRE = { 
-					is_ai = yes 
-				} 
-				has_country_flag = annex_manual_override 
-			}
-		}
+		# visible = {
+			# country_exists = GRE
+			# OR = { 
+				# GRE = { 
+					# is_ai = yes 
+				# } 
+				# has_country_flag = annex_manual_override 
+			# }
+		# }
 
 
-		fire_only_once = yes
+		# fire_only_once = yes
 
-		complete_effect = {
-			add_to_variable = { paratrooper_div_cap = 2 }
-			set_division_template_cap = { division_template = "Paratroopers" division_cap = paratrooper_div_cap }
+		# complete_effect = {
+			# add_to_variable = { paratrooper_div_cap = 2 }
+			# set_division_template_cap = { division_template = "Paratroopers" division_cap = paratrooper_div_cap }
 
-			annex_country = {
-				target = GRE
-				transfer_troops = yes 
-			}
+			# annex_country = {
+				# target = GRE
+				# transfer_troops = yes 
+			# }
 
-			hidden_effect = { 
-				fuel_system_refresh_list = yes
-			}
-		}
-	}
+			# hidden_effect = { 
+				# fuel_system_refresh_list = yes
+			# }
+		# }
+	# }
 
 	ENG_annex_netherlands = {
 		icon = generic_operation
@@ -13661,186 +13660,6 @@ invest_in_the_west = {
 					instant_build = yes
 				}
 			}
-		}
-	}
-}
-
-ENG_evacuation_decisions = {
-    ENG_egypt_evacuation = { 
-		icon = generic_scorched_earth
-		
-		available = {
-			447 = { 
-				is_controlled_by = ENG
-			}
-			447 = { 
-				is_controlled_by = ENG
-			}
-            date > 1940.1.1
-			has_war_with = GER
-		}
-		
-		cancel_trigger = {   
-		    447 = { 
-				is_controlled_by = ITA
-			} 
-		}
-		
-		highlight_states = {
-            highlight_state_targets = {
-                state = 447
-		    } 
-		}
-		
-		visible = {
-			has_completed_focus = ENG_new_construction_projects_for_egypt	
-			NOT = {
-				has_global_flag = europe_only_start_date_flag
-			}			
-		}
-
-		fire_only_once = yes
-
-		days_remove = 60
-
-		modifier = {}
-
-		remove_effect = {
-            hidden_effect = {
-		        447 = {
-			        remove_building = {
-					type = arms_factory
-					level = 5
-				    }
-				    remove_building = {
-					type = industrial_complex
-					level = 5
-				    }
-			    }
-                305 = {
-			        remove_building = {
-					type = arms_factory
-					level = 5
-				    }
-				    remove_building = {
-					type = industrial_complex
-					level = 5
-				    }
-			    }
-			}
-            add_offsite_building = { type = arms_factory level = 2 }
-			add_offsite_building = { type = industrial_complex level = 2 }
-		}
-	}
-	
-	ENG_singapore_evacuation = { 
-		icon = generic_scorched_earth
-		
-		available = {
-			336 = { 
-				is_controlled_by = ENG
-			}
-			336 = { 
-				is_controlled_by = ENG
-			}	
-            has_war_with = JAP
-		}
-		
-		cancel_trigger = {   
-		    336 = { 
-				is_controlled_by = JAP
-			} 
-		}
-		
-		highlight_states = {
-            highlight_state_targets = {
-			state = 336
-		    } 
-		}
-		
-		visible = {
-			has_completed_focus = ENG_singapore_sealane_investments	
-			NOT = {
-				has_global_flag = europe_only_start_date_flag
-			}			
-		}
-
-		fire_only_once = yes
-
-		days_remove = 120
-
-		modifier = {}
-
-		remove_effect = {
-		    hidden_effect = {
-		        336 = {
-			        remove_building = {
-					type = arms_factory
-					level = 5
-				    }
-				    remove_building = {
-					type = industrial_complex
-					level = 5
-				    }
-			    }
-			}
-			add_offsite_building = { type = arms_factory level = 2 }
-			add_offsite_building = { type = industrial_complex level = 2 }
-		}
-	}
-    
-    ENG_hong_kong_evacuation = { 
-		icon = generic_scorched_earth
-		
-		available = {
-			326 = { 
-				is_controlled_by = ENG
-			}
-            has_completed_focus = ENG_hong_kong_international_trade
-            has_war_with = JAP
-		}
-		
-		cancel_trigger = {   
-		    326 = { 
-				is_controlled_by = JAP
-			} 
-		}
-		
-		highlight_states = {
-            highlight_state_targets = {
-			state = 326
-		    } 
-		}
-		
-		visible = {
-			has_completed_focus = ENG_hong_kong_international_trade
-			#has_war_with = JAP
-			326 = { 
-				is_controlled_by = ENG
-			}			
-		}
-
-		fire_only_once = yes
-
-		days_remove = 30
-
-		modifier = {}
-
-		remove_effect = {
-		    hidden_effect = {
-		        326 = {
-			        remove_building = {
-					type = arms_factory
-					level = 2
-				    }
-				    remove_building = {
-					type = industrial_complex
-					level = 2
-				    }
-			    }
-			}
-			add_offsite_building = { type = arms_factory level = 2 }
-			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 }
