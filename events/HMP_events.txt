@@ -1,4 +1,225 @@
-﻿add_namespace = buildfixer_event
+﻿add_namespace = vichy_event
+
+# Arrest Gamelin
+country_event = {
+	id = vichy_event.1
+	title = vichy_event.1.t
+	desc = vichy_event.1.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = { # Spawn-ins + Equipment
+		name = vichy_event.1.a
+		
+		EFR = {			
+			# Define the template
+			division_template = {
+				name = "Battle of France Veterans"
+				is_locked = no
+				priority = 1
+				
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+					infantry = { x = 2 y = 3 }
+					infantry = { x = 3 y = 0 }
+					infantry = { x = 3 y = 1 }
+					infantry = { x = 3 y = 2 }
+					infantry = { x = 3 y = 3 }
+					infantry = { x = 4 y = 0 }
+					infantry = { x = 4 y = 1 }
+					infantry = { x = 4 y = 2 }
+					infantry = { x = 4 y = 3 }	
+				}
+			}
+			26 = {
+				create_unit = {
+					owner = EFR
+					division = "name = \"Battle of France Veterans\" division_template = \"Battle of France Veterans\" start_experience_factor = 1 start_equipment_factor = 0.1"
+					count = 20
+				}
+			}
+		}
+	}
+	
+	option = { # Industry
+		name = vichy_event.1.b
+		
+		EFR = {
+			random_state = {
+				prioritize = { 33 26 20 22 31 25 }
+				add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+			}
+			random_state = {
+				prioritize = { 33 26 20 22 31 25 }
+				add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+			}
+		}
+	}
+}
+
+# Secure Darlan
+country_event = {
+	id = vichy_event.2
+	title = vichy_event.2.t
+	desc = vichy_event.2.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = { # Arrest Darlan
+		name = vichy_event.2.a
+
+		EFR = {
+			load_oob =  "EFR_1936_navy"
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = EFR_domestic_situation_tt
+			add_to_variable = { 
+				EFR_ds_political_power_factor = -0.15
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = { 
+				EFR_ds_war_support_factor = -0.25
+				tooltip = war_support_factor_tt
+			}
+			add_to_variable = { 
+				EFR_ds_stability_factor = -0.25
+				tooltip = stability_factor_tt
+			}
+		}
+	}
+	
+	option = { # Remove Influence
+		name = vichy_event.2.b
+		
+		EFR = {
+			load_oob =  "EFR_1936_navy"
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_timed_idea = { idea = EFR_naval_armistice  days = 365 }
+		}
+	}
+	
+	option = { # Let Darlan Go
+		name = vichy_event.2.c
+		
+		FRA = {
+			load_oob =  "FRA_1936_naval_mtg"
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		EFR = {
+			random_state = {
+				prioritize = { 33 26 20 22 31 25 }
+				add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+			}
+			random_state = {
+				prioritize = { 33 26 20 22 31 25 }
+				add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+			}
+		}
+	}
+}
+
+# Sign Armistice
+country_event = {
+	id = vichy_event.3
+	title = vichy_event.3.t
+	desc = vichy_event.3.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = { # Reichskommissariat
+		name = vichy_event.3.a
+		
+		EFR = {
+			set_country_flag = allow_reichskommissariat
+		}
+	}
+	
+	option = { # Vichy
+		name = vichy_event.3.b
+		
+		EFR = {
+			set_country_flag = allow_vichy_france
+		}
+	}
+}
+
+# Italian Claims
+country_event = {
+	id = vichy_event.4
+	title = vichy_event.4.t
+	desc = vichy_event.4.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = { # Give Savoy
+		name = vichy_event.4.a
+		
+		ITA = {
+			transfer_state = 313
+		}
+	}
+	
+	option = { # Give Everything
+		name = vichy_event.4.b
+		
+		random_state = {
+			prioritize = { 33 26 20 22 31 25 }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}	
+		}
+		
+		ITA = {
+			transfer_state = 313
+			transfer_state = 32
+			transfer_state = 21
+		}
+	}
+}
+
+add_namespace = buildfixer_event
 
 news_event = { #LEAGUE OF NATIONS IS DONE
 	id = buildfixer_event.0

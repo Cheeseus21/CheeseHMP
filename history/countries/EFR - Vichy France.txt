@@ -52,6 +52,11 @@ recruit_character = EFR_marcel_bruno_gensoul
 recruit_character = EFR_backroom_backstabber
 recruit_character = EFR_gentleman
 recruit_character = EFR_smooth_talking_charmer
+
+recruit_character = EFR_francois_darlan
+recruit_character = EFR_gabriel_auphan
+recruit_character = EFR_rene_emile_godfroy
+
 #recruit_character = EFR_heinrich_himmler
 #recruit_character = EFR_walther_wenck
 #recruit_character = EFR_felix_steiner
@@ -63,15 +68,92 @@ set_war_support = 0.4
 set_research_slots = 3
 set_rule = { can_join_factions = no }
 set_rule = { can_be_spymaster = no }
-add_ideas = { armyandnavy_idea FRA_disjointed_government limited_conscription }
+add_ideas = { armyandnavy_idea limited_conscription }
 set_cosmetic_tag = FRA_VICHY
 set_fuel_ratio = 1
 add_to_tech_sharing_group = axis_research 
-#set_variable = { vichy_legitimacy_mechanic_stability_factor = -0.1 }
 set_variable = {
     var = min_fuel
     value = 0.800
 }
+####################################################################
+#add_dynamic_modifier = { modifier = EFR_german_occupation }
+set_variable = { EFR_go_mic_to_overlord_factor = 0 }
+set_variable = { EFR_go_cic_to_overlord_factor = 0 }
+
+####################################################################
+add_dynamic_modifier = { modifier = EFR_domestic_situation }
+
+set_variable = { EFR_ds_surrender_limit = 0 }
+set_variable = { EFR_ds_political_power_gain = -0.5 }
+set_variable = { EFR_ds_political_power_factor = 0 }
+set_variable = { EFR_ds_political_advisor_cost_factor = 0 }
+set_variable = { EFR_ds_economy_cost_factor = 0 }
+set_variable = { EFR_ds_trade_laws_cost_factor = 0 }
+set_variable = { EFR_ds_mobilization_laws_cost_factor = 0 }
+set_variable = { EFR_ds_high_command_cost_factor = 0 }
+set_variable = { EFR_ds_war_support_factor = 0 }
+set_variable = { EFR_ds_stability_factor = -0.25 }
+set_variable = { EFR_ds_research_speed_factor = 0 }
+set_variable = { EFR_ds_industrial_capacity_factory = 0 }
+set_variable = { EFR_ds_industrial_capacity_dockyard = 0 }
+set_variable = { EFR_ds_production_factory_start_efficiency_factor = 0 }
+set_variable = { EFR_ds_production_factory_max_efficiency_factor = 0 }
+set_variable = { EFR_ds_production_factory_efficiency_gain_factor = 0 }
+set_variable = { EFR_ds_production_lack_of_resource_penalty_factor = -1 }
+set_variable = { EFR_ds_line_change_production_efficiency_factor = 0 }
+set_variable = { EFR_ds_conversion_cost_civ_to_mil_factor = 0 }
+set_variable = { EFR_ds_conversion_cost_mil_to_civ_factor = 0 }
+set_variable = { EFR_ds_local_building_slots = 0 }
+set_variable = { EFR_ds_local_building_slots_factor = 0 }
+set_variable = { EFR_ds_equipment_conversion_speed = 0 }
+set_variable = { EFR_ds_industry_repair_factor = 0 }
+set_variable = { EFR_ds_industry_free_repair_factor = 0 }
+set_variable = { EFR_ds_industry_air_damage_factor = 0 }
+set_variable = { EFR_ds_consumer_goods_expected_value = 0 }
+set_variable = { EFR_ds_production_speed_buildings_factor = 0 }
+set_variable = { EFR_ds_production_speed_infrastructure_factor = 0 }
+set_variable = { EFR_ds_production_speed_industrial_complex_factor = 0 }
+set_variable = { EFR_ds_production_speed_arms_factory_factor = 0 }
+set_variable = { EFR_ds_production_speed_dockyard_factor = 0 }
+set_variable = { EFR_ds_non_core_manpower = 0 }
+set_variable = { EFR_ds_local_resources_factor = 0 }
+####################################################################
+add_dynamic_modifier = { modifier = EFR_army_and_navy }
+set_variable = { EFR_ran_conscription = 0 }
+set_variable = { EFR_ran_experience_gain_army_factor = 0 }
+set_variable = { EFR_ran_army_infantry_attack_factor = 0 }
+set_variable = { EFR_ran_army_infantry_defence_factor = 0 }
+set_variable = { EFR_ran_army_artillery_attack_factor = 0 }
+set_variable = { EFR_ran_army_artillery_defence_factor = 0 }
+set_variable = { EFR_ran_army_armor_attack_factor = 0 }
+set_variable = { EFR_ran_army_armor_defence_factor = 0 }
+set_variable = { EFR_ran_army_core_attack_factor = 0 }
+set_variable = { EFR_ran_army_core_defence_factor = 0 }
+set_variable = { EFR_ran_army_attack_factor = 0 }
+set_variable = { EFR_ran_army_defence_factor = 0 }
+set_variable = { EFR_ran_equipment_capture_factor = 0 }
+
+set_variable = { var = EFR_ran_army_org_factor value = 0 }
+set_variable = { var = EFR_ran_army_morale_factor value = 0 }
+set_variable = { var = EFR_ran_breakthrough_factor value = 0 }
+	
+set_variable = { var = EFR_ran_army_attack_speed_factor value = 0 }
+set_variable = { var = EFR_ran_army_speed_factor value = 0 }
+	
+set_variable = { var = EFR_ran_max_dig_in_factor value = 0 }
+set_variable = { var = EFR_ran_max_dig_in value = 0 }
+set_variable = { var = EFR_ran_dig_in_speed_factor value = 0 }
+	
+set_variable = { var = EFR_ran_land_bunker_effectiveness_factor value = 0 }
+set_variable = { var = EFR_ran_bunker_max_level_terrain_limit value = 0 }
+set_variable = { var = EFR_ran_coastal_bunker_max_level_terrain_limit value = 0 }
+	
+set_variable = { var = EFR_ran_max_planning value = 0 }
+set_variable = { var = EFR_ran_planning_speed value = 0 }
+
+set_variable = { var = EFR_ran_org_loss_when_moving value = 0 }
+####################################################################
 
 add_timed_idea = { idea = NO_TRADE days = 1339 }
 

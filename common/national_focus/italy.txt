@@ -4655,23 +4655,28 @@ focus_tree = {
 		
 		cost = 5
 
-		available = {
-			always = no
+		available = { 
+			EFR = {
+				has_country_flag = vichy_france_established 
+			}
 		}
-
+		
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 
 		completion_reward = {
-			313 = {
-				set_state_category = rural
+			if = {
+				limit = {
+					NOT = {
+						EFR = {
+							has_completed_focus = EFR_italian_claims
+						}
+					}
+				}
+				EFR = {
+					complete_national_focus = EFR_italian_claims
+				}
 			}
-			32 = {
-				set_state_category = town
-			}
-			21 = {
-				set_state_category = town
-			}
-			
+
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			if = { 

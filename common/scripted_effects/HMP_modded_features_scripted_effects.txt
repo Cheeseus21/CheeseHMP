@@ -3143,50 +3143,6 @@
 		send_embargo = CHI
     }
 
-    recalc_vichy_france_legitimacy = {
-        EFR = { set_variable = { vichy_legitimacy_mechanic_stability_factor = -0.1 } }
-
-        if = { 
-            limit = { EFR = { has_completed_focus = VIC_africa_corps_3 } }
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.05 } }
-        }
-
-        if = { 
-            limit = { EFR = { controls_state = 510 } } # MIDDLE CONGO
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
-        }
-
-        if = { 
-            limit = { EFR = { controls_state = 445 } } # FRENCH GUINEA
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
-        }
-
-        if = { 
-            limit = { EFR = { controls_state = 543 } } # MADAGASCAR
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
-        }
-
-        if = { 
-            limit = { EFR = { controls_state = 554 } } # SYRIA
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
-        }
-
-        if = { 
-            limit = { OR = { EFR = { controls_state = 460 } ITA = { controls_state = 460 } } } # ALGERIA
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
-        }
-
-        if = { 
-            limit = { EFR = { controls_state = 277 } } # CAMEROON
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = 0.15 } }
-        }
-
-        if = { 
-            limit = { EFR = { is_subject_of = GER } } # Puppet check
-            EFR = { add_to_variable = { vichy_legitimacy_mechanic_stability_factor = -0.3 } }
-        }
-    }
-
     calc_japanese_pacific_navy_bonus = {
         JAP = { clear_variable = japanese_pacific_navy_bonus_range }
         USA = { clear_variable = operation_overlord_bonus }
@@ -5941,25 +5897,36 @@ horstorical_multiplayer_france_capitulation_script = {
 		GER = {
 			annex_country = { target = EFR } 
 		}
+		ITA = {
+			### NORTH AFRICA (demilitarized zones) ###
+			transfer_state = 460
+			460 = { set_demilitarized_zone = yes }
+			transfer_state = 513
+			513 = { set_demilitarized_zone = yes }
+			transfer_state = 459
+			459 = { set_demilitarized_zone = yes }
+			transfer_state = 461
+			461 = { set_demilitarized_zone = yes }
+		}	
 	}
-    else = {
-        EFR = {
-            set_country_flag = vichy_france_established
-            add_to_war = { targeted_alliance = GER enemy = ENG }
-        }
-    }   
-    
-    SWE = {
-        transfer_state = 460
-        transfer_state = 513
-        transfer_state = 459
-        transfer_state = 461
-    }	
+	else = {
+		EFR = {
+			set_country_flag = vichy_france_established
+			
+			add_to_war = { targeted_alliance = GER enemy = ENG }
+			
+			complete_national_focus = EFR_sign_the_armistice
+			
+			### NORTH AFRICA (demilitarized zones) ###
+			460 = { set_demilitarized_zone = yes }
+			513 = { set_demilitarized_zone = yes }
+			459 = { set_demilitarized_zone = yes }
+			461 = { set_demilitarized_zone = yes }
+		}
+	}
 
 	# France leader and idea cleanup
-    FRA = {
-		set_technology = { ita_no_transport_off = 1 }
-		
+    FRA = {		
 		complete_national_focus = FRA_appeal_of_eighteen_june
 
         create_country_leader = {
@@ -5978,15 +5945,10 @@ horstorical_multiplayer_france_capitulation_script = {
     }
 	
 	# Italian claims include territory from Tunisia, Corsica, and South Eastern France occupied in 1942
-	ITA = { 
-		complete_national_focus = ITA_request_control_of_french_territories 
-	
-		transfer_state = 313
+	ITA = { 	
 		transfer_state = 577
 		transfer_state = 397
 		transfer_state = 458
-		transfer_state = 32
-		transfer_state = 21
 		transfer_state = 1
 	}
 	

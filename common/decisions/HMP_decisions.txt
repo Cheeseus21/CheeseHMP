@@ -1,3 +1,154 @@
+	EFR_german_occupation_decision = {
+		EFR_german_occupation_decision_mil_increase = {
+
+			icon = GFX_decision_generic_monarchy 
+			
+			allowed = { tag = GER }
+			
+			targets = { EFR }
+			
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = EFR_available_tt1
+					EFR = {
+						check_variable = {
+						var = EFR_go_mic_to_overlord_factor
+						value = 0.50
+						compare = less_than
+						}
+					}
+				}
+			}
+			
+			visible = {
+				#has_completed_focus = JAP_rejuvenate_the_qing_dynasty
+				hidden_trigger = {
+					country_exists = EFR
+				}
+			}
+			
+			complete_effect = {
+				EFR = {
+					add_to_variable = { var = EFR_go_mic_to_overlord_factor value = 0.05 } 
+				}
+				custom_effect_tooltip = EFR_complete_effect_mil_tt1
+			}
+		}
+		
+		EFR_german_occupation_decision_mil_decrease = {
+
+			icon = GFX_decision_generic_monarchy 
+			
+			allowed = { tag = GER }
+			
+			targets = { EFR }
+
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = EFR_available_tt2
+					EFR = {
+						NOT = {
+							check_variable = {
+							var = EFR_go_mic_to_overlord_factor
+							value = 0
+							compare = less_than_or_equals
+							}
+						}
+					}
+				}
+			}
+			
+			visible = {
+				#has_completed_focus = JAP_rejuvenate_the_qing_dynasty
+				hidden_trigger = {
+					country_exists = EFR
+				}
+			}
+			
+			complete_effect = {
+				EFR = {
+					subtract_from_variable = { var = EFR_go_mic_to_overlord_factor value = 0.05 } 
+				}
+				custom_effect_tooltip = EFR_complete_effect_mil_tt2
+			}
+		}
+		
+		########################################
+		
+		EFR_german_occupation_decision_civ_increase = {
+
+			icon = GFX_decision_generic_monarchy 
+			
+			allowed = { tag = GER }
+			
+			targets = { EFR }
+			
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = EFR_available_tt1
+					EFR = {
+						check_variable = {
+						var = EFR_go_cic_to_overlord_factor
+						value = 0.50
+						compare = less_than
+						}
+					}
+				}
+			}
+			
+			visible = {
+				#has_completed_focus = ENG_imperial_policy
+				hidden_trigger = {
+					country_exists = EFR
+				}
+			}
+			
+			complete_effect = {
+				EFR = {
+					add_to_variable = { var = EFR_go_cic_to_overlord_factor value = 0.05 } 
+				}
+				custom_effect_tooltip = EFR_complete_effect_civ_tt1
+			}
+		}
+		
+		EFR_german_occupation_decision_civ_decrease = {
+
+			icon = GFX_decision_generic_monarchy 
+			
+			allowed = { tag = GER }
+			
+			targets = { EFR }
+
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = EFR_available_tt2
+					EFR = {
+						NOT = {
+							check_variable = {
+							var = EFR_go_cic_to_overlord_factor
+							value = 0
+							compare = less_than_or_equals
+							}
+						}
+					}
+				}
+			}
+			
+			visible = {
+				#has_completed_focus = ENG_imperial_policy
+				hidden_trigger = {
+					country_exists = EFR
+				}
+			}
+			
+			complete_effect = {
+				EFR = {
+					subtract_from_variable = { var = EFR_go_cic_to_overlord_factor value = 0.05 } 
+				}
+				custom_effect_tooltip = EFR_complete_effect_civ_tt2	
+			}
+		}
+	}
 	# FRA_mantignon_shop = {
 	
 		# FRA_mantignon_mission = {
@@ -8840,9 +8991,6 @@ propaganda_effortsx = {
 		}	
 
 		visible = {
-			NOT = { 
-				EFR = { has_completed_focus = VIC_join_axis } 
-			}
 			NOT = {
 				has_global_flag = europe_only_start_date_flag
 			}
@@ -8850,11 +8998,7 @@ propaganda_effortsx = {
 
 		fire_only_once = yes 
 
-		complete_effect = {			
-			EFR = { complete_national_focus = VIC_join_axis }
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
+		complete_effect = {									
 			custom_effect_tooltip = prepare_torch_tt
 
 			hidden_effect = { 
@@ -8865,6 +9009,10 @@ propaganda_effortsx = {
 				EFR = { 
 					set_country_flag = EFR_torch_declared 
 					set_country_flag = EFR_at_war
+				}
+				
+				USA = {
+					set_country_flag = torch_generals_flag
 				}
 				
 				if = {
@@ -8911,24 +9059,6 @@ propaganda_effortsx = {
 						instant_build = yes 
 					}
 				}
-                
-                if = {
-                    limit = {
-                        country_exists = EFR
-                    }
-                    EFR = {
-                        transfer_state = 460
-                        transfer_state = 513
-                        transfer_state = 459
-                    }
-                }
-                else = {
-                    ITA = {
-                        transfer_state = 460
-                        transfer_state = 513
-                        transfer_state = 459
-                    }
-                }
 				
 				FROM = { country_event = { id = usa.996 days = 0 } }
 				
