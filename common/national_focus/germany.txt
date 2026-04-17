@@ -5986,6 +5986,17 @@ focus = {
 		icon = GFX_focus_GER_atlantikwall
 		prerequisite = { focus = GER_war_with_france }
 		
+		available = {
+			OR = {
+				EFR = {
+					has_completed_focus = EFR_reichskommissariat_frankreich
+				}
+				EFR = {
+					has_completed_focus = EFR_vichy_france
+				}
+			}
+		}
+		
 		x = 1
 		y = 1
 		
@@ -5994,7 +6005,9 @@ focus = {
 		cost = 5
 
 		completion_reward = {
-			news_event = { id = poland.1148 days = 3 }
+			custom_effect_tooltip = "Doing this focus with Reichskommissariat Frankreich will not spawn Atlantik Walls into France."
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
 			
 			every_state = { 
 				limit = { atlantikwall_states = yes }
@@ -6010,6 +6023,10 @@ focus = {
 					}
 				}
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			news_event = { id = poland.1148 days = 3 }
 			
 			hidden_effect = {	
 				every_state = { 
