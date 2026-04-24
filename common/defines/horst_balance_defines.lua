@@ -71,7 +71,7 @@ NDefines.NMilitary.ARMY_NAVAL_TRANSFER_FUEL_MULT = 0.0				-- fuel consumption ra
 NDefines.NMilitary.ARMY_STRATEGIC_DEPLOYMENT_FUEL_MULT = 0.0		-- fuel consumption ratio while doing strategic deployment
 NDefines.NMilitary.ARMY_IDLE_FUEL_MULT = 0.0						-- fuel consumption ratio while just existing
 ---------------------------------------------------------------------------------------
-NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.017    --  0.032 vanilla   air global damage modifier
+NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.015    --  0.032 vanilla   air global damage modifier
 NDefines.NMilitary.LAND_AIR_COMBAT_ORG_DAMAGE_MODIFIER = 0.015    --  0.032 vanilla   global damage modifier
 NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.035       -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
 NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.060       -- global damage modifier
