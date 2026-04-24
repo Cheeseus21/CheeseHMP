@@ -4351,65 +4351,6 @@ HMP_startup_on_actions = {
     }
     
     set_global_flag = blocking_pauses
-    
-    if = {
-        limit = { 
-			has_game_rule = { rule = horst_scw option = horst_scw_on } 
-		}
-		
-		SOV = {
-			add_ideas = SOV_revolutionary_support
-		}
-
-        every_country = {
-            limit = { NOT = { tag = USA } is_in_faction_with = ENG }
-            add_timed_idea = { idea = SPR_ALLIES_WS_FIXER days = 1200 }
-        }
-
-        if = {
-            limit = { has_global_flag = war_in_the_west_start }
-            if = { limit = { HOL = { is_ai = yes } } }
-            ENG = { transfer_state = 352 }
-        }
-
-        FRA = {
-            add_ideas = NZL_2nzef_fra
-            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 18000 }
-            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1800 }
-            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 600 }
-            add_equipment_to_stockpile = { type = support_equipment_1 amount = 1800 }
-            add_equipment_to_stockpile = { type = special_equipment_1 amount = 2700 }
-        }
-
-        #SWE = { news_event = { id = horsttool.132 } }
-
-        every_country = {
-            limit = { 
-                OR = { 
-                    tag = FRA 
-                    tag = SOV 
-                    tag = ITA 
-                    tag = GER 
-                } 
-            }
-            add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 18000 }
-            add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 1800 }
-            add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 600 }
-            add_equipment_to_stockpile = { type = support_equipment_1 amount = 1800 }
-            add_equipment_to_stockpile = { type = special_equipment_1 amount = 2700 }
-        }
-    }
-
-    if = { 
-        limit = { has_game_rule = { rule = horst_scw option = horst_scw_off } }
-
-        SPR = { transfer_state = 167 }
-        #SWE = { news_event = { id = horsttool.131 } }
-        SPR = { news_event = { id = lar_news.1 days = 1190 } } # end of SCW; early April 1939
-        GER = { load_oob = "GER_vet" }
-        SOV = { load_oob = "SOV_vet" }
-    }
-
 
     RAJ = { 
         set_variable = { RAJ_agrarian_society_value = -0.70 }
@@ -5046,6 +4987,7 @@ fuel_system_refresh_list = {
                     AND = { ROOT = { tag = ENG } tag = MON }
                     AND = { ROOT = { tag = ENG } tag = GRE }
 					AND = { ROOT = { tag = ENG } tag = BEL }
+					AND = { ROOT = { tag = ENG } tag = DDR }
                     AND = { ROOT = { tag = GER } tag = FIN }
                     AND = { ROOT = { tag = GER } tag = DEN }
                 }
@@ -5102,7 +5044,7 @@ fuel_startup_effect = {
                 OR = {
                     AND = { 
                         NOT = { tag = ENG }
-                        OR = { is_in_faction_with = ENG tag = POL tag = HOL tag = NOR tag = GRE tag = BEL }
+                        OR = { is_in_faction_with = ENG tag = POL tag = HOL tag = NOR tag = GRE tag = BEL tag = DDR }
                         NOT = { is_in_array = { ENG.faction_members_array = THIS.id } }    
                     }
                     tag = SOV

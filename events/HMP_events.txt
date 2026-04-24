@@ -1,4 +1,130 @@
-﻿add_namespace = vichy_event
+﻿add_namespace = spain_events 
+
+# Starts the civil war
+country_event = {
+	id = spain_events.1
+	title = spain_events.1.t
+	desc = spain_events.1.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = spain_events.1.a
+		
+		set_global_flag = spanish_civil_on_flag
+		
+		SPR = {
+			complete_national_focus = SPR_coup_d_etat
+		}
+	}
+}
+
+# Ends the civil war
+country_event = {
+	id = spain_events.2
+	title = spain_events.2.t
+	desc = spain_events.2.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = spain_events.2.a
+		
+		SPR = {
+			complete_national_focus = SPR_consequences_of_the_war
+		}
+	}
+}
+
+country_event = {
+	id = spain_events.3
+	title = spain_events.3.t
+	desc = spain_events.3.d
+	picture = GFX_report_event_second_vienna_award_pact
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = spain_events.3.a
+		
+		random_core_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_core_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		add_ideas = SPR_non_bel_1940
+	}
+	option = {
+		name = spain_events.3.b
+		
+		clr_global_flag = spanish_civil_on_flag
+		
+		random_core_state = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = arms_factory
+				level = 4
+				instant_build = yes
+			}
+		}
+		random_core_state = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = industrial_complex
+				level = 4
+				instant_build = yes
+			}
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		add_ideas = SPR_non_bel_1941
+	}
+	option = {
+		name = spain_events.3.c
+		
+		clr_global_flag = spanish_civil_on_flag
+		
+		random_core_state = {
+			add_extra_state_shared_building_slots = 6
+			add_building_construction = {
+				type = arms_factory
+				level = 6
+				instant_build = yes
+			}
+		}
+		random_core_state = {
+			add_extra_state_shared_building_slots = 6
+			add_building_construction = {
+				type = industrial_complex
+				level = 6
+				instant_build = yes
+			}
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		add_ideas = SPR_non_bel_1942
+	}
+}
+
+add_namespace = vichy_event
 
 # Arrest Gamelin
 country_event = {
@@ -2673,8 +2799,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-
-			if = { limit = { POL = { owns_state = 96}  }
+		if = { limit = { POL = { owns_state = 96 } }
 			SOV = { complete_national_focus = SOV_claims_on_poland }
 		}
 	}

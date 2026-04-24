@@ -1,12 +1,14 @@
 characters={
 	SPR_francisco_franco={
 		name="Francisco Franco"
-			portraits={
-				army={
-					large="GFX_portrait_spain_francisco_franco"
-					small="gfx/interface/ideas/idea_SPA_francisco_franco.dds"
-				}
+		
+		portraits={
+			army={
+				large="GFX_portrait_spain_francisco_franco"
+				small="gfx/interface/ideas/idea_SPA_francisco_franco.dds"
 			}
+		}
+		
 		advisor = {
 				slot = army_chief
 				idea_token = SPA_francisco_franco
@@ -20,6 +22,7 @@ characters={
 				}
 				cost = 75
 		}
+		
 		field_marshal={ # 13/13
 			traits={ brilliant_strategist panzer_leader desert_fox hill_fighter thorough_planner aggressive_assaulter }
 			skill=6
@@ -29,12 +32,20 @@ characters={
 			logistics_skill=5
 			legacy_id=-1
 		}
+		
+		country_leader={
+			ideology=conservatism
+			expire="1965.1.1.1"
+			id=-1
+		}
+		
 		country_leader={
 			ideology=despotism
 			expire="1965.1.1.1"
 			id=-1
 		}
-				country_leader={
+		
+		country_leader={
 			ideology=nazism
 			traits={  }
 			expire="1941.1.1.12"
@@ -49,13 +60,14 @@ characters={
 					large="GFX_portrait_SPR_niceto_alcala_zamora"
 				}
 			}
-			country_leader={
-				ideology=conservatism
-				traits={ indecisive }
-				expire="1965.1.1.1"
-				id=-1
-			}
+			#country_leader={
+			#	ideology=conservatism
+			#	traits={ indecisive }
+			#	expire="1965.1.1.1"
+			#	id=-1
+			#}
 	}
+	
 	SPR_raimundo_márquez={
 		name="Raimundo Márquez"
 		portraits={
@@ -70,7 +82,6 @@ characters={
 			id=-1
 		}
 	}
-	
 	
 	SPA_jose_antonio_primo_de_rivera={
 		name=SPA_jose_antonio_primo_de_rivera
@@ -94,33 +105,15 @@ characters={
 				always = no
 			}
 			cost = 0
-			#available = {
-			#	has_completed_focus = SPA_primo_de_rivera_prisoner_exchange
-			#}
+			available = {
+				has_completed_focus = SPR_side_with_the_falangists
+			}
 			traits = {
 				falangist_figurehead 
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	SPR_charles_huntziger={
 		name="Charles Huntziger"
 		portraits={
@@ -198,9 +191,7 @@ characters={
 					original_tag = SPR
 				}
 				available = {
-					NOT = {
-						has_completed_focus = SPA_eliminate_the_carlists
-					}
+
 				}
 				traits = {
 					army_entrenchment_2
@@ -247,15 +238,10 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-			
-			available = {
-				has_completed_focus = SPA_the_condor_legion
-				
-			}
 			traits = {
 				army_armored_2
 			}
-				cost = 75
+			cost = 75
 		}
 	}
     
@@ -462,14 +448,7 @@ characters={
 				}
 			}
 			available = {
-				if = {
-					limit = {
-						NOT = { has_completed_focus = SPA_supremacy_of_the_communion }
-					}
-					NOT = {
-						has_completed_focus = SPA_eliminate_the_carlists
-					}
-				}
+            
 			}
 			traits = {
 				army_chief_organizational_2
@@ -478,35 +457,30 @@ characters={
 		}
 	}
 	SPA_joaquin_garcia_morato = { # Francoist
-			name=SPA_joaquin_garcia_morato
-			portraits={
-				army={
-					small="GFX_idea_SPA_joaquin_garcia_morato"
-				}
-			}
-			advisor={
-				slot = air_chief
-				idea_token = SPA_joaquin_garcia_morato
-				ledger = air
-				allowed = {
-					has_dlc = "La Resistance"
-					original_tag = SPR
-				}
-				available = {
+        name=SPA_joaquin_garcia_morato
+        portraits={
+            army={
+                small="GFX_idea_SPA_joaquin_garcia_morato"
+            }
+        }
+        advisor={
+            slot = air_chief
+            idea_token = SPA_joaquin_garcia_morato
+            ledger = air
+            allowed = {
+                has_dlc = "La Resistance"
+                original_tag = SPR
+            }
+            available = {
 
-				}
-				traits = {
-					air_chief_ground_support_2
-				}
-				cost = 100
-			}
-		}
-		
-		
-		
-		
-		
-		
+            }
+            traits = {
+                air_chief_ground_support_2
+            }
+            cost = 100
+        }
+    }
+
 	SPA_miguel_ponte = { # Francoist
 		name=SPA_miguel_ponte
 		portraits={
@@ -523,9 +497,6 @@ characters={
 				original_tag = SPR
 			}
 			available = {
-				NOT = {
-					has_completed_focus = SPA_no_compromise_on_carlist_ideals
-				}
 			}
 			traits = {
 				army_chief_drill_2
@@ -533,6 +504,7 @@ characters={
 			cost = 100
 		}
 	}
+    
 	SPA_heli_rolando_de_tella = { # Francoist/Carlist
 		name=SPA_heli_rolando_de_tella
 		portraits={
@@ -548,16 +520,8 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-
 			available = {
-				if = {
-					limit = {
-						NOT = { has_completed_focus = SPA_supremacy_of_the_communion }
-					}
-					NOT = {
-						has_completed_focus = SPA_eliminate_the_carlists
-					}
-				}
+
 			}
 			traits = {
 				army_chief_defensive_2
@@ -799,7 +763,9 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-			
+			available = {
+                has_completed_focus = SPR_side_with_the_carlists
+            }
 			traits = {
 				lifelong_carlist 
 			}
@@ -844,7 +810,9 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-			
+            available = {
+                has_completed_focus = SPR_side_with_the_falangists
+            }
 			traits = {
 				falangist_industrialist 
 			}
@@ -886,16 +854,15 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-
-
 			available = {
-				has_completed_focus = SPA_supremacy_of_the_communion
+				has_completed_focus = SPR_side_with_the_carlists
 			}
 			traits = {
 				carlist_intellectual 
 			}
 		}
 	}
+    
 	SPA_luis_hernando_de_larramendi={
 		name=SPA_luis_hernando_de_larramendi
 		portraits={
@@ -911,18 +878,15 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-
 			available = {
-				has_completed_focus = SPA_supremacy_of_the_communion
+				has_completed_focus = SPR_side_with_the_carlists
 			}
 			traits = {
 				traditionalist_theorist 
 			}
 		}
 	}
-	
-	
-	
+
 	SPA_mauricio_de_sivatte={ #Carlist
 		name=SPA_mauricio_de_sivatte
 		portraits={
@@ -938,10 +902,8 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-
-
 			available = {
-				has_completed_focus = SPA_supremacy_of_the_communion
+				has_completed_focus = SPR_side_with_the_carlists
 			}
 			traits = {
 				regional_traditionalist_leader 
@@ -988,11 +950,7 @@ characters={
 				original_tag = SPR
 			}
 			available = {
-				NOT = {
-					has_completed_focus = SPA_no_compromise_on_carlist_ideals
-				}
-				NOT = { has_idea = SPA_ramon_serrano_suner }
-				has_completed_focus = SPA_banish_the_party_leaders
+				has_completed_focus = SPR_side_with_the_falangists
 			}
 			traits = {
 				loyal_falangist 
@@ -1040,14 +998,8 @@ characters={
 				has_dlc = "La Resistance"
 				original_tag = SPR
 			}
-
 			available = {
-				NOT = {
-					has_completed_focus = SPA_no_compromise_on_carlist_ideals
-				}
-				NOT = {
-					has_completed_focus = SPA_banish_the_party_leaders
-				}
+				has_completed_focus = SPR_side_with_the_falangists
 			}
 			traits = {
 				falangist_syndicalist 
@@ -1055,8 +1007,7 @@ characters={
 		}
 	}
 	
-
-	SPR_smooth_talking_charmer={
+	SPR_captain_of_industry={
 		name="Luis Varela"
 		portraits={
 			army={
@@ -1071,17 +1022,14 @@ characters={
 				tag = SPR
 			}
 			traits = {
-				smooth_talking_charmer
+				captain_of_industry
 			}
 			ledger = civilian
 
 		}		
 	}
-	
-	
 
-	
-		SPA_luis_valdes_cavanillas={
+	SPA_luis_valdes_cavanillas={
 		name=SPA_luis_valdes_cavanillas
 		portraits={
 			army={

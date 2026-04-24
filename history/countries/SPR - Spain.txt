@@ -1,63 +1,115 @@
-﻿capital = 41
+﻿capital = 176
 oob = "SPR_1936"
+set_stability = 0.5
+set_war_support = 0.5
 add_to_tech_sharing_group = axis_research 
-add_ideas = { SPR_BUILDING_LIMITER SPR_political_violence SPR_national_strikes_3 SPR_military_disloyalty  armyandnavy_idea SPA_carlism_1 limited_conscription } 
-set_stability = 0.50
-country_lock_all_division_template = yes
+anti_cross_faction_trade_allies = yes
+create_intelligence_agency = yes
+set_rule = { can_be_spymaster = no can_send_volunteers = no }
+set_research_slots = 3
+
+#country_event = { id = lar_spain.2 days = 199 }
+country_event = { id = spain_events.1 days = 199 }
+#country_event = { id = spain_events.2 days = 1200 }
+
+set_cosmetic_tag = SPR_democratic
+set_politics = { ruling_party = democratic }
+set_popularities = {
+	democratic = 41
+	fascism = 37
+	communism = 7
+	neutrality = 15
+}
+
+add_timed_idea = { idea = NO_TRADE days = 1339 }
+add_ideas = { 
+	SPR_BUILDING_LIMITER 
+	armyandnavy_idea 
+	limited_conscription 
+} 
+
+set_fuel_ratio = 1
 set_variable = {
     var = min_fuel
     value = 0.800
 }
-set_variable = {
-	var = SPR_scw_stab
-	value = -0.5
-}
-set_variable = {	
-	var = SPR_scw_cg
-	value = 0.1
-}
-set_variable = {
-	var = SPR_scw_pp
-	value = -0.8
-}
-set_variable ={
-	var = SPR_scw_mp
-	value = -5000
-}
-set_variable ={
-	var = spr_army_org_factor
-	value = 0.05
-}
-set_variable ={
-	var = spr_conscription
-	value = 0
-}
-set_variable ={
-	var = spr_army_morale_factor
-	value = 0
-}
-set_variable ={
-	var = spr_political_power_factor
-	value = 0
-}
 
-set_fuel_ratio = 1
-set_cosmetic_tag = SPR_democratic
-set_rule = { 	can_be_spymaster = no	can_send_volunteers = no }
- create_intelligence_agency = yes
-set_politics = {	ruling_party = democratic }
-	set_popularities = {
-		democratic = 41
-		fascism = 37
-		communism = 7
-		neutrality = 15
-	}
-	anti_cross_faction_trade_allies = yes
-add_timed_idea = { idea = NO_TRADE days = 1339 }
+set_variable = { SPR_attack_buffs_cost = 50 }
+####################################################################
+add_dynamic_modifier = { modifier = SPR_domestic_situation }
 
-country_event = { id = lar_spain.2 days = 199 }
+set_variable = { SPR_ds_surrender_limit = 0 }
+set_variable = { SPR_ds_weekly_casualties_war_support = 0 }
+set_variable = { SPR_ds_weekly_manpower = 0 }
+set_variable = { SPR_ds_political_power_gain = 0 }
+set_variable = { SPR_ds_political_power_factor = 0 }
+set_variable = { SPR_ds_political_advisor_cost_factor = 0 }
+set_variable = { SPR_ds_economy_cost_factor = 0 }
+set_variable = { SPR_ds_trade_laws_cost_factor = 0 }
+set_variable = { SPR_ds_mobilization_laws_cost_factor = 0 }
+set_variable = { SPR_ds_high_command_cost_factor = 0 }
+set_variable = { SPR_ds_war_support_factor = 0 }
+set_variable = { SPR_ds_stability_factor = 0 }
+set_variable = { SPR_ds_research_speed_factor = 0 }
+set_variable = { SPR_ds_industrial_capacity_factory = 0 }
+set_variable = { SPR_ds_industrial_capacity_dockyard = 0 }
+set_variable = { SPR_ds_production_factory_start_efficiency_factor = 0 }
+set_variable = { SPR_ds_production_factory_max_efficiency_factor = 0 }
+set_variable = { SPR_ds_production_factory_efficiency_gain_factor = 0 }
+set_variable = { SPR_ds_production_lack_of_resource_penalty_factor = 0 }
+set_variable = { SPR_ds_line_change_production_efficiency_factor = 0 }
+set_variable = { SPR_ds_conversion_cost_civ_to_mil_factor = 0 }
+set_variable = { SPR_ds_conversion_cost_mil_to_civ_factor = 0 }
+set_variable = { SPR_ds_local_building_slots = 0 }
+set_variable = { SPR_ds_local_building_slots_factor = 0 }
+set_variable = { SPR_ds_equipment_conversion_speed = 0 }
+set_variable = { SPR_ds_industry_repair_factor = 0 }
+set_variable = { SPR_ds_industry_free_repair_factor = 0 }
+set_variable = { SPR_ds_industry_air_damage_factor = 0 }
+set_variable = { SPR_ds_consumer_goods_expected_value = 0 }
+set_variable = { SPR_ds_production_speed_buildings_factor = 0 }
+set_variable = { SPR_ds_production_speed_infrastructure_factor = 0 }
+set_variable = { SPR_ds_production_speed_industrial_complex_factor = 0 }
+set_variable = { SPR_ds_production_speed_arms_factory_factor = 0 }
+set_variable = { SPR_ds_production_speed_dockyard_factor = 0 }
+set_variable = { SPR_ds_non_core_manpower = 0 }
+set_variable = { SPR_ds_local_resources_factor = 0 }
+####################################################################
+add_dynamic_modifier = { modifier = SPR_army_and_navy }
+set_variable = { SPR_ran_conscription = 0 }
+set_variable = { SPR_ran_experience_gain_army_factor = 0 }
+set_variable = { SPR_ran_army_infantry_attack_factor = 0 }
+set_variable = { SPR_ran_army_infantry_defence_factor = 0 }
+set_variable = { SPR_ran_army_artillery_attack_factor = 0 }
+set_variable = { SPR_ran_army_artillery_defence_factor = 0 }
+set_variable = { SPR_ran_army_armor_attack_factor = 0 }
+set_variable = { SPR_ran_army_armor_defence_factor = 0 }
+set_variable = { SPR_ran_army_core_attack_factor = 0 }
+set_variable = { SPR_ran_army_core_defence_factor = 0 }
+set_variable = { SPR_ran_army_attack_factor = 0 }
+set_variable = { SPR_ran_army_defence_factor = 0 }
+set_variable = { SPR_ran_equipment_capture_factor = 0 }
 
+set_variable = { var = SPR_ran_army_org_factor value = 0 }
+set_variable = { var = SPR_ran_army_morale_factor value = 0 }
+set_variable = { var = SPR_ran_breakthrough_factor value = 0 }
+	
+set_variable = { var = SPR_ran_army_attack_speed_factor value = 0 }
+set_variable = { var = SPR_ran_army_speed_factor value = 0 }
+	
+set_variable = { var = SPR_ran_max_dig_in_factor value = 0 }
+set_variable = { var = SPR_ran_max_dig_in value = 0 }
+set_variable = { var = SPR_ran_dig_in_speed_factor value = 0 }
+	
+set_variable = { var = SPR_ran_land_bunker_effectiveness_factor value = 0 }
+set_variable = { var = SPR_ran_bunker_max_level_terrain_limit value = 0 }
+set_variable = { var = SPR_ran_coastal_bunker_max_level_terrain_limit value = 0 }
+	
+set_variable = { var = SPR_ran_max_planning value = 0 }
+set_variable = { var = SPR_ran_planning_speed value = 0 }
 
+set_variable = { var = SPR_ran_org_loss_when_moving value = 0 }
+####################################################################
 
 recruit_character = SPA_marijan_polic
 recruit_character = SPA_miguel_buiza_fernandez_palacios
@@ -110,7 +162,7 @@ recruit_character = SPR_barbu_paraianu
 recruit_character = SPR_gheorghe_avramescu
 recruit_character = SPR_agustín_muñoz_grandes
 
-recruit_character = SPR_smooth_talking_charmer
+recruit_character = SPR_captain_of_industry
 recruit_character = SPA_wilhelm_ritter_von_thom
 recruit_character = SPA_ramon_serrano_suner
 recruit_character = SPA_tomas_dominguez_arevalo
@@ -121,9 +173,6 @@ recruit_character = SPA_jose_antonio_giron
 #recruit_character = SPR_walter_model
 #recruit_character = SPR_gotthard_heinrici
 #recruit_character = SPR_friedrich_schulz
-
-
-set_research_slots = 3
 
 # Starting tech
 set_technology = {

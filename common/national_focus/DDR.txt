@@ -1,64 +1,1141 @@
 focus_tree = {
 	id = DDR_focus
-	country = {	factor = 0
-	modifier = {
+	
+	default = no
+	
+	reset_on_civilwar = no
+	
+	country = {	
+		factor = 0
+		
+		modifier = {
 			add = 10
 			original_tag = DDR
 		}	
+	}
+	
+	shared_focus = ALLIES_commonwealth_of_nations
+	
+	continuous_focus_position = { x = 1920 y = 700 }
+		
+	focus = {
+		id = DDR_winners_of_the_1936_elections
+		icon = GFX_focus_generic_befriend_republican_spain_focus
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 8
+		y = 0
+		
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_winners_of_the_1936_elections_tt
+		
+			hidden_effect = {
+				add_manpower = 1500000
+				
+				add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 120000 }
+				add_equipment_to_stockpile = { type = support_equipment_1 amount = 4800 }
+				add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 8500 }
+				add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 1600 }
+				add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 960 }
+				add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 800 }
+				add_equipment_to_stockpile = { type = train_equipment_1 amount = 100 }
+				
+				615 = {
+					add_dynamic_modifier = {
+						modifier = DDR_seperatist_cooperation
+						scope = DDR
+					}
+				}
+				172 = {
+					add_dynamic_modifier = {
+						modifier = DDR_seperatist_cooperation
+						scope = DDR
+					}
+				}
+				616 = {
+					add_dynamic_modifier = {
+						modifier = DDR_seperatist_cooperation
+						scope = DDR
+					}
+				}
+				
+				614 = {
+					add_dynamic_modifier = {
+						modifier = DDR_anarchist_cooperation
+						scope = DDR
+					}
+				}
+				165 = {
+					add_dynamic_modifier = {
+						modifier = DDR_anarchist_cooperation
+						scope = DDR
+					}
+				}
+				166 = {
+					add_dynamic_modifier = {
+						modifier = DDR_anarchist_cooperation
+						scope = DDR
+					}
+				}
+			}
 		}
-			focus = {
-		id = SPA_war
-		icon = GFX_focus_RAJ_lions_of_the_great_war
+	}
+	
+	focus = {
+		id = DDR_guardia_de_asalto
+		icon = GFX_goal_generic_axis_build_infantry
+		prerequisite = { focus = DDR_winners_of_the_1936_elections }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = -2
+		y = 1
+		
+		relative_position_id = DDR_winners_of_the_1936_elections
+		
+		completion_reward = {
+			custom_effect_tooltip = pick_first_spain_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = guardia_de_asalto_picked_already
+					}
+				}
+				
+				set_global_flag = guardia_de_asalto_picked_already
+				
+				DDR = {					
+					# Define the template
+					division_template = {
+						name = "Assault Guard"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+							infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+							infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+							infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+							infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+						}
+						support = { 
+							engineer = { x = 0 y = 0 }
+							anti_air = { x = 0 y = 1 }
+							artillery = { x = 0 y = 2 }   
+							anti_tank = { x = 0 y = 3 } 
+							recon = { x = 0 y = 4 }  
+							logistics_company = { x = 0 y = 5 } 
+						}
+					}
+					capital_scope = {
+						create_unit = {
+							owner = DDR
+							division = "name = \"Assault Guard\" division_template = \"Assault Guard\" start_experience_factor = 1 start_equipment_factor = 1"
+							count = 4
+						}
+					}
+				}
+			}
+			else = {
+				DDR = {					
+					# Define the template
+					division_template = {
+						name = "Assault Guard"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+							infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+							infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+							infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+							infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+						}
+						support = { 
+							engineer = { x = 0 y = 0 }
+							anti_air = { x = 0 y = 1 }
+							artillery = { x = 0 y = 2 }   
+							anti_tank = { x = 0 y = 3 } 
+							recon = { x = 0 y = 4 }  
+							logistics_company = { x = 0 y = 5 } 
+						}
+					}
+					capital_scope = {
+						create_unit = {
+							owner = DDR
+							division = "name = \"Assault Guard\" division_template = \"Assault Guard\" start_experience_factor = 0.3 start_equipment_factor = 1"
+							count = 2
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_carabineros
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = DDR_winners_of_the_1936_elections }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
 		x = 0
 		y = 1
-		cost = 0.2
-		available = { has_global_flag = spanish_civil_war has_game_rule = { rule = horst_scw option = horst_scw_on } }
+		
+		relative_position_id = DDR_winners_of_the_1936_elections
+		
 		completion_reward = {
-				division_template = {
-						name = "Republican Infantry" 
-	regiments = { 
-		infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }
-		infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 }  artillery_brigade = { x = 3 y = 1 }
-		infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 } infantry = { x = 2 y = 2 }  artillery_brigade = { x = 3 y = 2 }
-		infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }  infantry = { x = 2 y = 3 }	artillery_brigade = { x = 3 y = 3 }
-		infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }
-		
-	}
-	support = { 
-		engineer = { x = 0 y = 0 } artillery = { x = 0 y = 1 } anti_tank = { x = 0 y = 2 } anti_air = { x = 0 y = 3 } recon= { x = 0 y = 4 } logistics_company = { x = 0 y = 5 }
-	}
-	}
-		every_owned_state = { 
-				create_unit = {
-						division = "name = \"Republican Infantry\"  division_template = \"Republican Infantry\" start_equipment_factor = 1 start_experience_factor = 0.3"		
-						owner = DDR
-						count = 5
+			custom_effect_tooltip = pick_first_spain_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = carabineros_picked_already
+					}
 				}
-			}	
-						41 = { 
-				create_unit = {
-						division = "name = \"Republican Infantry\"  division_template = \"Republican Infantry\" start_equipment_factor = 1 start_experience_factor = 0.3"		
-						owner = DDR
-						count = 5
-				}
-			}		
-					SPR = {
-					every_owned_state = { 
-			limit = { is_core_of = SPR NOT = { OR = { state = 177 state = 290 } } }
-				create_unit = {
-						division = "name = \"División de Infanteria\"  division_template = \"División de Infanteria\" start_equipment_factor = 1 start_experience_factor = 0.2"		
-						owner = SPR
-						count = 5
+				
+				set_global_flag = carabineros_picked_already
+				
+				DDR = {					
+					# Define the template
+					division_template = {
+						name = "Carabineros"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+							infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+							infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+							infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+							infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+						}
+						support = { 
+							engineer = { x = 0 y = 0 }
+							anti_air = { x = 0 y = 1 }
+							artillery = { x = 0 y = 2 }   
+							anti_tank = { x = 0 y = 3 } 
+							recon = { x = 0 y = 4 }  
+							logistics_company = { x = 0 y = 5 } 
+						}
+					}
+					capital_scope = {
+						create_unit = {
+							owner = DDR
+							division = "name = \"Carabineros\" division_template = \"Carabineros\" start_experience_factor = 1 start_equipment_factor = 1"
+							count = 4
+						}
+					}
 				}
 			}
+			else = {
+				DDR = {					
+					# Define the template
+					division_template = {
+						name = "Carabineros"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+							infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+							infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+							infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+							infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+						}
+						support = { 
+							engineer = { x = 0 y = 0 }
+							anti_air = { x = 0 y = 1 }
+							artillery = { x = 0 y = 2 }   
+							anti_tank = { x = 0 y = 3 } 
+							recon = { x = 0 y = 4 }  
+							logistics_company = { x = 0 y = 5 } 
+						}
+					}
+					capital_scope = {
+						create_unit = {
+							owner = DDR
+							division = "name = \"Carabineros\" division_template = \"Carabineros\" start_experience_factor = 0.3 start_equipment_factor = 1"
+							count = 2
+						}
+					}
+				}
 			}
-		
 		}
+	}
+	
+	focus = {
+		id = DDR_guardia_civil
+		icon = GFX_focus_generic_commonwealth_build_infantry
+		prerequisite = { focus = DDR_winners_of_the_1936_elections }
 
+		cancel_if_invalid = yes
 		
+		cost = 4
 		
+		x = 2
+		y = 1
 		
+		relative_position_id = DDR_winners_of_the_1936_elections
+		
+		completion_reward = {
+			custom_effect_tooltip = pick_first_spain_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = guardia_civil_picked_already
+					}
+				}
+				
+				set_global_flag = guardia_civil_picked_already
+				
+				DDR = {					
+					# Define the template
+					division_template = {
+						name = "Civil Guard"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+							infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+							infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+							infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+							infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+						}
+						support = { 
+							engineer = { x = 0 y = 0 }
+							anti_air = { x = 0 y = 1 }
+							artillery = { x = 0 y = 2 }   
+							anti_tank = { x = 0 y = 3 } 
+							recon = { x = 0 y = 4 }  
+							logistics_company = { x = 0 y = 5 } 
+						}
+					}
+					capital_scope = {
+						create_unit = {
+							owner = DDR
+							division = "name = \"Civil Guard\" division_template = \"Civil Guard\" start_experience_factor = 1 start_equipment_factor = 1"
+							count = 4
+						}
+					}
+				}
+			}
+			else = {
+				DDR = {					
+					# Define the template
+					division_template = {
+						name = "Civil Guard"
+						is_locked = no
+						priority = 1
+						
+						regiments = {
+							infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+							infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+							infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+							infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+							infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+						}
+						support = { 
+							engineer = { x = 0 y = 0 }
+							anti_air = { x = 0 y = 1 }
+							artillery = { x = 0 y = 2 }   
+							anti_tank = { x = 0 y = 3 } 
+							recon = { x = 0 y = 4 }  
+							logistics_company = { x = 0 y = 5 } 
+						}
+					}
+					capital_scope = {
+						create_unit = {
+							owner = DDR
+							division = "name = \"Civil Guard\" division_template = \"Civil Guard\" start_experience_factor = 0.3 start_equipment_factor = 1"
+							count = 2
+						}
+					}
+				}
+			}
 		}
-	default = no
-	reset_on_civilwar = no
+	}
+	
+	focus = {
+		id = DDR_exile_the_disloyal_generals
+		icon = GFX_focus_generic_government_in_exile
+		prerequisite = { focus = DDR_winners_of_the_1936_elections }
+		mutually_exclusive = { focus = DDR_disperse_the_leftist_militants }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = -3
+		y = 2
+		
+		relative_position_id = DDR_winners_of_the_1936_elections
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_exile_the_disloyal_generals_tt
+			
+			set_global_flag = DDR_exile_the_disloyal_generals_active
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = DDR_disperse_the_leftist_militants
+		icon = GFX_SOV_leader_of_the_party_and_the_people_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_winners_of_the_1936_elections }
+		mutually_exclusive = { focus = DDR_exile_the_disloyal_generals }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 3
+		y = 2
+		
+		relative_position_id = DDR_winners_of_the_1936_elections
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_disperse_the_leftist_militants_tt
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_domestic_situation_tt
+			add_to_variable = { 
+				DDR_ds_war_support_factor = 0.1
+				tooltip = war_support_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_ignore_the_seizures
+		icon = GFX_SOV_inheritor_of_the_mantle_of_lenin_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_exile_the_disloyal_generals focus = DDR_disperse_the_leftist_militants }
+		mutually_exclusive = { focus = DDR_stop_illegal_land_seizures }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = DDR_exile_the_disloyal_generals
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_ignore_the_seizures_tt
+			
+			set_global_flag = DDR_ignore_the_seizures_active
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_political_power = 75
+		}
+	}
+	
+	focus = {
+		id = DDR_stop_illegal_land_seizures
+		icon = GFX_SOV_japanese_overtures_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_exile_the_disloyal_generals focus = DDR_disperse_the_leftist_militants }
+		mutually_exclusive = { focus = DDR_ignore_the_seizures }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 5
+		y = 1
+		
+		relative_position_id = DDR_exile_the_disloyal_generals
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_stop_illegal_land_seizures_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = DDR_domestic_situation_tt
+			add_to_variable = { 
+				DDR_ds_stability_factor = 0.1
+				tooltip = stability_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_arrest_primo_de_rivera
+		icon = GFX_SOV_consolidate_power_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_ignore_the_seizures focus = DDR_stop_illegal_land_seizures }
+		mutually_exclusive = { focus = DDR_let_the_falangist_be }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = DDR_ignore_the_seizures
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_arrest_primo_de_rivera_tt
+			
+			set_global_flag = DDR_arrest_primo_de_rivera_active
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+		id = DDR_let_the_falangist_be
+		icon = GFX_focus_generic_fascist_troops
+		prerequisite = { focus = DDR_ignore_the_seizures focus = DDR_stop_illegal_land_seizures }
+		mutually_exclusive = { focus = DDR_arrest_primo_de_rivera }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 4
+		y = 1
+		
+		relative_position_id = DDR_ignore_the_seizures
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_let_the_falangist_be_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = DDR_domestic_situation_tt
+			add_to_variable = { 
+				DDR_ds_war_support_factor = 0.15
+				tooltip = war_support_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_impeach_niceto_alcala_zamora
+		icon = GFX_SOV_expand_the_agitprop_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_arrest_primo_de_rivera focus = DDR_let_the_falangist_be }
+		mutually_exclusive = { focus = DDR_let_niceto_alcala_zamora_be }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = DDR_arrest_primo_de_rivera
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_impeach_niceto_alcala_zamora_tt
+			
+			set_global_flag = DDR_impeach_niceto_alcala_zamora_active
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_political_power = 125
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_country_leader_role = {
+				character = DDR_manuel_azana
+				promote_leader = yes
+				country_leader = {
+					ideology = conservatism
+					expire = "1965.1.1.1"
+					traits = { }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_let_niceto_alcala_zamora_be
+		icon = GFX_SOV_military_reorganization_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_arrest_primo_de_rivera focus = DDR_let_the_falangist_be }
+		mutually_exclusive = { focus = DDR_impeach_niceto_alcala_zamora }
+
+		cancel_if_invalid = yes
+		
+		cost = 4
+		
+		x = 4
+		y = 1
+		
+		relative_position_id = DDR_arrest_primo_de_rivera
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_let_niceto_alcala_zamora_be_tt
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_domestic_situation_tt
+			add_to_variable = { 
+				DDR_ds_stability_factor = 0.15
+				tooltip = stability_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_coup_d_etat
+		icon = GFX_focus_generic_attack_nationalist_spain_focus
+		prerequisite = { focus = DDR_impeach_niceto_alcala_zamora focus = DDR_let_niceto_alcala_zamora_be }
+		
+		available = {
+			custom_trigger_tooltip = {
+                tooltip = coup_available_tt		
+                always = no
+            }
+		}
+		
+		cancel_if_invalid = yes
+		
+		cost = 0
+		
+		x = 2
+		y = 1
+		
+		relative_position_id = DDR_impeach_niceto_alcala_zamora
+		
+		completion_reward = {
+			if = {
+				limit = {
+					has_game_rule = { 
+						rule = horst_scw 
+						option = horst_scw_on
+					} 
+				}
+				
+				#declare_war_on = { target = SPR type = annex_everything }
+				
+				hidden_effect = {
+					set_cosmetic_tag = DDR_SPR
+					
+					# SPR = {
+						# set_cosmetic_tag = SPR_fascism
+						# set_politics = {  ruling_party = neutrality  elections_allowed = no  }
+						# complete_national_focus = SPR_coup_d_etat
+					# }
+				}
+			}
+			else = {
+				custom_effect_tooltip = DDR_coup_d_etat_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_ejercito_popular_regular
+		icon = GFX_focus_generic_spur_communist_revolutions
+		prerequisite = { focus = DDR_winners_of_the_1936_elections }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 6
+		y = 1
+		
+		relative_position_id = DDR_winners_of_the_1936_elections
+		
+		completion_reward = {
+			army_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_army_and_navy_tt
+			add_to_variable = { 
+				DDR_ran_army_core_attack_factor = 0.05
+				tooltip = army_core_attack_factor_tt
+			}
+			add_to_variable = { 
+				DDR_ran_army_core_defence_factor = 0.05
+				tooltip = army_core_defence_factor_tt
+			}
+		}
+	}
+
+	focus = {
+		id = DDR_keep_the_militias_seperate
+		icon = GFX_focus_NOR_a_new_norway_Trotsky_communism
+		prerequisite = { focus = DDR_ejercito_popular_regular }
+		mutually_exclusive = { focus = DDR_merge_with_the_militias }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = -1
+		y = 1
+		
+		relative_position_id = DDR_ejercito_popular_regular
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_keep_the_militias_seperate_tt
+			
+			set_country_flag = DDR_keep_the_militias_seperate_flag
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_army_and_navy_tt
+			add_to_variable = { 
+				DDR_ran_army_core_attack_factor = 0.05
+				tooltip = army_core_attack_factor_tt
+			}
+			add_to_variable = { 
+				DDR_ran_army_core_defence_factor = 0.05
+				tooltip = army_core_defence_factor_tt
+			}
+			
+			subtract_from_variable = {
+                var = DDR_attack_buffs_cost
+                value = 15
+            }
+		}
+	}
+	
+	focus = {
+		id = DDR_merge_with_the_militias
+		icon = GFX_focus_SOV_builder_of_the_red_army
+		prerequisite = { focus = DDR_ejercito_popular_regular }
+		mutually_exclusive = { focus = DDR_keep_the_militias_seperate }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = DDR_ejercito_popular_regular
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_merge_with_the_militias_tt
+			
+			set_country_flag = DDR_merge_with_the_militias_flag
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_army_and_navy_tt
+			add_to_variable = { 
+				DDR_ran_army_core_attack_factor = 0.05
+				tooltip = army_core_attack_factor_tt
+			}
+			add_to_variable = { 
+				DDR_ran_army_core_defence_factor = 0.05
+				tooltip = army_core_defence_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_national_defence_ministry
+		icon = GFX_focus_hol_the_foundations_of_defense
+		prerequisite = { focus = DDR_merge_with_the_militias focus = DDR_keep_the_militias_seperate }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = DDR_keep_the_militias_seperate
+		
+		completion_reward = {
+			army_experience = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_army_and_navy_tt
+			add_to_variable = { 
+				DDR_ran_army_org_factor = 0.1
+				tooltip = army_org_factor_tt
+			}
+			add_to_variable = { 
+				DDR_ran_army_morale_factor = 0.1
+				tooltip = army_morale_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_assign_political_commissars
+		icon = GFX_SOV_swap_to_political_advisors_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_national_defence_ministry }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = -1
+		y = 1
+		
+		relative_position_id = DDR_national_defence_ministry
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_domestic_situation_tt
+			add_to_variable = { 
+				DDR_ds_weekly_casualties_war_support = 0.001
+				tooltip = weekly_casualties_war_support_tt
+			}
+			add_to_variable = { 
+				DDR_ds_war_support_factor = 0.1
+				tooltip = war_support_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_international_brigades
+		icon = GFX_SOV_the_fourth_international_ccp_2d_sov_compatibility
+		prerequisite = { focus = DDR_national_defence_ministry }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 0
+		y = 2
+		
+		relative_position_id = DDR_national_defence_ministry
+		
+		completion_reward = {
+			add_manpower = 100000
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_domestic_situation_tt
+			add_to_variable = { 
+				DDR_ds_weekly_manpower = 1000
+				tooltip = weekly_manpower_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_fifth_regiment
+		icon = GFX_focus_generic_join_comintern
+		prerequisite = { focus = DDR_national_defence_ministry }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = DDR_national_defence_ministry
+		
+		completion_reward = {
+			DDR = {					
+				# Define the template
+				division_template = {
+					name = "Fifth Regiment"
+					is_locked = no
+					priority = 1
+					
+					regiments = {
+						infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+						infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+						infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+						infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+						infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+					}
+					support = { 
+						engineer = { x = 0 y = 0 }
+						anti_air = { x = 0 y = 1 }
+						artillery = { x = 0 y = 2 }   
+						anti_tank = { x = 0 y = 3 } 
+						recon = { x = 0 y = 4 }  
+						logistics_company = { x = 0 y = 5 } 
+					}
+				}
+				capital_scope = {
+					create_unit = {
+						owner = DDR
+						division = "name = \"Fifth Regiment\" division_template = \"Fifth Regiment\" start_experience_factor = 0.3 start_equipment_factor = 1"
+						count = 4
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_bando_republicano
+		icon = GFX_focus_generic_befriend_republican_spain_focus
+		prerequisite = { focus = DDR_winners_of_the_1936_elections }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = -6
+		y = 1
+		
+		relative_position_id = DDR_winners_of_the_1936_elections
+		
+		completion_reward = {
+			add_political_power = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_domestic_situation_tt
+			add_to_variable = { 
+				DDR_ds_political_power_factor = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = { 
+				DDR_ds_stability_factor = 0.1
+				tooltip = stability_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_the_question_of_anarchists
+		icon = GFX_focus_spr_crush_the_revolution
+		prerequisite = { focus = DDR_bando_republicano }
+        mutually_exclusive = { focus = DDR_the_question_of_basque }
+        
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = -1
+		y = 1
+		
+		relative_position_id = DDR_bando_republicano
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_the_question_of_anarchists_tt
+		
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			615 = {
+				remove_dynamic_modifier = { modifier = DDR_anarchist_cooperation }
+			}
+			172 = {
+				remove_dynamic_modifier = { modifier = DDR_anarchist_cooperation }
+			}
+			616 = {
+				remove_dynamic_modifier = { modifier = DDR_anarchist_cooperation }
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			DDR = {					
+				# Define the template
+				division_template = {
+					name = "Radical Paramilitaries"
+					is_locked = no
+					priority = 1
+					
+					regiments = {
+						infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+						infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+						infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+						infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+						infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+					}
+					support = { 
+						engineer = { x = 0 y = 0 }
+						anti_air = { x = 0 y = 1 }
+						artillery = { x = 0 y = 2 }   
+						anti_tank = { x = 0 y = 3 } 
+						recon = { x = 0 y = 4 }  
+						logistics_company = { x = 0 y = 5 } 
+					}
+				}
+				165 = {
+					create_unit = {
+						owner = DDR
+						division = "name = \"Radical Paramilitaries\" division_template = \"Radical Paramilitaries\" start_experience_factor = 0.3 start_equipment_factor = 1"
+						count = 4
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_the_question_of_basque
+		icon = GFX_focus_spr_masters_of_our_own_fate
+		prerequisite = { focus = DDR_bando_republicano }
+        mutually_exclusive = { focus = DDR_the_question_of_anarchists }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = DDR_bando_republicano
+		
+		completion_reward = {
+			custom_effect_tooltip = DDR_the_question_of_basque_tt
+		
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			614 = {
+				remove_dynamic_modifier = { modifier = DDR_seperatist_cooperation }
+			}
+			165 = {
+				remove_dynamic_modifier = { modifier = DDR_seperatist_cooperation }
+			}
+			166 = {
+				remove_dynamic_modifier = { modifier = DDR_seperatist_cooperation }
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			DDR = {					
+				# Define the template
+				division_template = {
+					name = "Seperatist Paramilitaries"
+					is_locked = no
+					priority = 1
+					
+					regiments = {
+						infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 }	infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+						infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } 	infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+						infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+						infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+						infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+					}
+					support = { 
+						engineer = { x = 0 y = 0 }
+						anti_air = { x = 0 y = 1 }
+						artillery = { x = 0 y = 2 }   
+						anti_tank = { x = 0 y = 3 } 
+						recon = { x = 0 y = 4 }  
+						logistics_company = { x = 0 y = 5 } 
+					}
+				}
+				614 = {
+					create_unit = {
+						owner = DDR
+						division = "name = \"Seperatist Paramilitaries\" division_template = \"Seperatist Paramilitaries\" start_experience_factor = 0.3 start_equipment_factor = 1"
+						count = 8
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_may_days
+		icon = GFX_focus_spr_no_pasaran
+		prerequisite = { focus = DDR_the_question_of_anarchists focus = DDR_the_question_of_basque }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = DDR_the_question_of_anarchists
+		
+		completion_reward = {
+			add_political_power = 150
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = DDR_domestic_situation_tt
+            add_to_variable = { 
+				DDR_ds_political_power_factor = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = { 
+				DDR_ds_stability_factor = 0.1
+				tooltip = stability_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_french_support
+		icon = GFX_focus_chi_reach_out_to_france
+		prerequisite = { focus = DDR_may_days }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = -1
+		y = 1
+		
+		relative_position_id = DDR_may_days
+		
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+	
+	focus = {
+		id = DDR_construct_a_war_economy
+		icon = GFX_goal_generic_soviet_construction
+		prerequisite = { focus = DDR_may_days }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 0
+		y = 2
+		
+		relative_position_id = DDR_may_days
+		
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+	
+	focus = {
+		id = DDR_communist_support
+		icon = GFX_focus_chi_mission_to_the_soviet_union
+		prerequisite = { focus = DDR_may_days }
+
+		cancel_if_invalid = yes
+		
+		cost = 10
+		
+		x = 1
+		y = 1
+		
+		relative_position_id = DDR_may_days
+		
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+
 }
