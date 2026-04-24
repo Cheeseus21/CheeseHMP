@@ -50,6 +50,10 @@ focus_tree = {
 		
 		
 		completion_reward = {
+			add_political_power = 150
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			if = {
 				limit = {
 					has_game_rule = { 
@@ -97,6 +101,13 @@ focus_tree = {
 			}
 			else = {
 				custom_effect_tooltip = SPR_assemble_junta_de_generales_scw_off_tt
+				
+				hidden_effect = {
+					reduce_focus_completion_cost = {
+						focus = { SPR_the_law_of_political_responsibilities SPR_grant_amnesty_to_the_defeated SPR_the_patronato_de_redencion_de_penas SPR_labor_camps SPR_side_with_the_falangists SPR_side_with_the_carlists SPR_dictator_for_life SPR_adopt_the_26_points SPR_establish_cortes_espanolas SPR_autarky SPR_create_the_instituto_nacional_de_industria SPR_agricultural_self_sufficiency SPR_sindicato_vertical SPR_austerity SPR_foreign_diplomacy SPR_policy_of_non_belligerence SPR_volunteer_forces SPR_division_azul SPR_end_neutrality_towards_allies SPR_tungsten_trade SPR_seize_tangiers SPR_resurgent_spain }
+						cost = 14
+					}
+				}
 			}
 		}
 	}
@@ -1522,7 +1533,7 @@ focus_tree = {
                 add_offsite_building = { type = arms_factory level = 2 }
             }
             else = {
-                add_offsite_building = { type = industrial_complex level = 2 }
+                add_offsite_building = { type = industrial_complex level = 4 }
             }
 		}
 	}
@@ -1552,7 +1563,7 @@ focus_tree = {
                 add_offsite_building = { type = arms_factory level = 2 }
             }
             else = {
-                add_offsite_building = { type = industrial_complex level = 2 }
+                add_offsite_building = { type = industrial_complex level = 4 }
             }
 		}
 	}
@@ -1582,7 +1593,7 @@ focus_tree = {
                 add_offsite_building = { type = arms_factory level = 2 }
             }
             else = {
-                add_offsite_building = { type = industrial_complex level = 2 }
+                add_offsite_building = { type = industrial_complex level = 4 }
             }
 		}
 	}
@@ -1657,6 +1668,42 @@ focus_tree = {
                     SPR_ran_army_defence_factor = -1
                     tooltip = army_defence_factor_tt 
                 }
+				
+				custom_effect_tooltip = generic_skip_one_line_tt
+			
+				if = {
+					limit = { date < 1939.1.1 }
+					random_core_state = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = industrial_complex
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
+				if = {
+					limit = { date < 1938.1.1 }
+					random_core_state = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = industrial_complex
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
+				if = {
+					limit = { date < 1937.1.1 }
+					random_core_state = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = industrial_complex
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
 
 				hidden_effect = {
 					set_variable = { SPR_ds_surrender_limit = 0 }
@@ -1759,6 +1806,17 @@ focus_tree = {
                     SPR_ran_army_defence_factor = -1
                     tooltip = army_defence_factor_tt 
                 }
+				
+				custom_effect_tooltip = generic_skip_one_line_tt
+				
+				random_core_state = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
             }
             
             hidden_effect = {
@@ -2277,6 +2335,10 @@ focus_tree = {
 		relative_position_id = SPR_sindicato_vertical
 		
 		completion_reward = {
+			add_research_slot = 1
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			random_core_state = {
                 add_extra_state_shared_building_slots = 2
                 add_building_construction = {

@@ -78,7 +78,7 @@ NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.060       -- global damag
 NDefines.NMilitary.FUEL_CAPACITY_DEFAULT_HOURS = 0 -- 
 NDefines.NMilitary.REINFORCE_CHANCE = 0.05
 NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.30
-NDefines.NMilitary.LAND_SPEED_MODIFIER = 0.0225                  -- basic speed control
+NDefines.NMilitary.LAND_SPEED_MODIFIER = 0.0200                  -- basic speed control
 NDefines.NMilitary.RETREAT_SPEED_FACTOR = 0.35 -- vanilla 0.25 
 NDefines.NMilitary.MIN_DIVISION_BRIGADE_HEIGHT = 5
 NDefines.NMilitary.UNIT_LEADER_TRAIT_SLOT_PER_LEVEL = { 			-- num extra traits on each level
@@ -211,7 +211,7 @@ NDefines.NSupply.NAVAL_FLOW_PER_LEVEL = 10 -- vanilla 3; 12x5 =  60, same as hub
 --NDefines.NSupply.NODE_FLOW_BONUS_PER_RAIL_LEVEL = 0.34
 NDefines.NSupply.RAILWAY_BASE_FLOW = 10.0 		-- how much base flow railway gives when a node connected to its capital/a naval node by a railway -- Used to be 15
 NDefines.NSupply.RAILWAY_FLOW_PER_LEVEL = 8.0 	-- how much additional flow a railway level gives -- Used to be 6
-NDefines.NSupply.RAILWAY_CONVERSION_COOLDOWN = 5 -- railways will be put on cooldown when they are captured by enemy and will not be usable during the cooldown
+NDefines.NSupply.RAILWAY_CONVERSION_COOLDOWN = 7 -- railways will be put on cooldown when they are captured by enemy and will not be usable during the cooldown
 NDefines.NCountry.REINFORCEMENT_MANPOWER_DELIVERY_SPEED = 500.0	-- vanilla 10 Modifier for army manpower reinforcement delivery speed (travel time)
 NDefines.NCountry.REINFORCEMENT_MANPOWER_CHUNK = 1            -- vanilla 0.1 Chunk size of manpower reinforcement delivery, in % of total manpower needed by the template.
 NDefines.NCountry.EQUIPMENT_UPGRADE_CHUNK_MAX_SIZE = 100			-- vanilla 10  Maximum chunk size of equipment upgrade distribution per update.
