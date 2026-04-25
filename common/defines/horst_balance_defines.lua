@@ -79,7 +79,7 @@ NDefines.NMilitary.FUEL_CAPACITY_DEFAULT_HOURS = 0 --
 NDefines.NMilitary.REINFORCE_CHANCE = 0.05
 NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.30
 NDefines.NMilitary.LAND_SPEED_MODIFIER = 0.0200                  -- basic speed control
-NDefines.NMilitary.RETREAT_SPEED_FACTOR = 0.35 -- vanilla 0.25 
+NDefines.NMilitary.RETREAT_SPEED_FACTOR = 0.40 -- vanilla 0.25 
 NDefines.NMilitary.MIN_DIVISION_BRIGADE_HEIGHT = 5
 NDefines.NMilitary.UNIT_LEADER_TRAIT_SLOT_PER_LEVEL = { 			-- num extra traits on each level
 0.0, -- field marshal
