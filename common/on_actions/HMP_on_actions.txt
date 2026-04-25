@@ -1767,21 +1767,34 @@ on_actions = {
 	
 	on_monthly_GER = {
 		effect = { 
+		
+			# DDAY WALL BS
 			if = { 
-				limit = { NOT = { has_global_flag = festung_europa_has_fallen } ENG ={ has_completed_focus = ENG_dieppe } }
+				limit = { NOT = { has_global_flag = festung_europa_has_fallen } ENG = { has_completed_focus = ENG_dieppe } }
 				calc_festung_europa = yes
 			}
+			
+			# Compass bs
 			if = { 
-				limit = { GER= { has_war_with = ITA } }
+				limit = { GER = { has_war_with = ITA } }
 				compass_ll_calc = yes
 			}
+			
 			#var:host = { news_event = mtg_news.4778 } #awkwardly firing whenit should not
+			
+			# SOV LL calculation
 			HMP_sov_LL_monthly_effect = yes 
+			
+			# Rubber nerf buffs
 			recalc_allied_rubber = yes 
+			
+			# Range or smthn
 			if = { 
-				limit = { JAP ={ check_variable = { JAP_indies_spirit_var > -0.19 } has_war_with = ENG } }
+				limit = { JAP = { check_variable = { JAP_indies_spirit_var > -0.19 } has_war_with = ENG } }
 				JAP = { add_to_variable = { var = JAP_indies_spirit_var value = -0.02 } }
 			}
+			
+			# Japan cap LL Help
 			if = { 
 				limit = { has_global_flag = JAPAN_CAPPED_SUPPORT_SOV }
 				SOV = { 
@@ -1789,6 +1802,8 @@ on_actions = {
 					add_to_variable = { var = SOV_barb_ll_token2 value = 30 } 
 				}
 			}
+			
+			# Endsieg Output calculation code
 			if = { 
 				limit = { 
 					date > 1942.6.22 
@@ -1799,6 +1814,8 @@ on_actions = {
 				}
 				GER = { endsieg_production_buff_calc = yes  }
 			}
+			
+			# Endsieg WS calculation code
 			if = { 
 				limit = { GER = { has_completed_focus = GER_totaler_krieg } }
 				GER = { add_to_variable = { germany_war_exhaustion_war_support_factor = -0.035  } }
