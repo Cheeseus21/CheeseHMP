@@ -79,7 +79,7 @@ focus_tree = {
 					
 					reduce_focus_completion_cost = {
 						focus = { SPR_the_generalisimo SPR_keep_the_paramilitaries SPR_decree_of_unification SPR_army_of_africa SPR_propaganda_campaigns SPR_expand_the_regulares SPR_expand_the_spanish_foreign_legion SPR_the_caudillo SPR_declare_a_holy_crusade SPR_seperation_of_religion_and_state SPR_the_white_terror SPR_aid_from_italy SPR_aid_from_germany SPR_return_the_lands_to_latifundistas SPR_the_law_of_political_responsibilities SPR_grant_amnesty_to_the_defeated SPR_the_patronato_de_redencion_de_penas SPR_labor_camps SPR_side_with_the_falangists SPR_side_with_the_carlists SPR_dictator_for_life SPR_adopt_the_26_points SPR_establish_cortes_espanolas SPR_autarky SPR_create_the_instituto_nacional_de_industria SPR_agricultural_self_sufficiency SPR_sindicato_vertical SPR_austerity SPR_foreign_diplomacy SPR_policy_of_non_belligerence SPR_volunteer_forces SPR_division_azul SPR_end_neutrality_towards_allies SPR_tungsten_trade SPR_seize_tangiers SPR_resurgent_spain }
-						cost = 35
+						cost = 21
 					}
 					
 					every_state = {
@@ -705,12 +705,15 @@ focus_tree = {
 				hidden_effect = {
 					set_cosmetic_tag = SPR_fascism
 					
-					set_politics = {  ruling_party = neutrality  elections_allowed = no  }
+					set_politics = {  ruling_party = fascism  elections_allowed = no  }
 					
 					DDR = {
 						set_cosmetic_tag = DDR_SPR
 						complete_national_focus = DDR_coup_d_etat
 					}
+					
+					add_stability = 0.5
+					add_war_support = 0.5
 				}
 			}
 			
@@ -1661,42 +1664,6 @@ focus_tree = {
                     SPR_ran_army_defence_factor = -1
                     tooltip = army_defence_factor_tt 
                 }
-				
-				custom_effect_tooltip = generic_skip_one_line_tt
-			
-				if = {
-					limit = { date < 1939.1.1 }
-					random_core_state = {
-						add_extra_state_shared_building_slots = 2
-						add_building_construction = {
-							type = industrial_complex
-							level = 2
-							instant_build = yes
-						}
-					}
-				}
-				if = {
-					limit = { date < 1938.1.1 }
-					random_core_state = {
-						add_extra_state_shared_building_slots = 2
-						add_building_construction = {
-							type = industrial_complex
-							level = 2
-							instant_build = yes
-						}
-					}
-				}
-				if = {
-					limit = { date < 1937.1.1 }
-					random_core_state = {
-						add_extra_state_shared_building_slots = 2
-						add_building_construction = {
-							type = industrial_complex
-							level = 2
-							instant_build = yes
-						}
-					}
-				}
 
 				hidden_effect = {
 					set_variable = { SPR_ds_surrender_limit = 0 }
@@ -1799,17 +1766,6 @@ focus_tree = {
                     SPR_ran_army_defence_factor = -1
                     tooltip = army_defence_factor_tt 
                 }
-				
-				custom_effect_tooltip = generic_skip_one_line_tt
-				
-				random_core_state = {
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = industrial_complex
-						level = 2
-						instant_build = yes
-					}
-				}
             }
             
             hidden_effect = {

@@ -1,7 +1,40 @@
 ideas = {
 	
 	country = {
-			BUL_government_reforms_fascists_01 = {
+		BUL_agricultural_exports_idea = {
+			allowed = {
+				always = no
+			}
+			
+			available = { date < 1939.9.1 }
+
+			removal_cost = -1
+
+			picture = GER_barbarossa_idea_2
+			
+			modifier = {
+				consumer_goods_expected_value = -0.1
+			}
+		}	
+		
+		BUL_economic_colony_of_germany_idea = {
+			allowed = {
+				always = no
+			}
+			
+			available = { date < 1939.9.1 }
+
+			removal_cost = -1
+
+			picture = GER_barbarossa_idea_2
+			
+			modifier = {
+				production_factory_start_efficiency_factor = 0.2
+				line_change_production_efficiency_factor = 0.2
+			}
+		}	
+		
+		BUL_government_reforms_fascists_01 = {
 			name = BUL_government_reforms_communists_01
 
 			picture = generic_political_support
@@ -891,18 +924,12 @@ ideas = {
 			}
 		
 			removal_cost = -1
-			
-			modifier = {
-				production_factory_max_efficiency_factor = 0.1
-				industrial_capacity_factory = 0.1
-				industrial_capacity_dockyard = 0.1
-			}
 
-			#targeted_modifier = {
-			#	tag = SOV
-			#	attack_bonus_against = 0.025
-			#	defense_bonus_against = 0.025
-			#}
+			targeted_modifier = {
+				tag = SOV
+				attack_bonus_against = 0.1
+				defense_bonus_against = 0.1
+			}
 		}
 
 		BUL_ferdinands_puppet = {
@@ -1189,7 +1216,7 @@ ideas = {
 			visible = { has_dlc = "Battle for the Bosporus" }
 
 			available = {
-				has_completed_focus = BUL_darzhavna_voenna_fabrika
+				always = no
 			}
 			
 			research_bonus = {
@@ -1213,7 +1240,7 @@ ideas = {
 			}
 
 			available = {
-				  has_completed_focus = BUL_found_dvf_sopot 
+				always = no
 			}
 
 			research_bonus = {
@@ -1285,9 +1312,9 @@ ideas = {
 				electronics = 0.15
 			}
 			
-			modifier = {
-				research_speed_factor = 0.1
-			}
+			#modifier = {
+			#	research_speed_factor = 0.1
+			#}
 			
 			traits = { electronics_concern }
 		}
@@ -1308,11 +1335,11 @@ ideas = {
 				industry = 0.15
 			}
 			
-			modifier = {
-				#production_speed_buildings_factor = 0.05
-				production_factory_efficiency_gain_factor = 0.05
-				production_factory_start_efficiency_factor = 0.05
-			}
+			#modifier = {
+			#	#production_speed_buildings_factor = 0.05
+			#	production_factory_efficiency_gain_factor = 0.05
+			#	production_factory_start_efficiency_factor = 0.05
+			#}
 			
 			traits = { industrial_concern }
 		}		

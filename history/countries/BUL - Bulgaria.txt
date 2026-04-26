@@ -1,10 +1,29 @@
 ﻿capital = 48
 oob = "BUL_1936"
 set_naval_oob = "BUL_1936_naval_mtg"
+
+anti_cross_faction_trade_allies = yes
+add_to_tech_sharing_group = axis_research 
+create_intelligence_agency = yes 
+
+set_fuel_ratio = 1
 set_variable = {
     var = min_fuel
     value = 0.800
 }
+
+add_ideas = {
+	limited_conscription
+	armyandnavy_idea
+}
+
+add_timed_idea = { idea = NO_TRADE days = 1339 }
+
+add_relation_modifier = {
+    target = GER
+    modifier = stahlpakt
+} 
+
 recruit_character = BUL_nikola_zhekov
 recruit_character = BUL_boris_iii
 recruit_character = BUL_petar_gabrovski
@@ -72,38 +91,102 @@ recruit_character = BUL_compassionate_gentlemen
 #recruit_character = BUL_gotthard_heinrici
 #recruit_character = BUL_friedrich_schulz
 recruit_character = BUL_regency_council
+
 # Navy Leaders
 recruit_character = BUL_marijan_polic
 recruit_character = BUL_miguel_buiza_fernandez_palacios
 recruit_character = BUL_luis_carrero_blanco
 recruit_character = BUL_horia_macellariu
 recruit_character = BUL_atanas_shalapatov
-		create_operative_leader = { #DLC
-			name = "Vladimir Zaimov"
-			GFX = GFX_portrait_bul_vladimir_zaimov
-			traits = { operative_infiltrator operative_commando }
-			bypass_recruitment = no
-			available_to_spy_master = yes
-			nationalities = { BUL }
-		}
-add_ideas = {
-	limited_conscription
-	BUL_bulgarian_tsardom
-	BUL_imro
-	armyandnavy_idea
-	BUL_second_national_catastrophe
+
+create_operative_leader = { #DLC
+	name = "Vladimir Zaimov"
+	GFX = GFX_portrait_bul_vladimir_zaimov
+	traits = { operative_infiltrator operative_commando }
+	bypass_recruitment = no
+	available_to_spy_master = yes
+	nationalities = { BUL }
 }
-add_timed_idea = { idea = NO_TRADE days = 1339 }
-set_fuel_ratio = 1
 
-add_relation_modifier = {
-    target = GER
-    modifier = stahlpakt
-} 
-anti_cross_faction_trade_allies = yes
+####################################################################
+add_dynamic_modifier = { modifier = BUL_domestic_situation }
 
-add_to_tech_sharing_group = axis_research 
-create_intelligence_agency = yes 
+set_variable = { BUL_ds_surrender_limit = 0 }
+set_variable = { BUL_ds_weekly_casualties_war_support = 0 }
+set_variable = { BUL_ds_weekly_manpower = 0 }
+set_variable = { BUL_ds_political_power_gain = 0 }
+set_variable = { BUL_ds_political_power_factor = 0 }
+set_variable = { BUL_ds_political_advisor_cost_factor = 0 }
+set_variable = { BUL_ds_economy_cost_factor = 0 }
+set_variable = { BUL_ds_trade_laws_cost_factor = 0 }
+set_variable = { BUL_ds_mobilization_laws_cost_factor = 0 }
+set_variable = { BUL_ds_high_command_cost_factor = 0 }
+set_variable = { BUL_ds_war_support_factor = -0.15 }
+set_variable = { BUL_ds_stability_factor = -0.15 }
+set_variable = { BUL_ds_research_speed_factor = 0 }
+set_variable = { BUL_ds_industrial_capacity_factory = -0.1 }
+set_variable = { BUL_ds_industrial_capacity_dockyard = -0.1 }
+set_variable = { BUL_ds_production_factory_start_efficiency_factor = 0 }
+set_variable = { BUL_ds_production_factory_max_efficiency_factor = 0 }
+set_variable = { BUL_ds_production_factory_efficiency_gain_factor = 0 }
+set_variable = { BUL_ds_production_lack_of_resource_penalty_factor = 0 }
+set_variable = { BUL_ds_line_change_production_efficiency_factor = 0 }
+set_variable = { BUL_ds_conversion_cost_civ_to_mil_factor = 0 }
+set_variable = { BUL_ds_conversion_cost_mil_to_civ_factor = 0 }
+set_variable = { BUL_ds_local_building_slots = 0 }
+set_variable = { BUL_ds_global_building_slots_factor = 0 }
+set_variable = { BUL_ds_equipment_conversion_speed = 0 }
+set_variable = { BUL_ds_industry_repair_factor = 0 }
+set_variable = { BUL_ds_industry_free_repair_factor = 0 }
+set_variable = { BUL_ds_industry_air_damage_factor = 0 }
+set_variable = { BUL_ds_consumer_goods_expected_value = 0 }
+set_variable = { BUL_ds_production_speed_buildings_factor = -0.1 }
+set_variable = { BUL_ds_production_speed_infrastructure_factor = 0 }
+set_variable = { BUL_ds_production_speed_industrial_complex_factor = 0 }
+set_variable = { BUL_ds_production_speed_arms_factory_factor = 0 }
+set_variable = { BUL_ds_production_speed_dockyard_factor = 0 }
+set_variable = { BUL_ds_non_core_manpower = 0 }
+set_variable = { BUL_ds_local_resources_factor = 0 }
+####################################################################
+add_dynamic_modifier = { modifier = BUL_army_and_navy }
+set_variable = { BUL_ran_conscription = 0 }
+set_variable = { BUL_ran_conscription_factor = -0.15 }
+
+set_variable = { BUL_ran_experience_gain_army_factor = 0 }
+set_variable = { BUL_ran_army_infantry_attack_factor = 0 }
+set_variable = { BUL_ran_army_infantry_defence_factor = 0 }
+set_variable = { BUL_ran_army_artillery_attack_factor = 0 }
+set_variable = { BUL_ran_army_artillery_defence_factor = 0 }
+set_variable = { BUL_ran_army_armor_attack_factor = 0 }
+set_variable = { BUL_ran_army_armor_defence_factor = 0 }
+set_variable = { BUL_ran_army_core_attack_factor = 0 }
+set_variable = { BUL_ran_army_core_defence_factor = 0 }
+set_variable = { BUL_ran_army_attack_factor = 0 }
+set_variable = { BUL_ran_army_defence_factor = 0 }
+set_variable = { BUL_ran_equipment_capture_factor = 0 }
+
+set_variable = { var = BUL_ran_army_org_factor value = 0 }
+set_variable = { var = BUL_ran_army_morale_factor value = 0 }
+set_variable = { var = BUL_ran_breakthrough_factor value = 0 }
+	
+set_variable = { var = BUL_ran_army_attack_speed_factor value = 0 }
+set_variable = { var = BUL_ran_army_speed_factor value = 0 }
+	
+set_variable = { var = BUL_ran_max_dig_in_factor value = 0 }
+set_variable = { var = BUL_ran_max_dig_in value = 0 }
+set_variable = { var = BUL_ran_dig_in_speed_factor value = 0 }
+	
+set_variable = { var = BUL_ran_land_bunker_effectiveness_factor value = 0 }
+set_variable = { var = BUL_ran_bunker_max_level_terrain_limit value = 0 }
+set_variable = { var = BUL_ran_coastal_bunker_max_level_terrain_limit value = 0 }
+	
+set_variable = { var = BUL_ran_max_planning value = 0 }
+set_variable = { var = BUL_ran_planning_speed value = 0 }
+
+set_variable = { var = BUL_ran_org_loss_when_moving value = 0 }
+
+set_variable = { var = BUL_ran_air_mission_efficiency value = 0 }
+####################################################################
  
 # Starting tech
 set_technology = {
