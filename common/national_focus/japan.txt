@@ -852,14 +852,6 @@ focus_tree = {
 
 		cost = 5
 
-		available = {
-			has_war_with_major = yes
-		}
-
-		bypass = {
-
-		}
-
 		cancel_if_invalid = no
 		continue_if_invalid = yes
 		available_if_capitulated = no
@@ -903,14 +895,6 @@ focus_tree = {
 
 		cost = 5
 
-		available = {
-			has_war_with_major = yes
-		}
-
-		bypass = {
-
-		}
-
 		cancel_if_invalid = no
 		continue_if_invalid = yes
 		available_if_capitulated = no
@@ -953,14 +937,6 @@ focus_tree = {
 		prerequisite = { focus = JAP_ichioku_isshin }
 
 		cost = 5
-
-		available = {
-			has_war_with_major = yes
-		}
-
-		bypass = {
-
-		}
 
 		cancel_if_invalid = no
 		continue_if_invalid = yes
@@ -3249,6 +3225,7 @@ focus_tree = {
 				bonus = 1
 				uses = 2
 				category = concentrated_industry_category
+				category = dispersed_industry_category
 			}
 
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -4766,30 +4743,14 @@ focus_tree = {
 	focus = {
 		id = JAP_army_weapons_administration_headquarters
 		icon = GFX_focus_JAP_army_weapons_administration_hq
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_instill_the_spirit_of_bushido }
 
-		relative_position_id = JAP_instill_the_spirit_of_bushido
 		x = 0
 		y = 1
+		
+		relative_position_id = JAP_instill_the_spirit_of_bushido
 
 		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available = {
-			has_war_with_major = yes
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -4820,11 +4781,6 @@ focus_tree = {
 	focus = {
 		id = JAP_divert_naval_guns_to_the_army
 		icon = GFX_focus_generic_railway_gun
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_army_weapons_administration_headquarters }
 
 		relative_position_id = JAP_army_weapons_administration_headquarters
@@ -4832,21 +4788,6 @@ focus_tree = {
 		y = 1
 
 		cost = 5
-
-		allow_branch = {
-			has_dlc = "No Step Back"
-		}
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available = {
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = no
 		continue_if_invalid = yes
@@ -4881,11 +4822,6 @@ focus_tree = {
 	focus = {
 		id = JAP_pivot_towards_defensive_measures
 		icon = GFX_goal_generic_defence
-		
-		#mutually_exclusive = {
-		#	focus = JAP_strenghten_the_supply_lines
-		#}
-
 		prerequisite = { focus = JAP_army_weapons_administration_headquarters }
 
 		relative_position_id = JAP_army_weapons_administration_headquarters
@@ -4894,16 +4830,7 @@ focus_tree = {
 		y = 2
 
 		cost = 5
-
-
-		available = {
-			has_war_with_major = yes
-		}
-
-		bypass = {
-			
-		}
-
+		
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
@@ -4924,31 +4851,15 @@ focus_tree = {
 	focus = {
 		id = JAP_strenghten_the_supply_lines
 		icon = GFX_focus_generic_supply_line
-		
-		#mutually_exclusive = {
-		#	focus = JAP_pivot_towards_defensive_measures
-		#}
-
 		prerequisite = { focus = JAP_army_weapons_administration_headquarters  }
 
 		relative_position_id = JAP_army_weapons_administration_headquarters
+		
 		x = 1
 		y = 2
 
 		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available = {
-			has_war_with_major = yes
-		}
-
-		bypass = {
-			
-		}
-
+		
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
@@ -5186,7 +5097,16 @@ focus_tree = {
 		completion_reward = {
 
 			air_experience = 25
-
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_tech_bonus = {
+				name = GER_aeronautical_research_institute
+				bonus = 0.5
+				uses = 2
+				category = air_equipment
+			}
+            
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			add_ace = {
@@ -5341,11 +5261,6 @@ focus_tree = {
 	focus = {
 		id = JAP_adopt_new_air_doctrine
 		icon = GFX_goal_generic_air_doctrine
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_sea_long_operational_range focus = JAP_sea_sturdy_aircraft }
 
 		relative_position_id = JAP_sea_long_operational_range
@@ -5354,15 +5269,6 @@ focus_tree = {
 		y = 1
 
 		cost = 5
-
-
-		available = {
-			has_war_with_major = yes
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -5394,11 +5300,6 @@ focus_tree = {
 	focus = {
 		id = JAP_sea_unify_the_air_forces
 		icon = GFX_focus_JAP_unify_the_air_forces
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_adopt_new_air_doctrine }
 
 		relative_position_id = JAP_adopt_new_air_doctrine
@@ -5406,13 +5307,6 @@ focus_tree = {
 		y = 1
 
 		cost = 5
-
-		available = {
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -5461,11 +5355,6 @@ focus_tree = {
 	focus = {
 		id = JAP_improved_radio_communications
 		icon = GFX_focus_generic_radio_communication
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_sea_unify_the_air_forces }
 
 		relative_position_id = JAP_sea_unify_the_air_forces
@@ -5473,18 +5362,6 @@ focus_tree = {
 		y = 1
 
 		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available = {
-			has_tech = improved_radio
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -5509,11 +5386,6 @@ focus_tree = {
 	focus = {
 		id = JAP_sea_jet_prototypes
 		icon = GFX_focus_JAP_jet_prototypes
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_sea_unify_the_air_forces }
 
 		relative_position_id = JAP_sea_unify_the_air_forces
@@ -5521,14 +5393,6 @@ focus_tree = {
 		y = 1
 
 		cost = 5
-
-		available = {
-			
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -5560,11 +5424,6 @@ focus_tree = {
 	focus = {
 		id = JAP_expand_hiratsuka_navy_arsenal
 		icon = GFX_goal_generic_construct_naval_dockyard
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_the_imperial_defense_plan }
 
 		relative_position_id = JAP_the_imperial_defense_plan
@@ -5572,18 +5431,6 @@ focus_tree = {
 		y = 1
 
 		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available = {
-			
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -5630,11 +5477,6 @@ focus_tree = {
 	focus = {
 		id = JAP_expand_navy_technical_department
 		icon = GFX_focus_JAP_expand_navy_technical_department
-		
-		#mutually_exclusive = {
-		#	focus = 
-		#}
-
 		prerequisite = { focus = JAP_expand_hiratsuka_navy_arsenal }
 
 		relative_position_id = JAP_expand_hiratsuka_navy_arsenal
@@ -5643,14 +5485,6 @@ focus_tree = {
 		y = 1
 
 		cost = 5
-
-		available = {
-			
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -6192,14 +6026,6 @@ focus_tree = {
 
 		cost = 5
 
-		available = {
-			#has_war_with_major = yes
-		}
-
-		bypass = {
-			
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
@@ -6231,14 +6057,6 @@ focus_tree = {
 		y = 2
 
 		cost = 5
-
-		available = {
-			#has_war_with_major = yes
-		}
-
-		bypass = {
-			
-		}
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no

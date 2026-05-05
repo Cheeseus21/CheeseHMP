@@ -55,6 +55,10 @@ focus_tree = {
 		id = BUL_expand_sofia_university_horst
 		icon = GFX_focus_research
 		prerequisite = { focus = BUL_heavily_agrarian_society }
+		
+		available = {
+			num_of_factories > 50
+		}
 
 		x = 0
 		y = 1
@@ -302,7 +306,7 @@ focus_tree = {
         
 		relative_position_id = BUL_expand_parnik_coal_basin
 		
-		cost = 5
+		cost = 10
 
 		completion_reward = {
             random_core_state = {
@@ -580,7 +584,7 @@ focus_tree = {
         
 		relative_position_id = BUL_agricultural_exports
 		
-		cost = 5
+		cost = 10
 
 		completion_reward = {
 			custom_effect_tooltip = BUL_economic_colony_of_germany_tt
@@ -2314,7 +2318,9 @@ focus_tree = {
         icon = GFX_goal_generic_attack_allies
         prerequisite = { focus = BUL_join_the_tripartite_pact }
         
-         available = { NOT = { GER = { has_decision = GER_fall_blau_op } } }
+        available = { 
+			GER = { has_decision = GER_fall_blau_op }
+		}
 
         x = 1
         y = 1
