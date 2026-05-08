@@ -10239,14 +10239,17 @@ propaganda_effortsx = {
             }
 			
             available = {
-				custom_trigger_tooltip = {
-					tooltip = ALLIES_form_seac_tt
-					count_triggers = {
-						amount = 2
-						RAJ = { is_ai = yes country_exists = HUN }
-						HOL = { is_ai = yes country_exists = ROM }
-						AST = { is_ai = yes country_exists = BUL }
+				OR = {
+					custom_trigger_tooltip = {
+						tooltip = ALLIES_form_seac_tt
+						count_triggers = {
+							amount = 2
+							RAJ = { is_ai = yes country_exists = HUN }
+							HOL = { is_ai = yes country_exists = ROM }
+							AST = { is_ai = yes country_exists = BUL }
+						}
 					}
+					has_country_flag = annex_manual_override
 				}
             }
 
@@ -10273,8 +10276,9 @@ propaganda_effortsx = {
 
                 if = {
 					limit = {
-						RAJ = { 
-							is_ai = yes
+						OR = {
+							RAJ = { is_ai = yes }
+							has_country_flag = annex_manual_override
 						}
 					}
 					annex_country = {
@@ -10285,8 +10289,9 @@ propaganda_effortsx = {
 				
 				if = {
 					limit = {
-						AST = { 
-							is_ai = yes
+						OR = {
+							AST = { is_ai = yes }
+							has_country_flag = annex_manual_override
 						}
 					}
 					annex_country = {
@@ -10297,9 +10302,7 @@ propaganda_effortsx = {
 				
 				if = {
 					limit = {
-						HOL = { 
-							is_ai = yes
-						}
+						HOL = { is_ai = yes }
 					}
 					transfer_state = 581
 					transfer_state = 321
@@ -10318,36 +10321,52 @@ propaganda_effortsx = {
                     
                     set_global_flag = seac_formed
 					
-					every_state = {
-						limit = { 
-							OR = {
-								is_core_of = RAJ 
-								is_core_of = AST 
+					if = {
+						limit = { original_tag = AST }
+						every_state = {
+							limit = { is_core_of = RAJ }
+							add_building_construction = {
+								type = infrastructure
+								level = 1
+								instant_build = yes
 							}
 						}
-						add_core_of = ROOT
+						429 = {
+							add_resource = {
+								type = steel
+								amount = 24
+							}
+						}
+						432 = {
+							add_resource = {
+								type = oil
+								amount = 24
+							}
+						}
+						add_manpower = 1000000
 					}
-					
-					# every_state = {
-						# limit = {
-							# OR = {
-                                # state = 581
-                                # state = 321
-                                # state = 335
-                                # state = 334
-                                # state = 342
-                                # state = 575
-                                # state = 562
-                                # state = 516
-                                # state = 322
-                                # state = 317
-                            # }
-						# }
-						# add_core_of = ROOT
-					# }
-                    
-                    remove_ideas = protected_by_papua
 
+					if = {
+						limit = { original_tag = RAJ }
+						every_state = {
+							limit = { 
+								is_core_of = AST
+								is_core_of = NZL
+							}
+							add_core_of = ROOT
+							add_building_construction = {
+								type = infrastructure
+								level = 1
+								instant_build = yes
+							}
+						}
+						add_tech_bonus = {
+							name = AST_royal_australian_artillery
+							bonus = 0.51
+							uses = 5
+							category = cat_anti_tank
+						}
+					}
                 }
             }
         }
