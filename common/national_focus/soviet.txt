@@ -562,12 +562,27 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH}
 
 		completion_reward = {
-            add_tech_bonus = {
-				name = SOV_third_five_year_plan_default
-				bonus = 1.01
-				uses = 2
-				category = construction_tech
+            every_state = {
+				limit = { 	
+					OR = { 
+						state = 247
+						state = 254 
+					} 	
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
 			}
+            
+            # add_tech_bonus = {
+				# name = SOV_third_five_year_plan_default
+				# bonus = 1.01
+				# uses = 2
+				# category = construction_tech
+			# }
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -619,9 +634,19 @@ focus_tree = {
 			add_tech_bonus = {
 				name = SOV_third_five_year_plan_default
 				bonus = 1
-				uses = 4
-				category = industry
+				uses = 3
+				category = concentrated_industry_category
+				category = dispersed_industry_category
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+            
+            custom_effect_tooltip = SOV_domestic_situation_tt	
+			add_to_variable = {
+                var = SOV_ds_production_factory_max_efficiency_factor
+                value = 0.1
+                tooltip = production_factory_max_efficiency_factor_tt
+            }
 		}
 	}
 
@@ -708,11 +733,6 @@ focus_tree = {
             
 			custom_effect_tooltip = SOV_domestic_situation_tt	
             add_to_variable = {
-                var = SOV_ds_production_factory_max_efficiency_factor
-                value = 0.1
-                tooltip = production_factory_max_efficiency_factor_tt
-            }
-            add_to_variable = {
                 var = SOV_ds_industrial_capacity_factory
                 value = 0.15
                 tooltip = industrial_capacity_factory_tt
@@ -755,6 +775,16 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_tech_bonus = {
+				name = SOV_third_five_year_plan_default
+				bonus = 1
+				uses = 3
+				category = cat_production
+			}
+			
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -1051,7 +1081,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_finish_the_five_year_plan
 		
-		cost = 5
+		cost = 10
 		
 		available = { 
 		}
@@ -1092,7 +1122,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_national_specialists
 		
-		cost = 5
+		cost = 10
 
 		mutually_exclusive = { focus = SOV_national_specialists }
 
@@ -1864,7 +1894,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_strengthen_the_mobilization_plan
 		
-		cost = 5
+		cost = 2
         
         available = {
             has_war_with = GER
@@ -1927,7 +1957,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_strengthen_the_mobilization_plan
 		
-		cost = 5
+		cost = 2
 
 		available = {
             has_war_with = GER
@@ -2048,7 +2078,7 @@ focus_tree = {
         }
 		
 		completion_reward = {
-            custom_effect_tooltip = "This focus will unlock decisions that will allow you to get max entrenchment in any of the core states."
+            custom_effect_tooltip = "This focus will unlock decisions that will allow you to get 10% division defense in any of the victory points."
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -2133,7 +2163,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_desperate_measures
 		
-		cost = 5
+		cost = 2
 
 		available = {
             has_war_with = GER
@@ -2154,7 +2184,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_desperate_measures
 		
-		cost = 5
+		cost = 2
 
 		available = {
             has_war_with = GER
@@ -2287,7 +2317,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_defense_of_leningrad
 		
-		cost = 10
+		cost = 15
 		
 		available = {
             has_war_with = GER
@@ -3173,7 +3203,7 @@ focus_tree = {
             custom_effect_tooltip = SOV_domestic_situation_tt	
             add_to_variable = {
                 var = SOV_ds_surrender_limit
-                value = 0.1
+                value = 0.05
                 tooltip = surrender_limit_tt
             }
             add_to_variable = {
