@@ -41,8 +41,8 @@
         }
         
         SOV_guerilla_tactics = {
-            priority = 102
             icon = GFX_decision_generic_military
+            priority = 102
 
             allowed = { 
                 original_tag = SOV
@@ -57,7 +57,7 @@
 
             fire_only_once = yes
             
-            cost = 25
+            cost = 50
             
             days_remove = 120
 
@@ -73,8 +73,8 @@
         }
         
         SOV_order_227_decision = {
-            priority = 101
             icon = GFX_decision_generic_military
+            priority = 101
 
             allowed = { 
                 original_tag = SOV
@@ -92,13 +92,13 @@
 
             fire_only_once = yes
             
-            cost = 25
+            cost = 50
             
             days_remove = 90
 
             modifier = {
                 army_defence_factor = 0.1
-                army_strength_factor = -0.1
+                army_strength_factor = -0.05
             }
 
             complete_effect = {
@@ -107,8 +107,8 @@
         }
         
         SOV_order_270_decision = {
-            priority = 100
             icon = GFX_decision_generic_military
+            priority = 100
 
             allowed = { 
                 original_tag = SOV
@@ -126,13 +126,13 @@
 
             fire_only_once = yes
             
-            cost = 25
+            cost = 50
             
             days_remove = 90
 
             modifier = {
                 army_defence_factor = 0.1
-                army_strength_factor = -0.2
+                army_strength_factor = -0.1
             }
 
             complete_effect = {
@@ -142,9 +142,16 @@
         
         SOV_second_fyp_cash_in_dual_purpose = {
             icon = generic_construct_military
-            cost = 0
+
+            cost = 100
+            
+            fire_only_once = yes
             
             allowed = { tag = SOV }
+            
+            available = {
+                date > 1941.6.20 
+            }
             
             visible = {
                 has_global_flag = SOV_second_fyp_construction_of_dual_purpose_factories_global_flag
@@ -771,7 +778,10 @@
     
 		SOV_second_fyp_expansion_of_light_industry = {
 			icon = generic_decision
-			cost = 150
+            
+			cost = 100
+            
+            fire_only_once = yes
 			
 			allowed = {
                 tag = SOV
@@ -805,7 +815,10 @@
 
 		SOV_second_fyp_designating_industrial_zones = {
 			icon = generic_decision
-			cost = 150
+            
+			cost = 100
+            
+            fire_only_once = yes
 			
 			allowed = {
                 tag = SOV
@@ -825,7 +838,7 @@
 				custom_effect_tooltip = SOV_domestic_situation_tt	
 				add_to_variable = {
 					var = SOV_ds_global_building_slots_factor
-					value = 0.5
+					value = 1
 					tooltip = global_building_slots_factor_tt
 				}
                 
@@ -839,7 +852,10 @@
 		
 		SOV_second_fyp_sciences_and_engineering = {
 			icon = generic_decision
-			cost = 150
+            
+			cost = 100
+            
+            fire_only_once = yes
 			
 			allowed = {
                 tag = SOV
@@ -868,7 +884,10 @@
 		
 		SOV_second_fyp_quality_efficiency_and_technical_mastery = {
 			icon = generic_decision
-			cost = 150
+            
+			cost = 100
+            
+            fire_only_once = yes
 			
 			allowed = {
                 tag = SOV
@@ -902,7 +921,10 @@
         
 		SOV_second_fyp_construction_of_dual_purpose_factories = {
             icon = generic_decision
-            cost = 150
+            
+            cost = 100
+            
+            fire_only_once = yes
             
             allowed = {
                 tag = SOV
@@ -933,7 +955,10 @@
 		
 		SOV_second_fyp_increased_defense_budget = {
 			icon = generic_decision
-			cost = 150
+            
+			cost = 100
+            
+            fire_only_once = yes
 			
 			allowed = {
                 tag = SOV
@@ -8710,7 +8735,14 @@ propaganda_effortsx = {
 		
 		visible = { 
 			#date > 1939.8.31
-			NOT = { has_country_flag = winter_war_flag }
+            OR = {
+				NOT = { original_tag = SOV }
+				date > 1941.6.20
+			}
+            OR = {
+				NOT = { original_tag = MON }
+				date > 1941.6.20
+			}
 		}
 		
 		fire_only_once = no
@@ -19080,9 +19112,14 @@ operations = {
 				}
 				
 				SOV = { 
+                    add_ideas = armyandnavy_idea
 					white_peace = {
 						tag = FIN 
 					} 
+				}
+                
+                FIN = { 
+                    add_ideas = armyandnavy_idea
 				}
 				
 				SOV = { country_event = { id = finland.8 days = 1 } }
@@ -19199,9 +19236,14 @@ operations = {
 				}
 				
 				SOV = { 
+                    add_ideas = armyandnavy_idea
 					white_peace = {
 						tag = FIN 
 					} 
+				}
+                
+                FIN = { 
+                    add_ideas = armyandnavy_idea
 				}
 
 				SOV = { country_event = { id = finland.8 days = 1 } }
@@ -19322,9 +19364,14 @@ operations = {
 				}
 				
 				SOV = { 
+                    add_ideas = armyandnavy_idea
 					white_peace = {
 						tag = FIN 
 					} 
+				}
+                
+                FIN = { 
+                    add_ideas = armyandnavy_idea
 				}
 				
 				SOV = { country_event = { id = finland.8 days = 1 } }
@@ -19366,10 +19413,15 @@ operations = {
 			}
 			
 			SOV = { 
-				white_peace = {
-					tag = FIN 
-				} 
-			}
+                add_ideas = armyandnavy_idea
+                white_peace = {
+                    tag = FIN 
+                } 
+            }
+            
+            FIN = { 
+                add_ideas = armyandnavy_idea
+            }
 			
 			hidden_effect = {
 				SOV = { country_event = { id = finland.8 days = 1 } }
@@ -19487,9 +19539,14 @@ operations = {
 				}
 				
 				SOV = { 
+                    add_ideas = armyandnavy_idea
 					white_peace = {
 						tag = FIN 
 					} 
+				}
+                
+                FIN = { 
+                    add_ideas = armyandnavy_idea
 				}
 
 				SOV = { country_event = { id = finland.8 days = 1 } }
@@ -19530,10 +19587,15 @@ operations = {
 			}
 				
 			SOV = { 
-				white_peace = {
-					tag = FIN 
-				} 
-			}
+                add_ideas = armyandnavy_idea
+                white_peace = {
+                    tag = FIN 
+                } 
+            }
+            
+            FIN = { 
+                add_ideas = armyandnavy_idea
+            }
 			
 			hidden_effect = {
 				SOV = { country_event = { id = finland.8 days = 1 } }

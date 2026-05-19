@@ -307,6 +307,14 @@ focus_tree = {
 		icon = GFX_goal_generic_construct_civilian
 		prerequisite = { focus = SOV_finish_the_five_year_plan }
 		mutually_exclusive = { focus = SOV_annexation_of_tannu_tuva }
+        
+        available = {
+            NOT = {
+                MON = {
+                    is_ai = yes
+                }
+            }
+        }
 		
 		x = -4
 		y = 1
@@ -352,6 +360,10 @@ focus_tree = {
 		}
 
 		completion_reward = {
+            custom_effect_tooltip = "This focus will boost Republican Spain (if it exists) and any Communist allies we have."
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+        
             if = {
 				limit = {
                     country_exists = DDR
@@ -1039,7 +1051,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_finish_the_five_year_plan
 		
-		cost = 10
+		cost = 5
 		
 		available = { 
 		}
@@ -1080,7 +1092,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_national_specialists
 		
-		cost = 10
+		cost = 5
 
 		mutually_exclusive = { focus = SOV_national_specialists }
 
@@ -1102,8 +1114,7 @@ focus_tree = {
 
 	focus = {
 		id = SOV_the_ussr_academy_of_sciences
-		icon = GFX_focus_research
-		
+		icon = GFX_SOV_extra_tech_slot_early
 		prerequisite = { focus = SOV_national_specialists focus = SOV_foreign_experts }		
 		
 		x = 1
@@ -1649,7 +1660,7 @@ focus_tree = {
 		icon = GFX_focus_generic_army_tanks2
 		prerequisite = { focus = SOV_development_of_tankograd focus = SOV_pc_of_mortar_armament focus = SOV_soviet_artillery }
         
-		x = 1
+		x = 2
 		y = 1
         
 		relative_position_id = SOV_soviet_artillery
@@ -1672,24 +1683,24 @@ focus_tree = {
 		}
 	}
     
-    focus = { 
-		id = SOV_leningrad_polytechnical_institute
-		icon = GFX_SOV_extra_tech_slot_early 
-		prerequisite = { focus = SOV_development_of_tankograd focus = SOV_pc_of_mortar_armament focus = SOV_soviet_artillery }
+    # focus = { 
+		# id = SOV_leningrad_polytechnical_institute
+		# icon = GFX_SOV_extra_tech_slot_early 
+		# prerequisite = { focus = SOV_development_of_tankograd focus = SOV_pc_of_mortar_armament focus = SOV_soviet_artillery }
         
-		x = 3
-		y = 1
+		# x = 3
+		# y = 1
         
-		relative_position_id = SOV_soviet_artillery
+		# relative_position_id = SOV_soviet_artillery
         
-		cost = 5
+		# cost = 5
 
-		search_filters = {FOCUS_FILTER_RESEARCH}
+		# search_filters = {FOCUS_FILTER_RESEARCH}
 
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}
+		# completion_reward = {
+			# add_research_slot = 1
+		# }
+	# }
 
 
     focus = {
@@ -1983,7 +1994,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_war_preparations_focus
 		
-		cost = 5
+		cost = 52
 
 		available = {
 		}
@@ -2005,7 +2016,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_last_stand_on_moscow
 		
-		cost = 5
+		cost = 2
 
 		available = {
 		}
@@ -2232,7 +2243,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_war_preparations_focus
 		
-		cost = 5
+		cost = 2
 
 		available = {
 		}
@@ -2254,7 +2265,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_last_stand_on_leningrad
 		
-		cost = 5
+		cost = 2
 
 		available = {
 		}
@@ -2325,6 +2336,27 @@ focus_tree = {
 				custom_effect_tooltip = SOV_focus_select_effect_tt
 				remove_ideas = disorganized_railway_system
 			} 
+            
+            hidden_effect = {
+                MON = {
+                    if = {
+                        limit = { check_variable = { var = SOV_ran_army_org_factor value = 0 compare = less_than_or_equals } }
+                        divide_variable = { var = SOV_ran_army_org_factor value = 2 }
+                    }
+                    
+                    # 2. Halve the Air Efficiency Nerf
+                    if = {
+                        limit = { check_variable = { var = SOV_ran_air_mission_efficiency value = 0 compare = less_than_or_equals } }
+                        divide_variable = { var = SOV_ran_air_mission_efficiency value = 2 }
+                    }
+                    
+                    # 3. Halve the HP/Strength Nerf
+                    if = {
+                        limit = { check_variable = { var = SOV_ran_army_strength_factor value = 0 compare = less_than_or_equals } }
+                        divide_variable = { var = SOV_ran_army_strength_factor value = 2 }
+                    }
+                }
+            }
 		}
 	}
 	
@@ -2756,8 +2788,17 @@ focus_tree = {
                 set_variable = { var = SOV_ran_air_mission_efficiency value = 0 }
                 set_variable = { var = SOV_ran_army_strength_factor value = 0 }
                 set_variable = { var = SOV_ran_army_morale_factor value = 0.1 }
-                set_variable = { var = SOV_ran_experience_loss_factor value = 0 
+                set_variable = { var = SOV_ran_experience_loss_factor value = 0 }
                 set_variable = { var = SOV_ran_land_doctrine_cost_factor value = 0 }
+                
+                MON = {
+                    set_variable = { var = SOV_ran_army_org_factor value = 0 }
+                    set_variable = { var = SOV_ran_air_mission_efficiency value = 0 }
+                    set_variable = { var = SOV_ran_army_strength_factor value = 0 }
+                    set_variable = { var = SOV_ran_army_morale_factor value = 0 }
+                    set_variable = { var = SOV_ran_experience_loss_factor value = 0 }
+                    set_variable = { var = SOV_ran_land_doctrine_cost_factor value = 0 }
+                }
             }
 		}
 	}
