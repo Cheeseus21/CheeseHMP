@@ -1603,6 +1603,14 @@ on_actions = {
 				HMP_check_fleet_size = yes 
 			}
 		}
+		
+		effect = {
+            # Only run the math if the Soviet Union has actually started the plan
+            if = {
+                limit = { has_global_flag = SOV_second_fyp_construction_of_dual_purpose_factories_global_flag }
+                SOV = { SOV_calculate_dual_purpose_mils = yes }
+            }
+        }
 	}
 
 	on_monthly = {
@@ -1762,6 +1770,57 @@ on_actions = {
                     }
                 }
             }
+			
+			if = {
+				limit = {
+					original_tag = SOV
+					NOT = { has_completed_focus = SOV_finish_the_five_year_plan }
+				}
+				
+				# 1. Do the time math once
+				set_temp_variable = { temp_ui_days = global.num_days }
+				subtract_from_temp_variable = { temp_ui_days = 706780 }
+				if = { limit = { check_variable = { temp_ui_days < 0 } } set_temp_variable = { temp_ui_days = 0 } }
+				divide_temp_variable = { temp_ui_days = 30 }
+				
+				# 2. Route the UI updates based on which prerequisite focus is done
+				
+				# Route A: They picked the Civilian path
+				if = {
+					limit = { has_completed_focus = SOV_the_plan_of_consolidation }
+					
+					set_variable = { ui_horst_civ_reward = 12 }
+					subtract_from_variable = { ui_horst_civ_reward = temp_ui_days }
+					if = { limit = { check_variable = { ui_horst_civ_reward < 0 } } set_variable = { ui_horst_civ_reward = 0 } }
+					
+					# Zero out the military reward since they can't get it anymore
+					set_variable = { ui_horst_mil_reward = 0 } 
+				}
+				
+				# Route B: They picked the Military path
+				else_if = {
+					limit = { has_completed_focus = SOV_rearmament_efforts }
+					
+					set_variable = { ui_horst_mil_reward = 24 }
+					subtract_from_variable = { ui_horst_mil_reward = temp_ui_days }
+					if = { limit = { check_variable = { ui_horst_mil_reward < 0 } } set_variable = { ui_horst_mil_reward = 0 } }
+					
+					# Zero out the civilian reward since they can't get it anymore
+					set_variable = { ui_horst_civ_reward = 0 }
+				}
+				
+				# Route C: They haven't picked either path yet
+				else = {
+					# Update BOTH so the tooltip shows their potential options
+					set_variable = { ui_horst_civ_reward = 12 }
+					subtract_from_variable = { ui_horst_civ_reward = temp_ui_days }
+					if = { limit = { check_variable = { ui_horst_civ_reward < 0 } } set_variable = { ui_horst_civ_reward = 0 } }
+					
+					set_variable = { ui_horst_mil_reward = 24 }
+					subtract_from_variable = { ui_horst_mil_reward = temp_ui_days }
+					if = { limit = { check_variable = { ui_horst_mil_reward < 0 } } set_variable = { ui_horst_mil_reward = 0 } }
+				}
+			}
 	    }
 	}
 	

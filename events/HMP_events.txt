@@ -1,4 +1,170 @@
-﻿add_namespace = spain_events 
+﻿add_namespace = soviet_purge_events 
+
+# Trial of the Sixteen (Zinoviev-Kamenev Trial)
+country_event = {
+    id = soviet_purge_events.1
+    title = soviet_purge_events.1.t
+    desc = soviet_purge_events.1.d
+    picture = GFX_report_event_soviet_purge_generic
+    
+    is_triggered_only = yes
+    
+    option = {
+        name = soviet_purge_events.1.a
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_org_factor = -0.2 
+			tooltip = army_org_factor_tt 
+		}
+    }
+	option = {
+        name = soviet_purge_events.1.b
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_air_mission_efficiency = -0.3 
+			tooltip = air_mission_efficiency_tt 
+		}
+    }
+	option = {
+        name = soviet_purge_events.1.c
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_strength_factor = -0.2 
+			tooltip = army_strength_factor_tt 
+		}
+    }
+}
+
+# Trial of the Seventeen (Anti-Soviet Trotskyist Center)
+country_event = {
+    id = soviet_purge_events.2
+    title = soviet_purge_events.2.t
+    desc = soviet_purge_events.2.d
+    picture = GFX_report_event_soviet_purge_generic
+    
+    is_triggered_only = yes
+    
+    option = {
+        name = soviet_purge_events.2.a
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_org_factor = -0.15
+			tooltip = army_org_factor_tt 
+		}
+    }
+	option = {
+        name = soviet_purge_events.2.b
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_air_mission_efficiency = -0.25 
+			tooltip = air_mission_efficiency_tt 
+		}
+    }
+	option = {
+        name = soviet_purge_events.2.c
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_strength_factor = -0.15
+			tooltip = army_strength_factor_tt 
+		}
+    }
+}
+
+# Secret Trial of the Generals (Tukhachevsky Affair)
+country_event = {
+    id = soviet_purge_events.3
+    title = soviet_purge_events.3.t
+    desc = soviet_purge_events.3.d
+    picture = GFX_report_event_soviet_purge_military
+    
+    is_triggered_only = yes
+    
+    option = {
+        name = soviet_purge_events.3.a
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_org_factor = -0.1
+			tooltip = army_org_factor_tt 
+		}
+    }
+	option = {
+        name = soviet_purge_events.3.b
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_air_mission_efficiency = -0.2 
+			tooltip = air_mission_efficiency_tt 
+		}
+    }
+	option = {
+        name = soviet_purge_events.3.c
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_strength_factor = -0.1
+			tooltip = army_strength_factor_tt 
+		}
+    }
+}
+
+# Trial of the Twenty-One (Bukharin-Rykov Trial)
+country_event = {
+    id = soviet_purge_events.4
+    title = soviet_purge_events.4.t
+    desc = soviet_purge_events.4.d
+    picture = GFX_report_event_soviet_purge_generic
+    
+    is_triggered_only = yes
+    
+    option = {
+        name = soviet_purge_events.4.a
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_org_factor = -0.05
+			tooltip = army_org_factor_tt 
+		}
+		
+		hidden_effect = {
+			complete_national_focus = SOV_the_great_purge
+		}
+    }
+	option = {
+        name = soviet_purge_events.4.b
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_air_mission_efficiency = -0.15 
+			tooltip = air_mission_efficiency_tt 
+		}
+		
+		hidden_effect = {
+			complete_national_focus = SOV_the_great_purge
+		}
+    }
+	option = {
+        name = soviet_purge_events.4.c
+        
+        custom_effect_tooltip = SOV_army_and_navy_tt
+		add_to_variable = { 
+			SOV_ran_army_strength_factor = -0.05
+			tooltip = army_strength_factor_tt 
+		}
+		
+		hidden_effect = {
+			complete_national_focus = SOV_the_great_purge
+		}
+    }
+}
+
+add_namespace = spain_events 
 
 # Starts the civil war
 country_event = {
@@ -1850,14 +2016,14 @@ country_event = {
 	option = {
 		name = "Gain Access To Their Industry"
 		JAP = { add_ideas = jap_puppet } CHI = { add_ideas = jap_puppet }
-}
+	}
 	option = {
-		trigger = { 
-			NOT ={ SOV = {has_completed_focus = SOV_the_permanent_revolution } }
-		}
+		#trigger = { 
+			#NOT ={ SOV = {has_completed_focus = SOV_the_permanent_revolution } }
+		#}
 		name = "Support the Soviets (Soviets will gain 35 Convoys per month)"
 			set_global_flag = JAPAN_CAPPED_SUPPORT_SOV
-}
+	}
 
 }
 

@@ -1,4 +1,5 @@
 NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 0								-- base days needed to prepare a naval invasion
+NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 0								-- base days needed to prepare a naval invasion
 NDefines.NNavy.NAVAL_INVASION_PLAN_CAP = 999									-- base cap of naval invasions can be planned at the same time
 NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 999							-- base cap of divisions that can be assigned in a naval invasion
 
@@ -75,7 +76,7 @@ NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.015    --  0.032 vani
 NDefines.NMilitary.LAND_AIR_COMBAT_ORG_DAMAGE_MODIFIER = 0.015    --  0.032 vanilla   global damage modifier
 NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.035       -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
 NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.060       -- global damage modifier
-NDefines.NMilitary.BASE_FORT_PENALTY = -0.25 					   -- fort penalty
+NDefines.NMilitary.BASE_FORT_PENALTY = -0.15 					   -- fort penalty
 NDefines.NMilitary.FUEL_CAPACITY_DEFAULT_HOURS = 0 -- 
 NDefines.NMilitary.REINFORCE_CHANCE = 0.05
 NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.30

@@ -245,3 +245,62 @@ defined_text = {
 		localization_key = SPR_spanish_civil_war_decisions_desc_fallback
 	}
 }
+
+defined_text = {
+	name = GetLendLeaseFactionRule
+	text = {
+		trigger = {
+			OR = {
+				AND = { ROOT = { OR = { original_tag = ENG is_in_faction_with = ENG } } FROM = { OR = { original_tag = ENG is_in_faction_with = ENG } } }
+				AND = { ROOT = { OR = { original_tag = GER is_in_faction_with = GER } } FROM = { OR = { original_tag = GER is_in_faction_with = GER } } }
+				AND = { ROOT = { OR = { original_tag = JAP is_in_faction_with = JAP } } FROM = { OR = { original_tag = JAP is_in_faction_with = JAP } } }
+				AND = { ROOT = { OR = { original_tag = SOV is_in_faction_with = SOV } } FROM = { OR = { original_tag = SOV is_in_faction_with = SOV } } }
+				AND = {
+					ROOT = { NOT = { original_tag = ENG } NOT = { is_in_faction_with = ENG } NOT = { original_tag = GER } NOT = { is_in_faction_with = GER } NOT = { original_tag = JAP } NOT = { is_in_faction_with = JAP } NOT = { original_tag = SOV } NOT = { is_in_faction_with = SOV } }
+					FROM = { NOT = { original_tag = ENG } NOT = { is_in_faction_with = ENG } NOT = { original_tag = GER } NOT = { is_in_faction_with = GER } NOT = { original_tag = JAP } NOT = { is_in_faction_with = JAP } NOT = { original_tag = SOV } NOT = { is_in_faction_with = SOV } }
+				}
+			}
+		}
+		localization_key = DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER_tt_1_yes
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER_tt_1_no
+	}
+}
+
+defined_text = {
+	name = GetLendLeaseDateRule
+	text = {
+		trigger = {
+			OR = {
+				date > 1940.1.1
+				AND = {
+					ROOT = { NOT = { tag = FIN } NOT = { tag = SOV } NOT = { tag = MON } }
+				}
+			}
+		}
+		localization_key = DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER_tt_2_yes
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER_tt_2_no
+	}
+}
+
+defined_text = {
+	name = GetLendLeaseUSARule
+	text = {
+		trigger = {
+			OR = {
+				AND = { ROOT = { tag = USA has_war = yes } }
+				ROOT = { NOT = { tag = USA } }
+			}
+		}
+		localization_key = DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER_tt_3_yes
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER_tt_3_no
+	}
+}

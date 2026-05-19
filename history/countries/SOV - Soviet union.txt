@@ -1,5 +1,79 @@
-﻿set_variable = { SOV_frontline_military_district_army_core_defence_factor = 0.10 }
-set_variable = { SOV_rearline_military_district_army_core_defence_factor = 0.1 }
+﻿capital = 219
+oob = "SOV_1936"
+set_naval_oob = "SOV_1936_naval_mtg"
+create_intelligence_agency = yes
+
+set_research_slots = 4
+set_stability = 0.5
+set_war_support = 0.35
+
+set_fuel_ratio = 1
+set_variable = {
+    var = min_fuel
+    value = 0.800
+}
+
+add_timed_idea = { idea = NO_TRADE days = 1339 }
+add_ideas = {	
+	home_of_revolution
+	closed_economy
+	disorganized_railway_system
+	armyandnavy_idea
+}
+set_party_name = {
+	ideology = communism
+	long_name = SOV_communism_party_russian_long
+	name = SOV_communism_party_russian
+}
+set_convoys = 60
+
+set_politics = {
+	ruling_party = communism
+	last_election = "1933.7.1"
+	election_frequency = 48
+	elections_allowed = no
+}
+set_popularities = {
+	democratic = 10
+	fascism = 2
+	communism = 88
+}
+
+# 1. Trial of the Sixteen (August 19, 1936)
+# Exactly 231 days after Jan 1, 1936
+country_event = {
+    id = soviet_purge_events.1
+    days = 231
+}
+
+# 2. Trial of the Seventeen (January 23, 1937)
+# Exactly 388 days after Jan 1, 1936
+country_event = {
+    id = soviet_purge_events.2
+    days = 388
+}
+
+# 3. Secret Trial of the Generals (June 11, 1937)
+# Exactly 527 days after Jan 1, 1936
+country_event = {
+    id = soviet_purge_events.3
+    days = 527
+}
+
+# 4. Trial of the Twenty-One (March 2, 1938)
+# Exactly 791 days after Jan 1, 1936
+country_event = {
+    id = soviet_purge_events.4
+    days = 791
+}
+
+# Generic Advisors
+recruit_character = SOV_generic_silent_workhorse
+recruit_character = SOV_generic_war_industrialist
+recruit_character = SOV_generic_armaments_organizer
+recruit_character = SOV_generic_technocrat
+recruit_character = SOV_generic_scientist
+recruit_character = SOV_generic_captain_of_industry
 
 recruit_character = SOV_iosif_stalin
 recruit_character = SOV_supreme_soviet
@@ -14,14 +88,7 @@ recruit_character = SOV_vsevolod_merkulov
 recruit_character = SOV_vyacheslav_molotov
 recruit_character = SOV_maksim_litvinov
 recruit_character = SOV_hazi_aslanov
-recruit_character = SOV_lev_trotsky
-recruit_character = SOV_ivar_smilga
-recruit_character = SOV_karl_radek
-recruit_character = SOV_yevgeny_preobrazhensky
-recruit_character = SOV_nikolay_bukharin
-recruit_character = SOV_aleksey_rykov
-recruit_character = SOV_mikhail_tomsky
-recruit_character = SOV_martemyan_ryutin
+
 recruit_character = SOV_patriarch_sergy
 recruit_character = SOV_aleksandr_kerensky
 recruit_character = SOV_konstantin_rodzayevsky
@@ -132,18 +199,73 @@ recruit_character = SOV_pavel_rybalko
 
 set_major = yes
 
-add_dynamic_modifier = { modifier = SOV_HMP_five_year_plans_dynamic_modifier }
-set_variable = { SOV_HMP_fyp_local_resources_factor = 0 }
-set_variable = { SOV_HMP_fyp_consumer_goods_expected_value = 0 }
-set_variable = { SOV_HMP_fyp_production_speed_industrial_complex_factor = 0.0 }
-set_variable = { SOV_HMP_fyp_production_speed_arms_factory_factor = 0 }
-set_variable = { SOV_HMP_fyp_line_change_production_efficiency_factor = 0.0 }
-set_variable = { SOV_HMP_fyp_production_factory_start_efficiency_factor = 0.0 }
-set_variable = { SOV_HMP_fyp_production_factory_efficiency_gain_factor = 0.0 }
-set_variable = { SOV_HMP_fyp_production_factory_max_efficiency_factor = 0.0 }
-set_variable = { SOV_HMP_fyp_industrial_capacity_factory = 0.0 }
-set_variable = { SOV_HMP_fyp_industrial_capacity_dockyard = 0.0 }
+####################################################################
+add_dynamic_modifier = { modifier = SOV_domestic_situation }
+set_variable = { SOV_ds_defensive_war_stability_factor = 0 }
+set_variable = { SOV_ds_party_popularity_stability_factor = 0 }
+set_variable = { SOV_ds_communism_drift = 0 }
 
+set_variable = { SOV_ds_max_command_power = 0 }
+set_variable = { SOV_ds_command_power_gain_mult = 0 }
+
+set_variable = { SOV_ds_operative_slot = 0 }
+set_variable = { SOV_ds_agency_upgrade_time = 0 }
+
+set_variable = { SOV_ds_political_power_gain = 0 }
+set_variable = { SOV_ds_political_power_factor = -0.2 }
+set_variable = { SOV_ds_political_advisor_cost_factor = 0 }
+set_variable = { SOV_ds_economy_cost_factor = 0 }
+set_variable = { SOV_ds_trade_laws_cost_factor = 0 }
+set_variable = { SOV_ds_mobilization_laws_cost_factor = 0 }
+set_variable = { SOV_ds_high_command_cost_factor = 0 }
+set_variable = { SOV_ds_war_support_factor = 0 }
+set_variable = { SOV_ds_stability_factor = -0.3 }
+set_variable = { SOV_ds_industrial_capacity_factory = -0.15 }
+set_variable = { SOV_ds_industrial_capacity_dockyard = -0.15 }
+set_variable = { SOV_ds_production_factory_start_efficiency_factor = -0.1 }
+set_variable = { SOV_ds_production_factory_max_efficiency_factor = -0.1 }
+set_variable = { SOV_ds_production_factory_efficiency_gain_factor = 0 }
+set_variable = { SOV_ds_production_lack_of_resource_penalty_factor = 0 }
+set_variable = { SOV_ds_line_change_production_efficiency_factor = -0.1 }
+set_variable = { SOV_ds_conversion_cost_civ_to_mil_factor = 0 }
+set_variable = { SOV_ds_conversion_cost_mil_to_civ_factor = 0 }
+set_variable = { SOV_ds_local_building_slots = 0 }
+set_variable = { SOV_ds_local_building_slots_factor = 0 }
+set_variable = { SOV_ds_equipment_conversion_speed = 0 }
+set_variable = { SOV_ds_industry_repair_factor = 0 }
+set_variable = { SOV_ds_industry_free_repair_factor = 0 }
+set_variable = { SOV_ds_industry_air_damage_factor = 0 }
+set_variable = { SOV_ds_consumer_goods_expected_value = 0 }
+set_variable = { SOV_ds_production_speed_buildings_factor = -0.1 }
+set_variable = { SOV_ds_production_speed_infrastructure_factor = -0.1 }
+set_variable = { SOV_ds_production_speed_industrial_complex_factor = -0.1 }
+set_variable = { SOV_ds_production_speed_arms_factory_factor = -0.1 }
+set_variable = { SOV_ds_production_speed_dockyard_factor = -0.1 }
+set_variable = { SOV_ds_non_core_manpower = 0 }
+set_variable = { SOV_ds_local_resources_factor = 0 }
+####################################################################
+add_dynamic_modifier = { modifier = SOV_army_and_navy }
+set_variable = { SOV_ran_conscription = 0 }
+set_variable = { SOV_ran_mobilization_speed = 0 }
+set_variable = { SOV_ran_army_strength_factor = 0 }
+set_variable = { SOV_ran_experience_loss_factor = 0.25 }
+set_variable = { SOV_ran_land_doctrine_cost_factor = 0.5 }
+set_variable = { SOV_ran_land_reinforce_rate = 0 }
+set_variable = { SOV_ran_experience_gain_army_factor = 0 }
+set_variable = { SOV_ran_army_attack_factor = 0 }
+set_variable = { SOV_ran_army_defence_factor = 0 }
+set_variable = { SOV_ran_army_infantry_attack_factor = 0 }
+set_variable = { SOV_ran_army_infantry_defence_factor = 0 }
+set_variable = { SOV_ran_army_artillery_attack_factor = 0 }
+set_variable = { SOV_ran_army_artillery_defence_factor = 0 }
+set_variable = { SOV_ran_army_armor_attack_factor = 0 }
+set_variable = { SOV_ran_army_armor_defence_factor = 0 }
+set_variable = { SOV_ran_army_core_attack_factor = 0 }
+set_variable = { SOV_ran_army_core_defence_factor = 0 }
+set_variable = { SOV_ran_equipment_capture_factor = 0 }
+
+set_variable = { SOV_ran_air_mission_efficiency = 0 }
+####################################################################
 #INDUSTRIAL RELOCATION
 set_variable = { SOV_industrial_relocation_max_factories = 2 } #Max amount of factories that will be relocated by a decision
 set_variable = { SOV_industrial_relocation_days = 45 } #Decision duration (can be halved by focus)
@@ -154,126 +276,7 @@ set_variable = { SOV_industrial_relocation_trains_decision_negative = -20 } #Tra
 set_variable = { SOV_industrial_relocation_trains_decision_aluminium = 20 } #Trains to be used by the aluminium decision (20 trains / factory)
 set_variable = { SOV_industrial_relocation_trains_decision_aluminium_negative = -20 } #Trains to be used by the aluminium decision (20 trains / factory)
 
-
-#SOVIET AIRFORCE NATIONAL SPIRIT VARS
-set_variable = { SOV_soviet_airforce_air_accidents_factor = 0.3 }
-set_variable = { SOV_soviet_airforce_air_ace_generation_chance_factor = -0.3 }
-set_variable = { SOV_soviet_airforce_air_night_penalty = 0.0 }
-set_variable = { SOV_soviet_airforce_air_weather_penalty = 0.3 }
-set_variable = { SOV_soviet_airforce_air_wing_xp_loss_when_killed_factor = 0.0 }
-set_variable = { SOV_soviet_airforce_air_mission_xp_gain_factor = 0.0 }
-set_variable = { SOV_soviet_airforce_air_training_xp_gain_factor = 0.0 }
-set_variable = { SOV_soviet_airforce_air_fuel_consumption_factor = 0 } #-> Modernize Aircraft Factories / Intensify Pilot Training Program
-set_variable = { SOV_soviet_airforce_air_agility_factor = 0 } #-> Modernize Aircraft Factories
-set_variable = { SOV_soviet_airforce_air_mission_efficiency = 0 } #-> The Modern War in the Skies
-set_variable = { SOV_soviet_airforce_aircraft_manufacturer_cost_factor = 0 } #-> Expand the Aircraft Industry
-set_variable = { SOV_soviet_airforce_air_range_factor = 0 } #-> Modernize Aircraft Factories
-set_variable = { SOV_soviet_airforce_air_strategic_bomber_night_penalty = 0 } #-> Raskova's Aviation Group
-set_variable = { SOV_soviet_airforce_air_cas_present_factor = 0 } #-> Ground Support
-set_variable = { SOV_soviet_airforce_strategic_bomb_visibility = 0 } #-> Long Range Aircraft
-set_variable = { SOV_purge_air_factor = -0.32	 } #-> The Modern War in the Skies
-set_variable = { SOV_soviet_airforce_air_nav_efficiency = 0 } #-> Expand the Morskaya Aviatsiya
-add_dynamic_modifier = { modifier = SOV_soviet_airforce_dynamic_modifier }
-
-
-#THE RED FLEET NATIONAL SPIRIT VARS
-set_variable = { SOV_red_fleet_navy_refit_ic_cost = -0.05 }
-set_variable = { SOV_red_fleet_repair_speed_factor = 0.05 }
-
-set_variable = { SOV_red_fleet_naval_coordination = 0 } #-> Advanced Maneuvers
-set_variable = { SOV_red_fleet_navy_visibility = 0 } #-> Advanced Maneuvers
-set_variable = { SOV_red_fleet_positioning = 0 } #-> Advanced Maneuvers
-set_variable = { SOV_red_fleet_screening_efficiency = 0 } #-> Advanced Maneuvers
-set_variable = { SOV_red_fleet_naval_invasion_capacity = 0 } #-> Marines
-set_variable = { SOV_red_fleet_invasion_preparation = 0 } #-> Marines
-set_variable = { SOV_red_fleet_special_forces_cap = 0 } #-> Marines
-
-
-#DEFENSE INDUSTRY NATIONAL SPIRIT VARS
-set_variable = { SOV_defense_industry_conversion_cost_civ_to_mil_factor = 0 }
-set_variable = { SOV_defense_industry_production_factory_max_efficiency_factor = 0.1 }
-set_variable = { SOV_defense_industry_production_factory_efficiency_gain_factor = 0 }
-set_variable = { SOV_defense_industry_line_change_production_efficiency_factor = 0 }
-
-set_variable = { SOV_defense_industry_tank_manufacturer_cost_factor = 0 } #-> Tank Designer focus
-set_variable = { SOV_defense_industry_land_equipment_upgrade_xp_cost = 0 } #-> Tankograd
-set_variable = { SOV_defense_industry_materiel_manufacturer_cost_factor = 0 } #-> Equipment Designers focus
-set_variable = { SOV_defense_industry_breakthrough_factor = 0 } #-> PC of Mortar Armament
-set_variable = { SOV_defense_industry_production_speed_coastal_bunker_factor = 0 } #-> Military Engineering University
-set_variable = { SOV_defense_industry_production_speed_bunker_factor = 0 } #-> Military Engineering University
-set_variable = { SOV_defense_industry_max_dig_in_factor = 0 } #-> Military Engineering University
-set_variable = { SOV_defense_industry_army_artillery_defence_factor = 0 } #-> Military Engineering University
-
-
-#THE RED ARMY NATIONAL SPIRIT VARS
-set_variable = { SOV_the_red_army_mobilization_laws_cost_factor = 0.0 }
-set_variable = { SOV_the_red_army_army_org_factor = -0.30 } 
-set_variable = { SOV_the_red_army_experience_gain_army_factor = 0.0 }
-set_variable = { SOV_the_red_army_experience_loss_factor = 0.25 }
-
-set_variable = { SOV_the_red_army_army_attack_factor = 0.0 }
-set_variable = { SOV_tre_red_army_army_defence_factor = 0 } 
-set_variable = { SOV_the_red_army_army_core_attack_factor = 0.0 }
-set_variable = { SOV_the_red_army_army_core_defence_factor = 0 }
-
-set_variable = { SOV_the_red_army_army_morale_factor = 0 }
-
-set_variable = { SOV_supply_consumption_factor = 0 }
-
-set_variable = { SOV_the_red_army_mobilization_speed = 0 } #-> Strengthen the Mobilization Plan
-set_variable = { SOV_the_red_army_conscription_factor = 0 } #-> Strengthen the Mobilization Plan
-set_variable = { SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor = 0 } #-> Restore Cossack Units
-set_variable = { SOV_the_red_army_cavalry_attack_factor = 0 } #-> Restore Cossack Units
-set_variable = { SOV_the_red_army_training_time_factor = 0 } # -> Cohsesion First
-set_variable = { SOV_the_red_army_heat_attrition_factor = 0 } # -> An Adaptable Army
-set_variable = { SOV_the_red_army_winter_attrition_factor = 0 } # -> An Adaptable Army
-set_variable = { SOV_the_red_army_acclimatization_cold_climate_gain_factor = 0 } # -> An Adaptable Army
-set_variable = { SOV_the_red_army_acclimatization_hot_climate_gain_factor = 0 } # -> An Adaptable Army
-set_variable = { SOV_the_red_army_terrain_penalty_reduction = 0 } # -> An Adaptable Army
-set_variable = { SOV_the_red_army_unit_infantry_design_cost_factor = 0 } # -> Military Reorganization
-set_variable = { SOV_the_red_army_unit_artillery_brigade_design_cost_factor = 0 } # -> Military Reorganization
-set_variable = { SOV_the_red_army_army_org_regain = 0 } # -> Barrier Troops
-set_variable = { SOV_the_red_army_special_forces_cap = 0 } # -> The Glory of the Red Army
-set_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0 } # -> The Glory of the Red Army
-set_variable = { SOV_the_red_army_cas_damage_reduction = 0 } # -> Experts in Camouflage
-set_variable = { SOV_the_red_army_max_dig_in = 0 } # -> Experts in Camouflage
-set_variable = { SOV_the_red_army_dig_in_speed_factor = 0 } # -> Experts in Camouflage
-set_variable = { SOV_the_red_army_operative_slot  = 0 } # -> Organization of the Partisans
-set_variable = { SOV_the_red_army_max_command_power_mult = 0 } # -> Depoliticize the Military
-
-add_dynamic_modifier = { modifier = SOV_the_red_army_dynamic_modifier }
-
-#THE POLITBURO SPIRIT VARS
-set_variable = { SOV_the_politburo_communism_drift = 0.05 }
-
-set_variable = { SOV_the_politburo_defensive_war_stability_factor = 0 } # -> Socialism in One Country
-set_variable = { SOV_the_politburo_drift_defence_factor = 0 } # -> Socialism in One Country
-set_variable = { SOV_the_politburo_political_power_factor = 0 } #0.05 -> The Stalin Constitution
-set_variable = { SOV_the_politburo_economy_cost_factor = -0.2 } # -> Secure the Administration
-set_variable = { SOV_the_politburo_trade_laws_cost_factor =  -0.2 } # -> Secure the Administration
-set_variable = { SOV_the_politburo_mobilization_laws_cost_factor = -0.2 } # -> Secure the Administration
-set_variable = { SOV_the_politburo_good_consumer_goods_expected_value = 0 } # -> Collectivization Process
-set_variable = { SOV_the_politburo_production_speed_buildings_factor = 0 } # -> Collectivization Process
-set_variable = { SOV_the_politburo_global_building_slots_factor = 0.1 } # -> Collectivization Process
-set_variable = { SOV_the_politburo_max_surrender_limit_offset = 0 } # -> The Workers Dictatorship
-set_variable = { SOV_the_politburo_max_command_power = 20 } # -> Organization, Centralization, Discipline
-set_variable = { SOV_the_politburo_mobilization_speed = 0 } # -> Organization, Centralization, Discipline
-set_variable = { SOV_the_politburo_operative_slot = 0 } # -> Behead the Snake
-set_variable = { SOV_the_politburo_political_advisor_cost_factor = 0 } # -> Freedom of Debate, Unity of Action
-set_variable = { SOV_the_politburo_opinion_gain_monthly_same_ideology_factor = 0 } # -> The Construction of Communism
-
-#FACTIONALISM VARS
-set_variable = { SOV_factionalism_political_power_factor = -0.10 }
-set_variable = { SOV_factionalism_political_advisor_cost_factor = 0 }
-set_variable = { SOV_factionalism_popularity_stability_cost_factor = -0.1 }
-set_variable = { SOV_new_propaganda_campaign = 0 } #Used to pick a poster slot
-set_variable = { SOV_propaganda_campaign_to_remove = 0 } #Used to reset a poster slot
-set_variable = { SOV_propaganda_locked_slot_index = 1 } #### === INSERT LOCKED SLOT INDEX IN STRIPE HERE === ####
-set_variable = { SOV_propaganda_empty_slot_index = 2 } #### === INSERT EMPTY SLOT INDEX IN STRIPE HERE === ####
-set_variable = { SOV_poster_left_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate empty slot GFX
-set_variable = { SOV_poster_center_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
-set_variable = { SOV_poster_right_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
-
+# PROPAGANDA
 set_variable = { SOV_default_propaganda_campaign_duration = 180 } #Duration days for propaganda campaigns
 set_variable = { SOV_default_propaganda_campaign_cooldown = 90 } #Days of cooldown after a Propaganda Campaign has been finished.
 set_variable = { SOV_default_propaganda_campaign_old_days = 150 } #A propaganda poster will age (change GFX) after this amount of days have passed since the campaign was activated
@@ -329,86 +332,13 @@ while_loop_effect = {
 	add_to_array = { SOV_paranoia_generic_portraits_array = 1 } # 1 = NO PORTRAIT
 	add_to_temp_variable = { i = 1 }
 }
+
 set_variable = { SOV_paranoia_portrait_index = 1 }
-country_event = { id =lar_spain.953 days = 1186 } 
+country_event = { id = lar_spain.953 days = 1186 } 
 
 #GOSPROYEKTSTROY
 set_variable = { SOV_gosproyektstroy_decision_cost = 75  }
 set_variable = { SOV_gosproyektstroy_decision_time = 90 }
-
-capital = 219
-oob = "SOV_1936"
-set_naval_oob = "SOV_1936_naval_mtg"
-create_intelligence_agency = yes
-set_fuel_ratio = 1
-set_variable = {
-    var = min_fuel
-    value = 0.800
-}
-SOV_maksim_litvinov = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_georgy_zhukov = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_konstantin_rokossovsky = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_nikolay_berzarin = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_nikandr_chibisov={
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_leonid_govorov = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_nikolay_vatutin = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_semyon_budyonny = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_grigory_kulik = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_vasily_chuykov = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_boris_shaposhnikov= {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_mikhail_kalinin = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_nikolay_voznesensky = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_nikita_khrushchyov = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_lazar_kaganovich = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_vsevolod_merkulov = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_vyacheslav_molotov = {
-	set_character_flag = SOV_safe_from_purge_flag
-}
-SOV_konstantin_rodzayevsky = { #Not in the country
-	set_character_flag = SOV_exiled_flag
-}
-SOV_aleksandr_kerensky = { #Not in the country
-	set_character_flag = SOV_exiled_flag
-}
-SOV_lev_trotsky = { #Not in the country
-	set_character_flag = SOV_exiled_flag
-}
-SOV_patriarch_sergy = { #Priests are not political enemies at this point
-	set_character_flag = SOV_safe_from_purge_flag
-}
-
 
 add_breakthrough_progress = {
 	specialization = specialization_land
@@ -424,11 +354,6 @@ add_breakthrough_progress = {
 	specialization = specialization_air
 	value = 0.3
 }
-
-
-set_research_slots = 4
-set_stability = 0.5
-set_war_support = 0.3
 
 # Starting tech
 set_technology = {
@@ -570,35 +495,6 @@ add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 6250 }
 add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 7000 } 
 add_equipment_to_stockpile = { type = special_equipment_1 amount = 24000  }	
 add_equipment_to_stockpile = { type = train_equipment_1 amount = 600 }
-
-add_timed_idea = { idea = NO_TRADE days = 1339 }
-add_ideas = {	
-	home_of_revolution
-	trotskyite_plot_nsb
-	SOV_politicized_military
-	closed_economy
-	kliment_voroshilov
-	disorganized_railway_system
-	SOV_great_purge
-}
- set_party_name = {
-	ideology = communism
-	long_name = SOV_communism_party_russian_long
-	name = SOV_communism_party_russian
-}
-set_convoys = 60
-
-set_politics = {
-	ruling_party = communism
-	last_election = "1933.7.1"
-	election_frequency = 48
-	elections_allowed = no
-}
-set_popularities = {
-	democratic = 10
-	fascism = 2
-	communism = 88
-}
 
 create_faction_from_template = faction_template_comintern
 add_to_faction = SOV

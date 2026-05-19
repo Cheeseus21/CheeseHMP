@@ -1,3 +1,971 @@
+	
+    SOV_great_patriotic_war = {
+        SOV_spawn = {
+            icon = GFX_decision_generic_army_support
+            allowed = { tag = SOV }
+            available = {
+                has_manpower > 400000
+                has_completed_focus = SOV_baltic_security
+            }
+            visible = {
+                NOT = { has_war_with = GER }
+            }
+            fire_only_once = yes
+            complete_effect = {
+                custom_effect_tooltip = "We will deploy 400 empty 2w divisions which can be trained to our desired template."
+                hidden_effect = {
+                    add_manpower = -400000
+                    load_oob = "SOV_Belarus_Deployment"
+                }
+            }
+        }
+
+        SOV_spawn2 = {
+            icon = GFX_decision_generic_army_support
+            allowed = { tag = SOV }
+            available = {
+                has_manpower > 400000
+                has_completed_focus = SOV_baltic_security
+            }
+            visible = {
+                NOT = { has_war_with = GER }
+            }
+            fire_only_once = yes
+            complete_effect = {
+                custom_effect_tooltip = "We will deploy 400 empty 2w divisions which can be trained to our desired template."
+                hidden_effect = {
+                    add_manpower = -400000
+                    load_oob = "SOV_Frontline_Deployment"
+                }
+            }
+        }
+        
+        SOV_guerilla_tactics = {
+            priority = 102
+            icon = GFX_decision_generic_military
+
+            allowed = { 
+                original_tag = SOV
+            }
+
+            available = {
+                surrender_progress > 0.9
+            }
+
+            visible = {
+            }
+
+            fire_only_once = yes
+            
+            cost = 25
+            
+            days_remove = 120
+
+            modifier = {
+                pocket_penalty = -0.3
+                dig_in_speed_factor = 1	
+                no_supply_grace = 672
+                supply_consumption_factor = -0.8
+            }
+
+            complete_effect = {
+            }
+        }
+        
+        SOV_order_227_decision = {
+            priority = 101
+            icon = GFX_decision_generic_military
+
+            allowed = { 
+                original_tag = SOV
+            }
+
+            available = {
+                has_completed_focus = SOV_order_227
+                date < 1942.11.23
+                date > 1942.6.23
+            }
+
+            visible = {
+                date < 1942.11.23
+            }
+
+            fire_only_once = yes
+            
+            cost = 25
+            
+            days_remove = 90
+
+            modifier = {
+                army_defence_factor = 0.1
+                army_strength_factor = -0.1
+            }
+
+            complete_effect = {
+                news_event = { id = mtg_news.792 days = 0 }
+            }
+        }
+        
+        SOV_order_270_decision = {
+            priority = 100
+            icon = GFX_decision_generic_military
+
+            allowed = { 
+                original_tag = SOV
+            }
+
+            available = {
+                has_completed_focus = SOV_order_270
+                date < 1941.11.23
+                date > 1941.6.23
+            }
+
+            visible = {
+                date < 1941.11.23
+            }
+
+            fire_only_once = yes
+            
+            cost = 25
+            
+            days_remove = 90
+
+            modifier = {
+                army_defence_factor = 0.1
+                army_strength_factor = -0.2
+            }
+
+            complete_effect = {
+                news_event = { id = mtg_news.791 days = 0 }
+            }
+        }
+        
+        SOV_second_fyp_cash_in_dual_purpose = {
+            icon = generic_construct_military
+            cost = 0
+            
+            allowed = { tag = SOV }
+            
+            visible = {
+                has_global_flag = SOV_second_fyp_construction_of_dual_purpose_factories_global_flag
+            }
+
+            complete_effect = {
+                SOV_calculate_dual_purpose_mils = yes 
+                
+                hidden_effect = {
+                    every_owned_state = {
+                        limit = {
+                            is_core_of = ROOT
+                            is_fully_controlled_by = ROOT
+                        }
+                        
+                        if = {
+                            limit = {
+                                check_variable = { var = ROOT.SOV_tracked_mils_reward value = 0 compare = greater_than }
+                            }
+                            
+                            add_extra_state_shared_building_slots = 1
+                            add_building_construction = {
+                                type = arms_factory
+                                level = 1
+                                instant_build = yes
+                            }
+                            
+                            subtract_from_variable = { var = ROOT.SOV_tracked_mils_reward value = 1 }
+                        }
+                    }
+                }
+                
+                clr_global_flag = SOV_second_fyp_construction_of_dual_purpose_factories_global_flag
+                clear_variable = SOV_tracked_mils_reward
+                
+                custom_effect_tooltip = SOV_cash_in_dual_purpose_tt
+            }
+        }
+
+        SOV_show_LL_decision_stuff = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = SOV_show_ll_flag }
+                    clr_country_flag = SOV_show_ll_flag
+                }
+                else = {
+                    set_country_flag = SOV_show_ll_flag
+                }
+            }
+        }
+
+        SOV_gib_guns = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendGunsFlag }
+                    clr_country_flag = GetSendGunsFlag
+                }
+                else = {
+                    set_country_flag = GetSendGunsFlag
+                }
+            }
+        }
+
+        SOV_gib_arty = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendArtyFlag }
+                    clr_country_flag = GetSendArtyFlag
+                }
+                else = {
+                    set_country_flag = GetSendArtyFlag
+                }
+            }
+        }
+
+        SOV_gib_at = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendATFlag }
+                    clr_country_flag = GetSendATFlag
+                }
+                else = {
+                    set_country_flag = GetSendATFlag
+                }
+            }
+        }
+
+        SOV_gib_aa = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendAAFlag }
+                    clr_country_flag = GetSendAAFlag
+                }
+                else = {
+                    set_country_flag = GetSendAAFlag
+                }
+            }
+        }
+
+        SOV_gib_rarty = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendRartyFlag }
+                    clr_country_flag = GetSendRartyFlag
+                }
+                else = {
+                    set_country_flag = GetSendRartyFlag
+                }
+            }
+        }
+
+        SOV_gib_sup = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendSupFlag }
+                    clr_country_flag = GetSendSupFlag
+                }
+                else = {
+                    set_country_flag = GetSendSupFlag
+                }
+            }
+        }
+
+        SOV_gib_mot = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendMotFlag }
+                    clr_country_flag = GetSendMotFlag
+                }
+                else = {
+                    set_country_flag = GetSendMotFlag
+                }
+            }
+        }
+
+        SOV_gib_mech = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendMechFlag }
+                    clr_country_flag = GetSendMechFlag
+                }
+                else = {
+                    set_country_flag = GetSendMechFlag
+                }
+            }
+        }
+
+        SOV_gib_med = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendMedFlag }
+                    clr_country_flag = GetSendMedFlag
+                }
+                else = {
+                    set_country_flag = GetSendMedFlag
+                }
+            }
+        }
+
+        SOV_gib_light = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendLightFlag }
+                    clr_country_flag = GetSendLightFlag
+                }
+                else = {
+                    set_country_flag = GetSendLightFlag
+                }
+            }
+        }
+
+        SOV_gib_fighter = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendFighterFlag }
+                    clr_country_flag = GetSendFighterFlag
+                }
+                else = {
+                    set_country_flag = GetSendFighterFlag
+                }
+            }
+        }
+
+        SOV_gib_cas = {
+            icon = GFX_decision_generic_naval
+            allowed = { tag = SOV }
+            visible = { has_country_flag = SOV_show_ll_flag }
+            complete_effect = {
+                if = {
+                    limit = { has_country_flag = GetSendCasFlag }
+                    clr_country_flag = GetSendCasFlag
+                }
+                else = {
+                    set_country_flag = GetSendCasFlag
+                }
+            }
+        }
+    }
+    
+    SOV_war_preparations_category = {
+    
+        SOV_fortification_decision = {
+            icon = GFX_RAJ_decision_investment_infra_icon
+            
+            allowed = {
+                tag = SOV
+            }
+            
+            state_target = yes 
+            
+            on_map_mode = map_only
+            
+            target_array = core_states
+            
+            target_trigger = {
+                FROM = {
+                    is_core_of = ROOT 
+                    NOT = { has_state_flag = soviet_fortification_flag }
+                }
+            }
+            
+            available = {
+            }
+            
+            visible = {
+                has_completed_focus = SOV_fortification_of_cities_and_villages
+                NOT = {
+                    has_war_with = GER
+                }
+            }
+            
+            cost = 50
+            
+            complete_effect = {
+                FROM = {
+                    set_state_flag = soviet_fortification_flag
+                    
+                    add_province_modifier = {
+                        static_modifiers = { soviet_fortification }
+                        province = {
+                            all_provinces = yes
+                            limit_to_victory_point = yes
+                        }
+                    }
+                }
+            }
+        }
+        
+        SOV_defensive_decision = {
+            icon = GFX_RAJ_decision_investment_defenses_icon
+            
+            allowed = {
+                tag = SOV
+            }
+            
+            state_target = yes 
+            
+            on_map_mode = map_only
+            
+            target_array = core_states
+            
+            target_trigger = {
+                FROM = {
+                    is_core_of = ROOT 
+                    NOT = { has_state_flag = SOV_defensive_flag }
+                }
+            }
+            
+            available = {
+            
+            }
+            
+            visible = {
+                has_completed_focus = SOV_construction_of_defensive_lines
+                NOT = {
+                    has_war_with = GER
+                }
+            }
+            
+            cost = 50
+            
+            complete_effect = {
+                FROM = {
+                    set_state_flag = SOV_defensive_flag
+                    
+                    add_dynamic_modifier = {
+                        modifier = SOV_defensive_modifier
+                        scope = SOV
+                    }
+                }
+            }
+        }
+    }
+    
+    SOV_industry_relocation = {
+		SOV_generic_industry_relocation = {
+			priority = 10
+
+			icon = GFX_RAJ_decision_investment_civs_icon
+            
+            on_map_mode = map_only
+
+			state_target = yes
+
+			#targets = { core_states }
+
+			target_trigger = {
+				FROM = {
+					is_controlled_by = ROOT
+					is_core_of = SOV
+					is_on_continent = europe
+					infrastructure > 2
+				}
+			}
+
+			target_root_trigger = {
+				has_completed_focus = SOV_desperate_measures
+			}
+
+			allowed = { 
+				original_tag = SOV
+			}
+
+			available = {
+				FROM = {
+					is_fully_controlled_by = ROOT
+					infrastructure > 2
+				}
+				has_equipment = { train_equipment > 19 } #20 trains per factory
+			}
+
+			visible = {
+				FROM = {
+					OR = { #Has at least 2 factories
+						arms_factory > 1
+						industrial_complex > 1
+						AND = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+			}
+
+			cancel_if_not_visible = no
+
+			cost = 10
+
+			days_remove = SOV_industrial_relocation_days
+
+			complete_effect = { 
+				hidden_effect = {
+					add_equipment_to_stockpile = {
+						type = train_equipment
+						amount = SOV_industrial_relocation_trains_decision_negative
+						producer = SOV
+					}
+				}
+				custom_effect_tooltip = SOV_industry_relocation_trains_tt
+				custom_effect_tooltip = SOV_industry_relocation_complete_effect_tt
+				#REMOVE factories
+				FROM = {
+					hidden_effect = {
+						set_temp_variable = { SOV_factories_counter = 0 }
+
+						#Attempt to relocate 50%-50% of mils-civs
+						set_temp_variable = { SOV_half_the_factories_to_relocate = SOV.SOV_industrial_relocation_max_factories }
+						divide_temp_variable = { SOV_half_the_factories_to_relocate = 2 }
+						while_loop_effect = {
+							limit = {
+								check_variable = { SOV_factories_counter = SOV.SOV_industrial_relocation_max_factories compare = less_than }
+							}
+							if = { #GO MILS (if possible)
+								limit = {
+									check_variable = { SOV_factories_counter = SOV_half_the_factories_to_relocate compare = less_than }
+								}
+								if = {
+									limit = {
+										arms_factory > 0
+									}
+									remove_building = {
+										type = arms_factory
+										level = 1
+									}
+									if = {
+										limit = {
+											has_state_flag = SOV_mils_removed_flag
+										}
+										modify_state_flag = { flag = SOV_mils_removed_flag value = 1 }
+									}
+									else = {
+										set_state_flag = SOV_mils_removed_flag
+									}
+								}
+								else_if = {
+									limit = {
+										industrial_complex > 0
+									}
+									remove_building = {
+										type = industrial_complex
+										level = 1
+									}
+									if = {
+										limit = {
+											has_state_flag = SOV_civs_removed_flag
+										}
+										modify_state_flag = { flag = SOV_civs_removed_flag value = 1 }
+									}
+									else = {
+										set_state_flag = SOV_civs_removed_flag
+									}
+								}
+							}
+							else = { #GO CIVS (if possible)
+								if = {
+									limit = {
+										industrial_complex > 0
+									}
+									remove_building = {
+										type = industrial_complex
+										level = 1
+									}
+									if = {
+										limit = {
+											has_state_flag = SOV_civs_removed_flag
+										}
+										modify_state_flag = { flag = SOV_civs_removed_flag value = 1 }
+									}
+									else = {
+										set_state_flag = SOV_civs_removed_flag
+									}
+								}
+								else_if = {
+									limit = {
+										arms_factory > 0
+									}
+									remove_building = {
+										type = arms_factory
+										level = 1
+									}
+									if = {
+										limit = {
+											has_state_flag = SOV_mils_removed_flag
+										}
+										modify_state_flag = { flag = SOV_mils_removed_flag value = 1 }
+									}
+									else = {
+										set_state_flag = SOV_mils_removed_flag
+									}
+								}
+							}
+							add_to_temp_variable = { SOV_factories_counter = 1 }
+						}
+					}
+				}
+			}
+
+			remove_effect = {
+				hidden_effect = {
+					add_equipment_to_stockpile = {
+						type = train_equipment
+						amount = SOV_industrial_relocation_trains_decision
+						producer = SOV
+					}
+				}
+				custom_effect_tooltip = SOV_industry_relocation_remove_effect_tt
+				#RELOCATE FACTORIES
+				FROM = {
+					set_temp_variable = { SOV_factories_counter = 0 }
+					#Factories attempt to get relocated in 2 different states
+					set_temp_variable = { SOV_half_the_factories_to_relocate = SOV.SOV_industrial_relocation_max_factories }
+					divide_temp_variable = { SOV_half_the_factories_to_relocate = 2 }
+					while_loop_effect = { #NOTE: Due to the seed not changing during the execution of this effect, the same state will always be chosen, UNLESS it runs out of slots -> That's the reason for this 
+						limit = {
+							check_variable = { SOV_factories_counter = SOV_half_the_factories_to_relocate compare = less_than }
+						}
+						SOV_relocate_industry_in_appropriate_state_effect = yes
+						add_to_temp_variable = { SOV_factories_counter = 1 }
+					}
+				}
+				custom_effect_tooltip = SOV_relocate_industry_lose_control_tt
+			}
+		}
+
+		SOV_relocation = {
+			allowed = {	
+				original_tag = SOV 
+			}
+			
+			icon = generic_naval
+			
+			available = { 
+				date > 1950.1.1 
+			}
+			
+			days_mission_timeout = 6
+			fire_only_once = no
+			is_good = yes
+			
+			activation = { 
+				always = no 
+			}
+			
+			timeout_effect = {
+				custom_effect_tooltip = SOV_reloc_tt
+				hidden_effect = { 
+					SOV_relocate_mil = yes		
+					SOV_relocate_civ = yes				
+					
+					if = {	
+						limit = {
+							check_variable = { relocatedciv = 0 }
+						}	
+						SOV_relocate_mil = yes	
+					}	
+					
+					if = {
+						limit = {
+							check_variable = { relocatedmil = 0 }
+						} 
+						SOV_relocate_civ = yes	
+					}
+					
+					set_variable = { relocatedmil = 0 }
+					set_variable = { relocatedciv = 0 }
+					
+					activate_mission = SOV_relocation2
+				}
+			}
+			
+			complete_effect = {
+				# Add effects here if needed
+			}
+		}
+		
+		SOV_relocation2 = {
+			allowed = {	
+				original_tag = SOV 
+			}
+			
+			icon = generic_naval
+			
+			available = { 
+				date > 1950.1.1 
+			}
+			
+			days_mission_timeout = 6
+			fire_only_once = no
+			is_good = yes
+			
+			activation = { 
+				always = no 
+			}
+			
+			timeout_effect = {
+				custom_effect_tooltip = SOV_reloc_tt
+				hidden_effect = { 
+					SOV_relocate_mil = yes		
+					SOV_relocate_civ = yes				
+					
+					if = {	
+						limit = {
+							check_variable = { relocatedciv = 0 }
+						}	
+						SOV_relocate_mil = yes	
+					}	
+					
+					if = {
+						limit = {
+							check_variable = { relocatedmil = 0 }
+						} 
+						SOV_relocate_civ = yes	
+					}
+					
+					set_variable = { relocatedmil = 0 }
+					set_variable = { relocatedciv = 0 }
+					
+					activate_mission = SOV_relocation
+				}
+			}
+			
+			complete_effect = {
+				# Add effects here if needed
+			}
+		}
+	}
+	
+	SOV_second_year_plan_decisions = {
+    
+		SOV_second_fyp_expansion_of_light_industry = {
+			icon = generic_decision
+			cost = 150
+			
+			allowed = {
+                tag = SOV
+            }
+			
+			visible = {
+                has_completed_focus = SOV_continue_the_three_good_years
+                NOT = {
+                    has_completed_focus = SOV_finish_the_five_year_plan
+                }
+			}
+			
+			available = {
+			}
+
+			complete_effect = {
+				custom_effect_tooltip = SOV_domestic_situation_tt	
+				add_to_variable = {
+					var = SOV_ds_production_speed_industrial_complex_factor
+					value = 0.2
+					tooltip = production_speed_industrial_complex_factor_tt
+				}
+                
+                set_global_flag = SOV_second_fyp_expansion_of_light_industry_flag
+			}
+			
+			ai_will_do = {
+				base = 0
+			}
+		}
+
+		SOV_second_fyp_designating_industrial_zones = {
+			icon = generic_decision
+			cost = 150
+			
+			allowed = {
+                tag = SOV
+            }
+			
+			visible = {
+				has_completed_focus = SOV_continue_the_three_good_years
+                NOT = {
+                    has_completed_focus = SOV_finish_the_five_year_plan
+                }
+			}
+			
+			available = {
+			}
+
+			complete_effect = {
+				custom_effect_tooltip = SOV_domestic_situation_tt	
+				add_to_variable = {
+					var = SOV_ds_global_building_slots_factor
+					value = 0.5
+					tooltip = global_building_slots_factor_tt
+				}
+                
+                set_global_flag = SOV_second_fyp_designating_industrial_zones_flag
+			}
+			
+			ai_will_do = {
+				base = 0
+			}
+		}
+		
+		SOV_second_fyp_sciences_and_engineering = {
+			icon = generic_decision
+			cost = 150
+			
+			allowed = {
+                tag = SOV
+            }
+			
+			visible = {
+				has_completed_focus = SOV_education_of_the_worker_class
+                NOT = {
+                    has_completed_focus = SOV_finish_the_five_year_plan
+                }
+			}
+			
+			available = {
+			}
+
+			complete_effect = {
+				add_research_slot = 1
+                
+                set_global_flag = SOV_second_fyp_sciences_and_engineering_flag
+			}
+			
+			ai_will_do = {
+				base = 0
+			}
+		}
+		
+		SOV_second_fyp_quality_efficiency_and_technical_mastery = {
+			icon = generic_decision
+			cost = 150
+			
+			allowed = {
+                tag = SOV
+            }
+			
+			visible = {
+				has_completed_focus = SOV_education_of_the_worker_class
+                NOT = {
+                    has_completed_focus = SOV_finish_the_five_year_plan
+                }
+			}
+			
+			available = {
+			}
+
+			complete_effect = {
+				custom_effect_tooltip = SOV_domestic_situation_tt	
+				add_to_variable = {
+					var = SOV_ds_research_speed_factor
+					value = 0.2
+					tooltip = research_speed_factor_tt
+				}
+                
+                set_global_flag = SOV_second_fyp_quality_efficiency_and_technical_mastery_flag
+			}
+			
+			ai_will_do = {
+				base = 0
+			}
+		}
+        
+		SOV_second_fyp_construction_of_dual_purpose_factories = {
+            icon = generic_decision
+            cost = 150
+            
+            allowed = {
+                tag = SOV
+            }
+            
+            visible = {
+                has_completed_focus = SOV_strategy_of_dual_use
+                NOT = {
+                    has_completed_focus = SOV_finish_the_five_year_plan
+                }
+            }
+            
+            available = {
+            }
+
+            complete_effect = {
+                set_global_flag = SOV_second_fyp_construction_of_dual_purpose_factories_global_flag
+                
+                set_variable = { var = SOV_dual_purpose_starting_civs value = num_of_civilian_factories }
+                
+                custom_effect_tooltip = SOV_second_fyp_construction_of_dual_purpose_factories_tt
+            }
+            
+            ai_will_do = {
+                base = 0
+            }
+        }
+		
+		SOV_second_fyp_increased_defense_budget = {
+			icon = generic_decision
+			cost = 150
+			
+			allowed = {
+                tag = SOV
+            }
+			
+			visible = {
+				has_completed_focus = SOV_strategy_of_dual_use
+                NOT = {
+                    has_completed_focus = SOV_finish_the_five_year_plan
+                }
+			}
+			
+			available = {
+			}
+
+			complete_effect = {
+				custom_effect_tooltip = SOV_domestic_situation_tt	
+				add_to_variable = {
+					var = SOV_ds_production_speed_arms_factory_factor
+					value = 0.2
+					tooltip = production_speed_arms_factory_factor_tt
+				}
+                
+                set_global_flag = SOV_second_fyp_increased_defense_budget_flag
+			}
+			
+			ai_will_do = {
+				base = 0
+			}
+		}
+	}
+    
 	SPR_spanish_civil_war_decisions = {
         SPR_attack_buffs = {
             icon = generic_prepare_civil_war
@@ -8864,6 +9832,56 @@ propaganda_effortsx = {
 		}
 	}
 	
+	SOV_annex_mongolia = {
+        icon = generic_operation
+        
+        allowed = { original_tag = SOV }
+        
+        available = {
+            OR = {
+                MON = { 
+					is_ai = yes 
+					is_in_faction_with = SOV 
+				}
+                has_country_flag = annex_manual_override
+            }
+        }
+        
+        visible = { 
+            country_exists = MON 
+            MON = { 
+                is_ai = yes 
+            } 
+        }
+        
+        cost = 0
+        
+        fire_only_once = yes
+        
+        complete_effect = {
+            add_to_variable = { paratrooper_div_cap = 2 }
+            set_division_template_cap = {
+                division_template = "Paratroopers"
+                division_cap = paratrooper_div_cap
+            }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
+            annex_country = {
+                target = MON
+                transfer_troops = yes
+            }
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
+            add_offsite_building = { type = industrial_complex level = 3 }
+
+            hidden_effect = {
+                fuel_system_refresh_list = yes
+            }
+        }
+    }
+	
 	GER_annex_vichy = {
         icon = generic_operation
         
@@ -8914,62 +9932,7 @@ propaganda_effortsx = {
             }
         }
     }
-    
-    # GER_annex_vichy = {
-        # icon = generic_operation
-        # allowed = { original_tag = GER }
-        # available = {
-            # AND = {
-                # OR = { EFR = { is_ai = yes } has_country_flag = annex_manual_override }
-                # OR = {
-                    # EFR = { is_puppet_of = GER }
-                    # AND = {
-                        # EFR = { is_puppet = no has_country_flag = EFR_torch_declared is_in_faction_with = GER }
-                    # }
-                # }
-            # }
-        # }
-        # visible = { 
-            # country_exists = EFR 
-            # OR = { 
-				# EFR = { 
-					# is_ai = yes 
-				# } 
-				# has_country_flag = annex_manual_override 
-			# }
-        # }
-        # cost = 0
-        # fire_only_once = yes
-        # complete_effect = {
-            # if = {
-                # limit = { EFR = { has_country_flag = host } }
-                # GER = { set_country_flag = host }
-                # EFR = { clr_country_flag = host }
-            # }
-            # hidden_effect = {
-                # if = {
-                    # limit = {
-                        # EFR = { controls_state = 554 }
-                        # ENG = { OR = { controls_state = 291 controls_state = 455 controls_state = 454 } }
-                    # }
-                    # FRA = { transfer_state = 554 transfer_state = 589 transfer_state = 590 transfer_state = 591 }
-                # }
-            # }
-            # add_to_variable = { paratrooper_div_cap = 2 }
-            # set_division_template_cap = {
-                # division_template = "Paratroopers"
-                # division_cap = paratrooper_div_cap
-            # }
-            # annex_country = {
-                # target = EFR
-                # transfer_troops = yes
-            # }
-            # hidden_effect = {
-                # fuel_system_refresh_list = yes
-            # }
-        # }
-    # }
-	
+
 	AXIS_form_reichskommisariat_balkan = {
         icon = generic_operation
 		
@@ -9215,7 +10178,6 @@ propaganda_effortsx = {
             }
         }
     }
-
     
     GER_annex_romania = {
         icon = generic_operation
@@ -13501,366 +14463,6 @@ JAP_interservice_rivalry = {
 			JAP_interservice_rivalry_towards_navy = yes
 		}
 	} 
-}
-
-SOV_great_patriotic_war = {
-	SOV_buildfixer_heavy_tanks = {
-        icon = GFX_decision_generic_army_support
-		
-        allowed = { tag = SOV }
-		
-        available = {
-            has_manpower > 400000
-            has_completed_focus = SOV_baltic_security
-			date < 1941.6.21
-        }
-		
-        visible = {
-            NOT = { has_war_with = GER }
-        }
-		
-        fire_only_once = yes
-		
-        complete_effect = {
-            custom_effect_tooltip = "We will deploy 10 40w heavy tank divisions which can be trained to our desired template."
-			every_country = {
-				news_event = { 
-					id = buildfixer_event.0 
-				}
-			}
-            hidden_effect = {
-                add_manpower = -400000
-                load_oob = "SOV_buildfixer_heavy"
-            }
-        }
-    }
-	
-	SOV_buildfixer_medium_tanks = {
-        icon = GFX_decision_generic_army_support
-		
-        allowed = { tag = SOV }
-		
-        available = {
-            has_manpower > 400000
-            has_completed_focus = SOV_baltic_security
-			date < 1941.6.21
-        }
-		
-        visible = {
-            NOT = { has_war_with = GER }
-        }
-		
-        fire_only_once = yes
-		
-        complete_effect = {
-            custom_effect_tooltip = "We will deploy 20 40w medium tank divisions which can be trained to our desired template."
-			every_country = {
-				news_event = { 
-					id = buildfixer_event.0 
-				}
-			}
-            hidden_effect = {
-                add_manpower = -400000
-                load_oob = "SOV_buildfixer_medium"
-            }
-        }
-    }
-	
-	SOV_buildfixer_light_tanks = {
-        icon = GFX_decision_generic_army_support
-		
-        allowed = { tag = SOV }
-		
-        available = {
-            has_manpower > 400000
-            has_completed_focus = SOV_baltic_security
-			date < 1941.6.21
-        }
-		
-        visible = {
-            NOT = { has_war_with = GER }
-        }
-		
-        fire_only_once = yes
-		
-        complete_effect = {
-            custom_effect_tooltip = "We will deploy 30 40w light tank divisions which can be trained to our desired template."
-			every_country = {
-				news_event = { 
-					id = buildfixer_event.0 
-				}
-			}
-            hidden_effect = {
-                add_manpower = -400000
-                load_oob = "SOV_buildfixer_light"
-            }
-        }
-    }
-	
-	SOV_buildfixer_infantry = {
-        icon = GFX_decision_generic_army_support
-		
-        allowed = { tag = SOV }
-		
-        available = {
-            has_manpower > 400000
-            has_completed_focus = SOV_baltic_security
-			date < 1941.6.21
-        }
-		
-        visible = {
-            NOT = { has_war_with = GER }
-        }
-		
-        fire_only_once = yes
-		
-        complete_effect = {
-            custom_effect_tooltip = "We will deploy 200 40w infantry divisions which can be trained to our desired template."
-			every_country = {
-				news_event = { 
-					id = buildfixer_event.0 
-				}
-			}
-            hidden_effect = {
-                add_manpower = -400000
-                load_oob = "SOV_buildfixer_infantry"
-            }
-        }
-    }
-
-    SOV_spawn = {
-        icon = GFX_decision_generic_army_support
-        allowed = { tag = SOV }
-        available = {
-            has_manpower > 400000
-            has_completed_focus = SOV_baltic_security
-        }
-        visible = {
-            NOT = { has_war_with = GER }
-        }
-        fire_only_once = yes
-        complete_effect = {
-            custom_effect_tooltip = "We will deploy 400 empty 2w divisions which can be trained to our desired template."
-            hidden_effect = {
-                add_manpower = -400000
-                load_oob = "SOV_Belarus_Deployment"
-            }
-        }
-    }
-
-    SOV_spawn2 = {
-        icon = GFX_decision_generic_army_support
-        allowed = { tag = SOV }
-        available = {
-            has_manpower > 400000
-            has_completed_focus = SOV_baltic_security
-        }
-        visible = {
-            NOT = { has_war_with = GER }
-        }
-        fire_only_once = yes
-        complete_effect = {
-            custom_effect_tooltip = "We will deploy 400 empty 2w divisions which can be trained to our desired template."
-            hidden_effect = {
-                add_manpower = -400000
-                load_oob = "SOV_Frontline_Deployment"
-            }
-        }
-    }
-
-    SOV_show_LL_decision_stuff = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = SOV_show_ll_flag }
-                clr_country_flag = SOV_show_ll_flag
-            }
-            else = {
-                set_country_flag = SOV_show_ll_flag
-            }
-        }
-    }
-
-    SOV_gib_guns = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendGunsFlag }
-                clr_country_flag = GetSendGunsFlag
-            }
-            else = {
-                set_country_flag = GetSendGunsFlag
-            }
-        }
-    }
-
-    SOV_gib_arty = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendArtyFlag }
-                clr_country_flag = GetSendArtyFlag
-            }
-            else = {
-                set_country_flag = GetSendArtyFlag
-            }
-        }
-    }
-
-    SOV_gib_at = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendATFlag }
-                clr_country_flag = GetSendATFlag
-            }
-            else = {
-                set_country_flag = GetSendATFlag
-            }
-        }
-    }
-
-    SOV_gib_aa = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendAAFlag }
-                clr_country_flag = GetSendAAFlag
-            }
-            else = {
-                set_country_flag = GetSendAAFlag
-            }
-        }
-    }
-
-    SOV_gib_rarty = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendRartyFlag }
-                clr_country_flag = GetSendRartyFlag
-            }
-            else = {
-                set_country_flag = GetSendRartyFlag
-            }
-        }
-    }
-
-    SOV_gib_sup = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendSupFlag }
-                clr_country_flag = GetSendSupFlag
-            }
-            else = {
-                set_country_flag = GetSendSupFlag
-            }
-        }
-    }
-
-    SOV_gib_mot = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendMotFlag }
-                clr_country_flag = GetSendMotFlag
-            }
-            else = {
-                set_country_flag = GetSendMotFlag
-            }
-        }
-    }
-
-    SOV_gib_mech = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendMechFlag }
-                clr_country_flag = GetSendMechFlag
-            }
-            else = {
-                set_country_flag = GetSendMechFlag
-            }
-        }
-    }
-
-    SOV_gib_med = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendMedFlag }
-                clr_country_flag = GetSendMedFlag
-            }
-            else = {
-                set_country_flag = GetSendMedFlag
-            }
-        }
-    }
-
-    SOV_gib_light = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendLightFlag }
-                clr_country_flag = GetSendLightFlag
-            }
-            else = {
-                set_country_flag = GetSendLightFlag
-            }
-        }
-    }
-
-    SOV_gib_fighter = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendFighterFlag }
-                clr_country_flag = GetSendFighterFlag
-            }
-            else = {
-                set_country_flag = GetSendFighterFlag
-            }
-        }
-    }
-
-    SOV_gib_cas = {
-        icon = GFX_decision_generic_naval
-        allowed = { tag = SOV }
-        visible = { has_country_flag = SOV_show_ll_flag }
-        complete_effect = {
-            if = {
-                limit = { has_country_flag = GetSendCasFlag }
-                clr_country_flag = GetSendCasFlag
-            }
-            else = {
-                set_country_flag = GetSendCasFlag
-            }
-        }
-    }
 }
 
 political_actions = {
@@ -20000,7 +20602,7 @@ SOV_propaganda_campaigns = {
 			has_completed_focus = SOV_stalins_cult_of_personality
 		}
 		visible = {
-			NOT = { has_completed_focus = SOV_socialist_humanism }
+			#NOT = { has_completed_focus = SOV_socialist_humanism }
 		}
 		days_remove = SOV_default_propaganda_campaign_duration
 
@@ -20041,84 +20643,84 @@ SOV_propaganda_campaigns = {
  ##  ##   ### ##     ## ##     ## ##    ##    ##    ##    ##     ##       ##    ##  ##       ##       ##     ## ##    ## ##     ##    ##     ##  ##     ## ##   ### 
 #### ##    ## ########   #######   ######     ##    ##     ##    ##       ##     ## ######## ########  #######   ######  ##     ##    ##    ####  #######  ##    ## 
 
-SOV_industry_relocation = {
+# SOV_industry_relocation = {
 
-	SOV_prewar_evacuation_mission = {
-		icon = generic_production_bonus
+	# SOV_prewar_evacuation_mission = {
+		# icon = generic_production_bonus
 		
-		allowed = { original_tag = SOV }
+		# allowed = { original_tag = SOV }
 
-		cancel_trigger = {
-			OR = {
-				has_war = yes          # Stop if war starts
-				date > 1941.6.21       # Stop if date passes
-			}
-		}
+		# cancel_trigger = {
+			# OR = {
+				# has_war = yes          # Stop if war starts
+				# date > 1941.6.21       # Stop if date passes
+			# }
+		# }
 
-		activation = { 
-			has_war = no
-			date < 1941.6.22
-			has_completed_focus = SOV_move_industry_to_the_urals
-		}
+		# activation = { 
+			# has_war = no
+			# date < 1941.6.22
+			# has_completed_focus = SOV_desperate_measures
+		# }
 
-		available = { always = no }
+		# available = { always = no }
 
-		days_mission_timeout = 15
+		# days_mission_timeout = 15
 		
-		fire_only_once = no
+		# fire_only_once = no
 		
-		is_good = yes
+		# is_good = yes
 
-		timeout_effect = {
-			SOV_prewar_evac_logic = yes
-			SOV_prewar_evac_logic = yes
-			SOV_prewar_evac_logic = yes
-			SOV_prewar_evac_logic = yes
-			SOV_prewar_evac_logic = yes
+		# timeout_effect = {
+			# SOV_prewar_evac_logic = yes
+			# SOV_prewar_evac_logic = yes
+			# SOV_prewar_evac_logic = yes
+			# SOV_prewar_evac_logic = yes
+			# SOV_prewar_evac_logic = yes
 
-			activate_mission = SOV_prewar_evacuation_mission
-		}
-	}
+			# activate_mission = SOV_prewar_evacuation_mission
+		# }
+	# }
 	
-	SOV_ongoing_evacuation_mission = {
-		icon = generic_production_bonus
+	# SOV_ongoing_evacuation_mission = {
+		# icon = generic_production_bonus
 		
-		allowed = {
-			original_tag = SOV
-		}
+		# allowed = {
+			# original_tag = SOV
+		# }
 
-		cancel_trigger = {
-			OR = {
-				has_war = no
-				date > 1942.7.21
-			}
-		}
+		# cancel_trigger = {
+			# OR = {
+				# has_war = no
+				# date > 1942.7.21
+			# }
+		# }
 
-		available = { always = no }
+		# available = { always = no }
 
-		activation = { 
-			has_war = yes
-			date < 1942.7.21
-			has_completed_focus = SOV_move_industry_to_the_urals
-		}
+		# activation = { 
+			# has_war = yes
+			# date < 1942.7.21
+			# has_completed_focus = SOV_desperate_measures
+		# }
 
-		days_mission_timeout = 7 
+		# days_mission_timeout = 7 
 		
-		fire_only_once = no
+		# fire_only_once = no
 		
-		is_good = yes
+		# is_good = yes
 
-		timeout_effect = {
-			SOV_evacuate_frontline_logic = yes
-			SOV_evacuate_frontline_logic = yes
-			SOV_evacuate_frontline_logic = yes
-			SOV_evacuate_frontline_logic = yes
-			SOV_evacuate_frontline_logic = yes
+		# timeout_effect = {
+			# SOV_evacuate_frontline_logic = yes
+			# SOV_evacuate_frontline_logic = yes
+			# SOV_evacuate_frontline_logic = yes
+			# SOV_evacuate_frontline_logic = yes
+			# SOV_evacuate_frontline_logic = yes
 
-			activate_mission = SOV_ongoing_evacuation_mission
-		}
-	}
-}
+			# activate_mission = SOV_ongoing_evacuation_mission
+		# }
+	# }
+# }
 
 
  ######   ########  ########    ###    ########    ########     ###    ######## ########  ####  #######  ######## ####  ######     ##      ##    ###    ########  

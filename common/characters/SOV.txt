@@ -24,7 +24,7 @@ characters = {
 		}
 		country_leader = {
 			ideology = stalinism
-			traits = { stalin_heart_of_steel }
+			traits = { }
 			expire = "1953.3.1.1"
 			id = -1
 		}
@@ -456,36 +456,20 @@ characters = {
 				original_tag = SOV
 			}
 			available = {
-				NOT = { has_war_with = GER }
-				hidden_trigger = {
-					NOT = {
-						any_other_country = {
-							has_war_with = SOV
-							original_tag = SOV
-							has_unit_leader = 405.000
-						}
-					}
-				}
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
 			}
 			traits = {
-				army_chief_drill_sov
+				army_chief_defensive_2
 			}
-				cost = 0
+			cost = 150
 		}
 
 		field_marshal = { #14/13
 			traits = { old_guard camouflage_expert  inflexible_strategist infantry_leader defensive_doctrine ambusher unyielding_defender  }
-	skill = 6
-	attack_skill = 8
-	defense_skill = 3
-	planning_skill = 1
-	logistics_skill = 7
+			skill = 6
+			attack_skill = 8
+			defense_skill = 3
+			planning_skill = 1
+			logistics_skill = 7
 			legacy_id = 405
 			visible = { NOT = { has_character_flag = SOV_exiled_flag } }
 		}
@@ -1866,6 +1850,149 @@ SOV_hazi_aslanov = {
 	#    #  # #    #   #   #  #  # #  # #       #  # #  #  # #   #    # #  # #  #   # 
 	#     ##  ### ###  #  ###  ##  #  # ###     #  # ###    #   ### ##   ##  #  # ##  
 
+	SOV_generic_silent_workhorse = {
+		name = "Ivan Petrov"
+		portraits = {
+			army = {
+				small = "GFX_idea_generic_political_advisor_europe_5"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = SOV_generic_silent_workhorse
+			cost = 150
+			allowed = {
+				original_tag = SOV
+			}
+			available = {
+				has_completed_focus = SOV_collectivist_propaganda
+			}
+			traits = {
+				silent_workhorse
+			}
+			ledger = civilian
+		}		
+	}
+
+	SOV_generic_war_industrialist = {
+		name = "Dmitry Sokolov"
+		portraits = {
+			army = {
+				small = "GFX_idea_generic_army_europe_5"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = SOV_generic_war_industrialist
+			cost = 150
+			allowed = {
+				original_tag = SOV
+			}
+			available = {
+				has_completed_focus = SOV_collectivist_propaganda
+			}
+			traits = {
+				war_industrialist
+			}
+			ledger = civilian
+		}		
+	}
+
+	SOV_generic_armaments_organizer = {
+		name = "Aleksei Volkov"
+		portraits = {
+			army = {
+				small = "GFX_idea_generic_political_advisor_europe_3"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = SOV_generic_armaments_organizer
+			cost = 150
+			allowed = {
+				original_tag = SOV
+			}
+			available = {
+				has_completed_focus = SOV_collectivist_propaganda
+			}
+			traits = {
+				armaments_organizer
+			}
+			ledger = civilian
+		}		
+	}
+
+	SOV_generic_technocrat = {
+		name = "Mikhail Lebedev"
+		portraits = {
+			army = {
+				small = "GFX_idea_generic_political_advisor_europe_2"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = SOV_generic_technocrat
+			cost = 150
+			allowed = {
+				original_tag = SOV
+			}
+			available = {
+				has_completed_focus = SOV_collectivist_propaganda
+			}
+			traits = {
+				technocrat
+			}
+			ledger = civilian
+		}		
+	}
+
+	SOV_generic_scientist = {
+		name = "Yuri Novikov"
+		portraits = {
+			army = {
+				small = "GFX_idea_generic_political_advisor_europe_1"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = SOV_generic_scientist
+			cost = 150
+			allowed = {
+				original_tag = SOV
+			}
+			available = {
+				has_completed_focus = SOV_collectivist_propaganda
+			}
+			traits = {
+				scientist
+			}
+			ledger = civilian
+		}		
+	}
+	
+	SOV_generic_captain_of_industry = {
+		name = "Boris Morozov"
+		portraits = {
+			army = {
+				small = "GFX_idea_generic_political_advisor_europe_4"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = SOV_generic_captain_of_industry
+			cost = 150
+			allowed = {
+				original_tag = SOV
+			}
+			available = {
+				has_completed_focus = SOV_collectivist_propaganda
+			}
+			traits = {
+				captain_of_industry
+			}
+			ledger = civilian
+		}		
+	}
 
 	SOV_mikhail_kalinin = {
 		name = SOV_mikhail_kalinin
@@ -1982,14 +2109,10 @@ SOV_hazi_aslanov = {
 				original_tag = SOV
 			}
 			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
 			}
 			available = {
-				has_completed_focus = SOV_finish_the_five_year_plan 
 			}
-			cost = 75
+			cost = 150
 			traits = {
 				iron_lazar 
 			}
@@ -2041,7 +2164,7 @@ SOV_hazi_aslanov = {
 			allowed = {
 				original_tag = SOV
 			}
-			cost = 75
+			cost = 150
 			visible = {
 				NOT = {
 					has_character_flag = SOV_character_purged_flag 
@@ -2072,12 +2195,8 @@ SOV_hazi_aslanov = {
 				original_tag = SOV
 			}
 			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
 			}
 			available = {
-				custom_trigger_tooltip = { tooltip = "Not fired by Stalin" NOT = {AND = {  date >1939.1.1  has_country_leader = { character = SOV_iosif_stalin } } } }
 			}
 			traits = {
 				pc_for_foreign_affairs_litvinov 
@@ -2085,334 +2204,6 @@ SOV_hazi_aslanov = {
 		}
 	}
 
-	SOV_lev_trotsky = {
-		name = SOV_lev_trotsky
-		portraits = {
-			civilian = {
-				large = GFX_portrait_SOV_lev_trotsky
-			}
-			army = {
-				small = "GFX_idea_SOV_lev_trotsky"
-			}
-		}
-		
-
-		advisor = {
-			slot = political_advisor
-			idea_token = SOV_lev_trotsky
-			ledger = civilian
-			allowed = {
-				original_tag = SOV
-			}
-		
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-				NOT = {
-					has_global_flag = trotsky_dead
-				}
-			}
-			available = {
-				has_completed_focus = SOV_the_permanent_revolution
-				has_completed_focus = SOV_the_builder_of_the_red_army
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-				
-			}
-			traits = {
-				pc_military_naval_affairs
-			}
-		}
-	}
-
-	SOV_ivar_smilga = {
-		name = SOV_ivar_smilga
-		portraits = {
-			army = {
-				small = "GFX_idea_SOV_ivar_smilga_imprisoned"
-			}
-		}
-		
-		advisor = {
-			slot = political_advisor
-			ledger = civilian
-			idea_token = SOV_ivar_smilga
-			allowed = {
-				original_tag = SOV
-			}
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-			}
-			available = {
-				has_completed_focus = SOV_release_innocents #TROTSKYIST 
-				has_completed_focus = SOV_the_permanent_revolution
-				if = {
-					limit = {
-						has_character_flag = SOV_imprisoned_flag
-					}
-					NOT = { has_character_flag = SOV_imprisoned_flag } #For flavor purposes only -> Removed in the appropriate focus/event/dec
-				}
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-			}
-			traits = {
-				soviet_economist
-			}
-		}
-	}
-
-
-	SOV_karl_radek = {
-		name = SOV_karl_radek
-
-		portraits = {
-			army = {
-				small = "GFX_idea_SOV_karl_radek"
-			}
-		}
-
-		
-		advisor = {
-			slot = political_advisor
-			ledger = civilian
-			idea_token = SOV_karl_radek
-			allowed = {
-				original_tag = SOV
-			}
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-			}
-			available = {
-				has_completed_focus = SOV_release_innocents
-				has_completed_focus = SOV_the_permanent_revolution #TROTSKYIST
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-			}
-			traits = {
-				international_revolutionary 
-			}
-		}
-	}
-
-	SOV_yevgeny_preobrazhensky = {
-		name = SOV_yevgeny_preobrazhensky
-		portraits = {
-			army = {
-				small = "GFX_idea_SOV_yevgeny_preobrazhensky"
-			}
-		}
-
-		advisor = {
-			slot = political_advisor
-			ledger = civilian
-			idea_token = SOV_yevgeny_preobrazhensky
-			allowed = {
-				original_tag = SOV
-			}
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-			}
-			available = {
-				has_completed_focus = SOV_release_innocents
-				has_completed_focus = SOV_the_permanent_revolution #TROTSKYIST
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-			}
-			traits = {
-				ecomonist_publicist 
-			}
-		}
-	}
-
-	SOV_nikolay_bukharin = {
-		name = SOV_nikolay_bukharin
-		portraits = {
-			civilian = {
-				large = "GFX_portrait_SOV_nikolay_bukharin"
-			}
-			army = {
-				small = "GFX_idea_SOV_nikolay_bukharin"
-			}
-		}
-
-		
-		advisor = {
-			slot = political_advisor
-			ledger = civilian
-			idea_token = SOV_nikolay_bukharin
-			allowed = {
-				original_tag = SOV
-			}
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-			}
-			available = {
-				has_completed_focus = SOV_release_innocents
-				has_completed_focus = SOV_back_to_the_nep
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-			}
-			traits = {
-				economy_reformer 
-			}
-		}
-	}
-	
-	SOV_aleksey_rykov = {
-		name = SOV_aleksey_rykov
-
-		portraits = {
-			civilian = {
-				large = "GFX_portrait_SOV_aleksey_rykov"
-			}
-			army = {
-				small = "GFX_idea_SOV_aleksey_rykov"
-			}
-		}
-
-
-		advisor = {
-			slot = political_advisor
-			ledger = civilian
-			idea_token = SOV_aleksey_rykov
-			allowed = {
-				original_tag = SOV
-			}
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-			}
-			available = {
-				has_completed_focus = SOV_release_innocents
-				has_completed_focus = SOV_back_to_the_nep
-				has_completed_focus = SOV_incorporate_local_organizations #BUKHARIN RIGHT OPPOSITION
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-			}
-			
-			traits = {
-				peoples_commissar_for_posts_and_telegraphs 
-			}
-		}
-	}
-
-	SOV_mikhail_tomsky = {
-		name = SOV_mikhail_tomsky
-		portraits = {
-			army = {
-				small = "GFX_idea_SOV_mikhail_tomsky"
-			}
-		}
-		
-		advisor = {
-			slot = political_advisor
-			ledger = civilian
-			idea_token = SOV_mikhail_tomsky
-			allowed = {
-				original_tag = SOV
-			}
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-			}
-			available = {
-				has_completed_focus = SOV_release_innocents
-								has_completed_focus = SOV_socialist_humanism
-				has_completed_focus = SOV_incorporate_local_organizations #BUKHARIN RIGHT OPPOSITION
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-			}
-			traits = {
-				right_trade_unionist 
-			}
-		}
-	}
-
-	SOV_martemyan_ryutin = {
-		name = SOV_martemyan_ryutin
-		portraits = {
-			army = {
-				small = "GFX_idea_SOV_martemyan_ryutin_imprisoned"
-			}
-		}
-
-	
-
-
-		advisor = {
-			slot = political_advisor
-			ledger = civilian
-			idea_token = SOV_martemyan_ryutin
-			allowed = {
-				original_tag = SOV
-			}
-			visible = {
-				NOT = {
-					has_character_flag = SOV_character_purged_flag 
-				}
-			}
-			available = {
-				has_completed_focus = SOV_release_innocents
-				has_completed_focus = SOV_socialist_humanism
-				has_completed_focus = SOV_incorporate_local_organizations #BUKHARIN RIGHT OPPOSITION
-				if = {
-					limit = {
-						has_character_flag = SOV_imprisoned_flag
-					}
-					NOT = { has_character_flag = SOV_imprisoned_flag } #For flavor purposes only -> Removed in the appropriate focus/event/dec
-				}
-				if = {
-					limit = {
-						has_character_flag = SOV_exiled_flag
-					}
-					NOT = { has_character_flag = SOV_exiled_flag }
-				}
-			}
-			traits = {
-				anti_stalinist_propagandist 
-			}
-		}
-	}
-	
 	SOV_patriarch_sergy = {
 		name = SOV_patriarch_sergy
 		portraits = {

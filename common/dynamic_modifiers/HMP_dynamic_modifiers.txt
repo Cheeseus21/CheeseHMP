@@ -1,3 +1,16 @@
+SOV_defensive_modifier = { #STATE MODIFIER
+	enable = { always = yes }
+	
+	remove_trigger = {	
+		NOT = { SOV = { controls_state = 244 } } 
+	}
+
+	icon = GFX_modifiers_SOV_factory_worker_militias
+	
+	production_speed_bunker_factor = 1
+	state_bunker_max_level_terrain_limit = 10
+}
+
 SOV_domestic_situation = {
 	enable = { always = yes }
 	icon = GFX_idea_SOV_undividable
@@ -7,6 +20,17 @@ SOV_domestic_situation = {
 	weekly_casualties_war_support = SOV_ds_weekly_casualties_war_support
 	
 	weekly_manpower = SOV_ds_weekly_manpower
+	
+	defensive_war_stability_factor = SOV_ds_defensive_war_stability_factor
+	party_popularity_stability_factor = SOV_ds_party_popularity_stability_factor
+	
+	communism_drift = SOV_ds_communism_drift
+	
+	max_command_power = SOV_ds_max_command_power
+	max_command_power_mult = SOV_ds_command_power_gain_mult
+	
+	operative_slot = SOV_ds_operative_slot
+	agency_upgrade_time = SOV_ds_agency_upgrade_time
 	
 	political_power_gain = SOV_ds_political_power_gain
 	political_power_factor = SOV_ds_political_power_factor
@@ -30,6 +54,7 @@ SOV_domestic_situation = {
 	conversion_cost_civ_to_mil_factor = SOV_ds_conversion_cost_civ_to_mil_factor
 	conversion_cost_mil_to_civ_factor = SOV_ds_conversion_cost_mil_to_civ_factor
 	local_building_slots = SOV_ds_local_building_slots
+	
 	global_building_slots_factor = SOV_ds_global_building_slots_factor
 	equipment_conversion_speed = SOV_ds_equipment_conversion_speed
 	industry_repair_factor = SOV_ds_industry_repair_factor
@@ -56,8 +81,18 @@ SOV_army_and_navy = {
 	conscription = SOV_ran_conscription
 	conscription_factor = SOV_ran_conscription_factor
 	
+	mobilization_speed = SOV_ran_mobilization_speed
+	
+	experience_loss_factor = SOV_ran_experience_loss_factor
+	
+	land_doctrine_cost_factor = SOV_ran_land_doctrine_cost_factor 
+	
+	land_reinforce_rate = SOV_ran_land_reinforce_rate
+	
 	experience_gain_army_factor = SOV_ran_experience_gain_army_factor
 	
+	army_strength_factor = SOV_ran_army_strength_factor
+
 	army_infantry_attack_factor = SOV_ran_army_infantry_attack_factor
 	army_infantry_defence_factor = SOV_ran_army_infantry_defence_factor
 	
@@ -1605,10 +1640,23 @@ SOV_leningrad_defense = { #STATE MODIFIER
 
 	icon = GFX_modifiers_SOV_factory_worker_militias
 	
-	cas_damage_reduction = 1
-	supply_consumption_factor = -1
+	supply_consumption_factor = -0.25
 	max_dig_in = 10
-	state_bunker_max_level_terrain_limit = 10
+	#state_bunker_max_level_terrain_limit = 10
+}
+
+SOV_crimea_defense = { #STATE MODIFIER
+	enable = { always = yes }
+	
+	remove_trigger = {	
+		NOT = { SOV = { controls_state = 234 } } 
+	}
+
+	icon = GFX_modifiers_SOV_factory_worker_militias
+	
+	supply_consumption_factor = -0.25
+	max_dig_in = 10
+	#state_bunker_max_level_terrain_limit = 10
 }
 
 SOV_encircle_stalingrad_modifier = { #STATE MODIFIER
@@ -1629,7 +1677,7 @@ SOV_encircle_leningrad_modifier = { #STATE MODIFIER
 	org_loss_when_moving = -0.25
 }
 
-SOV_last_stand_on_moscow_modifier = { #STATE MODIFIER
+SOV_last_stand_modifier = { #STATE MODIFIER
 	enable = { always = yes }
 
 	icon = GFX_modifiers_SOV_factory_worker_militias
@@ -3418,6 +3466,14 @@ ENG_fuck_ast = {
 }
 
 SOV_ural_industry = { 
+	enable = { always = yes }
+
+	icon = GFX_idea_FIN_socialist_welfare
+
+    local_building_slots_factor = 0.5
+}
+
+SOV_siberian_industry = { 
 	enable = { always = yes }
 
 	icon = GFX_idea_FIN_socialist_welfare

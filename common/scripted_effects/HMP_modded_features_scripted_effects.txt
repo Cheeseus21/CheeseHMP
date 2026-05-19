@@ -41,6 +41,24 @@
 # ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 # ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 
+	SOV_calculate_dual_purpose_mils = {
+		# 1. Get our current total civilian factories
+		set_variable = { var = SOV_tracked_mils_reward value = num_of_civilian_factories }
+		
+		# 2. Deduct the 70 starting civ baseline
+		subtract_from_variable = { var = SOV_tracked_mils_reward value = 70 }
+		
+		# 3. Safety Check: If we have less than 70 civs, force the reward to 0
+		if = {
+			limit = { check_variable = { var = SOV_tracked_mils_reward value = 0 compare = less_than } }
+			set_variable = { var = SOV_tracked_mils_reward value = 0 }
+		}
+		
+		# 4. Apply the 2:1 exchange rate and round it down safely
+		divide_variable = { var = SOV_tracked_mils_reward value = 2 }
+		round_variable = SOV_tracked_mils_reward
+	}
+
     exiled_ship_designs = {
         set_technology = {
             early_ship_hull_light = 1
@@ -9069,7 +9087,18 @@ SOV_replace_industrial_designer = {
 	}
 }
 
-
+SOV_replace_industrial_designer_1 = {
+	custom_effect_tooltip = SOV_upgrade_industrial_designer_tt
+	if = {
+		limit = {
+			has_idea = SOV_gosproyektstroy_1
+		}
+		swap_ideas = {
+			remove_idea = SOV_gosproyektstroy_1
+			add_idea = SOV_gosproyektstroy_2
+		}
+	}
+}
 
 ####
 #### FOREIGN POLITICS ####

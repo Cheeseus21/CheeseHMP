@@ -1,3 +1,31 @@
+SOV_war_preparations_category = {
+	priority = 85
+	
+	allowed = {
+		tag = SOV
+	}
+	
+	visible = {
+		
+	}
+}
+SOV_second_year_plan_decisions = {
+	priority = 85
+	
+	allowed = {
+		tag = SOV
+	}
+	
+	visible = {
+		NOT = {
+			date > 1938.1.1
+		}
+		NOT = {
+			has_completed_focus = SOV_finish_the_five_year_plan
+		}
+	}
+}
+
 SPR_spanish_civil_war_decisions = {
 	priority = 85
 	visible_when_empty = yes
@@ -622,7 +650,7 @@ SOV_industry_relocation = {
 	}
 
 	visible = {
-		has_completed_focus = SOV_move_industry_to_the_urals
+		#has_completed_focus = SOV_move_industry_to_the_urals
 	}
 }
 
@@ -813,10 +841,26 @@ SOV_great_patriotic_war = {
 
 
 HMP_soviet_lend_lease_system = {
-	icon = usa_congress
-	 allowed = {	OR = { original_tag = SWE normally_played_allies = yes	}  }
-	scripted_gui = HMP_soviet_lend_lease_system_ui	
-	visible = { NOT = {  has_war_with = SOV } NOT ={  has_government = fascism } NOT = { SOV = { has_completed_focus = SOV_the_permanent_revolution } } OR = { tag = ENG tag = USA has_global_flag = HMP_soviet_ll_visible_to_all_allies   } }
+    icon = usa_congress
+    
+    allowed = {
+        OR = { 
+            original_tag = SWE 
+            normally_played_allies = yes 
+        }
+    }
+    
+    scripted_gui = HMP_soviet_lend_lease_system_ui
+    
+    visible = {
+        NOT = { has_war_with = SOV }
+        NOT = { has_government = fascism }
+        OR = { 
+            tag = ENG 
+            tag = USA 
+            has_global_flag = HMP_soviet_ll_visible_to_all_allies 
+        }
+    }
 }
 
 JAP_interservice_rivalry = {

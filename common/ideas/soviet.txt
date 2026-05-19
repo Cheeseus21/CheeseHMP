@@ -9,6 +9,31 @@ ideas = {
 ##    ##  #######      ######     ##    ######## ##           ########  ##     ##  ######  ##    ## 
 
 	country= {
+	
+		SOV_shift_to_armaments_production_idea = {			
+			picture = ger_the_great_red_menace
+			
+			allowed = {
+				always = no
+			}
+			
+			available = { date < 1941.1.1 }
+			
+			removal_cost = -1
+			
+			modifier = { 
+				industrial_capacity_factory = 0.3
+				production_factory_start_efficiency_factor = 0.2
+				production_factory_max_efficiency_factor = 0.2
+				production_factory_efficiency_gain_factor = 0.2
+				line_change_production_efficiency_factor = 0.2
+				production_speed_buildings_factor = 0.2
+				production_speed_infrastructure_factor = 0.2
+				production_speed_industrial_complex_factor = 0.2
+				production_speed_arms_factory_factor = 0.2
+			}
+		}
+		
 		aviation_cult = {
 			picture = NORDIC_airforce_communist 
 			modifier = { air_range_factor = 0.05 air_agility_factor = 0.05 }
@@ -18,7 +43,7 @@ ideas = {
 		disorganized_railway_system = {
 			picture = SOV_mixed_rail 
 			
-			modifier = { custom_modifier_tooltip = SOV_disorganized_railway_system_tt }
+			#modifier = { custom_modifier_tooltip = SOV_disorganized_railway_system_tt }
 			
 			on_remove = {
 				set_technology = {cap_sov2 = 1 popup = no } 
@@ -335,7 +360,7 @@ ideas = {
 			modifier = {
 				#army_strength_factor = 0.2
 				industrial_capacity_factory = 0.1
-				army_defence_factor = 0.1
+				#army_defence_factor = 0.1
 			}
 		}
 		
@@ -345,7 +370,7 @@ ideas = {
 			picture = ETH_conservative_high_command
 			removal_cost = -1
 			modifier = {
-				army_strength_factor = 0.1
+				#army_strength_factor = 0.1
 				army_attack_factor = 0.1
 				#winter_attrition_factor = -1
 				#acclimatization_cold_climate_gain_factor = 1
@@ -359,7 +384,7 @@ ideas = {
 			removal_cost = -1
 			modifier = {
 				industrial_capacity_factory = 0.1
-				army_defence_factor = 0.1
+				#army_defence_factor = 0.1
 			}
 		}
 		
@@ -369,7 +394,7 @@ ideas = {
 			picture = generic_communism_drift_bonus
 			removal_cost = -1
 			modifier = {
-				army_strength_factor = 0.1
+				#army_strength_factor = 0.1
 				army_attack_factor = 0.1
 			}
 		}
@@ -499,11 +524,7 @@ ideas = {
 				has_government = communism
 			}
 			modifier = {
-				research_speed_factor = 0.15
-				operative_slot = 2
-				send_volunteer_size = 7
-				industrial_capacity_factory = 0.1
-				industrial_capacity_dockyard = 0.1
+				send_volunteer_size = 6
 			}
 		}
 		
@@ -1592,7 +1613,6 @@ ideas = {
 			modifier = {
 				army_core_attack_factor = 0.25
 				army_core_defence_factor = 0.25
-				army_org_factor = 0.10
 			}
 		}
 
@@ -2158,7 +2178,7 @@ ideas = {
 
 			modifier = {
 				industrial_concern_cost_factor = -1
-				production_speed_buildings_factor = 0.15
+				#production_speed_buildings_factor = 0.15
 			}
 		}
 
@@ -2573,7 +2593,7 @@ ideas = {
 				industry = 0.1
 			}
 			
-			traits = { industrial_concern }
+			#traits = { industrial_concern }
 			
 			modifier = {
 				custom_modifier_tooltip = SOV_industrial_concern_upgrade_tt
@@ -2594,14 +2614,14 @@ ideas = {
 			}
 			
 			research_bonus = {
-				industry = 0.3
-				synth_resources = 0.5
+				industry = 0.1
 			}
 			
-			traits = { industrial_concern }
+			#traits = { industrial_concern }
 			
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				production_factory_max_efficiency_factor = 0.25
+				production_factory_start_efficiency_factor = -0.25
 			}
 		}
 
@@ -2629,7 +2649,7 @@ ideas = {
 				electronics = 0.1
 			}
 			
-			traits = { electronics_concern }
+			#traits = { electronics_concern }
 			
 			modifier = {
 				custom_modifier_tooltip = SOV_industrial_concern_upgrade_tt
@@ -2650,13 +2670,12 @@ ideas = {
 			}
 
 			research_bonus = {
-				electronics = 0.5
+				electronics = 0.1
 			}
 			
 			traits = { electronics_concern }
 			
 			modifier = {
-				consumer_goods_expected_value = -0.02
 				research_speed_factor = 0.3
 			}
 		}
@@ -2688,13 +2707,14 @@ ideas = {
 				#has_completed_focus = SOV_improve_railway_network
 			}
 
-			cost = 75
+			cost = 150
 
 			research_bonus = {
 				train_tech = 0.1
+                construction_tech = 0.1 
 			}
 			
-			traits = { railway_company }
+			#traits = { railway_company }
 			
 			modifier = {
 				custom_modifier_tooltip = SOV_industrial_concern_upgrade_tt
@@ -2719,20 +2739,19 @@ ideas = {
 				#has_completed_focus = SOV_improve_railway_network
 			}
 			
-			cost = 75
+			cost = 150
 
 			research_bonus = {
-				train_tech = 0.5
-				construction_tech = 0.25 
+				train_tech = 0.1
+				construction_tech = 0.1 
 			}
 			
-			traits = { railway_company }
+			#traits = { railway_company }
 			
 			modifier = {
-				consumer_goods_expected_value = -0.02
-				supply_consumption_factor = -0.05
-				mobilization_speed = 0.50
-				production_speed_infrastructure_factor = 0.25
+				consumer_goods_expected_value = -0.1
+                production_speed_buildings_factor = 0.25
+                production_factory_max_efficiency_factor = -0.25
 			}
 		}
 
@@ -2750,27 +2769,66 @@ ideas = {
 			picture = generic_industrial_concern_2
 
 			allowed = {
-				always = no
+				original_tag = SOV
 			}
 			
 			available = {
-				always = no
 			}
 
 			visible = {
-				always = no
+				NOT = { has_completed_focus = SOV_foreign_experts }
 			}
-
-			cost = 100
 			
-			traits = { construction_company }
+
+			cost = 150
+			
+			#traits = { construction_company }
 			
 			modifier = {
-				custom_modifier_tooltip = SOV_gosproyektstroy_1_tt
 				production_speed_industrial_complex_factor = 0.05
+                production_speed_dockyard_factor = 0.05
 				production_speed_infrastructure_factor = 0.05
 				production_speed_arms_factory_factor = 0.05
-				production_speed_dockyard_factor = 0.05
+				production_factory_max_efficiency_factor = 0.05
+				line_change_production_efficiency_factor = 0.05
+				production_factory_efficiency_gain_factor = 0.05
+				production_factory_start_efficiency_factor = 0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+			}
+		}
+        
+        SOV_gosproyektstroy_2 = {
+			
+			picture = generic_industrial_concern_2
+
+			allowed = {
+				original_tag = SOV
+			}
+			
+			available = {
+			}
+
+			visible = {
+				has_completed_focus = SOV_foreign_experts
+			}
+			
+
+			cost = 150
+			
+			#traits = { construction_company }
+			
+			modifier = {
+				production_speed_industrial_complex_factor = 0.1
+                production_speed_dockyard_factor = 0.1
+				production_speed_infrastructure_factor = 0.1
+				production_speed_arms_factory_factor = 0.1
+				production_factory_max_efficiency_factor = 0.1
+				line_change_production_efficiency_factor = 0.1
+				production_factory_efficiency_gain_factor = 0.1
+				production_factory_start_efficiency_factor = 0.1
+				industrial_capacity_factory = 0.1
+				industrial_capacity_dockyard = 0.1
 			}
 		}
 
@@ -2782,25 +2840,22 @@ ideas = {
 
 			allowed = {
 				original_tag = SOV
-				#has_completed_focus = SOV_foreign_experts
+			}
+			
+			visible = {
+				always = no
 			}
 			
 			available = {
 				has_completed_focus = SOV_foreign_experts
 			}
 
-			cost = 150
+			cost = 0
 			
 			#traits = { construction_company }
 			
 			modifier = {
-				production_speed_industrial_complex_factor = 0.05
-				production_speed_infrastructure_factor = 0.15
-				production_speed_arms_factory_factor = 0.3
-				production_speed_dockyard_factor = 0.2
 				production_factory_max_efficiency_factor = 0.1
-				industrial_capacity_factory = 0.1
-				industrial_capacity_dockyard = 0.1
 			}
 		}
 		
@@ -2814,26 +2869,22 @@ ideas = {
 				original_tag = SOV
 			}
 			
+			visible = {
+				always = no
+			}
+			
 			available = {
 				has_completed_focus = SOV_foreign_experts
 			}
 
-			cost = 150
+			cost = 0
 			
 			#traits = { construction_company }
 			
 			modifier = {
-				production_speed_industrial_complex_factor = 0.05
-				production_speed_infrastructure_factor = 0.15
-				production_speed_arms_factory_factor = 0.3
-				production_speed_dockyard_factor = 0.2
-				industrial_capacity_dockyard = 0.1
-				line_change_production_efficiency_factor = 0.15
-				production_lack_of_resource_penalty_factor = -0.15
-				production_factory_efficiency_gain_factor = 0.15
-				production_factory_start_efficiency_factor = 0.15
-				industrial_capacity_factory = 0.1
-				
+				line_change_production_efficiency_factor = 0.2
+				production_factory_efficiency_gain_factor = 0.2
+				production_factory_start_efficiency_factor = 0.2
 			}
 		}
 		
