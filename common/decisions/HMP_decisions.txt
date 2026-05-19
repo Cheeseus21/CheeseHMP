@@ -185,6 +185,49 @@
                 custom_effect_tooltip = SOV_cash_in_dual_purpose_tt
             }
         }
+		
+		SOV_move_capital_decision = {
+			icon = generic_political_actions
+			priority = 99
+			
+			allowed = {
+				original_tag = SOV
+			}
+			
+			state_target = yes
+			
+			on_map_mode = map_and_decisions_view
+			
+			target_array = core_states
+			
+			target_trigger = {
+				FROM = {
+					# Only allow these 7 specific states
+					OR = {
+						state = 195 # Leningrad
+						state = 219 # Moscow
+						state = 251 # Kuybyshev
+						state = 217 # Stalingrad
+						state = 137 # Sevastopol
+						state = 252 # Gorky
+						state = 218 # Rostov
+					}
+					# You must control the state to move your capital there
+					is_controlled_by = ROOT
+					# It cannot already be your capital
+					NOT = { is_capital = yes }
+				}
+			}
+			
+			cost = 0
+			
+			fire_only_once = no 
+			
+			complete_effect = {
+				# FIXED: Wrapped the target assignment properly inside brackets
+				set_capital = { state = FROM }
+			}
+		}
 
         SOV_show_LL_decision_stuff = {
             icon = GFX_decision_generic_naval
