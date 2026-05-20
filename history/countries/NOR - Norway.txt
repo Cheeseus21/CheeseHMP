@@ -1,39 +1,166 @@
 ﻿capital = 110
+set_fuel_ratio = 1
+set_convoys = 100
+set_stability = 0.6
+set_war_support = 0.1
+
 set_variable = {
     var = min_fuel
     value = 0.800
 }
+
+set_politics = {
+	ruling_party = democratic
+	last_election = "1933.10.16"
+	election_frequency = 36
+	elections_allowed = yes
+}
+set_popularities = {
+	democratic = 96
+	fascism = 2
+	communism = 2
+}
+
 oob = "NOR_1936"
-set_rule = { can_join_factions = no }
-set_research_slots = 3
-set_rule = { can_be_spymaster = no }
 
-	#store_core_states_on_game_start = yes
-	# Setting Independent Norway Dmod variables 
-	set_variable = { NOR.NOR_independent_norway_dmod_CONSUMER_GOODS_EXPECTED_VALUE = 0 } 
-	set_variable = { NOR.NOR_independent_norway_dmod_production_speed_industrial_complex_factor = 0 } 
-	set_variable = { NOR.NOR_independent_norway_dmod_production_speed_infrastructure_factor = 0 } 
-	set_variable = { NOR.NOR_independent_norway_dmod_research_speed_factor = 0 } 
-	set_variable = { NOR.NOR_independent_norway_dmod_production_speed_supply_node = 0} 
-
-	# Setting Airforce Dmod variables 
-	set_variable = { NOR.NOR_army_air_force_dmod_license_air_purchase_cost = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_production_speed_air_base_factor = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_production_speed_anti_air_building_factor = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_air_doctrine_cost_factor = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_air_ace_bonuses_factor = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_air_ace_generation_chance_factor = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_air_attack_factor = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_air_defence_factor = 0 }
-	set_variable = { NOR.NOR_army_air_force_dmod_air_nav_efficiency = 0 }
-
-
-create_intelligence_agency = yes
 add_to_tech_sharing_group = commonwealth_research
+set_rule = { can_join_factions = no }
+set_rule = { can_be_spymaster = no }
+create_intelligence_agency = yes
+anti_cross_faction_trade_axis = yes
+
+set_research_slots = 3
+
+
 add_timed_idea = { idea = NO_TRADE days = 1339 }
-set_fuel_ratio = 1
-set_stability = 0.60
-set_war_support = 0.1
+add_ideas = {
+	limited_conscription
+	armyandnavy_idea
+	nor_cap
+}
+
+####################################################################
+add_dynamic_modifier = { modifier = NOR_domestic_situation }
+set_variable = { NOR_ds_surrender_limit = 1 }
+
+set_variable = { NOR_ds_weekly_casualties_war_support = 0 }
+
+set_variable = { NOR_ds_weekly_manpower = 0 }
+
+set_variable = { NOR_ds_defensive_war_stability_factor = 0 }
+set_variable = { NOR_ds_party_popularity_stability_factor = 0 }
+
+set_variable = { NOR_ds_communism_drift = 0 }
+
+set_variable = { NOR_ds_max_command_power = 0 }
+set_variable = { NOR_ds_command_power_gain_mult = 0 }
+
+set_variable = { NOR_ds_operative_slot = 0 }
+set_variable = { NOR_ds_agency_upgrade_time = 0 }
+
+set_variable = { NOR_ds_political_power_gain = -1 }
+set_variable = { NOR_ds_political_power_factor = 0 }
+set_variable = { NOR_ds_political_advisor_cost_factor = 0 }
+set_variable = { NOR_ds_economy_cost_factor = 0 }
+set_variable = { NOR_ds_trade_laws_cost_factor = 0 }
+set_variable = { NOR_ds_mobilization_laws_cost_factor = 0 }
+set_variable = { NOR_ds_high_command_cost_factor = 0 }
+set_variable = { NOR_ds_war_support_factor = 0 }
+set_variable = { NOR_ds_stability_factor = -0.3 }
+
+set_variable = { NOR_ds_research_speed_factor = 0 }
+
+set_variable = { NOR_ds_industrial_capacity_factory = 0 }
+set_variable = { NOR_ds_industrial_capacity_dockyard = 0 }
+set_variable = { NOR_ds_production_factory_start_efficiency_factor = 0 }
+set_variable = { NOR_ds_production_factory_max_efficiency_factor = 0 }
+set_variable = { NOR_ds_production_factory_efficiency_gain_factor = 0 }
+set_variable = { NOR_ds_production_lack_of_resource_penalty_factor = 0 }
+set_variable = { NOR_ds_line_change_production_efficiency_factor = 0 }
+set_variable = { NOR_ds_conversion_cost_civ_to_mil_factor = 3 }
+set_variable = { NOR_ds_conversion_cost_mil_to_civ_factor = 3 }
+set_variable = { NOR_ds_local_building_slots = 0 }
+
+set_variable = { NOR_ds_global_building_slots_factor = 0 }
+set_variable = { NOR_ds_equipment_conversion_speed = 0 }
+set_variable = { NOR_ds_industry_repair_factor = 0 }
+set_variable = { NOR_ds_industry_free_repair_factor = 0 }
+set_variable = { NOR_ds_industry_air_damage_factor = 0 }
+
+set_variable = { NOR_ds_consumer_goods_expected_value = 0.1 }
+
+set_variable = { NOR_ds_production_speed_buildings_factor = -0.3 }
+set_variable = { NOR_ds_production_speed_infrastructure_factor = 0 }
+set_variable = { NOR_ds_production_speed_industrial_complex_factor = 0 }
+set_variable = { NOR_ds_production_speed_arms_factory_factor = -0.3 }
+set_variable = { NOR_ds_production_speed_dockyard_factor = 0 }
+
+set_variable = { NOR_ds_non_core_manpower = 0 }
+
+set_variable = { NOR_ds_local_resources_factor = 0 }
+####################################################################
+add_dynamic_modifier = { modifier = NOR_army_and_navy }
+set_variable = { NOR_ran_conscription = 0 }
+set_variable = { NOR_ran_conscription_factor = 0 }
+
+set_variable = { NOR_ran_mobilization_speed = 0 }
+
+set_variable = { NOR_ran_experience_loss_factor = 0 }
+
+set_variable = { NOR_ran_land_doctrine_cost_factor = 0 } 
+
+set_variable = { NOR_ran_land_reinforce_rate = 0 }
+
+set_variable = { NOR_ran_experience_gain_army_factor = 0 }
+
+set_variable = { NOR_ran_army_strength_factor = 0 }
+
+set_variable = { NOR_ran_army_infantry_attack_factor = 0 }
+set_variable = { NOR_ran_army_infantry_defence_factor = 0 }
+
+set_variable = { NOR_ran_army_artillery_attack_factor = 0 }
+set_variable = { NOR_ran_army_artillery_defence_factor = 0 }
+
+set_variable = { NOR_ran_army_armor_attack_factor = 0 }
+set_variable = { NOR_ran_army_armor_defence_factor = 0 }
+
+set_variable = { NOR_ran_army_core_attack_factor = -0.1 }
+set_variable = { NOR_ran_army_core_defence_factor = -0.1 }
+
+set_variable = { NOR_ran_army_attack_factor = 0 }
+set_variable = { NOR_ran_army_defence_factor = 0 }
+
+set_variable = { NOR_ran_equipment_capture_factor = 0 }
+
+set_variable = { NOR_ran_army_org_factor = -0.1 }
+set_variable = { NOR_ran_army_morale_factor = -0.1 }
+set_variable = { NOR_ran_breakthrough_factor = 0 }
+
+set_variable = { NOR_ran_army_attack_speed_factor = 0 }
+set_variable = { NOR_ran_army_speed_factor = 0 }
+
+set_variable = { NOR_ran_max_dig_in_factor = -1 }
+set_variable = { NOR_ran_max_dig_in = 0 }
+set_variable = { NOR_ran_dig_in_speed_factor = 0 }
+
+set_variable = { NOR_ran_land_bunker_effectiveness_factor = -1 }
+set_variable = { NOR_ran_coastal_bunker_effectiveness_factor = -1 }
+set_variable = { NOR_ran_bunker_max_level_terrain_limit = 0 }
+set_variable = { NOR_ran_coastal_bunker_max_level_terrain_limit = 0 }
+
+set_variable = { NOR_ran_production_speed_bunker_factor = 0 }
+set_variable = { NOR_ran_production_speed_coastal_bunker_factor = 0 }
+
+set_variable = { NOR_ran_max_planning = 0 }
+set_variable = { NOR_ran_planning_speed = 0 }
+
+set_variable = { NOR_ran_org_loss_when_moving = 0 }
+
+set_variable = { NOR_ran_air_mission_efficiency = 0 }
+
+set_variable = { NOR_ran_acclimatization_cold_climate_gain_factor = 0 }
+set_variable = { NOR_ran_acclimatization_hot_climate_gain_factor = 0 }
+####################################################################
 
 #Country Leaders 
 recruit_character = NOR_johan_nygaardsvold
@@ -44,8 +171,6 @@ recruit_character = NOR_adam_egede_nissen
 recruit_character = NOR_johan_ludwig_mowinckel
 recruit_character = NOR_elias_corneliussen
 recruit_character = NOR_skule_storheil
-recruit_character = NOR_ole_reistad
-recruit_character = NOR_tryggve_gran
 recruit_character = NOR_henry_diesen
 recruit_character = NOR_wilhelm_von_tangen_hansteen
 recruit_character = NOR_alfred_roscher_lund
@@ -58,25 +183,23 @@ recruit_character = NOR_trygve_halvdan_lie
 recruit_character = NOR_king_haakon_vii
 
 recruit_character = NOR_martin_tranmael
-	recruit_character = NOR_johan_h_andresen
-	recruit_character = NOR_olav_scheflo
-	recruit_character = NOR_prince_olav
-	recruit_character = NOR_josef_terboven
-	recruit_character = NOR_jonas_lie
-	recruit_character = NOR_axel_aubert
-	recruit_character = NOR_peder_furubotn
-	recruit_character = NOR_jeanette_olsen
-	recruit_character = NOR_sverre_riisnaes
-	recruit_character = NOR_birger_meidell
-	recruit_character = NOR_ragnar_skancke
-	recruit_character = NOR_jacob_ager_laurantzon	  
-	recruit_character = NOR_jacob_hivden_haug
-	recruit_character = NOR_rasmus_hatledal
-	recruit_character = NOR_bjorn_christophersen
-	recruit_character = NOR_joakim_lehmkuhl
-	recruit_character = NOR_oscar_torp
-	recruit_character = NOR_hans_ystgaard 
-	recruit_character = NOR_birger_eriksen
+recruit_character = NOR_johan_h_andresen
+recruit_character = NOR_olav_scheflo
+recruit_character = NOR_prince_olav
+recruit_character = NOR_josef_terboven
+recruit_character = NOR_jonas_lie
+recruit_character = NOR_peder_furubotn
+recruit_character = NOR_jeanette_olsen
+recruit_character = NOR_sverre_riisnaes
+recruit_character = NOR_birger_meidell
+recruit_character = NOR_ragnar_skancke
+recruit_character = NOR_jacob_ager_laurantzon	  
+recruit_character = NOR_jacob_hivden_haug
+recruit_character = NOR_rasmus_hatledal
+recruit_character = NOR_bjorn_christophersen
+recruit_character = NOR_joakim_lehmkuhl
+recruit_character = NOR_hans_ystgaard 
+recruit_character = NOR_birger_eriksen
 
 recruit_character = NOR_omar_bradley
 recruit_character = NOR_dwight_eisenhower
@@ -123,6 +246,7 @@ recruit_character = NOR_john_dill
 recruit_character = NOR_george_giffard
 recruit_character = NOR_harold_alexander
 recruit_character = NOR_oliver_leese
+
 # Navy Leaders
 recruit_character = NOR_francois_darlan
 recruit_character = NOR_leonard_w_murray
@@ -134,19 +258,6 @@ recruit_character = NOR_conrad_helfrich
 recruit_character = NOR_peter_phipps
 recruit_character = NOR_edmund_rupert_drummond
 recruit_character = NOR_guy_hallifax
-add_ideas = {
-	limited_conscription
-	nor_bad_debuffs
-	armyandnavy_idea
-	nor_cap
-	NOR_complacent_cabinet_ns
-	NOR_obsolete_armed_forces_ns_1
-	NOR_the_hard_thirties_ns
-	#NOR_anti_communist_sentiment_ns
-	NOR_crumbling_fortifications_ns
-	#NOR_birger_ljungberg
-	#NOR_kristian_laake
-}
 
 # Starting tech
 set_technology = {
@@ -206,17 +317,3 @@ set_technology = {
 #####SUPPLY EQUIPMENT ADDED TO GIVE MINORS A BASIC STOCKPILE TO WORK WITH EARLY GAME#####
 add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 200 }
 #########################################################################################
-set_convoys = 100	
-set_stability = 0.7
-anti_cross_faction_trade_axis = yes
-set_politics = {
-	ruling_party = democratic
-	last_election = "1933.10.16"
-	election_frequency = 36
-	elections_allowed = yes
-}
-set_popularities = {
-	democratic = 96
-	fascism = 2
-	communism = 2
-}

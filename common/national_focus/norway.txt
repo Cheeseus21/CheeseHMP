@@ -22,51 +22,21 @@ focus_tree = {
 	default = no
 
 	continuous_focus_position = { x = 50 y = 1750 }
-    shared_focus = ALLIES_commonwealth_of_nations
-
-	focus = {
-		id = NOR_vote_of_no_confidence
-		icon = GFX_focus_NOR_vote_of_no_confidence
-		mutually_exclusive = { focus = NOR_continue_nygaardsvold_government focus = NOR_the_stumbling_storting   }
-		x = 0
-		y = 0
-
-
-		cost = 5
-
 	
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			hidden_effect = {
-				set_country_flag = NOR_going_dem_allied 
-				NOR_set_variables_alt_dem = yes 
-			}
-			#custom_effect_tooltip = NOR_unlocking_prep_allied_dem_TT
-			remove_ideas = NOR_complacent_cabinet_ns 
-			country_event = { id = AAT_norway.12 }
-			custom_effect_tooltip = the_following_will_happen_TT
-			event_option_tooltip = AAT_norway.12.a
-			mark_focus_tree_layout_dirty = yes 
-		}
-	}
-
+    shared_focus = ALLIES_commonwealth_of_nations
+	
 	focus = {
-		id = NOR_continue_nygaardsvold_government
+		id = NOR_info_focus
+		icon = GFX_focus_NOR_preparing_the_return_to_norway 
 		
-		icon = GFX_focus_NOR_continue_nygaardsvold_government 
+		available = {
+			always = no
+		}
 		
-		mutually_exclusive = { focus = NOR_vote_of_no_confidence  focus = NOR_the_stumbling_storting }
-		x = 8
+		x = 5
 		y = 0
-		relative_position_id = NOR_vote_of_no_confidence
-
-
-		cost = 5
+		
+		cost = 0
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_HISTORICAL }
 
@@ -75,39 +45,58 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_political_power = 300
-			hidden_effect = {
-				NOR_set_prepare_variables_historical = yes
-				set_country_flag = NOR_going_dem_historical 
-			}
-			country_event = {
-				id = AAT_norway.9
-				hours = 2 
-			}
-			custom_effect_tooltip = the_following_will_happen_TT
-			event_option_tooltip = AAT_norway.9.a
-			mark_focus_tree_layout_dirty = yes 
+			custom_effect_tooltip = norway_cap_tt_1
+		}
+	}
+
+	focus = {
+		id = NOR_continue_nygaardsvold_government
+		icon = GFX_focus_NOR_continue_nygaardsvold_government 
+		
+		x = 0
+		y = 0
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_HISTORICAL }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 100
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_political_power_gain
+                value = 0.25
+                tooltip = political_power_gain_tt
+            }
+			add_to_variable = {
+                var = NOR_ds_stability_factor
+                value = 0.1
+                tooltip = stability_factor_tt
+            }
 		}
 	}
 
 	focus = {
 		id = NOR_weathering_the_storm_to_come
 		icon = GFX_focus_NOR_weathering_the_storm_to_come
-		prerequisite = { focus = NOR_continue_nygaardsvold_government focus = NOR_vote_of_no_confidence }
-		x = -4
+		prerequisite = { focus = NOR_continue_nygaardsvold_government }
+		
+		x = -3
 		y = 1
+		
 		relative_position_id = NOR_continue_nygaardsvold_government 
 
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
+		cost = 10
+		
 		available = {
-			NOT = {
-				has_idea = NOR_complacent_cabinet_ns
-			}
+			has_completed_focus = NOR_restart_public_investment
 		}
 		
 		bypass = {
@@ -121,663 +110,140 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			every_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory 
-						size > 0 
-						include_locked = yes 
-					}
-				}
-				random_select_amount = 2
-				
-				add_building_construction = {
-					type = arms_factory 
-					level = 1 
-					instant_build = yes 
-				}
-			}
-			add_war_support = 0.1
-			
-		}
-	}
-
-
-	focus = {
-		id = NOR_consolidate_power
-		icon = GFX_goal_generic_political_pressure
-		prerequisite = { focus = NOR_vote_of_no_confidence  }
-		relative_position_id = NOR_vote_of_no_confidence
-		x = -3
-		y = 2
-
-		cost = 5
-		available = {
-				#has_idea = NOR_anti_communist_sentiment_ns				
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-            # add_popularity = {
-                # popularity = -0.1
-                # ideology = democratic  
-            # }
-			add_political_power = 100 
-            add_war_support = 0.1
-		}
-	}
-
-
-	focus = {
-		id = NOR_squash_dissent
-		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
-		prerequisite = { focus = NOR_consolidate_power }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_consolidate_power
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER }
-
-		completion_reward = {
-			add_political_power = 100 
-            add_stability = 0.1
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_production_speed_arms_factory_factor
+                value = 0.1
+                tooltip = production_speed_arms_factory_factor_tt
+            }
 		}
 	}
 
 	focus = {
-		id = NOR_denounce_the_german_reich
-		icon = GFX_focus_ger_oppose_hitler
-		prerequisite = { focus = NOR_consolidate_power }
-
-		dynamic = yes
+		id = NOR_the_neutrality_guard
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = NOR_weathering_the_storm_to_come }
 		
-		x = 1
+		x = 0
 		y = 1
-		relative_position_id = NOR_consolidate_power
-		cost = 5
+		
+		relative_position_id = NOR_weathering_the_storm_to_come 
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER FOCUS_FILTER_HISTORICAL }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
 
 		completion_reward = {
-			add_political_power = 100
-			add_war_support = 0.1
+			add_offsite_building = { type = arms_factory level = 1 }
 		}
 	}
 
-
 	focus = {
-		id = NOR_prepare_for_war
-		icon = GFX_goal_generic_major_war
-		prerequisite = { focus = NOR_squash_dissent }
-		prerequisite = { focus = NOR_denounce_the_german_reich }
-
-		x = 1
+		id = NOR_rearm_for_defense
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = NOR_the_neutrality_guard }
+		
+		x = 0
 		y = 1
-		relative_position_id = NOR_squash_dissent
-		cost = 5
+		
+		relative_position_id = NOR_the_neutrality_guard
+		
+		cost = 10
+		
 		available = {
 		}
 
-		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-		
-			army_experience = 100
-            
-            add_war_support = 0.1
-            
-            add_ideas = partial_economic_mobilisation
-            
-			if = {
-				limit = {
-					has_country_flag = NOR_going_dem_allied
-				}
-				unlock_decision_tooltip = {
-					decision = NOR_alt_dem_military_industry_expansion
-					show_effect_tooltip = yes 
-					show_modifiers = yes 
-				}
-			}
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_production_speed_arms_factory_factor
+                value = 0.1
+                tooltip = production_speed_arms_factory_factor_tt
+            }
 		}
 	}
 
-	# focus = {
-		# id = NOR_join_the_allies
-		# icon = GFX_goal_generic_alliance
-		# prerequisite = { focus = NOR_denounce_the_german_reich }
-
-		# x = 1
-		# y = 1
-		# relative_position_id = NOR_denounce_the_german_reich
-		# cost = 5
-		# available = {
-			# always= no 
-		# }
-
-		# search_filters = { FOCUS_FILTER_POLITICAL }
-
-		# completion_reward = {
-			# add_political_power = 75
-			# add_popularity = {
-				# ideology = democratic
-				# popularity = 0.15
-			# }
-			# ENG = { add_to_faction = NOR } 
-		# }
-	# }
-
 	focus = {
-		id = NOR_proactive_defense
-		icon = GFX_focus_generic_attack_nordic_territory
-		prerequisite = { focus = NOR_prepare_for_war  }
+		id = NOR_patrol_our_coast
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = NOR_rearm_for_defense }
 
 		x = 0
 		y = 1
-		relative_position_id = NOR_prepare_for_war
-		cost = 5
+		
+		relative_position_id = NOR_rearm_for_defense
+		
+		cost = 10
+		
 		available = {
-			has_war_support > 0.75
 		}
 
-		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_ARMY_XP FOCUS_FILTER_NAVY_XP FOCUS_FILTER_AIR_XP }
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH FOCUS_FILTER_NAVY_XP }
 
 		completion_reward = {
-			add_war_support = 0.2
-			army_experience = 100
+			add_offsite_building = { type = dockyard level = 1 }
 		}
 	}
-
-	focus = {
-		id = NOR_crush_hitler
-		icon = GFX_focus_attack_germany
-		prerequisite = { focus = NOR_proactive_defense  }
-		relative_position_id = NOR_proactive_defense
-		x = 0
-		y = 1
-		cost = 1
-		available = {
-			date > 1940.1.1
-		}
-
-		bypass = {
-			NOT = {
-				any_other_country = {
-					is_major = yes 
-					has_government = fascism 
-					has_capitulated = no 
-				}
-			}
-		}
-
-		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_ANNEXATION FOCUS_FILTER_ARMY_XP FOCUS_FILTER_NAVY_XP FOCUS_FILTER_AIR_XP FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			add_timed_idea = {
-				idea = NOR_crush_hitler_ns
-				days = 30
-			}
-			army_experience = 50
-			air_experience = 50 
-			add_political_power = 100
-		}
-	}
-
 	
-###########################################################################################
-###########################################################################################
-###########################################################################################
-
-				   ###    ##       ##       #### ######## ########  
-				  ## ##   ##       ##        ##  ##       ##     ## 
-				 ##   ##  ##       ##        ##  ##       ##     ## 
-				##     ## ##       ##        ##  ######   ##     ## 
-				######### ##       ##        ##  ##       ##     ## 
-				##     ## ##       ##        ##  ##       ##     ## 
-				##     ## ######## ######## #### ######## ########  
-
-###########################################################################################
-###########################################################################################
-###########################################################################################
-
 	focus = {
-		id = NOR_liberal_conservative_alliance
-		icon = GFX_goal_generic_major_alliance
-		prerequisite = { focus = NOR_vote_of_no_confidence }
-
-		x = 0
+		id = NOR_restore_public_trust_in_the_storting
+		icon = GFX_focus_NOR_restore_public_trust_in_the_storting
+		prerequisite = { focus = NOR_weathering_the_storm_to_come focus = NOR_broken_gun_policies }
+		
+		x = 2
 		y = 1
 		
-		relative_position_id = NOR_vote_of_no_confidence
-		
-		cost = 5
-		available = {
-		}
+		relative_position_id = NOR_weathering_the_storm_to_come 
 
-		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		cost = 10
 
-		completion_reward = {
-			add_political_power = 100
-            add_stability = 0.2
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.1
-			}
-		}
-	}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
 
-	focus = {
-		id = NOR_sabotage_unions
-		icon = GFX_focus_spr_crush_the_revolution
-		prerequisite = { focus = NOR_liberal_conservative_alliance }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_liberal_conservative_alliance
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
 
 		completion_reward = {
-			add_timed_idea = {
-				idea = NOR_reduced_workers_rights_ns
-				days = 730
-			}
-            
-            669 = {
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = {
-                    type = industrial_complex
-                    level = 1
-                    instant_build = yes
-                }		
-		    }
-		}
-	}
-
-	focus = {
-		id = NOR_invite_foreign_investment
-		icon = GFX_focus_generic_industrialists
-		prerequisite = { focus = NOR_liberal_conservative_alliance }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_liberal_conservative_alliance
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			669 = {
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = {
-                    type = industrial_complex
-                    level = 1
-                    instant_build = yes
-                }		
-		    }
-		}
-	}
-
-	focus = {
-		id = NOR_invite_transnational_manufacturers
-		icon = GFX_goal_generic_construct_civ_factory
-		prerequisite = { focus = NOR_sabotage_unions }
-		prerequisite = { focus = NOR_invite_foreign_investment }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_invite_foreign_investment
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			remove_ideas= NOR_the_hard_thirties_ns  
-			669 = {
-			add_extra_state_shared_building_slots = 1
-			add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			    }		
-		    }
-		}
-	}
-
-	focus = {
-		id = NOR_contain_the_labor_movement
-		icon = GFX_focus_spr_masters_of_our_own_fate
-		prerequisite = { focus = NOR_weathering_the_storm_to_come focus = NOR_sabotage_unions }
-		#prerequisite = { focus = NOR_sabotage_unions }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_sabotage_unions
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			add_popularity = {
-				ideology = communism
-				popularity = -0.1
-			}
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.1
-			}
-			add_political_power = 50		
-			add_war_support = 0.15
-		}
-	}
-
-	focus = {
-		id = NOR_uproot_secret_army
-		icon = GFX_focus_generic_anti_fascist_diplomacy
-		prerequisite = { focus = NOR_contain_the_labor_movement }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_contain_the_labor_movement
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			#add_command_power = 30
-			add_popularity = {
-				ideology = fascism
-				popularity = -0.1
-			}
-			add_equipment_to_stockpile = { 
-				type = infantry_equipment
-				amount = 10000 
-				producer = NOR
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_support_finland_in_winter_war
-		icon = GFX_focus_invite_finland
-		prerequisite = { focus = NOR_contain_the_labor_movement }
-		#prerequisite = { focus = NOR_rearm_for_defense } 
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_contain_the_labor_movement
-		cost = 5
-		available = {
-			FIN = {
-				NOT = { has_war_with = ROOT }
-				has_capitulated = no
-			}
-		}
-
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-		 	army_experience = 50
-			add_war_support = 0.1
-			FIN = {
-				add_command_power = 20			
-				add_equipment_to_stockpile = { 
-					type = infantry_equipment_0
-					amount = 2000 
-					producer = PREV
-				}
-
-				add_equipment_to_stockpile = { 
-					type = support_equipment_1
-					amount = 200 
-					producer = PREV
-				}
-
-				add_equipment_to_stockpile = { 
-					type = convoy_1
-					amount = 10
-					producer = PREV
-				}				
-			}
-		}			
-	}
-
-	focus = {
-		id = NOR_replace_laake
-		icon = GFX_focus_NOR_replace_laake		
-
-		prerequisite = { focus = NOR_the_kings_no focus = NOR_uproot_secret_army}
-
-
-		x = -3
-		y = 6
-		relative_position_id = NOR_weathering_the_storm_to_come
-		cost = 5
-		available = {
-			controls_state = 110
-		}
+			add_political_power = 50
 			
-		allow_branch = { always = no }	
+			custom_effect_tooltip = generic_skip_one_line_tt
 			
-		search_filters = { FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_HISTORICAL }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			retire_character = NOR_kristian_laake
-			country_event = {
-				id = AAT_norway_allied.4
-			}
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_political_power_gain
+                value = 0.25
+                tooltip = political_power_gain_tt
+            }
+			add_to_variable = {
+                var = NOR_ds_stability_factor
+                value = 0.1
+                tooltip = stability_factor_tt
+            }
+			add_to_variable = {
+                var = NOR_ds_war_support_factor
+                value = 0.1
+                tooltip = war_support_factor_tt
+            }
 		}
 	}
-
-	focus = {
-		id = NOR_arrest_quisling
-		
-		icon = GFX_focus_NOR_arrest_quisling
-		
-		prerequisite = { focus = NOR_replace_laake }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_replace_laake
-		
-		cost = 5
-		
-		available = {
-			has_character = NOR_vidkun_quisling	
-		}
-
-		bypass = {
-			has_completed_focus = NOR_fascist_invasion_of_norway 
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_POLITICAL }
-
-		available_if_capitulated = yes		
-
-		completion_reward = {
-			#remove_ideas = { NOR_anti_communist_sentiment_ns }
-			add_popularity = {
-				ideology = fascism
-				popularity = -0.2
-			}
-			add_popularity = {
-				ideology = democratic 
-				popularity = 0.15 
-			}
-			retire_character = NOR_vidkun_quisling
-		}
-	}
-
-	focus = {
-		id = NOR_protect_finnmark_from_the_bolsheviks
-		icon = GFX_focus_ger_bulwark_against_bolshevism
-		prerequisite = { focus = NOR_uproot_secret_army }
-		prerequisite = { focus = NOR_support_finland_in_winter_war }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_uproot_secret_army
-		cost = 5
-
-		search_filters = { FOCUS_FILTER_MANPOWER }
-
-		completion_reward = {
-			add_manpower = 100000
-
-		}
-	}
-
-	focus = {
-		id = NOR_reform_the_army
-		icon = GFX_focus_chi_army_reform
-		prerequisite = { focus = NOR_arrest_quisling }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_arrest_quisling
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_ARMY_XP FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			if = {
-				limit = {
-					has_idea = NOR_birger_ljungberg
-				}
-				deactivate_advisor = NOR_birger_ljungberg
-			}
-			army_experience = 50
-			add_command_power = 60
-			add_political_power = 75
-			add_war_support = 0.2
-		}
-	}
-
-	focus = {
-		id = NOR_improved_training
-		icon = GFX_focus_generic_little_entente
-		prerequisite = { focus = NOR_reform_the_army }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_reform_the_army
-		cost = 5
-		available = {
-		}
-
-		search_filters = {}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_timed_idea = {
-				idea = NOR_improved_training_ns
-				days = 730
-	 		}
-		}
-	}
-
-	focus = {
-		id = NOR_officers_academy
-		icon = GFX_focus_generic_military_mission
-		prerequisite = { focus = NOR_reform_the_army }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_reform_the_army
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_ARMY_XP }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			army_experience = 150
-			add_command_power = 100
-		}
-	}
-
-	focus = {
-		id = NOR_offensive_doctrines
-		icon = GFX_goal_generic_attack_allies
-		prerequisite = { focus = NOR_improved_training }
-		prerequisite = { focus = NOR_officers_academy }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_improved_training
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_NAVY_XP FOCUS_FILTER_AIR_XP }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_doctrine_cost_reduction = {
-				cost_reduction = 0.99
-				uses = 2
-				category = special_forces_doctrine
-			}
-			army_experience = 150
-			air_experience = 50
-			add_command_power = 50
-			
-		}
-	}
-
-
-###########################################################################################
-###########################################################################################
-###########################################################################################
-
-	##     ## ####  ######  ########  #######  ########  ####  ######     ###    ##       
-	##     ##  ##  ##    ##    ##    ##     ## ##     ##  ##  ##    ##   ## ##   ##       
-	##     ##  ##  ##          ##    ##     ## ##     ##  ##  ##        ##   ##  ##       
-	#########  ##   ######     ##    ##     ## ########   ##  ##       ##     ## ##       
-	##     ##  ##        ##    ##    ##     ## ##   ##    ##  ##       ######### ##       
-	##     ##  ##  ##    ##    ##    ##     ## ##    ##   ##  ##    ## ##     ## ##       
-	##     ## ####  ######     ##     #######  ##     ## ####  ######  ##     ## ######## 
-
-###########################################################################################
-###########################################################################################
-###########################################################################################
-	
 
 	focus = {
 		id = NOR_broken_gun_policies
 		icon = GFX_focus_NOR_broken_gun_policies
 		prerequisite = { focus = NOR_continue_nygaardsvold_government }
-		x = -1
+		
+		x = 0
 		y = 1
+		
 		relative_position_id = NOR_continue_nygaardsvold_government 
 
-		cost = 5
+		cost = 10
 
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
@@ -787,23 +253,31 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_ideas = NOR_broken_gun_ns
-			#add_popularity = {
-			#	ideology = democratic 
-			#	popularity = 0.025
-			#}
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_consumer_goods_expected_value
+                value = -0.05
+                tooltip = consumer_goods_expected_value_tt
+            }
+			add_to_variable = {
+                var = NOR_ds_production_speed_buildings_factor
+                value = 0.15
+                tooltip = production_speed_buildings_factor_tt
+            }
 		}
 	}
-
+	
 	focus = {
 		id = NOR_leaving_the_hard_thirties_behind
 		icon = GFX_goal_generic_consumer_goods
 		prerequisite = { focus = NOR_continue_nygaardsvold_government }
-		x = 2
+		
+		x = 3
 		y = 1
+		
 		relative_position_id = NOR_continue_nygaardsvold_government 
 
-		cost = 5
+		cost = 10
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
 
@@ -812,30 +286,22 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			NOR_reduce_hard_thirties_ns = yes
-			add_stability = 0.05
-			add_war_support = 0.05 
-			#add_popularity = {
-			#	ideology = communism 
-			#	popularity = 0.05
-			#}
-			#add_popularity = {
-			#	ideology = democratic
-			#	popularity = 0.03
-			#}
+			add_political_power = 120
 		}
 	}
-
+	
 	focus = {
 		id = NOR_cut_military_budget
 		icon = GFX_goal_generic_construct_infrastructure
 		prerequisite = { focus = NOR_leaving_the_hard_thirties_behind }
 		prerequisite = { focus = NOR_broken_gun_policies }
+		
 		x = -2
 		y = 1
+		
 		relative_position_id = NOR_leaving_the_hard_thirties_behind 
 
-		cost = 5
+		cost = 10
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
 
@@ -844,249 +310,10 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = NOR_broken_gun_ns
-				add_idea = NOR_broken_gun_ns_2
-			}
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
-
-	focus = {
-		id = NOR_bail_out_towns
-		icon = GFX_goal_generic_construction2
-		prerequisite = { focus = NOR_leaving_the_hard_thirties_behind }
-		x = 1
-		y = 1
-		relative_position_id = NOR_leaving_the_hard_thirties_behind 
-
-		cost = 5
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-				669 = {
-			add_extra_state_shared_building_slots = 1
-			add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-		}
-		}
-	}
-
-	focus = {
-		id = NOR_restore_public_trust_in_the_storting
-		icon = GFX_focus_NOR_restore_public_trust_in_the_storting
-		prerequisite = { focus = NOR_broken_gun_policies focus = NOR_weathering_the_storm_to_come }
-		x = -1
-		y = 1
-		relative_position_id = NOR_broken_gun_policies 
-
-		cost = 5
-
 	
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_stability = 0.1
-			add_war_support = 0.1
-			add_political_power = 75
-			#add_command_power = 25
-			add_popularity = {
-				ideology = democratic 
-				popularity = 0.1
-			}
-			# if = {
-				# limit = {
-					# has_country_flag = NOR_going_dem_allied
-				# }
-				# unlock_decision_tooltip = {
-					# decision = NOR_alt_dem_economic_relief_measures
-					# show_effect_tooltip = yes 
-					# show_modifiers = yes 
-				# }
-			# }
-		}
-	}
-
-	focus = {
-		id = NOR_the_neutrality_guard
-		icon = GFX_goal_generic_military_sphere
-		prerequisite = { focus = NOR_weathering_the_storm_to_come }
-		x = 0
-		y = 1
-		relative_position_id = NOR_weathering_the_storm_to_come 
-
-		cost = 5
-
-		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER FOCUS_FILTER_HISTORICAL }
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			#Nøytralitetsvakt; give 10 militia
-			army_experience = 50
-		}
-	}
-
-	focus = {
-		id = NOR_rearm_for_defense
-		icon = GFX_goal_generic_fortify_city
-		prerequisite = { focus = NOR_restore_public_trust_in_the_storting }
-		prerequisite = { focus = NOR_the_neutrality_guard }
-		x = 1
-		y = 1
-		relative_position_id = NOR_the_neutrality_guard
-		
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			# add_tech_bonus = {
-				# name = NOR_rearm_for_defense
-				# bonus = 1.0
-				# uses = 1
-				# category = infantry_weapons 
-			# }
-            
-            #custom_effect_tooltip = generic_skip_one_line_tt
-            
-			add_ideas =  NOR_defensive_rearmament_ns 
-			# unlock_decision_tooltip = {
-				# decision = NOR_focus_on_training
-				# show_effect_tooltip = yes 
-				# show_modifiers = yes 
-			# }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-			
-			if = {
-				limit = {
-					NOT = {
-						has_completed_focus = NOR_vote_of_no_confidence
-					}
-				}
-				remove_ideas = { NOR_broken_gun_ns_3 }
-			}
-
-			
-			# if = {
-				# limit = {
-					# has_completed_focus = NOR_vote_of_no_confidence
-				# }
-				# custom_effect_tooltip = when_at_war_TT
-				# unlock_decision_tooltip = {
-					# decision = NOR_alt_dem_integrate_militias
-					# show_effect_tooltip = yes 
-					# show_modifiers = yes 
-				# }
-			# }
-		}
-	}
-
-	# focus = {
-		# id = NOR_fde_intelligence_agency
-		# icon = GFX_focus_generic_secret_service_agency
-		# prerequisite = { focus = NOR_support_finland_in_winter_war focus = NOR_rearm_for_defense }
-
-		# x = -1
-		# y = 2
-		# relative_position_id = NOR_rearm_for_defense
-
-		# cost = 5
-
-		# I know this trigger will never show negative but it's so the player knows why they have it. 
-
-		# search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
-
-		# completion_reward = {
-		# 669 = {
-			# add_extra_state_shared_building_slots = 1
-			# add_building_construction = {
-				# type = industrial_complex
-				# level = 1
-				# instant_build = yes
-			# }			
-		# }
-			# create_intelligence_agency = {
-				# name = "Forsvarets Etterretningstjeneste"
-				# icon = GFX_intelligence_agency_logo_NOR_historical_intelligence
-			# }
-		# }
-	# }
-
-	focus = {
-		id = NOR_patrol_our_coast
-		icon = GFX_goal_generic_navy_cruiser
-		prerequisite = { focus = NOR_rearm_for_defense }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_rearm_for_defense
-		
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH FOCUS_FILTER_NAVY_XP }
-
-		completion_reward = {
-			669 = { #JAN MAYEN
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = dockyard 
-					level = 1
-					instant_build = yes
-				}
-			}
-			add_tech_bonus = {
-				name = NOR_patrol_our_coast
-				bonus = 0.75
-				uses = 2
-				category = dd_tech 
-			}
-
-				add_tech_bonus = {
-					name = NOR_patrol_our_coast
-					bonus = 0.75
-					uses = 2
-					category = naval_minelaying 
-				}
-			# if = {
-				# limit = {
-					# has_country_flag = NOR_going_dem_allied
-				# }
-				# unlock_decision_tooltip = {
-					# decision = NOR_alt_dem_naval_expansion
-					# show_effect_tooltip = yes 
-					# show_modifiers = yes 
-				# }
-
-			# }
-			# else = {
-				# unlock_decision_tooltip = {
-					# decision = NOR_naval_expanion
-					# show_effect_tooltip = yes 
-					# show_modifiers = yes 
-				# }
-			# }
-		}
-	}
-
 	focus = {
 		id = NOR_social_incrementalism
 		icon = GFX_goal_generic_national_unity
@@ -1094,49 +321,88 @@ focus_tree = {
 
 		x = 0
 		y = 1
+		
 		relative_position_id = NOR_cut_military_budget
-		cost = 5
+		
+		cost = 10
+		
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			add_stability = 0.1
-			# add_popularity = {
-				# ideology = democratic
-				# popularity = 0.05
-			# }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-			swap_ideas = {
-				remove_idea = NOR_broken_gun_ns_2
-				add_idea = NOR_broken_gun_ns_3
-			}
-			remove_ideas =  NOR_complacent_cabinet_ns 
+			add_political_power = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_political_power_gain
+                value = 0.25
+                tooltip = political_power_gain_tt
+            }
+			add_to_variable = {
+                var = NOR_ds_stability_factor
+                value = 0.1
+                tooltip = stability_factor_tt
+            }
+		}
+	}
+
+	focus = {
+		id = NOR_bail_out_towns
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = NOR_leaving_the_hard_thirties_behind }
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = NOR_leaving_the_hard_thirties_behind 
+
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_political_power_gain
+                value = 0.25
+                tooltip = political_power_gain_tt
+            }
+			add_to_variable = {
+                var = NOR_ds_stability_factor
+                value = 0.1
+                tooltip = stability_factor_tt
+            }
 		}
 	}
 
 	focus = {
 		id = NOR_print_more_money
 		icon = GFX_focus_hol_abandon_the_gold_standard
-		prerequisite = { focus = NOR_leaving_the_hard_thirties_behind }
+		prerequisite = { focus = NOR_bail_out_towns }
 
 		x = 0
-		y = 2 
+		y = 1
 		
-		relative_position_id = NOR_leaving_the_hard_thirties_behind
+		relative_position_id = NOR_bail_out_towns
 		
-		cost = 5
+		cost = 10
+		
 		available = {
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			NOR_reduce_hard_thirties_ns = yes
-			#add_timed_idea = {
-			#	idea = NOR_printing_money_ns
-			#	days = 365
-			#}
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 
@@ -1148,62 +414,65 @@ focus_tree = {
 
 		x = 1
 		y = 1
+		
 		relative_position_id = NOR_social_incrementalism
-		cost = 5
+		
+		cost = 10
+		
 		available = {
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			NOR_reduce_hard_thirties_ns = yes
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.1
-			}
-
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_consumer_goods_expected_value
+                value = -0.05
+                tooltip = consumer_goods_expected_value_tt
+            }
+			add_to_variable = {
+                var = NOR_ds_production_speed_buildings_factor
+                value = 0.15
+                tooltip = production_speed_buildings_factor_tt
+            }
 		}
 	}
 
 	focus = {
 		id = NOR_coastal_defense
 		icon = GFX_focus_generic_coastal_fort
-		prerequisite = { focus = NOR_restart_public_investment focus = NOR_patrol_our_coast }
+		prerequisite = { focus = NOR_patrol_our_coast focus = NOR_restart_public_investment }
 
-		x = -1
+		x = 1
 		y = 1
-		relative_position_id = NOR_restart_public_investment
+		
+		relative_position_id = NOR_patrol_our_coast
 
 		bypass = { NOT = { controls_state = 110 } }
-		cost = 5
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
 		
-			110 = {
-				set_building_level = {
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = NOR 
+				}
+				
+				add_building_construction = {
 					type = coastal_bunker
-					level = 4
+					level = 1
+					
 					province = {
 						all_provinces = yes
-						limit_to_coastal = yes
+						limit_to_naval_base = yes
 					}
+					
+					instant_build = yes 
 				}
 			}
-			142 = {
-				set_building_level = {
-					type = coastal_bunker
-					level = 4
-					province = {
-						all_provinces = yes
-						limit_to_coastal = yes 
-					}
-				}
-			}
-			# unlock_decision_tooltip = {
-				# decision = NOR_public_investment_drive 
-				# show_effect_tooltip = yes
-				# show_modifiers = yes
-			# }
 		}
 	}
 
@@ -1214,34 +483,33 @@ focus_tree = {
 
 		x = 2
 		y = 0
+		
 		relative_position_id = NOR_coastal_defense
-		cost = 5
+		
+		cost = 10
+		
 		bypass = { NOT = { controls_state = 110 } }
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-
-			110 = {
-				set_building_level = {
-					type = bunker
-					level = 4
+			every_owned_state = {
+				limit = {
+					is_core_of = NOR 
+				}
+				
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					
 					province = {
 						all_provinces = yes
-						limit_to_victory_point = yes 
+						limit_to_naval_base = yes
 					}
+					
+					instant_build = yes 
 				}
 			}
-			142 = {
-				set_building_level = {
-					type = bunker
-					level = 4
-					province = {
-						all_provinces = yes 
-						limit_to_victory_point = yes 
-					}
-				}
-			}		
 		} 
 	}
 
@@ -1254,1003 +522,40 @@ focus_tree = {
 
 		x = 1
 		y = 1
+		
 		relative_position_id = NOR_coastal_defense
-		cost = 5
+		
+		cost = 10
 
 		available_if_capitulated = yes
-
 		
 		available = {
-			#has_war = yes
-			#has_government = democratic
+			NOT = {
+				controls_state = 110
+			}
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			NOR_set_mobile_government_variables = yes 
-            
-            add_war_support = 0.1
-            
-			#remove_ideas =  NOR_anti_communist_sentiment_ns
-			#custom_effect_tooltip = NOR_mobile_government_decisions_TT
-		}
-	}
-
-	# focus = {
-		# id = NOR_prince_olavs_inspiration
-		# icon = GFX_focus_generic_military_mission
-		# prerequisite = { focus = NOR_the_kings_no }
-
-		# x = -5
-		# y = 1
-		# relative_position_id = NOR_the_kings_no
-		# cost = 5
-
-		# available_if_capitulated = yes 
-		
-
-
-		# available = {
-			# NOT = { owns_state = 110 }
-		# }
-
-		# search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
-
-		# completion_reward = {
-			# add_legitimacy = 20
-			# add_political_power = 50
-			# NOR_add_25_convoys = yes  
-			# add_stability = 0.1
-			# add_war_support = 0.25
-		# }
-	# }
-
-	focus = {
-		id = NOR_establish_milorg
-		icon = GFX_focus_NOR_establish_milorg
-		prerequisite = { focus = NOR_the_kings_no }
-
-		x = -3
-		y = 1 
-		relative_position_id = NOR_the_kings_no
-		cost = 5
-
-		available_if_capitulated = yes 
-		
-        allow_branch = { always = no }
-
-		available = {
-			NOT = { owns_state = 110 }
-		}
-
-		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_HISTORICAL }
-
-		completion_reward = {
-			unlock_decision_tooltip = NOR_joint_training_exercise
-		}
-	}
-
-	focus = {
-		id = NOR_approach_the_coordinating_committee
-		icon = GFX_goal_generic_intelligence_exchange
-		prerequisite = { focus = NOR_the_kings_no }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_the_kings_no
-		cost = 5
-		
-		available_if_capitulated = yes 
-		
-		
-		available = {
-			#NOT= { owns_state = 110 }
-		}
-
-		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			add_ideas =  NOR_coordinating_committee 
-		}
-	}
-
-	focus = {
-		id = NOR_approach_kretsen
-		icon = GFX_focus_NOR_approach_kretsen
-		prerequisite = { focus = NOR_the_kings_no }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_the_kings_no
-		cost = 5
-
-		available_if_capitulated = yes 
-		
-
-		available = {			
-			#NOT = { owns_state = 110 } 
-		}
-
-		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			add_ideas = { NOR_kretsen_ns }
-		}
-	}
-
-	focus = {
-		id = NOR_use_xu
-		icon = GFX_focus_generic_national_security
-		prerequisite = { focus = NOR_establish_milorg }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_establish_milorg
-		cost = 5
-		
-		available_if_capitulated = yes 
-		
-		available = {
-			#NOT = { owns_state = 110 }
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
-
-		completion_reward = {
-			create_operative_leader = {
-				name = "Kasper Skjeggenes"
-				GFX = GFX_portrait_europe_generic_operative_male_22
-				traits = { operative_escape_artist operative_commando }
-				bypass_recruitment = yes 
-				available_to_spy_master = yes
-				female = no
-				nationalities = { NOR }
-			}
-			create_operative_leader = {
-				name = "Astrid Løken"
-				GFX = GFX_portrait_europe_generic_operative_female_22
-				traits = { operative_infiltrator }
-				bypass_recruitment = yes 
-				available_to_spy_master = yes
-				female = yes
-				nationalities = { NOR }
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_recruit_norwegian_refugees
-		icon = GFX_focus_generic_manpower
-		prerequisite = { focus = NOR_establish_milorg }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_establish_milorg
-		cost = 5
-		
-		available_if_capitulated = yes 
-		
-		available = {
-			NOT = { owns_state = 110 }
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
-
-		completion_reward = {
-			add_command_power = 50
-			add_political_power = 100
-			add_manpower = 10000
-		}
-	}
-
-	focus = {
-		id = NOR_empower_sivorg
-		icon = GFX_focus_NOR_empower_sivorg
-		prerequisite = { focus = NOR_approach_the_coordinating_committee }
-		prerequisite = { focus = NOR_approach_kretsen }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_approach_the_coordinating_committee
-		cost = 5
-		
-		available_if_capitulated = yes 
-
-
-		available = {
-			#NOT = { owns_state = 110 }
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
-
-		completion_reward = {
-			add_political_power = 25
-			hidden_effect = {
-				remove_ideas = { NOR_kretsen_ns NOR_coordinating_committee }
-				add_ideas = { NOR_sivorg_ns }  
-			}
-			effect_tooltip = {
-				swap_ideas = {
-					remove_idea = NOR_ketsen_plus_KK_fake_ns
-					add_idea = NOR_sivorg_ns
-				}
-			}
-			NOR_add_50_convoys = yes 
-		}
-	}
-
-	focus = {
-		id = NOR_preparing_the_return_to_norway
-		icon = GFX_focus_NOR_preparing_the_return_to_norway
-		prerequisite = { focus = NOR_use_xu }
-		prerequisite = { focus = NOR_recruit_norwegian_refugees }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_use_xu
-		cost = 5
-		
-		available_if_capitulated = yes 
-		
-		available = {
-			NOT = { owns_state = 110 }
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
-
-		completion_reward = {
-			
-		}
-	}
-
-	focus = {
-		id = NOR_the_stumbling_storting
-		
-		icon = GFX_focus_NOR_the_stumbling_storting
-	
-		mutually_exclusive = { focus = NOR_continue_nygaardsvold_government focus = NOR_vote_of_no_confidence }
-        
-		x = 8
-		y = 0
-        
-		relative_position_id = NOR_continue_nygaardsvold_government
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-	
-		cost = 5
-        
-        allow_branch = { always = no }	
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_political_power = 100
-		}
-	}
-
-###########################################################################################
-###########################################################################################
-###########################################################################################
-
-			########    ###     ######   ######  ####  ######  ######## 
-			##         ## ##   ##    ## ##    ##  ##  ##    ##    ##    
-			##        ##   ##  ##       ##        ##  ##          ##    
-			######   ##     ##  ######  ##        ##   ######     ##    
-			##       #########       ## ##        ##        ##    ##    
-			##       ##     ## ##    ## ##    ##  ##  ##    ##    ##    
-			##       ##     ##  ######   ######  ####  ######     ##    
-
-###########################################################################################
-###########################################################################################
-###########################################################################################
-
-
-	focus = {
-		id = NOR_the_chamberlains_overture
-		
-		icon = GFX_focus_NOR_the_chamberlains_overture
-		
-		prerequisite = { focus = NOR_the_stumbling_storting}
-		x = 0
-		y = 1
-		
-		relative_position_id = NOR_the_stumbling_storting
-		
-		
-		cost = 5
-
-	
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
-
-		completion_reward = {
-
-			hidden_effect = {
-				set_country_flag = NOR_going_monarchist 
-			}
-			country_event = {
-				id = AAT_norway_monarchist.1
-			}
-			custom_effect_tooltip = the_following_will_happen_TT
-			event_option_tooltip = AAT_norway_monarchist.1.a	
-			mark_focus_tree_layout_dirty = yes
-		}
-	}
-
-	focus = {
-		id = NOR_fascist_invasion_of_norway
-		icon = GFX_focus_generic_attack_norway
-
-		x = 16
-		y = 6
-		cost = 5
-		available = {
-		    OR = {
-			custom_trigger_tooltip = {
-				tooltip = NOR_invasion_focus_TT
-				always = no
-			}
-			date > 1939.9.1
-			}
-		}
-
-		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
-
-		completion_reward = {
-			add_stability = -0.25
-			add_war_support = 0.25
-			add_political_power = 100 	
-			add_popularity = {
-				ideology = fascism 
-				popularity = -0.1
-			}
-						add_ideas = tot_economic_mobilisation	
-					if = { limit = { has_idea = NOR_the_hard_thirties_ns }
-							remove_ideas = NOR_the_hard_thirties_ns
-					}
-							if = { limit = { has_idea = NOR_the_hard_thirties_ns_2 }
-					remove_ideas = NOR_the_hard_thirties_ns_2
-					}
-					if = { limit = { has_idea = NOR_the_hard_thirties_ns_3 }
-					remove_ideas = NOR_the_hard_thirties_ns_3
-					}											
-		}
-	}
-
-
-	focus = {
-		id = NOR_send_the_storting_home
-		icon = GFX_focus_usa_voter_registration_act
-		prerequisite = { focus = NOR_the_chamberlains_overture }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_the_chamberlains_overture
-		cost = 5
-
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
-
-		completion_reward = {
-			add_stability = -0.15
-			add_war_support = 0.1
-			add_popularity = {
-				ideology = neutrality 
-				popularity = 0.1
-			}
-			add_political_power = 100
-		}
-	}
-
-	focus = {
-		id = NOR_assure_the_population
-		icon = GFX_goal_generic_propaganda
-		prerequisite = { focus = NOR_the_chamberlains_overture }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_the_chamberlains_overture
-		cost = 5
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
-
-		completion_reward = {
-			add_political_power = 50
-			add_war_support = -0.05
-			add_stability = 0.1
-			unlock_decision_tooltip = {
-				decision = NOR_make_assurances_to_the_people
-				show_effect_tooltip = yes 
-				show_modifiers = yes 
-			}
-			unlock_decision_tooltip = {
-				decision = NOR_promote_the_armed_defense_of_the_country
-				show_effect_tooltip = yes 
-				show_modifiers = yes 
-			}
-			unlock_decision_tooltip = {
-				decision = NOR_prop_up_the_economy
-				show_effect_tooltip = yes 
-				show_modifiers = yes 
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_demand_king_haakons_rise_to_power
-		icon = GFX_goal_generic_demand_territory
-		prerequisite = { focus = NOR_send_the_storting_home }
-		prerequisite = { focus = NOR_assure_the_population }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_send_the_storting_home
-		cost = 5
-		available = {
-			democratic < 0.75
-		}
-
-		search_filters = { FOCUS_FILTER_STABILITY }
-
-		completion_reward = {
-			add_stability = 0.15
-			add_ideas =  NOR_king_haakon_vii_ns  
-		}
-	}
-
-	focus = {
-		id = NOR_the_crowns_executive_powers
-		icon = GFX_focus_hol_the_foundations_of_defense
-		prerequisite = { focus = NOR_demand_king_haakons_rise_to_power }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_demand_king_haakons_rise_to_power
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			remove_ideas = NOR_complacent_cabinet_ns 
-			add_stability = 0.05
-			add_political_power = 50
-		}
-	}
-
-	focus = {
-		id = NOR_a_warden_king
-		icon = GFX_focus_generic_home_defense
-		prerequisite = { focus = NOR_demand_king_haakons_rise_to_power }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_demand_king_haakons_rise_to_power
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
-
-		completion_reward = {
-			add_war_support = 0.15
-			#add_manpower = 10000
-		}
-	}
-
-	focus = {
-		id = NOR_the_kingdom_of_norway
-		icon = GFX_focus_NOR_the_kingdom_of_norway
-		prerequisite = { focus = NOR_the_crowns_executive_powers }
-		prerequisite = { focus = NOR_a_warden_king }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_the_crowns_executive_powers
-		cost = 5
-		available = {
-			democratic < 0.4
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			set_politics = {
-				ruling_party = neutrality
-				elections_allowed = no
-				name = NOR_Wedel-Jarlsberg_regency_name
-				long_name = NOR_Wedel-Jarlsberg_regency_long_name
-			}
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-			NOR_set_kingdom_of_norway_variables = yes
-			add_dynamic_modifier = { modifier = NOR_kingdom_of_norway_dmod }
-			set_division_template_lock = {
-				division_template = "Kongens Menn"
-				is_locked = no
-			}
-            
-			#retire_character = NOR_kristian_laake
-			# if = {
-				# limit = {
-					# has_idea = NOR_birger_ljungberg
-				# }
-				# deactivate_advisor = NOR_birger_ljungberg
-			# }
-		}
-	}
-
-	focus = {
-		id = NOR_appoint_prince_olav_to_army_staff
-		icon = GFX_goal_generic_army_doctrines
-		prerequisite = { focus = NOR_the_kingdom_of_norway }
-		mutually_exclusive = { focus = NOR_prince_olav_to_navy_staff }
-		x = -1
-		y = 1
-		relative_position_id = NOR_the_kingdom_of_norway
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_ARMY_XP }
-
-		completion_reward = {
-			NOR_prince_olav = {
-				add_corps_commander_role = {
-					traits = { trait_mountaineer winter_specialist }
-					skill = 3
-					attack_skill = 1
-					defense_skill = 4
-					planning_skill = 3
-					logistics_skill = 2
-				}
-			}
-			army_experience = 50
-			#add_command_power = 25
-		}
-	}
-
-	focus = {
-		id = NOR_prince_olav_to_navy_staff
-		icon = GFX_goal_generic_navy_cruiser
-		prerequisite = { focus = NOR_the_kingdom_of_norway }
-		mutually_exclusive = { focus = NOR_appoint_prince_olav_to_army_staff }
-		x = 1
-		y = 1
-		relative_position_id = NOR_the_kingdom_of_norway
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_NAVY_XP }
-
-		completion_reward = {
-			NOR_prince_olav = {
-				add_naval_commander_role = {
-					traits = { blockade_runner }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					maneuvering_skill = 4
-					coordination_skill = 2
-				}
-			}
-			#add_command_power = 20
-		}
-	}
-
-	focus = {
-		id = NOR_promote_civilian_donations
-		icon = GFX_focus_SWI_issue_war_bonds
-		prerequisite = { focus = NOR_appoint_prince_olav_to_army_staff focus = NOR_prince_olav_to_navy_staff }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_appoint_prince_olav_to_army_staff
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_kingdom_of_norway_TT
+			custom_effect_tooltip = NOR_kings_no_tt	
+            add_to_variable = {
+                var = NOR_ran_army_core_attack_factor
+                value = 0.1
+                tooltip = army_core_attack_factor_tt
+            }
 			add_to_variable = {
-				var = NOR_independent_norway_dmod_CONSUMER_GOODS_EXPECTED_VALUE
-				value = -0.02
-				tooltip = consumer_goods_factor_tt
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_research_funding
-		icon = GFX_focus_research2
-		prerequisite = { focus = NOR_promote_civilian_donations }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_promote_civilian_donations
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_kingdom_of_norway_TT
+                var = NOR_ran_army_core_defence_factor
+                value = 0.1
+                tooltip = army_core_defence_factor_tt
+            }
 			add_to_variable = {
-				var = NOR_independent_norway_dmod_CONSUMER_GOODS_EXPECTED_VALUE
-				value = -0.02
-				tooltip = consumer_goods_factor_tt
-			}
-			add_to_variable = {
-				var = NOR.NOR_kingdom_of_norway_dmod_research_speed
-				value = 0.08
-				tooltip = research_speed_factor_tt
-			}
-
+                var = NOR_ds_weekly_manpower
+                value = 5000
+                tooltip = weekly_manpower_tt
+            }
 		}
 	}
-
-	# focus = {
-		# id = NOR_invite_cadillac_to_norway
-		# icon = GFX_focus_NOR_invite_cadillac_to_norway
-		# prerequisite = { focus = NOR_promote_civilian_donations }
-
-		# x = 1
-		# y = 1
-		# relative_position_id = NOR_promote_civilian_donations
-		# cost = 5
-		# available = {
-		# }
-
-		# search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		# completion_reward = {
-			# unlock_military_industrial_organization_tooltip = mio:NOR_cadillac_organization
-		# }
-	# }
-
-	focus = {
-		id = NOR_enhance_coastal_defense
-		icon = GFX_focus_FIN_coastal_defense
-		prerequisite = { focus = NOR_prince_olav_to_navy_staff }
-
-		x = 3
-		y = 1
-		relative_position_id = NOR_prince_olav_to_navy_staff
-		cost = 5
-		available = {
-		}
-
-		search_filters = {}
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_kingdom_of_norway_TT
-			add_to_variable = {
-				var = NOR_kingdom_of_norway_dmod_production_speed_coastal_bunker_factor
-				value = 0.35
-				tooltip = production_speed_coastal_bunker_factor_tt 
-			}
-			add_to_variable = {
-				var = NOR_kingdom_of_norway_dmod_production_speed_naval_base_factor
-				value = 0.4
-				tooltip = production_speed_naval_base_factor_tt 
-			}
-			add_to_variable = {
-				var = NOR_kingdom_of_norway_dmod_naval_mines_damage_factor
-				value = 0.2
-				tooltip = naval_mines_damage_factor_tt
-			}
-			add_to_variable = {
-				var = NOR_kingdom_of_norway_dmod_spotting_chance
-				value = 0.35
-				tooltip = spotting_chance_tt
-			}			
-		}
-	}
-
-	focus = {
-		id = NOR_rule_the_northern_sea
-		icon = GFX_focus_generic_north_atlantic_fleet
-		prerequisite = { focus = NOR_enhance_coastal_defense }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_enhance_coastal_defense
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			every_owned_state = {
-				limit = {
-					is_controlled_by = ROOT
-					naval_base > 0
-				}
-				add_building_construction = {
-					type = naval_base 
-					level = 1
-					instant_build = yes
-					province = {
-						all_provinces = yes
-						limit_to_naval_base = yes 
-					}
-				}
-			}
-			every_owned_state = {
-				limit = {
-					is_controlled_by = ROOT
-					is_coastal = yes
-					naval_base < 1
-					NOT = { state = 914 } # Have some patience Jan Mayen 
-				}
-				add_building_construction = {
-					type = naval_base 
-					level = 1
-					instant_build = yes
-					province = {
-						all_provinces = yes
-						limit_to_coastal = yes
-						limit_to_victory_point = yes  
-					}
-				}
-			}
-			914 = { # Jan Mayen can have a Naval Base, as a treat
-				add_building_construction = {
-					type = naval_base 
-					level = 1
-					instant_build = yes 
-					province = {
-						all_provinces = yes
-					}
-				}	
-			}
-			custom_effect_tooltip = NOR_modify_kingdom_of_norway_TT
-			add_to_variable = {
-				var = NOR_kingdom_of_norway_dmod_navy_max_range_factor
-				value = 0.15
-				tooltip = navy_max_range_factor_tt  
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_ramp_up_naval_production
-		icon = GFX_goal_generic_construct_naval_dockyard
-		prerequisite = { focus = NOR_enhance_coastal_defense }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_enhance_coastal_defense
-		cost = 5
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-		669= { 
-			add_extra_state_shared_building_slots = 5
-					add_building_construction = {
-				type = dockyard
-				level = 5
-				instant_build = yes
-			}
-			}
-	}
-	}
-
-	focus = {
-		id = NOR_the_glucksburg_sea_wall
-		icon = GFX_focus_NOR_the_glucksburg_sea_wall
-		prerequisite = { focus = NOR_ramp_up_naval_production }
-		prerequisite = { focus = NOR_rule_the_northern_sea }
-
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_rule_the_northern_sea
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_NAVY_XP }
-
-		completion_reward = {
-			110 = {
-				add_building_construction = {
-					type = coastal_bunker 
-					level = 1
-					instant_build = yes
-					province = {
-						all_provinces = yes
-						limit_to_coastal = yes
-					}
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_power_to_the_royal_guard
-		icon = GFX_focus_generic_strike_at_democracy1
-		prerequisite = { focus = NOR_appoint_prince_olav_to_army_staff }
-
-		x = -3
-		y = 1
-		relative_position_id = NOR_appoint_prince_olav_to_army_staff
-		cost = 5
-		available = {
-		}
-
-		search_filters = {}
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_kingdom_of_norway_TT		
-
-			# set_variable = {
-				# var = NOR_kingdom_of_norway_dmod_special_forces_training_time_factor
-				# value = 0.1
-				# tooltip = special_forces_training_time_factor_tt
-			# }
-            
-            set_variable = {
-				var = NOR_kingdom_of_norway_dmod_special_forces_attack_factor
-				value = 0.08
-				tooltip = special_forces_attack_factor_tt
-			}
-
-			set_variable = {
-				var = NOR_kingdom_of_norway_dmod_special_forces_defence_factor
-				value = 0.08
-				tooltip = special_forces_defence_factor_tt
-			}
-
-			# set_variable = {
-				# var = NOR_kingdom_of_norway_dmod_modifier_army_sub_unit_mountaineers_max_org_factor
-				# value = 0.05
-				# tooltip = special_forces_mountaineers_organization_tt
-			# }
-
-			# set_variable = {
-				# var = NOR_kingdom_of_norway_dmod_modifier_army_sub_unit_marines_max_org_factor
-				# value = 0.05
-				# tooltip = special_forces_marines_organization_tt
-			# }			
-		}
-	}
-	focus = {
-		id = NOR_encourage_recruitment
-		icon = GFX_focus_generic_military_academy
-		prerequisite = { focus = NOR_power_to_the_royal_guard }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_power_to_the_royal_guard
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_MANPOWER }
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_kingdom_of_norway_TT		
-			set_variable = {
-				var = NOR_kingdom_of_norway_dmod_recruitable_population_factor
-				value = 0.2
-				tooltip = conscription_factor_tt
-			}		
-		}
-	}
-
-
-	focus = {
-		id = NOR_for_the_king_and_prince
-		icon = GFX_focus_NOR_for_the_king_and_prince
-		prerequisite = { focus = NOR_power_to_the_royal_guard }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_power_to_the_royal_guard
-		cost = 5
-		available = {
-		}
-
-		search_filters = {}
-
-		completion_reward = {
-			# custom_effect_tooltip = NOR_modify_kingdom_of_norway_TT		
-			# set_variable = {
-				# var = NOR_kingdom_of_norway_dmod_army_defence_factor
-				# value = 0.05
-				# tooltip = army_defence_factor_tt
-			# }
-			# set_variable = {
-				# var = NOR_kingdom_of_norway_dmod_army_morale_factor
-				# value = 0.05
-				# tooltip = army_morale_factor_tt
-			# }
-			# set_variable = {
-				# var = NOR_kingdom_of_norway_dmod_army_org_factor
-				# value = 0.05
-				# tooltip = army_org_factor_tt
-			# }			
-            army_experience = 100
-		}
-	}
-	
-	focus = {
-		id = NOR_shield_of_the_north
-		icon = GFX_focus_SWE_the_nordic_defense_council
-		prerequisite = { focus = NOR_for_the_king_and_prince focus = NOR_rule_the_northern_sea }
-
-		x = 3
-		y = 1
-		relative_position_id = NOR_for_the_king_and_prince
-		cost = 5
-		available = {
-			has_war_support > 0.7
-		}
-
-		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-		669= { 
-			add_building_construction = {
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = dockyard
-				level = 1
-				instant_build = yes
-				}
-			}
-			add_war_support = 0.2
-		}
-	}
-
-	focus = {
-		id = NOR_the_kings_line
-		icon = GFX_goal_generic_fortify_city
-		prerequisite = { focus = NOR_encourage_recruitment }
-		prerequisite = { focus = NOR_for_the_king_and_prince }
-
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_encourage_recruitment
-		cost = 5
-		available = {
-			any_state = {
-				is_owned_and_controlled_by = ROOT
-			}
-		}
-
-		search_filters = {}
-
-		completion_reward = {
-			every_owned_state = {
-				add_building_construction = {
-					type = bunker 
-					level = 1
-					instant_build = yes
-					province = {
-						all_provinces = yes
-						limit_to_border = yes 
-					}
-				}
-			}
-		}
-	}
-	
 
 ###########################################################################################
 ###########################################################################################
@@ -2268,89 +573,37 @@ focus_tree = {
 ###########################################################################################
 ###########################################################################################
 ###########################################################################################
+
 	focus = {
 		id = NOR_start_rearmament
 		icon = GFX_focus_generic_combined_arms
 
-		x = 1
+		x = 10
 		y = 0
 
-		relative_position_id = NOR_the_stumbling_storting
+		relative_position_id = NOR_continue_nygaardsvold_government
 
 		cost = 5
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
-		bypass = { has_capitulated = yes }		
-
 		completion_reward = {
-			669 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}	
-		}
-	}
-	focus = {
-		id = NOR_kickstart_military_industry
-		icon = GFX_goal_generic_construct_mil_factory
-		prerequisite = { focus = NOR_start_rearmament }
-
-		x = 2
-		y = 1
-		relative_position_id = NOR_start_rearmament
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }	
-
-		completion_reward = {
-            669 = {
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = {
-                    type = arms_factory
-                    level = 2
-                    instant_build = yes
-                }
-                
+			add_offsite_building = { type = arms_factory level = 1 }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_production_speed_arms_factory_factor
+                value = 0.1
+                tooltip = production_speed_arms_factory_factor_tt
             }
 		}
 	}
-	focus = {
-		id = NOR_build_supplies_network
-		icon = GFX_goal_generic_construct_infrastructure
-		prerequisite = { focus = NOR_kickstart_military_industry }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_kickstart_military_industry
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-			has_dynamic_modifier = { modifier = NOR_independent_norway_dmod }
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_independent_norway_TT
-			add_to_variable = {
-				var = NOR_independent_norway_dmod_production_speed_supply_node
-				value = 0.15
-				tooltip = state_production_speed_supply_node_factor_tt
-			}
-		}
-	}
+	
 	focus = {
 		id = NOR_drobak_coastal_fort
 		icon = GFX_focus_NOR_drobak_coastal_fort
@@ -2358,72 +611,67 @@ focus_tree = {
 
 		x = -3
 		y = 1
+		
 		relative_position_id = NOR_start_rearmament
+		
 		cost = 5
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
+			
 		}
 
 		bypass = {
-			110 = {
-				free_building_slots = {
-					building = coastal_bunker
-					size < 3
-					province = 6115
-				}	
-				free_building_slots = {
-					building = coastal_bunker
-					size < 3
-					province = 3171
-				}
-				free_building_slots = {
-					building = coastal_bunker
-					size < 3
-					province = 11151
-				}
-				free_building_slots = {
-					building = coastal_bunker
-					size < 3
-					province = 14
-				}
-			}
+			
 		}
 
 		search_filters = { FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			110 = { # Oslofjord
-				add_building_construction = {
-					type = coastal_bunker 
-					level = 1
-					instant_build = yes
-					province =  {
-						all_provinces = yes
-						limit_to_coastal = yes
-					}
-				}
-			}
+			custom_effect_tooltip = NOR_army_and_navy_tt	
+            add_to_variable = {
+                var = NOR_ran_land_bunker_effectiveness_factor
+                value = 0.5
+                tooltip = land_bunker_effectiveness_factor_tt
+            }
+			add_to_variable = {
+                var = NOR_ran_coastal_bunker_effectiveness_factor
+                value = 0.5
+                tooltip = coastal_bunker_effectiveness_factor_tt
+            }
 		}
 	}
+	
 	focus = {
-		id = NOR_modernize_fortifications
-		icon = GFX_goal_generic_fortify_city
+		id = NOR_anti_air_support
+		icon = GFX_focus_generic_air_defense
 		prerequisite = { focus = NOR_drobak_coastal_fort }
 
 		x = -1
 		y = 1
+		
 		relative_position_id = NOR_drobak_coastal_fort
-		cost = 10
+		
+		cost = 5
+		
 		available = {
-			date > 1939.9.1
+			
 		}
 
-		search_filters = {}	
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		available_if_capitulated = yes
 
 		completion_reward = {
-			remove_ideas = { NOR_crumbling_fortifications_ns }
+			add_tech_bonus = {
+				name = SAFR_specialised_airforce
+				bonus = 0.51
+				uses = 4
+				category = cat_anti_air
+			}
 		}
 	}
+
+	
 	focus = {
 		id = NOR_artillery_development
 		icon = GFX_goal_generic_army_artillery2
@@ -2431,10 +679,13 @@ focus_tree = {
 
 		x = 1
 		y = 1
+		
 		relative_position_id = NOR_drobak_coastal_fort
+		
 		cost = 5
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
+			
 		}
 
 		search_filters = { FOCUS_FILTER_RESEARCH }
@@ -2443,43 +694,10 @@ focus_tree = {
 
 		completion_reward = {
 			add_tech_bonus = {
-				name = NOR_artillery_development
+				name = SAFR_specialised_airforce
 				bonus = 0.5
 				uses = 4
-				category = artillery  
-			}
-		}
-	}
-	focus = {
-		id = NOR_anti_air_support
-		icon = GFX_focus_generic_air_defense
-		prerequisite = { focus = NOR_modernize_fortifications }
-		prerequisite = { focus = NOR_artillery_development }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_modernize_fortifications
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_RESEARCH }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = NOR_anti_air_support
-				bonus = 1
-				uses = 1
-				category = cat_anti_air
-			}
-			add_tech_bonus = {
-				name = NOR_anti_air_support
-				bonus = 1.0
-				uses = 1 
-				category = radar_tech
+				category = artillery
 			}
 		}
 	}
@@ -2491,25 +709,30 @@ focus_tree = {
 
 		x = 0
 		y = 1
+		
 		relative_position_id = NOR_start_rearmament
+		
 		cost = 5
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
+			
 		}
 
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-						add_tech_bonus = {
-				name = NOR_norges_rikstanksfabrikk
+			add_tech_bonus = {
+				name = SAFR_specialised_airforce
 				bonus = 1
-				uses = 2
+				uses = 1
+				category = cat_1941_tanks
+			}
+			add_tech_bonus = {
+				name = SAFR_specialised_airforce
+				bonus = 1
+				uses = 1
 				category = cat_mechanized_equipment
 			}
-			hidden_effect = {			set_technology = {
-				NOR_rikstanken_tech = 1
-				popup = no
-			}}
 		}
 	}
 
@@ -2520,31 +743,28 @@ focus_tree = {
 
 		x = 0
 		y = 1
+		
 		relative_position_id = NOR_rikstanken
+		
 		cost = 5
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
 
 		completion_reward = {
-				669 = {
-			add_extra_state_shared_building_slots = 1
-			add_building_construction = {
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}
-			
-		}
-		
 			add_tech_bonus = {
-				name = NOR_norges_rikstanksfabrikk
+				name = SAFR_specialised_airforce
 				bonus = 1
-				uses = 2
-				category = cat_1941_tanks
+				uses = 1
 				category = cat_1943_tanks
+			}
+			add_tech_bonus = {
+				name = SAFR_specialised_airforce
+				bonus = 1
+				uses = 1
+				category = cat_mechanized_equipment
 			}
 		}
 	}
@@ -2556,10 +776,13 @@ focus_tree = {
 
 		x = 0
 		y = 1
+		
 		relative_position_id = NOR_norges_rikstanksfabrikk
+		
 		cost = 5
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
+			
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -2567,20 +790,100 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_ideas =  NOR_efficient_production_ns 
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	focus = {
+		id = NOR_kickstart_military_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = NOR_start_rearmament }
+
+		x = 2
+		y = 1
+		
+		relative_position_id = NOR_start_rearmament
+		
+		cost = 5
+		
+		available = {
+		
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }	
+
+		completion_reward = {
+            add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	focus = {
+		id = NOR_build_supplies_network
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = NOR_kickstart_military_industry }
+
+		x = 0
+		y = 1
+		
+		relative_position_id = NOR_kickstart_military_industry
+		
+		cost = 5
+		
+		available = {
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	
+	focus = {
+		id = NOR_improved_weapons
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = NOR_start_rearmament }
+		
+		x = 4
+		y = 1
+
+		
+		relative_position_id = NOR_start_rearmament
+		
+		cost = 10
+		
+		available = {
+			
+		}
+
+		search_filters = {}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAFR_specialised_airforce
+				bonus = 0.5
+				uses = 4
+				category = infantry_weapons
+			}
 		}
 	}
 
 	focus = {
 		id = NOR_expand_Haeren
 		icon = GFX_goal_generic_allies_build_infantry
-		prerequisite = { focus = NOR_start_rearmament }
+		prerequisite = { focus = NOR_improved_weapons }
 
-		x = 4
+		x = 0
 		y = 1
 
-		relative_position_id = NOR_start_rearmament
+		relative_position_id = NOR_improved_weapons
+		
 		cost = 10
+		
 		available = {
 			date > 1939.9.1
 		}
@@ -2590,9 +893,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_ideas = { NOR_new_haeren_ns_1 }
-						custom_effect_tooltip = FIN_winter_warfare_battalion_tt
-
+			custom_effect_tooltip = NOR_army_and_navy_tt	
+            add_to_variable = {
+                var = SOV_ran_army_attack_factor
+                value = 0.1
+                tooltip = army_attack_factor_tt
+            }
+			add_to_variable = {
+                var = SOV_ran_army_defence_factor
+                value = 0.1
+                tooltip = army_defence_factor_tt
+            }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = FIN_winter_warfare_battalion_tt
 			hidden_effect = {
 				set_technology = {
 					winter_logistics_support_tech = 1
@@ -2603,48 +918,18 @@ focus_tree = {
 	}
 
 	focus = {
-		id = NOR_improved_weapons
-		
-		icon = GFX_goal_generic_small_arms
-		
-		prerequisite = { focus = NOR_expand_Haeren }
-		x = 0
-		y = 1
-		relative_position_id = NOR_expand_Haeren
-		cost = 10
-		available = {
-			#NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = {}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = NOR_new_haeren_ns_1
-				add_idea = NOR_new_haeren_ns_2
-			}
-		}
-	}
-
-	focus = {
 		id = NOR_the_royal_guards_battalion
 		icon = GFX_focus_NOR_the_royal_guards_battalion
-		prerequisite = { focus = NOR_improved_weapons }
-		prerequisite = { focus = NOR_norwegian_school_of_economics }
+		prerequisite = { focus = NOR_expand_Haeren }
 
-		x = 1
+		x = 0
 		y = 1
-		relative_position_id = NOR_improved_weapons
+		
+		relative_position_id = NOR_expand_Haeren
 
-		cost = 5
+		cost = 10
+		
 		available = {
-			#NOR_broken_gun_trigger = yes 
-			#NOT = {
-			#	has_government = fascism 
-			#	has_government = communism
-			#}
 		}
 
 		search_filters = { FOCUS_FILTER_HISTORICAL }
@@ -2652,49 +937,39 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_ideas = { NOR_kungens_garde_ns }
+			custom_effect_tooltip = NOR_army_and_navy_tt	
+            add_to_variable = {
+                var = SOV_ran_army_org_factor
+                value = 0.1
+                tooltip = army_org_factor_tt
+            }
+			add_to_variable = {
+                var = SOV_ran_army_morale_factor
+                value = 0.1
+                tooltip = army_morale_factor_tt
+            }
 		}
 	}
 
 	focus = {
 		id = NOR_building_an_independent_norway
 		icon = GFX_focus_generic_develop_norway_silhouette
-		#prerequisite = { focus = }
 
 		x = 10
 		y = 0
+		
 		relative_position_id = NOR_start_rearmament
-		cost = 5
+		
+		cost = 10
+		
 		available = {
-			if = {
-				limit = { has_idea = NOR_the_hard_thirties_ns_2 }
-				NOT = { has_idea = NOR_the_hard_thirties_ns_2 }
-			}
-			else_if = {
-				limit = { has_idea = NOR_the_hard_thirties_ns_3 }
-				NOT = { has_idea = NOR_the_hard_thirties_ns_3 }
-			}
-			else = { 
-				NOT = { has_idea = NOR_the_hard_thirties_ns } 
-			}
+			
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			add_dynamic_modifier = {
-				modifier = NOR_independent_norway_dmod
-			}
-			custom_effect_tooltip = NOR_independent_norway_removal_tt
-			669 = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-				}
-			}
-
+			add_offsite_building = { type = industrial_complex level = 1 }
 		}
 	}
 
@@ -2705,97 +980,23 @@ focus_tree = {
 
 		x = -2
 		y = 1
+		
 		relative_position_id = NOR_building_an_independent_norway
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
-
-		bypass = { has_capitulated = yes }	
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_independent_norway_TT
-			# add_to_variable = {
-				# var = NOR_independent_norway_dmod_CONSUMER_GOODS_EXPECTED_VALUE
-				# value = -0.02
-				# tooltip = consumer_goods_factor_tt
-			# }
-			add_to_variable = {
-				var = NOR_independent_norway_dmod_production_speed_industrial_complex_factor
-				value = 0.25
-				tooltip = production_speed_industrial_complex_factor_tt
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_hurtigruten
-		icon = GFX_focus_NOR_hurtigruten
-		prerequisite = { focus = NOR_building_an_independent_norway }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_building_an_independent_norway
-		cost = 5
+		
+		cost = 10
+		
 		available = {
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			142 = { # Vestlandet
-				add_building_construction = {
-					type = naval_base
-					level = 1
-					instant_build = yes
-					province = 122 # Bergen
-				}
+			add_tech_bonus = {
+				name = SAFR_specialised_airforce
+				bonus = 1
+				uses = 4
+				category = industry
 			}
-			925 = { # Finnmark 
-				add_building_construction = {
-					type = naval_base
-					level = 1
-					instant_build = yes
-					province = 9116 # Kirkenes 
-				}
-			}
-			924 = { # Troms
-				add_building_construction = {
-					type = naval_base
-					level = 5
-					instant_build = yes
-					province = 11050 # Tromso 
-				}
-			}
-			add_equipment_to_stockpile = { 
-				type = convoy 
-				amount = 75 
-				producer = NOR
-			}
-		}
-	}
-	focus = {
-		id = NOR_norges_tekniske_hogskole
-		icon = GFX_focus_generic_improve_the_administration
-		prerequisite = { focus = NOR_building_an_independent_norway }
-
-		x = 2
-		y = 1
-		relative_position_id = NOR_building_an_independent_norway
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_HISTORICAL }
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_independent_norway_TT
-			add_to_variable = {
-				var = NOR.NOR_independent_norway_dmod_research_speed_factor
-				value = 0.05
-				tooltip = research_speed_factor_tt
-			}	
 		}
 	}
 
@@ -2807,30 +1008,46 @@ focus_tree = {
 
 		x = -1
 		y = 1
+		
 		relative_position_id = NOR_norwegian_school_of_economics
-		cost = 5
+		
+		cost = 10
+		
 		available = {
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
  
 		completion_reward = {
-			add_tech_bonus = {
-				name = NOR_empower_large_industrial_groups
-				bonus = 0.75
-				uses = 1
-				category = electronics 
-			}
-			add_tech_bonus = {
-				name = NOR_empower_large_industrial_groups
-				bonus = 0.75
-				uses = 1
-				category = industry 
-			}
-			add_popularity = { # This is to represent Large industry's collaboration with the Nazis in occupied Norway 
-			 	ideology = fascism
-			 	popularity = 0.05
-			} 
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	
+	focus = {
+		id = NOR_fund_local_construction
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = NOR_norwegian_school_of_economics }
+		mutually_exclusive = { focus = NOR_empower_large_industrial_groups }
+
+		x = 1
+		y = 1
+		
+		relative_position_id = NOR_norwegian_school_of_economics
+		
+		cost = 10
+		
+		available = {
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = SOV_ds_production_speed_buildings_factor
+                value = 0.1
+                tooltip = production_speed_buildings_factor_tt
+            }
 		}
 	}
 
@@ -2839,218 +1056,86 @@ focus_tree = {
 		icon = GFX_focus_generic_hydroelectric_energy
 		prerequisite = { focus = NOR_empower_large_industrial_groups focus = NOR_fund_local_construction }
 
+		x = 1
+		y = 1
+		
+		relative_position_id = NOR_empower_large_industrial_groups
+		
+		cost = 10
+		
+		available = {
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	
+	focus = {
+		id = NOR_hurtigruten
+		icon = GFX_focus_NOR_hurtigruten
+		prerequisite = { focus = NOR_building_an_independent_norway }
+
+		x = 0
+		y = 1
+		
+		relative_position_id = NOR_building_an_independent_norway
+		
+		cost = 10
+		
+		available = {
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
+
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_offsite_building = { type = dockyard level = 1 }
+		}
+	}
+	
+	focus = {
+		id = NOR_norges_tekniske_hogskole
+		icon = GFX_focus_generic_improve_the_administration
+		prerequisite = { focus = NOR_building_an_independent_norway }
+
 		x = 2
 		y = 1
-		relative_position_id = NOR_empower_large_industrial_groups
-		cost = 5
+		
+		relative_position_id = NOR_building_an_independent_norway
+		
+		cost = 10
+		
 		available = {
 		}
 
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			669 = {
-			add_extra_state_shared_building_slots = 1
-			add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			
-		}
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = SOV_ds_research_speed_factor
+                value = 0.1
+                tooltip = research_speed_factor_tt
+            }
 		}
 	}
 
-	focus = {
-		id = NOR_fund_local_construction
-		
-		icon = GFX_goal_generic_construction
-		
-		prerequisite = { focus = NOR_norwegian_school_of_economics }
-		mutually_exclusive = { focus = NOR_empower_large_industrial_groups }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_norwegian_school_of_economics
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			669 = {
-			add_extra_state_shared_building_slots = 1
-			add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			
-		}
-		}
-	}
-
-	focus = {
-		id = NOR_aluminum_production
-		
-		icon = GFX_focus_generic_aluminum
-		
-		prerequisite = { focus = NOR_empower_large_industrial_groups focus = NOR_fund_local_construction }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_empower_large_industrial_groups
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-		669 = {
-			
-			add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
-			}
-			
-		}
-		add_tech_bonus = {
-				name = NOR_aluminum_production
-				bonus = 0.5
-				uses = 1
-				category = excavation_tech 
-			}
-		}
-	}
-	focus = {
-		id = NOR_build_the_northern_rail
-		
-		icon = GFX_focus_NOR_build_the_northern_rail
-		
-		prerequisite = { focus = NOR_aluminum_production }
-		prerequisite = { focus = NOR_revamp_hydroelectric_capacity }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_aluminum_production
-		cost = 5
-		available = {
-			has_full_control_of_state = 143 # Trondelag
-			has_full_control_of_state = 144 # Nordland
-
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			build_railway = {
-				level = 1 
-				path = { 6038 9132 107 6041 6187 3126 3088 3048 6071 6214 9126 3132 3034 192 } 
-			}
-			add_political_power = 50 
-		}
-	}
-	focus = {
-		id = NOR_complete_the_sourthern_railway_network
-		
-		icon = GFX_focus_NOR_complete_the_sourthern_railway_network
-		
-		prerequisite = { focus = NOR_hurtigruten focus = NOR_build_the_northern_rail }
-
-		x = 0
-		y = 4
-		relative_position_id = NOR_hurtigruten
-		cost = 5
-		available = {
-			143 = {
-				is_owned_and_controlled_by = ROOT
-			}
-			142 = {
-				is_owned_and_controlled_by = ROOT
-			}
-			110 = {
-				is_owned_and_controlled_by = ROOT
-			}
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			build_railway = {
-				level = 1 
-				start_province = 6115
-				target_province = 9296
-			}
-			build_railway = {
-				level = 1 
-				start_province = 9296
-				target_province = 53
-			}
-			build_railway = {
-				level = 1 
-				start_province = 6115
-				target_province = 3022
-			}
-			build_railway = {
-				level = 1 
-				start_province = 9157
-				target_province = 122
-			}
-			custom_effect_tooltip = NOR_modify_independent_norway_TT
-			add_to_variable = {
-				var = NOR.NOR_independent_norway_dmod_production_speed_infrastructure_factor
-				value = 0.2
-				tooltip = production_speed_infrastructure_factor_tt
-			}
-		}
-	}
 	focus = {
 		id = NOR_increase_research_funding
-		
 		icon =  GFX_focus_research2 
-		
 		prerequisite = { focus = NOR_norges_tekniske_hogskole }
 
 		x = 0
 		y = 1
+		
 		relative_position_id = NOR_norges_tekniske_hogskole
-		cost = 5
-		available = {
-		}
-
-		search_filters = { FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_independent_norway_TT
-			add_to_variable = {
-				var = NOR.NOR_independent_norway_dmod_research_speed_factor
-				value = 0.03
-				tooltip = research_speed_factor_tt
-			}
-			add_tech_bonus = {
-				name = NOR_increase_research_funding
-				bonus = 1
-				uses = 1
-				category = electronics
-			}
-		}
-	}
-	focus = {
-		id = NOR_expand_norges_tekniske_hogskole
 		
-		icon =GFX_focus_research
+		cost = 10
 		
-		prerequisite = { focus = NOR_increase_research_funding }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_increase_research_funding
-		cost = 5
 		available = {
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = { FOCUS_FILTER_RESEARCH }
@@ -3059,17 +1144,42 @@ focus_tree = {
 			add_research_slot = 1
 		}
 	}
+	
+	focus = {
+		id = NOR_expand_norges_tekniske_hogskole
+		icon = GFX_focus_research
+		prerequisite = { focus = NOR_increase_research_funding }
+
+		x = 0
+		y = 1
+		
+		relative_position_id = NOR_increase_research_funding
+		
+		cost = 10
+		
+		available = {
+			date > 1939.9.1
+		}
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
 	focus = {
 		id = NOR_haerens_flyvevaaben
 		icon = GFX_focus_NOR_haerens_flyvevaaben
-		#prerequisite = { focus = }
 
-		x = 8
+		x = 5
 		y = 0
+		
 		relative_position_id = NOR_building_an_independent_norway
-		cost = 5
+		
+		cost = 10
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = { FOCUS_FILTER_AIR_XP FOCUS_FILTER_HISTORICAL }
@@ -3077,474 +1187,94 @@ focus_tree = {
 		available_if_capitulated = yes		
 
 		completion_reward = {
-			add_dynamic_modifier = {
-				modifier = NOR_army_air_force_dmod
-			}
+			air_experience = 100
 		}
 	}
+	
 	focus = {
 		id = NOR_norwegian_planes
-		
 		icon = GFX_focus_generic_cas_aircraft
-		
 		prerequisite = { focus = NOR_haerens_flyvevaaben }		
-		#mutually_exclusive = { focus = NOR_foreign_plane_designs}
-		x = -3
+		
+		x = 0
 		y = 1
+		
 		relative_position_id = NOR_haerens_flyvevaaben
-		cost = 5
+		
+		cost = 10
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = { FOCUS_FILTER_AIR_XP FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-			air_experience = 100
 			add_tech_bonus = {
-				name = NOR_norwegian_planes
-				bonus = 1
+				name = SAFR_specialised_airforce
+				bonus = 1.0
 				uses = 4
 				category = air_equipment
 			}
 		}
 	}
+	
 	focus = {
-		id = NOR_foreign_plane_designs
-		
-		icon = GFX_goal_generic_air_fighter2
-		
-		prerequisite = { focus = NOR_haerens_flyvevaaben }
-		#mutually_exclusive = { focus = NOR_norwegian_planes}
-		x = -1
-		y = 1
-		relative_position_id = NOR_haerens_flyvevaaben
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_air_force_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_air_doctrine_cost_factor
-				value = -0.1
-				tooltip = air_doctrine_cost_factor_tt
-			}
-			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_license_air_purchase_cost
-				value = -0.4
-				tooltip = license_air_purchase_cost_tt
-			}		
-		}
-	}
-
-	focus = {
-		id = NOR_anti_air_artillery_research
-		
-		icon = GFX_goal_generic_army_artillery
-		
+		id = NOR_pilot_training
+		icon = GFX_focus_eng_special_air_service 
 		prerequisite = { focus = NOR_norwegian_planes }
-		prerequisite = { focus = NOR_norges_tekniske_hogskole }
-
-		x = -1
-		y = 1
-		relative_position_id = NOR_norwegian_planes
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = NOR_anti_air_artillery_research
-				bonus = 0.51
-				uses = 4
-				category = cat_anti_air
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_anti_air_construction
-		
-		icon = GFX_goal_generic_construction
-		
-		prerequisite = { focus = NOR_anti_air_artillery_research }
 
 		x = 0
 		y = 1
-		relative_position_id = NOR_anti_air_artillery_research
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			if = { 
-				limit = { has_country_flag = NOR_luftforsvaret_flag }
-				custom_effect_tooltip = NOR_modify_royal_air_force_dmod_TT
-			}
-			else = { 
-				custom_effect_tooltip = NOR_modify_air_force_dmod_TT
-			}
-			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_production_speed_anti_air_building_factor
-				value = 0.5
-				tooltip = production_speed_anti_air_building_factor_tt
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_invest_in_airfields
 		
-		icon = GFX_goal_generic_construct_civilian
-		
-		prerequisite = { focus = NOR_foreign_plane_designs }
+		relative_position_id = NOR_norwegian_planes
 
-		x = 1
-		y = 1
-		relative_position_id = NOR_foreign_plane_designs
-		cost = 5
+		available_if_capitulated = yes
+
+		cost = 10
+
 		available = {
-			any_owned_state = {
-				is_controlled_by = ROOT 
-				free_building_slots = {
-					building = air_base
-					size > 1
-				}
-			}
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = {}
 
 		completion_reward = {
-			669 = {
-				add_building_construction = {
-					type = air_base 
-					level = 4
-					instant_build = yes 
-				}			 
-			}
-		}
-	}
-
-	# focus = {
-		# id = NOR_stavanger_airfield
-		
-		# icon = GFX_focus_generic_air_bases
-		
-		# prerequisite = { focus = NOR_norwegian_planes focus = NOR_foreign_plane_designs }
-
-		# x = 1
-		# y = 1
-		# relative_position_id = NOR_norwegian_planes
-		# cost = 5
-		# available = {
-			# any_owned_state = {
-				# is_controlled_by = ROOT 
-				# free_building_slots = {
-					# building = air_base
-					# size > 3
-				# }
-			# }
-			# NOR_broken_gun_trigger = yes 
-		# }
-		# search_filters = { FOCUS_FILTER_HISTORICAL }
-
-		# completion_reward = {
-			# if = {
-				# limit = {
-					# 142 = { # Vestlandet
-						# is_controlled_by = ROOT 
-						# free_building_slots = {
-							# building = air_base
-							# size > 3 
-						# }			
-					# }
-				# }
-				# 142 = { # Vestlandet
-					# add_building_construction = {
-						# type = air_base 
-						# level = 1
-						# instant_build = yes 
-					# }
-				# }
-			# }
-			# else = {
-				# random_owned_state = {
-					# limit = {
-						# is_controlled_by = ROOT 
-						# free_building_slots = {
-								# building = air_base
-								# size > 3 
-						# }	
-					# }
-					# prioritize = { # Southern States
-						# 110 # Oslofjord
-						# 921 # Telemark
-						# 922 # Agder 
-						# 142 # Vestlandet
-						# 920 # Oppladene
-					# }
-					# add_building_construction = {
-						# type = air_base 
-						# level = 1
-						# instant_build = yes 
-					# }					
-				# }
-			# }
-		# }
-	# }
-
-	focus = {
-		id = NOR_increase_air_production
-		
-		icon = GFX_focus_generic_aircraft_production
-		
-		prerequisite = { focus = NOR_anti_air_artillery_research focus = NOR_invest_in_airfields }
-
-		x = 2
-		y = 1
-		relative_position_id = NOR_anti_air_artillery_research
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			air_experience = 200
-		}
-	}
-
-	focus = {
-		id = NOR_buy_aa_from_sweden
-		
-		icon = GFX_focus_generic_befriend_sweden
-		
-		prerequisite = { focus = NOR_invest_in_airfields }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_invest_in_airfields
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			if = { 
-				limit = { has_country_flag = NOR_luftforsvaret_flag }
-				custom_effect_tooltip = NOR_modify_royal_air_force_dmod_TT
-			}
-			else = { 
-				custom_effect_tooltip = NOR_modify_air_force_dmod_TT
-			}								
-			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_production_speed_anti_air_building_factor
-				value = 0.25
-				tooltip = production_speed_anti_air_building_factor_tt
-			}
+			air_experience = 100
 		}
 	}
 
 	focus = {
 		id = NOR_luftforsvaret
 		icon = GFX_focus_NOR_luftforsvaret
-		prerequisite = { focus = NOR_increase_air_production }
+		prerequisite = { focus = NOR_pilot_training }
 
 		x = 0
 		y = 1
-		relative_position_id = NOR_increase_air_production
-		cost = 5
+		
+		relative_position_id = NOR_pilot_training
+		
+		cost = 10
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			custom_effect_tooltip = NOR_modify_air_force_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_air_doctrine_cost_factor
-				value = -0.5 
-				tooltip = air_doctrine_cost_factor_tt
-			}
-			custom_effect_tooltip = NOR_army_air_force_dmod_name_change_TT
-			hidden_effect = {
-				remove_dynamic_modifier = {
-					modifier = NOR_army_air_force_dmod
-				}
-				add_dynamic_modifier = { 
-					modifier = NOR_royal_air_force_dmod 
-				}
-				set_country_flag = NOR_luftforsvaret_flag
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_radar_research
-		
-		icon = GFX_goal_generic_radar
-		
-		prerequisite = { focus = NOR_haerens_flyvevaaben }
-
-		x = 2
-		y = 1
-		relative_position_id = NOR_haerens_flyvevaaben
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = NOR_radar_research
-				bonus = 0.75
-				uses = 2 
-				category = radar_tech
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_repurpose_lighthouses
-		
-		icon = GFX_focus_generic_air_defense
-		
-		prerequisite = { focus = NOR_radar_research }
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_radar_research
-		cost = 5
-		available = {
-			has_tech = radio_detection
-			NOR_broken_gun_trigger = yes 
-			any_state = {
-				is_owned_and_controlled_by = ROOT
-				free_building_slots = {
-					building = radar_station
-					size > 0
-				}
-			}
-		}
-
-		search_filters = {}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			if = {
-				limit = {
-					NOT = {
-						has_tech = radio_detection
-					}
-				}
-				effect_tooltip = {
-					every_owned_state = {
-						limit = {
-							is_controlled_by = ROOT 
-							is_core_of = ROOT 
-							is_coastal = yes 
-						}
-						add_building_construction = {
-							type = radar_station
-							level = 1 
-							instant_build = yes 
-						}
-					}		
-				}
-			}
-			else = {
-				every_owned_state = {
-					limit = {
-						is_controlled_by = ROOT  
-						is_core_of = ROOT 
-						free_building_slots = {
-							building = radar_station
-							size > 0
-						}
-						is_coastal = yes 
-					}
-					add_building_construction = {
-						type = radar_station
-						level = 1 
-						instant_build = yes 
-					}
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_pilot_training
-		
-		icon = GFX_focus_eng_special_air_service 
-
-		prerequisite = { focus = NOR_haerens_flyvevaaben }
-
-		x = 4
-		y = 3
-		relative_position_id = NOR_haerens_flyvevaaben
-
-		available_if_capitulated = yes
-
-		cost = 5
-
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = {}
-
-		completion_reward = {
-			if = { 
-				limit = { has_country_flag = NOR_luftforsvaret_flag }
-				custom_effect_tooltip = NOR_modify_royal_air_force_dmod_TT
-			}
-			else = { 
-				custom_effect_tooltip = NOR_modify_air_force_dmod_TT
-			}
-			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_air_ace_bonuses_factor
-				value = 0.15
-				tooltip = air_ace_bonuses_factor_tt
-			}
-			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_air_ace_generation_chance_factor
-				value = 0.25
-				tooltip = air_ace_generation_chance_factor_tt
-			}
+			add_offsite_building = { type = arms_factory level = 2 }
 		}
 	}
 
 	focus = {
 		id = NOR_the_royal_norwegian_navy
 		icon = GFX_focus_NOR_the_royal_norwegian_navy
-		#prerequisite = { focus = }
 
-		x = 13
+		x = 5
 		y = 0
+		
 		relative_position_id = NOR_haerens_flyvevaaben
-		cost = 5
+		
+		cost = 10
+		
 		available = {
 		}
 
@@ -3553,22 +1283,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_dynamic_modifier = {
-				modifier = NOR_royal_navy_dmod
-			}
+			add_offsite_building = { type = dockyard level = 2 }
 		}
 	}
+	
 	focus = {
 		id = NOR_expand_the_dockyards
-		
 		icon = GFX_goal_generic_construct_naval_dockyard
-		
 		prerequisite = { focus = NOR_the_royal_norwegian_navy }
 
-		x = -5
+		x = -2
 		y = 1
+		
 		relative_position_id = NOR_the_royal_norwegian_navy
-		cost = 5
+		
+		cost = 10
+		
 		available = {
 		}
 
@@ -3577,129 +1307,21 @@ focus_tree = {
 		available_if_capitulated = yes		
 
 		completion_reward = {
-            669 = {
-                add_extra_state_shared_building_slots = 5
-                add_building_construction = {
-                    type = dockyard
-                    level = 5
-                    instant_build = yes
-                }	
-            }
+            add_offsite_building = { type = dockyard level = 2 }
 		}
 	}
-
-	focus = {
-		id = NOR_battleship_focus
-		
-		icon = GFX_goal_generic_navy_battleship
-		
-		prerequisite = { focus = NOR_the_royal_norwegian_navy }
-		#mutually_exclusive = { focus = NOR_kystvakten }
-		x = -1
-		y = 1
-		relative_position_id = NOR_the_royal_norwegian_navy
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = NOR_battleship_focus
-				bonus = 1
-				uses = 2 
-				category = bb_tech
-			}
-            add_tech_bonus = {
-                name = NOR_battleship_focus
-                bonus = 1
-                uses = 2 
-                category = cat_ship_heavy_battery
-            }
-		}
-	}
-
-	focus = {
-		id = NOR_kystvakten
-		
-		icon = GFX_goal_generic_occupy_states_coastal
-		
-		prerequisite = { focus = NOR_the_royal_norwegian_navy }
-		#mutually_exclusive = { focus = NOR_battleship_focus }
-		x = 1
-		y = 1
-		relative_position_id = NOR_the_royal_norwegian_navy
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = NOR_battleship_focus
-				bonus = 1
-				uses = 2 
-				category = dd_tech
-			}
-            add_tech_bonus = {
-                name = NOR_battleship_focus
-                bonus = 1
-                uses = 2 
-                category = cat_ship_light_battery
-            }
-			custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-            add_to_variable = {
-                var = NOR.NOR_royal_navy_dmod_spotting_chance
-                value = 0.25 
-                tooltip = spotting_chance_tt
-            }	
-		}
-	}
-
-	# focus = {
-		# id = NOR_convert_merchant_ships
-		
-		# icon = GFX_focus_generic_refit_civilian_ships
-		
-		# prerequisite = { focus = NOR_the_royal_norwegian_navy }
-
-		# x = 4
-		# y = 1
-		# relative_position_id = NOR_the_royal_norwegian_navy
-		
-		# available_if_capitulated = yes
-		
-		# cost = 5
-		
-		# available = {
-			# NOR_broken_gun_trigger = yes 
-		# }
-
-		# search_filters = {}
-
-		# completion_reward = {
-			
-		# }
-	# }
 
 	focus = {
 		id = NOR_expand_merchant_marine
-		
 		icon = GFX_focus_generic_merchant_fleet
-		
 		prerequisite = { focus = NOR_expand_the_dockyards }
 
 		x = 0
 		y = 1
+		
 		relative_position_id = NOR_expand_the_dockyards
 		
-		cost = 5
+		cost = 10
 		
 		bypass = {
 			has_capitulated = yes
@@ -3713,65 +1335,50 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-            669 = {
-                add_extra_state_shared_building_slots = 5
-                add_building_construction = {
-                    type = dockyard
-                    level = 5
-                    instant_build = yes
-                }
-            }
-			add_equipment_to_stockpile = { 
-				type = convoy 
-				amount = 150 
-				producer = NOR
+            add_offsite_building = { type = dockyard level = 2 }
+		}
+	}
+	
+	focus = {
+		id = NOR_battleship_focus
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = NOR_the_royal_norwegian_navy }
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = NOR_the_royal_norwegian_navy
+		
+		cost = 10
+		
+		available = {
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = NOR_battleship_focus
+				bonus = 1
+				uses = 2 
+				category = bb_tech
 			}
 		}
 	}
 
-	# focus = {
-		# id = NOR_expand_naval_academy
-
-		# icon = GFX_focus_generic_military_academy
-		
-		# prerequisite = { focus = NOR_battleship_focus }
-
-		# x = -2
-		# y = 1
-		# relative_position_id = NOR_battleship_focus
-		# cost = 5
-		# available = {
-			# NOR_broken_gun_trigger = yes 
-		# }
-
-		# search_filters = { FOCUS_FILTER_NAVY_XP }
-
-		# available_if_capitulated = yes		
-
-		# completion_reward = {
-			# custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-			# add_to_variable = {
-				# var = NOR.NOR_royal_navy_dmod_experience_gain_navy
-				# value = 0.12
-				# tooltip = experience_gain_navy_tt
-			# }
-			
-		# }
-	# }
-
 	focus = {
 		id = NOR_norwegian_carriers
-		
 		icon = GFX_goal_generic_navy_carrier
-		
 		prerequisite = { focus = NOR_battleship_focus }
 
 		x = 0
 		y = 1
+		
 		relative_position_id = NOR_battleship_focus
-		cost = 5
+		
+		cost = 10
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
@@ -3783,63 +1390,51 @@ focus_tree = {
 				uses = 2
 				category = cv_tech
 			}
-			custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_royal_navy_dmod_sortie_efficiency
-				value = 0.2
-				tooltip = CARRIER_SORTIE_EFFICIENCY_FACTOR_TT
+		}
+	}
+	
+	focus = {
+		id = NOR_kystvakten
+		icon = GFX_goal_generic_occupy_states_coastal
+		prerequisite = { focus = NOR_the_royal_norwegian_navy }
+		
+		x = 2
+		y = 1
+		
+		relative_position_id = NOR_the_royal_norwegian_navy
+		
+		cost = 10
+		
+		available = {
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = NOR_battleship_focus
+				bonus = 1
+				uses = 2 
+				category = dd_tech
 			}
 		}
 	}
 
 	focus = {
-		id = NOR_mine_laying_effort
-		
-		icon = GFX_focus_generic_mine_warfare
-	
+		id = NOR_submarine_fleet
+		icon = GFX_goal_generic_navy_submarine
 		prerequisite = { focus = NOR_kystvakten }
 
 		x = 0
 		y = 1
-		relative_position_id = NOR_kystvakten
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_RESEARCH }
-
-		available_if_capitulated = yes		
-
-		completion_reward = {
-				add_tech_bonus = {
-					name = NOR_mine_laying_effort
-					bonus = 1
-					uses = 2
-					category = naval_minelaying 
-				}
-				custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-				add_to_variable = {
-					var = NOR.NOR_royal_navy_dmod_mines_planting_by_fleets_factor
-					value = 0.35 
-					tooltip = mines_planting_by_fleets_factor_tt
-				}
-		}
-	}
-
-	focus = {
-		id = NOR_submarine_fleet
 		
-		icon = GFX_goal_generic_navy_submarine
-		
-		prerequisite = { focus = NOR_kystvakten }
-
-		x = 2
-		y = 1
 		relative_position_id = NOR_kystvakten
-		cost = 5
+		
+		cost = 10
+		
 		available = {
-			NOR_broken_gun_trigger = yes  
 		}
 
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
@@ -3847,12 +1442,6 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_royal_navy_dmod_naval_torpedo_reveal_chance_factor
-				value = -0.3
-				tooltip = naval_torpedo_reveal_chance_factor_tt
-			}
 			add_tech_bonus = {
 				name = NOR_submarine_fleet
 				bonus = 1
@@ -3861,210 +1450,93 @@ focus_tree = {
 			}
 		}
 	}
-
+	
 	focus = {
-		id = NOR_naval_air_force
-		
-		icon = GFX_goal_generic_air_fighter
-		
-		prerequisite = { focus = NOR_expand_merchant_marine }
+		id = NOR_fascist_invasion_of_norway
+		icon = GFX_focus_generic_attack_norway
 
-		x = -2
-		y = 1
-		relative_position_id = NOR_expand_merchant_marine
-
-		available_if_capitulated = yes
-
-		cost = 5
-
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = {}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_royal_navy_dmod_naval_strike_attack_factor
-				value = 0.05
-				tooltip = naval_strike_attack_factor_tt
-			}
-			add_to_variable = {
-				var = NOR.NOR_royal_navy_dmod_naval_strike_targetting_factor
-				value = 0.05
-				tooltip = naval_strike_targetting_factor_tt
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_convoy_defense
-		
-		icon = GFX_focus_generic_coastal_fort
-		
-		prerequisite = { focus = NOR_expand_merchant_marine }
-
-		x = 0
-		y = 1
-		
-		relative_position_id = NOR_expand_merchant_marine
-
-		available_if_capitulated = yes
-
-		cost = 5
-
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = {}
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_royal_navy_dmod_convoy_escort_efficiency #0.3
-				value = 0.3 
-				tooltip = convoy_escort_efficiency_tt
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_nortraship
-		icon = GFX_focus_NOR_nortraship
-		prerequisite = { focus = NOR_expand_merchant_marine }
-		
-		available_if_capitulated = yes
-		
-		x = 2
-		y = 1
-		relative_position_id = NOR_expand_merchant_marine
-		cost = 5
-		available = {
-			NOT = { owns_state = 110 } 
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_equipment_to_stockpile = { 
-				type = convoy 
-				amount = 200 
-				producer = NOR
-			}
-			custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_royal_navy_dmod_convoy_retreat_speed
-				value = 0.2
-				tooltip = convoy_retreat_speed_tt
-			}
-		}
-	}
-
-	focus = {
-		id = NOR_convoy_bombing
-
-		icon = GFX_goal_generic_air_naval_bomber
-
-		prerequisite = { focus = NOR_naval_air_force focus = NOR_convoy_defense }
-		prerequisite = { focus = NOR_pilot_training }
-
-		x = 1
-		y = 1
-		relative_position_id = NOR_pilot_training
+		x = 8
+		y = 5
 		
 		cost = 5
-
-		available_if_capitulated = yes
-
+		
 		available = {
-			NOR_broken_gun_trigger = yes 
+			date > 1939.9.1
 		}
 
-		search_filters = {}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			if = { 
-				limit = { has_country_flag = NOR_luftforsvaret_flag }
-				custom_effect_tooltip = NOR_modify_royal_air_force_dmod_TT
-			}
-			else = { 
-				custom_effect_tooltip = NOR_modify_air_force_dmod_TT
-			}
+			add_political_power = 150
+			add_stability = 0.25
+			add_war_support = 0.25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			add_ideas = tot_economic_mobilisation
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+            add_to_variable = {
+                var = NOR_ds_conversion_cost_civ_to_mil_factor
+                value = -3
+                tooltip = conversion_cost_civ_to_mil_factor_tt
+            }
 			add_to_variable = {
-				var = NOR.NOR_army_air_force_dmod_air_nav_efficiency
-				value = 0.25
-				tooltip = air_nav_efficiency_tt
-			}
+                var = NOR_ds_conversion_cost_mil_to_civ_factor
+                value = -3
+                tooltip = conversion_cost_mil_to_civ_factor_tt
+            }
 		}
 	}
-
-	focus = {
-		id = NOR_rebuild_the_royal_navy
-		icon = GFX_focus_POL_develop_polish_shipbuilding
-		prerequisite = { focus = NOR_nortraship }
-
-		available_if_capitulated = yes
-
-		x = 0
-		y = 1
-		relative_position_id = NOR_nortraship
-		cost = 5
-		available = {
-			NOR_broken_gun_trigger = yes 
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			custom_effect_tooltip = NOR_modify_royal_navy_dmod_TT
-			add_to_variable = {
-				var = NOR.NOR_royal_navy_dmod_industrial_capacity_dockyard
-				value = 0.15
-				tooltip = industrial_capacity_dockyard_tt
-			}
-		}
-	}
+	
 	focus = { 
 		id = nor_winter_mountain_training
 		icon = GFX_focus_NOR_defense_union
+		prerequisite = { focus = NOR_fascist_invasion_of_norway }
+		
 		available = {
-		date > 1939.9.1
-		}	
+		}
+		
 		x = 0
 		y = 1
-		prerequisite = { focus = NOR_fascist_invasion_of_norway }
+		
 		relative_position_id = NOR_fascist_invasion_of_norway
-		cost = 25
+		
+		cost = 10
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_ideas = NOR_training
-			remove_ideas = NOR_obsolete_armed_forces_ns_1
-			army_experience = 250
-			add_command_power = 150
-			add_manpower = 500000
+			custom_effect_tooltip = NOR_domestic_situation_tt	
+			add_to_variable = {
+                var = NOR_ran_max_dig_in_factor
+                value = 1
+                tooltip = max_dig_in_factor_tt
+            }
+            add_to_variable = {
+                var = NOR_ran_acclimatization_cold_climate_gain_factor
+                value = 1000
+                tooltip = acclimatization_cold_climate_gain_factor_tt
+            }
 		}
-		}
-		
-			
-		focus = {
+	}
+
+	focus = {
 		id = nor_norway_in_exile_navy
 		icon = GFX_NOR_free
 		prerequisite = { focus = nor_winter_mountain_training }
+		mutually_exclusive = { focus = nor_norway_in_exile }
+		
 		available = {
-			NOR = { is_ai = no }
+			NOR = { 
+				is_ai = no 
+			}
 		}		
 
 		relative_position_id = nor_winter_mountain_training
-		mutually_exclusive = { focus = nor_norway_in_exile }
+		
 		x = -3
 		y = 1
 
@@ -4073,330 +1545,413 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-		load_oob = "NOR_EMPTY"
-		remove_ideas = nor_bad_debuffs
-		if = { limit = { NOT = { has_country_flag = france_is_kill }} set_country_flag = france_is_kill ENG = { add_to_faction = NOR } }
-		if = { limit = { NOT = { owns_state = 110 }} set_cosmetic_tag = FREE_NORWAY  }
+			add_offsite_building = { type = dockyard level = 5 }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = { 
+				limit = { 
+					NOT = { has_country_flag = france_is_kill }
+				} 
+				set_country_flag = france_is_kill 
+				ENG = { 
+					add_to_faction = NOR 
+				} 
+			}
+			
+			hidden_effect = {
+				load_oob = "NOR_EMPTY"
+				
+				if = { 
+					limit = { 
+						NOT = { owns_state = 110 }
+					} 
+					set_cosmetic_tag = FREE_NORWAY  
+				}
 
-	if = { limit = { controls_state = 110 } ENG = { set_country_flag = ENG_swe_resources }   SWE = { give_resource_rights = { receiver = ENG state = 576 } }  }
-						
+				if = { 
+					limit = { 
+						controls_state = 110 
+					} 
+					ENG = { 
+						set_country_flag = ENG_swe_resources 
+					}   
+					SWE = { 
+						give_resource_rights = { 
+							receiver = ENG 
+							state = 576 
+						} 
+					}  
+				}
+			}
 		}
-		
-		}
-		
-		focus = {
+	}
+
+	focus = {
 		id = NOR_support_the_shipbuilding_industry
 		icon = GFX_SIA_navy2
 		cost = 5.00
-		prerequisite = {
-			focus = nor_norway_in_exile_navy
-		}
+		
+		prerequisite = { focus = nor_norway_in_exile_navy }
+		
 		x = -1
 		y = 1
 		relative_position_id = nor_norway_in_exile_navy
-			available_if_capitulated = yes
-			completion_reward = {
-					add_timed_idea = { idea= NOR_shipbuild days = 365 }
-				}
-
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_timed_idea = { 
+				idea = NOR_shipbuild 
+				days = 365 
+			}
+		}
 	}
-			
+
 	focus = {
 		id = NOR_norwegian_shipping
 		icon = GFX_goal_continuous_naval_production
 		cost = 5.00
-		prerequisite = {
-			focus = NOR_support_the_shipbuilding_industry
-		}
+		
+		prerequisite = { focus = NOR_support_the_shipbuilding_industry }
+		mutually_exclusive = { focus = NOR_naval_modernisation }
+		
 		x = 0
 		y = 1
 		relative_position_id = NOR_support_the_shipbuilding_industry
-		mutually_exclusive = { focus = NOR_naval_modernisation }
-			available_if_capitulated = yes
-			completion_reward = {
-				add_ideas = NOR_naval_production
-				}
-
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = NOR_naval_production
+		}
 	}
-			focus = {
+	
+	focus = {
 		id = NOR_escort_effort
 		icon = GFX_focus_generic_destroyer
 		cost = 5.00
-		prerequisite = {
-			focus = NOR_norwegian_shipping
-		}
+		
+		prerequisite = { focus = NOR_norwegian_shipping }
+		
 		x = 0
 		y = 1
 		relative_position_id = NOR_norwegian_shipping
-			available_if_capitulated = yes
-			completion_reward = {
-									add_ideas = NOR_escort_effort
-				}
-
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = NOR_escort_effort
+		}
 	}
 	
-		focus = {
+	focus = {
 		id = NOR_convoy_effort
 		icon = GFX_focus_POL_develop_polish_shipbuilding
 		cost = 5.00
-		prerequisite = {
-			focus = NOR_escort_effort
-		}
+		
+		prerequisite = { focus = NOR_escort_effort }
+		
 		x = -1
 		y = 1
 		relative_position_id = NOR_escort_effort
-			available_if_capitulated = yes
-			completion_reward = {
-									add_ideas = CAN_trade_fleet
-				}
-
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = CAN_trade_fleet
+		}
 	}
 	
-	
-	
-	
-	
-	
-				focus = {
+	focus = {
 		id = NOR_cold_navy
 		icon = GFX_goal_generic_navy_battleship
 		cost = 5.00
-		prerequisite = {
-			focus = nor_norway_in_exile_navy
-		}
+		
+		prerequisite = { focus = nor_norway_in_exile_navy }
+		
 		x = 1
 		y = 1
 		relative_position_id = nor_norway_in_exile_navy
-			available_if_capitulated = yes
-			completion_reward = {
-					add_ideas = nor_winter_navy
-				}
-
-	}
 		
-			focus = {
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = nor_winter_navy
+		}
+	}
+
+	focus = {
 		id = NOR_naval_modernisation
 		icon = GFX_goal_continuous_research
 		cost = 5.00
-		prerequisite = {
-			focus = NOR_cold_navy
-		}
+		
+		prerequisite = { focus = NOR_cold_navy }
+		mutually_exclusive = { focus = NOR_norwegian_shipping }
+		
 		x = 0
 		y = 1
-				mutually_exclusive = { focus = NOR_norwegian_shipping }
-
 		relative_position_id = NOR_cold_navy
-			search_filters = { FOCUS_FILTER_RESEARCH }
-			available_if_capitulated = yes
-			completion_reward = {
-					add_tech_bonus ={ 
-						ahead_reduction = 1 
-						uses = 2 
-						bonus =  1
-						category = naval_equipment
-					}
-				}
-
+		
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_tech_bonus = { 
+				ahead_reduction = 1 
+				uses = 2 
+				bonus = 1
+				category = naval_equipment
+			}
+		}
 	}
-			focus = {
+	
+	focus = {
 		id = NOR_ASW
 		icon = GFX_goal_generic_navy_anti_submarine
 		cost = 5.00
-		prerequisite = {
-			focus = NOR_naval_modernisation
-		}
+		
+		prerequisite = { focus = NOR_naval_modernisation }
+		
 		x = 0
 		y = 1
 		relative_position_id = NOR_naval_modernisation
-			search_filters = { FOCUS_FILTER_RESEARCH }
-			available_if_capitulated = yes
-			completion_reward = {
+		
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		available_if_capitulated = yes
+		
+		completion_reward = {
 			add_ideas = CAN_degauss_ship_hulls
-			add_ideas = ENG_anti_submarine_training_school	
-				}
-
+		}
 	}
-		focus = {
+	
+	focus = {
 		id = NOR_navy_3
 		icon = GFX_SIA_HO
 		cost = 5.00
-		prerequisite = {
-			focus = NOR_ASW
-		}
+		
+		prerequisite = { focus = NOR_ASW }
+		
 		x = 1
 		y = 1
 		relative_position_id = NOR_ASW
-			available_if_capitulated = yes
-			completion_reward = {
-						add_ideas =NOR_fast_ships		
-				}
-
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = NOR_fast_ships		
+		}
 	}
-		focus = {
+	
+	focus = {
 		id = NOR_navy_4
 		icon = GFX_goal_generic_occupy_start_war
 		cost = 5.00
+		
 		prerequisite = {
-			focus = NOR_ASW focus = NOR_escort_effort
+			focus = NOR_ASW 
+			focus = NOR_escort_effort
 		}
+		
 		x = -1
 		y = 1
 		relative_position_id = NOR_ASW
-			available_if_capitulated = yes
-			completion_reward = {
-					add_ideas = NOR_fast_torps
-				}
-
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = NOR_fast_torps
+		}
 	}
-		
-		
-		
-		
-		
-		focus = {
+
+	focus = {
 		id = nor_norway_in_exile   
 		icon = GFX_focus_NOR_royal_guards
+		cost = 1
+		
 		prerequisite = { focus = nor_winter_mountain_training }
-		available = {
-			NOR = { is_ai = no }
-		}		
 		mutually_exclusive = { focus = nor_norway_in_exile_navy }
-		relative_position_id = nor_winter_mountain_training
+		
+		available = {
+			NOR = { 
+				is_ai = no 
+			}
+		}		
+		
 		x = 3
 		y = 1
-
-		cost = 1
+		relative_position_id = nor_winter_mountain_training
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-		load_oob = "NOR_EMPTY"
-		remove_ideas = nor_bad_debuffs
-		if = { limit = { NOT = { has_country_flag = france_is_kill }} set_country_flag = france_is_kill ENG = { add_to_faction = NOR } }
-		if = { limit = { NOT = { owns_state = 110 }} set_cosmetic_tag = FREE_NORWAY  }						
+			add_offsite_building = { type = arms_factory level = 5 }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = { 
+				limit = { 
+					NOT = { has_country_flag = france_is_kill }
+				} 
+				set_country_flag = france_is_kill 
+				ENG = { 
+					add_to_faction = NOR 
+				} 
+			}
+			
+			hidden_effect = {
+				load_oob = "NOR_EMPTY"
+			
+				if = { 
+					limit = { 
+						NOT = { owns_state = 110 }
+					} 
+					set_cosmetic_tag = FREE_NORWAY  
+				}						
 
-	if = { limit = { controls_state = 110 } ENG = { set_country_flag = ENG_swe_resources }   SWE = { give_resource_rights = { receiver = ENG state = 576 } }  }
-						
+				if = { 
+					limit = { 
+						controls_state = 110 
+					} 
+					ENG = { 
+						set_country_flag = ENG_swe_resources 
+					}   
+					SWE = { 
+						give_resource_rights = { 
+							receiver = ENG 
+							state = 576 
+						} 
+					}  
+				}
+			}
 		}
-		
-		}
-			focus = {
+	}
+	
+	focus = {
 		id = nor_fullindustrial_effort
 		icon = GFX_goal_generic_mils
-	    prerequisite = { focus = nor_norway_in_exile }
+		cost = 5
+		
+		prerequisite = { focus = nor_norway_in_exile }
+		
 		x = -1
 		y = 1
-		cost = 5
 		relative_position_id = nor_norway_in_exile
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-          		669 = {
-			add_extra_state_shared_building_slots = 1
-			add_building_construction = {
-				type = arms_factory
-				level = 1
-				instant_build = yes
-			}			
-		}
+			669 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}			
+			}
 		}
 	}
 
-				focus = {
+	focus = {
 		id = nor_doctrine_effort_2
 		icon = GFX_goal_generic_army_doctrines
+		cost = 5
+		
 		prerequisite = { focus = nor_norway_in_exile }
+		
 		x = 1
 		y = 1
 		relative_position_id = nor_norway_in_exile
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 150
+		}
+	}
+		
+	focus = {
+		id = nor_ruges_plan
+		icon = GFX_focus_NOR_army
 		cost = 5
+		
+		prerequisite = { focus = nor_fullindustrial_effort }
+		mutually_exclusive = { focus = nor_fleischers_plan }
+		
+		available = {	
+			NOR = { is_ai = no }	
+		}	
+	
+		x = -1
+		y = 2
+		relative_position_id = nor_norway_in_exile
+
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = NOR_army_buffs
+		}
+	}
+
+	focus = {
+		id = nor_fleischers_plan
+		icon = GFX_focus_NOR_expand_the_forsvaret
+		cost = 5
+		
+		prerequisite = { focus = nor_doctrine_effort_2 }
+		mutually_exclusive = { focus = nor_ruges_plan }
+		
+		available = {
+			NOR = { is_ai = no }
+		}		
+
+		x = 0
+		y = 1
+		relative_position_id = nor_doctrine_effort_2
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = NOR_spec_ops
+		}
+	}
+	
+	focus = {
+		id = nor_train_with_sas
+		icon = GFX_goal_generic_special_forces
+		cost = 5
+		
+		prerequisite = { focus = nor_fleischers_plan }
+		
+		available = {
+			NOR = { is_ai = no }
+		}		
+		
+		x = 0
+		y = 1
+		relative_position_id = nor_fleischers_plan
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			army_experience = 25
-		}
-	}
-		
-			
-		focus = {
-		id = nor_ruges_plan
-		icon = GFX_focus_NOR_army
-		mutually_exclusive = { focus = nor_fleischers_plan }
-		prerequisite = { focus = nor_fullindustrial_effort }
-		available = {	NOR = { is_ai = no }	}	
-	
-		relative_position_id = nor_norway_in_exile
-		x = -1
-		y = 2
-
-		cost = 5
-
-			available_if_capitulated = yes
-			completion_reward = {
-				add_ideas = NOR_army_buffs
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.99
+				uses = 5
+				category = special_forces_doctrine
 			}
 		}
-		
-		
-		
-		
-		focus = {
-            id = nor_fleischers_plan
-            icon = GFX_focus_NOR_expand_the_forsvaret
-            mutually_exclusive = { focus = nor_ruges_plan }
-            prerequisite = { focus = nor_doctrine_effort_2 }
-            available = {
-            NOR = { is_ai = no }
-            }		
-
-            relative_position_id = nor_doctrine_effort_2
-            
-            x = 0
-            y = 1
-            cost = 5
-
-            available_if_capitulated = yes
-
-            completion_reward = {
-                add_ideas = NOR_spec_ops
-            }
-		}
-		
-		focus = {
-            id = nor_train_with_sas
-            icon = GFX_goal_generic_special_forces
-            prerequisite = { focus = nor_fleischers_plan }
-            available = {
-                NOR = { is_ai = no }
-            }		
-        
-            relative_position_id = nor_fleischers_plan
-            x = 0
-            y = 1
-
-            cost = 5
-
-            available_if_capitulated = yes
-
-            completion_reward = {
-                add_doctrine_cost_reduction = {
-                    cost_reduction = 0.99
-                    uses = 5
-                    category = special_forces_doctrine
-                }
-
-            }
-		}
-		focus = {
+	}
+	
+	focus = {
 		id = nor_special_forces
 		icon = GFX_goal_generic_special_forces
+		cost = 5
+		
 		prerequisite = { focus = nor_train_with_sas }
+		
 		x = 1	
 		y = 1
 		relative_position_id = nor_train_with_sas
-		cost = 5
 
 		available_if_capitulated = yes
 
@@ -4409,371 +1964,368 @@ focus_tree = {
 			}
 		}
 	}
-		focus = {
+	
+	focus = {
 		id = nor_drill_exile_army
 		icon = GFX_focus_generic_military_mission
+		cost = 5
+		
 		prerequisite = { focus = nor_ruges_plan }
+		
 		available = {
-		NOR = { is_ai = no }
+			NOR = { is_ai = no }
 		}	
 		
-		relative_position_id = nor_ruges_plan
 		x = 0
 		y = 1
-
-		cost = 5
+		relative_position_id = nor_ruges_plan
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-				army_experience = 150
-													add_ideas = NOR_army_buffs2
-		}
-		
-		}
-		
-		focus = {
-		id = NOR_our_royal_claims
-		icon = GFX_focus_NOR_our_royal_claims
-
-			x = 7
-			y = 1
-	
-			cost = 5
-			prerequisite = { focus = NOR_fascist_invasion_of_norway }
-			relative_position_id = NOR_fascist_invasion_of_norway
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
-
-		completion_reward = {
-			add_political_power = 50
-			add_war_support = 0.2
-			add_manpower = 50000
+			army_experience = 150
+			add_ideas = NOR_army_buffs2
 		}
 	}
 
-		focus = {
-			id = nor_lower_recruitment_standars
-			icon = GFX_NOR_oldguard
-			prerequisite = { focus = nor_drill_exile_army }		
-			relative_position_id = nor_drill_exile_army
-			x = -1
-			y = 1
+	focus = {
+		id = nor_lower_recruitment_standars
+		icon = GFX_NOR_oldguard
+		cost = 5
+		
+		prerequisite = { focus = nor_drill_exile_army }		
+		
+		x = -1
+		y = 1
+		relative_position_id = nor_drill_exile_army
 	
-			cost = 5
+		available_if_capitulated = yes
 	
-			available_if_capitulated = yes
-	
-			completion_reward = {
-				add_manpower = 500000
-				#add_ideas = NOR_bad_training
-            }
+		completion_reward = {
+			add_manpower = 500000
+			#add_ideas = NOR_bad_training
+		}
+	}
+		
+	focus = {
+		id = nor_combine_training
+		icon = GFX_focus_chi_british_cooperation
+		cost = 5
+		
+		prerequisite = { 
+			focus = nor_drill_exile_army 
+			focus = nor_train_with_sas 
 		}
 		
-		focus = {
-			id = nor_combine_training
-			icon = GFX_focus_chi_british_cooperation
-			prerequisite = { focus= nor_drill_exile_army focus= nor_train_with_sas }
+		x = 1
+		y = 1
+		relative_position_id = nor_drill_exile_army
+	
+		available_if_capitulated = yes
+	
+		completion_reward = {
+			custom_effect_tooltip = NOR_army_and_navy_tt	
+            add_to_variable = {
+                var = NOR_ran_breakthrough_factor
+                value = 0.1
+                tooltip = breakthrough_factor_tt
+            }
+		} 
+	}
+	
+	focus = {
+		id = NOR_our_royal_claims
+		icon = GFX_focus_NOR_our_royal_claims
+		cost = 5
+		
+		prerequisite = { focus = NOR_fascist_invasion_of_norway }
+		
+		x = 7
+		y = 1
+		relative_position_id = NOR_fascist_invasion_of_norway
+		
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = {
+			add_war_support = 0.25
 			
-			relative_position_id = nor_drill_exile_army
-			x = 1
-			y = 1
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = NOR_army_and_navy_tt	
+            add_to_variable = {
+                var = NOR_ran_land_bunker_effectiveness_factor
+                value = 0.5
+                tooltip = land_bunker_effectiveness_factor_tt
+            }
+			add_to_variable = {
+                var = NOR_ran_coastal_bunker_effectiveness_factor
+                value = 0.5
+                tooltip = coastal_bunker_effectiveness_factor_tt
+            }
+		}
+	}
 	
-			cost = 5
-	
-			available_if_capitulated = yes
-	
-			completion_reward = {
-				army_experience = 50
-				ENG = { army_experience = 50 }
-		} 
-		} 
 	focus = {
 		id = NOR_protect_the_faroe_islands
-		
 		text = DEN_protect_the_faroe_islands
 		icon = GFX_focus_DEN_protect_faroes
-
-			prerequisite = { focus= NOR_our_royal_claims }
-			
-			relative_position_id = NOR_our_royal_claims
+		cost = 5
+		
+		prerequisite = { focus = NOR_our_royal_claims }
+		
 		x = -2
 		y = 1
-	
-		cost = 5
+		relative_position_id = NOR_our_royal_claims
 		
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 	
 		completion_reward = {
 			transfer_state = 337
-				337 = {
-				
-								add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-		}
-		}
-	} 
-		focus = { 
-			id = nor_iceland
-			text = DEN_reintegrate_iceland
-			icon = GFX_focus_generic_develop_iceland_silhouette
-			prerequisite = { focus= NOR_our_royal_claims }
-			
-			relative_position_id = NOR_our_royal_claims
-			x = 0
-			y = 1
-	
-			cost = 5
-			available = { is_in_faction_with = ENG }
-
-			available_if_capitulated = yes
-	
-			completion_reward = {
-				transfer_state = 100
-				100 = {
-				
-								add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-		}
 		}
 	}
-		focus = {
-			id = nor_greenland
-			prerequisite = { focus= NOR_our_royal_claims }
-			relative_position_id = NOR_our_royal_claims
-			x = 2
-			y = 1
-			text = DEN_protect_greenland
-		icon = GFX_focus_DEN_protect_greenland
-
-			cost = 5
 	
-			available_if_capitulated = yes
-			available = { is_in_faction_with = ENG }
-			completion_reward = {
-				transfer_state = 101
-				101 = {
-				
-								add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-				}
-			}
+	focus = { 
+		id = nor_iceland
+		text = DEN_reintegrate_iceland
+		icon = GFX_focus_generic_develop_iceland_silhouette
+		cost = 5
+		
+		prerequisite = { focus = NOR_our_royal_claims }
+		
+		available = { 
+			is_in_faction_with = ENG 
+		}
+
+		x = 0
+		y = 1
+		relative_position_id = NOR_our_royal_claims
+	
+		available_if_capitulated = yes
+	
+		completion_reward = {
+			transfer_state = 100
+		}
+	}
+	
+	focus = {
+		id = nor_greenland
+		text = DEN_protect_greenland
+		icon = GFX_focus_DEN_protect_greenland
+		cost = 5
+		
+		prerequisite = { focus = NOR_our_royal_claims }
+		
+		available = { 
+			is_in_faction_with = ENG 
 		}
 		
+		x = 2
+		y = 1
+		relative_position_id = NOR_our_royal_claims
+
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			transfer_state = 101
+		}
+	}
 	
 	focus = {
 		id = NOR_consolidate_kingdom
 		icon = GFX_focus_rom_royal_dictatorship
+		cost = 5
+
 		prerequisite = { focus = nor_greenland }
-prerequisite = { focus = nor_iceland }
-prerequisite = { focus = NOR_protect_the_faroe_islands }
+		prerequisite = { focus = nor_iceland }
+		prerequisite = { focus = NOR_protect_the_faroe_islands }
+		
 		x = 0
 		y = 1
 		relative_position_id = nor_iceland
-		
-		cost = 5
-
-
-
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
 
 		completion_reward = {
-
 			add_political_power = 100
-
-			add_manpower = 50000
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
 
 			# Faroe Islands 
 			337 = {
-					add_core_of = ROOT
-					add_extra_state_shared_building_slots = 1
+				add_core_of = ROOT
 			}
 			# Greenland
 			101 = {
-					add_core_of = ROOT
-					add_extra_state_shared_building_slots = 1
+				add_core_of = ROOT
 			}
 			# Iceland 
 			100 = {
-					add_core_of = ROOT
-					add_extra_state_shared_building_slots = 1
+				add_core_of = ROOT
 			}
 		}
 	}
-		focus = {
+	
+	focus = {
 		id = nor_prepare_operation_crofter
 		icon = GFX_goal_generic_position_armies
-		prerequisite = {
-			focus = NOR_consolidate_kingdom
+		cost = 5
+		
+		prerequisite = { focus = NOR_consolidate_kingdom }
+		
+		available = { 		
 		}
-		relative_position_id = NOR_our_royal_claims
-			available = { 		custom_trigger_tooltip = { NOT = { controls_state = 110 }tooltip = "We are a government-in-exile"} }
 
 		x = 0
 		y = 3
-
-		cost = 5
+		
+		relative_position_id = NOR_our_royal_claims
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-				add_tech_bonus = {
-							bonus = 3.0
-							uses = 2
-					category = tp_tech
-					}
-		
+			add_tech_bonus = {
+				bonus = 3.0
+				uses = 2
+				category = tp_tech
+			}
 		}
 	}
-			focus = {
-			id = nor_coastal_forts
-			icon = GFX_goal_generic_defense
-			prerequisite = { focus= nor_operation_crofter focus= nor_narvik }
-			available = {
+	
+	focus = {
+		id = nor_coastal_forts
+		icon = GFX_goal_generic_defense
+		cost = 5
+		
+		# FIXED: Separated into two blocks so the player only needs one of these!
+		prerequisite = { focus = nor_operation_crofter }
+		prerequisite = { focus = nor_narvik }
+		
+		available = {
 			owns_state = 110
-			}	
-			
-			relative_position_id = nor_prepare_operation_crofter
-			x = 0
-			y = 2
-	
-			cost = 5
-	
-			available_if_capitulated = yes
-	
-			completion_reward = {
-				110 = {
-								set_building_level = {
-						type = supply_node
-						level = 1
-						province = 9103
-						instant_build = yes
-					}
-					set_building_level = {
-						type = supply_node
-						level = 1
-						province = 11078
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 5
-						province = 6115
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 1
-						province = 3171
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 1
-						province = 14
-						instant_build = yes
-					}
-					set_building_level = {
-						type = naval_base
-						level = 5
-						province = 6115
-						instant_build = yes
-					}
+		}	
+		
+		x = 0
+		y = 2
+		relative_position_id = nor_prepare_operation_crofter
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			110 = {
+				set_building_level = {
+					type = supply_node
+					level = 1
+					province = 9103
+					instant_build = yes
 				}
+				set_building_level = {
+					type = supply_node
+					level = 1
+					province = 11078
+					instant_build = yes
 				}
+				set_building_level = {
+					type = coastal_bunker
+					level = 5
+					province = 6115
+					instant_build = yes
+				}
+				set_building_level = {
+					type = coastal_bunker
+					level = 1
+					province = 3171
+					instant_build = yes
+				}
+				set_building_level = {
+					type = coastal_bunker
+					level = 1
+					province = 14
+					instant_build = yes
+				}
+				set_building_level = {
+					type = naval_base
+					level = 5
+					province = 6115
+					instant_build = yes
+				}
+			}
 		}
-		focus = {
+	}
+	
+	focus = {
 		id = nor_operation_crofter
 		icon = GFX_NOR_norge
-		prerequisite = { focus= nor_prepare_operation_crofter }
-		mutually_exclusive = {
-			focus = nor_narvik
-		}
+		cost = 5
+		
+		prerequisite = { focus = nor_prepare_operation_crofter }
+		mutually_exclusive = { focus = nor_narvik }
+		
 		available = {
-		NOR = { is_ai = no }
+			NOR = { is_ai = no }
 		}		
-		relative_position_id = nor_prepare_operation_crofter
+		
 		x = 1
 		y = 1
-
-		cost = 5
+		relative_position_id = nor_prepare_operation_crofter
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_timed_idea = { idea = NOR_crofter days = 90 }
-		}
-		
-		}
-		focus = {
-			id = nor_narvik
-			icon = GFX_focus_POL_develop_polish_shipbuilding
-			prerequisite = { focus= nor_prepare_operation_crofter }
-			mutually_exclusive = {
-				focus = nor_operation_crofter
+			add_timed_idea = { 
+				idea = NOR_crofter 
+				days = 90 
 			}
-			available = {
+		}
+	}
+	
+	focus = {
+		id = nor_narvik
+		icon = GFX_focus_POL_develop_polish_shipbuilding
+		cost = 5
+		
+		prerequisite = { focus = nor_prepare_operation_crofter }
+		mutually_exclusive = { focus = nor_operation_crofter }
+		
+		available = {
 			NOT = { controls_state = 110 }
 			controls_state = 144
-			}	
-			
-			relative_position_id = nor_prepare_operation_crofter
-			x = -1
-			y = 1
-	
-			cost = 5
-	
-			available_if_capitulated = yes
-	
-			completion_reward = {
-				set_capital = { state = 144 }
-				144 = { 
-				set_building_level = {
-						type = coastal_bunker
-						level = 5
-						province = 192
-						instant_build = yes
-					}
-					set_building_level = {
-						type = bunker
-						level = 5
-						province = 192
-						instant_build = yes
-					}
-					set_building_level = {
-						type = supply_node
-						level = 1
-						province = 9208
-						instant_build = yes
-					}
-					set_building_level = {
-						type = supply_node
-						level = 1
-						province = 9126
-						instant_build = yes
-					}
-					}
-				}
-		}
+		}	
 		
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
+		x = -1
+		y = 1
+		relative_position_id = nor_prepare_operation_crofter
+		
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			set_capital = { state = 144 }
+			
+			144 = { 
+				set_building_level = {
+					type = coastal_bunker
+					level = 5
+					province = 192
+					instant_build = yes
+				}
+				set_building_level = {
+					type = bunker
+					level = 5
+					province = 192
+					instant_build = yes
+				}
+				set_building_level = {
+					type = supply_node
+					level = 1
+					province = 9208
+					instant_build = yes
+				}
+				set_building_level = {
+					type = supply_node
+					level = 1
+					province = 9126
+					instant_build = yes
+				}
+			}
+		}
+	}
 }
