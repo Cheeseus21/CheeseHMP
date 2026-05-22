@@ -128,7 +128,7 @@ NDefines.NBuildings.DESTRUCTION_COOLDOWN_IN_WAR = 9999 --anti-exploit
 NDefines.NBuildings.RADAR_RANGE_MAX = 250
 NDefines.NCountry.SCORCHED_EARTH_STATE_COST = 50					-- pp cost to scorch a state|
 NDefines.NAir.AIR_NAVAL_KAMIKAZE_DAMAGE_MULT = 25.0  --vanilla 20.0, which was too weak
-NDefines.NAir.INTERCEPTION_DAMAGE_SCALE = 0.55
+NDefines.NAir.INTERCEPTION_DAMAGE_SCALE = 1
 NDefines.NAir.ANTI_AIR_ATTACK_TO_DAMAGE_REDUCTION_FACTOR = 0.28 --0.33 for 22 max reduction aa3 with 1 upgrade gives max reduction, aa2 with all upgrades gives more or less max reduction
 NDefines.NAir.ANTI_AIR_MAXIMUM_DAMAGE_REDUCTION_FACTOR = 0.75 --0.5 vanilla 0.75, in vanilla 11 air attack gets you max cas damage reduction.
 NDefines.NAir.COMBAT_DAMAGE_SCALE = 0.32                --
@@ -139,6 +139,13 @@ NDefines.NAir.EFFICIENCY_REGION_CHANGE_DAILY_GAIN_FIGHTER = 24		-- How much effi
 NDefines.NAir.EFFICIENCY_REGION_CHANGE_DAILY_GAIN_STRATEGIC_BOMBER = 0.024	-- How much efficiency to regain per day. Gain applied hourly.
 NDefines.NAir.CAPACITY_PENALTY=0.869
 NDefines.NAir.SUPPLY_NEED_FACTOR = 0.01				-- How much supply planes need
+
+NDefines.NAir.STRATEGIC_BOMBING_PROV_BUILD_PRIO_SCALE = 0.25 				-- Scale of the selected priority for provincial buildings
+NDefines.NAir.STRATEGIC_BOMBING_STATE_BUILD_PRIO_SCALE = 1					-- Scale of the selected priority for state buildings
+NDefines.NAir.STRATEGIC_BOMBING_INFRA_PRIO_SCALE = 0						-- Scale of the selected priority for infrastructure
+NDefines.NAir.STRATEGIC_BOMBING_RAILWAY_PRIORITY_SCALE = 0					-- The scale of extra priority assigned to railway for strategic bombing
+NDefines.NAir.STRATEGIC_BOMBING_STATE_BUILDING_SCALE = 1					-- The scale of state building priority for strategic bombing
+	
 
 NDefines.NAir.AIR_WING_MAX_STATS_BOMBING = 1000    -- vanilla 100
 NDefines.NAir.COMBAT_MULTIPLANE_CAP = 1.75                  -- VANILLA 3
