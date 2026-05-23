@@ -8888,69 +8888,72 @@ propaganda_effortsx = {
             hidden_effect = {
                 set_global_flag = countenance_launched
 			
-				ENG = {
-					transfer_state = 412
-					transfer_state = 595
-					transfer_state = 598
-					transfer_state = 597
-					transfer_state = 596
-					
-					complete_national_focus = uk_iran_focus
-
-					country_event = { id = iran.3 }
-				}
-				
-				FROM = {  
-					delete_unit_template_and_units = { division_template = "Countenance Infantry" }   
-					load_oob = "ENG_Iran_Front" 
-				}
-				
-				ITA = {
-					transfer_state = 421
-					transfer_state = 413
-					
-					load_oob = "ITA_IRQ_Spawn_FOR_ITA" 
-					
-					#add_to_war = { targeted_alliance = GER enemy = SOV }
-					
-					# if = { 
-						# limit = { 
-							# ITA = { 
-								# has_completed_focus = ITA_align_iraq 
-							# } 
-						# } 
-						# ITA = { load_oob = "ITA_IRQ_Spawn_FOR_ITA" } 
-					# }
-					
-					country_event = { id = iran.4 }
-				}
-
-				SOV = {
-					transfer_state = 266
-					transfer_state = 419
-					
-					complete_national_focus = SOV_preemptive_invasion_of_iran
-					
-					delete_unit_template_and_units = { 
-						division_template = "Consent Infantry"
-					} 
-					
-					if = { 
-						limit = { 
-							any_country = { 
-								is_in_faction_with = ENG 
-								controls_state = 291 
-							}  
-							any_country = { 
-								is_in_faction_with = ENG 
-								controls_state = 444 
-							}    
+				if = {
+					limit = {
+						NOT = {
+							ITA = {
+								controls_state = 291
+							}
 						}
-						load_oob =  "ENG_Iran_Front_SOV_reduced" 
-					} 
-					else = { 
-						load_oob = "ENG_Iran_Front_SOV"
-					} 
+					}
+					ENG = {
+						transfer_state = 412
+						transfer_state = 595
+						transfer_state = 598
+						transfer_state = 597
+						transfer_state = 596
+						transfer_state = 421
+						transfer_state = 413
+						
+						complete_national_focus = uk_iran_focus
+
+						country_event = { id = iran.3 }
+					}
+
+					ITA = {
+						country_event = { id = iran.4 }
+					}
+
+					SOV = {
+						transfer_state = 266
+						transfer_state = 419
+						
+						complete_national_focus = SOV_preemptive_invasion_of_iran
+					}
+				}
+				else = {
+					ENG = {
+						transfer_state = 412
+						transfer_state = 595
+						transfer_state = 598
+						transfer_state = 597
+						transfer_state = 596
+						
+						complete_national_focus = uk_iran_focus
+
+						country_event = { id = iran.3 }
+					}
+					
+					FROM = {  
+						delete_unit_template_and_units = { division_template = "Countenance Infantry" }   
+						load_oob = "ENG_Iran_Front" 
+					}
+					
+					ITA = {
+						transfer_state = 421
+						transfer_state = 413
+						
+						load_oob = "ITA_IRQ_Spawn_FOR_ITA" 
+						
+						country_event = { id = iran.4 }
+					}
+
+					SOV = {
+						transfer_state = 266
+						transfer_state = 419
+						
+						complete_national_focus = SOV_preemptive_invasion_of_iran
+					}
 				}
 			}
         }
@@ -8992,67 +8995,72 @@ propaganda_effortsx = {
             hidden_effect = {
                 set_global_flag = countenance_launched
 			
-				ENG = {
-					transfer_state = 412
-					transfer_state = 595
-					transfer_state = 598
-					transfer_state = 597
-					transfer_state = 596
-					
-					complete_national_focus = uk_iran_focus
-					
-					country_event = { id = iran.3 }
-				}
-				
-				ENG = {  
-					delete_unit_template_and_units = { division_template = "Countenance Infantry" }   
-					load_oob = "ENG_Iran_Front" 
-				}
-				
-				ITA = {
-					transfer_state = 421
-					transfer_state = 413
-					
-					#add_to_war = { targeted_alliance = GER enemy = SOV }
-					
-					# if = { 
-						# limit = { 
-							# ITA = { 
-								# has_completed_focus = ITA_align_iraq 
-							# } 
-						# } 
-						# ITA = { load_oob = "ITA_IRQ_Spawn_FOR_ITA" } 
-					# }
-					
-					country_event = { id = iran.4 }
-				}
-
-				SOV = {
-					transfer_state = 266
-					transfer_state = 419
-					
-					complete_national_focus = SOV_preemptive_invasion_of_iran
-					
-					delete_unit_template_and_units = { 
-						division_template = "Consent Infantry"
-					} 
-					
-					if = { 
-						limit = { 
-							any_country = { 
-								is_in_faction_with = ENG 
-								controls_state = 291 
-							}  
-							any_country = { 
-								is_in_faction_with = ENG 
-								controls_state = 444 
-							}    
+				if = {
+					limit = {
+						NOT = {
+							ITA = {
+								controls_state = 291
+							}
 						}
-						load_oob =  "ENG_Iran_Front_SOV_reduced" 
-					} 
-					else = { 
-						load_oob = "ENG_Iran_Front_SOV"
-					} 
+					}
+					ENG = {
+						transfer_state = 412
+						transfer_state = 595
+						transfer_state = 598
+						transfer_state = 597
+						transfer_state = 596
+						transfer_state = 421
+						transfer_state = 413
+						
+						complete_national_focus = uk_iran_focus
+
+						country_event = { id = iran.3 }
+					}
+
+					ITA = {
+						country_event = { id = iran.4 }
+					}
+
+					SOV = {
+						transfer_state = 266
+						transfer_state = 419
+						
+						complete_national_focus = SOV_preemptive_invasion_of_iran
+					}
+				}
+				else = {
+					ENG = {
+						transfer_state = 412
+						transfer_state = 595
+						transfer_state = 598
+						transfer_state = 597
+						transfer_state = 596
+						
+						complete_national_focus = uk_iran_focus
+
+						country_event = { id = iran.3 }
+					}
+					
+					FROM = {  
+						delete_unit_template_and_units = { division_template = "Countenance Infantry" }   
+						load_oob = "ENG_Iran_Front" 
+					}
+					
+					ITA = {
+						transfer_state = 421
+						transfer_state = 413
+						
+						load_oob = "ITA_IRQ_Spawn_FOR_ITA" 
+						
+						country_event = { id = iran.4 }
+					}
+
+					SOV = {
+						transfer_state = 266
+						transfer_state = 419
+						
+						complete_national_focus = SOV_preemptive_invasion_of_iran
+					}
 				}
 			}
         }
@@ -9099,11 +9107,7 @@ propaganda_effortsx = {
 				ENG = {
 					complete_national_focus = uk_iran_focus
 				}
-				
-				#ITA = {
-				#	add_to_war = { targeted_alliance = GER enemy = SOV }
-				#}
-			
+
 				JAP = {
 					transfer_state = 412
 					transfer_state = 595
@@ -9120,27 +9124,6 @@ propaganda_effortsx = {
 					transfer_state = 419
 					
 					complete_national_focus = SOV_preemptive_invasion_of_iran
-					
-					delete_unit_template_and_units = { 
-						division_template = "Consent Infantry"
-					} 
-					
-					if = { 
-						limit = { 
-							any_country = { 
-								is_in_faction_with = ENG 
-								controls_state = 291 
-							}  
-							any_country = { 
-								is_in_faction_with = ENG 
-								controls_state = 444 
-							}    
-						}
-						load_oob =  "ENG_Iran_Front_SOV_reduced" 
-					} 
-					else = { 
-						load_oob = "ENG_Iran_Front_SOV"
-					} 
 				}
 			}
         }
@@ -10386,7 +10369,9 @@ propaganda_effortsx = {
 		complete_effect = {									
 			custom_effect_tooltip = prepare_torch_tt
 
-			hidden_effect = { 
+			hidden_effect = {
+				set_global_flag = TORCH_DEMIL_FLAG
+			
 				GER = {
 					set_country_flag = TORCH_DECLARED
 				}
@@ -10401,28 +10386,34 @@ propaganda_effortsx = {
 				}
 				
 				if = {
-					limit = { 
-						EFR = { is_ai = yes } 
-						ITA = { controls_province = 12047 } 
-					} 
-					if = { 
-						limit = { ITA = { controls_state = 115 } }   
-						ITA = { load_oob = "ITA_TORCH_Spawn" } 
-					} 
+					limit = {
+						NOT = {
+							ITA = {
+								controls_state = 458 # TUNIS
+							}
+						}
+					}
+					FRA = {
+						transfer_state = 460 
+						transfer_state = 459 
+						transfer_state = 513 
+						transfer_state = 461 
+					}
 				}
-				
-				ITA = { 
-					transfer_state = 460 
-					transfer_state = 459 
-					transfer_state = 513 
-					load_oob = "ITA_TORCH_Spawn"
-				}
+				else = {
+					ITA = {
+						transfer_state = 460 
+						transfer_state = 459 
+						transfer_state = 513 
+						load_oob = "ITA_TORCH_Spawn"
+					}
 
-				FROM = { 
-					load_oob = "ENG_EFR"
-					transfer_state = 461 
-					461 = { set_demilitarized_zone = no }  
-				} 
+					FROM = {
+						load_oob = "ENG_EFR"
+						transfer_state = 461 
+						461 = { set_demilitarized_zone = no }  
+					}
+				}
 				
 				EFR = { every_owned_state = { set_demilitarized_zone = no } } 
 				ITA = { every_owned_state = { set_demilitarized_zone = no } }
@@ -18760,21 +18751,24 @@ operations = {
 			}
 			
 			SOV = { 
-                add_ideas = armyandnavy_idea
                 white_peace = {
                     tag = FIN 
                 } 
             }
-            
-            FIN = { 
-                add_ideas = armyandnavy_idea
-            }
-			
+
 			hidden_effect = {
 				SOV = { country_event = { id = finland.8 days = 1 } }
 				FIN = { country_event = { id = finland.7 days = 1 } }
 				SOV = { complete_national_focus = SOV_secure_leningrad }
 				FIN = { complete_national_focus = FIN_the_truce }
+				
+				SOV = { 
+					add_ideas = armyandnavy_idea
+				}
+				
+				FIN = { 
+					add_ideas = armyandnavy_idea
+				}
 			}
 
 		}
@@ -18934,21 +18928,24 @@ operations = {
 			}
 				
 			SOV = { 
-                add_ideas = armyandnavy_idea
                 white_peace = {
                     tag = FIN 
                 } 
             }
-            
-            FIN = { 
-                add_ideas = armyandnavy_idea
-            }
-			
+
 			hidden_effect = {
 				SOV = { country_event = { id = finland.8 days = 1 } }
 				FIN = { country_event = { id = finland.7 days = 1 } }
 				SOV = { complete_national_focus = SOV_secure_leningrad }
 				FIN = { complete_national_focus = FIN_the_truce }
+				
+				SOV = { 
+					add_ideas = armyandnavy_idea
+				}
+				
+				FIN = { 
+					add_ideas = armyandnavy_idea
+				}
 			}
 		}
 	}
