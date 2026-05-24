@@ -309,35 +309,35 @@
     }
 
 
-    enable_compass_mechanic = { # Done at Danzig, automatically removed after a year of gameplay
+    # enable_compass_mechanic = { # Done at Danzig, automatically removed after a year of gameplay
         # Set global flag for operation compass, lasts 365 days
-        set_global_flag = { flag = operation_compass_enabled days = 365 }
+        # set_global_flag = { flag = operation_compass_enabled days = 365 }
 
-        # Italy joins war with Germany and applies Compass mechanic modifiers
-        ITA = { 
-            add_to_war = { targeted_alliance = GER enemy = ENG } 
+        ## Italy joins war with Germany and applies Compass mechanic modifiers
+        # ITA = { 
+            # add_to_war = { targeted_alliance = GER enemy = ENG } 
 
-            # Compass-specific modifiers for Italy
-            set_variable = { var = AXIS_COMPASS_SUPPLY_supply_consumption_factor value = -0.075 }
-            set_variable = { var = AXIS_COMPASS_SUPPLY_supply_node_range value = 0.15 }
-            set_variable = { var = AXIS_COMPASS_SUPPLY_army_strength_factor value = 0.3 }
-            set_variable = { var = AXIS_COMPASS_dig_in_speed_factor value = 0.3 }
-            set_variable = { var = AXIS_COMPASS_pocket_penalty value = -0.15 }
-            set_variable = { var = AXIS_COMPASS_planning_speed value = 0.3 }
-            set_variable = { var = AXIS_COMPASS_org_loss_at_low_org_factor value = -0.15 }
-        }
+            ##Compass-specific modifiers for Italy
+            # set_variable = { var = AXIS_COMPASS_SUPPLY_supply_consumption_factor value = -0.075 }
+            # set_variable = { var = AXIS_COMPASS_SUPPLY_supply_node_range value = 0.15 }
+            # set_variable = { var = AXIS_COMPASS_SUPPLY_army_strength_factor value = 0.3 }
+            # set_variable = { var = AXIS_COMPASS_dig_in_speed_factor value = 0.3 }
+            # set_variable = { var = AXIS_COMPASS_pocket_penalty value = -0.15 }
+            # set_variable = { var = AXIS_COMPASS_planning_speed value = 0.3 }
+            # set_variable = { var = AXIS_COMPASS_org_loss_at_low_org_factor value = -0.15 }
+        # }
 
-        # Apply dynamic modifier to all Axis countries including Germany and France (EFR)
-        every_country = { 
-            limit = { OR = { is_in_faction_with = GER tag = GER tag = EFR } } 
-            add_dynamic_modifier = { modifier = AXIS_COMPASS_SUPPLY days = 365 }  
-        }
+        ## Apply dynamic modifier to all Axis countries including Germany and France (EFR)
+        # every_country = { 
+            # limit = { OR = { is_in_faction_with = GER tag = GER tag = EFR } } 
+            # add_dynamic_modifier = { modifier = AXIS_COMPASS_SUPPLY days = 365 }  
+        # }
 
-        # Persia triggers an event to clear Italy's Compass variables just in case
-        PER = { 
-            country_event = { id = hungary.662 days = 365 } 
-        }
-    }
+        ## Persia triggers an event to clear Italy's Compass variables just in case
+        # PER = { 
+            # country_event = { id = hungary.662 days = 365 } 
+        # }
+    # }
 
 
     compass_ll_calc = { # Runs monthly
