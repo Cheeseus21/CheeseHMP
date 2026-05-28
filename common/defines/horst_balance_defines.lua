@@ -140,7 +140,7 @@ NDefines.NAir.EFFICIENCY_REGION_CHANGE_DAILY_GAIN_STRATEGIC_BOMBER = 0.024	-- Ho
 NDefines.NAir.CAPACITY_PENALTY=0.869
 NDefines.NAir.SUPPLY_NEED_FACTOR = 0.01				-- How much supply planes need
 
-NDefines.NAir.STRATEGIC_BOMBING_PROV_BUILD_PRIO_SCALE = 0.25 				-- Scale of the selected priority for provincial buildings
+NDefines.NAir.STRATEGIC_BOMBING_PROV_BUILD_PRIO_SCALE = 0.5 				-- Scale of the selected priority for provincial buildings
 NDefines.NAir.STRATEGIC_BOMBING_STATE_BUILD_PRIO_SCALE = 1					-- Scale of the selected priority for state buildings
 NDefines.NAir.STRATEGIC_BOMBING_INFRA_PRIO_SCALE = 0						-- Scale of the selected priority for infrastructure
 NDefines.NAir.STRATEGIC_BOMBING_RAILWAY_PRIORITY_SCALE = 0					-- The scale of extra priority assigned to railway for strategic bombing
