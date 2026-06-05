@@ -449,29 +449,9 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = GER_kriegslokomotiven
-				bonus = 1
+				bonus = 3
 				uses = 2
 				category = train_tech
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			if = {
-				limit = {
-					has_idea = GER_deutsche_reichsbahn
-				}
-				swap_ideas = {
-					remove_idea = GER_deutsche_reichsbahn
-					add_idea = GER_deutsche_reichsbahn_improved
-				}
-			}
-			else = {
-				effect_tooltip = {
-					swap_ideas = {
-						remove_idea = GER_deutsche_reichsbahn
-						add_idea = GER_deutsche_reichsbahn_improved
-					}
-				}
 			}
 		}
 	}
@@ -571,104 +551,126 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-            custom_effect_tooltip = GER_elite_units_tt
+            # if = {
+				# limit = {
+					# NOT = {
+						# has_completed_focus = GER_advanced_panzer_research
+					# }
+				# }
+				
+				# custom_effect_tooltip = GER_elite_units_tt
+				
+				# set_variable = { GER_elite_panzer_cap_var = 10 }
+				
+				##==========================================
+				##ELITE LIGHT PANZER TEMPLATE
+				##==========================================
+				# division_template = {
+					# name = "Elite Light Panzer"
+					# is_locked = no 
+					# division_cap = 10
+					
+					# regiments = {
+						# elite_light_armor = { x = 0 y = 0 } elite_light_armor = { x = 1 y = 0 } elite_light_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
+						# elite_light_armor = { x = 0 y = 1 } elite_light_armor = { x = 1 y = 1 } elite_light_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
+						# elite_light_armor = { x = 0 y = 2 } elite_light_armor = { x = 1 y = 2 } elite_light_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
+						# elite_light_armor = { x = 0 y = 3 } elite_light_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
+					# }                                         
+					# support = { 
+						# light_flame_tank = { x = 0 y = 0 } 
+						# light_tank_recon = { x = 0 y = 1 }  
+						# logistics_company = { x = 0 y = 2 } 
+						# maintenance_company = { x = 0 y = 3 }
+						# military_police = { x = 0 y = 4 } 
+						# light_sp_artillery = { x = 0 y = 5 }
+					# }
+				# }
+
+				##==========================================
+				##ELITE MEDIUM PANZER TEMPLATE
+				##==========================================
+				# division_template = {
+					# name = "Elite Medium Panzer"
+					# is_locked = no 
+					# division_cap = 10
+					
+					# regiments = {
+						# elite_medium_armor = { x = 0 y = 0 } elite_medium_armor = { x = 1 y = 0 } elite_medium_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
+						# elite_medium_armor = { x = 0 y = 1 } elite_medium_armor = { x = 1 y = 1 } elite_medium_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
+						# elite_medium_armor = { x = 0 y = 2 } elite_medium_armor = { x = 1 y = 2 } elite_medium_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
+						# elite_medium_armor = { x = 0 y = 3 } elite_medium_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
+					# }                                         
+					# support = { 
+						# light_flame_tank = { x = 0 y = 0 } 
+						# light_tank_recon = { x = 0 y = 1 }  
+						# logistics_company = { x = 0 y = 2 } 
+						# maintenance_company = { x = 0 y = 3 }
+						# military_police = { x = 0 y = 4 } 
+						# light_sp_artillery = { x = 0 y = 5 }
+					# }
+				# }
+
+				##==========================================
+				##ELITE HEAVY PANZER TEMPLATE
+				##==========================================
+				# division_template = {
+					# name = "Elite Heavy Panzer"
+					# is_locked = no 
+					# division_cap = 10
+					
+					# regiments = {
+						# elite_heavy_armor = { x = 0 y = 0 } elite_heavy_armor = { x = 1 y = 0 } elite_heavy_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
+						# elite_heavy_armor = { x = 0 y = 1 } elite_heavy_armor = { x = 1 y = 1 } elite_heavy_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
+						# elite_heavy_armor = { x = 0 y = 2 } elite_heavy_armor = { x = 1 y = 2 } elite_heavy_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
+						# elite_heavy_armor = { x = 0 y = 3 } elite_heavy_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
+					# }                                         
+					# support = { 
+						# light_flame_tank = { x = 0 y = 0 } 
+						# light_tank_recon = { x = 0 y = 1 }  
+						# logistics_company = { x = 0 y = 2 } 
+						# maintenance_company = { x = 0 y = 3 }
+						# military_police = { x = 0 y = 4 } 
+						# light_sp_artillery = { x = 0 y = 5 }
+					# }
+				# }
+			# }
+			# else = {
+				# set_variable = { GER_elite_panzer_cap_var = 20 }
+				
+				# set_division_template_cap = { 
+					# division_template = "Elite Light Panzer" 
+					# division_cap = 20
+				# }
+				# set_division_template_cap = { 
+					# division_template = "Elite Medium Panzer" 
+					# division_cap = 20
+				# }
+				# set_division_template_cap = { 
+					# division_template = "Elite Heavy Panzer" 
+					# division_cap = 20
+				# }
+			# }
             
-            hidden_effect = {
-                if = {
-                    limit = {
-                        NOT = {
-                            has_completed_focus = GER_strengthen_the_waffen_ss
+            custom_effect_tooltip = GER_veterans_tooltip
+            
+            hidden_effect = { 
+                delete_units = {  division_template = "Elite Division" disband = no }
+                load_oob = "SPR_AZUL"
+                290 = { 
+                    every_state_division = { 
+                        add_history_entry = {
+                            key = spanish_civil_war_veteran_medal_key
+                            subject = "Division was awarded a medal for exemplerary combat performance."
+                            allow = yes
                         }
-                    }
-                    
-                    set_variable = { GER_elite_panzer_cap_var = 10 }
-                    
-                    # ==========================================
-                    # ELITE LIGHT PANZER TEMPLATE
-                    # ==========================================
-                    division_template = {
-                        name = "Elite Light Panzer"
-                        is_locked = no 
-                        division_cap = 10
-                        
-                        regiments = {
-                            elite_light_armor = { x = 0 y = 0 } elite_light_armor = { x = 1 y = 0 } elite_light_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
-                            elite_light_armor = { x = 0 y = 1 } elite_light_armor = { x = 1 y = 1 } elite_light_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
-                            elite_light_armor = { x = 0 y = 2 } elite_light_armor = { x = 1 y = 2 } elite_light_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
-                            elite_light_armor = { x = 0 y = 3 } elite_light_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
-                        }                                         
-                        support = { 
-                            light_flame_tank = { x = 0 y = 0 } 
-                            light_tank_recon = { x = 0 y = 1 }  
-                            logistics_company = { x = 0 y = 2 } 
-                            maintenance_company = { x = 0 y = 3 }
-                            military_police = { x = 0 y = 4 } 
-                            light_sp_artillery = { x = 0 y = 5 }
-                        }
-                    }
-
-                    # ==========================================
-                    # ELITE MEDIUM PANZER TEMPLATE
-                    # ==========================================
-                    division_template = {
-                        name = "Elite Medium Panzer"
-                        is_locked = no 
-                        division_cap = 10
-                        
-                        regiments = {
-                            elite_medium_armor = { x = 0 y = 0 } elite_medium_armor = { x = 1 y = 0 } elite_medium_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
-                            elite_medium_armor = { x = 0 y = 1 } elite_medium_armor = { x = 1 y = 1 } elite_medium_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
-                            elite_medium_armor = { x = 0 y = 2 } elite_medium_armor = { x = 1 y = 2 } elite_medium_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
-                            elite_medium_armor = { x = 0 y = 3 } elite_medium_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
-                        }                                         
-                        support = { 
-                            light_flame_tank = { x = 0 y = 0 } 
-                            light_tank_recon = { x = 0 y = 1 }  
-                            logistics_company = { x = 0 y = 2 } 
-                            maintenance_company = { x = 0 y = 3 }
-                            military_police = { x = 0 y = 4 } 
-                            light_sp_artillery = { x = 0 y = 5 }
-                        }
-                    }
-
-                    # ==========================================
-                    # ELITE HEAVY PANZER TEMPLATE
-                    # ==========================================
-                    division_template = {
-                        name = "Elite Heavy Panzer"
-                        is_locked = no 
-                        division_cap = 10
-                        
-                        regiments = {
-                            elite_heavy_armor = { x = 0 y = 0 } elite_heavy_armor = { x = 1 y = 0 } elite_heavy_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
-                            elite_heavy_armor = { x = 0 y = 1 } elite_heavy_armor = { x = 1 y = 1 } elite_heavy_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
-                            elite_heavy_armor = { x = 0 y = 2 } elite_heavy_armor = { x = 1 y = 2 } elite_heavy_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
-                            elite_heavy_armor = { x = 0 y = 3 } elite_heavy_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
-                        }                                         
-                        support = { 
-                            light_flame_tank = { x = 0 y = 0 } 
-                            light_tank_recon = { x = 0 y = 1 }  
-                            logistics_company = { x = 0 y = 2 } 
-                            maintenance_company = { x = 0 y = 3 }
-                            military_police = { x = 0 y = 4 } 
-                            light_sp_artillery = { x = 0 y = 5 }
-                        }
+                        add_unit_medal_to_latest_entry = {
+                            unit_medals = spanish_civil_war_veteran_medal
+                        } 
                     }
                 }
-                else = {
-                    set_variable = { GER_elite_panzer_cap_var = 20 }
-                    
-                    set_division_template_cap = { 
-                        division_template = "Elite Light Panzer" 
-                        division_cap = 20
-                    }
-                    set_division_template_cap = { 
-                        division_template = "Elite Medium Panzer" 
-                        division_cap = 20
-                    }
-                    set_division_template_cap = { 
-                        division_template = "Elite Heavy Panzer" 
-                        division_cap = 20
+                290 = { 
+                    teleport_armies = {
+                        to_state = 6521
                     }
                 }
             }
@@ -3381,10 +3383,7 @@ focus_tree = {
 
 		completion_reward = {
             add_named_threat = { threat = 5 name = GER_rhineland }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-			add_ideas = war_economy
+            add_war_support = 0.15
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -3393,7 +3392,6 @@ focus_tree = {
             
             hidden_effect = { 
                 set_global_flag = rhineland_remilitarized
-                add_war_support = 0.15
                 news_event = { hours = 6 id = news.25 } 
                 
                 every_country = {
@@ -3430,6 +3428,10 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_WAR_SUPPORT }
 
 		completion_reward = {
+            add_ideas = war_economy
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
 			custom_effect_tooltip = GER_domestic_situation_tt
             add_to_variable = {
                 var = GER_ds_political_power_factor
@@ -3722,20 +3724,8 @@ focus_tree = {
 
 		completion_reward = {
 			add_political_power = 50
-            
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			custom_effect_tooltip = GER_domestic_situation_tt	
-            add_to_variable = {
-                var = GER_ds_stability_factor
-                value = 0.1
-                tooltip = stability_factor_tt
-            }
-            add_to_variable = {
-                var = GER_ds_war_support_factor
-                value = 0.1
-                tooltip = war_support_factor_tt
-            }
+            add_stability = 0.1
+            add_war_support = 0.1
 		}
 	}
 	
@@ -5831,11 +5821,11 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = GER_domestic_situation_tt	
-            add_to_variable = {
-                var = GER_ds_production_speed_industrial_complex_factor
-                value = -0.2
-                tooltip = production_speed_industrial_complex_factor_tt
-            }
+            # add_to_variable = {
+                # var = GER_ds_production_speed_industrial_complex_factor
+                # value = -0.2
+                # tooltip = production_speed_industrial_complex_factor_tt
+            # }
             add_to_variable = {
                 var = GER_ds_production_speed_arms_factory_factor
                 value = 0.2
@@ -6581,8 +6571,11 @@ focus_tree = {
 
 		x = 0
 		y = 1
+		
 		relative_position_id = GER_expand_ss_security_duties
+		
 		cost = @inner_circle_time_tier_2
+		
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
@@ -6613,105 +6606,127 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_ARMY_XP FOCUS_FILTER_MANPOWER FOCUS_FILTER_MILITARY_CHARACTER }
 
-		completion_reward = {
-            custom_effect_tooltip = GER_elite_units_tt
+		completion_reward = {            
+			# if = {
+				# limit = {
+					# NOT = {
+						# has_completed_focus = GER_advanced_panzer_research
+					# }
+				# }
+				
+				# custom_effect_tooltip = GER_elite_units_tt
+				
+				# set_variable = { GER_elite_panzer_cap_var = 10 }
+				
+				##==========================================
+				##ELITE LIGHT PANZER TEMPLATE
+				##==========================================
+				# division_template = {
+					# name = "Elite Light Panzer"
+					# is_locked = no 
+					# division_cap = 10
+					
+					# regiments = {
+						# elite_light_armor = { x = 0 y = 0 } elite_light_armor = { x = 1 y = 0 } elite_light_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
+						# elite_light_armor = { x = 0 y = 1 } elite_light_armor = { x = 1 y = 1 } elite_light_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
+						# elite_light_armor = { x = 0 y = 2 } elite_light_armor = { x = 1 y = 2 } elite_light_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
+						# elite_light_armor = { x = 0 y = 3 } elite_light_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
+					# }                                         
+					# support = { 
+						# light_flame_tank = { x = 0 y = 0 } 
+						# light_tank_recon = { x = 0 y = 1 }  
+						# logistics_company = { x = 0 y = 2 } 
+						# maintenance_company = { x = 0 y = 3 }
+						# military_police = { x = 0 y = 4 } 
+						# light_sp_artillery = { x = 0 y = 5 }
+					# }
+				# }
+
+				##==========================================
+				##ELITE MEDIUM PANZER TEMPLATE
+				##==========================================
+				# division_template = {
+					# name = "Elite Medium Panzer"
+					# is_locked = no 
+					# division_cap = 10
+					
+					# regiments = {
+						# elite_medium_armor = { x = 0 y = 0 } elite_medium_armor = { x = 1 y = 0 } elite_medium_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
+						# elite_medium_armor = { x = 0 y = 1 } elite_medium_armor = { x = 1 y = 1 } elite_medium_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
+						# elite_medium_armor = { x = 0 y = 2 } elite_medium_armor = { x = 1 y = 2 } elite_medium_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
+						# elite_medium_armor = { x = 0 y = 3 } elite_medium_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
+					# }                                         
+					# support = { 
+						# light_flame_tank = { x = 0 y = 0 } 
+						# light_tank_recon = { x = 0 y = 1 }  
+						# logistics_company = { x = 0 y = 2 } 
+						# maintenance_company = { x = 0 y = 3 }
+						# military_police = { x = 0 y = 4 } 
+						# light_sp_artillery = { x = 0 y = 5 }
+					# }
+				# }
+
+				##==========================================
+				##ELITE HEAVY PANZER TEMPLATE
+				##==========================================
+				# division_template = {
+					# name = "Elite Heavy Panzer"
+					# is_locked = no 
+					# division_cap = 10
+					
+					# regiments = {
+						# elite_heavy_armor = { x = 0 y = 0 } elite_heavy_armor = { x = 1 y = 0 } elite_heavy_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
+						# elite_heavy_armor = { x = 0 y = 1 } elite_heavy_armor = { x = 1 y = 1 } elite_heavy_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
+						# elite_heavy_armor = { x = 0 y = 2 } elite_heavy_armor = { x = 1 y = 2 } elite_heavy_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
+						# elite_heavy_armor = { x = 0 y = 3 } elite_heavy_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
+					# }                                         
+					# support = { 
+						# light_flame_tank = { x = 0 y = 0 } 
+						# light_tank_recon = { x = 0 y = 1 }  
+						# logistics_company = { x = 0 y = 2 } 
+						# maintenance_company = { x = 0 y = 3 }
+						# military_police = { x = 0 y = 4 } 
+						# light_sp_artillery = { x = 0 y = 5 }
+					# }
+				# }
+			# }
+			# else = {
+				# set_variable = { GER_elite_panzer_cap_var = 20 }
+				
+				# set_division_template_cap = { 
+					# division_template = "Elite Light Panzer" 
+					# division_cap = 20
+				# }
+				# set_division_template_cap = { 
+					# division_template = "Elite Medium Panzer" 
+					# division_cap = 20
+				# }
+				# set_division_template_cap = { 
+					# division_template = "Elite Heavy Panzer" 
+					# division_cap = 20
+				# }
+			# }
             
-            hidden_effect = {
-                if = {
-                    limit = {
-                        NOT = {
-                            has_completed_focus = GER_strengthen_the_waffen_ss
+            custom_effect_tooltip = GER_veterans_tooltip
+            
+            hidden_effect = { 
+                delete_units = {  division_template = "Elite Division" disband = no }
+                load_oob = "SPR_AZUL"
+                290 = { 
+                    every_state_division = { 
+                        add_history_entry = {
+                            key = spanish_civil_war_veteran_medal_key
+                            subject = "Division was awarded a medal for exemplerary combat performance."
+                            allow = yes
                         }
-                    }
-                    
-                    set_variable = { GER_elite_panzer_cap_var = 10 }
-                    
-                    # ==========================================
-                    # ELITE LIGHT PANZER TEMPLATE
-                    # ==========================================
-                    division_template = {
-                        name = "Elite Light Panzer"
-                        is_locked = no 
-                        division_cap = 10
-                        
-                        regiments = {
-                            elite_light_armor = { x = 0 y = 0 } elite_light_armor = { x = 1 y = 0 } elite_light_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
-                            elite_light_armor = { x = 0 y = 1 } elite_light_armor = { x = 1 y = 1 } elite_light_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
-                            elite_light_armor = { x = 0 y = 2 } elite_light_armor = { x = 1 y = 2 } elite_light_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
-                            elite_light_armor = { x = 0 y = 3 } elite_light_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
-                        }                                         
-                        support = { 
-                            light_flame_tank = { x = 0 y = 0 } 
-                            light_tank_recon = { x = 0 y = 1 }  
-                            logistics_company = { x = 0 y = 2 } 
-                            maintenance_company = { x = 0 y = 3 }
-                            military_police = { x = 0 y = 4 } 
-                            light_sp_artillery = { x = 0 y = 5 }
-                        }
-                    }
-
-                    # ==========================================
-                    # ELITE MEDIUM PANZER TEMPLATE
-                    # ==========================================
-                    division_template = {
-                        name = "Elite Medium Panzer"
-                        is_locked = no 
-                        division_cap = 10
-                        
-                        regiments = {
-                            elite_medium_armor = { x = 0 y = 0 } elite_medium_armor = { x = 1 y = 0 } elite_medium_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
-                            elite_medium_armor = { x = 0 y = 1 } elite_medium_armor = { x = 1 y = 1 } elite_medium_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
-                            elite_medium_armor = { x = 0 y = 2 } elite_medium_armor = { x = 1 y = 2 } elite_medium_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
-                            elite_medium_armor = { x = 0 y = 3 } elite_medium_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
-                        }                                         
-                        support = { 
-                            light_flame_tank = { x = 0 y = 0 } 
-                            light_tank_recon = { x = 0 y = 1 }  
-                            logistics_company = { x = 0 y = 2 } 
-                            maintenance_company = { x = 0 y = 3 }
-                            military_police = { x = 0 y = 4 } 
-                            light_sp_artillery = { x = 0 y = 5 }
-                        }
-                    }
-
-                    # ==========================================
-                    # ELITE HEAVY PANZER TEMPLATE
-                    # ==========================================
-                    division_template = {
-                        name = "Elite Heavy Panzer"
-                        is_locked = no 
-                        division_cap = 10
-                        
-                        regiments = {
-                            elite_heavy_armor = { x = 0 y = 0 } elite_heavy_armor = { x = 1 y = 0 } elite_heavy_armor = { x = 2 y = 0 } mechanized = { x = 3 y = 0 } mechanized = { x = 4 y = 0 }
-                            elite_heavy_armor = { x = 0 y = 1 } elite_heavy_armor = { x = 1 y = 1 } elite_heavy_armor = { x = 2 y = 1 } mechanized = { x = 3 y = 1 } mechanized = { x = 4 y = 1 }
-                            elite_heavy_armor = { x = 0 y = 2 } elite_heavy_armor = { x = 1 y = 2 } elite_heavy_armor = { x = 2 y = 2 } mechanized = { x = 3 y = 2 } mechanized = { x = 4 y = 2 }
-                            elite_heavy_armor = { x = 0 y = 3 } elite_heavy_armor = { x = 1 y = 3 } light_sp_anti_air_brigade = { x = 2 y = 3 } mechanized = { x = 3 y = 3 } mechanized = { x = 4 y = 3 }
-                        }                                         
-                        support = { 
-                            light_flame_tank = { x = 0 y = 0 } 
-                            light_tank_recon = { x = 0 y = 1 }  
-                            logistics_company = { x = 0 y = 2 } 
-                            maintenance_company = { x = 0 y = 3 }
-                            military_police = { x = 0 y = 4 } 
-                            light_sp_artillery = { x = 0 y = 5 }
-                        }
+                        add_unit_medal_to_latest_entry = {
+                            unit_medals = spanish_civil_war_veteran_medal
+                        } 
                     }
                 }
-                else = {
-                    set_variable = { GER_elite_panzer_cap_var = 20 }
-                    
-                    set_division_template_cap = { 
-                        division_template = "Elite Light Panzer" 
-                        division_cap = 20
-                    }
-                    set_division_template_cap = { 
-                        division_template = "Elite Medium Panzer" 
-                        division_cap = 20
-                    }
-                    set_division_template_cap = { 
-                        division_template = "Elite Heavy Panzer" 
-                        division_cap = 20
+                290 = { 
+                    teleport_armies = {
+                        to_state = 6521
                     }
                 }
             }
@@ -6869,11 +6884,6 @@ focus_tree = {
                 value = 0.25
                 tooltip = political_power_gain_tt
             }
-            add_to_variable = {
-                var = GER_ds_stability_factor
-                value = 0.1
-                tooltip = stability_factor_tt
-            }
             
             if = {
                 limit = {
@@ -6954,17 +6964,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-            custom_effect_tooltip = GER_domestic_situation_tt
-			add_to_variable = {
-                var = GER_ds_war_support_factor
-                value = 0.1
-                tooltip = war_support_factor_tt
-            }
-            add_to_variable = {
-                var = GER_ds_fascism_drift
-                value = 0.1
-                tooltip = fascism_drift_tt
-            }
+            add_stability = 0.2
 		}
 	}
 
@@ -7013,17 +7013,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			custom_effect_tooltip = GER_domestic_situation_tt
-			add_to_variable = {
-                var = GER_ds_stability_factor
-                value = 0.1
-                tooltip = stability_factor_tt
-            }
-            add_to_variable = {
-                var = GER_ds_fascism_drift
-                value = 0.1
-                tooltip = fascism_drift_tt
-            }
+			add_war_support = 0.2
             
             custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -7077,15 +7067,9 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_WAR_SUPPORT }
 
 		completion_reward = {
-			custom_effect_tooltip = GER_domestic_situation_tt
-			add_to_variable = {
-                var = GER_ds_war_support_factor
-                value = 0.1
-                tooltip = war_support_factor_tt
-            }
             add_to_variable = {
                 var = GER_ds_fascism_drift
-                value = 0.1
+                value = 0.5
                 tooltip = fascism_drift_tt
             }
 		}
@@ -7603,20 +7587,8 @@ focus_tree = {
 
 		completion_reward = {
 			add_political_power = 100
-            
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-            custom_effect_tooltip = GER_domestic_situation_tt
-			add_to_variable = {
-                var = GER_ds_stability_factor
-                value = 0.1
-                tooltip = stability_factor_tt
-            }
-            add_to_variable = {
-                var = GER_ds_war_support_factor
-                value = 0.1
-                tooltip = war_support_factor_tt
-            }
+            add_stability = 0.1
+            add_war_support = 0.1
 		}
 	}
 

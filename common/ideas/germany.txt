@@ -3345,7 +3345,7 @@ ideas = {
 			allowed = {	always = no	}
 			
 			available = {
-				NOT = { GER = { has_country_flag = NO_MORE_FASCISM} }  
+				NOT = { GER = { has_country_flag = NO_MORE_FASCISM } }  
 				date < 1941.1.1
 				NOT = { any_country = { the_axis = yes  controls_state = 551  } }    
 			} #gets cancelled if Germany is capped, it is 1941, or Khartoum falls to the Axis, whichever comes first
@@ -3355,12 +3355,12 @@ ideas = {
 			picture = GER_blitzkrieg
 			
 			modifier = { 
-				army_strength_factor = 1 
-				air_fuel_consumption_factor = -0.25 
+				army_strength_factor = 2
+				air_fuel_consumption_factor = -0.5 
 			}
 			
 			equipment_bonus = {
-				small_plane_airframe = {  air_defence = 0.35 instant = yes }
+				small_plane_airframe = {  air_defence = 0.4 instant = yes }
 			}
 		}
 		
@@ -4477,40 +4477,36 @@ GER_western_trade_cooperation = {
 	
 	industrial_concern = {
 		
-		ig_faben = {
+		# ig_faben = {
+			# allowed = {
+				# original_tag = GER
+			# }
 			
-			allowed = {
-				original_tag = GER
-			}
-			visible = { 			NOT = {
-					has_completed_focus = GER_coal_liquefaction
-			}
-			}
-			research_bonus = {
-				industry = 0.05
-				synth_resources = 0.15
-			}
+			# visible = { 	
+
+			# }
 			
-			traits = { refinery_concern }
-		}
+			# research_bonus = {
+				# synth_resources = 0.25
+			# }
+			
+			# traits = { refinery_concern_horst }
+		# }
 		
 		krupp = {
-			
 			allowed = {
 				OR = { tag = GER tag = CZE }
 			}
 			
 			research_bonus = {
 				industry = 0.15
-				
 			}
 			
-			traits = { industrial_concern }
+			traits = { industrial_concern_horst }
 		}
 
 		siemens = {
-			
-		allowed = {
+			allowed = {
 				OR = { tag = GER tag = CZE }
 			}
 			
@@ -4518,12 +4514,13 @@ GER_western_trade_cooperation = {
 				electronics = 0.15
 			}
 			
-			traits = { electronics_concern }
+			modifier = {
+				research_speed_factor = 0.1
+			}
+			
+			traits = { electronics_concern_horst }
 		}		
-		
-		
-		
-		
+
 		GER_vereinigte_stahlwerke = {
 
 			picture = GER_vereinigte_stahlwerke
@@ -4538,7 +4535,11 @@ GER_western_trade_cooperation = {
 				excavation_tech = 0.15
 			}
 			
-			traits = { mining_company }
+			modifier = {
+				local_resources_factor = 0.1
+			}
+			
+			traits = { mining_company_horst }
 		}
 
 		GER_deutsche_reichsbahn = {
@@ -4559,37 +4560,12 @@ GER_western_trade_cooperation = {
 				train_tech = 0.15
 			}
 			
-			traits = { railway_company }
-		}
-
-		GER_deutsche_reichsbahn_improved = {
-			name = GER_deutsche_reichsbahn
-
-			picture = GER_deutsche_reichsbahn
-			
-			allowed = {
-				original_tag = GER
-			}
-
-			visible = {
-				has_completed_focus = GER_kriegslokomotiven
+			modifier = {
+				production_speed_rail_way_factor = 0.1
+				production_speed_supply_node_factor = 0.1
 			}
 			
-			cost = 150
-
-			research_bonus = {
-				train_tech = 0.15
-			}
-
-			equipment_bonus = {
-				train_equipment_2 = {
-					build_cost_ic = -0.15 
-					#armor_value = 0.1
-					instant = yes
-				}
-			}
-			
-			traits = { improved_railway_company }
+			traits = { railway_company_horst }
 		}
 
 		GER_philipp_holzmann = {
@@ -4605,49 +4581,16 @@ GER_western_trade_cooperation = {
 			}
 			
 			cost = 150
-            
-            research_bonus = {
-				industry = 0.05
-				synth_resources = 0.15
-			}
-
-			modifier = {
-				production_speed_synthetic_refinery_factor = 0.1
-				production_speed_fuel_silo_factor = 0.1
-			}
-
-			traits = { construction_company }
-		}
-
-		GER_ig_faben_improved = {
-			name = ig_faben
-			picture = ig_faben
-			allowed = {
-				original_tag = GER
-			}
-
-
-			visible = {
-					has_completed_focus = GER_coal_liquefaction
-			}
-
-			cost = 150
 			
 			research_bonus = {
-				industry = 0.05
-				synth_resources = 0.15
+				construction_tech = 0.15
+			}
+			
+			modifier = {
+				production_speed_industrial_complex_factor = 0.05
 			}
 
-			modifier = {
-				production_speed_synthetic_refinery_factor = 0.1
-				production_speed_fuel_silo_factor = 0.1
-			}
-			
-			traits = { refinery_concern }
-			
-			ai_will_do = {
-				factor = 1
-			}
+			traits = { construction_company_horst }
 		}
 
 		GER_organization_todt = {
@@ -4663,7 +4606,7 @@ GER_western_trade_cooperation = {
 				#NOT = { has_completed_focus = GER_autonomous_organization_todt }
 			}
 			
-			cost = 75
+			cost = 150
 
 			ai_will_do = {
 				base = 10
@@ -4672,8 +4615,12 @@ GER_western_trade_cooperation = {
 			research_bonus = {
 				construction_tech = 0.15
 			}
+			
+			modifier = {
+                production_speed_arms_factory_factor = 0.05
+			}
 
-			traits = { GER_organization_todt_trait }
+			traits = { GER_organization_todt_trait_horst }
 		}
 
 		GER_rwe = {
@@ -4687,10 +4634,14 @@ GER_western_trade_cooperation = {
 			cost = 150
 
 			research_bonus = {
-				nuclear = 0.05
+				nuclear = 0.25
 			}
 			
-			traits = { energy_supply_company }
+			modifier = {
+                production_speed_infrastructure_factor = 0.05
+			}
+			
+			traits = { energy_supply_company_horst }
 		}
 		
 		GER_reichswerke = {
@@ -4711,14 +4662,14 @@ GER_western_trade_cooperation = {
 			cost = 150
 
 			research_bonus = {
-				excavation_tech = 0.5
+				excavation_tech = 0.15
 			}
             
             modifier = {
                 production_speed_synthetic_refinery_factor = 0.1
 			}
 			
-			traits = { conglomerate }
+			traits = { conglomerate_horst }
 			
 			ai_will_do = { factor = 8 }
 			
