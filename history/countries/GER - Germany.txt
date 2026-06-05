@@ -1,20 +1,42 @@
 ﻿capital = 64
 set_major = yes
 oob = "GER_1936"
+set_naval_oob = "GER_1936_naval_mtg"
+
+army_experience = 50
+set_research_slots = 5
+set_convoys = 300
+set_stability = 0.7
+set_war_support = 0.3
 
 load_oob = "unlock_paratroopers"
 set_variable = { paratrooper_div_cap = 12 }
 set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
 
-army_experience = 50
-set_variable = {
-    var = GER_engsieg_output
-    value = 0
+add_to_tech_sharing_group = axis_research 
+create_intelligence_agency = yes
+
+anti_cross_faction_trade_allies = yes
+
+add_opinion_modifier = {
+    target = SOV
+    modifier = anti_cross_faction_trade
 }
-set_variable = { 
-    var = festung_europa_max_dig_in
-    value = 15
+
+add_ideas = {
+    armyandnavy_idea
+	sour_loser
+	limited_conscription
+	limited_exports
+	partial_economic_mobilisation
+    GER_horst_mefo
+	#GER_blitzkrieg_idea
 }
+
+add_timed_idea = { idea = NO_TRADE days = 1339 }
+country_event = { id = DOD_yugoslavia.20 days = 759 }
+country_event = { id = germany.1107 days = 1956 }
+
 set_variable = {
     var = min_fuel
     value = 0.50
@@ -36,220 +58,207 @@ add_breakthrough_progress = {
 	value = 0.3
 }
 
-#CONSUMER GOODS INCREASE AND PENALTIES VARIABLES
-set_variable = { GER_monthly_consumer_goods_start = 0.0 } #Starting amount of monthly increasing CG for MEFO Bills 
-set_variable = { GER_change_monthly_CG_vichy_france = 0.005 } #Changing monthly CG when capitulating FRance
-set_variable = { GER_change_monthly_CG_price_controls = 0.005 } #Changing monthly CG when taking Price Controls focus
-set_variable = { GER_change_monthly_CG_occupied_states = 0.005 } #Changing monthly CG based on none-core states
-set_variable = { GER_expected_consumer_goods_penalty = 0.0} #Consumer Goods penalty when hitting 100% CGFF
-set_variable = { GER_factory_output_penalty = 0.15 } #Factory output penalty when hitting 100% CGFF
-set_variable = { GER_dockyard_output_penalty = 0.15 } #Dockyard output penalty when hitting 100% CGFF
+set_politics = {
+	ruling_party = fascism
+	last_election = "1933.3.5"
+	election_frequency = 48
+	elections_allowed = no
+}
+set_popularities = {
+	democratic = 35
+	fascism = 40
+	communism = 10
+	neutrality = 15
+}
 
-#INDUSTRAY: MEFO Bills/Economy of Conquest/Recovering Economy/Wirtschaftswunder
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_monthly_consumer_goods_increase = GER_monthly_consumer_goods_start } #Amount of increasing CG each month
-set_variable = { GER_industrial_consumer_goods_factor = 0.0 } #Used for MEFO Bills, Economy of Conquest and Recovering Economy and Wirtschaftswunder - must correspond with the Fake MEFO Bills NS for the 1936 Bookmark
-set_variable = { GER_industrial_civilian_intel_to_others = -25 }
-set_variable = { GER_industrial_army_intel_to_others = -25 }
-set_variable = { GER_industrial_navy_intel_to_others = -25 }
-set_variable = { GER_industrial_airforce_intel_to_others = -25 }
-set_variable = { GER_industrial_production_speed_arms_factory_factor = 0.1 }
-set_variable = { GER_industrial_production_speed_dockyard_factor = 0.1 }
-set_variable = { GER_industrial_industrial_capacity_factory = 0 }
-set_variable = { GER_industrial_industrial_capacity_dockyard = 0 }
-set_variable = { GER_industrial_production_lack_of_resource_penalty_factor = 0 }
-set_variable = { GER_industrial_conversion_cost_civ_to_mil_factor = 0 }
-set_variable = { GER_industrial_industry_air_damage_factor = 0 }
-set_variable = { GER_industrial_resource_trade_cost_bonus_per_factory = 0 }
-set_variable = { GER_industrial_production_speed_buildings_factor = 0 }
-set_variable = { GER_industrial_research_speed_factor = 0 }
-set_variable = { GER_industrial_economy_cost_factor = 0 }
-set_variable = { GER_industrial_trade_laws_cost_factor = 0 }
-set_variable = { GER_recovering_economy_modifier_local_resources_factor = 0 }
-set_variable = { GER_industrial_production_factory_max_efficiency_factor = 0 }
-set_variable = { GER_industrial_production_factory_efficiency_gain_factor = 0 }
-set_variable = { GER_industrial_production_factory_start_efficiency_factor = 0 }
-set_variable = { GER_industrial_line_change_production_efficiency_factor = 0 }
-set_variable = { GER_industrial_equipment_conversion_speed = 0 }
-set_variable = { GER_industrial_consumer_goods_expected_value = 0 }
-add_dynamic_modifier = { modifier = GER_mefo_bills_modifier }
+create_faction_from_template = faction_template_axis
+add_to_faction = GER
+add_to_faction = HUN
+add_to_faction = ROM
+add_to_faction = CZE
+add_to_faction = ITA
+add_to_faction = BUL
 
-#WUNDERWAFFEN
-set_variable = { GER_wunderwaffen_special_project_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_tank_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_air_helicopter_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_jet_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_rocket_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_commercial_nuclear_reactor_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_nuclear_bomb_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_nuclear_reactor_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_nuclear_warheads_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_artillery_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_naval_modern_battleship_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_naval_modern_carrier_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_production_speed_nuclear_reactor_factor = 0 }
-set_variable = { GER_wunderwaffen_production_speed_nuclear_facility_factor = 0 }
-set_variable = { GER_wunderwaffen_production_speed_facility_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_submarine_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_air_intercontinental_bomber_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_air_mothership_aircraft_speed_factor = 0 }
+set_faction_spymaster = yes	
 
-#WEHRWIRTSCHAFT
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_wehrwirtschaft_local_resources_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_speed_buildings_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_oil_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_speed_synthetic_refinery_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_speed_fuel_silo_factor = 0 }
+create_operative_leader = {
+    name = "Otto Skorzeny"
+    GFX = GFX_portrait_otto_skorenzy
+    traits = { operative_commando }
+    bypass_recruitment = no
+    available_to_spy_master = yes
+    nationalities = { GER }
+}
 
-#ARMY
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_military_army_attack_factor = 0 }
-set_variable = { GER_military_army_defence_factor = 0 }
-set_variable = { GER_military_army_armor_attack_factor = 0 }
-set_variable = { GER_military_army_armor_speed_factor = 0 }
-set_variable = { GER_military_org_loss_when_moving = 0 }
-set_variable = { GER_military_motorized_attack_factor = 0 }
-set_variable = { GER_military_mechanized_attack_factor = 0 }
-set_variable = { GER_military_army_infantry_attack_factor = 0 }
-set_variable = { GER_military_army_artillery_attack_factor = 0 }
-set_variable = { GER_military_army_org_factor = 0 }
-set_variable = { GER_military_planning_speed = 0.25 }
-set_variable = { GER_military_supply_factor = 0 }
-set_variable = { GER_military_equipment_capture = 0 }
-set_variable = { GER_military_initiative_factor = 0 }
-set_variable = { GER_military_army_fuel_consumption_factor = 0 }
-set_variable = { GER_military_coordination_bonus = 0 }
-set_variable = { GER_military_air_superiority_bonus_in_combat = 0 }
-set_variable = { GER_military_max_dig_in_factor = 0 }
-set_variable = { GER_military_army_artillery_defence_factor = 0 }
-set_variable = { GER_military_special_forces_cap = 0 }
-set_variable = { GER_military_acclimatization_hot_climate_gain_factor = 0 }
-set_variable = { GER_military_acclimatization_cold_climate_gain_factor = 0 }
-set_variable = { GER_military_land_doctrine_cost_factor = 0 }
-set_variable = { GER_military_modifier_army_sub_unit_militia_attack_factor = 0 }
-set_variable = { GER_military_modifier_army_sub_unit_militia_defence_factor = 0 }
-set_variable = { GER_military_modifier_army_sub_unit_militia_max_org_factor = 0 }
-set_variable = { GER_military_experience_gain_army_factor = 0 }
-set_variable = { GER_military_army_morale_factor = 0 }
-set_variable = { GER_military_mobilization_speed = 0 }
-set_variable = { GER_military_minimum_training_level = 0 }
-set_variable = { GER_military_unit_leader_as_advisor_cp_cost_factor = 0 }
-set_variable = { GER_military_command_power_gain_mult = 0 }
-add_dynamic_modifier = { modifier = GER_army_modifier }
-
-#NAVY
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_military_naval_heavy_gun_hit_chance_factor = 0 }
-set_variable = { GER_military_screening_efficiency = 0 }
-set_variable = { GER_military_screening_without_screens = 0.1 }
-set_variable = { GER_military_navy_max_range_factor = 0 }
-set_variable = { GER_military_convoy_raiding_efficiency_factor = 0 }
-set_variable = { GER_military_naval_light_gun_hit_chance_factor = 0 }
-set_variable = { GER_military_naval_hit_chance = 0 }
-set_variable = { GER_military_naval_defense_factor = -0.1}
-add_dynamic_modifier = { modifier = GER_navy_fascist_modifier }
-
-#AIRFORCE
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_military_air_accidents_factor = 0 }
-set_variable = { GER_military_air_manpower_requirement_factor = 0 }
-set_variable = { GER_military_air_agility_factor = 0 }
-set_variable = { GER_military_air_ace_generation_chance_factor = 0 }
-set_variable = { GER_military_air_nav_efficiency = 0 }
-set_variable = { GER_military_air_cas_efficiency = 0 }
-set_variable = { GER_military_air_strategic_bomber_bombing_factor = 0 }
-set_variable = { GER_military_air_range_factor = 0 }
-set_variable = { GER_military_air_fuel_consumption_factor = 0 }
-add_dynamic_modifier = { modifier = GER_airforce_modifier }
-
-#FORT CONSTRUCTION COST
-set_variable = { GER_fort_construction_cp_cost = 25 }
-set_variable = { GER_fort_construction_pp_cost = 15 }
-set_variable = { GER_fort_construction_cp_payment = -25 }
-set_variable = { GER_fort_construction_pp_payment = -15 }
-
-set_variable = { var = ger_gateway_to_europe_influence value = 0 }
-
-set_variable = { var = wehrmacht_anger value = 0 }
-set_variable = { var = ss_anger value = 0 }
-set_variable = { GER_narvik_shipments = 0 }
-set_variable = { GER_narvik_civs = 0 }
-
-#COMMUNIST INTEL MODIFIER
-set_variable = { GER_communist_intel_drift_defence_factor = 0.2 }
-set_variable = { GER_communist_intel_communism_drift = 0.05 }
-set_variable = { GER_communist_intel_operative_slot = 0 }
-set_variable = { GER_communist_intel_stability_factor = 0 }
-set_variable = { GER_communist_intel_operation_cost = 0 }
-set_variable = { GER_communist_intel_subversive_activities_upkeep = 0 }
-set_variable = { GER_communist_intel_intel_network_gain = 0 }
-set_variable = { GER_communist_intel_decryption_factor = 0 }
-set_variable = { GER_communist_intel_encryption_factor = 0 }
-
-#POLITBÜRO MODIFIER
-set_variable = { GER_politburo_defensive_war_stability_factor = 0}
-set_variable = { GER_politburo_offensive_war_stability_factor = 0}
-set_variable = { GER_politburo_party_popularity_stability_factor = 0}
-set_variable = { GER_politburo_weekly_manpower = 0}
-set_variable = { GER_politburo_stability_factor = 0}
-set_variable = { GER_politburo_conscription = 0 }
-set_variable = { GER_politburo_democratic_drift = 0 }
-set_variable = { GER_politburo_political_power_factor = 0}
-set_variable = { GER_politburo_resistance_growth = 0 }
-set_variable = { GER_politburo_compliance_growth = 0 }
-set_variable = { GER_politburo_subjects_autonomy_gain = 0 }
-set_variable = { GER_politburo_conscription_factor = 0}
-
-#ALFRED ROSENBERG
-set_variable = { GER_alfred_rosenberg_modifier_subjects_autonomy_gain = -0.2 }
-set_variable = { GER_alfred_rosenberg_modifier_consumer_goods_factor = 0 }
-set_variable = { GER_alfred_rosenberg_modifier_production_speed_arms_factory_factor = 0 }
-set_variable = { GER_alfred_rosenberg_modifier_industrial_capacity_factory = 0 }
-set_variable = { GER_max_alfred_rosenberg_upgrades = 10 }
-set_variable = { GER_count_down_alfred_rosenberg_upgrades = GER_max_alfred_rosenberg_upgrades } #Count down variable
-set_variable = { GER_total_reichskommissariats = 0 }
-
-# SHARED R&D PROGRAMS
-set_variable = { GER_rnd_programs_modifier_research_speed_factor = 0.01 }
-set_variable = { GER_rnd_programs_modifier_allies_count = 1 }
-
-#INDUSTRIAL RELOCATTION
-set_variable = { GER_industrial_relocation_resources_country_resource_oil = 0 }
-set_variable = { GER_industrial_relocation_resources_country_resource_tungsten = 0 }
-set_variable = { GER_industrial_relocation_resources_country_resource_chromium = 0 }
+create_operative_leader = {
+    name = "Nikolaus Ritter"
+    GFX = GFX_portrait_nikolaus_ritter
+    traits = { operative_safe_cracker }
+    bypass_recruitment = no
+    available_to_spy_master = yes
+    nationalities = { GER }
+}
+create_operative_leader = {
+    name = "Eleysa Bazna"
+    GFX = GFX_portrait_eleysa_bazna
+    traits = { operative_infiltrator }
+    bypass_recruitment = no
+    available_to_spy_master = yes
+    nationalities = { GER  }
+}
 
 
-#INTEGRATE PUPPET ECONOMIES (Fascist)
-set_variable = { GER_puppet_economies_integration_cap = 3 } #Max number of decisions active
-set_variable = { GER_puppet_economies_integration_days = 365 } #Days remove for the decisions
+set_autonomy = {
+    target = ROM
+    autonomous_state = autonomy_reichskommissariat
+    freedom_level = 0.4
+}
+    set_autonomy = {
+    target = BUL
+    autonomous_state = autonomy_reichskommissariat
+    freedom_level = 0.4
+}
+set_autonomy = {
+    target = HUN
+    autonomous_state = autonomy_reichskommissariat
+    freedom_level = 0.4
+}
+#set_autonomy = {
+#	target = SPR
+#	autonomous_state = autonomy_reichskommissariat
+#	freedom_level = 0.2
+#}
 
+####################################################################
+add_dynamic_modifier = { modifier = GER_domestic_situation }
+set_variable = { GER_ds_surrender_limit = -0.1 }
 
-#MILITARY-INTELLIGENCE SERVICE
-set_variable = { GER_military_intelligence_service_operative_slot = 0 }
-set_variable = { GER_military_intelligence_service_intelligence_agency_defense = 0 }
-set_variable = { GER_military_intelligence_service_agency_upgrade_time = 0 }
-set_variable = { GER_military_intelligence_service_boost_ideology_mission_factor = 0 }
-set_variable = { GER_military_intelligence_service_master_ideology_drift = 0 }
-set_variable = { GER_military_intelligence_service_encryption_factor = 0 }
-set_variable = { GER_military_intelligence_service_decryption_factor = 0 }
-set_variable = { GER_military_intelligence_service_subversive_activites_upkeep = 0 }
-set_variable = { GER_military_intelligence_service_consumer_goods_factor = 0 }
-set_variable = { GER_military_intelligence_service_decryption_power = 0 }
-set_variable = { GER_military_intelligence_service_intel_network_gain_factor = 0 }
-set_variable = { GER_military_intelligence_root_out_resistance_effectiveness_factor = 0 }
+set_variable = { GER_ds_weekly_casualties_war_support = 0 }
 
-#OCCUPIED STATES VARIABLES
-set_variable = { GER_occupied_states_europe = 0 }
-set_variable = { GER_capitulated_major_countries = 0 }
-set_variable = { GER_num_of_occupied_states = 0 }
+set_variable = { GER_ds_weekly_manpower = 0 }
 
-#STANDARD WUNDERWAFFE BONUS
-set_variable = { GER_wunderwaffe_research_speed_bonus = 0.1 }
+set_variable = { GER_ds_defensive_war_stability_factor = 0 }
+set_variable = { GER_ds_party_popularity_stability_factor = 0 }
 
-#HITLERS BLUNDERS - COUNTER FOR OSTER CONSPIRACY
-set_variable = { GER_hitlers_blunders_variable = 0 }
+set_variable = { GER_ds_communism_drift = 0 }
+set_variable = { GER_ds_fascism_drift = 0 }
 
+set_variable = { GER_ds_max_command_power = 0 }
+set_variable = { GER_ds_command_power_gain_mult = 0 }
+
+set_variable = { GER_ds_operative_slot = 2 }
+set_variable = { GER_ds_agency_upgrade_time = 0 }
+
+set_variable = { GER_ds_political_power_gain = 0 }
+set_variable = { GER_ds_political_power_factor = -0.2 }
+set_variable = { GER_ds_political_advisor_cost_factor = 0 }
+set_variable = { GER_ds_economy_cost_factor = 0 }
+set_variable = { GER_ds_trade_laws_cost_factor = 0 }
+set_variable = { GER_ds_mobilization_laws_cost_factor = 0 }
+set_variable = { GER_ds_high_command_cost_factor = 0 }
+set_variable = { GER_ds_war_support_factor = 0 }
+set_variable = { GER_ds_stability_factor = -0.3 }
+
+set_variable = { GER_ds_research_speed_factor = 0 }
+
+set_variable = { GER_ds_industrial_capacity_factory = 0 }
+set_variable = { GER_ds_industrial_capacity_dockyard = 0 }
+set_variable = { GER_ds_production_factory_start_efficiency_factor = 0 }
+set_variable = { GER_ds_production_factory_max_efficiency_factor = -0.15 }
+set_variable = { GER_ds_production_factory_efficiency_gain_factor = 0 }
+set_variable = { GER_ds_production_lack_of_resource_penalty_factor = 0 }
+set_variable = { GER_ds_line_change_production_efficiency_factor = -0.1 }
+set_variable = { GER_ds_conversion_cost_civ_to_mil_factor = 0 }
+set_variable = { GER_ds_conversion_cost_mil_to_civ_factor = 0 }
+set_variable = { GER_ds_local_building_slots = 0 }
+
+set_variable = { GER_ds_global_building_slots_factor = 0 }
+set_variable = { GER_ds_equipment_conversion_speed = 0 }
+set_variable = { GER_ds_industry_repair_factor = 0 }
+set_variable = { GER_ds_industry_free_repair_factor = 0 }
+set_variable = { GER_ds_industry_air_damage_factor = 0 }
+
+set_variable = { GER_ds_consumer_goods_expected_value = 0 }
+
+set_variable = { GER_ds_production_speed_buildings_factor = -0.1 }
+set_variable = { GER_ds_production_speed_infrastructure_factor = -0.1 }
+set_variable = { GER_ds_production_speed_industrial_complex_factor = -0.1 }
+set_variable = { GER_ds_production_speed_arms_factory_factor = -0.1 }
+set_variable = { GER_ds_production_speed_dockyard_factor = -0.1 }
+set_variable = { GER_ds_production_speed_anti_air_building_factor = 0 }
+set_variable = { GER_ds_production_speed_fuel_silo_factor = 0 }
+
+set_variable = { GER_ds_special_project_speed_factor = 0 }
+
+set_variable = { GER_ds_non_core_manpower = 0 }
+
+set_variable = { GER_ds_local_resources_factor = 0 }
+####################################################################
+add_dynamic_modifier = { modifier = GER_army_and_navy }
+set_variable = { GER_ran_conscription = 0 }
+set_variable = { GER_ran_conscription_factor = 0 }
+
+set_variable = { GER_ran_mobilization_speed = 0 }
+
+set_variable = { GER_ran_experience_loss_factor = 0.25 }
+
+set_variable = { GER_ran_land_doctrine_cost_factor = 0.5 } 
+
+set_variable = { GER_ran_land_reinforce_rate = 0 }
+
+set_variable = { GER_ran_experience_gain_army_factor = 0 }
+
+set_variable = { GER_ran_army_strength_factor = 0 }
+
+set_variable = { GER_ran_army_infantry_attack_factor = 0 }
+set_variable = { GER_ran_army_infantry_defence_factor = 0 }
+
+set_variable = { GER_ran_army_artillery_attack_factor = 0 }
+set_variable = { GER_ran_army_artillery_defence_factor = 0 }
+
+set_variable = { GER_ran_army_armor_attack_factor = 0 }
+set_variable = { GER_ran_army_armor_defence_factor = 0 }
+
+set_variable = { GER_ran_army_core_attack_factor = 0 }
+set_variable = { GER_ran_army_core_defence_factor = 0 }
+
+set_variable = { GER_ran_army_attack_factor = 0 }
+set_variable = { GER_ran_army_defence_factor = 0 }
+
+set_variable = { GER_ran_equipment_capture_factor = 0 }
+
+set_variable = { GER_ran_army_org_factor = 0 }
+set_variable = { GER_ran_army_morale_factor = 0 }
+set_variable = { GER_ran_breakthrough_factor = 0 }
+
+set_variable = { GER_ran_army_attack_speed_factor = 0 }
+set_variable = { GER_ran_army_speed_factor = 0 }
+
+set_variable = { GER_ran_max_dig_in_factor = 0 }
+set_variable = { GER_ran_max_dig_in = 0 }
+set_variable = { GER_ran_dig_in_speed_factor = 0 }
+
+set_variable = { GER_ran_land_bunker_effectiveness_factor = 0 }
+set_variable = { GER_ran_bunker_max_level_terrain_limit = 0 }
+set_variable = { GER_ran_coastal_bunker_max_level_terrain_limit = 0 }
+
+set_variable = { GER_ran_production_speed_bunker_factor = 0 }
+set_variable = { GER_ran_production_speed_coastal_bunker_factor = 0 }
+
+set_variable = { GER_ran_max_planning = 0 }
+set_variable = { GER_ran_planning_speed = 0 }
+
+set_variable = { GER_ran_org_loss_when_moving = 0 }
+
+set_variable = { GER_ran_air_mission_efficiency = 0 }
+set_variable = { GER_ran_air_superiority_efficiency = 0 }
+set_variable = { GER_ran_air_home_defence_factor = 0 }
+
+set_variable = { GER_ran_convoy_raiding_efficiency_factor = 0 }
+
+set_variable = { GER_ran_acclimatization_cold_climate_gain_factor = 0 }
+set_variable = { GER_ran_acclimatization_hot_climate_gain_factor = 0 }
+####################################################################
 
 ####################
 ### INNER CIRCLE ###
@@ -270,21 +279,10 @@ set_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 0 } # T
 
 set_variable = { GER_industrialist_prevailed = 0 } #For allowing only one Industrialist advisor to work on the ME focus
 
-
-add_to_tech_sharing_group = axis_research 
-create_intelligence_agency = yes
-
-add_ideas = armyandnavy_idea
-add_timed_idea = { idea = NO_TRADE days = 1339 }
-country_event = { id = DOD_yugoslavia.20 days = 759 }
-country_event = { id = germany.1107 days = 1956 }
-
-anti_cross_faction_trade_allies = yes
-
-set_variable = { germany_war_exhaustion_stability_factor = -0.01 }			
-set_variable = { germany_war_exhaustion_war_support_factor = -0.01 }			
-set_variable = { germany_war_army_core_attack_factor = 0 }			
-set_variable = { germany_war_army_core_defence_factor = 0 }			
+# set_variable = { germany_war_exhaustion_stability_factor = -0.01 }			
+# set_variable = { germany_war_exhaustion_war_support_factor = -0.01 }			
+# set_variable = { germany_war_army_core_attack_factor = 0 }			
+# set_variable = { germany_war_army_core_defence_factor = 0 }			
 set_variable = { germany_war_fuel_gain_factor_from_states = 0.1 }	
 set_variable = { germany_war_synth_construction_speed = 0 }	
 
@@ -312,6 +310,20 @@ set_variable = { X_GER_propaganda_23_cost = 15 }
 set_variable = { X_GER_propaganda_24_cost = 15 }
 set_variable = { X_GER_propaganda_25_cost = 15 }
 set_variable = { X_GER_propaganda_26_cost = 15 }
+	
+add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 62578 }
+add_equipment_to_stockpile = { type = support_equipment_1 amount = 2431 }
+add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 4238 }
+add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 2064 }
+add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 6830 }
+add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 6180 }
+add_equipment_to_stockpile = { type = train_equipment_1 amount = 321 }
+add_equipment_to_stockpile = { type = special_equipment_1 amount = 24000  }	
+
+add_equipment_to_stockpile = { type = small_plane_cas_airframe_1 variant_name = "Ju 87" amount = 500 }
+add_equipment_to_stockpile = { type = medium_plane_airframe_1 variant_name = "He 111" amount = 216 }
+add_equipment_to_stockpile = { type = cv_small_plane_naval_bomber_airframe_1 variant_name = "Do 22" amount = 124 }
+add_equipment_to_stockpile = { type = transport_plane_equipment_1 amount = 20 }
 
 set_technology = {
 	# MOD-SPECIFIC TECHS
@@ -420,161 +432,54 @@ set_technology = {
 }
 
 create_equipment_variant = {
-		name = "Bf 109A"
-		type = small_plane_airframe_1
-		obsolete = yes
-		modules = {
-			fixed_main_weapon_slot = light_mg_4x
-			engine_type_slot = engine_2_1x
-			special_type_slot_1 = lmg_defense_turret
-			special_type_slot_2 = high_octane_fuel_small
-		}
-		icon = "GFX_GER_fighter1_medium"
-	}
-	create_equipment_variant = {
-		name = "Ju 87"
-		type = small_plane_cas_airframe_1
-		modules = {
-			fixed_main_weapon_slot = bomb_locks
-			fixed_auxiliary_weapon_slot_1 = bomb_locks
-			engine_type_slot = engine_2_1x
-			special_type_slot_1 = lmg_defense_turret
-			special_type_slot_2 = dive_brakes_small
-		}
-		icon = "GFX_GER_CAS1_medium"
-	}
-	create_equipment_variant = {
-		name = "Do 22"
-		type = cv_small_plane_naval_bomber_airframe_1
-		modules = {
-			fixed_main_weapon_slot = torpedo_mounting
-			fixed_auxiliary_weapon_slot_1 = empty
-			engine_type_slot = engine_2_1x
-			special_type_slot_1 = lmg_defense_turret
-			special_type_slot_2 = empty
-		}
-	}
-
-	create_equipment_variant = {
-		name = "He 111"
-		type = medium_plane_airframe_1
-		modules = {
-			fixed_main_weapon_slot = medium_bomb_bay
-			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
-			engine_type_slot = engine_1_3x
-			special_type_slot_1 = lmg_defense_turret_2x
-			special_type_slot_2 = empty
-			special_type_slot_3 = empty
-			special_type_slot_4 = empty
-		}
-		icon = "GFX_GER_tactical_bomber1_medium"
-	}
-	
-add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 62578 }
-add_equipment_to_stockpile = { type = support_equipment_1 amount = 2431 }
-add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 4238 }
-add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 2064 }
-add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 6830 }
-add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 6180 }
-add_equipment_to_stockpile = { type = train_equipment_1 amount = 321 }
-add_equipment_to_stockpile = { type = special_equipment_1 amount = 24000  }	
-
-add_equipment_to_stockpile = { type = small_plane_cas_airframe_1 variant_name = "Ju 87" amount = 500 }
-add_equipment_to_stockpile = { type = medium_plane_airframe_1 variant_name = "He 111" amount = 216 }
-add_equipment_to_stockpile = { type = cv_small_plane_naval_bomber_airframe_1 variant_name = "Do 22" amount = 124 }
-add_equipment_to_stockpile = { type = transport_plane_equipment_1 amount = 20 }
-
-######ANNEXED MINOR STOCKPILE#######
-#Austria
-#add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 17000 }
-#add_equipment_to_stockpile = { type = support_equipment_1 amount = 700 }
-#Czechoslovakia
-#add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 7000 } #was 67k, but 60k was removed bc of spawn in light tanks
-#add_equipment_to_stockpile = { type = support_equipment_1 amount = 50 }
-
-set_naval_oob = "GER_1936_naval_mtg"
-
-set_research_slots = 5
-set_convoys = 300
-set_stability = 0.7
-set_war_support = 0.3
-
-set_politics = {
-	ruling_party = fascism
-	last_election = "1933.3.5"
-	election_frequency = 48
-	elections_allowed = no
+    name = "Bf 109A"
+    type = small_plane_airframe_1
+    obsolete = yes
+    modules = {
+        fixed_main_weapon_slot = light_mg_4x
+        engine_type_slot = engine_2_1x
+        special_type_slot_1 = lmg_defense_turret
+        special_type_slot_2 = high_octane_fuel_small
+    }
+    icon = "GFX_GER_fighter1_medium"
 }
-set_popularities = {
-	democratic = 35
-	fascism = 40
-	communism = 10
-	neutrality = 15
+create_equipment_variant = {
+    name = "Ju 87"
+    type = small_plane_cas_airframe_1
+    modules = {
+        fixed_main_weapon_slot = bomb_locks
+        fixed_auxiliary_weapon_slot_1 = bomb_locks
+        engine_type_slot = engine_2_1x
+        special_type_slot_1 = lmg_defense_turret
+        special_type_slot_2 = dive_brakes_small
+    }
+    icon = "GFX_GER_CAS1_medium"
+}
+create_equipment_variant = {
+    name = "Do 22"
+    type = cv_small_plane_naval_bomber_airframe_1
+    modules = {
+        fixed_main_weapon_slot = torpedo_mounting
+        fixed_auxiliary_weapon_slot_1 = empty
+        engine_type_slot = engine_2_1x
+        special_type_slot_1 = lmg_defense_turret
+        special_type_slot_2 = empty
+    }
 }
 
-create_faction_from_template = faction_template_axis
-add_to_faction = GER
-add_to_faction = HUN
-add_to_faction = ROM
-add_to_faction = CZE
-add_to_faction = ITA
-add_to_faction = BUL
-create_operative_leader = {
-		name = "Otto Skorzeny"
-		GFX = GFX_portrait_otto_skorenzy
-		traits = { operative_commando }
-		bypass_recruitment = no
-		available_to_spy_master = yes
-		nationalities = { GER }
-	}
-
-	create_operative_leader = {
-		name = "Nikolaus Ritter"
-		GFX = GFX_portrait_nikolaus_ritter
-		traits = { operative_safe_cracker }
-		bypass_recruitment = no
-		available_to_spy_master = yes
-		nationalities = { GER }
-	}
-	create_operative_leader = {
-		name = "Eleysa Bazna"
-		GFX = GFX_portrait_eleysa_bazna
-		traits = { operative_infiltrator }
-		bypass_recruitment = no
-		available_to_spy_master = yes
-		nationalities = { GER  }
-	}
-set_faction_spymaster = yes	
-	set_autonomy = {
-		target = ROM
-		autonomous_state = autonomy_reichskommissariat
-		freedom_level = 0.4
-	}
-		set_autonomy = {
-		target = BUL
-		autonomous_state = autonomy_reichskommissariat
-		freedom_level = 0.4
-	}
-	set_autonomy = {
-		target = HUN
-		autonomous_state = autonomy_reichskommissariat
-		freedom_level = 0.4
-	}
-	#set_autonomy = {
-	#	target = SPR
-	#	autonomous_state = autonomy_reichskommissariat
-	#	freedom_level = 0.2
-	#}
-add_opinion_modifier = {
-    target = SOV
-    modifier = anti_cross_faction_trade
-}
-add_ideas = {
-	sour_loser
-	limited_conscription
-	limited_exports
-	partial_economic_mobilisation
-	#GER_blitzkrieg_idea
+create_equipment_variant = {
+    name = "He 111"
+    type = medium_plane_airframe_1
+    modules = {
+        fixed_main_weapon_slot = medium_bomb_bay
+        fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+        engine_type_slot = engine_1_3x
+        special_type_slot_1 = lmg_defense_turret_2x
+        special_type_slot_2 = empty
+        special_type_slot_3 = empty
+        special_type_slot_4 = empty
+    }
+    icon = "GFX_GER_tactical_bomber1_medium"
 }
 
 1941.1.1.12 = {
