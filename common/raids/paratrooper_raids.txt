@@ -303,12 +303,10 @@ types = {
 		allowed = {
 			has_dlc = "Gotterdammerung"
 		}
-		
 		# Raid Type is visible
 		visible = {
 			has_tech = paratroopers
 		}
-		
 		# Specific Target is visible
 		show_target = {
 			has_war_with = FROM
@@ -317,12 +315,12 @@ types = {
 
 		# Can prepare
 		available = {
+
 			has_naval_invasion_against_state = {
 				state = var:target_state
 				preparation > 0.1
 			}
 		}
-		
 		launchable = {
 			has_war_with = FROM
 			has_naval_invasion_against_state = {
@@ -330,17 +328,14 @@ types = {
 				preparation > 0.95
 			}
 		}
-		
 		unit_requirements = {
 			battalion_types = {
 				paratrooper = { min = 3 }
 			}
 		}
-		
 		essential_equipment = {
 			transport_plane_equipment = 10
 		}
-		
 		additional_equipment = {
 			# list of equipment archetypes and numbers
 			support_equipment = 200
@@ -351,17 +346,17 @@ types = {
 				is_coastal = yes
 			}
 		}
-		
 		target_icon = GFX_other_target_icon
-		
 		target_loc_key = raid_target_name_pathfinder_raid
 
 		launch_sound = raid_launch_paratrooper
-		
 		arrow = {
 		    type = air
 		}
-		
+        # unit_model = {
+            # type = transport
+        # }
+
 		starting_point = {
 			types = { air_base }
 		}
@@ -499,6 +494,7 @@ types = {
 						org_damage = 60
 						str_damage = 20
 					}
+
 					# Unit Experience
 					raid_add_unit_experience = 0.2
                     add_raid_history_entry = yes
@@ -527,9 +523,12 @@ types = {
 						org_damage = 40
 						str_damage = 10
 					}
+
+
 					# Unit Experience
 					raid_add_unit_experience = 0.35
-					add_raid_history_entry = yes
+                    add_raid_history_entry = yes
+
 				}
 				# Other unit effects
 				division_effects = {
@@ -538,7 +537,7 @@ types = {
 				visual_effect = {
 					entity = "air_raids_paradrop_critical_success_entity"
 					animation = "attack"
-				}
+					}
 			}
 		}
 	}

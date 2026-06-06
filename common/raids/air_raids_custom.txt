@@ -299,6 +299,206 @@ types = {
 		}
 	}
 
+##############################################################################
+
+ ##  ###  ### ###   ##  ### ###  ##  #  #      ### ### ###  ###  ##  #  #  ##
+#  # #  # #   #  # #  #  #   #  #  # ## #        # #   #  #  #  #  # #  # #  #
+#  # ###  ##  ###  ####  #   #  #  # # ##        # ##  ###   #  #    #### #  #
+#  # #    #   #  # #  #  #   #  #  # #  #     #  # #   #  #  #  #  # #  # #  #
+ ##  #    ### #  # #  #  #  ###  ##  #  #      ##  ### #  # ###  ##  #  #  ##
+
+##############################################################################
+	# ENG_operation_jericho = {
+		# days_to_prepare = 90
+
+		# category = air_raids
+		# custom_map_icon = GFX_raid_type_icon_other_raid
+
+		# command_power = 25
+
+		# allowed = {
+			# has_dlc = "Gotterdammerung"
+			# tag = ENG
+		# }
+
+
+		# available = {
+			# FRA = {
+				# has_completed_focus = FRA_national_council_of_the_resistance
+			# }
+			# 16 = { # Ile de France
+				# is_fully_controlled_by = GER
+			# }
+		# }
+		# fire_only_once = yes
+
+		# target_type = {
+			# province = 11420
+		# }
+		# target_icon = GFX_facility_icon
+		# launch_sound = raid_launch_air
+
+		# arrow = {
+		    # type = air
+		# }
+
+		# unit_requirements = {
+			# equipment = {
+				# type = { tactical_bomber }
+				# amount = { min = 70 }
+			# }
+		# }
+		# unit_requirements = {
+			# equipment = {
+				# type = { heavy_fighter }
+				# amount = { min = 70 }
+			# }
+		# }
+
+		# starting_point = {
+		    # types = { air_base }
+		# }
+
+		# success_factors = {
+			# success = {
+				# base = 0.55
+
+				# experience = {
+					# weight = 0.2
+					# start_weight = -0.2
+					# reference = 1.0
+				# }
+				# air_agility = {
+					# reference = 100.0 # As air unit agility approaches 100 (as defined by the value above), increase chance by this value
+					# weight = 0.1 # At 0 agility, the modifier will have negative effect.
+					# start_weight = -0.1 # The modifier will scale linearly, meaning at 50 agility, the modifier will be 0.
+				# }
+				# reliability = {
+					# reference = 1
+					# weight = 0.05
+					# start_weight = -0.1
+				# }
+				# air_defence = {
+					# reference = 100
+					# weight = 0.05
+					# start_weight = -0.05
+				# }
+				# air_superiority = {
+					# reference = 1
+					# weight = 0.1
+					# start_weight = -0.1
+				# }
+
+				## Target Modifiers
+				# anti_air = {
+					# reference = 5
+					# weight = -0.25
+				# }
+				# interception = {
+					# reference = 500 # More than 500 fighters won't really make any difference
+					# weight = -0.2
+				# }
+				# intel = {
+					# weight = 0.5
+					# reference = 100
+				# }
+			# }
+
+			# critical = {
+				# base = 0.15
+			# }
+		# }
+
+		# success_levels = {
+			# failure = {
+				# victim_effects = {
+					# var:target_state = {
+						# custom_effect_tooltip = operation_jericho_failure_tt
+						# add_resistance = -10
+					# }
+					# 16 = { add_resistance = -10 }
+
+				# }
+				# actor_effects = {
+					# raid_damage_units = {
+						# plane_loss = 70
+						# ratio = no
+					# }
+					# raid_add_unit_experience = 0.05
+				# }
+				# visual_effect = {
+					# entity = "raid_failed_entity"
+					# animation = "attack"
+					# }
+			# }
+			# limited_success = {
+				# victim_effects = {
+					# var:target_state = {
+						# custom_effect_tooltip = operation_jericho_limited_success_tt
+						# add_resistance = 10
+					# }
+					# 16 = { add_resistance = 5 }
+
+				# }
+				# actor_effects = {
+					# raid_damage_units = {
+						# plane_loss = 40
+						# ratio = no
+					# }
+					# raid_add_unit_experience = 0.1
+				# }
+				# visual_effect = {
+					# entity = "air_raids_2_limited_success_entity"
+					# animation = "attack"
+				# }
+			# }
+			# success = {
+				# victim_effects = {
+					# var:target_state = {
+						# custom_effect_tooltip = operation_jericho_success_tt
+						# add_resistance = 20
+					# }
+					# 16 = { add_resistance = 10 }
+
+				# }
+				# actor_effects = {
+					# raid_damage_units = {
+						# plane_loss = 30
+						# ratio = no
+					# }
+					# raid_add_unit_experience = 0.2
+				# }
+				# visual_effect = {
+					# entity = "air_raids_2_success_entity"
+					# animation = "attack"
+				# }
+			# }
+			# critical_success = {
+			    # victim_effects = {
+					# var:target_state = {
+						# custom_effect_tooltip = operation_jericho_critical_success_tt
+						# add_resistance = 40
+					# }
+					# 16 = { add_resistance = 20 }
+
+				# }
+				# actor_effects = {
+					# raid_damage_units = {
+						# plane_loss = 10
+						# ratio = no
+					# }
+					# raid_add_unit_experience = 0.35
+				# }
+				# visual_effect = {
+					# entity = "air_raids_2_critical_success_entity"
+					# animation = "attack"
+				# }
+			# }
+		# }
+	# }
+
+
+
 	 ######   ######## ########  ##     ##    ###    ##    ##    ########     ###    #### ########     ########   #######  ##     ## ########  #### ##    ##  ######
 	##    ##  ##       ##     ## ###   ###   ## ##   ###   ##    ##     ##   ## ##    ##  ##     ##    ##     ## ##     ## ###   ### ##     ##  ##  ###   ## ##    ##
 	##        ##       ##     ## #### ####  ##   ##  ####  ##    ##     ##  ##   ##   ##  ##     ##    ##     ## ##     ## #### #### ##     ##  ##  ####  ## ##
@@ -1203,4 +1403,8 @@ types = {
 			}
 		}
 	}
+
+
+
+
 }
