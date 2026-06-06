@@ -353,7 +353,7 @@ focus_tree = {
 			custom_effect_tooltip = GER_army_and_navy_tt
 			add_to_variable = { 
 				GER_ran_acclimatization_cold_climate_gain_factor = 1
-				tooltip = acclimatization_hot_climate_gain_factor_tt
+				tooltip = acclimatization_cold_climate_gain_factor_tt
 			}
 		}
 	}
@@ -721,7 +721,7 @@ focus_tree = {
 		cost = 5
         
 		available = {
-			has_war = yes
+			has_war_with = SOV
 		}
 
 		continue_if_invalid = yes
@@ -2221,6 +2221,17 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {   
+			random_core_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			add_ideas = autarkic_economy
 		}
 	}
@@ -2653,11 +2664,11 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = GER_domestic_situation_tt
 			add_to_variable = { 
-				GER_ds_industrial_capacity_factory = 0.1
+				GER_ds_industrial_capacity_factory = 0.05
 				tooltip = industrial_capacity_factory_tt
 			}
 			add_to_variable = { 
-				GER_ds_industrial_capacity_dockyard = 0.1
+				GER_ds_industrial_capacity_dockyard = 0.05
 				tooltip = industrial_capacity_dockyard_tt
 			}
 		}
@@ -2683,11 +2694,11 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = GER_domestic_situation_tt
 			add_to_variable = { 
-				GER_ds_production_factory_max_efficiency_factor = 0.1
+				GER_ds_production_factory_max_efficiency_factor = 0.05
 				tooltip = production_factory_max_efficiency_factor_tt
 			}
 			add_to_variable = { 
-				GER_ds_production_factory_start_efficiency_factor = 0.1
+				GER_ds_production_factory_start_efficiency_factor = 0.05
 				tooltip = production_factory_start_efficiency_factor_tt
 			}
 		}
@@ -2714,11 +2725,11 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = GER_domestic_situation_tt
 			add_to_variable = { 
-				GER_ds_production_speed_arms_factory_factor = 0.1
+				GER_ds_production_speed_arms_factory_factor = 0.05
 				tooltip = production_speed_arms_factory_factor_tt
 			}
 			add_to_variable = { 
-				GER_ds_production_speed_dockyard_factor = 0.1
+				GER_ds_production_speed_dockyard_factor = 0.05
 				tooltip = production_speed_dockyard_factor_tt
 			}
 		}
@@ -4554,7 +4565,7 @@ focus_tree = {
 		completion_reward = {
             custom_effect_tooltip = GER_domestic_situation_tt
 			add_to_variable = {
-				GER_ds_consumer_goods_expected_value = -0.015
+				GER_ds_consumer_goods_expected_value = -0.04
 				tooltip =  consumer_goods_expected_value_tt
 			}
 		}
