@@ -231,45 +231,23 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH FOCUS_FILTER_MILITARY_CHARACTER }
 
 		completion_reward = {
+            custom_effect_tooltip = stormtrooper_tt
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+        
             if = {
                 limit = {
                     NOT = {
                         has_completed_focus = GER_absorb_the_abwehr
                     }
                 }
-                custom_effect_tooltip = GER_stormtroopers_tt
-                
-                hidden_effect = {
-                    set_variable = { GER_brandenburger_cap_var = 10 }
-                }
-            
-                division_template = {
-                    name = "Brandenburgers"
-                    is_locked = no 
-                    division_cap = 10
-                    
-                    regiments = {
-                        brandenburgers = { x = 0 y = 0 } brandenburgers = { x = 1 y = 0 } brandenburgers = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 } anti_tank_brigade = { x = 4 y = 0 } 
-                        brandenburgers = { x = 0 y = 1 } brandenburgers = { x = 1 y = 1 } brandenburgers = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 } anti_tank_brigade = { x = 4 y = 1 } 
-                        brandenburgers = { x = 0 y = 2 } brandenburgers = { x = 1 y = 2 } brandenburgers = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 } anti_tank_brigade = { x = 4 y = 2 }
-                        brandenburgers = { x = 0 y = 3 } brandenburgers = { x = 1 y = 3 } brandenburgers = { x = 2 y = 3 }
-                        brandenburgers = { x = 0 y = 4 } brandenburgers = { x = 1 y = 4 } 
-                    }
-                    support = { 
-                        engineer = { x = 0 y = 0 } 
-                        anti_air = { x = 0 y = 1 } 
-                        artillery = { x = 0 y = 2 }   
-                        anti_tank = { x = 0 y = 4 } 
-                        logistics_company = { x = 0 y = 5 } 
-                        recon = { x = 0 y = 3 }    
-                    }
+                set_technology = {
+                    GER_enable_stormtroopers = 1
                 }
             }
             else = {
-                # Increases the cap to 15
-                set_division_template_cap = { 
-                    division_template = "Brandenburgers" 
-                    division_cap = 40
+                set_technology = {
+                    GER_stormtroopers_buff = 1
                 }
             }
         }
@@ -651,11 +629,11 @@ focus_tree = {
 				# }
 			# }
             
-            custom_effect_tooltip = GER_veterans_tooltip
+            custom_effect_tooltip = GER_veterans_5_tooltip
             
             hidden_effect = { 
                 delete_units = {  division_template = "Elite Division" disband = no }
-                load_oob = "SPR_AZUL"
+                load_oob = "GER_vet_five"
                 290 = { 
                     every_state_division = { 
                         add_history_entry = {
@@ -5737,11 +5715,16 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
-            custom_effect_tooltip = GER_domestic_situation_tt	
+            custom_effect_tooltip = GER_domestic_situation_tt
             add_to_variable = {
                 var = GER_ds_production_speed_buildings_factor
                 value = 0.1
                 tooltip = production_speed_buildings_factor_tt
+            }
+            add_to_variable = {
+                var = GER_ds_local_resources_factor
+                value = 0.2
+                tooltip = local_resources_factor_tt
             }
 		}
 	}
@@ -6413,6 +6396,11 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = GER_domestic_situation_tt	
+			add_to_variable = {
+                var = GER_ran_conscription
+                value = -0.015
+                tooltip = conscription_tt
+            }
             add_to_variable = {
                 var = GER_ds_operative_slot
                 value = 1
@@ -6471,45 +6459,23 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER }
 
 		completion_reward = {
+            custom_effect_tooltip = stormtrooper_tt
+            
+            custom_effect_tooltip = generic_skip_one_line_tt
+        
             if = {
                 limit = {
                     NOT = {
                         has_completed_focus = GER_stormtroopers
                     }
                 }
-                custom_effect_tooltip = GER_stormtroopers_tt
-                
-                hidden_effect = {
-                    set_variable = { GER_brandenburger_cap_var = 10 }
-                }
-            
-                division_template = {
-                    name = "Brandenburgers"
-                    is_locked = no 
-                    division_cap = 10
-                    
-                    regiments = {
-                        brandenburgers = { x = 0 y = 0 } brandenburgers = { x = 1 y = 0 } brandenburgers = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 } anti_tank_brigade = { x = 4 y = 0 } 
-                        brandenburgers = { x = 0 y = 1 } brandenburgers = { x = 1 y = 1 } brandenburgers = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 } anti_tank_brigade = { x = 4 y = 1 } 
-                        brandenburgers = { x = 0 y = 2 } brandenburgers = { x = 1 y = 2 } brandenburgers = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 } anti_tank_brigade = { x = 4 y = 2 }
-                        brandenburgers = { x = 0 y = 3 } brandenburgers = { x = 1 y = 3 } brandenburgers = { x = 2 y = 3 }
-                        brandenburgers = { x = 0 y = 4 } brandenburgers = { x = 1 y = 4 } 
-                    }
-                    support = { 
-                        engineer = { x = 0 y = 0 } 
-                        anti_air = { x = 0 y = 1 } 
-                        artillery = { x = 0 y = 2 }   
-                        anti_tank = { x = 0 y = 4 } 
-                        logistics_company = { x = 0 y = 5 } 
-                        recon = { x = 0 y = 3 }    
-                    }
+                set_technology = {
+                    GER_enable_stormtroopers = 1
                 }
             }
             else = {
-                # Increases the cap to 15
-                set_division_template_cap = { 
-                    division_template = "Brandenburgers" 
-                    division_cap = 40
+                set_technology = {
+                    GER_stormtroopers_buff = 1
                 }
             }
         }
@@ -6559,7 +6525,12 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_RESEARCH }
 
 		completion_reward = {
-			custom_effect_tooltip = GER_domestic_situation_tt	
+			custom_effect_tooltip = GER_domestic_situation_tt
+			add_to_variable = {
+                var = GER_ran_conscription
+                value = -0.015
+                tooltip = conscription_tt
+            }
             add_to_variable = {
                 var = GER_ds_operative_slot
                 value = 1
