@@ -8,12 +8,12 @@ mission_type_tactics = {
     xp_type = army
 
     available = {
-        always = yes
+        NOT = {
+			has_tech = urban_assaults_tech
+		}
     }
 	
     # EFFECTS
-    recon_factor = 2
-	
 	enable_tactic = tactic_blitz
 	enable_tactic = tactic_backhand_blow
 	
@@ -25,7 +25,7 @@ mission_type_tactics = {
         }
         flexible_command = {
 			category_army = {
-				default_morale = 0.2
+				default_morale = 0.1
 			}
         }
         maneouver_drills = {
@@ -46,51 +46,6 @@ mission_type_tactics = {
     }
 }
 
-last_stand = {
-    track = operations
-    name = SUBDOCTRINE_LAST_STAND
-    description = SUBDOCTRINE_LAST_STAND_DESC
-    icon = GFX_doctrine_last_stand_medium
-    #TODO: Add trigger tag for surrender progress
-    xp_cost = 150
-    xp_type = army
-
-    available = {
-        FROM = {
-            surrender_progress > 0.5
-        }
-    }
-	
-    # EFFECTS
-    conscription = 0.05
-	mobilization_speed = 1
-	
-	enable_tactic = tactic_human_wave_tactics
-	enable_tactic = tactic_guerrilla_tactics
-
-    rewards = {
-        werwolf_groups = {
-            category_army = {
-				max_organisation = 10
-			}
-        }
-        pocket_consolidation = {
-            army_core_defence_factor = 0.05
-        }
-        digging_in = {
-            category_army = {
-				default_morale = 0.1
-			}
-        }
-        stocking_up = {
-            supply_consumption_factor = -0.25
-        }
-        breaking_out = {
-            army_core_attack_factor = 0.05
-        }
-    }
-}
-
 infiltration_tactics = {
     track = operations
     name = SUBDOCTRINE_INFILTRATION_TACTICS
@@ -100,7 +55,9 @@ infiltration_tactics = {
     xp_type = army
 
     available = {
-        always = yes
+        NOT = {
+			has_tech = urban_assaults_tech
+		}
     }
 
     # EFFECTS
@@ -119,11 +76,13 @@ infiltration_tactics = {
             land_night_attack = 0.1
         }
         self_sustaining_infiltration_units = {
-            supply_consumption_factor = -0.05
+            category_army = {
+				breakthrough = 0.05
+				max_organisation = 5
+			}
         }
         terrain_and_situation_assessment = {
             category_army = {
-				breakthrough = 0.05
 				max_organisation = 5
 			}
         }
@@ -145,13 +104,12 @@ grand_assault = {
     xp_type = army
 
     available = {
-        always = yes
+        NOT = {
+			has_tech = urban_assaults_tech
+		}
     }
 
-
-    # EFFECTS
-    max_planning = 0.025
-	
+    # EFFECTS	
 	enable_tactic = tactic_planned_attack
 	enable_tactic = tactic_breakthrough
 
@@ -165,7 +123,9 @@ grand_assault = {
             }
         }
         combined_arms_integration = {
-            coordination_bonus = 0.02
+            category_army = {
+				breakthrough = 0.1
+			}
         }
         forward_command_posts = {
             category_army = {
@@ -187,11 +147,63 @@ deep_battle = {
     xp_type = army
 
     available = {
-        always = yes
+        NOT = {
+			has_tech = urban_assaults_tech
+		}
     }
 
     visible = {
         has_dlc = "La Resistance"
+    }
+
+    # EFFECTS
+    enable_tactic = tactic_backhand_blow
+	enable_tactic = tactic_human_wave_tactics
+	
+    rewards = {
+        bounding_overwatch = {
+            category_army = {
+				max_organisation = 10
+				default_morale = 0.1
+			}
+        }
+        operational_concentration = {
+            category_army = {
+				default_morale = 0.1
+			}
+        }
+        maskirovka = {
+            org_loss_when_moving = -0.2
+        }
+        breakthrough_priority = {
+            category_army = {
+				default_morale = 0.1
+			}
+        }
+        operational_depth_control = {
+            land_reinforce_rate = 0.05
+			supply_consumption_factor = -0.1
+        }
+    }
+}
+
+deep_battle_no_lar = {
+    track = operations
+    name = SUBDOCTRINE_DEEP_BATTLE
+    description = SUBDOCTRINE_DEEP_BATTLE_DESC
+    icon = GFX_doctrine_deep_battle_medium
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+        NOT = {
+			has_tech = urban_assaults_tech
+		}
+    }
+    visible = {
+        NOT = {
+            has_dlc = "La Resistance"
+        }
     }
 
     # EFFECTS
@@ -211,7 +223,7 @@ deep_battle = {
 			}
         }
         maskirovka = {
-            org_loss_when_moving = -0.25
+            org_loss_when_moving = -0.2
         }
         breakthrough_priority = {
             category_army = {
@@ -220,55 +232,11 @@ deep_battle = {
         }
         operational_depth_control = {
             land_reinforce_rate = 0.05
+			supply_consumption_factor = -0.1
         }
     }
 }
 
-deep_battle_no_lar = {
-    track = operations
-    name = SUBDOCTRINE_DEEP_BATTLE
-    description = SUBDOCTRINE_DEEP_BATTLE_DESC
-    icon = GFX_doctrine_deep_battle_medium
-    xp_cost = 150
-    xp_type = army
-
-    available = {
-        always = yes
-    }
-    visible = {
-        NOT = {
-            has_dlc = "La Resistance"
-        }
-    }
-
-    # EFFECTS
-    enable_tactic = tactic_backhand_blow
-
-    rewards = {
-        bounding_overwatch = {
-            category_army = {
-				max_organisation = 10
-				default_morale = 0.1
-			}
-        }
-        operational_concentration = {
-            category_army = {
-				default_morale = 0.1
-			}
-        }
-        maskirovka = {
-            org_loss_when_moving = -0.25
-        }
-        breakthrough_priority = {
-            category_army = {
-				default_morale = 0.1
-			}
-        }
-        operational_depth_control = {
-            land_reinforce_rate = 0.05
-        }
-    }
-}
 guerilla_war = {
     track = operations
     name = SUBDOCTRINE_GUERILLA_WAR
@@ -277,8 +245,6 @@ guerilla_war = {
     
     xp_cost = 150
     xp_type = army
-
-    pocket_penalty = -0.66
 	
 	enable_tactic = tactic_human_wave_tactics
 	enable_tactic = tactic_guerrilla_tactics
@@ -300,16 +266,20 @@ guerilla_war = {
 			}
         }
         urban_assaults = {
-            infantry = {
-                urban = {
-                    attack = 0.10
-                    defence = 0.10
+            effect = {
+                custom_effect_tooltip = urban_assaults_tech_tt
+                hidden_effect = {
+                    set_technology = {
+                        urban_assaults_tech = 1
+                    }
                 }
             }
         }
         defense_of_gained_power = {
-            no_supply_grace = 168
+            no_supply_grace = 720
 			army_fuel_capacity_factor = 1
+			pocket_penalty = -0.66
+			org_loss_at_low_org_factor = -0.25
         }
     }
 }
@@ -325,7 +295,9 @@ rapid_domination = {
     xp_type = army
 
     available = {
-        always = yes
+        NOT = {
+			has_tech = urban_assaults_tech
+		}
     }
 
     # EFFECTS
@@ -336,7 +308,6 @@ rapid_domination = {
         forward_observers = {
 			army_attack_factor = 0.01
 			army_defence_factor = 0.01
-            recon_factor = 2
         }
         advanced_firebases = {
 			army_attack_factor = 0.01
@@ -353,7 +324,39 @@ rapid_domination = {
         shock_and_awe = {
 			army_attack_factor = 0.01
 			army_defence_factor = 0.01
-            air_superiority_bonus_in_combat = 0.1
+            air_cas_present_factor = 0.18
         }
     }
+}
+
+last_stand = {
+    track = operations
+    name = SUBDOCTRINE_LAST_STAND
+    description = SUBDOCTRINE_LAST_STAND_DESC
+    icon = GFX_doctrine_last_stand_medium
+    #TODO: Add trigger tag for surrender progress
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+        FROM = {
+            surrender_progress > 0.85
+        }
+    }
+	
+    # EFFECTS
+	enable_tactic = tactic_human_wave_tactics
+	enable_tactic = tactic_guerrilla_tactics
+	
+	stability_weekly = -0.04
+	war_support_weekly = -0.04
+	conscription = 0.05
+	mobilization_speed = 1
+	army_core_defence_factor = 0.05
+	army_core_attack_factor = 0.05
+	
+	category_army = {
+		max_organisation = 20
+		default_morale = 0.2
+	}
 }

@@ -58,9 +58,7 @@ defensive_postures = {
         always = yes
     }
 
-    #OTHER BASE REWARDS
-    dig_in_speed_factor = 0.25
-	
+    #OTHER BASE REWARDS	
 	enable_tactic = tactic_delay
 
     rewards = {
@@ -76,18 +74,16 @@ defensive_postures = {
         }
         developed_trench_networking = {
             category_all_infantry = {
-				defense = 0.05
+				defense = 0.1
 			}
         }
         field_emplacements = {
             category_all_infantry = {
-				defense = 0.05
+				defense = 0.1
 			}
         }
         field_construction_training = {
-           category_all_infantry = {
-				defense = 0.05
-			}
+            dig_in_speed_factor = 0.25
         }
 
     }
@@ -112,38 +108,32 @@ large_unit_tactics = {
     }
    
     #OTHER BASE REWARDS
-    
-    infantry = {
-		combat_width = -0.4
-	}
-	
 	enable_tactic = tactic_human_wave_tactics
 
     rewards = {
-        wide_trench_networks = {
-            category_light_infantry = {
-                max_organisation = 10
-            }
-        }
         flexible_division_structures = {
-            category_light_infantry = {
-                default_morale = 0.1
+            infantry = {
+				combat_width = -0.4
+			}
+        }
+        wide_trench_networks = {
+            category_all_infantry = {
+                default_morale = 0.05
             }
         }
         unit_knowledge_sharing = {
-            category_light_infantry = {
-                max_organisation = 10
+            category_all_infantry = {
+                max_organisation = 5
             }
         }
         large_front_offensive = {
-            category_light_infantry = {
-                default_morale = 0.1
+            category_all_infantry = {
+                default_morale = 0.05
             }
         }
         motorization_initiative = {
-            category_vehicle_infantry = {
-                max_organisation = 10
-                default_morale = 0.1
+            category_all_infantry = {
+                max_organisation = 5
             }
         }
 
@@ -170,12 +160,18 @@ assault_infantry = {
 
     rewards = {
         low_echelon_fire_support = {
-            category_all_infantry = {
-                max_organisation = 10
+            category_light_infantry = {
+                max_organisation = 7.5
+            }
+			category_vehicle_infantry = {
+                max_organisation = 5
             }
         }
         organic_battalion_fire_support = {
-            category_all_infantry = {
+            category_light_infantry = {
+                default_morale = 0.15
+            }
+			category_vehicle_infantry = {
                 default_morale = 0.1
             }
         }
@@ -185,13 +181,16 @@ assault_infantry = {
             }
         }
         breakthrough_fireteams = {
-            category_all_infantry = {
-                breakthrough = 0.05
+            category_light_infantry = {
+                max_organisation = 7.5
+            }
+			category_vehicle_infantry = {
+                max_organisation = 5
             }
         }
         assault_detachments = {
 			category_all_infantry = {
-                breakthrough = 0.05
+                breakthrough = 0.1
             }
         }
     }
@@ -217,11 +216,6 @@ assault_infantry = {
     # available = {
         # always = yes
     # }
-    
-    # visible = {
-        # has_dlc = "No Compromise, No Surrender"
-    # }
-
 
     # rewards = {
         # dragoon_traditions = {
@@ -254,7 +248,6 @@ assault_infantry = {
 				# hard_attack = 0.05
 			# }
         # }
-
     # }
 # }
 
@@ -270,6 +263,7 @@ commandos = {
     available = {
        
     }
+	
     visible = {
         has_dlc = "No Compromise, No Surrender"
     }
@@ -323,15 +317,12 @@ irregulars = {
         has_dlc = "No Compromise, No Surrender"
     }
 
-    # EFFECTS
-	org_loss_when_moving = -0.25
-	
+    # EFFECTS	
 	enable_tactic = tactic_guerrilla_tactics
 
     rewards = {
         service_by_lot = { 
-            conscription = 0.04
-            weekly_manpower = 5000
+            weekly_manpower = 3750
         }
         partisan_regiments = {
             category_light_infantry = {
@@ -342,60 +333,11 @@ irregulars = {
             land_reinforce_rate = 0.05
         }
         levee_en_masse = {
-            weekly_manpower = 5000
+            weekly_manpower = 3750
         }
         standardization_efforts = {
             category_light_infantry = {
                 max_strength = 1
-            }
-        }
-    }
-}
-
-peoples_war = {
-    track = infantry
-    name = SUBDOCTRINE_PEOPLES_WAR
-    description = SUBDOCTRINE_PEOPLES_WAR_DESC
-    icon = GFX_doctrine_peoples_war_medium
-   
-    xp_cost = 150
-    xp_type = army
-
-    available = {
-        FROM = {
-            surrender_progress > 0.5
-        }
-    }
-    visible = {
-        has_dlc = "No Compromise, No Surrender"
-    }
-
-    # EFFECTS
-    infantry = {
-        combat_width = -0.4
-    }
-	
-	enable_tactic = tactic_guerrilla_tactics
-
-    rewards = {
-        revolutionary_base_area = {
-            conscription = 0.04
-            mobilization_speed = 1
-        }
-        destruction_over_land_gains = {
-            category_army = {
-                equipment_capture_factor = 0.01
-            }
-        }
-        quick_decision_offensive_warfare = {
-            category_light_infantry = {
-               max_organisation = 10
-               default_morale = 0.1
-            }
-        }
-        people_not_things = {
-            category_light_infantry = {
-                max_strength = 2
             }
         }
     }
@@ -415,34 +357,23 @@ great_war_infantry = {
     }
 
     # EFFECTS
-    dont_lose_dig_in_on_attack = 1
-    dig_in_speed_factor = -0.5
-    planning_speed = -0.5
-    army_speed_factor = -0.1
-	army_morale_factor = -0.1
-	supply_consumption_factor = 0.1
-	
 	enable_tactic = tactic_planned_attack
 
     rewards = {
         traverse_digging = {
-            production_speed_bunker_factor = 0.25
+            max_dig_in = 1
         }
-        #sapping_operations = {
-        #    max_dig_in_factor = 0.1
-        #}
-        centralized_artillery_control = {
-            category_light_infantry = {
-                max_organisation = 5
-            }
+        great_war_offensives = {
+            max_planning = 0.05
         }
-        field_fortification_emphasis = {
-            category_vehicle_infantry = {
-                max_organisation = 5
-            }
+        trench_training = {
+            dig_in_speed_factor = 0.25
         }
-        redoubt_networks = {
-            recon_factor_while_entrenched = 1
+        entrenchment_command = {
+            max_planning = 0.05
+        }
+        trench_networks = {
+            max_dig_in = 1
         }
 
     }

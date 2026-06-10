@@ -22,33 +22,36 @@ sub_units = {
 
 		combat_width = 0
 		
-		#Size Definitions
+		# Size Definitions
 		max_strength = 1
 		max_organisation = 40	
 		default_morale = 0.3
 		manpower = 500
 		training_time = 120
 
-		#Misc Abilities
+		# Misc Abilities
 		weight = 0.1
 		supply_consumption = 0.03
 		can_be_parachuted = yes
+		same_support_type = maintenance_company
 		
 		# Important Ability
 		reliability_factor = 0.05
 		equipment_capture_factor = 0.05
 		
+		battalion_mult = {
+			category = category_vehicle_infantry
+			max_strength = 0.10
+		}
+		
+		# Equipment
 		essential = {
 			support_equipment
 		}
-		
 		need = {
 			support_equipment = 25
 		}
-			same_support_type = maintenance_company
-
 	}
-
 
 	armored_maintenance = {
 		abbreviation = "AMC"
@@ -75,37 +78,36 @@ sub_units = {
 
 		combat_width = 0
 	
-		#Size Definitions
+		# Size Definitions
 		max_strength = 1
 		max_organisation = 40	
 		default_morale = 0.3
 		manpower = 500
 		training_time = 120
 
-		#Misc Abilities
+		# Misc Abilities
 		weight = 0.1
-		supply_consumption = 0.035 # More than M flame Tank (0.025)
-		can_be_parachuted = no
+		supply_consumption = 0.03
+		can_be_parachuted = yes
+		same_support_type = maintenance_company
 		
 		# Important Ability
-		reliability_factor = 0.02 #Less than reg maintenance (0.05)
-		equipment_capture_factor = 0.1 #More than reg maintenance (0.05)
-		recovery = 0.1 #More than reg maintenance (0)
+		reliability_factor = 0.1
+		equipment_capture_factor = 0.1
+		
+		battalion_mult = {
+			category = category_vehicle_infantry
+			max_strength = 0.10
+		}
 
+		# Equipment
 		essential = {
 			support_equipment
 			armored_support_vehicle
 		}
-		
 		need = {
-			support_equipment = 15
+			support_equipment = 25
 			armored_support_vehicle = 20
 		}
-
-		same_support_type = maintenance_company
 	}
-	
-	
-	
-	
 }

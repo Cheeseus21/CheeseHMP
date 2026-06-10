@@ -12,6 +12,130 @@ technologies = {
 	@1945 = 18
 	@1946 = 20
 	
+	advanced_field_engineering_tech = {
+        
+        allow = {
+			always = no
+		}
+
+		research_cost = 1
+		start_year = 1936
+		
+		engineer = {
+			fort = { attack = 0.05 }
+			forest = { attack = 0.05 }
+			mountain = { attack = 0.05 }
+			hills = { attack = 0.05 }
+			jungle = { attack = 0.05 }
+			marsh = { attack = 0.05 }
+			urban = { attack = 0.05 }
+			river = { attack = 0.05 }
+			amphibious = { attack = 0.05 }
+		}
+		pioneer_support = {
+			fort = { attack = 0.05 }
+			forest = { attack = 0.05 }
+			mountain = { attack = 0.05 }
+			hills = { attack = 0.05 }
+			jungle = { attack = 0.05 }
+			marsh = { attack = 0.05 }
+			urban = { attack = 0.05 }
+			river = { attack = 0.05 }
+			amphibious = { attack = 0.05 }
+		}
+		assault_engineer = {
+			fort = { attack = 0.05 }
+			forest = { attack = 0.05 }
+			mountain = { attack = 0.05 }
+			hills = { attack = 0.05 }
+			jungle = { attack = 0.05 }
+			marsh = { attack = 0.05 }
+			urban = { attack = 0.05 }
+			river = { attack = 0.05 }
+			amphibious = { attack = 0.05 }
+		}
+		light_flame_tank = {
+			fort = { attack = 0.05 }
+			forest = { attack = 0.05 }
+			mountain = { attack = 0.05 }
+			hills = { attack = 0.05 }
+			jungle = { attack = 0.05 }
+			marsh = { attack = 0.05 }
+			urban = { attack = 0.05 }
+			river = { attack = 0.05 }
+			amphibious = { attack = 0.05 }
+		}
+		medium_flame_tank = {
+			fort = { attack = 0.05 }
+			forest = { attack = 0.05 }
+			mountain = { attack = 0.05 }
+			hills = { attack = 0.05 }
+			jungle = { attack = 0.05 }
+			marsh = { attack = 0.05 }
+			urban = { attack = 0.05 }
+			river = { attack = 0.05 }
+			amphibious = { attack = 0.05 }
+		}
+		heavy_flame_tank = {
+			fort = { attack = 0.05 }
+			forest = { attack = 0.05 }
+			mountain = { attack = 0.05 }
+			hills = { attack = 0.05 }
+			jungle = { attack = 0.05 }
+			marsh = { attack = 0.05 }
+			urban = { attack = 0.05 }
+			river = { attack = 0.05 }
+			amphibious = { attack = 0.05 }
+		}
+    }
+	
+	urban_assaults_tech = {
+        
+        allow = {
+			always = no
+		}
+
+		research_cost = 1
+		start_year = 1936
+		
+		engineer = {
+			urban = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+		pioneer_support = {
+			urban = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+		assault_engineer = {
+			urban = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+		light_flame_tank = {
+			urban = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+		medium_flame_tank = {
+			urban = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+		heavy_flame_tank = {
+			urban = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+    }
+	
 	GER_enable_stormtroopers = {
 		
 		allow = {
@@ -832,160 +956,176 @@ technologies = {
 		
 		
 		recently_changed_inf_doctrine_tech = {
-				research_cost = 0.5
-		start_year = 1936
+		
+			research_cost = 0.5
+			start_year = 1936
+			
 			allow = { always= no }
 		}
 		
-				spam_inf = {
-		research_cost = 0.5
-		start_year = 1936
-		xor = { standard_inf elite_inf }
-						army_artillery_defence_factor =-0.15
-		army_artillery_attack_factor = -0.15
-		army_infantry_defence_factor = -0.15
-		modifier_army_sub_unit_militia_defence_factor = 0.15
-		army_infantry_attack_factor = -0.15
-		modifier_army_sub_unit_militia_attack_factor = 0.15
-		allow = { NOT = { OR = { has_tech = mass_assault has_tech = recently_changed_inf_doctrine_tech } } }
-					artillery_brigade = {
-			need = { artillery_equipment = -5 }
-		}	
-		rocket_artillery_brigade = {
-			need = { rocket_artillery_equipment = -5 }
-		}
-		#heavy_anti_tank_brigade = {
-		#	need = { anti_tank_equipment = -13 }
-		#}
-		anti_tank_brigade ={
-			need = { anti_tank_equipment = -7 }
-		}
-		anti_air_brigade = {
-			need = { anti_air_equipment = -5 }
-		}
-			infantry = {
-			need = { infantry_equipment = -20 }
-		}
-		jaeger = {
-			need = { infantry_equipment = -30 special_equipment = -10 }
-		}
-		marine= {
-			need = { infantry_equipment = -30 special_equipment = -10}
-		}
-		mountaineers= {
-			need = { infantry_equipment = -30 special_equipment = -10}
-		}
-		paratrooper= {
-			need = { infantry_equipment = -30 special_equipment = -50}
-		}
-		penal_battalion= {
-			need = { infantry_equipment = -10 }
-		}
-		on_research_complete = {
-			custom_effect_tooltip = spam_inf_tt
-			#	hidden_effect = {
-			#	country_event = { id = xpand_ITA_capmaign_events.500  days = 182 }
-			#	set_technology = { recently_changed_inf_doctrine_tech = 1 popup = no }
-			#}
-				set_country_flag  = { flag = recently_changed_inf_doctrine days = 182 }
-		}
-		folder = {
-			name = infantry_folder
-			position = { x = 0 y = 0 }
-		}
-		
-		categories = {
-			 generic
-		}
-		}
-		
-		
-		
-						standard_inf = {
-		research_cost = 0.5
-		start_year = 1936
-		xor = { spam_inf elite_inf }
-		allow = { NOT = { has_tech = recently_changed_inf_doctrine_tech } }
+		spam_inf = {
+			xor = { standard_inf elite_inf }
+			
+			research_cost = 0.5
+			start_year = 1936
+			
+			allow = { 
+				NOT = { 
+					OR = { 
+						has_tech = mass_assault 
+						has_tech = recently_changed_inf_doctrine_tech 
+					} 
+				} 
+			}
+			
+			army_artillery_defence_factor = -0.15
+			army_artillery_attack_factor = -0.15
+			army_infantry_defence_factor = -0.15
+			army_infantry_attack_factor = -0.15
 
-		folder = {
-			name = infantry_folder
-			position = { x = 0 y = 0 }
+			artillery_brigade = {
+				need = { artillery_equipment = -5 }
+			}	
+			rocket_artillery_brigade = {
+				need = { rocket_artillery_equipment = -5 }
+			}
+			anti_tank_brigade = {
+				need = { anti_tank_equipment = -7 }
+			}
+			anti_air_brigade = {
+				need = { anti_air_equipment = -5 }
+			}
+			infantry = {
+				need = { infantry_equipment = -20 }
+			}
+			jaeger = {
+				need = { infantry_equipment = -30 special_equipment = -10 }
+			}
+			marine = {
+				need = { infantry_equipment = -30 special_equipment = -10 }
+			}
+			mountaineers = {
+				need = { infantry_equipment = -30 special_equipment = -10 }
+			}
+			camelry = {
+				need = { infantry_equipment = -30 special_equipment = -10 }
+			}
+			paratrooper = {
+				need = { infantry_equipment = -30 special_equipment = -50 }
+			}
+			penal_battalion = {
+				need = { infantry_equipment = -10 }
+			}
+			
+			on_research_complete = {
+				custom_effect_tooltip = spam_inf_tt
+				set_country_flag  = { flag = recently_changed_inf_doctrine days = 182 }
+			}
+			
+			folder = {
+				name = infantry_folder
+				position = { x = 0 y = 0 }
+			}
+			
+			categories = {
+				generic
+			}
 		}
-				on_research_complete = {
-			custom_effect_tooltip = standard_inf_tt
-						set_country_flag  = { flag = recently_changed_inf_doctrine days = 180 }
-		}
-		categories = {
-			 generic
-		}
+		
+		standard_inf = {
+			xor = { spam_inf elite_inf }
+			
+			research_cost = 0.5
+			start_year = 1936
+			
+			allow = { 
+				NOT = {
+					has_tech = recently_changed_inf_doctrine_tech 
+				} 
+			}
+
+			on_research_complete = {
+				custom_effect_tooltip = standard_inf_tt
+				set_country_flag  = { flag = recently_changed_inf_doctrine days = 180 }
+			}
+		
+			folder = {
+				name = infantry_folder
+				position = { x = 0 y = 0 }
+			}
+			
+			categories = {
+				generic
+			}
 		}
 		
 		
 		
 		elite_inf = {
-		research_cost = 0.5
-		start_year = 1936
-		allow = {
-			OR = {
-				date > 1936.8.1
-				NOT = { has_tech = recently_changed_inf_doctrine_tech }
+			xor = { standard_inf spam_inf }
+			
+			research_cost = 0.5
+			start_year = 1936
+			
+			allow = {
+				OR = {
+					date > 1936.8.1
+					NOT = { has_tech = recently_changed_inf_doctrine_tech }
+				}
 			}
-			NOT = {	tag = ENG }
-		}
+			
+			army_artillery_defence_factor = 0.1
+			army_artillery_attack_factor = 0.1
+			army_infantry_defence_factor = 0.1
+			army_infantry_attack_factor = 0.1
 
-
-		xor = { standard_inf spam_inf }
-								army_artillery_defence_factor =0.1
-		army_artillery_attack_factor = 0.1
-		army_infantry_defence_factor = 0.1
-		army_infantry_attack_factor = 0.1
-		modifier_army_sub_unit_militia_defence_factor = -0.1 
-		modifier_army_sub_unit_militia_attack_factor = -0.1 
-				anti_tank_brigade ={
-			need = { anti_tank_equipment = 9 }
-		}
-		#heavy_anti_tank_brigade = {
-		#	need = { anti_tank_equipment = 16 }
-		#}
-		anti_air_brigade = {
-			need = { anti_air_equipment = 6 }
-		}
 			artillery_brigade = {
-			need = { artillery_equipment = 6 }
-		}	
-		rocket_artillery_brigade = {
-			need = { rocket_artillery_equipment = 6 }
-		}
-		
-		infantry = {
-			need = { infantry_equipment = 25 }
-		}
-		jaeger = {
-			need = { infantry_equipment = 38 special_equipment = 13 }
-		}
-		marine= {
-			need = { infantry_equipment = 38 special_equipment = 13}
-		}
-		mountaineers= {
-			need = { infantry_equipment = 38 special_equipment = 13 }
-		}
-		paratrooper= {
-			need = { infantry_equipment = 38 special_equipment = 63 }
-		}
-		penal_battalion= {
-			need = { infantry_equipment = 12 }
-		}
-		folder = {
-			name = infantry_folder
-			position = { x = 0 y = 0 }
-		}
-						on_research_complete = {
-			custom_effect_tooltip = elite_inf_tt
-			set_country_flag  = { flag = recently_changed_inf_doctrine days = 180 }
-		}
-		categories = {
-			 generic
-		}
+				need = { artillery_equipment = 5 }
+			}	
+			rocket_artillery_brigade = {
+				need = { rocket_artillery_equipment = 5 }
+			}
+			anti_tank_brigade = {
+				need = { anti_tank_equipment = 7 }
+			}
+			anti_air_brigade = {
+				need = { anti_air_equipment = 5 }
+			}
+			infantry = {
+				need = { infantry_equipment = 20 }
+			}
+			jaeger = {
+				need = { infantry_equipment = 30 special_equipment = 10 }
+			}
+			marine = {
+				need = { infantry_equipment = 30 special_equipment = 10 }
+			}
+			mountaineers = {
+				need = { infantry_equipment = 30 special_equipment = 10 }
+			}
+			camelry = {
+				need = { infantry_equipment = 30 special_equipment = 10 }
+			}
+			paratrooper = {
+				need = { infantry_equipment = 30 special_equipment = 50 }
+			}
+			penal_battalion = {
+				need = { infantry_equipment = 10 }
+			}
+			
+			on_research_complete = {
+				custom_effect_tooltip = elite_inf_tt
+				set_country_flag  = { flag = recently_changed_inf_doctrine days = 180 }
+			}
+			
+			folder = {
+				name = infantry_folder
+				position = { x = 0 y = 0 }
+			}
+
+			categories = {
+				generic
+			}
 		}
 		
 		

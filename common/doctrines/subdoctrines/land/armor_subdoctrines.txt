@@ -1,3 +1,95 @@
+armored_infantry_support = {
+    track = armor
+    name = SUBDOCTRINE_ARMORED_INFANTRY_SUPPORT
+    description = SUBDOCTRINE_ARMORED_INFANTRY_SUPPORT_DESC
+    icon = GFX_doctrine_armored_infantry_support_medium
+
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+        always = yes
+    }
+
+    # EFFECTS
+    #enable_tactic = tactic_blitz
+	enable_tactic = tactic_overwhelming_fire
+
+    rewards = {
+        mobile_reserves = {
+            category_tanks = {
+                soft_attack = 0.1
+				hard_attack = 0.05
+            }
+        }
+        armored_cohorts = {
+            category_tanks = {
+                max_organisation = 5
+            }
+        }
+        maintenance_routines = {
+            category_tanks = {
+                default_morale = 0.05
+            }
+        }
+        fuel_rationing = {
+            category_tanks = {
+                max_organisation = 5
+            }
+        }
+        mobile_armored_strongpoints = {
+            category_tanks = {
+                default_morale = 0.05
+            }
+        }
+    }
+}
+
+tank_destroyer_force = {
+    track = armor
+    name = SUBDOCTRINE_TANK_DESTROYER_FORCE
+    description = SUBDOCTRINE_TANK_DESTROYER_FORCE_DESC
+    icon = GFX_doctrine_tank_destroyer_force_medium
+
+    xp_cost = 150
+    xp_type = army
+	
+	available = {
+        always = yes
+    }
+
+    enable_tactic = tactic_overwhelming_fire
+
+    rewards = {
+        mobile_anti_tank = {
+            category_tanks = {
+                soft_attack = 0.05
+				hard_attack = 0.1
+            }
+        }
+        committed_operational_units = {
+            category_tanks = {
+                max_organisation = 5
+            }
+        }
+        redeployment_priority = {
+            category_tanks = {
+                default_morale = 0.05
+            }
+        }
+        independent_counterattacks = {
+            category_tanks = {
+                max_organisation = 5
+            }
+        }
+        selfsufficient_battalion = {
+            category_tanks = {
+                default_morale = 0.05
+            }
+        }
+    }
+}
+
 armored_spearhead = {
     track = armor
     name = SUBDOCTRINE_ARMORED_SPEARHEAD
@@ -65,12 +157,12 @@ armored_spearhead_no_lar = {
     }
 
     # EFFECTS
-    #enable_tactic = tactic_breakthrough
+    enable_tactic = tactic_unexpected_thrust
 
     rewards = {
         force_concentration = {
             category_tanks = {
-                max_organisation = 5
+                max_organisation = 10
             }
         }
         armored_breakthrough_exploits = {
@@ -81,7 +173,6 @@ armored_spearhead_no_lar = {
         local_reserves = {
             category_tanks = {
                 default_morale = 0.1
-                breakthrough = 0.05
             }
         }
         tactical_reconnaissance = {
@@ -91,102 +182,8 @@ armored_spearhead_no_lar = {
         }
         assault_detachments = {
             category_tanks= {
-                max_organisation = 5
+                breakthrough = 0.05
             }
-        }
-    }
-}
-armored_infantry_support = {
-    track = armor
-    name = SUBDOCTRINE_ARMORED_INFANTRY_SUPPORT
-    description = SUBDOCTRINE_ARMORED_INFANTRY_SUPPORT_DESC
-    icon = GFX_doctrine_armored_infantry_support_medium
-
-    xp_cost = 150
-    xp_type = army
-
-    available = {
-        always = yes
-    }
-
-    # EFFECTS
-    #enable_tactic = tactic_blitz
-	enable_tactic = tactic_overwhelming_fire
-
-    rewards = {
-        mobile_reserves = {
-            category_tanks = {
-                soft_attack = 0.05
-				hard_attack = 0.05
-            }
-        }
-        armored_cohorts = {
-            category_tanks = {
-                max_organisation = 5
-            }
-        }
-        maintenance_routines = {
-            category_tanks = {
-                default_morale = 0.05
-            }
-        }
-        fuel_rationing = {
-            category_tanks = {
-                max_organisation = 5
-            }
-        }
-        mobile_armored_strongpoints = {
-            category_tanks = {
-                default_morale = 0.05
-            }
-        }
-    }
-}
-
-streamlined_deployment = {
-    track = armor
-    name = SUBDOCTRINE_STREAMLINED_DEPLOYMENT
-    description = SUBDOCTRINE_STREAMLINED_DEPLOYMENT_DESC
-    icon = GFX_doctrine_streamlined_deployment_medium
-
-    xp_cost = 150
-    xp_type = army
-
-    available = {
-        always = yes
-    }
-	
-	category_tanks = {
-		maximum_speed = 0.1
-	}
-	
-	enable_tactic = tactic_blitz
-	
-    rewards = {
-        flexible_armored_battalions = {
-            category_tanks = {
-				default_morale = 0.1
-			}
-        }
-        mechanized_wave = {
-            category_tanks = {
-				max_organisation = 5
-			}
-        }
-        tank_desant = {
-            category_tanks = {
-				max_organisation = 10
-			}
-        }
-        full_front_deployment = {
-            category_tanks = {
-				default_morale = 0.1
-			}
-        }
-        continuous_offensives = {
-            category_tanks = {
-				max_organisation = 5
-			}
         }
     }
 }
@@ -216,23 +213,70 @@ mobile_defense = {
         }
         advance_under_fire = {
             category_tanks = {
-				default_morale = 0.1
+				default_morale = 0.05
 			}
         }
         attached_support = {
-            dig_in_speed_factor = 1
+            category_tanks = {
+				default_morale = 0.05
+			}
         }
         combined_anti_armor = {
             category_tanks = {
-				defense = 0.1
+				defense = 0.2
 			}
-
         }
         tank_on_tank_engagement = {
             category_tanks = {
 				max_organisation = 5
 			}
         }    
+    }
+}
+
+streamlined_deployment = {
+    track = armor
+    name = SUBDOCTRINE_STREAMLINED_DEPLOYMENT
+    description = SUBDOCTRINE_STREAMLINED_DEPLOYMENT_DESC
+    icon = GFX_doctrine_streamlined_deployment_medium
+
+    xp_cost = 150
+    xp_type = army
+
+    available = {
+        always = yes
+    }
+    
+    enable_tactic = tactic_blitz
+    
+    rewards = {
+        endless_armored_waves = {
+            category_tanks = {
+                default_morale = 0.05
+            }
+        }
+        steel_avalanche = {
+            category_tanks = {
+                max_organisation = 5
+            }
+        }
+        armored_swarm_tactics = {
+            category_tanks = {
+                max_organisation = 5
+            }
+        }
+        frontline_saturation = {
+            category_tanks = {
+                default_morale = 0.05
+            }
+        }
+        tank_mass_production = {
+            equipment_bonus = {
+                light_tank_chassis = { build_cost_ic = -0.05 instant = yes  } 
+                medium_tank_chassis = { build_cost_ic = -0.05 instant = yes  } 
+                heavy_tank_chassis = { build_cost_ic = -0.05 instant = yes  }
+            }
+        }
     }
 }
 
@@ -248,48 +292,59 @@ armored_cavalry = {
     available = {
         always = yes
     }
+	
     visible = {
        AND = {
             has_dlc = "No Compromise, No Surrender"
             has_dlc = "La Resistance"
         }
     }
-
-	supply_consumption_factor = -0.05
 	
 	enable_tactic = tactic_unexpected_thrust
 
     # EFFECTS
     rewards = {
-        cruiser_tanks = {	
+        cruiser_tanks = {
 			armored_car = {
-				maximum_speed = 0.1
+				breakthrough = 0.2
 			}
 			light_armor = {
-				maximum_speed = 0.1
+				breakthrough = 0.2
 			}
         }
         quick_response_force = {
-            motorized = {
-				maximum_speed = 0.1
+            armored_car = {
+				default_morale = 0.05
 			}
-			mechanized = {
-				maximum_speed = 0.1
+			light_armor = {
+				default_morale = 0.05
 			}
         }
         speed_as_armour = {
             armored_car = {
-				max_strength = 2
+				max_organisation = 10
 			}
 			light_armor = {
-				max_strength = 1
+				max_organisation = 10
 			}
         }
         fighting_reconnaissance = {
-            recon_factor = 2
+            armored_car = {
+				default_morale = 0.05
+			}
+			light_armor = {
+				default_morale = 0.05
+			}
         }
         sustained_deployments = {
-            army_fuel_capacity_factor = 0.1
+            armored_car = {
+				soft_attack = 0.05
+				hard_attack = 0.05
+			}
+			light_armor = {
+				soft_attack = 0.05
+				hard_attack = 0.05
+			}
         }
     }
 }
@@ -313,36 +368,51 @@ armored_cavalry_no_lar = {
         }
     }
 
-    supply_consumption_factor = -0.05
+    enable_tactic = tactic_unexpected_thrust
 
     # EFFECTS
     rewards = {
-        cruiser_tanks = {	
+        cruiser_tanks = {
 			armored_car = {
-				maximum_speed = 0.1
+				max_organisation = 5
 			}
 			light_armor = {
-				maximum_speed = 0.1
+				max_organisation = 5
 			}
         }
         quick_response_force = {
-            motorized = {
-				maximum_speed = 0.1
+            armored_car = {
+				default_morale = 0.05
+			}
+			light_armor = {
+				default_morale = 0.05
 			}
         }
         speed_as_armour = {
             armored_car = {
-				max_strength = 6
+				max_organisation = 5
 			}
 			light_armor = {
-				max_strength = 2
+				max_organisation = 5
 			}
         }
         fighting_reconnaissance = {
-            recon_factor = 2
+            armored_car = {
+				default_morale = 0.05
+			}
+			light_armor = {
+				default_morale = 0.05
+			}
         }
         sustained_deployments = {
-            army_fuel_capacity_factor = 0.1
+            armored_car = {
+				soft_attack = 0.1
+				hard_attack = 0.1
+			}
+			light_armor = {
+				soft_attack = 0.1
+				hard_attack = 0.1
+			}
         }
     }
 }
