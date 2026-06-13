@@ -56,24 +56,6 @@ on_actions = {
 				limit = { FROM = { is_core_of = SPR } }
 				teleport_armies = { limit = { tag = SPR } to_state = 41 } 
 			}
-
-			# Marine demolition effect
-			if = {
-				limit = {
-					ROOT = {
-						divisions_in_state = {
-							unit = marine_commando
-							size > 0
-							state = PREV
-						}
-						has_tech = marines_commandos_demolition 
-					}
-					NOT = { has_state_flag = marines_commando_effect }
-					OWNER = { NOT = { tag = ROOT } }
-				}
-				SF_marine_demoliton_effect = yes # Note: state flag not fully preventing 1 damage per division
-			}
-
 		}
 	}
 

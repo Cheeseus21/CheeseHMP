@@ -12,6 +12,34 @@ technologies = {
 	@1945 = 18
 	@1946 = 20
 	
+	special_forces_quantity_tech = {
+		allow = {
+			always = no
+		}
+
+		research_cost = 1
+		start_year = 1936
+
+		jaeger = {
+			need = { infantry_equipment = 100 special_equipment = -50 }
+		}
+		marine = {
+			need = { infantry_equipment = 100 special_equipment = -50 }
+		}
+		mountaineers = {
+			need = { infantry_equipment = 100 special_equipment = -50 }
+		}
+		camelry = {
+			need = { infantry_equipment = 100 special_equipment = -50 }
+		}
+		paratrooper = {
+			need = { infantry_equipment = 300 special_equipment = -150 }
+		}
+		marine_commando = {
+			need = { infantry_equipment = 300 special_equipment = -150 }
+		}
+	}
+	
 	advanced_field_engineering_tech = {
         
         allow = {
@@ -1013,6 +1041,9 @@ technologies = {
 			paratrooper = {
 				need = { infantry_equipment = -30 special_equipment = -50 }
 			}
+			marine_commando = {
+				need = { infantry_equipment = -30 special_equipment = -50 }
+			}
 			penal_battalion = {
 				need = { infantry_equipment = -10 }
 			}
@@ -1607,6 +1638,11 @@ technologies = {
 			leads_to_tech = paratroopers2
 			research_cost_coeff = 1
 		} 
+		
+		enable_subunits = {
+			limit = { has_dlc = "Thunder at Our Gates"}
+			hq_paratrooper
+		}
 
 		research_cost = 1
 		start_year = 1936
@@ -1699,7 +1735,8 @@ technologies = {
 			infantry_tech generic cat_special_forces_generic
 		}
 	}
-		jaegartroops = {
+	
+	jaegartroops = {
 		enable_subunits = {
 			jaeger
 		}		
@@ -1988,6 +2025,11 @@ category_armor_support_battalions = {
 	}
 	
 	support_weapons = {
+	
+		enable_subunits = {
+			fire_support
+			mot_fire_support
+		}
 
 		infantry = {
 			defense = 0.05
@@ -2216,6 +2258,11 @@ category_armor_support_battalions = {
 			mot_anti_tank_brigade
 			mot_artillery_brigade
 			mot_anti_air_brigade
+		}
+		
+		enable_subunits = {
+			limit = { has_dlc = "Thunder at Our Gates"}
+			hq_motorized
 		}
 
 		enable_equipments = {

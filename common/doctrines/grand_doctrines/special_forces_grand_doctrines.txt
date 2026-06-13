@@ -1,22 +1,16 @@
 special_forces_quantity = {
     folder = special_forces
-
     name = GRAND_DOCTRINE_SPECIAL_FORCES_QUANTITY
     description = GRAND_DOCTRINE_SPECIAL_FORCES_QUANTITY_DESC
     icon = GFX_doctrine_special_forces_1_medium
-    available = {
-        OR = {
-            has_tech = tech_mountaineers
-            has_tech = marines
-            has_tech = paratroopers
-        }
-    }
 
     xp_cost = 0
     xp_type = army
-
-    ai_will_do = {
-        base = 1
+	
+	available = {
+        NOT = {
+			has_tech = special_forces_quantity_tech
+		}
     }
 
     tracks = {
@@ -26,14 +20,19 @@ special_forces_quantity = {
 
     # EFFECTS
 
-    special_forces_cap = 0.04
-    special_forces_training_time_factor = -0.2
+    effect = {
+		custom_effect_tooltip = special_forces_quantity_tt
+		hidden_effect = {
+			set_technology = {
+				special_forces_quantity_tech = 1
+			}
+		}
+	}
 
     milestones = {
         {
-        	special_forces_cap = 0.04
             category_special_forces = {
-                soft_attack = 0.05
+                max_organisation = 5
             }
             effect = {
                 if = {
@@ -50,9 +49,8 @@ special_forces_quantity = {
             }            
         }
         {
-        	special_forces_cap = 0.04
             category_special_forces = {
-                max_organisation = 5
+                default_morale = 0.05
             }
             effect = {
                 if = {
@@ -73,25 +71,19 @@ special_forces_quantity = {
 
 special_forces_quality = {
     folder = special_forces
-
     name = GRAND_DOCTRINE_SPECIAL_FORCES_QUALITY
     description = GRAND_DOCTRINE_SPECIAL_FORCES_QUALITY_DESC
     icon = GFX_doctrine_special_forces_2_medium
-    available = {
-        OR = {
-            has_tech = tech_mountaineers
-            has_tech = marines
-            has_tech = paratroopers
-        }
-    }
 
     xp_cost = 0
     xp_type = army
-
-    ai_will_do = {
-        base = 1
+	
+	available = {
+        NOT = {
+			has_tech = special_forces_quantity_tech
+		}
     }
-
+	
     tracks = {
         special_forces_first
         special_forces_second
@@ -100,20 +92,15 @@ special_forces_quality = {
     # EFFECTS
 
     category_special_forces = {
-                max_organisation = 10
-
-    }
-    special_forces_no_supply_grace = 24
+		soft_attack = 0.05
+		hard_attack = 0.05
+	}
 
     milestones = {
         {
             category_special_forces = {
-                acclimatization_hot_climate_gain_factor = 0.1
-                acclimatization_cold_climate_gain_factor = 0.1
-                soft_attack = 0.05
-                breakthrough = 0.05
-            }
-            special_forces_cap = 0.02
+				max_organisation = 10
+			}
             effect = {
                 if = {
                     limit = {
@@ -130,12 +117,8 @@ special_forces_quality = {
         }
         {
             category_special_forces = {
-                acclimatization_hot_climate_gain_factor = 0.1
-                acclimatization_cold_climate_gain_factor = 0.1
-                soft_attack = 0.05
-                defense = 0.05
-            }
-            special_forces_cap = 0.02
+				default_morale = 0.1
+			}
             effect = {
                 if = {
                     limit = {
