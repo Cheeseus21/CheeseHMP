@@ -1,5 +1,4 @@
 NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 0								-- base days needed to prepare a naval invasion
-NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 0								-- base days needed to prepare a naval invasion
 NDefines.NNavy.NAVAL_INVASION_PLAN_CAP = 999									-- base cap of naval invasions can be planned at the same time
 NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 999							-- base cap of divisions that can be assigned in a naval invasion
 
@@ -10,7 +9,18 @@ NDefines.NMilitary.COHESION_IMMOBILE_PLANNING_SPEED_MULTIPLIER = 1	-- If using t
 
 NDefines.NCountry.NAVY_USE_HOME_BASE_FOR_RANGE = false -- If true, will calculate task force range from home base, otherwise will calculate from any friendly naval base
 NDefines.NCountry.DEFAULT_COASTAL_PROTECTION_STABILITY = 0		-- Default stability when the coastal states are fully protected
------------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
+
+-----------------------------COAL ENERGY STUFF--------------------------------------
+NDefines.NGame.ENERGY_RESOURCE = "oil"						-- resource that will give country energy 
+NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 10.0		-- How much energy per coal produces
+NDefines.NProduction.BASE_COUNTRY_ENERGY_PRODUCTION = 1000.0 			-- The base energy production of a country
+NDefines.NProduction.ENERGY_SCALING_COST_BY_FACTORY_COUNT = 0 -- Scales energy cost based on the total number of factories
+NDefines.NProduction.BASE_ENERGY_COST = 0.01						-- How much energy per factory consumes
+-----------------------------NEW DLC BS--------------------------------------
+NDefines.NMilitary.BASE_DIVISION_BRIGADE_GROUP_COST = 1 	--Base cost to unlock a regiment slot,
+NDefines.NMilitary.BASE_DIVISION_BRIGADE_CHANGE_COST = 1	--Base cost to change a regiment column.
+NDefines.NMilitary.BASE_DIVISION_SUPPORT_SLOT_COST = 1 	--Base cost to unlock a support slot
+-----------------------------DOCTRINES---------------------------------------
 NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_BASE = 1			-- Base value of the commander region limit
 NDefines.NFactions.FACTION_THEATER_COMMANDER_REGION_LIMIT_SKILL_FACTOR = 0	-- An increase to the region limit per commander skill level
 
@@ -23,15 +33,6 @@ NDefines.NDoctrines.MASTERY_BANK_CONVERSION_RATE = 0.25                    -- Th
 NDefines.NDoctrines.MASTERY_BANK_MAX = 250.0                               -- The maximum amount of mastery that can be banke
 NDefines.NDoctrines.MILITARY_ATTACHE_MASTERY_TRANSFER_FACTOR = 0         -- For each mastery track, military attaches will add this fraction of their visiting country's mastery gain (from units only) in that track
 NDefines.NDoctrines.THEATER_COMMANDER_UNITS_MASTERY_GAIN_FACTOR_PER_SKILL = 0  -- Unit in a theater commander's theater will contribute this fraction of their mastery gain to the theater commander's country, for each skill point they have in attack + defense
-
------------------------------COAL ENERGY STUFF--------------------------------------
-
-NDefines.NGame.ENERGY_RESOURCE = "oil"						-- resource that will give country energy 
-NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 10.0		-- How much energy per coal produces
-NDefines.NProduction.BASE_COUNTRY_ENERGY_PRODUCTION = 1000.0 			-- The base energy production of a country
-NDefines.NProduction.ENERGY_SCALING_COST_BY_FACTORY_COUNT = 0 -- Scales energy cost based on the total number of factories
-NDefines.NProduction.BASE_ENERGY_COST = 0.01						-- How much energy per factory consumes
-
 -----------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
 NDefines.NTechnology.BASE_YEAR_AHEAD_PENALTY_FACTOR = 2.3 -- Base year ahead penalty
 
@@ -228,7 +229,7 @@ NDefines.NMilitary.REINFORCEMENT_REQUEST_MAX_WAITING_DAYS = 7   -- Every X days 
 NDefines.NMilitary.REINFORCEMENT_REQUEST_DAYS_FREQUENCY = 7	   -- How many days must pass until we may give another reinforcement request
 ---------------------------------------------------------------
 NDefines.NCountry.GIE_EXILE_ARMY_LEADER_LEGITIMACY_LEVELS = {  	} --Legitimacy levels where a new army leader is received.
-NDefines.NCountry.GIE_CAPITULATION_WARSCORE_LEGITIMACY_FACTOR = 0    --Multiplies accumulated warscore with this factor for part of starting legitimacy.
+NDefines.NCountry.GIE_CAPITULATION_LEGITIMACY_WARSCORE_FACTOR = 0    --Multiplies accumulated warscore with this factor for part of starting legitimacy.
 NDefines.NCountry.GIE_WARSCORE_GAIN_LEGITIMACY_FACTOR = 0                --Factor on how much legitimacy is gained from warscore earned by GiE units.
 NDefines.NCountry.GIE_HOST_CIC_FROM_LEGITIMACY_MAX = 0 					--Host will receive from 0 to this value in CIC.
 NDefines.NCountry.GIE_HOST_MIC_FROM_LEGITIMACY_MAX = 0					--Host will receive from 0 to this value in MIC.
@@ -237,7 +238,6 @@ NDefines.NCountry.ATTACHE_XP_SHARE = 0                               --
 NDefines.NNavy.COMBAT_MAX_GROUPS = 1 -- vanilla is 1 
 NDefines.NNavy.SHORE_BOMBARDMENT_CAP = 0.3
 NDefines.NNavy.NAVAL_SPEED_MODIFIER = 0.05 --vanilla 0.1, controls onmap movement speed of navies, not in battle (?); affects naval invasions
-NDefines.NNavy.CARRIER_STACK_PENALTY = 2							--vanilla 0.2			max carriers is 2	vanilla 4		-- The most efficient is 4 carriers in combat. 5+ brings the penalty to the amount of wings in battle.
 NDefines.NNavy.MAX_ORG_ON_MANUAL_MOVE = 1.0	-- vanilla 0.6 org will clamped to this ratio on manual move 
 NDefines.NNavy.BASE_CARRIER_SORTIE_EFFICIENCY = 0.65
 
@@ -247,14 +247,12 @@ NDefines.NAir.NAVAL_COMBAT_EXTERNAL_PLANES_JOIN_RATIO_PER_DAY = 0.1 -- vanilla 0
 NDefines.NAir.NAVAL_COMBAT_EXTERNAL_PLANES_MIN_CAP = 20
 NDefines.NNavy.DEPTH_CHARGES_HIT_PROFILE = 70.0
 NDefines.NAir.NAVAL_STRIKE_CARRIER_MULTIPLIER = 4 -- vanilla 5
-NDefines.NNavy.NAVAL_COMBAT_AIR_CARRIER_TARGET_SCORE = 15 -- VANILLA 200
 
 NDefines.NNavy.MAX_ANTI_AIR_REDUCTION_EFFECT_ON_INCOMING_AIR_DAMAGE = 0.85 -- vanilla
 NDefines.NNavy.ANTI_AIR_TARGETING = 0.9 --vanilla value just as reference
 NDefines.NNavy.ANTI_AIR_TARGETTING_TO_CHANCE = 0.15 --Vanilla 0.2 starting value for 'will AA shoot on incoming nav' equation given by 0.15*(0.9-plane agility*0.01) with a lower bound of 0.01 (minimally 1% chance a ship will shoot on an incoming plane)
 NDefines.NNavy.ANTI_AIR_ATTACK_TO_AMOUNT = 0.01 -- the kill rate of shot-at planes; 6*ship AA value is the chance of shooting down an incoming nav; if 4 AA, 24% of planes who are shot at will be taken down (in actuality its 0.06*AA value rounded stochastically between 0 and 1)
-NDefines.NNavy.AIR_AGILITY_TO_NAVAL_STRIKE_AGILITY = 0.01 --Vanilla 0.01 the 0.01 in the equation above
-NDefines.NNavy.CARRIER_STACK_PENALTY_EFFECT = 0.2	-- DONT TOUCH THIS - ITS BUGGED AS FUCK Each carrier above the optimal amount decreases the amount of airplanes being able to takeoff by such %.
+NDefines.NAir.AIR_AGILITY_TO_NAVAL_STRIKE_AGILITY = 0.01 --Vanilla 0.01 the 0.01 in the equation above
 
 NDefines.NNavy.SHIP_TO_FLEET_ANTI_AIR_RATIO = 0.4 --vanilla was 0.25 makes it more worth it to put aa on cruisers/dds(fleet aa seems to be calculated like armor/piercing in land combat: highest+average)
 NDefines.NNavy.ANTI_AIR_POW_ON_INCOMING_AIR_DAMAGE = 0.35 -- vanilla 0.25 the lower the less effective to stack aa. makes one aa module more worth it compared to no module
@@ -344,9 +342,6 @@ NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- 1,4,1 vanilla number of hours for a gun
 1.0,	-- small guns
 }
 
---NDefines.NNavy.SUPREMACY_PER_SHIP_PER_MANPOWER = 0						-- WAS 0.0005 supremacy of a ship is calculated using its IC, manpower and a base define
---NDefines.NNavy.SUPREMACY_PER_SHIP_PER_IC= 0
---NDefines.NNavy.SUPREMACY_PER_SHIP_BASE = 1
 NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 10								-- base spotting percentage that comes from full radar coverage; vanilla is 5
 NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 15								-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
 NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SUB = 0.8					--vanilla 1.0	-- task force sub spotting value is multiplied by this and added to spotting percentage every hour; sub spotting value is average sub detection * average sub visibility enemy; the positive part of the surface detection hourly change equation when against a sub fleet.
@@ -392,7 +387,6 @@ NDefines.NNavy.SCREENING_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING				= 0 --Vani
 NDefines.NNavy.AA_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING					= 0 --Vanilla 0.7,  -- AA penalty at 0% positioning
 NDefines.NNavy.HIGHER_SHIP_RATIO_POSITIONING_PENALTY_FACTOR = 0.375 		--  0.25, -- if one side has more ships than the other, that side will get this penalty for each +100% ship ratio it has
 NDefines.NNavy.DAMAGE_PENALTY_ON_MINIMUM_POSITIONING 							= 0.7 --Vanilla 0.5,	-- damage penalty at 0% positioning 
---NDefines.NNavy.NAVAL_SUPREMACY_CAN_INVADE 								= 0.5 --Vanilla  0.5								-- required naval supremacy to perform invasions on an area
 NDefines.NNavy.BASE_ESCAPE_SPEED = 0.2                                   -- daily base escape speed (gained as percentagE)
 NDefines.NNavy.SPEED_TO_ESCAPE_SPEED = 1.5
 NDefines.NNavy.HIT_PROFILE_SPEED_FACTOR										= 0.4		-- factors speed value when determining it profile (Vis * HIT_PROFILE_MULT * Ship Hit Profile Mult)
@@ -408,18 +402,10 @@ NDefines.NNavy.GUN_HIT_PROFILES = { -- hit profiles for guns, if target ih profi
 NDefines.NTechnology.LICENSE_PRODUCTION_TECH_BONUS = 0	-- WAS 0.2 | LICENSES ARE FREE SO TECH BONUS IS TOO MUCH | License production tech bonus
 NDefines.NTechnology.BASE_RESEARCH_POINTS_SAVED = 10.0 -- Vanilla 30, reduced to decrease the value of research juggling and this competitive need to do it to the end of making macro easier with less skill variance.
 
---NDefines.NNavy.REPAIR_AND_RETURN_AMOUNT_SHIPS_LOW = 0.2 			--0.2   % of total damaged ships, that will be sent for repair-and-return in one call.
---NDefines.NNavy.REPAIR_AND_RETURN_AMOUNT_SHIPS_MEDIUM = 0.4                   --0.4   % of total damaged ships, that will be sent for repair-and-return in one call.
---NDefines.NNavy.REPAIR_AND_RETURN_AMOUNT_SHIPS_HIGH = 0.6                        --0.6   % of total damaged ships, that will be sent for repair-and-return in one call.
---IDK what this does
 
 NDefines.NNavy.COMBAT_RETREAT_DECISION_CHANCE = 0                 -- VANILLA 0.22 | There is also random factor in deciding if we should retreat or not. That causes a delay in taking decision, that sooner or later will be picked. It's needed so damaged fast ships won't troll the combat.
---IDK
 
 NDefines.NNavy.REPAIR_AND_RETURN_UNIT_DYING_STR = 0      --  VANILLA 0.2 | Str below this point is considering a single ship "dying", and a high priority to send to repair.
---useles? may need to be paired with something other than never repair   
-
---NDefines.NNavy.COMBAT_DAMAGE_TO_ORG_FACTOR = 0.6								--vanilla = 1 casting damage value to ship organisation multiplier. Use it to balance the game difficulty.
 
 NDefines.NNavy.REPAIR_AND_RETURN_PRIO_LOW = 0.7							-- % of total Strength. When below, navy will go to home base to repair.
 NDefines.NNavy.REPAIR_AND_RETURN_PRIO_MEDIUM = 0.5 -- % of total Strength. When below, navy will go to home base to repair.
@@ -531,3 +517,17 @@ NDefines.NRaids.RAID_MEDIUM_RISK_SETTING_DISASTER_MODIFIER = 0.15  -- How much t
 NDefines.NRaids.RAID_HIGH_RISK_SETTING_DISASTER_MODIFIER = 0.3  -- How much the disaster risk is modified when the dial is set to "high"
 NDefines.NRaids.TARGET_INTEL_PER_AIR_SUPERIORITY = 1				-- Air superiority over target region is scaled by this value
 
+
+-----------------------------------------------------------------------------------------------------------------------------
+------------------------------------------ NEW VANILLA DEFINES (For reference/tweaking) -------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+-- NDefines.NIndustrialOrganisation.INDUSTRIAL_ORG_TRAIT_UNLOCK_RANDOMNESS = 3
+-- NDefines.NIndustrialOrganisation.INDUSTRIAL_ORG_POLICY_CHANGE_RANDOMNESS = 3
+-- NDefines.NIndustrialOrganisation.INDUSTRIAL_ORG_RESEARCH_ASSIGN_RANDOMNESS = 3
+-- NDefines.NIndustrialOrganisation.INDUSTRIAL_ORG_PRODUCTION_ASSIGN_RANDOMNESS = 3
+-- NDefines.NIndustrialOrganisation.INDUSTRIAL_ORG_RESEARCH_BONUS_FACTOR = 10.0
+
+-- NDefines.NRaids.BASE_DAYS_TO_PREPARE = 7
+-- NDefines.NRaids.RAIDS_ENABLE_AI = true
+-- NDefines.NRaids.RAIDS_COMMAND_POWER_CAP_TO_CREATE = 60.0
+-- NDefines.NRaids.RAIDS_NUKE_TARGET_CUT_OFF = 10
