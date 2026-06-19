@@ -52,7 +52,7 @@ ideas = {
 			}
 			
 			available = {
-				date < 1941.3.3
+				date < 1941.6.3
 			}
 			
 			removal_cost = -1
@@ -527,33 +527,32 @@ ideas = {
 			
 			removal_cost = -1
 			
-			on_remove = { add_dynamic_modifier = { modifier = JAP_naval_range_spirit } 
+			on_remove = { 
 			
-			USA = { remove_ideas = { bureau_of_ordnance_spirit ernest_king } } 
-			NZL = { remove_ideas = { bureau_of_ordnance_spirit nzl_ernest_king } } 
-			BRA = { remove_ideas = { bureau_of_ordnance_spirit bra_ernest_king } }   
-			AST = { remove_ideas = { bureau_of_ordnance_spirit ast_ernest_king } }  
-			HOL = { remove_ideas = { bureau_of_ordnance_spirit hol_ernest_king } } 
-			
-			every_navy_leader = {
-				remove_unit_leader_trait = tora_tora
+				add_dynamic_modifier = { modifier = JAP_naval_range_spirit } 
+				USA = { remove_ideas = { bureau_of_ordnance_spirit ernest_king } } 
+				NZL = { remove_ideas = { bureau_of_ordnance_spirit nzl_ernest_king } } 
+				BRA = { remove_ideas = { bureau_of_ordnance_spirit bra_ernest_king } }   
+				AST = { remove_ideas = { bureau_of_ordnance_spirit ast_ernest_king } }  
+				HOL = { remove_ideas = { bureau_of_ordnance_spirit hol_ernest_king } } 
+				
+				every_navy_leader = {
+					remove_unit_leader_trait = tora_tora
+				}
 			}
-		}
+			
 			picture = generic_navy_carrier_bonus
 			
 			modifier = {
-				port_strike = 1
-				sortie_efficiency = 0.5
-				
-				naval_strike_attack_factor = 0.12
-				naval_strike_targetting_factor = 0.12
-				naval_damage_factor = 0.15
-				naval_strike_agility_factor = 0.12
+				port_strike = 1				
+				naval_strike_attack_factor = 0.2
+				naval_strike_targetting_factor = 0.2
+				naval_strike_agility_factor = 0.2
 				invasion_preparation = -0.5 
 				amphibious_invasion_defence = 1 
-				extra_marine_supply_grace = 168
-				air_mission_efficiency = 0.5
-				air_power_projection_factor  = 0.5
+				naval_invasion_planning_bonus_speed = 1
+				no_supply_grace  = 168
+				air_mission_efficiency = 1
 			}
 		}
 
@@ -1218,6 +1217,48 @@ ideas = {
 				production_factory_efficiency_gain_factor = 0.05
 				production_factory_max_efficiency_factor = 0.05
 				production_lack_of_resource_penalty_factor = -0.05
+			}
+
+		}
+		
+		JAP_autarky_prep = {
+
+			picture = SWE_hungershield 
+
+			allowed = {
+				original_tag = JAP
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				production_lack_of_resource_penalty_factor = -1
+			}
+		}
+		
+		JAP_lessons_of_war = {
+
+			picture = SWE_hungershield 
+
+			allowed = {
+				original_tag = JAP
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				army_attack_factor = 0.1
+				army_defence_factor = 0.1
+				army_org_factor = 0.1
+				army_morale_factor = 0.1
 			}
 
 		}
@@ -4126,9 +4167,9 @@ ideas = {
 	
 	
 	industrial_concern = {
+	
 		#The Big 4 Zaibatsu on Top
 		sumitomo = {
-						
 			allowed = {
 				original_tag = JAP
 			}
@@ -4136,10 +4177,15 @@ ideas = {
 			available = {
 				has_completed_focus = JAP_approach_sumitomo
 			}
+			
+			visible = {
+				always = no
+			}
 
 			research_bonus = {
-				excavation_tech = 0.05
-				cat_production = 0.05
+				excavation_tech = 0.1
+				electronics = 0.1
+				industry = 0.1
 			}
 
 			traits = { mining_zaibatsu }
@@ -4148,9 +4194,13 @@ ideas = {
 		mitsubishi_civilian = {
 
 			picture = mitsubishi
-						
+			
 			allowed = {
 				original_tag = JAP
+			}
+			
+			visible = {
+				always = no
 			}
 
 			available = {
@@ -4158,6 +4208,9 @@ ideas = {
 			}
 
 			research_bonus = {
+				excavation_tech = 0.1
+				electronics = 0.1
+				industry = 0.1
 			}
 			
 			traits = { armament_zaibatsu }
@@ -4172,7 +4225,7 @@ ideas = {
 			}
 
 			visible = {
-				
+				always = no
 			}
 
 			available = {
@@ -4180,6 +4233,7 @@ ideas = {
 			}
 
 			research_bonus = {	
+				excavation_tech = 0.1
 				electronics = 0.1
 				industry = 0.1
 			}
@@ -4200,7 +4254,7 @@ ideas = {
 			}
 
 			visible = {
-				
+				always = no
 			}
 
 			available = {
@@ -4208,14 +4262,16 @@ ideas = {
 			}
 
 			research_bonus = {
+				excavation_tech = 0.1
+				electronics = 0.1
+				industry = 0.1
 			}
 
 		
 			traits = { zaibatsu_bank } 
 
 			modifier = {
-				political_power_factor = -0.1
-				consumer_goods_expected_value = -0.05
+				
 			}
 		}
 
@@ -4327,9 +4383,10 @@ ideas = {
 			}
 
 			visible = {
-				NOT = {
-					has_completed_focus = JAP_upgrade_the_oriental_development_company
-				}
+				always = no
+				#NOT = {
+				#	has_completed_focus = JAP_upgrade_the_oriental_development_company
+				#}
 			}
 
 			available = {
@@ -4363,7 +4420,8 @@ ideas = {
 			}
 
 			visible = {
-				has_completed_focus = JAP_upgrade_the_oriental_development_company
+				always = no
+				#has_completed_focus = JAP_upgrade_the_oriental_development_company
 			}
 
 			available = {

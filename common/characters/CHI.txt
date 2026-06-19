@@ -19,7 +19,7 @@ characters = {
 			}
 			country_leader={
 				ideology=despotism
-				traits={ CHI_generallissimo_sea blue_shirt_connections_0 }
+				traits = { }
 				expire="1965.1.1.1"
 				id=-1
 			}
@@ -104,7 +104,7 @@ characters = {
 		#	id=-1
 		#}
 	}
-
+	
 	CHI_soong_mei_ling={
 		instance = {
 			allowed = {
@@ -323,7 +323,7 @@ characters = {
 				defense_skill=5
 				planning_skill=7
 				logistics_skill=7
-				visible = { has_completed_focus = CHI_draw_support_from_the_big_families }
+				#visible = { has_completed_focus = CHI_draw_support_from_the_big_families }
 			}
 
 			advisor={
@@ -342,7 +342,7 @@ characters = {
 				}
 
 				available = {
-					has_completed_focus = CHI_draw_support_from_the_big_families
+					#has_completed_focus = CHI_draw_support_from_the_big_families
 				}
 			}
 		}
@@ -1271,6 +1271,172 @@ characters = {
 
 	# T.V. Soong in shared file
 	
+	CHI_mao_renfeng = {
+
+		name = CHI_mao_renfeng
+
+		portraits = {
+			civilian = {
+				small = GFX_portrait_CHI_mao_renfeng_small
+			}
+		}
+
+		gender = male
+
+		advisor = {
+			slot = political_advisor
+			idea_token = CHI_mao_renfeng
+			available  = {
+			}
+			allowed  = {
+				original_tag  = CHI
+				has_dlc = "No Compromise, No Surrender"
+				has_dlc = "La Resistance"
+			}
+			visible = {
+			
+			}
+			traits  = {
+				CHI_spymaster
+			}
+			ai_will_do = {
+				base = 10
+			}
+		}
+
+	}
+
+	CHI_dai_jitao = {
+		name = CHI_dai_jitao
+		portraits = {
+			civilian = {
+				small = GFX_portrait_CHI_dai_jitao_small
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = CHI_dai_jitao
+			allowed  = {
+				original_tag  = CHI
+				has_dlc = "No Compromise, No Surrender"
+			}
+			visible = {
+			}
+			available  = {
+			}
+			cost = 100
+			traits  = {
+				CHI_president_of_examination_yuan 
+			}
+			ai_will_do = {
+				base = 7.5
+			}
+		}
+	}
+
+	CHI_h_h_kung={
+		instance = {
+			allowed = {
+				has_dlc = "No Compromise, No Surrender"
+			}
+
+			name = CHI_h_h_kung
+			portraits = {
+				civilian = {
+					small = "GFX_idea_CHI_h_h_kung"
+				}
+			}
+			advisor={
+				slot = political_advisor
+				idea_token = CHI_h_h_kung
+				allowed = {
+					original_tag  = CHI
+				}
+				traits = {
+					captain_of_industry 
+				}
+				visible = {
+				
+				}
+				available = {
+					#has_completed_focus = CHI_draw_support_from_the_big_families
+				}
+			}
+		}
+		instance = {
+			allowed = {
+				NOT = { has_dlc = "No Compromise, No Surrender" }
+			}
+			name = CHI_h_h_kung
+			portraits = {
+				civilian = {
+					small = "GFX_idea_CHI_h_h_kung"
+				}
+			}
+			advisor={
+				slot = political_advisor
+				idea_token = CHI_h_h_kung
+				allowed  = {
+					original_tag  = CHI
+				}
+				traits  = {
+					captain_of_industry 
+				}
+			}
+		}
+	}
+	
+	CHI_t_v_soong = {
+		instance = {
+			allowed = {
+				has_dlc = "No Compromise, No Surrender"
+			}
+			name = CHI_t_v_soong
+			portraits = {
+				army = { small="GFX_idea_CHI_t_v_soong" }
+			}
+
+			name = CHI_t_v_soong
+			portraits = {
+				army = { small="GFX_idea_CHI_t_v_soong" }
+			}
+			advisor={
+				slot = political_advisor
+				visible = {
+				}
+				available  = {
+					#has_completed_focus = CHI_draw_support_from_the_big_families
+				}
+				idea_token = CHI_t_v_soong
+				traits  = {
+					financial_expert 
+				}
+			}
+		}
+		instance = {
+			allowed = {
+				NOT = {
+					has_dlc = "No Compromise, No Surrender"
+				}
+			}
+			name = CHI_t_v_soong
+			portraits = {
+				army = { small="GFX_idea_CHI_t_v_soong" }
+			}
+			advisor={
+				slot = political_advisor
+				allowed = {
+				}
+				available = {
+				}
+				idea_token = CHI_t_v_soong
+				traits  = {
+					financial_expert 
+				}
+			}
+		}
+	}
+	
 	CHI_chiang_ching_kuo={
 		instance = {
 			allowed = {
@@ -1286,16 +1452,7 @@ characters = {
 				slot = political_advisor
 				idea_token = CHI_chiang_ching_kuo
 				available  = {
-					OR = {
-						has_country_leader  = {
-							ruling_only  = yes 
-							character  = CHI_chiang_kaishek
-						}
-						has_country_leader  = { # TODO_JNS Maybe this is an easter egg?
-							ruling_only  = yes 
-							character  = CHI_soong_mei_ling
-						}
-					}
+				
 				}
 				allowed  = {
 					original_tag  = CHI
@@ -1305,27 +1462,6 @@ characters = {
 				}
 			}
 		}
-		# instance = {
-			# allowed = {
-				# NOT = { #has_dlc = "No Compromise, No Surrender" }
-			# }
-			# name=CHI_chiang_ching_kuo
-			# portraits={
-				# civilian={
-					# small="GFX_idea_CHI_chiang_ching_kuo"
-				# }
-			# }
-			# advisor={
-				# slot = political_advisor
-				# idea_token = CHI_chiang_ching_kuo
-				# allowed  = {
-					# original_tag  = CHI
-				# }
-				# traits  = {
-					# silent_workhorse 
-				# }
-			# }
-		# }
 	}
 
 	CHI_chen_yi={
@@ -1413,9 +1549,6 @@ characters = {
 				allowed = {
 					original_tag  = CHI
 				}
-				available = {
-					has_completed_focus = CHI_denounce_feudalism
-				}
 				traits  = {
 					CHI_cc_clique_leader_trait  
 				}
@@ -1476,7 +1609,7 @@ characters = {
 			}
 
 			available = {
-				has_completed_focus = CHI_draw_support_from_the_big_families
+				#has_completed_focus = CHI_draw_support_from_the_big_families
 			}
 		}
 	}

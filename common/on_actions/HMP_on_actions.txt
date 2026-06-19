@@ -64,6 +64,18 @@ on_actions = {
 	}
 	on_startup = {
         effect = {
+            # Pacific BOP Island Targets
+            560 = { save_global_event_target_as = bop_iwo_jima }
+            180 = { save_global_event_target_as = bop_minamitorishima }
+            409 = { save_global_event_target_as = bop_saipan }
+            140 = { save_global_event_target_as = bop_guam }
+            488 = { save_global_event_target_as = bop_palau }
+            353 = { save_global_event_target_as = bop_wake }
+            420 = { save_global_event_target_as = bop_midway }
+            141 = { save_global_event_target_as = bop_johnston }
+            416 = { save_global_event_target_as = bop_hawaii }
+        }
+        effect = {
 			IF = {
 				limit = {
 					NOT = { has_dlc = "Trial of Allegiance" }
@@ -156,6 +168,23 @@ on_actions = {
 		}
 		
 		effect = {
+			if = {
+				limit = { 
+					has_game_rule = { 
+						rule = horst_china_war 
+						option = horst_china_war_on
+					} 
+				}
+				every_state = {
+					limit = { is_core_of = CHI }
+					add_dynamic_modifier = { modifier = CHI_state_defense_modifier }
+				}
+				
+				# 2. Apply Dynamic Supply Modifier to Japan
+				JAP = {
+					add_dynamic_modifier = { modifier = JAP_china_war_supply_modifier }
+				}
+			}
             JAP = {
                 if = {
                     limit = { 
@@ -172,6 +201,8 @@ on_actions = {
 					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 3040 }
 					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 3050 }
 					add_equipment_to_stockpile = { type = train_equipment_1 amount = 220 }
+					
+					add_dynamic_modifier = { modifier = JAP_china_war_modifier }
 				}
 			}
 			
@@ -183,17 +214,19 @@ on_actions = {
 							option = horst_china_war_on
 						} 
                     }
-					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 50000 }
+					add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 50000 }
 					add_equipment_to_stockpile = { type = support_equipment_1 amount = 1250 }
 					add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 2250 }
 					add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 750 }
 					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 1250 }
 					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 1325 }
 					add_equipment_to_stockpile = { type = train_equipment_1 amount = 55 }
+					
+					add_dynamic_modifier = { modifier = CHI_china_war_modifier }
 				}
 			}
-			
-			SOV = {
+            
+            SOV = {
                 if = {
                     limit = { 
                         has_game_rule = { 
@@ -664,95 +697,30 @@ on_actions = {
 	}	
 
 	on_state_control_changed = {
+        # effect = {
+			# if = {
+				# limit = {
+					# FROM.FROM = {
+						# OR = {
+							# state = 308 state = 681 state = 570 state = 697 state = 511 
+							# state = 411 state = 700 state = 482 state = 695 state = 696 
+							# state = 698 state = 694 state = 678 state = 677 state = 508 
+							# state = 457 state = 475 state = 474 state = 680 state = 462 
+							# state = 325 state = 679 state = 557 state = 561 state = 476
+						# }
+					# }
+					# has_game_rule = {
+						# rule = horst_china_war
+						# option = horst_china_war_on
+					# }
+				# }
+				
+				# JAP = { JAP_china_war_buff_calc = yes }
+				# CHI = { CHI_china_war_buff_calc = yes }
+			# }
+		# }
+        
 		effect = {
-			if = {
-				limit = {
-					FROM.FROM = { is_core_of = CHI }
-					ROOT = { NOT = { tag = CHI } }
-					JAP = { NOT = { has_global_flag = china_war_ended } }
-					has_game_rule = { 
-						rule = horst_china_war 
-						option = horst_china_war_on
-					} 
-				}
-				FROM.FROM = {
-					# Add plenty of slots first so the game doesn't panic about limits
-					add_extra_state_shared_building_slots = 15
-					
-					# Wipe industry to 0 explicitly.
-					# This clears the state so the next command is always an "upgrade" (0 -> 5),
-					# which HoI4 handles much more reliably than a "downgrade".
-					set_building_level = { type = industrial_complex level = 0 }
-					set_building_level = { type = arms_factory level = 0 }
-					
-					# Set the desired level
-					# Since the state is now empty, this will cleanly set it to 5.
-					set_building_level = { type = industrial_complex level = 5 }
-					set_building_level = { type = arms_factory level = 5 }
-				}
-			}
-		}
-		effect = {
-			if = {
-				limit = { 
-					FROM.FROM = { is_libyan_state = yes }
-					FROM = { OR ={ is_in_faction_with = GER tag = GER } }
-				}
-				ITA = {
-					add_to_variable = {
-						var= AXIS_COMPASS_SUPPLY_supply_consumption_factor value = -0.025
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_SUPPLY_supply_node_range value = 0.05
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_SUPPLY_army_strength_factor value = 0.1
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_dig_in_speed_factor value = 0.1
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_pocket_penalty value = -0.05
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_planning_speed value = 0.1
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_org_loss_at_low_org_factor value = -0.05
-					}					
-				}
-			}
-			
-			if = {
-				limit = { 
-					FROM.FROM = { is_libyan_state = yes }
-					FROM = { OR ={ is_in_faction_with = ENG tag = ENG } }
-				}
-				ITA = {
-					add_to_variable = {
-						var= AXIS_COMPASS_SUPPLY_supply_consumption_factor value = 0.025
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_SUPPLY_supply_node_range value = -0.05
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_SUPPLY_army_strength_factor value = -0.1
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_dig_in_speed_factor value = -0.1
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_pocket_penalty value = 0.05
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_planning_speed value = -0.1
-					}
-					add_to_variable = {
-						var= AXIS_COMPASS_org_loss_at_low_org_factor value = 0.05
-					}					
-				}
-			}		
-			
 			if = { 
 				limit = { 
 					OR = {  
@@ -868,230 +836,230 @@ on_actions = {
 			}
 		}
 		effect = {
-			
-			# BURMA
-			if = {
-				limit = {
-					FROM = { OR = { original_tag = RAJ original_tag = ENG } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 288 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_burma } }
-			}
-			if = {
-				limit = {
-					ROOT = { OR = { original_tag = RAJ original_tag = ENG } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 288 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_burma } }
-			}
+            
+			##BURMA
+			# if = {
+				# limit = {
+					# FROM = { OR = { original_tag = RAJ original_tag = ENG } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 288 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_burma } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { OR = { original_tag = RAJ original_tag = ENG } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 288 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_burma } }
+			# }
 
-			# PAPUA
-			if = {
-				limit = {
-					FROM = { OR = { original_tag = AST original_tag = ENG original_tag = NZL original_tag = CAN original_tag = SAF original_tag = RAJ } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 523 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_papua } }
-			}
-			if = {
-				limit = {
-					ROOT = { OR = { original_tag = AST original_tag = ENG original_tag = NZL original_tag = CAN original_tag = SAF original_tag = RAJ } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 523 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_papua } }
-			}
+			##PAPUA
+			# if = {
+				# limit = {
+					# FROM = { OR = { original_tag = AST original_tag = ENG original_tag = NZL original_tag = CAN original_tag = SAF original_tag = RAJ } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 523 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_papua } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { OR = { original_tag = AST original_tag = ENG original_tag = NZL original_tag = CAN original_tag = SAF original_tag = RAJ } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 523 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_papua } }
+			# }
 
-			# JAVA
-			if = {
-				limit = {
-					FROM = { original_tag = USA JAP = { has_government = fascism } }
-					FROM.FROM = { state = 335 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_java } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = USA JAP = { has_government = fascism } }
-					FROM.FROM = { state = 335 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_java } }
-			}
+			##JAVA
+			# if = {
+				# limit = {
+					# FROM = { original_tag = USA JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 335 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_java } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = USA JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 335 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_java } }
+			# }
 
-			# CEYLON
-			if = {
-				limit = {
-					FROM = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 422 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_ceylon } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 422 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_ceylon } }
-			}
+			##CEYLON
+			# if = {
+				# limit = {
+					# FROM = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 422 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_ceylon } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 422 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_ceylon } }
+			# }
 
-			# GABON
-			if = {
-				limit = {
-					FROM = { OR = { original_tag = FRA original_tag = ENG original_tag = CAN original_tag = SAF } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 539 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gabon } }
-			}
-			if = {
-				limit = {
-					ROOT = { OR = { original_tag = FRA original_tag = ENG original_tag = CAN original_tag = SAF } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 539 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gabon } }
-			}
+			##GABON
+			# if = {
+				# limit = {
+					# FROM = { OR = { original_tag = FRA original_tag = ENG original_tag = CAN original_tag = SAF } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 539 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gabon } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { OR = { original_tag = FRA original_tag = ENG original_tag = CAN original_tag = SAF } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 539 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gabon } }
+			# }
 
-			# KHARTOUM
-			if = {
-				limit = {
-					FROM = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 551 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_khartoum } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 551 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_khartoum } }
-			}
+			##KHARTOUM
+			# if = {
+				# limit = {
+					# FROM = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 551 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_khartoum } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 551 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_khartoum } }
+			# }
 
-			# ADEN
-			if = {
-				limit = {
-					FROM = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 574 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_aden } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 574 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_aden } }
-			}
+			##ADEN
+			# if = {
+				# limit = {
+					# FROM = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 574 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_aden } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 574 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_aden } }
+			# }
 
-			# GIBRALTAR
-			if = {
-				limit = {
-					FROM = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 118 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gibraltar } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 118 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gibraltar } }
-			}
+			##GIBRALTAR
+			# if = {
+				# limit = {
+					# FROM = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 118 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gibraltar } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 118 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_gibraltar } }
+			# }
 
-			# ABU DHABI
-			if = {
-				limit = {
-					FROM = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 138 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_abu_dhabi } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = ENG JAP = { has_government = fascism } }
-					FROM.FROM = { state = 138 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_abu_dhabi } }
-			}
+			##ABU DHABI
+			# if = {
+				# limit = {
+					# FROM = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 138 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_abu_dhabi } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = ENG JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 138 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_abu_dhabi } }
+			# }
 
-			# TRIPOLI
-			if = {
-				limit = {
-					FROM = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 448 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_tripoli } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 448 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_tripoli } }
-			}
+			##TRIPOLI
+			# if = {
+				# limit = {
+					# FROM = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 448 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_tripoli } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 448 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_tripoli } }
+			# }
 
-			# IWO JIMA
-			if = {
-				limit = {
-					FROM = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 560 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_iwo_jima } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 560 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_iwo_jima } }
-			}
+			##IWO JIMA
+			# if = {
+				# limit = {
+					# FROM = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 560 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_iwo_jima } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 560 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_iwo_jima } }
+			# }
 
-			# CAIRO
-			if = {
-				limit = {
-					FROM = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 305 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_cairo } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 305 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_cairo } }
-			}
+			##CAIRO
+			# if = {
+				# limit = {
+					# FROM = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 305 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_cairo } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 305 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_cairo } }
+			# }
 
-			# BANGKOK
-			if = {
-				limit = {
-					FROM = { OR = { original_tag = JAP original_tag = SIA } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 289 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_bangkok } }
-			}
-			if = {
-				limit = {
-					ROOT = { OR = { original_tag = JAP original_tag = SIA } JAP = { has_government = fascism } }
-					FROM.FROM = { state = 289 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_bangkok } }
-			}
+			##BANGKOK
+			# if = {
+				# limit = {
+					# FROM = { OR = { original_tag = JAP original_tag = SIA } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 289 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_bangkok } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { OR = { original_tag = JAP original_tag = SIA } JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 289 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_bangkok } }
+			# }
 
-			# PALAU
-			if = {
-				limit = {
-					FROM = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 488 }
-				}
-				USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_palau } }
-			}
-			if = {
-				limit = {
-					ROOT = { original_tag = JAP JAP = { has_government = fascism } }
-					FROM.FROM = { state = 488 }
-				}
-				USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_palau } }
-			}
+			##PALAU
+			# if = {
+				# limit = {
+					# FROM = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 488 }
+				# }
+				# USA = { add_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_palau } }
+			# }
+			# if = {
+				# limit = {
+					# ROOT = { original_tag = JAP JAP = { has_government = fascism } }
+					# FROM.FROM = { state = 488 }
+				# }
+				# USA = { remove_power_balance_modifier = { id = USA_power_balance modifier = USA_power_balance_palau } }
+			# }
 
 			if = { #Italy loses a state
 				limit = {
@@ -1515,6 +1483,165 @@ on_actions = {
 
 	
 	on_weekly_SOV = {
+		effect = {
+			JAP = {
+				# 1. Clean the counting variables
+				clear_variable = JAP_cw_supply_states_count
+				clear_array = JAP_SUPPLY_STATES
+				
+				# 2. Count the states
+				every_state = {
+					limit = {
+						# CONTROLLER CHECK: Is it JAP, a subject, or an ally?
+						OR = {
+							is_controlled_by = JAP
+							any_country = {
+								controls_state = PREV # PREV scopes back to the State
+								OR = {
+									is_subject_of = JAP
+									is_in_faction_with = JAP
+								}
+							}
+						}
+						# QUICK FILTER: Only check these 26 specific states
+						OR = {
+							state = 308 state = 681 state = 570 state = 697 state = 511 
+							state = 411 state = 700 state = 482 state = 695 state = 696 
+							state = 698 state = 694 state = 678 state = 677 state = 508 
+							state = 457 state = 475 state = 474 state = 680 state = 462 
+							state = 325 state = 679 state = 557 state = 561 state = 476
+							state = 272
+						}
+					}
+					add_to_array = { array = JAP.JAP_SUPPLY_STATES value = THIS }
+				}
+			}
+		}
+        effect = {
+            if = {
+                limit = {
+                    has_game_rule = {
+                        rule = horst_china_war
+                        option = horst_china_war_on
+                    }
+                    NOT = { has_global_flag = china_war_ended }
+                }
+                
+                if = {
+                    limit = { country_exists = JAP }
+                    JAP = { JAP_china_war_buff_calc = yes }
+					JAP = { JAP_china_war_supply_calc_effect = yes }
+                }
+                
+                if = {
+                    limit = { country_exists = CHI }
+                    CHI = { CHI_china_war_buff_calc = yes }
+                }
+            }
+        }
+        effect = {
+            # Pacific BOP Island Evaluation
+            USA = {
+                # 560 - IWO JIMA
+                if = {
+                    limit = { 560 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_axis }
+                }
+
+                # 180 - MINAMITORISHIMA
+                if = {
+                    limit = { 180 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_axis }
+                }
+
+                # 409 - SAIPAN
+                if = {
+                    limit = { 409 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_axis }
+                }
+
+                # 140 - GUAM
+                if = {
+                    limit = { 140 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_axis }
+                }
+
+                # 488 - PALAU
+                if = {
+                    limit = { 488 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_axis }
+                }
+
+                # 353 - WAKE ISLAND
+                if = {
+                    limit = { 353 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_axis }
+                }
+
+                # 420 - MIDWAY
+                if = {
+                    limit = { 420 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_axis }
+                }
+
+                # 141 - JOHNSTON ATOLL
+                if = {
+                    limit = { 141 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_axis }
+                }
+
+                # 416 - HAWAII
+                if = {
+                    limit = { 416 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_axis }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_allies }
+                }
+                else = {
+                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_allies }
+                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_axis }
+                }
+            }
+        }
 		effect = {
 			JAP = { 
 				calc_japanese_pacific_navy_bonus = yes 

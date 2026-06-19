@@ -5,6 +5,21 @@
 # ██║░░██║╚█████╔╝██║░░██║██████╔╝░░░██║░░░  ░░░██║░░░██║░░██║██║╚██████╔╝╚██████╔╝███████╗██║░░██║██████╔╝
 # ╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░  ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░╚═════╝░░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░
 
+CHI_ll_check_trigger = {
+    custom_trigger_tooltip = { 
+        tooltip = CHI_below_monthly_cap_tt
+        
+        # Check if the monthly cap hasn't been exceeded yet
+        ROOT = {  
+            check_variable = { 
+                var = CHI_ll_this_month 
+                value = CHI_ll_monthly_cap  
+                compare = less_than 
+            } 
+        }
+    }
+}
+
 is_controlled_by_ROOT_or_ally = {
 	custom_trigger_tooltip = {
 		tooltip = is_controlled_by_ROOT_or_ally
@@ -376,6 +391,7 @@ CHI_coastal_states = {
 		state = 475
 		state = 476
 		state = 457
+		state = 697
 	} 
 }
 

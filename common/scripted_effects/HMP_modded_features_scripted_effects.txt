@@ -41,6 +41,386 @@
 # ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 # ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 
+	JAP_china_war_supply_calc_effect = {
+		# 1. Clean the counting variables
+		clear_variable = JAP_cw_supply_states_count
+		clear_array = JAP_SUPPLY_STATES
+		
+		# 2. Count the states
+		every_state = {
+			limit = {
+				# QUICK FILTER: Only check these 26 specific states
+				OR = {
+					state = 308 state = 681 state = 570 state = 697 state = 511 
+					state = 411 state = 700 state = 482 state = 695 state = 696 
+					state = 698 state = 694 state = 678 state = 677 state = 508 
+					state = 457 state = 475 state = 474 state = 680 state = 462 
+					state = 325 state = 679 state = 557 state = 561 state = 476
+					state = 272
+				}
+				# CONTROLLER CHECK: Is it JAP, a subject, or an ally?
+				OR = {
+					is_controlled_by = JAP
+					any_country = {
+						controls_state = PREV # PREV scopes back to the State
+						OR = {
+							is_subject_of = JAP
+							is_in_faction_with = JAP
+						}
+					}
+				}
+			}
+			add_to_array = { array = JAP.JAP_SUPPLY_STATES value = THIS }
+		}
+		
+		set_variable = { JAP_cw_supply_states_count = JAP_SUPPLY_STATES^num }
+		
+		# 3. Calculate Base Supply Penalty (2.5% per state)
+		set_variable = { JAP_cw_supply_consumption_factor = JAP_cw_supply_states_count }
+		multiply_variable = { JAP_cw_supply_consumption_factor = 0.025 }
+		
+		# 4. Apply the Permanent Relief Variable
+		if = {
+			limit = { check_variable = { JAP_supply_relief_amount > 0 } }
+			subtract_from_variable = { JAP_cw_supply_consumption_factor = JAP_supply_relief_amount }
+			
+			# Clamp to prevent it from giving a bonus
+			if = {
+				limit = { check_variable = { JAP_cw_supply_consumption_factor < 0 } }
+				set_variable = { JAP_cw_supply_consumption_factor = 0 }
+			}
+		}
+		
+		# 5. Safety Clamp: Ensure the supply penalty NEVER exceeds 50%
+		if = {
+			limit = { check_variable = { JAP_cw_supply_consumption_factor > 0.50 } }
+			set_variable = { JAP_cw_supply_consumption_factor = 0.50 }
+		}
+	}
+
+	JAP_supply_penalty_calc = {
+		# 1. Ensure the modifier is actually applied
+		if = {
+			limit = { NOT = { has_dynamic_modifier = { modifier = JAP_china_war_supply_modifier } } }
+			add_dynamic_modifier = { modifier = JAP_china_war_supply_modifier }
+		}
+
+		# 2. Count the states cleanly
+		clear_variable = JAP.JAP_cw_supply_states_count
+		clear_array    = JAP.JAP_SUPPLY_STATES
+
+		every_state = {
+			limit = {
+				CONTROLLER = { 
+					OR = {
+						tag = JAP
+						is_subject_of = JAP
+						is_in_faction_with = JAP
+					}
+				}
+				OR = {
+					state = 308 state = 681 state = 570 state = 697 state = 511 
+					state = 411 state = 700 state = 482 state = 695 state = 696 
+					state = 698 state = 694 state = 678 state = 677 state = 508 
+					state = 457 state = 475 state = 474 state = 680 state = 462 
+					state = 325 state = 679 state = 557 state = 561 state = 476
+				}
+			}
+			add_to_array = { array = JAP.JAP_SUPPLY_STATES value = THIS }
+		}
+		
+		set_variable = { var = JAP.JAP_cw_supply_states_count value = JAP.JAP_SUPPLY_STATES^num }
+		
+		# 3. Calculate Supply Consumption (+1.5% per state captured)
+		JAP = {
+			set_variable = { JAP_cw_supply_consumption_factor = JAP_cw_supply_states_count }
+			multiply_variable = { JAP_cw_supply_consumption_factor = 0.015 }
+
+			# 4. Apply Decision Trade-off (Halve supply penalty, but deduct 10% from existing output variables)
+			if = {
+				limit = { has_country_flag = JAP_supply_penalty_reduced }
+				
+				multiply_variable = { JAP_cw_supply_consumption_factor = 0.5 }
+				
+				# Note: This requires JAP_china_war_buff_calc to run BEFORE this script 
+				# so we can safely subtract 10% from the factory output calculated there.
+				subtract_from_variable = { JAP_cw_industrial_capacity_factory = 0.10 }
+				subtract_from_variable = { JAP_cw_industrial_capacity_dockyard = 0.10 }
+			}
+		}
+	}
+
+	CHI_apply_state_nerfs_effect = {
+		every_state = {
+			limit = { 
+				is_core_of = CHI 
+				NOT = { has_dynamic_modifier = { modifier = CHI_state_defense_modifier } }
+			}
+			# Using a flat add (no days = X) makes it permanent until removed
+			add_dynamic_modifier = { modifier = CHI_state_defense_modifier }
+		}
+	}
+
+	CHI_remove_state_nerfs_effect = {
+		every_state = {
+			limit = { is_core_of = CHI }
+			remove_dynamic_modifier = { modifier = CHI_state_defense_modifier }
+		}
+	}
+
+	JAP_china_war_buff_calc = {
+		# 1. Reset variables and clear the array to ensure a fresh count
+		clear_variable = JAP.JAP_cw_controlled_states_count
+		clear_array = JAP.JAP_CHINA_STATES
+
+		# 2. Loop through all 26 states and check if Japan controls them
+		every_state = {
+			limit = {
+				# QUICK FILTER: Only check these specific states
+				OR = {
+					state = 308 state = 681 state = 570 state = 697 state = 511 
+					state = 411 state = 700 state = 482 state = 695 state = 696 
+					state = 698 state = 694 state = 678 state = 677 state = 508 
+					state = 457 state = 475 state = 474 state = 680 state = 462 
+					state = 325 state = 679 state = 557 state = 561 state = 476
+					state = 272
+				}
+				# CONTROLLER CHECK: Is it JAP, a subject, or an ally?
+				OR = {
+					is_controlled_by = JAP
+					any_country = {
+						controls_state = PREV
+						OR = {
+							is_subject_of = JAP
+							is_in_faction_with = JAP
+						}
+					}
+				}
+			}
+			# If true, add the state to the array
+			add_to_array = { array = JAP.JAP_CHINA_STATES value = THIS }
+		}
+		
+		# 3. Get the total number of states controlled from the array's size
+		set_variable = { var = JAP.JAP_cw_controlled_states_count value = JAP.JAP_CHINA_STATES^num }
+		
+		# ---------------------------------------------------------
+		# 4. APPLY THE MATH TO THE DYNAMIC MODIFIER VARIABLES
+		# ---------------------------------------------------------
+		
+		# FACTORY OUTPUT (+3.0% per state captured)
+		set_variable = { var = JAP.JAP_cw_industrial_capacity_factory value = JAP.JAP_cw_controlled_states_count }
+		multiply_variable = { var = JAP.JAP_cw_industrial_capacity_factory value = 0.015 }
+
+		# DOCKYARD OUTPUT (+3.0% per state captured)
+		set_variable = { var = JAP.JAP_cw_industrial_capacity_dockyard value = JAP.JAP_cw_controlled_states_count }
+		multiply_variable = { var = JAP.JAP_cw_industrial_capacity_dockyard value = 0.015 }
+		
+		# MILITARY FACTORY CONSTRUCTION SPEED (+5.0% per state captured)
+		set_variable = { var = JAP.JAP_cw_production_speed_arms_factory_factor value = JAP.JAP_cw_controlled_states_count }
+		multiply_variable = { var = JAP.JAP_cw_production_speed_arms_factory_factor value = 0.015 }
+		
+		# CIVILIAN FACTORY CONSTRUCTION SPEED (+5.0% per state captured)
+		set_variable = { var = JAP.JAP_cw_production_speed_industrial_complex_factor value = JAP.JAP_cw_controlled_states_count }
+		multiply_variable = { var = JAP.JAP_cw_production_speed_industrial_complex_factor value = 0.015 }
+
+		# DOCKYARD CONSTRUCTION SPEED (+5.0% per state captured)
+		set_variable = { var = JAP.JAP_cw_production_speed_dockyard_factor value = JAP.JAP_cw_controlled_states_count }
+		multiply_variable = { var = JAP.JAP_cw_production_speed_dockyard_factor value = 0.015 }
+		
+		# CONSUMER GOODS (-0.1% per state captured)
+		#set_variable = { var = JAP.JAP_cw_consumer_goods_expected_value value = JAP.JAP_cw_controlled_states_count }
+		#multiply_variable = { var = JAP.JAP_cw_consumer_goods_expected_value value = -0.01 }
+
+		# ---------------------------------------------------------
+		# ARMY STRENGTH FACTOR
+		# Starts at 1.0 (+100%). We subtract (States Controlled * 0.05).
+		# To ensure we stay closer to 100% at the start, we can add a modifier 
+		# for starting states or reduce the penalty coefficient.
+		# ---------------------------------------------------------
+		
+		# Set the baseline to 100%
+		set_variable = { var = JAP.JAP_cw_army_strength_factor value = 1.0 }
+		
+		# Calculate the total drop (States Controlled * 0.05)
+		set_temp_variable = { var = temp_strength_drop value = JAP.JAP_cw_controlled_states_count }
+		
+		# Adjust the penalty coefficient (e.g., reduce 0.05 to 0.02 to make it less punishing)
+		multiply_temp_variable = { var = temp_strength_drop value = 0.02 } 
+		
+		# Subtract the drop from the baseline
+		subtract_from_variable = { var = JAP.JAP_cw_army_strength_factor value = temp_strength_drop }
+	}
+
+	CHI_china_war_buff_calc = {
+		# 1. Reset variables and clear the array
+		clear_variable = CHI.CHI_cw_lost_states_count
+		clear_array = CHI.CHI_LOST_STATES
+
+		# 2. Loop through the 26 states and check if Japan controls them
+		every_state = {
+			limit = {
+				# QUICK FILTER: Only check these specific states
+				OR = {
+					state = 308 state = 681 state = 570 state = 697 state = 511 
+					state = 411 state = 700 state = 482 state = 695 state = 696 
+					state = 698 state = 694 state = 678 state = 677 state = 508 
+					state = 457 state = 475 state = 474 state = 680 state = 462 
+					state = 325 state = 679 state = 557 state = 561 state = 476
+					state = 272
+				}
+				# CONTROLLER CHECK: Is it JAP, a subject, or an ally?
+				OR = {
+					is_controlled_by = JAP
+					any_country = {
+						controls_state = PREV
+						OR = {
+							is_subject_of = JAP
+							is_in_faction_with = JAP
+						}
+					}
+				}
+			}
+			# If true, add the state to the array
+			add_to_array = { array = CHI.CHI_LOST_STATES value = THIS }
+		}
+		
+		# 3. Get the total number of states lost
+		set_variable = { var = CHI.CHI_cw_lost_states_count value = CHI.CHI_LOST_STATES^num }
+		
+		# ---------------------------------------------------------
+		# 4. APPLY THE MATH TO THE DYNAMIC MODIFIER VARIABLES
+		# ---------------------------------------------------------
+		
+		# SUPPLY NODE RANGE
+		# We want: 1.0 - (count * 0.025)
+		set_variable = { var = CHI.CHI_cw_supply_node_range value = CHI.CHI_cw_lost_states_count }
+		multiply_variable = { var = CHI.CHI_cw_supply_node_range value = -0.025 }
+		add_to_variable = { var = CHI.CHI_cw_supply_node_range value = 1.0 }
+		
+		# Safety clamp: Ensure it never goes below 0.0 (0%)
+		if = {
+			limit = { 
+				check_variable = { 
+					var = CHI.CHI_cw_supply_node_range 
+					value = 0.0 
+					compare = less_than 
+				} 
+			}
+			set_variable = { var = CHI.CHI_cw_supply_node_range value = 0.0 }
+		}
+
+		# ARMY ORG FACTOR
+		# Starts at -0.30 (-30%) and increases by 0.05 (+5.0%) per captured state
+		set_variable = { var = CHI.CHI_cw_army_org_factor value = -0.30 }
+		
+		set_temp_variable = { var = temp_org_increase value = CHI.CHI_cw_lost_states_count }
+		multiply_temp_variable = { var = temp_org_increase value = 0.05 }
+		add_to_variable = { var = CHI.CHI_cw_army_org_factor value = temp_org_increase }
+
+		# Safety clamp: Ensure it never goes above 0.30 (+30%)
+		if = {
+			limit = { check_variable = { var = CHI.CHI_cw_army_org_factor value > 0.30 } }
+			set_variable = { var = CHI.CHI_cw_army_org_factor value = 0.30 }
+		}
+
+		# MILITARY OUTPUT
+		# Starts at 0.0 (0%) and increases by 0.05 (+5%) per captured state
+		set_variable = { var = CHI.CHI_cw_industrial_capacity_factory value = 0.0 }
+		
+		set_temp_variable = { var = temp_industrial_capacity_factory_increase value = CHI.CHI_cw_lost_states_count }
+		multiply_temp_variable = { var = temp_industrial_capacity_factory_increase value = 0.025 }
+		add_to_variable = { var = CHI.CHI_cw_industrial_capacity_factory value = temp_industrial_capacity_factory_increase }
+	}
+
+	# ---------------------------------------------------------
+	# CHINESE LEND LEASE EFFECTS
+	# ---------------------------------------------------------
+
+	HMP_guns_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_GunsSent value = 25000 } }
+		send_equipment = { equipment = infantry_equipment amount = 25000 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_arty_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_ArtySent value = 4000 } }
+		send_equipment = { equipment = artillery_equipment amount = 4000 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_rarty_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_RartySent value = 2500 } }
+		send_equipment = { equipment = rocket_artillery_equipment amount = 2500 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_at_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_ATSent value = 3000 } }
+		send_equipment = { equipment = anti_tank_equipment amount = 3000 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_aa_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_AASent value = 3250 } }
+		send_equipment = { equipment = anti_air_equipment amount = 3250 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_sup_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_SupSent value = 3250 } }
+		send_equipment = { equipment = support_equipment amount = 3250 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_fighter_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_FighterSent value = 250 } }
+		send_equipment = { equipment = small_plane_airframe amount = 250 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_cas_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_CasSent value = 250 } }
+		send_equipment = { equipment = small_plane_cas_airframe amount = 250 target = CHI }
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_mot_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_MotSent value = 5000 } }
+		send_equipment = { equipment = motorized_equipment amount = 5000 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_mech_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_MechSent value = 1000 } }
+		send_equipment = { equipment = mech_chassis amount = 1000 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_light_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_LightSent value = 500 } }
+		send_equipment = { equipment = light_tank_chassis amount = 500 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
+	HMP_med_to_chi = { 
+		ROOT = { add_to_variable = { var = CHI_ll_this_month value = 5 } }
+		CHI = { add_to_variable = { var = CHI_MedSent value = 400 } }
+		send_equipment = { equipment = medium_tank_chassis amount = 400 target = CHI } 
+		send_equipment = { equipment = convoy amount = 5 target = SWE }
+	}
+
 	SOV_calculate_dual_purpose_mils = {
 		# 1. Get our current total civilian factories
 		set_variable = { var = SOV_tracked_mils_reward value = num_of_civilian_factories }
@@ -3476,38 +3856,38 @@
         JAP = { transfer_state = 498 }    
         USA = { add_war_support = 0.15 } 
 
-        JAP = {
-            add_ace = { type = "fighter_unique" name = "Kenichi" surname = "Abe" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Takahide" surname = "Aioi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Sadaaki" surname = "Akamatsu" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Takeo" surname = "Banno" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Kisaji" surname = "Beppu" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Jiro" surname = "Chono" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Sachio" surname = "Endo" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Kihei" surname = "Fujiwara" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Yoshishige" surname = "Hayashi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Hiroshi" surname = "Gomi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Kurakazu" surname = "Goto" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Sakuji" surname = "Hayashi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Teigo" surname = "Ishida" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Ishizuka" surname = "Tokuyasu" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Ryotaro" surname = "Jobo" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Akira" surname = "Kawakita" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Saburo" surname = "Kitahata" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Shiro" surname = "Kuratori" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Hideo" surname = "Maeda" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Yutaka" surname = "Morioka" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Nobuji" surname = "Negishi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Yoshio" surname = "Oishi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Shinobu" surname = "Terada" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Takao" surname = "Sakano" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Yasuhiro" surname = "Shigematsu" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Tadao" surname = "Sumi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Shogo" surname = "Takeuchi" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Sadao" surname = "Uehara" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Hideo" surname = "Watanabe" callsign = "Tigre" }
-            add_ace = { type = "fighter_unique" name = "Yoshitaro" surname = "Yoshioka" callsign = "Tigre" }
-        }
+        # JAP = {
+            # add_ace = { type = "fighter_unique" name = "Kenichi" surname = "Abe" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Takahide" surname = "Aioi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Sadaaki" surname = "Akamatsu" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Takeo" surname = "Banno" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Kisaji" surname = "Beppu" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Jiro" surname = "Chono" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Sachio" surname = "Endo" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Kihei" surname = "Fujiwara" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Yoshishige" surname = "Hayashi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Hiroshi" surname = "Gomi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Kurakazu" surname = "Goto" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Sakuji" surname = "Hayashi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Teigo" surname = "Ishida" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Ishizuka" surname = "Tokuyasu" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Ryotaro" surname = "Jobo" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Akira" surname = "Kawakita" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Saburo" surname = "Kitahata" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Shiro" surname = "Kuratori" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Hideo" surname = "Maeda" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Yutaka" surname = "Morioka" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Nobuji" surname = "Negishi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Yoshio" surname = "Oishi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Shinobu" surname = "Terada" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Takao" surname = "Sakano" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Yasuhiro" surname = "Shigematsu" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Tadao" surname = "Sumi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Shogo" surname = "Takeuchi" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Sadao" surname = "Uehara" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Hideo" surname = "Watanabe" callsign = "Tigre" }
+            # add_ace = { type = "fighter_unique" name = "Yoshitaro" surname = "Yoshioka" callsign = "Tigre" }
+        # }
     }
 
 

@@ -1,4 +1,5 @@
-﻿add_namespace = soviet_purge_events 
+﻿
+add_namespace = soviet_purge_events 
 
 # Trial of the Sixteen (Zinoviev-Kamenev Trial)
 country_event = {
@@ -729,39 +730,6 @@ country_event = {
 	# We want to go for the historical option :/
 	option = { 
 		name = SEA_japan.1.a
-
-		custom_effect_tooltip = JAP_kodoha_coup_will_fail_historically_tt
-		IF = {
-			limit = {
-				NOT = {
-					has_country_flag = JAP_korekiyo_protected_flag
-				}
-			}
-			retire_character = JAP_takahashi_korekiyo
-			set_country_flag = JAP_takahashi_korekiyo_was_killed
-		}
-		IF = {
-			limit = {
-				NOT = {
-					has_country_flag = JAP_watanabe_protected_flag
-				}
-			}
-			retire_character = JAP_jotaro_watanabe
-			set_country_flag = JAP_jotaro_watanabe_was_killed
-		}
-		IF = {
-			limit = {
-				has_dlc = "No Compromise, No Surrender"
-				OR = {
-					has_country_flag = JAP_watanabe_protected_flag
-					has_country_flag = JAP_korekiyo_protected_flag
-				}
-			}
-			# Due to one of the other assassinations failing, they will go harder for Saionji Kinmochi instead, killing him. 
-			retire_character = JAP_saionji_kinmochi
-		}
-
-		custom_effect_tooltip = generic_skip_one_line_tt
 		
 		complete_national_focus = JAP_sea_purge_the_kodoha_faction
 
@@ -787,14 +755,13 @@ country_event = {
 	option = {
 		name = SEA_japan_popup_events.3.a
 
-		add_ideas = JAP_collapsing_government_idea	
+		add_war_support = -0.25
+		add_stability = -0.25
 
 		hidden_effect = {
 			set_country_flag = JAP_harakiri_debate_has_taken_place_flag
 		}
-
 	}
-
 }
 
 # The Kyūjō Incident - event for JAP 
@@ -1571,6 +1538,48 @@ add_namespace = bba_africa_news
 add_namespace = bba_italian_formables_news
 add_namespace = BBA_italy_decide_the_fate_of_mussolini
 add_namespace = BBA_italy_purge_the_party
+
+### Yellow river blown
+news_event = {
+	id = news.409
+	title = news.409.t
+	desc = news.409.desc
+	picture = GFX_news_event_074
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = news.409.a
+		trigger = {
+			OR = {
+				TAG = CHI
+				is_in_faction_with = CHI
+			}
+		}
+	}
+	option = {
+		name = news.409.b
+		trigger = {
+			OR = {
+				TAG = JAP
+				is_in_faction_with = JAP
+			}
+		}
+	}
+	option = {
+		name = news.409.c
+		trigger = {
+			NOT = {
+				TAG = CHI
+				TAG = JAP
+				is_in_faction_with = JAP
+				is_in_faction_with = CHI
+			}
+		}
+	}
+}
 
 news_event = { #LEAGUE OF NATIONS IS DONE
 	id = bba_news.0

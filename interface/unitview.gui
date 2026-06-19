@@ -474,6 +474,20 @@ guiTypes = {
 		}
 
 		iconType = {
+			name = "pending_leader_icon"
+			position = {x=9 y=32}
+			quadTextureSprite ="GFX_leader_unknown"
+			scale = 0.15
+		}
+		
+		iconType = {
+			name = "leader_coming"
+			spriteType = "GFX_opinion_arrow_right"
+			position = { x=22 y=32 }
+			alwaystransparent = yes
+		}
+
+		iconType = {
 			name = "leader_portrait_frame"
 			position = {x=5 y=27}
 			quadTextureSprite ="GFX_unit_leader_portrait_frame_badge"
@@ -523,6 +537,12 @@ guiTypes = {
 			position = {x=8 y=32}
 			quadTextureSprite ="GFX_leader_en_route"
 			alwaystransparent = yes
+		}
+
+		# Applied to "leader_enroute" while "pending_leader_icon" is shown so the icons stack vertically
+		positionType = {
+			name = "pending_leader_shown_offset"
+			position = { x=0 y=31 }
 		}
 
 		iconType = {
@@ -755,11 +775,11 @@ guiTypes = {
 			position = { x=11 y=0 }
 		}
 	}
-    
+
     containerWindowType = {
         name = "delete_button_blocker_window"
         size = { width = 60 height = 42 } 
-        position = { x=9 y=7 } 	 	
+        position = { x=9 y=0 } 	 	
 
         background = {
             name = "Background"
@@ -777,7 +797,6 @@ guiTypes = {
             spriteType = "GFX_tiled_window_transparent" 
         }
     }
-
 
 	containerWindowType = {
 		name = "army_division_list_view"
@@ -810,19 +829,19 @@ guiTypes = {
 			iconType = {
 				name = "army_group_header"
 				spriteType = "GFX_unit_list_header"
-				position = { x = 7 y = 7 }
+				position = { x = 7 y = 0 }
 			}
-            
+
 			buttonType = {
 				name = "btn_delete"
-				position = { x=9 y=7 }
+				position = { x=9 y=0 }
 				spriteType = "GFX_NV_btn_delete"
 				clicksound = disband
 			}
 
 			dropDownBoxType = {
 				name = "divisions"
-				position = { x = 37 y = 9 }
+				position = { x = 37 y = 2 }
 				size = { width = 200 height = 30 }
 				#clipping = no
 
@@ -866,7 +885,7 @@ guiTypes = {
 
 			instantTextboxType = {
 				name = "selected_division_count"
-				position = {x=75 y=13}
+				position = {x=75 y=6}
 				font = "hoi_18mbs"
 				maxWidth = 130
 				maxHeight = 23
@@ -875,7 +894,7 @@ guiTypes = {
 
 			buttonType = {
 				name = "redeployment_type_button"
-				position = {x=160 y=7}
+				position = {x=160 y=0}
 				spriteType = "GFX_redeployment_type_icon"
 				clicksound = click_default
 				shortcut = "b"
@@ -884,26 +903,26 @@ guiTypes = {
 
 			buttonType = {
 				name = "btn_consolidate_selection"
-				position = {x=191 y=7}
+				position = {x=191 y=0}
 				spriteType = "GFX_consolidate"
 				clicksound = click_default
 			}
 
 			iconType ={
 				name ="convoys_icon_bg"
+				position = {x=230 y=4}
 				spriteType = "GFX_generic_mini_bg"
-				position = {x=230 y=11}
 			}
 
 			iconType ={
 				name ="convoys_icon"
+				position = {x=235 y=8}
 				spriteType = "GFX_topbar_convoys"
-				position = {x=235 y=15}
 			}
 
 			instantTextboxType = {
+				position = {x=245 y=7}
 				name = "transport_weight"
-				position = {x=245 y=14}
 				font = "hoi_18mbs"
 				maxWidth = 62
 				maxHeight = 23
@@ -913,7 +932,7 @@ guiTypes = {
 
 			buttonType = {
 				name = "btn_select_half"
-				position = {x=300 y=7}
+				position = {x=300 y=0}
 				spriteType = "GFX_select_half"
 				clicksound = click_default
 				shortcut = "s"
@@ -921,7 +940,7 @@ guiTypes = {
 
 			buttonType = {
 				name = "btn_hold"
-				position = {x=330 y=7}
+				position = {x=330 y=0}
 				spriteType = "GFX_hold"
 				shortcut = "h"
 				pdx_tooltip = "HALT_UNIT"
@@ -929,7 +948,7 @@ guiTypes = {
 
 			buttonType = {
 				name = "btn_unassign"
-				position = {x=362 y=7}
+				position = {x=362 y=0}
 				spriteType = "GFX_UV_btn_unassign"
 				clicksound = click_default
 				shortcut = "x"
@@ -937,14 +956,14 @@ guiTypes = {
 
 			buttonType = {
 				name = "btn_close"
-				position = {x=362 y=7}
+				position = {x=362 y=0}
 				spriteType = "GFX_NV_btn_close"
 				pdx_tooltip = "DESELECT_UNIT"
 			}
 
 			containerWindowType = {
 				name = "column_heads"
-				position = {x=8 y=38}
+				position = {x=8 y=31}
 				size = {width=388 height=21}
 				Orientation = upper_left
 				clipping = no
@@ -1187,6 +1206,15 @@ guiTypes = {
 								format = right
 								alwaystransparent = yes
 							}
+
+							instantTextboxType = {
+								name = "deploy_button_no_commander_message"
+								position = { x = 92 y = 8 }
+								font = "hoi_16mbs"
+								maxWidth = 220
+								format = center
+								alwaystransparent = yes
+							}
 						}
 
 						expandButton = {
@@ -1238,7 +1266,7 @@ guiTypes = {
 
 			containerWindowType = {
 				name = "divisions_window"
-				position = {x=5 y=60}
+				position = {x=5 y=53}
 				size = {width=332 height=12} # Y Set in code to match the window size, but initial value is used as extra space in height
 				Orientation = upper_left
 				clipping = no
@@ -1303,7 +1331,7 @@ guiTypes = {
 			}
 		}
 	}
-    
+
 	containerWindowType = {
 		name = "expeditionary_force_container"
 		position = {x=1 y=-5}
@@ -1576,8 +1604,8 @@ guiTypes = {
 			spriteType = "GFX_unit_infantry_icon_medium" # <- Replaced in code
 			position = { x=21 y=-6 }
 			clicksound = click_default
-		}		
-		
+		}
+
 		iconType = {
 			name = "fake_unit_icon_indicator"
 			spriteType = "GFX_unit_infantry_icon_medium"
@@ -1885,25 +1913,22 @@ guiTypes = {
 		}
 	}
 
-	containerWindowType =
-	{
+	containerWindowType = {
 		name = "stat_equipment_entry_naval"
 		position = {x=0 y=0}
 		size = { width = 50 height = 50 }
 
-
-		iconType =
-		{
+		iconType = {
 			name ="equipment_icon"
 			spriteType = "GFX_equipment_item"
-			position = { x= 105 y = 43 }
+			position = { x= 75 y = 43 }
 			Orientation = "UPPER_LEFT"
 			centerposition = yes
 		}
 
 		instantTextBoxType = {
 			name = "equipment_name"
-			position = { x = -75 y = -20 }
+			position = { x = -105 y = -20 }
 			font = "hoi_24header"
 			borderSize = {x = 0 y = 0}
 			text = "name"
@@ -1915,7 +1940,7 @@ guiTypes = {
 
 		iconType = {
 			name = "role_icon"
-			position = { x=314 y=6 }
+			position = { x=-150 y=60 }
 			spriteType = "GFX_naval_equipment_role_icons"
 			alwaystransparent = yes
 			frame = 1
@@ -1958,18 +1983,19 @@ guiTypes = {
 		clipping = no
 
 		background = {
-			name = "Background"
+			name = "background"
 			position = { x = -5 y = 11 }
 			spriteType ="GFX_div_unit_item_bg"
 		}
 
 		iconType = {
 			name = "unit_icon"
-			position = { x = 1 y = 12 }
+			position = { x = 1 y = 10}
 			spriteType = "GFX_locked_icon"
 			Orientation = CENTER_LOWER
 		}
 	}
+	
 	
 	containerWindowType = {
 		name = "unit_stats_view_support_entry"
@@ -2127,7 +2153,7 @@ guiTypes = {
 		buttonType = {
 			name = "promote_officer"
 			quadTextureSprite ="GFX_leader_selection_button"
-			position = { x=11140 y=34 } 
+			position = { x=11140 y=34 }
 			buttonText = "PROMOTE"
 			font = "hoi_16mbs"
 			frame = 1
@@ -2240,6 +2266,7 @@ guiTypes = {
 				position = {  x=30 y=40 }
 				spriteType = "GFX_niche_icon_strip"
 			}
+
 
 			containerWindowType = {
 				name = "subunits"
@@ -2362,17 +2389,22 @@ guiTypes = {
 					pdx_tooltip = "DESIGNER_HQ_MODIFIERS_HEADER_DESC"
 				}
 
+				# Dynamically populated from C++.
 				containerWindowType = {
 					name = "hq_modifiers_list"
 					position = { x = 328 y = 40 }
 					size = { width = 216 height = 352 }
 					verticalScrollbar = "right_vertical_slider"
 
+					# An (invisible) background is required so the list reports its content bounds
+					# and the scrollbar gets a non-zero range.
 					background = {
 						name = "Background"  
 						spriteType = "GFX_tiled_window_transparent"
 					}
 
+					# Inner workspace whose height C++ stretches to total content size so the
+					# scrollbar gets a non-zero range.
 					containerWindowType = {
 						name = "content"
 						position = { x = 0 y = 0 }
@@ -2502,6 +2534,7 @@ guiTypes = {
 			name = "history_tab"
 			position = { x=0 y=65}
 			size = { width=557 height=348}
+			#verticalScrollbar = "right_vertical_slider"
 
 			containerWindowType = {
 				name = "history_entry_container"
@@ -2540,6 +2573,7 @@ guiTypes = {
 					format = left
 				}
 
+				# listboxes don't accept extended scrollbars such as right_vertical_slider, so code handles the scrollbar background manually to behave as expected
 				buttonType = {
 					name = "scrollbar_background"
 					quadTextureSprite = "GFX_scrollbar_vertical_bg"
@@ -2819,7 +2853,7 @@ guiTypes = {
 
 			expandButton = {
 				name = "expand_button"
-				position = { x = -26 y = 4 }
+				position = { x = -22 y = 5 }
 				quadTextureSprite ="GFX_expand_button"
 				buttonFont = "Main_14_black"
 				Orientation = "UPPER_RIGHT"
