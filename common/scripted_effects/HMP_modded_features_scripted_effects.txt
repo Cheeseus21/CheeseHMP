@@ -234,19 +234,17 @@
 
 		# ---------------------------------------------------------
 		# ARMY STRENGTH FACTOR
-		# Starts at 1.0 (+100%). We subtract (States Controlled * 0.05).
-		# To ensure we stay closer to 100% at the start, we can add a modifier 
-		# for starting states or reduce the penalty coefficient.
+		# Starts at 400%. We subtract (States Controlled * 0.02).
 		# ---------------------------------------------------------
 		
-		# Set the baseline to 100%
-		set_variable = { var = JAP.JAP_cw_army_strength_factor value = 1.0 }
+		# Set the baseline to 400
+		set_variable = { var = JAP.JAP_cw_army_strength_factor value = 4 }
 		
-		# Calculate the total drop (States Controlled * 0.05)
+		# Calculate the total drop based on controlled states
 		set_temp_variable = { var = temp_strength_drop value = JAP.JAP_cw_controlled_states_count }
 		
-		# Adjust the penalty coefficient (e.g., reduce 0.05 to 0.02 to make it less punishing)
-		multiply_temp_variable = { var = temp_strength_drop value = 0.02 } 
+		# Adjust the penalty coefficient (currently 0.02 per state)
+		multiply_temp_variable = { var = temp_strength_drop value = 0.05 } 
 		
 		# Subtract the drop from the baseline
 		subtract_from_variable = { var = JAP.JAP_cw_army_strength_factor value = temp_strength_drop }
@@ -329,7 +327,7 @@
 		set_variable = { var = CHI.CHI_cw_industrial_capacity_factory value = 0.0 }
 		
 		set_temp_variable = { var = temp_industrial_capacity_factory_increase value = CHI.CHI_cw_lost_states_count }
-		multiply_temp_variable = { var = temp_industrial_capacity_factory_increase value = 0.025 }
+		multiply_temp_variable = { var = temp_industrial_capacity_factory_increase value = 0.05 }
 		add_to_variable = { var = CHI.CHI_cw_industrial_capacity_factory value = temp_industrial_capacity_factory_increase }
 	}
 

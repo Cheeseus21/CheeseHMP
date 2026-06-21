@@ -8,8 +8,16 @@ NDefines.NDiplomacy.NAVAL_BLOCKADE_BASE_COST = 999
 NDefines.NMilitary.COHESION_IMMOBILE_PLANNING_SPEED_MULTIPLIER = 1	-- If using the 'immobile' cohesion setting, factor ALL planning speed growth by this
 
 NDefines.NCountry.NAVY_USE_HOME_BASE_FOR_RANGE = false -- If true, will calculate task force range from home base, otherwise will calculate from any friendly naval base
+NDefines.NNavy.CONVOY_BLOCKED_BY_ENEMY_CONTROLLED_REGION = true
+
 NDefines.NCountry.DEFAULT_COASTAL_PROTECTION_STABILITY = 0		-- Default stability when the coastal states are fully protected
 
+NDefines.NTechnology.LICENSE_PRODUCTION_TECH_BONUS = 0	-- WAS 0.2 | LICENSES ARE FREE SO TECH BONUS IS TOO MUCH | License production tech bonus
+NDefines.NTechnology.BASE_RESEARCH_POINTS_SAVED = 10.0 -- Vanilla 30, reduced to decrease the value of research juggling and this competitive need to do it to the end of making macro easier with less skill variance.
+
+NDefines.NNavy.SHORE_BOMBARDMENT_CAP = 0.3
+
+NDefines.NRailwayGun.BASE_CAPTURE_CHANCE = 1					-- The base chance of railway guns being captured during an overrrun. Will be further modified by the equipment capture chance of the capturing unit.
 -----------------------------COAL ENERGY STUFF--------------------------------------
 NDefines.NGame.ENERGY_RESOURCE = "oil"						-- resource that will give country energy 
 NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 10.0		-- How much energy per coal produces
@@ -33,7 +41,9 @@ NDefines.NDoctrines.MASTERY_BANK_CONVERSION_RATE = 0.25                    -- Th
 NDefines.NDoctrines.MASTERY_BANK_MAX = 250.0                               -- The maximum amount of mastery that can be banke
 NDefines.NDoctrines.MILITARY_ATTACHE_MASTERY_TRANSFER_FACTOR = 0         -- For each mastery track, military attaches will add this fraction of their visiting country's mastery gain (from units only) in that track
 NDefines.NDoctrines.THEATER_COMMANDER_UNITS_MASTERY_GAIN_FACTOR_PER_SKILL = 0  -- Unit in a theater commander's theater will contribute this fraction of their mastery gain to the theater commander's country, for each skill point they have in attack + defense
------------------------------IMPORTANT LAND COMBAT DEFINES--------------------------------------
+---------------------------------------------------------------------------------------
+-----------------------------IMPORTANT LAND COMBAT DEFINES-----------------------------
+---------------------------------------------------------------------------------------
 NDefines.NTechnology.BASE_YEAR_AHEAD_PENALTY_FACTOR = 2.3 -- Base year ahead penalty
 
 NDefines.NMilitary.DAMAGE_SPLIT_ON_FIRST_TARGET = 0.50			--% of damage dealt to the first target in a combat. The rest will be split amongst subsequent targets. Modifiers can affect this up to a maximum of 0.9. That value must not be exposed as a define.
@@ -58,7 +68,9 @@ NDefines.NMilitary.COMBAT_SUPPLY_LACK_ATTACKER_ATTACK = -0.15    -- vanilla -0.2
 NDefines.NMilitary.COMBAT_SUPPLY_LACK_ATTACKER_DEFEND = -0.5    -- vanilla -0.65 | defend combat penalty for attacker if out of supply
 NDefines.NMilitary.COMBAT_SUPPLY_LACK_DEFENDER_ATTACK = -0.50     -- vanilla -0.35 | attack combat penalty for defender if out of supply
 NDefines.NMilitary.COMBAT_SUPPLY_LACK_DEFENDER_DEFEND = -0.25     -- vanilla -0.15 | defend combat penalty for defender if out of supply
+---------------------------------------------------------------------------------------
 -------------------------------------- FUEL STUFF--------------------------------------
+---------------------------------------------------------------------------------------
 NDefines.NMilitary.OUT_OF_FUEL_EQUIPMENT_MULT = 0.25 				-- vanilla 0.1 
 NDefines.NMilitary.OUT_OF_FUEL_SPEED_MULT = 0.25 					-- vanilla 0.4
 NDefines.NMilitary.FUEL_PENALTY_START_RATIO = 0.1					-- ratio of fuel in an army to start getting penalties
@@ -72,10 +84,14 @@ NDefines.NMilitary.ARMY_NAVAL_TRANSFER_FUEL_MULT = 0.0				-- fuel consumption ra
 NDefines.NMilitary.ARMY_STRATEGIC_DEPLOYMENT_FUEL_MULT = 0.0		-- fuel consumption ratio while doing strategic deployment
 NDefines.NMilitary.ARMY_IDLE_FUEL_MULT = 0.0						-- fuel consumption ratio while just existing
 ---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.020    --  0.032 vanilla   air global damage modifier
 NDefines.NMilitary.LAND_AIR_COMBAT_ORG_DAMAGE_MODIFIER = 0.020    --  0.032 vanilla   global damage modifier
 NDefines.NMilitary.AIR_SUPPORT_BASE = 0.20
 NDefines.NMilitary.LAND_AIR_COMBAT_MAX_PLANES_PER_ENEMY_WIDTH = 0.5  -- WAS 3, reduced to 0.5 so less CAS is needed in battles
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
 NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.035       -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
 NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.060       -- global damage modifier
@@ -126,7 +142,9 @@ NDefines.NMilitary.PIERCING_THRESHOLD_DAMAGE_VALUES = {	-- 0 armor will always r
 0.50,	
 0.50, --there isn't much point setting this higher than 0		
 }
-------------------------end of defines relevant to land combat
+--------------------------------------------------------------------------------------
+------------------------end of defines relevant to land combat------------------------
+--------------------------------------------------------------------------------------
 NDefines.NBuildings.DESTRUCTION_COOLDOWN_IN_WAR = 9999 --anti-exploit
 NDefines.NBuildings.RADAR_RANGE_MAX = 250
 NDefines.NCountry.SCORCHED_EARTH_STATE_COST = 50					-- pp cost to scorch a state|
@@ -164,7 +182,9 @@ NDefines.NAir.ESCORT_ATTACK_FACTOR = 2.5				--vanilla 1
 NDefines.NAir.DISRUPTION_DEFENCE_DEFENCE_FACTOR = 0.0	--vanilla 0.5
 NDefines.NAir.DISRUPTION_DEFENCE_SPEED_FACTOR = 0.35 --vanilla 1.0
 NDefines.NAir.DISRUPTION_DEFENCE_ATTACK_FACTOR = 0.00 --vanilla 0.5
-------------------------------------------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
 NDefines.NProduction.BASE_LICENSE_IC_COST = 0 -- Was 1, reduced to counter early game boosting, particularly cancerous Germany builds that force Bulgarias to build a battleship in the black sea for "shore bombardment" via license and imported steel from Germany
 NDefines.NProduction.LICENSE_IC_COST_YEAR_INCREASE = 0				-- IC cost equipment for every year of equipment after 1936
 NDefines.NProduction.LICENSE_EQUIPMENT_SPEED_NOT_FACTION = 0        -- WAS 0.1, removed because there are really only 2 factions in game | MIC speed modifier for licensed equipment for not being in faction
@@ -186,14 +206,17 @@ NDefines.NProduction.BASE_LAND_EQUIPMENT_CONVERSION_IC_COST_FACTOR = 0.45 --vani
 NDefines.NProduction.CAPITULATE_STOCKPILES_RATIO = 0.01 -- How much equipment from deployed divisions will be transferred on capitulation
 NDefines.NProduction.LICENSE_EQUIPMENT_TECH_SPEED_PER_YEAR = 0.00 	-- WAS 0.05, removed because penalty too high and leads to too much  competition over research MIC speed modifier for licensed equipment for each year of difference between actual and latest equipment
 ---------------------------------------------------------------
-
+---------------------------------------------------------------
+---------------------------------------------------------------
 NDefines.NProject.RECRUIT_SCIENTIST_COST = {						-- Amount of pp to hire a scientist based on available scientist
 25,			-- pp cost if no available scientist
 25,			-- pp cost if 1 available scientist
 25,			-- pp cost if 2 available scientist
 25			-- pp cost if more than 2 available scientist
 }
+---------------------------------------------
 ------------------SUPPLY -------------------- 
+---------------------------------------------
 NDefines.NAir.AIR_WING_ATTACK_LOGISTICS_TRUCK_DAMAGE_FACTOR = 0.081 -- @30% vanilla 0.27  
 NDefines.NAir.AIR_WING_ATTACK_LOGISTICS_TRAIN_DAMAGE_FACTOR = 0.012 -- @30% of vanilla 0.040  
 NDefines.NAir.AIR_WING_ATTACK_LOGISTICS_RAILWAY_DAMAGE_SPILL_FACTOR = 0.0009 -- @15% of vanilla 0.006  Portion of train damage to additionally deal to railways
@@ -230,94 +253,102 @@ NDefines.NCountry.EQUIPMENT_UPGRADE_CHUNK_MAX_SIZE = 100			-- vanilla 10  Maximu
 NDefines.NMilitary.REINFORCEMENT_REQUEST_MAX_WAITING_DAYS = 7   -- Every X days the equipment will be sent, regardless if still didn't produced all that has been requested.
 NDefines.NMilitary.REINFORCEMENT_REQUEST_DAYS_FREQUENCY = 7	   -- How many days must pass until we may give another reinforcement request
 ---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
 NDefines.NCountry.GIE_EXILE_ARMY_LEADER_LEGITIMACY_LEVELS = {  	} --Legitimacy levels where a new army leader is received.
 NDefines.NCountry.GIE_CAPITULATION_LEGITIMACY_WARSCORE_FACTOR = 0    --Multiplies accumulated warscore with this factor for part of starting legitimacy.
 NDefines.NCountry.GIE_WARSCORE_GAIN_LEGITIMACY_FACTOR = 0                --Factor on how much legitimacy is gained from warscore earned by GiE units.
 NDefines.NCountry.GIE_HOST_CIC_FROM_LEGITIMACY_MAX = 0 					--Host will receive from 0 to this value in CIC.
 NDefines.NCountry.GIE_HOST_MIC_FROM_LEGITIMACY_MAX = 0					--Host will receive from 0 to this value in MIC.
-NDefines.NCountry.ATTACHE_XP_SHARE = 0                               --
+NDefines.NCountry.ATTACHE_XP_SHARE = 0
+---------------------------------------------------------------          
 ---------------------------------------------------------------
-NDefines.NNavy.COMBAT_MAX_GROUPS = 1 -- vanilla is 1 
-NDefines.NNavy.SHORE_BOMBARDMENT_CAP = 0.3
-NDefines.NNavy.NAVAL_SPEED_MODIFIER = 0.05 --vanilla 0.1, controls onmap movement speed of navies, not in battle (?); affects naval invasions
-NDefines.NNavy.MAX_ORG_ON_MANUAL_MOVE = 1.0	-- vanilla 0.6 org will clamped to this ratio on manual move 
-NDefines.NNavy.BASE_CARRIER_SORTIE_EFFICIENCY = 0.65
+--------------------------NAVY STUFF---------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
+NDefines.NNavy.COMBAT_MAX_GROUPS = 1 					-- vanilla is 1 
+NDefines.NNavy.NAVAL_SPEED_MODIFIER = 0.05 				--vanilla 0.1, controls onmap movement speed of navies, not in battle (?); affects naval invasions
+NDefines.NNavy.MAX_ORG_ON_MANUAL_MOVE = 1.0				-- vanilla 0.6 org will clamped to this ratio on manual move 
 
-NDefines.NAir.CARRIER_HOURS_DELAY_AFTER_EACH_COMBAT = 3
-NDefines.NAir.NAVAL_COMBAT_EXTERNAL_PLANES_JOIN_RATIO = 0.010 -- vanilla 0.05
-NDefines.NAir.NAVAL_COMBAT_EXTERNAL_PLANES_JOIN_RATIO_PER_DAY = 0.1 -- vanilla 0.20
-NDefines.NAir.NAVAL_COMBAT_EXTERNAL_PLANES_MIN_CAP = 20
-NDefines.NNavy.DEPTH_CHARGES_HIT_PROFILE = 70.0
-NDefines.NAir.NAVAL_STRIKE_CARRIER_MULTIPLIER = 4 -- vanilla 5
+NDefines.NNavy.MISSION_MAX_REGIONS = 5 						-- vanilla 0, Limit of the regions that can be assigned to naval mission. Set to 0 for unlimited.
+NDefines.NNavy.BASE_JOIN_COMBAT_HOURS = 72 					-- vanilla 8, hours to join combat
+NDefines.NNavy.CONVOY_EFFICIENCY_LOSS_MODIFIER = 0.8   		-- vanilla 1.25, reduced so players have more time to deal with it | How much efficiency drops when losing convoys. If modifier is 0.5, then losing 100% of convoys in short period, the efficiency will drop by 50%.
+NDefines.NNavy.CONVOY_ATTACK_BASE_FACTOR = 0.08        	 	-- vanilla 0.15
+NDefines.NNavy.UNIT_TRANSFER_DETECTION_CHANCE_BASE = 16		-- unit transfer and naval invasion base chance detection percentage (if this fails, no detection is done on that tick)
 
-NDefines.NNavy.MAX_ANTI_AIR_REDUCTION_EFFECT_ON_INCOMING_AIR_DAMAGE = 0.85 -- vanilla
-NDefines.NNavy.ANTI_AIR_TARGETING = 0.9 --vanilla value just as reference
-NDefines.NNavy.ANTI_AIR_TARGETTING_TO_CHANCE = 0.15 --Vanilla 0.2 starting value for 'will AA shoot on incoming nav' equation given by 0.15*(0.9-plane agility*0.01) with a lower bound of 0.01 (minimally 1% chance a ship will shoot on an incoming plane)
-NDefines.NNavy.ANTI_AIR_ATTACK_TO_AMOUNT = 0.01 -- the kill rate of shot-at planes; 6*ship AA value is the chance of shooting down an incoming nav; if 4 AA, 24% of planes who are shot at will be taken down (in actuality its 0.06*AA value rounded stochastically between 0 and 1)
-NDefines.NAir.AIR_AGILITY_TO_NAVAL_STRIKE_AGILITY = 0.01 --Vanilla 0.01 the 0.01 in the equation above
+NDefines.NNavy.BASE_CARRIER_SORTIE_EFFICIENCY = 0.65					-- factor of planes that can sortie by default from a carrier
+NDefines.NAir.NAVAL_COMBAT_EXTERNAL_PLANES_JOIN_RATIO = 0.010 			-- vanilla 0.05, Max planes that can join a combat comparing to the total strength of the ships
+NDefines.NAir.NAVAL_COMBAT_EXTERNAL_PLANES_JOIN_RATIO_PER_DAY = 0.1 	-- vanilla 0.20, max extra plane % that can join every day
+NDefines.NNavy.DEPTH_CHARGES_HIT_PROFILE = 70.0 						-- hit profile for depth charges
+NDefines.NAir.NAVAL_STRIKE_CARRIER_MULTIPLIER = 4 						-- vanilla 5, damage bonus when planes are in naval combat where their carrier is present (and can thus sortie faster and more effectively)
 
-NDefines.NNavy.SHIP_TO_FLEET_ANTI_AIR_RATIO = 0.4 --vanilla was 0.25 makes it more worth it to put aa on cruisers/dds(fleet aa seems to be calculated like armor/piercing in land combat: highest+average)
-NDefines.NNavy.ANTI_AIR_POW_ON_INCOMING_AIR_DAMAGE = 0.35 -- vanilla 0.25 the lower the less effective to stack aa. makes one aa module more worth it compared to no module
-NDefines.NNavy.ANTI_AIR_MULT_ON_INCOMING_AIR_DAMAGE = 0.15 -- vanilla 0.2  multiplier for damage reduction in my opinion lower damage combined with more consistent lower plane losses is better than the vanilla gamble reduction=(ship_anti_air + fleet_anti_air * SHIP_TO_FLEET_ANTI_AIR_RATIO )^ANTI_AIR_POW_ON_INCOMING_AIR_DAMAGE ) * ANTI_AIR_MULT_ON_INCOMING_AIR_DAMAGE)
-NDefines.NNavy.NAVAL_COMBAT_AIR_LOW_AA_TARGET_SCORE = 0.01 -- vanilla 5
-NDefines.NNavy.NAVAL_COMBAT_AIR_SUB_DETECTION_EXTERNAL_FACTOR = 0.65
+NDefines.NNavy.MAX_ANTI_AIR_REDUCTION_EFFECT_ON_INCOMING_AIR_DAMAGE = 0.85 		-- vanilla 0.75, damage reduction for incoming air attacks is clamped to this value at maximum.
+NDefines.NNavy.ANTI_AIR_TARGETING = 0.9 										-- vanilla value just as reference
+NDefines.NNavy.ANTI_AIR_TARGETTING_TO_CHANCE = 0.15 							-- vanilla 0.2 starting value for 'will AA shoot on incoming nav' equation given by 0.15*(0.9-plane agility*0.01) with a lower bound of 0.01 (minimally 1% chance a ship will shoot on an incoming plane)
+NDefines.NNavy.ANTI_AIR_ATTACK_TO_AMOUNT = 0.01 								-- vanilla the kill rate of shot-at planes; 6*ship AA value is the chance of shooting down an incoming nav; if 4 AA, 24% of planes who are shot at will be taken down (in actuality its 0.06*AA value rounded stochastically between 0 and 1)
+NDefines.NAir.AIR_AGILITY_TO_NAVAL_STRIKE_AGILITY = 0.01 						-- vanilla 0.01 the 0.01 in the equation above
+
+NDefines.NNavy.SHIP_TO_FLEET_ANTI_AIR_RATIO = 0.4 						-- vanilla 0.25 makes it more worth it to put aa on cruisers/dds(fleet aa seems to be calculated like armor/piercing in land combat: highest+average)
+NDefines.NNavy.ANTI_AIR_POW_ON_INCOMING_AIR_DAMAGE = 0.35 				-- vanilla 0.25 the lower the less effective to stack aa. makes one aa module more worth it compared to no module
+NDefines.NNavy.ANTI_AIR_MULT_ON_INCOMING_AIR_DAMAGE = 0.15				-- vanilla 0.2  multiplier for damage reduction in my opinion lower damage combined with more consistent lower plane losses is better than the vanilla gamble reduction=(ship_anti_air + fleet_anti_air * SHIP_TO_FLEET_ANTI_AIR_RATIO )^ANTI_AIR_POW_ON_INCOMING_AIR_DAMAGE ) * ANTI_AIR_MULT_ON_INCOMING_AIR_DAMAGE)
+NDefines.NNavy.NAVAL_COMBAT_AIR_LOW_AA_TARGET_SCORE = 0.01				-- vanilla 5
+NDefines.NNavy.NAVAL_COMBAT_AIR_SUB_DETECTION_EXTERNAL_FACTOR = 0.65	-- vanilla 1.0 Factor applied to the stats of external air planes
 --
 NDefines.NNavy.NAVY_PIERCING_THRESHOLDS = {					-- Our piercing / their armor must be this value to deal damage fraction equal to the index in the array below [higher number = higher penetration]. If armor is 0, 1.00 will be returned.
-8.00,		
-4.00,	
-3.00,		
-2.00,
-1.00,
-0.90,
-0.80,
-0.70,
-0.60,
-0.50,
-0.40,
-0.30,
-0.20,
-0.10,
-0.00 --there isn't much point setting this higher than 0
+	8.00,		
+	4.00,	
+	3.00,		
+	2.00,
+	1.00,
+	0.90,
+	0.80,
+	0.70,
+	0.60,
+	0.50,
+	0.40,
+	0.30,
+	0.20,
+	0.10,
+	0.00 --there isn't much point setting this higher than 0
 }
 
-
 NDefines.NNavy.NAVY_PIERCING_THRESHOLD_CRITICAL_VALUES = {	-- 0 armor will always receive maximum damage (so add overmatching at your own peril). the system expects at least 2 values, with no upper limit.
-8.00,			
-4.00,	
-3.00,	
-2.00,
-1.00,
-0.90,
-0.80,
-0.70,
-0.60,
-0.50,
-0.40,
-0.30,
-0.20,
-0.10,
-0.00 -- For criticals, you could reduce crit chance unlike damage in army combat, but we do not for now.
+	8.00,			
+	4.00,	
+	3.00,	
+	2.00,
+	1.00,
+	0.90,
+	0.80,
+	0.70,
+	0.60,
+	0.50,
+	0.40,
+	0.30,
+	0.20,
+	0.10,
+	0.00 -- For criticals, you could reduce crit chance unlike damage in army combat, but we do not for now.
 }
 
 NDefines.NNavy.NAVY_PIERCING_THRESHOLD_DAMAGE_VALUES = {	-- 0 armor will always receive maximum damage (so add overmatching at your own peril). the system expects at least 2 values, with no upper limit.
-1.00,		
-1.00,			
-1.00,		
-1.00,
-1.00,
-0.90,
-0.80,
-0.70,
-0.60,
-0.50,
-0.40,
-0.30,
-0.20,
-0.10,
-0.10 -- 
+	1.00,		
+	1.00,			
+	1.00,		
+	1.00,
+	1.00,
+	0.90,
+	0.80,
+	0.70,
+	0.60,
+	0.50,
+	0.40,
+	0.30,
+	0.20,
+	0.10,
+	0.10 -- 
 }
 
-NDefines.NNavy.CONVOY_BLOCKED_BY_ENEMY_CONTROLLED_REGION = true
 NDefines.NNavy.MAX_MISSION_PER_TASKFORCE = {  -- max mission region/taskforce ratio
 	0, -- HOLD (consumes fuel HOLD_MISSION_MOVEMENT_COST fuel while moving)
 	0, -- PATROL
@@ -331,113 +362,86 @@ NDefines.NNavy.MAX_MISSION_PER_TASKFORCE = {  -- max mission region/taskforce ra
 	10, -- NAVAL INVASION SUPPORT
 }
 
-
-
-NDefines.NNavy.MISSION_MAX_REGIONS = 5 			--vanilla 0 | Limit of the regions that can be assigned to naval mission. Set to 0 for unlimited.
-NDefines.NNavy.BASE_JOIN_COMBAT_HOURS			= 72 -- vanilla 8, hours to join combat
-NDefines.NNavy.CONVOY_EFFICIENCY_LOSS_MODIFIER = 0.8   --  WAS 1.25, reduced so players have more time to deal with it | How much efficiency drops when losing convoys. If modifier is 0.5, then losing 100% of convoys in short period, the efficiency will drop by 50%.
-NDefines.NNavy.CONVOY_ATTACK_BASE_FACTOR	 = 0.08                        -- vanilla 0.15
-NDefines.NNavy.UNIT_TRANSFER_DETECTION_CHANCE_BASE = 16					-- daily base spotting speed against unit trans
 NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- 1,4,1 vanilla number of hours for a gun to be ready after shooting
-1.0,	-- big guns
-3.0,	-- torpedoes
-1.0,	-- small guns
+	1.0,	-- big guns
+	3.0,	-- torpedoes
+	1.0,	-- small guns
 }
 
+NDefines.NNavy.BASE_SPOTTING = 2											-- base detection chance upon which hourly change modifiers are calculated (base detection chance can get modified through other variables), 2%
 NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 10								-- base spotting percentage that comes from full radar coverage; vanilla is 5
-NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 15								-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
-NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SUB = 0.8					--vanilla 1.0	-- task force sub spotting value is multiplied by this and added to spotting percentage every hour; sub spotting value is average sub detection * average sub visibility enemy; the positive part of the surface detection hourly change equation when against a sub fleet.
-NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SURFACE = 1.1					--vanilla 1.0	-- task force surface spotting value is multiplied by this and added to spotting percentage every hour; spotting value is average surface detection * average surface visibility enemy; the positive part of the surface detection hourly change equation.
-NDefines.NNavy.SPOTTING_ENEMY_SPOTTING_MULTIPLIER_FOR_RUNNING_AWAY = 0.8 -- 0.8 in vanilla, is this dead? NO | enemy spotting is multiplied by this value to simulate running away; the native part of the spotting value equation
-NDefines.NNavy.BASE_SPOTTING_FROM_NAVY = 10								-- 10 in vanilla, -- base spotting percentage that comes from task forces in area, add to base detection chance
-NDefines.NNavy.BASE_SPOTTING_FROM_AIR = 20										-- base spotting percentage that comes from air-wings in area, adds to base detection chance; 20 in vanilla
-NDefines.NNavy.DECRYPTION_SPOTTING_BONUS = 0.15								--Paradox provides no description. I belief this is the factor which makes the daily decryption differences accumulate over time as a multiplier until the max of 15%. Vanilla is 0.2. So 0.15 * decryption difference each day until 15% is hit
-NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_RUNNING_AWAY = 0.5						-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is faster; 0.5 in vanilla; higher means enemy fleets flees faster!
-NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_CATCHING_UP = 0.4						-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is slower; 0.2 in vanilla; higher means friendly fleet catches up faster!
-NDefines.NNavy.VISIBILITY_MULTIPLIER_FOR_SPOTTING = 0.05						-- multiplier for visibility stat in the spotting value equation to give more weight to surface detection modifiers! 0.1 in vanilla.
+NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 15							-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
+NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SUB = 0.8							-- vanilla 1.0	-- task force sub spotting value is multiplied by this and added to spotting percentage every hour; sub spotting value is average sub detection * average sub visibility enemy; the positive part of the surface detection hourly change equation when against a sub fleet.
+NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SURFACE = 1.1						-- vanilla 1.0	-- task force surface spotting value is multiplied by this and added to spotting percentage every hour; spotting value is average surface detection * average surface visibility enemy; the positive part of the surface detection hourly change equation.
+NDefines.NNavy.SPOTTING_ENEMY_SPOTTING_MULTIPLIER_FOR_RUNNING_AWAY = 0.8 	-- 0.8 in vanilla, is this dead? NO | enemy spotting is multiplied by this value to simulate running away; the native part of the spotting value equation
+NDefines.NNavy.BASE_SPOTTING_FROM_NAVY = 10									-- 10 in vanilla, -- base spotting percentage that comes from task forces in area, add to base detection chance
+NDefines.NNavy.BASE_SPOTTING_FROM_AIR = 20									-- base spotting percentage that comes from air-wings in area, adds to base detection chance; 20 in vanilla
+NDefines.NNavy.DECRYPTION_SPOTTING_BONUS = 0.15								-- Paradox provides no description. I believe this is the factor which makes the daily decryption differences accumulate over time as a multiplier until the max of 15%. Vanilla is 0.2. So 0.15 * decryption difference each day until 15% is hit
+NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_RUNNING_AWAY = 0.5					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is faster; 0.5 in vanilla; higher means enemy fleets flees faster!
+NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_CATCHING_UP = 0.4					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is slower; 0.2 in vanilla; higher means friendly fleet catches up faster!
+NDefines.NNavy.VISIBILITY_MULTIPLIER_FOR_SPOTTING = 0.05					-- multiplier for visibility stat in the spotting value equation to give more weight to surface detection modifiers! 0.1 in vanilla.
 NDefines.NNavy.DETECTION_CHANCE_MULT_BASE = 0.1								-- base multiplier value for hourly detection chance combined with the 2 defines beneath, the speed difference defines and the spotting value equation defines above (NOT THE BASE DEFINES)
 NDefines.NNavy.DETECTION_CHANCE_MULT_RADAR_BONUS = 0.2						-- bonus for hourly change detection from radar buildings (NOT BASE). vanilla is 0.1
 NDefines.NNavy.DETECTION_CHANCE_MULT_AIR_SUPERIORITY_BONUS = 0.25			-- bonus from air superiority in hourly change detection (NOT BASE); vanilla is 0.25
+
 NDefines.NNavy.AIR_MISSION_SPOTTING_FACTORS = {								-- Multiplier for air-wings' spotting contribution per mission type; lower value means the 20% base detection chance is reached with more air wings! Vanilla
-0.50, -- AIR_SUPERIORITY
-0, -- CAS
-0.25, -- INTERCEPTION
-0, -- STRATEGIC_BOMBER
-0.50, -- NAVAL_BOMBER
-0, -- DROP_NUKE
-0, -- PARADROP
-0.25, -- NAVAL_KAMIKAZE
-0, -- PORT_STRIKE
-0, -- ATTACK_LOGISTICS
-0, -- AIR_SUPPLY
-0, -- TRAINING
-0.25, -- NAVAL_MINES_PLANTING
-0.50, -- NAVAL_MINES_SWEEPING
-1.00, -- RECON
-1.50, -- NAVAL_PATROL
+	0.50, -- AIR_SUPERIORITY
+	0, -- CAS
+	0.25, -- INTERCEPTION
+	0, -- STRATEGIC_BOMBER
+	0.50, -- NAVAL_BOMBER
+	0, -- DROP_NUKE
+	0, -- PARADROP
+	0.25, -- NAVAL_KAMIKAZE
+	0, -- PORT_STRIKE
+	0, -- ATTACK_LOGISTICS
+	0, -- AIR_SUPPLY
+	0, -- TRAINING
+	0.25, -- NAVAL_MINES_PLANTING
+	0.50, -- NAVAL_MINES_SWEEPING
+	1.00, -- RECON
+	1.50, -- NAVAL_PATROL
 }
 
-NDefines.NNavy.BASE_SPOTTING = 1												--base detection chance upon which hourly change modifiers are calculated (base detection chance can get modified through other variables), 1%
+NDefines.NNavy.NAVY_SPOTTER_DETECTION_FACTOR = 0					-- multiplier for task forces' detection value before logistic transform
+NDefines.NNavy.NAVAL_RANGE_TO_INGAME_DISTANCE = 0.080 				-- Scale the ship stats "naval_range" to the ingame distance
 
-NDefines.NNavy.NAVAL_COMBAT_SUB_DETECTION_FACTOR = 1                --vanilla 1 
-NDefines.NNavy.NAVY_SPOTTER_DETECTION_FACTOR = 0
-NDefines.NNavy.NAVAL_RANGE_TO_INGAME_DISTANCE = 0.080
 ---POSITIONING CHANGES---
-NDefines.NNavy.POSITIONING_PENALTY_FOR_SHIPS_JOINED_COMBAT_AFTER_IT_STARTS		= 0 --Vanilla 0.01, -- each ship that joins the combat will have this penalty to be added into positioning
-NDefines.NNavy.POSITIONING_PENALTY_HOURLY_DECAY_FOR_NEWLY_JOINED_SHIPS			= 0 --Vanilla0.05,-- the accumulated penalty from new ships will decay hourly by this value
-NDefines.NNavy.SCREENING_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING				= 0 --Vanilla 0.5,  -- screening efficiency (screen to capital ratio) at 0% positioning
-NDefines.NNavy.AA_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING					= 0 --Vanilla 0.7,  -- AA penalty at 0% positioning
-NDefines.NNavy.HIGHER_SHIP_RATIO_POSITIONING_PENALTY_FACTOR = 0.375 		--  0.25, -- if one side has more ships than the other, that side will get this penalty for each +100% ship ratio it has
-NDefines.NNavy.DAMAGE_PENALTY_ON_MINIMUM_POSITIONING 							= 0.7 --Vanilla 0.5,	-- damage penalty at 0% positioning 
-NDefines.NNavy.BASE_ESCAPE_SPEED = 0.2                                   -- daily base escape speed (gained as percentagE)
-NDefines.NNavy.SPEED_TO_ESCAPE_SPEED = 1.5
-NDefines.NNavy.HIT_PROFILE_SPEED_FACTOR										= 0.4		-- factors speed value when determining it profile (Vis * HIT_PROFILE_MULT * Ship Hit Profile Mult)
-NDefines.NNavy.HIT_PROFILE_MULT 											= 65  	-- multiplies hit profile of every ship
-NDefines.NNavy.HEAVY_GUN_ATTACK_TO_SHORE_BOMBARDMENT = 0.05
-NDefines.NNavy.LIGHT_GUN_ATTACK_TO_SHORE_BOMBARDMENT = 0.025
+NDefines.NNavy.POSITIONING_PENALTY_FOR_SHIPS_JOINED_COMBAT_AFTER_IT_STARTS = 0 		-- Vanilla 0.01, 	-- each ship that joins the combat will have this penalty to be added into positioning
+NDefines.NNavy.POSITIONING_PENALTY_HOURLY_DECAY_FOR_NEWLY_JOINED_SHIPS = 0 			-- Vanilla0.05,		-- the accumulated penalty from new ships will decay hourly by this value
+NDefines.NNavy.SCREENING_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING = 0 				-- Vanilla 0.5, 	-- screening efficiency (screen to capital ratio) at 0% positioning
+NDefines.NNavy.AA_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING	= 0 					-- Vanilla 0.7, 	-- AA penalty at 0% positioning
+NDefines.NNavy.HIGHER_SHIP_RATIO_POSITIONING_PENALTY_FACTOR = 0.375 				-- Vanilla 0.25, 	-- if one side has more ships than the other, that side will get this penalty for each +100% ship ratio it has
+NDefines.NNavy.DAMAGE_PENALTY_ON_MINIMUM_POSITIONING = 0.7 							-- Vanilla 0.5,	    -- damage penalty at 0% positioning 
+NDefines.NNavy.BASE_ESCAPE_SPEED = 0.1                                   			-- daily base escape speed (gained as percentage)
+NDefines.NNavy.SPEED_TO_ESCAPE_SPEED = 1.5											-- ratio to converstion from ship speed to escape speed (divided by hundred)
+NDefines.NNavy.HIT_PROFILE_SPEED_FACTOR = 0.4										-- factors speed value when determining it profile (Vis * HIT_PROFILE_MULT * Ship Hit Profile Mult)
+NDefines.NNavy.HIT_PROFILE_MULT = 65  												-- multiplies hit profile of every ship
+
 NDefines.NNavy.GUN_HIT_PROFILES = { -- hit profiles for guns, if target ih profile is lower the gun will have lower accuracy
-80.0,	-- big guns
-83.0,	-- torpedoes
-45.0,	-- small guns
+	80.0,	-- big guns
+	83.0,	-- torpedoes
+	45.0,	-- small guns
 }
 
-NDefines.NTechnology.LICENSE_PRODUCTION_TECH_BONUS = 0	-- WAS 0.2 | LICENSES ARE FREE SO TECH BONUS IS TOO MUCH | License production tech bonus
-NDefines.NTechnology.BASE_RESEARCH_POINTS_SAVED = 10.0 -- Vanilla 30, reduced to decrease the value of research juggling and this competitive need to do it to the end of making macro easier with less skill variance.
+NDefines.NNavy.COMBAT_RETREAT_DECISION_CHANCE = 0               	-- VANILLA 0.22 | There is also random factor in deciding if we should retreat or not. That causes a delay in taking decision, that sooner or later will be picked. It's needed so damaged fast ships won't troll the combat.
 
+NDefines.NNavy.REPAIR_AND_RETURN_UNIT_DYING_STR = 0.1      			--  VANILLA 0.2 | Str below this point is considering a single ship "dying", and a high priority to send to repair.
 
-NDefines.NNavy.COMBAT_RETREAT_DECISION_CHANCE = 0                 -- VANILLA 0.22 | There is also random factor in deciding if we should retreat or not. That causes a delay in taking decision, that sooner or later will be picked. It's needed so damaged fast ships won't troll the combat.
-
-NDefines.NNavy.REPAIR_AND_RETURN_UNIT_DYING_STR = 0      --  VANILLA 0.2 | Str below this point is considering a single ship "dying", and a high priority to send to repair.
-
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_LOW = 0.7							-- % of total Strength. When below, navy will go to home base to repair.
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_MEDIUM = 0.5 -- % of total Strength. When below, navy will go to home base to repair.
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_HIGH = 0.3								-- % of total Strength. When below, navy will go to home base to repair.
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_LOW = 0.75					-- % of total Strength. When below, navy will go to home base to repair.
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_MEDIUM = 0.5 					-- % of total Strength. When below, navy will go to home base to repair.
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_HIGH = 0.25					-- % of total Strength. When below, navy will go to home base to repair.
 --When X value is damage, send the whole navy to repair (not individuals ships), but only if the navy is out of combat; pair with visibility on returning to repair to avoid re-engage
-
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_LOW_COMBAT = 0.85  --vanilla= 0.6 | % of total Strength. When below, navy will go to home base to repair (in combat).
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_MEDIUM_COMBAT = 0.6   --vanilla= 0.3 | % of total Strength. When below, navy will go to home base to repair (in combat).
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_HIGH_COMBAT = 0.45    --vanilla= 0.1 | % of total Strength. When below, navy will go to home base to repair (in combat).
---below X value = 100% (or just the high possibility of it?) chance of individual ship retreating next hour    
 
 NDefines.NNavy.AGGRESION_MULTIPLIER_FOR_COMBAT = 3	-- ships are more aggresive in combat
 -- high multiplier = stops fleets automatically retreating in combat (we only want players to manually retreat; perhaps rethink aggression settings later for better convoy defense behavior)
 
-NDefines.NNavy.AGGRESSION_SETTINGS_VALUES = { -- ships will use this values while deciding to attack enemies
-0.0,	-- do not engage
-0.5,	-- low
-0.9,	-- medium
-1.5,	-- high
-2.0,	-- I am death incarnate!
-}
-NDefines.NNavy.MIN_REPAIR_FOR_JOINING_COMBATS = { -- strikeforces/patrol forces will not join combats if they are not repaired enough
-0.5,	-- do not repair
-0.5,	-- low
-0.7,	-- medium
-0.9,	-- high
-}
 NDefines.NNavy.MIN_SHIPS_FOR_HIGHER_SHIP_RATIO_PENALTY                         = 30 --vanilla 0   -- the minimum fleet size in ships that a fleet must be before having the large fleet penalty applied to them   
-
-NDefines.NNavy.NAVY_VISIBILITY_BONUS_ON_RETURN_FOR_REPAIR = 0.2		--vanilla 0.9 -- Multiplier for the surface/sub visiblity when the heavily damaged fleet is returning to the home base for reparation. 1.0 = no bonus. 0.0 = invisible.
+---------------------------------------------------------------          
+---------------------------------------------------------------
+------------------------AIRPLANE STUFF-------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
 NDefines.NAir.ACE_DEATH_CHANCE_BASE = 0.002					-- Base chance % for ace pilot die when an airplane is shot down in the Ace wing.
 NDefines.NAir.ACE_DEATH_BY_OTHER_ACE_CHANCE = 0.5				-- chance to an ace dying by another ace if it was hit by ace in combat
 NDefines.NAir.ACE_EARN_CHANCE_PLANES_MULT = 0.002				-- Ace generation chance per aircraft. Chance is rolled twice because decimal numbers can't be small enough
@@ -453,7 +457,7 @@ NDefines.NMilitary.PARACHUTE_PENALTY_RANDOMNESS = 0.1		   -- vanilla 0.1 	Random
 NDefines.NMilitary.PARACHUTE_DISRUPTED_AA_PENALTY = 1            -- vanilla 1	How much the Air defence in the state (from AA buildings level * air_defence) is scaled to affect overall disruption (equipment,manpower,str).
 NDefines.NAir.MIN_PLANE_COUNT_PARADROP = 5                     -- vanilla 50     
 NDefines.NMilitary.CASUALTY_COUNT_FOR_HISTORY_ENTRY = 25000
-
+---------------------------------------------------------------
 --War support rework
 NDefines.NCountry.MAX_HEROES_BEING_KILLED_WAR_SUPPORT_IMPACT = -0.65   -- vanilla -0.3
 ---------------------------------------------------------------          
