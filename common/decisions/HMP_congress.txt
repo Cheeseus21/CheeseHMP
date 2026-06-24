@@ -1,0 +1,250 @@
+USA_congress = {
+
+	USA_small_lobby_effort = {
+		icon = generic_political_discourse
+		
+		available = {
+			hidden_trigger = {
+				OR = {
+					check_variable = { senators_support < senators_total }
+					check_variable = { representatives_support < representatives_total }
+				}
+			}
+		}
+		
+		allowed = { tag = USA } 
+		
+		cost = 25
+
+		complete_effect = {
+			USA_congress_small_supporta = yes
+		}
+	}
+	
+	USA_medium_lobby_effort = {
+		icon = generic_political_discourse
+		
+		available = {
+			hidden_trigger = {
+				OR = {
+					check_variable = { senators_support < senators_total }
+					check_variable = { representatives_support < representatives_total }
+				}
+			}
+		}
+		
+		allowed = { tag = USA } 
+		
+		cost = 50
+
+		complete_effect = {
+			USA_congress_medium_supporta = yes
+		}
+	}
+	
+	USA_large_lobby_effort = {
+		icon = generic_political_discourse
+		
+		available = {
+			hidden_trigger = {
+				OR = {
+					check_variable = { senators_support < senators_total }
+					check_variable = { representatives_support < representatives_total }
+				}
+			}
+		}
+		
+		allowed = { tag = USA } 
+		
+		cost = 75
+
+		complete_effect = {
+			USA_congress_large_supporta = yes
+		}
+	}
+	
+	USA_amend_the_budget = {
+		icon = ger_mefo_bills
+		
+		available = { 
+			congress_medium_support_trigger = yes	
+		}
+
+		days_remove = 90
+
+		allowed = { tag = USA } 
+		
+		modifier = { 
+			consumer_goods_expected_value = -0.025
+		}
+		
+		remove_effect = {
+			USA_congress_medium_oppositiona = yes
+		}
+	}
+	
+	USA_research_grants = {
+		icon = ger_mefo_bills
+		
+		available = { 
+			congress_medium_support_trigger = yes	
+		}
+
+		days_remove = 90
+
+		allowed = { tag = USA } 
+		
+		modifier = { 
+			research_speed_factor = 0.1
+		}
+		
+		remove_effect = {
+			USA_congress_medium_oppositiona = yes
+		}
+	}
+	
+	USA_contract_construction_firms = {
+		icon = ger_mefo_bills
+		
+		available = { 
+			congress_medium_support_trigger = yes	
+		}
+
+		days_remove = 90
+
+		allowed = { tag = USA } 
+		
+		modifier = { 
+			production_speed_buildings_factor = 0.1
+		}
+		
+		remove_effect = {
+			USA_congress_medium_oppositiona = yes
+		}
+	}
+	
+	USA_prepare_people_for_war = {
+		icon = ger_mefo_bills
+		
+		available = {
+			congress_medium_support_trigger = yes
+		}
+		
+		days_remove = 90
+		
+		modifier = { war_support_weekly = 0.01 }
+		
+		remove_effect = {
+			USA_congress_medium_oppositiona = yes
+		}
+	}
+	
+	USA_congress_fund_aluminium_extraction = {
+		icon = aluminium
+		
+		available = {
+			congress_low_support_trigger = yes
+		}
+		
+		cost = 25
+
+		complete_effect = {
+			random_owned_state = {
+				limit = { 
+					is_core_of = ROOT 
+					has_resources_amount = {
+						resource = aluminium
+						amount > 0
+					}
+				}
+				add_resource = {
+					type = aluminium
+					amount = 20
+				}
+			}
+			USA_congress_small_oppositiona = yes
+		}
+	}
+
+	USA_congress_fund_steel_extraction = {
+		icon = steel
+		
+		available = {
+			congress_low_support_trigger = yes
+		}
+		
+		cost = 25
+
+		complete_effect = {
+			random_owned_state = {
+				limit = { 
+					is_core_of = ROOT 
+					has_resources_amount = {
+						resource = steel
+						amount > 0
+					}
+				}
+				add_resource = {
+					type = steel
+					amount = 20
+				}
+			}
+			USA_congress_small_oppositiona = yes
+		}
+	}
+
+	USA_congress_fund_tungsten_extraction = {
+		icon = tungsten
+		
+		available = {
+			congress_low_support_trigger = yes
+		}
+		
+		cost = 25
+
+		complete_effect = {
+			random_owned_state = {
+				limit = { 
+					is_core_of = ROOT 
+					has_resources_amount = {
+						resource = tungsten
+						amount > 0
+					}
+				}
+				add_resource = {
+					type = tungsten
+					amount = 20
+				}
+			}
+			USA_congress_small_oppositiona = yes
+		}
+	}
+
+	USA_congress_fund_chromium_extraction = {
+		icon = chromium
+		
+		available = {
+			congress_low_support_trigger = yes
+		}
+		
+		cost = 50
+
+		complete_effect = {
+			random_owned_state = {
+				limit = { 
+					is_core_of = ROOT 
+					has_resources_amount = {
+						resource = chromium
+						amount > 0
+					}
+				}
+				add_resource = {
+					type = chromium
+					amount = 20
+				}
+			}
+			USA_congress_small_oppositiona = yes
+		}
+	}
+	
+}

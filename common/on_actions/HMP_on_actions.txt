@@ -205,14 +205,14 @@ on_actions = {
 							option = horst_china_war_on
 						} 
                     }
-					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 69500 }
-					add_equipment_to_stockpile = { type = support_equipment_1 amount = 2050 }
-					add_equipment_to_stockpile = { type = special_equipment_1 amount = 20000 }
-					add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 4020 }
-					add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 1060 }
-					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 3040 }
-					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 3050 }
-					add_equipment_to_stockpile = { type = train_equipment_1 amount = 220 }
+					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 159000 }
+					add_equipment_to_stockpile = { type = support_equipment_1 amount = 4400 }
+					add_equipment_to_stockpile = { type = special_equipment_1 amount = 45000 }
+					add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 8440 }
+					add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 2820 }
+					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 6180 }
+					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 3850 }
+					add_equipment_to_stockpile = { type = train_equipment_1 amount = 320 }
 					
 					add_dynamic_modifier = { modifier = JAP_china_war_modifier }
 				}
@@ -1552,108 +1552,114 @@ on_actions = {
             }
         }
         effect = {
-            # Pacific BOP Island Evaluation
-            USA = {
-                # 560 - IWO JIMA
-                if = {
-                    limit = { 560 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_axis }
-                }
+			# Pacific BOP Island Evaluation
+			USA = {
+				if = {
+					limit = { 
+						has_war_with = JAP 
+					}
+					
+					# 560 - IWO JIMA
+					if = {
+						limit = { 560 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_iwo_jima_axis }
+					}
 
-                # 180 - MINAMITORISHIMA
-                if = {
-                    limit = { 180 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_axis }
-                }
+					# 180 - MINAMITORISHIMA
+					if = {
+						limit = { 180 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_minamitorishima_axis }
+					}
 
-                # 409 - SAIPAN
-                if = {
-                    limit = { 409 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_axis }
-                }
+					# 409 - SAIPAN
+					if = {
+						limit = { 409 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_saipan_axis }
+					}
 
-                # 140 - GUAM
-                if = {
-                    limit = { 140 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_axis }
-                }
+					# 140 - GUAM
+					if = {
+						limit = { 140 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_guam_axis }
+					}
 
-                # 488 - PALAU
-                if = {
-                    limit = { 488 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_axis }
-                }
+					# 488 - PALAU
+					if = {
+						limit = { 488 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_palau_axis }
+					}
 
-                # 353 - WAKE ISLAND
-                if = {
-                    limit = { 353 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_axis }
-                }
+					# 353 - WAKE ISLAND
+					if = {
+						limit = { 353 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_wake_island_axis }
+					}
 
-                # 420 - MIDWAY
-                if = {
-                    limit = { 420 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_axis }
-                }
+					# 420 - MIDWAY
+					if = {
+						limit = { 420 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_midway_axis }
+					}
 
-                # 141 - JOHNSTON ATOLL
-                if = {
-                    limit = { 141 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_axis }
-                }
+					# 141 - JOHNSTON ATOLL
+					if = {
+						limit = { 141 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_johnston_axis }
+					}
 
-                # 416 - HAWAII
-                if = {
-                    limit = { 416 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_axis }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_allies }
-                }
-                else = {
-                    add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_allies }
-                    remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_axis }
-                }
-            }
-        }
+					# 416 - HAWAII
+					if = {
+						limit = { 416 = { CONTROLLER = { OR = { tag = JAP is_in_faction_with = JAP } } } }
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_axis }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_allies }
+					}
+					else = {
+						add_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_allies }
+						remove_power_balance_modifier = { id = USA_power_balance modifier = USA_bop_hawaii_axis }
+					}
+				}
+			}
+		}
 		effect = {
 			JAP = { 
 				calc_japanese_pacific_navy_bonus = yes 

@@ -1880,10 +1880,6 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-			add_research_slot = -1
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-			
 			if = {
 				limit = {
 					has_global_flag = war_in_the_west_start
@@ -2202,35 +2198,20 @@ focus_tree = {
             FRA = {
                 add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
             }
-
-            if = {
-                limit = { country_exists = RAJ }
-                RAJ = {
-                    add_political_power = -50
-                    add_timed_idea = { idea = ENG_imperial_conference_defense_31 days = 365 }
-                }
-            }
-
-            if = {
-                limit = { country_exists = AST }
-                AST = {
-                    add_political_power = -50
-                    add_timed_idea = { idea = ENG_imperial_conference_defense_31 days = 365 }
-                }
-            }
-
-            CAN = {
-                add_political_power = -50
-                add_timed_idea = { idea = ENG_imperial_conference_defense_31 days = 365 }
-            }
-
-            if = {
-                limit = { country_exists = SAF }
-                SAF = {
-                    add_political_power = -50
-                    add_timed_idea = { idea = ENG_imperial_conference_defense_31 days = 365 }
-                }
-            }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt 
+			
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = CAN
+						original_tag = SAF
+						original_tag = RAJ
+						original_tag = AST
+					}
+				}
+				add_timed_idea = { idea = ENG_imperial_conference_defense_31  days = 365 }
+			}
 		}
 	}
     
@@ -2335,16 +2316,15 @@ focus_tree = {
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
-			CAN = {
-				add_timed_idea = { idea = ENG_handle_the_imperial_security_idea  days = 1235 }
-			}
-			SAF = {
-				add_timed_idea = { idea = ENG_handle_the_imperial_security_idea  days = 1235 }
-			}
-			RAJ = {
-				add_timed_idea = { idea = ENG_handle_the_imperial_security_idea  days = 1235 }
-			}
-			AST = {
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = CAN
+						original_tag = SAF
+						original_tag = RAJ
+						original_tag = AST
+					}
+				}
 				add_timed_idea = { idea = ENG_handle_the_imperial_security_idea  days = 1235 }
 			}
 		}
@@ -2383,6 +2363,9 @@ focus_tree = {
 
 		completion_reward = {
 			add_stability = 0.1
+			add_war_support = 0.1
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
 
             hidden_effect = {
                 news_event = { id = mtg_news.13 days = 1 }
@@ -2390,17 +2373,13 @@ focus_tree = {
 
             ENG = {
                 add_timed_idea = { idea = ENG_imperial_conference_defense_31 days = 365 }
-
-                if = {
-                    limit = { ENG = { has_war = no } }
-                    add_political_power = -25
-                    add_war_support = 0.15
-                }
-				
-				FRA = {
-					add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
-				}
             }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			FRA = {
+				add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
+			}
 		}
 	}
     
@@ -2482,76 +2461,37 @@ focus_tree = {
 
         completion_reward = {
             add_stability = 0.1
+			add_war_support = 0.1
 
             hidden_effect = {
                 news_event = { id = mtg_news.13 days = 1 }
             }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
 
             ENG = {
                 add_timed_idea = { idea = ENG_imperial_conference_defense_5 days = 365 }
-                add_timed_idea = { idea = ENG_imperial_conference_economy_5 days = 365 }
-
-                if = {
-                    limit = { ENG = { has_war = no } }
-                    add_political_power = -25
-                    add_war_support = 0.15
-                }
             }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
             
             FRA = {
                 add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
             }
-
-            if = {
-                limit = { country_exists = RAJ }
-                RAJ = {
-                    add_political_power = -50
-                    add_timed_idea = { idea = ENG_imperial_conference_economy_dominion days = 365 }
-                    add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
-
-                    if = {
-                        limit = { ENG = { has_war = no } }
-                        add_political_power = -25
-                        add_war_support = 0.1
-                    }
-                }
-            }
-
-            if = {
-                limit = { country_exists = AST }
-                AST = {
-                    add_political_power = -50
-                    add_timed_idea = { idea = ENG_imperial_conference_economy_dominion days = 365 }
-                    add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
-                }
-            }
-            
-            CAN = {
-                add_political_power = -50
-                add_timed_idea = { idea = ENG_imperial_conference_economy_dominion days = 365 }
-                add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
-
-                if = {
-                    limit = { ENG = { has_war = no } }
-                    add_political_power = -25
-                    add_war_support = 0.1
-                }
-            }
-
-            if = {
-                limit = { country_exists = SAF }
-                SAF = {
-                    add_political_power = -50
-                    add_timed_idea = { idea = ENG_imperial_conference_economy_dominion days = 365 }
-                    add_timed_idea = { idea = ENG_imperial_conference_defense_dominion days = 365 }
-
-                    if = {
-                        limit = { ENG = { has_war = no } }
-                        add_political_power = -25
-                        add_war_support = 0.1
-                    }
-                }
-            }
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = CAN
+						original_tag = SAF
+						original_tag = RAJ
+						original_tag = AST
+					}
+				}
+				add_timed_idea = { idea = ENG_imperial_conference_defense_dominion  days = 365 }
+			}
         }
     }
     

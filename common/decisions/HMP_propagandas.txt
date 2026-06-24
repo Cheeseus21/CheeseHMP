@@ -1,0 +1,1316 @@
+####################################################################
+# ITALY (ITA) PROPAGANDA CAMPAIGNS (12 Decisions)
+####################################################################
+X_ITA_propaganda_campaigns = {
+
+	# 1. CRYPTO (ID: 3)
+	X_ITA_propaganda_silence_the_enemy_is_listening = {
+		icon = GFX_decision_SWI_expand_covert_operations
+		cost = X_ITA_propaganda_3_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {
+			has_intelligence_agency = yes 
+			
+			X_ita_propaganda_poster_slot_available = yes			
+		}
+		modifier = { intelligence_agency_defense = 3 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 3 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 3 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_3_cost = 2 }
+		}
+	}
+	
+	# 2. POLITICAL POWER (ID: 4)
+	X_ITA_propaganda_hail_the_duke = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_ITA_propaganda_4_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = { X_ita_propaganda_poster_slot_available = yes }
+		modifier = { political_power_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 4 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 4 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_4_cost = 2 }
+		}
+	}
+
+	# 3. WAR SUPPORT (ID: 5)
+	X_ITA_propaganda_we_shall_return = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_ITA_propaganda_5_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { war_support_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 5 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 5 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_5_cost = 2 }
+		}
+	}
+	
+	# 4. STABILITY (ID: 6)
+	X_ITA_propaganda_italians_give_your_handiwork_for_works_in_italy = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_ITA_propaganda_6_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = { X_ita_propaganda_poster_slot_available = yes }
+		modifier = { stability_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 6 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 6 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_6_cost = 2 }
+		}
+	}
+
+	# 5. ARMY SPEED (ID: 7)
+	X_ITA_propaganda_for_victory = {
+		icon = GFX_decision_generic_army_support
+		cost = X_ITA_propaganda_7_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = { X_ita_propaganda_poster_slot_available = yes }
+		modifier = { army_speed_factor = 0.05 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 7 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 7 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_7_cost = 2 }
+		}
+	}
+	
+	# 6. ORG RECOVERY / MORALE (ID: 8)
+	X_ITA_propaganda_hearts_of_steel_like_guns = {
+		icon = GFX_decision_generic_army_support
+		cost = X_ITA_propaganda_8_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { army_morale_factor = 0.075 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 8 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 8 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_8_cost = 2 }
+		}
+	}
+	
+	# 7. REINFORCE RATE (ID: 9)
+	X_ITA_propaganda_enlist_in_the_anti_aircraft_artillery = {
+		icon = GFX_decision_generic_army_support
+		cost = X_ITA_propaganda_9_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { land_reinforce_rate = 0.025 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 9 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 9 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_9_cost = 2 }
+		}
+	}
+
+	# 8. AIR EFFICIENCY (ID: 10)
+	X_ITA_propaganda_rulers_of_the_skies_from_gibraltar_to_the_red_sea = {
+		icon = GFX_decision_generic_air
+		cost = X_ITA_propaganda_10_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { air_mission_efficiency = 0.05 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 10 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 10 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_10_cost = 2 }
+		}
+	}
+
+	# 9. AIR RANGE (ID: 11)
+	X_ITA_propaganda_work_and_fight_for_the_fatherland_for_victory = {
+		icon = GFX_decision_generic_air
+		cost = X_ITA_propaganda_11_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { air_range_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 11 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 11 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_11_cost = 2 }
+		}
+	}
+
+	# 10. LAST STAND / CORE COMBAT (ID: 12)
+	X_ITA_propaganda_hail_caesar = {
+		icon = GFX_decision_generic_form_nation
+		cost = X_ITA_propaganda_12_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { 
+			army_core_attack_factor = 0.1
+			army_core_defence_factor = 0.1
+		}
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 12 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 12 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_12_cost = 2 }
+		}
+	}
+
+    # 11. RESEARCH SPEED (ID: 13)
+	X_ITA_propaganda_13 = {
+		icon = GFX_decision_generic_research
+		cost = X_ITA_propaganda_13_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { research_speed_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 13 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 13 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_13_cost = 2 }
+		}
+	}
+    
+    # 12. PRODUCTION EFFICIENCY GAIN (ID: 14)
+	X_ITA_propaganda_for_honor_for_italy_enlist = {
+		icon = GFX_decision_generic_factory
+		cost = X_ITA_propaganda_14_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ITA }
+		visible = { has_government = fascism }
+		available = {  X_ita_propaganda_poster_slot_available = yes }
+		modifier = { production_factory_efficiency_gain_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ITA_new_propaganda_campaign = 14 }
+			X_ITA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ITA_propaganda_campaign_to_remove = 14 }
+			X_ITA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ITA_propaganda_14_cost = 2 }
+		}
+	}
+}
+
+####################################################################
+# JAPAN (JAP) PROPAGANDA CAMPAIGNS (12 Decisions)
+####################################################################
+X_JAP_propaganda_campaigns = {
+
+	# 1. CRYPTO (ID: 3)
+	X_JAP_propaganda_beware_enemy_spies = {
+		icon = GFX_decision_SWI_expand_covert_operations
+		cost = X_JAP_propaganda_3_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { intelligence_agency_defense = 3 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 3 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 3 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_3_cost = 2 }
+		}
+	}
+
+	# 2. POLITICAL POWER (ID: 4)
+	X_JAP_propaganda_youkoso_nippon = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_JAP_propaganda_4_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = { has_war = no X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { political_power_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 4 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 4 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_4_cost = 2 }
+		}
+	}
+
+	# 3. WAR SUPPORT (ID: 5)
+	X_JAP_propaganda_spirit_of_will = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_JAP_propaganda_5_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { war_support_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 5 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 5 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_5_cost = 2 }
+		}
+	}
+
+	# 4. STABILITY (ID: 6)
+	X_JAP_propaganda_capitalist_scum = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_JAP_propaganda_6_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = { X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { stability_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 6 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 6 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_6_cost = 2 }
+		}
+	}
+
+	# 5. ARMY SPEED (ID: 7)
+	X_JAP_propaganda_lessons_from_nomonhan = {
+		icon = GFX_decision_generic_army_support
+		cost = X_JAP_propaganda_7_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { army_speed_factor = 0.05 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 7 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 7 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_7_cost = 2 }
+		}
+	}
+
+	# 6. ORG RECOVERY / MORALE (ID: 8)
+	X_JAP_propaganda_honorary_aryan = {
+		icon = GFX_decision_generic_army_support
+		cost = X_JAP_propaganda_8_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { army_morale_factor = 0.075 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 8 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 8 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_8_cost = 2 }
+		}
+	}
+
+	# 7. REINFORCE RATE (ID: 9)
+	X_JAP_propaganda_9x19_parabellum = {
+		icon = GFX_decision_generic_army_support
+		cost = X_JAP_propaganda_9_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { land_reinforce_rate = 0.025 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 9 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 9 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_9_cost = 2 }
+		}
+	}
+
+	# 8. AIR EFFICIENCY (ID: 10)
+	X_JAP_propaganda_air_effort = {
+		icon = GFX_decision_generic_air
+		cost = X_JAP_propaganda_10_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { air_mission_efficiency = 0.05 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 10 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 10 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_10_cost = 2 }
+		}
+	}
+
+	# 9. AIR RANGE (ID: 11)
+	X_JAP_propaganda_the_indestructible = {
+		icon = GFX_decision_generic_air
+		cost = X_JAP_propaganda_11_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { air_range_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 11 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 11 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_11_cost = 2 }
+		}
+	}
+
+	# 10. LAST STAND (CORE COMBAT) (ID: 12)
+	X_JAP_propaganda_last_will = {
+		icon = GFX_decision_generic_form_nation
+		cost = X_JAP_propaganda_12_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { 
+			army_core_attack_factor = 0.1
+			army_core_defence_factor = 0.1
+		}
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 12 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 12 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_12_cost = 2 }
+		}
+	}
+
+    # 11. RESEARCH SPEED (ID: 13)
+	X_JAP_propaganda_tripartite_pact = {
+		icon = GFX_decision_generic_research
+		cost = X_JAP_propaganda_13_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { research_speed_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 13 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 13 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_13_cost = 2 }
+		}
+	}
+    
+    # 12. PRODUCTION EFFICIENCY GAIN (ID: 14)
+	X_JAP_propaganda_dai_toa_kyoeiken = {
+		icon = GFX_decision_generic_factory
+		cost = X_JAP_propaganda_14_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = JAP }
+		visible = { OR = { has_government = fascism has_government = neutrality } }
+		available = {  X_JAP_propaganda_poster_slot_available = yes }
+		modifier = { production_factory_efficiency_gain_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_JAP_new_propaganda_campaign = 14 }
+			X_JAP_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_JAP_propaganda_campaign_to_remove = 14 }
+			X_JAP_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_JAP_propaganda_14_cost = 2 }
+		}
+	}
+}
+
+####################################################################
+# GERMANY (GER) PROPAGANDA CAMPAIGNS (12 Decisions)
+####################################################################
+X_GER_propaganda_campaigns = {
+
+	# 1. CRYPTO (ID: 3)
+	X_GER_propaganda_anti_anglosphere_propaganda = {
+		icon = GFX_decision_SWI_expand_covert_operations
+		cost = X_GER_propaganda_3_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = { X_GER_propaganda_poster_slot_available = yes }
+		modifier = { intelligence_agency_defense = 3 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 3 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 3 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_3_cost = 2 }
+		}
+	}
+
+	# 2. POLITICAL POWER (ID: 4)
+	X_GER_propaganda_one_people_one_reich_one_fuhrer = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_GER_propaganda_4_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = { X_GER_propaganda_poster_slot_available = yes }
+		modifier = { political_power_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 4 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 4 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_4_cost = 2 }
+		}
+	}
+
+	# 3. WAR SUPPORT (ID: 5)
+	X_GER_propaganda_victory_will_be_ours = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_GER_propaganda_5_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = {  X_GER_propaganda_poster_slot_available = yes }
+		modifier = { war_support_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 5 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 5 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_5_cost = 2 }
+		}
+	}
+
+	# 4. STABILITY (ID: 6)
+	X_GER_propaganda_point_fingers = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_GER_propaganda_6_cost 
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = { X_GER_propaganda_poster_slot_available = yes }
+		modifier = { stability_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 6 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 6 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_6_cost = 2 }
+		}
+	}
+
+	# 5. ARMY SPEED (ID: 7)
+	X_GER_propaganda_marching_forward = {
+		icon = GFX_decision_generic_army_support
+		cost = X_GER_propaganda_7_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = { X_GER_propaganda_poster_slot_available = yes }
+		modifier = { army_speed_factor = 0.05 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 7 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 7 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_7_cost = 2 }
+		}
+	}
+
+	# 6. ORG RECOVERY / MORALE (ID: 8)
+	X_GER_propaganda_victory_at_any_cost = {
+		icon = GFX_decision_generic_army_support
+		cost = X_GER_propaganda_8_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = { X_GER_propaganda_poster_slot_available = yes }
+		modifier = { army_morale_factor = 0.075 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 8 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 8 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_8_cost = 2 }
+		}
+	}
+
+	# 7. REINFORCE RATE (ID: 9)
+	X_GER_propaganda_volksstrum = {
+		icon = GFX_decision_generic_army_support
+		cost = X_GER_propaganda_9_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = {  X_GER_propaganda_poster_slot_available = yes }
+		modifier = { land_reinforce_rate = 0.025 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 9 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 9 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_9_cost = 2 }
+		}
+	}
+
+	# 8. AIR EFFICIENCY (ID: 10)
+	X_GER_propaganda_air_effort = {
+		icon = GFX_decision_generic_air
+		cost = X_GER_propaganda_10_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = { X_GER_propaganda_poster_slot_available = yes }
+		modifier = { air_mission_efficiency = 0.05 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 10 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 10 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_10_cost = 2 }
+		}
+	}
+
+	# 9. AIR RANGE (ID: 11)
+	X_GER_propaganda_reichsautobahn = {
+		icon = GFX_decision_generic_air
+		cost = X_GER_propaganda_11_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = { X_GER_propaganda_poster_slot_available = yes }
+		modifier = { air_range_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 11 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 11 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_11_cost = 2 }
+		}
+	}
+
+	# 10. LAST STAND / CORE COMBAT (ID: 12)
+	X_GER_propaganda_total_war = {
+		icon = GFX_decision_generic_form_nation
+		cost = X_GER_propaganda_12_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = {  X_GER_propaganda_poster_slot_available = yes }
+		modifier = { 
+			army_core_attack_factor = 0.1
+			army_core_defence_factor = 0.1
+		}
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 12 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 12 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_12_cost = 2 }
+		}
+	}
+
+    # 11. RESEARCH SPEED (ID: 13)
+	X_GER_propaganda_hitler_youth_i = {
+		icon = GFX_decision_generic_research
+		cost = X_GER_propaganda_13_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = {  X_GER_propaganda_poster_slot_available = yes }
+		modifier = { research_speed_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 13 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 13 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_13_cost = 2 }
+		}
+	}
+    
+    # 12. PRODUCTION EFFICIENCY GAIN (ID: 14)
+	X_GER_propaganda_tank_effort = {
+		icon = GFX_decision_generic_factory
+		cost = X_GER_propaganda_14_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = GER }
+		visible = { has_government = fascism }
+		available = {  X_GER_propaganda_poster_slot_available = yes }
+		modifier = { production_factory_efficiency_gain_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_GER_new_propaganda_campaign = 14 }
+			X_GER_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_GER_propaganda_campaign_to_remove = 14 }
+			X_GER_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_GER_propaganda_14_cost = 2 }
+		}
+	}
+}
+
+####################################################################
+# UNITED STATES (USA) PROPAGANDA CAMPAIGNS (12 Decisions)
+####################################################################
+X_USA_propaganda_campaigns = {
+
+	# 1. CRYPTO (ID: 3)
+	X_USA_propaganda_loaded = {
+		icon = GFX_decision_SWI_expand_covert_operations
+		cost = X_USA_propaganda_3_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { intelligence_agency_defense = 3 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 3 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 3 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_3_cost = 2 }
+		}
+	}
+
+	# 2. POLITICAL POWER (ID: 4)
+	X_USA_propaganda_buy_american_goods = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_USA_propaganda_4_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = { X_USA_propaganda_poster_slot_available = yes }
+		modifier = { political_power_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 4 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 4 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_4_cost = 2 }
+		}
+	}
+
+	# 3. WAR SUPPORT (ID: 5)
+	X_USA_propaganda_call_of_duty = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_USA_propaganda_5_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { war_support_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 5 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 5 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_5_cost = 2 }
+		}
+	}
+
+	# 4. STABILITY (ID: 6)
+	X_USA_propaganda_we_can_do_it = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_USA_propaganda_6_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = { X_USA_propaganda_poster_slot_available = yes }
+		modifier = { stability_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 6 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 6 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_6_cost = 2 }
+		}
+	}
+
+	# 5. ARMY SPEED (ID: 7)
+	X_USA_propaganda_stop_him = {
+		icon = GFX_decision_generic_army_support
+		cost = X_USA_propaganda_7_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { army_speed_factor = 0.05 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 7 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 7 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_7_cost = 2 }
+		}
+	}
+
+	# 6. ORG RECOVERY / MORALE (ID: 8)
+	X_USA_propaganda_i_want_you = {
+		icon = GFX_decision_generic_army_support
+		cost = X_USA_propaganda_8_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { army_morale_factor = 0.075 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 8 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 8 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_8_cost = 2 }
+		}
+	}
+
+	# 7. REINFORCE RATE (ID: 9)
+	X_USA_propaganda_w_a_c = {
+		icon = GFX_decision_generic_army_support
+		cost = X_USA_propaganda_9_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { land_reinforce_rate = 0.025 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 9 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 9 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_9_cost = 2 }
+		}
+	}
+
+	# 8. AIR EFFICIENCY (ID: 10)
+	X_USA_propaganda_air_effort = {
+		icon = GFX_decision_generic_air
+		cost = X_USA_propaganda_10_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { air_mission_efficiency = 0.05 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 10 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 10 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_10_cost = 2 }
+		}
+	}
+
+	# 9. AIR RANGE (ID: 11)
+	X_USA_propaganda_zipang_horror = {
+		icon = GFX_decision_generic_air
+		cost = X_USA_propaganda_11_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { air_range_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 11 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 11 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_11_cost = 2 }
+		}
+	}
+
+	# 10. LAST STAND (CORE COMBAT) (ID: 12)
+	X_USA_propaganda_alaskan_death_trap = {
+		icon = GFX_decision_generic_form_nation
+		cost = X_USA_propaganda_12_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { 
+			army_core_attack_factor = 0.1
+			army_core_defence_factor = 0.1
+		}
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 12 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 12 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_12_cost = 2 }
+		}
+	}
+
+    # 11. RESEARCH SPEED (ID: 13)
+	X_USA_propaganda_well_finish_the_job = {
+		icon = GFX_decision_generic_research
+		cost = X_USA_propaganda_13_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { research_speed_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 13 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 13 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_13_cost = 2 }
+		}
+	}
+    
+    # 12. PRODUCTION EFFICIENCY GAIN (ID: 14)
+	X_USA_propaganda_more_more_of_everything = {
+		icon = GFX_decision_generic_factory
+		cost = X_USA_propaganda_14_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = USA }
+		visible = { has_government = democratic }
+		available = {  X_USA_propaganda_poster_slot_available = yes }
+		modifier = { production_factory_efficiency_gain_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_USA_new_propaganda_campaign = 14 }
+			X_USA_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_USA_propaganda_campaign_to_remove = 14 }
+			X_USA_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_USA_propaganda_14_cost = 2 }
+		}
+	}
+}
+
+####################################################################
+# UNITED KINGDOM (ENG) PROPAGANDA CAMPAIGNS (12 Decisions)
+####################################################################
+X_ENG_propaganda_campaigns = {
+
+	X_allies_prop_dummy = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		days_re_enable = 1
+		allowed = { always = no }
+		visible = { always = no }
+		available = { always = no }
+	}
+
+	# 1. CRYPTO (ID: 3)
+	X_ENG_propaganda_care_of_arms = {
+		icon = GFX_decision_SWI_expand_covert_operations
+		cost = X_ENG_propaganda_3_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { intelligence_agency_defense = 3 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 3 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 3 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_3_cost = 2 }
+		}
+	}
+
+	# 2. POLITICAL POWER (ID: 4)
+	X_ENG_propaganda_thanks_chum_keep_it_up = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_ENG_propaganda_4_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = { X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { political_power_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 4 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 4 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_4_cost = 2 }
+		}
+	}
+
+	# 3. WAR SUPPORT (ID: 5)
+	X_ENG_propaganda_finest_hour = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_ENG_propaganda_5_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { war_support_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 5 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 5 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_5_cost = 2 }
+		}
+	}
+
+	# 4. STABILITY (ID: 6)
+	X_ENG_propaganda_gask_mask = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = X_ENG_propaganda_6_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = { X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { stability_weekly = 0.005 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 6 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 6 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_6_cost = 2 }
+		}
+	}
+
+	# 5. ARMY SPEED (ID: 7)
+	X_ENG_propaganda_to_victory = {
+		icon = GFX_decision_generic_army_support
+		cost = X_ENG_propaganda_7_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { army_speed_factor = 0.05 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 7 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 7 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_7_cost = 2 }
+		}
+	}
+
+	# 6. ORG RECOVERY / MORALE (ID: 8)
+	X_ENG_propaganda_well_beat_em_again = {
+		icon = GFX_decision_generic_army_support
+		cost = X_ENG_propaganda_8_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { army_morale_factor = 0.075 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 8 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 8 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_8_cost = 2 }
+		}
+	}
+
+	# 7. REINFORCE RATE (ID: 9)
+	X_ENG_propaganda_home_defence_battalions = {
+		icon = GFX_decision_generic_army_support
+		cost = X_ENG_propaganda_9_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { land_reinforce_rate = 0.025 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 9 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 9 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_9_cost = 2 }
+		}
+	}
+
+	# 8. AIR EFFICIENCY (ID: 10)
+	X_ENG_propaganda_air_defense_is_home_defence = {
+		icon = GFX_decision_generic_air
+		cost = X_ENG_propaganda_10_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { air_mission_efficiency = 0.05 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 10 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 10 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_10_cost = 2 }
+		}
+	}
+
+	# 9. AIR RANGE (ID: 11)
+	X_ENG_propaganda_back_them_up = {
+		icon = GFX_decision_generic_air
+		cost = X_ENG_propaganda_11_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { air_range_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 11 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 11 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_11_cost = 2 }
+		}
+	}
+
+	# 10. LAST STAND (CORE COMBAT) (ID: 12)
+	X_ENG_propaganda_your_duty = {
+		icon = GFX_decision_generic_form_nation
+		cost = X_ENG_propaganda_12_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { 
+			army_core_attack_factor = 0.1
+			army_core_defence_factor = 0.1
+		}
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 12 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 12 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_12_cost = 2 }
+		}
+	}
+
+    # 11. RESEARCH SPEED (ID: 13)
+	X_ENG_propaganda_together = {
+		icon = GFX_decision_generic_research
+		cost = X_ENG_propaganda_13_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { research_speed_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 13 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 13 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_13_cost = 2 }
+		}
+	}
+    
+    # 12. PRODUCTION EFFICIENCY GAIN (ID: 14)
+	X_ENG_propaganda_arm_him = {
+		icon = GFX_decision_generic_factory
+		cost = X_ENG_propaganda_14_cost
+		days_remove = 90
+		days_re_enable = 90
+		allowed = { original_tag = ENG }
+		visible = { has_government = democratic }
+		available = {  X_ENG_propaganda_poster_slot_available = yes }
+		modifier = { production_factory_efficiency_gain_factor = 0.1 }
+		complete_effect = {
+			set_variable = { X_ENG_new_propaganda_campaign = 14 }
+			X_ENG_pick_propaganda_campaign_slot_effect = yes
+		}
+		remove_effect = {
+			set_variable = { X_ENG_propaganda_campaign_to_remove = 14 }
+			X_ENG_reset_propaganda_campaign_slot_effect = yes
+			multiply_variable = { X_ENG_propaganda_14_cost = 2 }
+		}
+	}
+}
