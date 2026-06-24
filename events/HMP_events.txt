@@ -8930,53 +8930,66 @@ country_event = {
 
 	immediate = {
 		hidden_effect = {
-				country_event = { id = usa.35 days = 730 } # midterms
+			country_event = { id = usa.35 days = 730 } # midterms
 		}
 	}
 
 	option = { 	
 		name = usa.6.a	
 		custom_effect_tooltip = usa_congress_elections_tt_roosevelt
-		add_ideas = new_deal
 		country_event = usa.30
 	}
 	
 	option = {
 		name = usa.6.b
-			set_party_name = { ideology = democratic long_name = USA_republican_party name = USA_republican_party }
-		set_variable = { election_factor = random }
-		add_to_variable = { election_factor = -0.6 }
-		USA_election_senate = yes
-		USA_election_house = yes
-		USA_flip_support = yes
-		custom_effect_tooltip = usa_congress_elections_tt_good
-		add_political_power = 120
-		if = {
-			limit = {
-				has_idea = standard_oil_california
-			}
-			add_political_power = 150
+		set_party_name = { ideology = democratic long_name = USA_republican_party name = USA_republican_party }
+		
+		hidden_effect = {
+			set_variable = { election_factor = random }
+			add_to_variable = { election_factor = -0.6 }
+			USA_election_senate = yes
+			USA_election_house = yes
+			USA_flip_support = yes
+			custom_effect_tooltip = usa_congress_elections_tt_good
 		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		add_political_power = 120
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		USA_alf_landon = {
+			add_country_leader_role = {
+				country_leader = {
+					ideology = liberalism
+					traits = { conservative_politician }
+					expire = "1965.1.1"
+				}
+				promote_leader = yes
+			}		
+		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
 		if = {
 			limit = {
 				NOT = { has_idea = standard_oil_california }
 			}
 			add_ideas = standard_oil_california
 		}
-		retire_character = USA_franklin_delano_roosevelt
-		USA_alf_landon = {
-										add_country_leader_role = {
-					country_leader = {
-					  ideology=liberalism
-					  traits = {  conservative_politician }
-					  expire="1965.1.1"
-					}
-					promote_leader = yes
-				}		
+		else = {
+			add_political_power = 150
 		}
+		
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
 		country_event = usa.31
-
-}
+		
+		hidden_effect = {
+			retire_character = USA_franklin_delano_roosevelt
+		}
+	}
 }
 
 # Election of 1940: Roosevelt vs Wendell Wilkie
