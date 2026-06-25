@@ -2238,10 +2238,10 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-            add_research_slot = 1
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
+			custom_effect_tooltip = ENG_handle_the_imperial_security_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
             random_core_state = {
 				limit = {
 					is_fully_controlled_by = ROOT
@@ -2592,29 +2592,60 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-			add_tech_bonus = {
-				name = GER_panzergrenadier
-				bonus = 1
-				uses = 1
-				category = infantry_weapons
+			if = {
+				limit = {
+					has_completed_focus = ENG_handle_the_imperial_security
+				}
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1.5
+					uses = 1
+					category = infantry_weapons
+				}
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1.5
+					uses = 1
+					category = artillery
+				}
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1.5
+					uses = 1
+					category = cat_1941_tanks
+				}
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1.5
+					uses = 1
+					category = cat_mechanized_equipment
+				}
 			}
-			add_tech_bonus = {
-				name = GER_panzergrenadier
-				bonus = 1
-				uses = 1
-				category = artillery
-			}
-			add_tech_bonus = {
-				name = GER_panzergrenadier
-				bonus = 1
-				uses = 1
-				category = cat_1941_tanks
-			}
-			add_tech_bonus = {
-				name = GER_panzergrenadier
-				bonus = 1
-				uses = 1
-				category = cat_mechanized_equipment
+			else = {
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1
+					uses = 1
+					category = infantry_weapons
+				}
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1
+					uses = 1
+					category = artillery
+				}
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1
+					uses = 1
+					category = cat_1941_tanks
+				}
+				add_tech_bonus = {
+					name = GER_panzergrenadier
+					bonus = 1
+					uses = 1
+					category = cat_mechanized_equipment
+				}
 			}
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -3261,7 +3292,7 @@ focus_tree = {
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
-		    add_tech_bonus = {
+			add_tech_bonus = {
 				name = ENG_raf_demands_bonus
 				bonus = 1
 				uses = 2 
@@ -3301,7 +3332,7 @@ focus_tree = {
 		
 		icon = GFX_goal_generic_air_fighter
 		
-		x = 2
+		x = 0
 		y = 1
         
 		relative_position_id = ENG_raf_demands
@@ -3318,24 +3349,12 @@ focus_tree = {
             
             custom_effect_tooltip = generic_skip_one_line_tt
             
-            if = {
-                limit = {
-                    NOT = {
-                        has_completed_focus = ENG_bomber_command
-                    }
-                }
-                custom_effect_tooltip = ENG_fighter_command_tt
-                custom_effect_tooltip = ENG_modify_air_tt
-                add_to_variable = { 
-                    ENG_ra_air_attack = 0.05
-                    tooltip = air_attack_factor_tt
-                }
-                add_to_variable = { 
-                    ENG_ra_air_agility_factor = 0.05
-                    tooltip = air_agility_factor_tt
-                }
-            }
-            
+            custom_effect_tooltip = ENG_modify_air_tt
+			add_to_variable = { 
+				ENG_ra_air_mission_efficiency = 0.05
+				tooltip = air_mission_efficiency_tt
+			}
+				
             custom_effect_tooltip = generic_skip_one_line_tt
 			
 			if = {
@@ -3382,8 +3401,8 @@ focus_tree = {
         
 		    custom_effect_tooltip = ENG_modify_air_tt
             add_to_variable = { 
-                ENG_ra_air_accidents_factor = -0.4
-                tooltip = air_accidents_factor_tt
+                ENG_ra_air_superiority_efficiency = 0.1
+                tooltip = air_superiority_efficiency_tt
             }
             
             custom_effect_tooltip = generic_skip_one_line_tt
@@ -3436,8 +3455,12 @@ focus_tree = {
         
 		    custom_effect_tooltip = ENG_modify_air_tt
             add_to_variable = { 
-                ENG_ra_air_intercept_efficiency = 0.25
-                tooltip = air_intercept_efficiency_tt
+                ENG_ra_air_defence_factor = 0.1
+                tooltip = air_defence_factor_tt
+            }
+			add_to_variable = { 
+                ENG_ra_air_range_factor = -0.1
+                tooltip = air_range_factor_tt
             }
             
             custom_effect_tooltip = generic_skip_one_line_tt
@@ -3490,8 +3513,12 @@ focus_tree = {
         
 		    custom_effect_tooltip = ENG_modify_air_tt
             add_to_variable = { 
-                ENG_ra_air_superiority_efficiency = 0.1
-                tooltip = air_superiority_efficiency_tt
+                ENG_ra_air_defence_factor = -0.1
+                tooltip = air_defence_factor_tt
+            }
+			add_to_variable = { 
+                ENG_ra_air_range_factor = 0.1
+                tooltip = air_range_factor_tt
             }
             
             custom_effect_tooltip = generic_skip_one_line_tt
@@ -3577,163 +3604,6 @@ focus_tree = {
 		}
 	}
     
-    focus = {
-		id = ENG_david_butt_report
-        
-		prerequisite = { focus = ENG_bomber_command }
-        
-		available = {
-		    OR = {
-		        custom_trigger_tooltip = {
-			    tooltip = ENG_no_funds_tt
-		            check_variable = {
-                    ENG_funds > 0
-                    }
-				} 
-				date > 1940.9.1
-			}
-		}
-
-		continue_if_invalid = yes
-		available_if_capitulated = yes
-		
-		icon = GFX_goal_generic_air_naval_bomber
-		
-		x = 0
-		y = 1
-        
-		relative_position_id = ENG_bomber_command
-		
-		cost = 5
-		
-		completion_reward = {
-            air_experience = 25
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-        
-		    custom_effect_tooltip = ENG_modify_air_tt
-            add_to_variable = { 
-                ENG_ra_strategic_bomb_visibility = -0.1
-                tooltip = strategic_bomb_visibility_tt
-            }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-			
-			if = {
-				limit = {
-					date < 1940.9.1
-				}
-				subtract_from_variable = {  var = ENG_funds value = 1 } 
-			    custom_effect_tooltip = ENG_subtract_funds_tt
-			}
-		}
-	}
-    
-    focus = {
-		id = ENG_pathfinder_force
-        
-		prerequisite = { focus = ENG_david_butt_report }
-        
-		available = {
-		    OR = {
-		        custom_trigger_tooltip = {
-			    tooltip = ENG_no_funds_tt
-		            check_variable = {
-                    ENG_funds > 0
-                    }
-				} 
-				date > 1940.9.1
-			}
-		}
-
-		continue_if_invalid = yes
-		available_if_capitulated = yes
-		
-		icon = GFX_goal_generic_air_production
-		
-		x = -1
-		y = 1
-        
-		relative_position_id = ENG_david_butt_report
-		
-		cost = 5
-		
-		completion_reward = {
-            air_experience = 25
-        
-		    custom_effect_tooltip = generic_skip_one_line_tt
-        
-		    custom_effect_tooltip = ENG_modify_air_tt
-            add_to_variable = { 
-                ENG_ra_air_night_penalty = -0.1
-                tooltip = air_night_penalty_tt
-            }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-			
-			if = {
-				limit = {
-					date < 1940.9.1
-				}
-				subtract_from_variable = {  var = ENG_funds value = 1 } 
-			    custom_effect_tooltip = ENG_subtract_funds_tt
-			}
-		}
-	}
-    
-    focus = {
-		id = ENG_bomber_streams
-        
-		prerequisite = { focus = ENG_david_butt_report }
-        
-        
-		available = {
-		    OR = {
-		        custom_trigger_tooltip = {
-			    tooltip = ENG_no_funds_tt
-		            check_variable = {
-                    ENG_funds > 0
-                    }
-				} 
-				date > 1940.9.1
-			}
-		}
-
-		continue_if_invalid = yes
-		available_if_capitulated = yes
-		
-		icon = GFX_SOV_increase_aircraft_production_ccp_2d_sov_compatibility
-		
-		x = 1
-		y = 1
-        
-		relative_position_id = ENG_david_butt_report
-		
-		cost = 5
-		
-		completion_reward = {
-		    air_experience = 25
-        
-		    custom_effect_tooltip = generic_skip_one_line_tt
-        
-		    custom_effect_tooltip = ENG_modify_air_tt
-            add_to_variable = { 
-                ENG_ra_air_weather_penalty = -0.25
-                tooltip = air_weather_penalty_tt
-            }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-			
-			if = {
-				limit = {
-					date < 1940.9.1
-				}
-				subtract_from_variable = {  var = ENG_funds value = 1 } 
-			    custom_effect_tooltip = ENG_subtract_funds_tt
-			}
-		}
-	}
-    
     ######################################################################################################################################################
     
     focus = {
@@ -3743,7 +3613,7 @@ focus_tree = {
         
 		icon = GFX_goal_generic_build_airforce
         
-		x = 0
+		x = 2
 		y = 1
         
 		relative_position_id = ENG_raf_demands
@@ -3796,13 +3666,13 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
-		    add_tech_bonus = {
-				name = ENG_navy_demands
-				bonus = 0.5
-				uses = 2
-				category = cat_ship_medium_battery
-				category = cat_ship_heavy_battery
-			}
+			add_tech_bonus = {
+					name = ENG_navy_demands
+					bonus = 0.5
+					uses = 2
+					category = cat_ship_medium_battery
+					category = cat_ship_heavy_battery
+				}
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			

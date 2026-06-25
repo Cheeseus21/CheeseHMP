@@ -1130,7 +1130,7 @@ focus_tree = {
             custom_effect_tooltip = GER_army_and_navy_tt	
             add_to_variable = {
                 var = GER_ran_air_mission_efficiency
-                value = 0.1
+                value = 0.05
                 tooltip = air_mission_efficiency_tt
             }
 
@@ -1287,10 +1287,11 @@ focus_tree = {
 	
 	focus = {
 		id = GER_defense_of_the_reich
-		icon = GFX_goal_generic_CAS
+		icon = GFX_focus_CZE_the_air_is_our_sea
 		prerequisite = { focus = GER_reorganize_the_luftwaffe focus = GER_develop_the_knickebein }
+		mutually_exclusive = { focus = GER_offensive_power_of_the_reich }
 
-		x = 2
+		x = 1
 		y = 1
         
 		relative_position_id = GER_reorganize_the_luftwaffe
@@ -1305,23 +1306,53 @@ focus_tree = {
 
 		completion_reward = {
             custom_effect_tooltip = GER_army_and_navy_tt	
-            add_to_variable = {
-                var = GER_ds_static_anti_air_hit_chance_factor
-                value = 0.1
-                tooltip = static_anti_air_hit_chance_factor_tt
-            }
-            add_to_variable = {
-                var = GER_ds_production_speed_anti_air_building_factor
-                value = 0.1
-                tooltip = production_speed_anti_air_building_factor_tt
-            }
+            add_to_variable = { 
+				GER_ran_air_defence_factor = 0.1 
+				tooltip = air_defence_factor_tt 
+			}
+            add_to_variable = { 
+				GER_ran_air_range_factor = -0.1 
+				tooltip = air_range_factor_tt 
+			}
+		}
+	}
+	
+	focus = {
+		id = GER_offensive_power_of_the_reich
+		icon = GFX_focus_generic_multi_role_aircraft
+		prerequisite = { focus = GER_reorganize_the_luftwaffe focus = GER_develop_the_knickebein }
+		mutually_exclusive = { focus = GER_defense_of_the_reich }
+
+		x = 3
+		y = 1
+        
+		relative_position_id = GER_reorganize_the_luftwaffe
+        
+		cost = 5
+        
+		available = {
+			has_war = yes
+		}
+
+		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+            custom_effect_tooltip = GER_army_and_navy_tt	
+            add_to_variable = { 
+				GER_ran_air_defence_factor = -0.1 
+				tooltip = air_defence_factor_tt 
+			}
+            add_to_variable = { 
+				GER_ran_air_range_factor = 0.1 
+				tooltip = air_range_factor_tt 
+			}
 		}
 	}
 
 	focus = {
 		id = GER_aerodynamic_research_institute
 		icon = GFX_focus_generic_aircraft_production
-		prerequisite = { focus = GER_defense_of_the_reich }
+		prerequisite = { focus = GER_defense_of_the_reich focus = GER_offensive_power_of_the_reich }
 		prerequisite = { focus = GER_rocketry_innovations }
 
 		x = 3
@@ -2818,7 +2849,7 @@ focus_tree = {
 		id = GER_the_broad_gauge_conversions
 		icon = GFX_focus_generic_railroad
 		prerequisite = { focus = GER_totaler_krieg }
-        mutually_exclusive = { focus = GER_start_the_winter_preperations focus = GER_ostfront_blitzkrieg }
+        mutually_exclusive = { focus = GER_start_the_winter_preperations focus = GER_ostfront_trench_war }
 
 		x = -2
 		y = 2
@@ -2861,8 +2892,8 @@ focus_tree = {
 	}
     
     focus = {
-		id = GER_ostfront_blitzkrieg
-		icon = GFX_focus_generic_tank_assault
+		id = GER_ostfront_trench_war
+		icon = GFX_focus_RAJ_mountain_guns
 		prerequisite = { focus = GER_totaler_krieg }
         mutually_exclusive = { focus = GER_start_the_winter_preperations focus = GER_the_broad_gauge_conversions }
 
@@ -2871,10 +2902,10 @@ focus_tree = {
         
 		relative_position_id = GER_totaler_krieg
         
-		cost = 8.7
+		cost = 14.4
         
 		available = {
-            has_country_flag = totaler_krieg_decision_active
+            #has_country_flag = totaler_krieg_decision_active
 		}
 
 		continue_if_invalid = yes
@@ -2884,41 +2915,49 @@ focus_tree = {
         select_effect = {
 			custom_effect_tooltip = GER_domestic_situation_tt
             add_to_variable = {
-                var = GER_ran_breakthrough_factor
-                value = 0.1
-                tooltip = breakthrough_factor_tt
+                var = GER_ran_max_planning
+                value = 0.2
+                tooltip = max_planning_tt
+            }
+			add_to_variable = {
+                var = GER_ran_army_speed_factor
+                value = -0.2
+                tooltip = army_speed_factor_tt
             }
 		}
 
 		completion_reward = {
-            custom_effect_tooltip = SOV_focus_select_effect_tt
-			custom_effect_tooltip = GER_domestic_situation_tt
-            add_to_variable = {
-                var = GER_ran_breakthrough_factor
-                value = 0.1
-                tooltip = breakthrough_factor_tt
-            }
+			effect_tooltip = {
+				custom_effect_tooltip = SOV_focus_select_effect_tt
+				custom_effect_tooltip = GER_army_and_navy_tt
+				add_to_variable = {
+					var = GER_ran_max_planning
+					value = 0.2
+					tooltip = max_planning_tt
+				}
+				add_to_variable = {
+					var = GER_ran_army_speed_factor
+					value = -0.2
+					tooltip = army_speed_factor_tt
+				}
+				
+				custom_effect_tooltip = generic_skip_one_line_tt
             
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-            custom_effect_tooltip = GER_we_tt1	
-            add_to_variable = {
-                var = GER_we_war_support_factor
-                value = -0.1
-                tooltip = war_support_factor_tt
-            }
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-            custom_effect_tooltip = GER_ostfront_blitzkrieg_tt
-            
+				custom_effect_tooltip = GER_ostfront_trench_war_tt
+			}
+
             hidden_effect = {
-                custom_effect_tooltip = GER_domestic_situation_tt
-                add_to_variable = {
-                    var = GER_ran_breakthrough_factor
-                    value = -0.1
-                    tooltip = breakthrough_factor_tt
-                }
+                custom_effect_tooltip = GER_army_and_navy_tt
+				add_to_variable = {
+					var = GER_ran_max_planning
+					value = -0.2
+					tooltip = max_planning_tt
+				}
+				add_to_variable = {
+					var = GER_ran_army_speed_factor
+					value = 0.2
+					tooltip = army_speed_factor_tt
+				}
             }
 		}
 	}
@@ -2927,7 +2966,7 @@ focus_tree = {
 		id = GER_start_the_winter_preperations
 		icon = GFX_SOV_claims_in_baltic_ccp_2d_sov_compatibility
 		prerequisite = { focus = GER_totaler_krieg }
-        mutually_exclusive = { focus = GER_the_broad_gauge_conversions focus = GER_ostfront_blitzkrieg }
+        mutually_exclusive = { focus = GER_the_broad_gauge_conversions focus = GER_ostfront_trench_war }
 
 		x = 2
 		y = 2
@@ -2953,7 +2992,7 @@ focus_tree = {
     focus = {
 		id = GER_winter_of_41
 		icon = GFX_GER_winter_of_41_focus
-		prerequisite = { focus = GER_the_broad_gauge_conversions focus = GER_ostfront_blitzkrieg focus = GER_start_the_winter_preperations }
+		prerequisite = { focus = GER_the_broad_gauge_conversions focus = GER_ostfront_trench_war focus = GER_start_the_winter_preperations }
         mutually_exclusive = { focus = GER_operation_typhoon }
 
 		x = 1
@@ -2991,7 +3030,7 @@ focus_tree = {
     focus = {
 		id = GER_operation_typhoon
 		icon = GFX_focus_SWE_attack_landsorganisationen
-		prerequisite = { focus = GER_the_broad_gauge_conversions focus = GER_ostfront_blitzkrieg focus = GER_start_the_winter_preperations }
+		prerequisite = { focus = GER_the_broad_gauge_conversions focus = GER_ostfront_trench_war focus = GER_start_the_winter_preperations }
         mutually_exclusive = { focus = GER_winter_of_41 }
 
 		x = 3

@@ -1535,6 +1535,10 @@
 
             complete_effect = {
                 set_country_flag = endsieg_ended
+				
+				add_war_support = 100
+				
+				custom_effect_tooltip = generic_skip_one_line_tt
             
                 remove_dynamic_modifier = { modifier = GER_war_exhaustion_dm }
             
@@ -12449,26 +12453,17 @@ propaganda_effortsx = {
 					limit = { NOT = { has_global_flag = war_in_the_west_start } }
 					count_triggers = { 
 						amount = 3
-						OR = { NOT = { country_exists = NOR } NOR = { is_ai = yes } }
-						OR = { NOT = { country_exists = BEL } BEL = { is_ai = yes } }
-						OR = { NOT = { country_exists = BRA } BRA = { is_ai = yes } }
-						OR = { NOT = { country_exists = HOL } HOL = { is_ai = yes } }
-						OR = { NOT = { country_exists = SAF } SAF = { is_ai = yes } }
 						OR = { NOT = { country_exists = CAN } CAN = { is_ai = yes } }
-						OR = { NOT = { country_exists = FRA } FRA = { is_ai = yes } }
+						OR = { NOT = { country_exists = SAF } SAF = { is_ai = yes } }
 						OR = { NOT = { country_exists = AST } AST = { is_ai = yes } }
-						OR = { NOT = { country_exists = NZL } NZL = { is_ai = yes } }
+						OR = { NOT = { country_exists = RAJ } RAJ = { is_ai = yes } }
 					} 
 				}
 				else = {  
 					count_triggers = { 
-						amount = 3 
-						OR = { NOT = { country_exists = NOR } NOR = { is_ai = yes } }
-						OR = { NOT = { country_exists = HOL } HOL = { is_ai = yes } }
-						OR = { NOT = { country_exists = BEL } BEL = { is_ai = yes } }
-						OR = { NOT = { country_exists = SAF } SAF = { is_ai = yes } }
+						amount = 1
 						OR = { NOT = { country_exists = CAN } CAN = { is_ai = yes } }
-						OR = { NOT = { country_exists = FRA } FRA = { is_ai = yes } }
+						OR = { NOT = { country_exists = SAF } SAF = { is_ai = yes } }
 					} 
 				}
 			}
@@ -14339,6 +14334,29 @@ GRE_declare_for_gre = {
 			# }
         # }
     # }
+	
+	JAP_ichi_go = {
+		icon = jap_conquer_china
+
+		available = {	
+			has_war_with = USA
+		} 
+
+		fire_only_once = yes
+		
+		cost = 100
+
+		complete_effect = {
+			custom_effect_tooltip = ichi_go_simplified_tt
+			
+			hidden_effect = {
+				add_timed_idea = { 
+					idea = JAP_ichi_go
+					days = 180 
+				}
+			}
+		}
+	}
     
     JAP_reduce_china_supply_penalty = {
 		icon = generic_logistics
