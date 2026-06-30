@@ -719,10 +719,15 @@ on_actions = {
 						option = horst_china_war_on
 					} 
 					
-					FROM.FROM = { is_core_of = CHI }
+					FROM.FROM = { 
+						is_core_of = CHI 
+						NOT = { has_state_flag = jap_china_eco_reset_done }
+					}
 				}
 				
 				FROM.FROM = {
+					set_state_flag = jap_china_eco_reset_done
+				
 					set_building_level = { type = industrial_complex level = 0 }
 					set_building_level = { type = arms_factory level = 0 }
 					set_building_level = { type = dockyard level = 0 }
