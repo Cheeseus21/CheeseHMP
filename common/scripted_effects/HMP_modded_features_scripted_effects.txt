@@ -41,6 +41,24 @@
 # ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 # ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 
+	snapshot_chinese_pre_war_factories = {
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = CHI
+					is_core_of = PRC
+					is_core_of = GXC
+					is_core_of = YUN
+					is_core_of = SHX
+					is_core_of = XSM
+				}
+			}
+			set_variable = { JAP_pre_war_civs = building_level@industrial_complex }
+			set_variable = { JAP_pre_war_mils = building_level@arms_factory }
+			set_variable = { JAP_pre_war_docks = building_level@dockyard }
+		}
+	}
+
 	JAP_china_war_supply_calc_effect = {
 		# 1. Clean the counting variables
 		clear_variable = JAP_cw_supply_states_count
@@ -210,7 +228,7 @@
 		
 		# FACTORY OUTPUT (+3.0% per state captured)
 		set_variable = { var = JAP.JAP_cw_industrial_capacity_factory value = JAP.JAP_cw_controlled_states_count }
-		multiply_variable = { var = JAP.JAP_cw_industrial_capacity_factory value = 0.015 }
+		multiply_variable = { var = JAP.JAP_cw_industrial_capacity_factory value = 0.02 }
 
 		# DOCKYARD OUTPUT (+3.0% per state captured)
 		set_variable = { var = JAP.JAP_cw_industrial_capacity_dockyard value = JAP.JAP_cw_controlled_states_count }
@@ -8556,224 +8574,6 @@ ITA_change_name_of_state_or_vp = {
 			}
 			FROM.FROM = { reset_state_name = yes }
 			reset_province_name = 10007
-		}
-	}
-}
-
-ITA_replace_designers_by_improved_version_north = {
-	#ARMOR
-	if = {
-		limit = {
-			has_idea =  fiat
-		}
-		swap_ideas = {
-			remove_idea = fiat
-			add_idea = ITA_fiat_improved
-		}
-	}
-
-	#NAVAL
-	if = {
-		limit = {
-			has_idea =  crda
-		}
-		swap_ideas = {
-			remove_idea = crda
-			add_idea = ITA_crda_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_cantiere_oto
-		}
-		swap_ideas = {
-			remove_idea = ITA_cantiere_oto
-			add_idea = ITA_cantiere_oto_improved
-		}
-	}
-
-	#AIRCRAFT
-	if = {
-		limit = {
-			has_idea = macchi
-		}
-		swap_ideas = {
-			remove_idea = macchi
-			add_idea = ITA_macchi_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = savoia_marchetti
-		}
-		swap_ideas = {
-			remove_idea = savoia_marchetti
-			add_idea = ITA_savoia_marchetti_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = caproni
-		}
-		swap_ideas = {
-			remove_idea = caproni
-			add_idea = ITA_caproni_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = piaggio
-		}
-		swap_ideas = {
-			remove_idea = piaggio
-			add_idea = ITA_piaggio_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_crda_cant
-		}
-		swap_ideas = {
-			remove_idea = ITA_crda_cant
-			add_idea = ITA_crda_cant_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_fiat_aviazione
-		}
-		swap_ideas = {
-			remove_idea = ITA_fiat_aviazione
-			add_idea = ITA_fiat_aviazione_improved
-		}
-	}
-
-	#MATERIEL
-	if = {
-		limit = {
-			has_idea = beretta
-		}
-		swap_ideas = {
-			remove_idea = beretta
-			add_idea = ITA_beretta_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = lancia
-		}
-		swap_ideas = {
-			remove_idea = lancia
-			add_idea = ITA_lancia_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = breda
-		}
-		swap_ideas = {
-			remove_idea = breda
-			add_idea = ITA_breda_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_brescia_arsenal
-		}
-		swap_ideas = {
-			remove_idea = ITA_brescia_arsenal
-			add_idea = ITA_brescia_arsenal_improved
-		}
-	}
-
-	#INDUSTRIAL
-	if = {
-		limit = {
-			has_idea = danieli
-		}
-		swap_ideas = {
-			remove_idea = danieli
-			add_idea = ITA_danieli_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_italcementi
-		}
-		swap_ideas = {
-			remove_idea = ITA_italcementi
-			add_idea = ITA_italcementi_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_ducati_energia
-		}
-		swap_ideas = {
-			remove_idea = ITA_ducati_energia
-			add_idea = ITA_ducati_energia_improved
-		}
-	}
-}
-
-ITA_replace_designers_by_improved_version_south = {
-	#NAVAL
-	if = {
-		limit = {
-			has_idea =  ITA_navalmeccanica
-		}
-		swap_ideas = {
-			remove_idea = ITA_navalmeccanica
-			add_idea = ITA_navalmeccanica_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_cantiere_navale_di_ancona
-		}
-		swap_ideas = {
-			remove_idea = ITA_cantiere_navale_di_ancona
-			add_idea = ITA_cantiere_navale_di_ancona_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_cantieri_navali_tosi
-		}
-		swap_ideas = {
-			remove_idea = ITA_cantieri_navali_tosi
-			add_idea = ITA_cantieri_navali_tosi_improved
-		}
-	}
-
-	#AIRCRAFT
-	if = {
-		limit = {
-			has_idea = ITA_imam
-		}
-		swap_ideas = {
-			remove_idea = ITA_imam
-			add_idea = ITA_imam_improved
-		}
-	}
-
-	#INDUSTRIAL
-	if = {
-		limit = {
-			has_idea = ITA_terni_industria_ed_elettricita
-		}
-		swap_ideas = {
-			remove_idea = ITA_terni_industria_ed_elettricita
-			add_idea = ITA_terni_industria_ed_elettricita_improved
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = ITA_astaldi
-		}
-		swap_ideas = {
-			remove_idea = ITA_astaldi
-			add_idea = ITA_astaldi_improved
 		}
 	}
 }

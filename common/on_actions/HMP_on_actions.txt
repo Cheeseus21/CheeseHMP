@@ -709,28 +709,59 @@ on_actions = {
 	}	
 
 	on_state_control_changed = {
-        # effect = {
-			# if = {
-				# limit = {
-					# FROM.FROM = {
-						# OR = {
-							# state = 308 state = 681 state = 570 state = 697 state = 511 
-							# state = 411 state = 700 state = 482 state = 695 state = 696 
-							# state = 698 state = 694 state = 678 state = 677 state = 508 
-							# state = 457 state = 475 state = 474 state = 680 state = 462 
-							# state = 325 state = 679 state = 557 state = 561 state = 476
-						# }
-					# }
-					# has_game_rule = {
-						# rule = horst_china_war
-						# option = horst_china_war_on
-					# }
-				# }
+		effect = {
+			if = {
+				limit = {
+					original_tag = JAP 
+					NOT = { has_global_flag = china_war_ended }
+					has_game_rule = { 
+						rule = horst_china_war 
+						option = horst_china_war_on
+					} 
+					
+					FROM.FROM = { is_core_of = CHI }
+				}
 				
-				# JAP = { JAP_china_war_buff_calc = yes }
-				# CHI = { CHI_china_war_buff_calc = yes }
-			# }
-		# }
+				FROM.FROM = {
+					set_building_level = { type = industrial_complex level = 0 }
+					set_building_level = { type = arms_factory level = 0 }
+					set_building_level = { type = dockyard level = 0 }
+
+					add_extra_state_shared_building_slots = 10
+
+					# --- CIVILIAN FACTORIES ---
+					if = { limit = { check_variable = { JAP_pre_war_civs > 0 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 1 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 2 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 3 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 4 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 5 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 6 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 7 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 8 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_civs > 9 } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+
+					# --- MILITARY FACTORIES ---
+					if = { limit = { check_variable = { JAP_pre_war_mils > 0 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 1 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 2 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 3 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 4 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 5 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 6 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 7 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 8 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_mils > 9 } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+
+					# --- DOCKYARDS ---
+					if = { limit = { check_variable = { JAP_pre_war_docks > 0 } } add_building_construction = { type = dockyard level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_docks > 1 } } add_building_construction = { type = dockyard level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_docks > 2 } } add_building_construction = { type = dockyard level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_docks > 3 } } add_building_construction = { type = dockyard level = 1 instant_build = yes } }
+					if = { limit = { check_variable = { JAP_pre_war_docks > 4 } } add_building_construction = { type = dockyard level = 1 instant_build = yes } }
+				}
+			}
+		}
         
 		effect = {
 			if = { 

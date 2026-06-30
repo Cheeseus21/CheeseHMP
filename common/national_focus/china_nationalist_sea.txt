@@ -52,7 +52,7 @@ focus_tree = {
 		cost = 5
 		
 		available = {
-			is_ai = no
+			always = no
 		}
 	
 		search_filters = {FOCUS_FILTER_HISTORICAL FOCUS_FILTER_STABILITY}
@@ -79,6 +79,10 @@ focus_tree = {
 
 		completion_reward = {
 			add_political_power = 120
+            
+            hidden_effect = {
+                snapshot_chinese_pre_war_factories = yes
+            }
 		}
 	}
 
@@ -967,6 +971,10 @@ focus_tree = {
         
 		completion_reward = {
 			army_experience = 25
+            
+            hidden_effect = {
+                snapshot_chinese_pre_war_factories = yes
+            }
 		}
 	}
 
@@ -978,7 +986,7 @@ focus_tree = {
 		id = CHI_set_up_an_nco_school
 		icon = GFX_focus_chi_whampoa_military_academy 
 		prerequisite = { focus = CHI_military_affairs_commission_sea }
-		mutually_exclusive = { focus = CHI_formalize_field_promotions }
+		#mutually_exclusive = { focus = CHI_formalize_field_promotions }
         
 		x = -1
 		y = 1
@@ -999,10 +1007,6 @@ focus_tree = {
 				CHI_ran_land_doctrine_cost_factor = -0.5
 				tooltip = land_doctrine_cost_factor_tt
 			}
-			add_to_variable = { 
-				CHI_ran_land_mastery_gain_factor = 0.5
-				tooltip = land_mastery_gain_factor_tt
-			}
 		}
 	}
     
@@ -1010,7 +1014,7 @@ focus_tree = {
 		id = CHI_formalize_field_promotions
 		icon = GFX_focus_CHI_military_mission
 		prerequisite = { focus = CHI_military_affairs_commission_sea }
-		mutually_exclusive = { focus = CHI_set_up_an_nco_school }
+		#mutually_exclusive = { focus = CHI_set_up_an_nco_school }
         
 		x = 1
 		y = 1
@@ -1145,43 +1149,15 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_MANPOWER}
 
 		completion_reward = {
-			custom_effect_tooltip = "Focus may change depending on the previous focuses."
+            army_experience = 100
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
-			if = {
-				limit = {
-					has_completed_focus = CHI_set_up_an_nco_school
-				}
-				custom_effect_tooltip = CHI_army_and_navy_tt
-				add_to_variable = { 
-					CHI_ran_land_doctrine_cost_factor = -0.5
-					tooltip = land_doctrine_cost_factor_tt
-				}
-				add_to_variable = { 
-					CHI_ran_land_mastery_gain_factor = 0.5
-					tooltip = land_mastery_gain_factor_tt
-				}
-				add_to_variable = { 
-					CHI_ran_army_attack_factor = -0.5
-					tooltip = army_attack_factor_tt
-				}
-				add_to_variable = { 
-					CHI_ran_army_defence_factor = 0.5
-					tooltip = army_defence_factor_tt
-				}
-			}
-			else = {
-				custom_effect_tooltip = CHI_army_and_navy_tt
-				add_to_variable = { 
-					CHI_ran_land_doctrine_cost_factor = -1
-					tooltip = land_doctrine_cost_factor_tt
-				}
-				add_to_variable = { 
-					CHI_ran_land_mastery_gain_factor = 1
-					tooltip = land_mastery_gain_factor_tt
-				}
-			}
+			custom_effect_tooltip = CHI_army_and_navy_tt
+            add_to_variable = { 
+                CHI_ran_land_mastery_gain_factor = 0.25
+                tooltip = land_mastery_gain_factor_tt
+            }
 		}
 	}
 
@@ -1597,6 +1573,10 @@ focus_tree = {
 				callsign = "John Wong"
 				type = fighter_unique
 			}
+            
+            hidden_effect = {
+                snapshot_chinese_pre_war_factories = yes
+            }
 		}
 	}
 
@@ -1927,6 +1907,10 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+            
+            hidden_effect = {
+                snapshot_chinese_pre_war_factories = yes
+            }
 		}
 	}
 
@@ -2425,6 +2409,10 @@ focus_tree = {
 				CHI_ds_production_speed_buildings_factor = 0.1
 				tooltip = production_speed_buildings_factor_tt
 			}
+            
+            hidden_effect = {
+                snapshot_chinese_pre_war_factories = yes
+            }
 		}
 	}
 
@@ -3044,28 +3032,28 @@ focus_tree = {
 		}
 	}
 	
-	focus = {
-		id = CHI_expand_the_chinese_academy_of_sciences
-		icon = GFX_focus_research2
-		prerequisite = { focus = CHI_expand_academica_sinica }
+	# focus = {
+		# id = CHI_expand_the_chinese_academy_of_sciences
+		# icon = GFX_focus_research2
+		# prerequisite = { focus = CHI_expand_academica_sinica }
 	
-		x = 0
-		y = 1
+		# x = 0
+		# y = 1
 		
-		relative_position_id = CHI_expand_academica_sinica
+		# relative_position_id = CHI_expand_academica_sinica
 		
-		cost = 5
+		# cost = 5
 		
-		available = {
+		# available = {
 			
-		}
+		# }
 	
-		search_filters = {FOCUS_FILTER_RESEARCH}
+		# search_filters = {FOCUS_FILTER_RESEARCH}
 	
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}
+		# completion_reward = {
+			# add_research_slot = 1
+		# }
+	# }
 
 	# ---------------------------------------------------------
 	# BRANCH 4: GUNG HO MOVEMENT (RIGHT)

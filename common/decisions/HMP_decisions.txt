@@ -435,7 +435,7 @@
                 country_exists = CHI
             }
             
-            cost = 75
+            cost = 50
             
             fire_only_once = yes
             
@@ -461,7 +461,7 @@
                 country_exists = CHI
             }
             
-            cost = 75
+            cost = 50
             
             fire_only_once = yes
             
@@ -491,7 +491,7 @@
                 country_exists = CHI
             }
             
-            cost = 75
+            cost = 50
             
             fire_only_once = yes
 
@@ -561,7 +561,7 @@
                 country_exists = CHI
             }
             
-            cost = 100
+            cost = 50
             
             fire_only_once = yes
 
@@ -637,7 +637,7 @@
                 country_exists = CHI
             }
             
-            cost = 100
+            cost = 50
             
             fire_only_once = yes
 
@@ -19039,386 +19039,6 @@ operations = {
 					ITA = { }
 				}
 			}
-		}
-	}
-
-
-
-proclaim_greater_italy = { 
-
-		icon = generic_form_nation
-
-		allowed = {
-			original_tag = ITA # Italy
-		}
-
-		available = {
-			has_completed_focus = ITA_towards_a_greater_italy
-			custom_trigger_tooltip = {
-				tooltip = greater_italy_required_states
-				controls_state = 314 # Litorale
-				controls_state = 160 # Veneto
-				controls_state = 39 # Alto Adige
-				controls_state = 159 # Lombardia
-				controls_state = 158 # Piedmonte
-				controls_state = 161 # Emilia Romagna
-				controls_state = 162 # Toscana 
-				controls_state = 157 # Abruzzo
-				controls_state = 2 # Latium
-				controls_state = 117 # Campania
-				controls_state = 156 # Calabria
-				controls_state = 115 # Sicilia
-				controls_state = 114 # Sardegna
-			}  
-			custom_trigger_tooltip = {
-				tooltip = greater_italy_required_other_states 
-				AND = {
-					OR = {
-						ITA = { 
-						controls_state = 1 # Corsica 
-						}
-						any_country = {
-							is_subject_of = ITA
-							controls_state = 1 # Corsica
-						}
-					}
-					OR = {
-						ITA = { 
-						controls_state = 313 # Savoy 
-						}
-						any_country = {
-							is_subject_of = ITA
-							controls_state = 313 # Savoy
-						}
-					}
-					OR = {
-						ITA = { 
-						controls_state = 163 # Zara 
-						}
-						any_country = {
-							is_subject_of = ITA
-							controls_state = 163 # Zara
-						}
-					}
-					OR = {
-						ITA = { 
-						controls_state = 102 # Ljubljana 
-						}
-						any_country = {
-							is_subject_of = ITA
-							controls_state = 102 # Ljubljana
-						}
-					}
-					OR = {
-						ITA = { 
-						controls_state = 116 # Malta 
-						}
-						any_country = {
-							is_subject_of = ITA
-							controls_state = 116 # Malta
-						}
-					}
-					OR = {
-						ITA = { 
-						controls_state = 182 # Crete 
-						}
-						any_country = {
-							is_subject_of = ITA
-							controls_state = 182 # Crete
-						}
-					}
-					OR = {
-						ITA = { 
-						controls_state = 164 # Dodecaneso 
-						}
-						any_country = {
-							is_subject_of = ITA
-							controls_state = 164 # Dodecaneso
-						}
-					}
-				}
-			}			
-		}
-
-		visible = {
-			NOT = { has_global_flag = greater_italy_flag }
-			has_completed_focus = ITA_towards_a_greater_italy
-		}
-
-		complete_effect = {
-			set_cosmetic_tag = greater_italy 
-			custom_effect_tooltip = greater_italy_effect_tooltip
-			add_timed_idea = { days = 180 idea =  ITA_italia_irredenta_achieved }
-			remove_ideas = ITA_africa_campaign_idea
-			every_subject_country ={ 
-				add_timed_idea = { days = 180 idea =  ITA_italia_irredenta_achieved }
-				remove_ideas = ITA_africa_campaign_idea
-			}
-			remove_ideas = vittoria_mutilata 
-			hidden_effect = { 
-
-				# Corsica
-				1 = { 
-					add_core_of = ROOT
-					set_state_name = ITA_italian_corsica_name
-				}
-				set_province_name = {
-				    id = 3838 
-				    name = ITA_italian_ajaccio_name   
-				} 
-			# Savoy
-				313 = { 
-					add_core_of = ROOT
-					set_state_name = ITA_italian_savoy_name
-				}
-				set_province_name = {
-				    id = 9909 
-				    name = ITA_italian_nice_name
-				} 
-				set_province_name = {
-				    id = 778  
-				    name = ITA_italian_annecy_name
-				} 
-				 
-				# Zara
-				163 = { add_core_of = ROOT }	 
-				# Ljubljana
-				102 = { 
-					add_core_of = ROOT 
-					set_state_name = ITA_italian_ljubljana_state_name
-				}
-				set_province_name = {
-				    id = 9627
-				    name = ITA_italian_ljubljana_name
-				}
-
-				# Malta
-				ITA = {
-					transfer_state = 116
-				}
-				116 = { add_core_of = ROOT }
-
-				# Crete
-				182 = { 
-					add_core_of = ROOT 
-					set_state_name = ITA_italian_crete_name
-				}
-				set_province_name = {
-				    id = 12058  
-				    name = ITA_italian_chania_name 
-				} 
-				set_province_name = {
-				    id = 9940  
-				    name = ITA_italian_heraklion_name 
-				} 
-
-				# Dodecaneso
-				164 = { add_core_of = ROOT }
-
-				news_event = { id = bba_italian_formables_news.1 hours = 8 }	
-
-				set_global_flag = greater_italy_flag
-			}
-		}
-	}
-	ITA_human_torpedo_raid = {
-		icon = GFX_decision_generic_naval #GFX_decision_generic_human_torpedo #TODO_Manu
-
-		allowed = {
-			original_tag = ITA
-		}
-
-		visible = {
-			has_completed_focus = ITA_decima_flottiglia_mas
-		}
-
-		available = {
-			any_enemy_country = {
-				any_controlled_state = {
-					state_is_in_the_mediterranean_sea = yes
-						custom_trigger_tooltip = {
-						tooltip = ITA_human_torpedo_raid_trigger_tt
-					PREV = {
-						OR = {
-							ships_in_state_ports = {
-								type = capital_ship
-								size > 0
-								state = PREV
-							}
-							ships_in_state_ports = {
-								type = screen_ship
-								size > 0
-								state = PREV
-							}
-						}
-						}
-					}
-				}
-			}
-		}
-
-		ai_hint_pp_cost = 0
-		custom_cost_trigger = {
-			command_power > 24
-		}
-		custom_cost_text = decision_cost_CP_25
-
-		fire_only_once = yes
-
-		complete_effect = {
-					hidden_effect = {
-				add_command_power = -25
-			}
-			
-			if = {
-				limit = {
-					any_enemy_country = {
-						is_major = yes
-						any_controlled_state = {
-							state_is_in_the_mediterranean_sea = yes
-							PREV = {
-								OR = {
-									ships_in_state_ports = {
-										type = capital_ship
-										size > 0
-										state = PREV
-									}
-									ships_in_state_ports = {
-										type = screen_ship
-										size > 0
-										state = PREV
-									}
-								}
-							}
-						}
-					}
-				}
-				random_enemy_country = {
-					limit = {
-						is_major = yes
-						any_controlled_state = {
-							state_is_in_the_mediterranean_sea = yes
-							PREV = {
-								OR = {
-									ships_in_state_ports = {
-										type = capital_ship
-										size > 0
-										state = PREV
-									}
-									ships_in_state_ports = {
-										type = screen_ship
-										size > 0
-										state = PREV
-									}
-								}
-							}
-						}
-					}
-					random_controlled_state = {
-						limit = {
-							state_is_in_the_mediterranean_sea = yes
-							PREV = {
-								OR = {
-									ships_in_state_ports = {
-										type = capital_ship
-										size > 0
-										state = PREV
-									}
-									ships_in_state_ports = {
-										type = screen_ship
-										size > 0
-										state = PREV
-									}
-								}
-							}
-						}
-						prioritize = { 447 }
-						damage_units = {
-							state = THIS # optional
-							limit = {
-								OR = {
-									tag = PREV
-									is_in_faction_with = PREV
-								}
-							}
-							damage = 0.2
-							str_damage = 0.2
-							ratio = yes
-							army = no
-							navy = yes
-						}
-						set_variable = { ITA.ITA_raided_state_var = THIS }
-					}
-					custom_effect_tooltip = ITA_human_torpedo_effect_tt
-					hidden_effect = {
-						country_event = { id = BBA_italy_human_torpedo_raid.1 hours = 1}
-					}
-				}
-			}
-			else = {
-				random_enemy_country = {
-					limit = {
-						any_controlled_state = {
-							state_is_in_the_mediterranean_sea = yes
-							PREV = {
-								OR = {
-									ships_in_state_ports = {
-										type = capital_ship
-										size > 0
-										state = PREV
-									}
-									ships_in_state_ports = {
-										type = screen_ship
-										size > 0
-										state = PREV
-									}
-								}
-							}
-						}
-					}
-					random_controlled_state = {
-						limit = {
-							state_is_in_the_mediterranean_sea = yes
-							PREV = {
-								OR = {
-									ships_in_state_ports = {
-										type = capital_ship
-										size > 0
-										state = PREV
-									}
-									ships_in_state_ports = {
-										type = screen_ship
-										size > 0
-										state = PREV
-									}
-								}
-							}
-						}
-						prioritize = { 447 }
-						damage_units = {
-							state = THIS # optional
-							limit = {
-								OR = {
-									tag = PREV
-									is_in_faction_with = PREV
-								}
-							}
-							damage = 0.2
-							str_damage = 0.2
-							ratio = yes
-							army = no
-							navy = yes
-						}
-						set_variable = { ITA.ITA_raided_state_var = THIS }
-					}
-					custom_effect_tooltip = ITA_human_torpedo_effect_tt
-					hidden_effect = {
-						country_event = { id = BBA_italy_human_torpedo_raid.1 hours = 1 }
-					}
-				}
-			}
-
-			custom_effect_tooltip = decision_only_once_tt
 		}
 	}
 }

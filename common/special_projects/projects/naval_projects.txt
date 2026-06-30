@@ -113,6 +113,9 @@ sp_naval_cruiser_submarine = {
 sp_naval_fleet_submarine = {
 	specialization = specialization_naval
 	
+    visible = {
+        always = no
+    }
 
 	project_tags = sp_tag_submarine
 
@@ -238,6 +241,10 @@ sp_naval_fleet_submarine = {
 # Nuclear Powered Submarine
 sp_naval_nuclear_submarine = {
 	specialization = specialization_naval  
+    
+    visible = {
+        always = no
+    }
 	
 	project_tags = {
 		sp_tag_nuclear_power
@@ -377,6 +384,10 @@ sp_naval_nuclear_submarine = {
 # Rocket Launching Submarine
 sp_naval_rocket_launching_submarine = {
 	specialization = specialization_naval 
+    
+    visible = {
+        always = no
+    }
 
 	project_tags = {
 		sp_tag_rocket
@@ -521,6 +532,10 @@ sp_naval_rocket_launching_submarine = {
 # Nuclear Missile Submarine
 sp_naval_nuclear_missile_submarine = {
 	specialization = specialization_naval 
+    
+    visible = {
+        always = no
+    }
 	
 	project_tags = {
 		sp_tag_nuclear_warfare
@@ -658,6 +673,9 @@ sp_naval_nuclear_missile_submarine = {
 sp_naval_nuclear_torpedo = {
 	specialization = specialization_naval
 
+    visible = {
+        always = no
+    }
 
 	project_tags = {
 		sp_tag_submarine
@@ -789,6 +807,9 @@ sp_naval_nuclear_torpedo = {
 sp_naval_midget_submarine = {
 	specialization = specialization_naval
 
+    visible = {
+        always = no
+    }
 
 	project_tags = {
 		sp_tag_submarine
@@ -952,6 +973,10 @@ sp_naval_midget_submarine = {
 sp_naval_aip_engine = {
 	specialization = specialization_naval
 
+    visible = {
+        always = no
+    }
+
 	resource_cost = {
 		resources = { 
 			steel = 8
@@ -1099,6 +1124,9 @@ sp_naval_aip_engine = {
 sp_naval_anechoic_tiles = {
 	specialization = specialization_naval
 
+    #visible = {
+    #    always = no
+    #}
 
 	project_tags = sp_tag_submarine
 
@@ -1236,19 +1264,9 @@ specialization = specialization_naval
 
 	project_tags = sp_tag_submarine
 
-	ai_will_do = {
-		base = 1
-		modifier = {
-			factor = 2
-			ROOT = { 
-				original_tag = JAP
-				OR = {
-					has_government = fascism
-					has_government = neutrality
-				}
-			}
-		}
-	}
+	visible = {
+        always = no
+    }
 
 	allowed = {
 		has_dlc = "No Compromise, No Surrender"
@@ -1399,6 +1417,9 @@ specialization = specialization_naval
 sp_naval_torpedo_cruiser = {
 	specialization = specialization_naval
 
+    visible = {
+        always = no
+    }
 
 	project_tags = sp_tag_surface_ship
 
@@ -1534,7 +1555,6 @@ sp_naval_torpedo_cruiser = {
 
 }
 
-
 #Super Heavy Battleship
 sp_naval_super_heavy_battleship = {
 	specialization = specialization_naval
@@ -1548,8 +1568,9 @@ sp_naval_super_heavy_battleship = {
 		}
 	}
 
-	complexity = sp_complexity.insane	
 	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.insane
 	
 
 	resource_cost = {
@@ -1757,14 +1778,6 @@ sp_naval_super_heavy_battleship = {
 	
 }
 
-
-
-
-
-
-
-
-
 sp_naval_super_heavy_battleship2 = {
 	specialization = specialization_naval
  narrative = {
@@ -1781,8 +1794,9 @@ sp_naval_super_heavy_battleship2 = {
 		sp_naval_super_heavy_battleship
 	}
 	
-	complexity = sp_complexity.insane	
 	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.insane
 	
 
 	resource_cost = {
@@ -1988,20 +2002,7 @@ sp_naval_super_heavy_battleship2 = {
 		}
 
 	}	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 #Advanced Modern Super Battleship
 sp_naval_modern_battleship = {
@@ -2010,23 +2011,17 @@ sp_naval_modern_battleship = {
 
 	project_tags = sp_tag_surface_ship
 
-	ai_will_do = {
-		base = 1
-	}
-
 	allowed = {
-	has_dlc = "Gotterdammerung"
+        has_dlc = "Gotterdammerung"
 	}
 	
 	available = {
-		FROM = {
-			has_tech = advanced_ship_hull_heavy
-
-		}
+		date > 1942.1.1
 	}
 	
-	complexity = sp_complexity.large
-	prototype_time = sp_time.prototype.long
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.insane
 	
 	
 	resource_cost = {
@@ -2242,6 +2237,9 @@ sp_naval_modern_battleship = {
 sp_naval_modern_carrier = {
 	specialization = specialization_naval
 
+    #visible = {
+    #    always = no
+    #}
 
 	project_tags = sp_tag_surface_ship
 
@@ -2254,10 +2252,7 @@ sp_naval_modern_carrier = {
 	}
 	
 	available = {
-		FROM = {
-				has_tech = advanced_ship_hull_carrier
-		}
-
+		date > 1942.1.1
 	}
 	
 	breakthrough_cost = {
@@ -2272,8 +2267,9 @@ sp_naval_modern_carrier = {
 		}
 	}
 
-	complexity = sp_complexity.large
-	prototype_time = sp_time.prototype.long	
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.insane
 	
 	project_output = {
 		country_effects = {
@@ -2316,7 +2312,7 @@ sp_naval_modern_carrier = {
 		sp_naval_generic_reward_armor_tech_3					
 	}
 
-unique_prototype_rewards = {
+    unique_prototype_rewards = {
 		sp_naval_modern_carrier_unique_reward_a = {
 			fire_only_once = yes
 
@@ -2461,7 +2457,10 @@ unique_prototype_rewards = {
 #ICE CARRIER
 sp_naval_ice_carrier = {
 	specialization = specialization_naval
-
+    
+    visible = {
+        always = no
+    }
 
 	project_tags = sp_tag_surface_ship
 
@@ -2596,7 +2595,6 @@ sp_naval_ice_carrier = {
 			}
 		}	
 	}
-
 }
 
 #Underway Replenishment
@@ -2604,7 +2602,10 @@ sp_naval_underway_replenishment = {
 	specialization = specialization_naval
 
 	project_tags = sp_tag_surface_ship
-
+    
+    visible = {
+        always = no
+    }
 
 	allowed = {
 		has_dlc = "Gotterdammerung"
@@ -2725,7 +2726,10 @@ sp_naval_underway_replenishment = {
 
 sp_naval_proximity_fuze = {
 	specialization = specialization_naval
-
+    
+    visible = {
+        always = no
+    }
 
 	project_tags = sp_tag_surface_ship
 
@@ -2853,6 +2857,10 @@ sp_naval_proximity_fuze = {
 	
 sp_naval_support_ships = {
 	specialization = specialization_naval
+    
+    visible = {
+        always = no
+    }
 
 	project_tags = sp_tag_surface_ship
 
@@ -3051,7 +3059,11 @@ sp_naval_support_ships = {
 }
 
 sp_naval_escort_carrier = {
-specialization = specialization_naval
+    specialization = specialization_naval
+
+    visible = {
+        always = no
+    }
 
 	project_tags = sp_tag_surface_ship
 
