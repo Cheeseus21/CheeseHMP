@@ -742,9 +742,9 @@ focus_tree = {
 						has_global_flag = DDR_arrest_primo_de_rivera_active
 					}
 					SPR = {					
-						# Define the template
+						# Define the template (Use an underscore for the ID to prevent parser errors!)
 						division_template = {
-							name = "Falangist Paramilitaries"
+							name = "Falangist_Paramilitaries" 
 							is_locked = no
 							priority = 1
 							
@@ -761,13 +761,14 @@ focus_tree = {
 								artillery = { x = 0 y = 2 }   
 								anti_tank = { x = 0 y = 3 } 
 								recon = { x = 0 y = 4 }  
-								logistics_company = { x = 0 y = 5 } 
 							}
 						}
+						
 						176 = {
 							create_unit = {
 								owner = SPR
-								division = "name = \"Falangist Paramilitaries\" division_template = \"Falangist Paramilitaries\" start_experience_factor = 0.4 start_equipment_factor = 1"
+								# The display name can have spaces, but the division_template key MUST use the underscore!
+								division = "name = \"Falangist Paramilitaries\" division_template = \"Falangist_Paramilitaries\" start_experience_factor = 0.4 start_equipment_factor = 1"
 								count = 4
 							}
 						}
