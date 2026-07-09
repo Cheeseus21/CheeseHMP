@@ -16,9 +16,8 @@
 	focus = {
 		id = CZE_political_direction
 		icon = GFX_goal_generic_intelligence_exchange
-		x = -50
-		y = -100
-
+		x = 10
+		y = 10
 		cost = 5
 
 		cancel_if_invalid = yes
@@ -73,93 +72,93 @@
 		}
 	}
 
-	focus = { 
-		id = CZE_aggressive_wars
-		icon = GFX_goal_generic_political_pressure
-		prerequisite = { focus = CZE_czech_fascism }
-		x = 0
-		y = 2
-		relative_position_id = CZE_go_right
+	#focus = { 
+	#	id = CZE_aggressive_wars
+	#	icon = GFX_goal_generic_political_pressure
+	#	prerequisite = { focus = CZE_czech_fascism }
+	#	x = 0
+	#	y = 2
+	#	relative_position_id = CZE_go_right
+    #
+	#	cost = 6
+    #
+	#	ai_will_do = {
+	#		factor = 90
+	#	}
+    #
+	#	available = {
+	#		fascism > 0.5
+	#	}
+    #
+	#	bypass = {
+    #
+	#	}
+    #
+	#	cancel_if_invalid = yes
+	#	continue_if_invalid = no 
+	#	available_if_capitulated = yes
+    #
+	#	completion_reward = {
+	#		add_ideas = FRA_army_of_aggression_focus
+	#	}
+	#}
 
-		cost = 6
-
-		ai_will_do = {
-			factor = 90
-		}
-
-		available = {
-			fascism > 0.5
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no 
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = FRA_army_of_aggression_focus
-		}
-	}
-
-	focus = {
-		id = CZE_the_polish_question
-		icon = GFX_goal_generic_territory_or_war
-		prerequisite = { focus = CZE_aggressive_wars  }
-		x = 0
-		y = 3
-		relative_position_id = CZE_go_right
-
-		cost = 6
-
-		available = {
-			GER = { controls_state = 88}
-		}
-
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			71 = {
-				add_manpower = 120000
-			}
-			88 = {
-				add_manpower = -120000
-			}
-		}
-	}
+	#focus = {
+	#	id = CZE_the_polish_question
+	#	icon = GFX_goal_generic_territory_or_war
+	#	prerequisite = { focus = CZE_aggressive_wars  }
+	#	x = 0
+	#	y = 3
+	#	relative_position_id = CZE_go_right
+    #
+	#	cost = 6
+    #
+	#	available = {
+	#		GER = { controls_state = 88}
+	#	}
+    #
+    #
+	#	cancel_if_invalid = yes
+	#	continue_if_invalid = no
+	#	available_if_capitulated = no
+    #
+	#	completion_reward = {
+	#		71 = {
+	#			add_manpower = 120000
+	#		}
+	#		88 = {
+	#			add_manpower = -120000
+	#		}
+	#	}
+	#}
 
 	
 	
-	focus = {
-		id = CZE_national_fascism
-		icon = GFX_goal_generic_propaganda
-		prerequisite = { focus = CZE_czech_fascism }
-		x = 2
-		y = 2
-		relative_position_id = CZE_go_right
-
-		cost = 15
-
-		available = {
-			fascism > 0.6
-			NOT = {
-				has_idea = CZE_divided_nation
-			}
-		} 
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = CZE_national_fascism_idea
-		} 
-	}
+	#focus = {
+	#	id = CZE_national_fascism
+	#	icon = GFX_goal_generic_propaganda
+	#	prerequisite = { focus = CZE_czech_fascism }
+	#	x = 2
+	#	y = 2
+	#	relative_position_id = CZE_go_right
+    #
+	#	cost = 15
+    #
+	#	available = {
+	#		fascism > 0.6
+	#		NOT = {
+	#			has_idea = CZE_divided_nation
+	#		}
+	#	} 
+    #
+	#	cancel_if_invalid = yes
+	#	continue_if_invalid = no
+	#	available_if_capitulated = yes
+    #
+	#	completion_reward = {
+	#		add_ideas = CZE_national_fascism_idea
+	#	} 
+	#}
 	
 	
 	focus = {
@@ -431,8 +430,6 @@
 			army_experience = 75
 		}
 	}
-
-	
 	
 	focus = {
 		id = CZE_industrial_legacy
@@ -458,7 +455,6 @@
 			}
 		}
 	}
-	
 	
 	focus = {
 		id = CZE_balanced_1
@@ -544,7 +540,8 @@
 				}
 			}
         } 
-    } 
+    }
+    
 	focus = {
 		id = CZE_balanced_3
 		icon = GFX_goal_generic_construction
@@ -634,17 +631,12 @@
 		}
 	}
 	
-	
-	
-	
-	
-	
 	#Diet
 	focus = {
 		id = SLO_diet_of_the_slovak_land
 		icon = GFX_SLO_the_slovak_diet
-		x = 4
-		y = 1
+		x = 0
+		y = 2
 		relative_position_id = CZE_go_right
 		prerequisite = { focus = CZE_go_right }
 		cost = 5
@@ -674,11 +666,38 @@
 
     #Protection Zone 
       focus = {
-		id = SLO_zone_of_protection
-		icon = GFX_SLO_protection_treaty
+		id = SLO_go_with_tiso
+		icon = GFX_SLO_president_tiso
 		relative_position_id = SLO_telegram_to_berlin
 		prerequisite = { focus = SLO_telegram_to_berlin }
-		x = 0
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+		add_equipment_to_stockpile = { type = convoy  amount = 100  producer = CZE }
+     GER = {
+	 add_to_faction = CZE
+
+	 	set_autonomy = {
+		target = CZE
+		autonomous_state = autonomy_reichsprotectorate
+		freedom_level = 0.4
+	}
+
+}
+	set_cosmetic_tag = SLO_fascism
+	    }
+	  }
+      
+        focus = {
+		id = SLO_go_with_heydrich
+		icon = GFX_
+		relative_position_id = SLO_telegram_to_berlin
+		prerequisite = { focus = SLO_telegram_to_berlin }
+		x = 3
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1113,44 +1132,121 @@
           }
      }
     } 
-  #First President of Slovak Republic
-     focus =  {	 
-       id =   SLO_president_of_slovak_republic
-       icon = GFX_SLO_president_tiso
-       relative_position_id = SLO_zone_of_protection
-        prerequisite = { focus = SLO_zone_of_protection}
-        x = -1
-        y = 1
-        cost = 1
-       completion_reward = {
-	custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = SLO_jozef_tiso
-	}   
- }   
 
 
        #Life in new Slovakia
        focus =  { 
        id = SLO_life_in_new_slovakia
        icon = GFX_SLO_sanctity_of_the_mother
-       relative_position_id = SLO_zone_of_protection
-        prerequisite = { focus = SLO_zone_of_protection}
-        x = 1
+       relative_position_id = SLO_go_with_tiso
+        prerequisite = { focus = SLO_go_with_tiso}
+        x = 0
         y = 1
         cost = 5
         completion_reward = {
 			add_ideas = SLO_life_in_new_slovakia
        } 
-      } 
+      }
+	  
+    focus =  { 
+       id = SLO_slovakian_christianity
+       icon = GFX_
+       relative_position_id = SLO_go_with_tiso
+        prerequisite = { focus = SLO_go_with_tiso}
+        x = -2
+        y = 1
+        cost = 5
+        completion_reward = {
+			
+       } 
+      }       
+      
+      #Special forces - Tiso
+    focus =  {	
+       id = SLO_memories_of_the_legion
+       icon = GFX_
+       relative_position_id = SLO_life_in_new_slovakia
+        prerequisite = { focus = SLO_life_in_new_slovakia}
+        x = -2
+        y = 1
+        cost = 5
 
- #Fate in german hands
+        completion_reward = {
+		add_ideas = SLO_legionary_fighters_1
+       } 
+    }
+    
+    focus =  {	
+       id = SLO_a_legion_of_our_own
+       icon = GFX_SLO_slovak_flag
+       relative_position_id = SLO_memories_of_the_legion
+        prerequisite = { focus = SLO_memories_of_the_legion }
+        x = 0
+        y = 1
+        cost = 5
+
+        completion_reward = {
+		swap_ideas = { remove_idea = SLO_legionary_fighters_1 add_idea = SLO_legionary_fighters_2 }
+       } 
+    }
+    
+    
+      
+    #Mass Mob - Tiso
+    focus =  {  
+       id = SLO_mass_mobilization_of_armed_forces
+       icon = GFX_
+       relative_position_id = SLO_life_in_new_slovakia
+        prerequisite = { focus = SLO_life_in_new_slovakia }
+        mutually_exclusive { focus = SLO_memories_of_the_legion }
+        x = 1
+        y = 1
+        cost = 5
+		
+        completion_reward = {
+		add_ideas = SLO_mass_mob_1
+       } 
+    }
+    
+  #Mass Mob - Inf
+    focus =  {  
+       id = SLO_mass_mob_inf
+       icon = GFX_
+       relative_position_id = SLO_mass_mobilization_of_armed_forces
+        prerequisite = { focus = SLO_mass_mobilization_of_armed_forces }
+        mutually_exclusive { focus = SLO_mass_cav }
+        x = 1
+        y = 1
+        cost = 2
+		
+        completion_reward = {
+		swap_ideas = { remove_idea = SLO_mass_mob_1 add_idea = SLO_mass_mob_2b  }
+    } 
+  }
+    #Mass Mob - Cav
+    focus =  {  
+       id = SLO_mass_mob_cav
+       icon = GFX_SLO_slava_slovensku
+       relative_position_id = SLO_mass_mobilization_of_armed_forces
+        prerequisite = { focus = SLO_mass_mobilization_of_armed_forces }
+        mutually_exclusive  { focus = SLO_mass_inf }
+        x = -1
+        y = 1
+        cost = 2
+		
+        completion_reward = {
+		swap_ideas = { remove_idea = SLO_mass_mob_1 add_idea = SLO_mass_mob_2a}
+    } 
+  }   
+  
+  #Fate in german hands
       focus =  {  
        id = SLO_fate_in_german_hands
        icon = GFX_SLO_fate
-       relative_position_id = SLO_life_in_new_slovakia
-	    prerequisite = { focus = SLO_life_in_new_slovakia }
+       relative_position_id = SLO_go_with_heydrich
+	    prerequisite = { focus = SLO_go_with_heydrich }
 				available = { GER = { has_completed_focus = GER_fate_of_czechoslovakia }}
-        x = -1
+        x = 0
         y = 1
         cost = 5
 
@@ -1158,37 +1254,6 @@
 			complete_national_focus = SLO_industrial_enterprises
       }
      }  
-
-      
-      #Durcanskys ideas
-       focus =  {	
-       id = SLO_durcanskys_ideas
-       icon = GFX_SLO_slovak_flag
-       relative_position_id = SLO_life_in_new_slovakia
-        prerequisite = { focus = SLO_life_in_new_slovakia}
-        x = 1
-        y = 1
-        cost = 5
-
-        completion_reward = {
-		add_ideas = SLO_durcanskys_ideas 
-       } 
-      } 
-
-
-      focus =  {  
-       id = SLO_demand_southern_slovakia
-       icon = GFX_SLO_slava_slovensku
-       relative_position_id = SLO_durcanskys_ideas
-        prerequisite = {   focus = SLO_durcanskys_ideas }
-        x = 0
-        y = 1
-        cost = 5
-		available = { custom_trigger_tooltip = { tooltip = barb_failed date > 1941.11.22 }	}		
-        completion_reward = {
-			add_ideas = BUL_slavic_will
-    } 
-  } 
 
 }
 
