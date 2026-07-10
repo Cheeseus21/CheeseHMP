@@ -16,8 +16,8 @@
 	focus = {
 		id = CZE_political_direction
 		icon = GFX_goal_generic_intelligence_exchange
-		x = 10
-		y = 10
+		x = 0
+		y = 0
 		cost = 5
 
 		cancel_if_invalid = yes
@@ -103,34 +103,34 @@
 	#	}
 	#}
 
-	#focus = {
-	#	id = CZE_the_polish_question
-	#	icon = GFX_goal_generic_territory_or_war
-	#	prerequisite = { focus = CZE_aggressive_wars  }
-	#	x = 0
-	#	y = 3
-	#	relative_position_id = CZE_go_right
-    #
-	#	cost = 6
-    #
-	#	available = {
-	#		GER = { controls_state = 88}
-	#	}
-    #
-    #
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = no
-    #
-	#	completion_reward = {
-	#		71 = {
-	#			add_manpower = 120000
-	#		}
-	#		88 = {
-	#			add_manpower = -120000
-	#		}
-	#	}
-	#}
+	focus = {
+		id = CZE_the_polish_question
+		icon = GFX_goal_generic_territory_or_war
+		prerequisite = { focus = SLO_soviet_war  }
+		x = -4
+		y = 1
+		relative_position_id = SLO_soviet_war
+    
+		cost = 6
+    
+		available = {
+			GER = { controls_state = 88}
+		}
+    
+    
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+    
+		completion_reward = {
+			71 = {
+				add_manpower = 120000
+			}
+			88 = {
+				add_manpower = -120000
+			}
+		}
+	}
 
 	
 	
@@ -434,7 +434,7 @@
 	focus = {
 		id = CZE_industrial_legacy
 		icon = GFX_goal_generic_construct_civ_factory
-		x = 12
+		x = 10.5
 		y = 0
 		cost = 5
 		available = { has_tech = construction2 }
@@ -722,7 +722,7 @@
        focus = {
        id = SLO_industrial_enterprises
        icon = GFX_SLO_german_control
-       x = 8
+       x = 7
        y = 0
        cost = 5
 		available =  { always = no }
@@ -818,19 +818,140 @@
        
        } 
        
+    }
+    #Special forces - Tiso
+    focus =  {	
+       id = SLO_memories_of_the_legion
+       icon = GFX_focus_CZE_czechoslovak_legion
+       relative_position_id = SLO_mobilize_slovak_army
+       prerequisite = { focus = SLO_mobilize_slovak_army }
+       x = -2 
+       y = 1
+       cost = 5
+       available = {
+            OR {
+                NOT = { has_completed_focus = SLO_mass_mobilization_of_armed_forces }
+                has_completed_focus = SLO_mobilize_slovak_army
+            }
+        }
+
+        completion_reward = {
+            add_doctrine_cost_reduction = { name = SLO_memories_of_the_legion cost_reduction = 0.5 uses = 1 category = land_doctrine }
+       } 
+    }
+    
+    focus =  {	
+       id = SLO_a_legion_of_our_own
+       icon = GFX_SLO_slovak_flag
+       relative_position_id = SLO_memories_of_the_legion
+        prerequisite = { focus = SLO_memories_of_the_legion }
+        x = 0
+        y = 1
+        cost = 5
+
+        completion_reward = {
+            add_ideas = SLO_legionnaires_1 
+       } 
+    }
+    
+    #Mass Mob - Tiso
+    focus =  {  
+       id = SLO_mass_mobilization_of_armed_forces
+       icon = GFX_SLO_slovak_soldiers
+       relative_position_id = SLO_mobilize_slovak_army
+        prerequisite = { focus = SLO_mobilize_slovak_army }
+        mutually_exclusive { focus = SLO_memories_of_the_legion }
+        x = 1
+        y = 1
+        cost = 5
+        available = {
+            OR {
+                NOT = { has_completed_focus = SLO_memories_of_the_legion }
+                has_completed_focus = SLO_mobilize_slovak_army
+            }
+        }
+		
+        completion_reward = {
+            add_doctrine_cost_reduction = { name = SLO_mass_mobilization_of_armed_forces cost_reduction = 0.5 uses = 1 category = land_doctrine }
+       } 
+    }
+    
+  #Mass Mob - Inf
+    focus =  {  
+       id = SLO_mass_mob_inf
+       icon = GFX_GER_new_weapons
+       relative_position_id = SLO_mass_mobilization_of_armed_forces
+        prerequisite = { focus = SLO_mass_mobilization_of_armed_forces }
+        mutually_exclusive { focus = SLO_mass_cav }
+        x = 1
+        y = 1
+        cost = 2
+        
+        available = {
+            OR {
+                NOT = { has_completed_focus = SLO_mass_cav }
+                has_completed_focus = SLO_mass_mobilization_of_armed_forces
+            }
+        }
+		
+        completion_reward = {
+            add_ideas = SLO_mass_mob_1b  
     } 
+  }
+ #Mass Mob - Cav
+    focus =  {  
+       id = SLO_mass_mob_cav
+       icon = GFX_SLO_slava_slovensku
+       relative_position_id = SLO_mass_mobilization_of_armed_forces
+        prerequisite = { focus = SLO_mass_mobilization_of_armed_forces }
+        mutually_exclusive  { focus = SLO_mass_inf }
+        x = -1
+        y = 1
+        cost = 2
+        
+        available = {
+            OR {
+                NOT = { has_completed_focus = SLO_mass_inf }
+                has_completed_focus = SLO_mass_mobilization_of_armed_forces
+            }
+        }
+		
+        completion_reward = {
+            add_ideas = SLO_mass_mob_1a
+    } 
+  }
+  
+    focus =  {  
+       id = SLO_soviet_war
+       icon = GFX_SLO_destroy_bolshevism
+       relative_position_id = SLO_mobilize_slovak_army
+       prerequisite = {  focus = SLO_mobilize_slovak_army} 
+       available = {
+			has_war_with = SOV
+		}
+		
+        x = -5
+        y = 2
+        cost = 5
+        ai_will_do = {
+           factor = 100}	
+      completion_reward = { 
+        add_ideas = SLO_soviet_war_idea
+        every_state = { limit = { southern_russia_state = yes } add_dynamic_modifier = { modifier = SLO_sov_war scope = CZE } }
+    } 
+   }     
   
   #Invasion of Poland
     focus =  {	
        id = SLO_invasion_of_poland
        icon = GFX_goal_generic_military_deal
-       relative_position_id = SLO_mobilize_slovak_army
-        prerequisite = { focus = SLO_mobilize_slovak_army}
+       relative_position_id = SLO_soviet_war
+        prerequisite = { focus = SLO_soviet_war}
         x = 0
         y = 1
         cost = 5
         completion_reward = {
-        army_experience = 75
+            army_experience = 75
   }
   }
   
@@ -860,24 +981,10 @@
         cost = 5
 
         completion_reward = {
-        add_ideas = SLO_CKD
+            add_ideas = SLO_CKD
        }
   }
-  #Slovak airforce
-  focus =  {  
-      id = SLO_slovak_airforce
-      icon = GFX_SLO_air_force
-
-       x = -5
-        y = 1
-        cost = 7
-       relative_position_id = SLO_mobilize_slovak_army
-        prerequisite = { focus = SLO_mobilize_slovak_army}
-        completion_reward = {
-        add_equipment_to_stockpile = { type = transport_plane_equipment amount = 25 }
-	 } 
-  }
-
+  
 #Cavalry
     focus =  {  
        id = SLO_cavalry_focus
@@ -910,94 +1017,125 @@
         cost = 5
 
         completion_reward = { 
-    add_ideas = SLO_moto_mech_idea
+            add_ideas = SLO_moto_mech_idea
         }   
      } 
 
    #Special forces
-    focus =  {  
-       id = SLO_special_forces
-       icon = GFX_focus_eng_special_air_service
-       relative_position_id = SLO_slovak_airforce	   
-       prerequisite = { focus = SLO_slovak_airforce} 
-        x = -1
-        y = 2
-        cost = 5
-
-        completion_reward = { 
-        	add_doctrine_cost_reduction = {
-			name = SLO_special_forces
-				cost_reduction = 0.99
-				uses = 4
-				category = special_forces_doctrine
-			}	
-     }  
-    }  
+   
     focus =  {  
        id = SLO_infantry_focus
-       icon = GFX_SLO_slovak_soldiers
-       relative_position_id = SLO_invasion_of_poland
-      prerequisite = { focus = SLO_invasion_of_poland }
-        x = 1
+       icon = GFX_goal_generic_axis_build_infantry
+       relative_position_id = CZE_support_bonus
+      prerequisite = { focus = CZE_support_bonus }
+        x = -1
         y = 1
         cost = 6
         completion_reward = { 
-                add_ideas = SLO_gun_mass_production_idea
+            add_ideas = SLO_gun_mass_production_idea
      } 
      } 
 
+  #Lessons of the "Little War"
+    focus =  { 
+       id = SLO_lessons
+       icon = GFX_goal_generic_air_doctrine
+       relative_position_id = SLO_invasion_of_poland
+        prerequisite = { focus = SLO_invasion_of_poland}
+        x = 0
+        y = 2
+        cost = 5
+        completion_reward = {
+            army_experience = 75
+      
+   }
+  }
+  #Prepare our airforce
+    focus =  { 
+       id = SLO_prepare_our_airforce
+       icon = GFX_GER_air_defence
+       relative_position_id = SLO_soviet_war
+        prerequisite = { focus = SLO_soviet_war}
+        x = -2
+        y = 1
+        cost = 10
+
+        completion_reward = {
+      every_owned_state = {
+        set_building_level = {
+              type = air_base
+              level = 9
+              instant_build = yes
+            }
+          }
+
+        }
+       } 
+    
+       #Life in new Slovakia
+    focus =  { 
+       id = SLO_life_in_new_slovakia
+       icon = GFX_SLO_sanctity_of_the_mother
+       relative_position_id = SLO_go_with_tiso
+        prerequisite = { focus = SLO_go_with_tiso}
+        x = 0
+        y = 1
+        cost = 5
+        completion_reward = {
+			add_ideas = SLO_life_in_new_slovakia
+       } 
+      }
+      
+    focus = {
+        id = SLO_war_propaganda
+        icon = GFX_SLO_
+        relative_position_id = { focus = SLO_life_in_new_slovakia }
+        prerequisite = { focus = SLO_life_in_new_slovakia }
+        x = -2
+        y = 7
+        cost = 5
+
+        completion_reward = {
+           add_ideas = war_economy
+        }
+    }
+	  
+    focus =  { 
+       id = SLO_slovakian_christianity
+       icon = GFX_focus_BEL_christian_corporatism
+       relative_position_id = SLO_go_with_tiso
+       prerequisite = { focus = SLO_go_with_tiso}
+       x = -2
+       y = 1
+       cost = 5
+       
+        completion_reward = {
+			add_ideas = SLO_christianity
+       } 
+      }       
+      
+  
+    #Fate in german hands
     focus =  {  
-       id = SLO_german_assistance
-       icon = GFX_focus_chi_mission_to_germany
-       relative_position_id = SLO_infantry_focus
-      prerequisite = { focus = SLO_infantry_focus }
-	  	   available = { has_government = fascism }
-
+       id = SLO_fate_in_german_hands
+       icon = GFX_SLO_fate
+       relative_position_id = SLO_go_with_heydrich
+	   prerequisite = { focus = SLO_go_with_heydrich }
+       available = { GER = { has_completed_focus = GER_fate_of_czechoslovakia }}
         x = 0
         y = 1
         cost = 5
 
-        completion_reward = { 
-   add_tech_bonus = {
-        name = support_companies
-        Bonus = 1
-        uses = 2
-        category = support_tech
+        completion_reward = {
+			complete_national_focus = SLO_industrial_enterprises
       }
-  } 
-}
-
-    focus =  {  
-       id = SLO_commando
-       icon = GFX_focus_generic_paratrooper
-       relative_position_id = SLO_slovak_airforce
-      prerequisite = { focus = SLO_slovak_airforce} 
-        x = 1
-        y = 2
-        cost = 5
-
-        completion_reward = { 
-				add_doctrine_cost_reduction = {
-				cost_reduction = 0.99
-				uses = 2
-				category = cat_paratroopers_doctrine
-			}	
-			 custom_effect_tooltip = SLO_commando_tt
-			 add_tech_bonus = {
-				category = tp_tech
-				bonus = 1 
-				uses = 1
-				name = SLO_commando
-			 }
-      }
-       }    
-
-   #Submachine guns
+     }
+     
     focus =  {  
        id = SLO_submachine_guns
        icon = GFX_GER_new_weapons
-       relative_position_id = SLO_infantry_focus
-      prerequisite = { focus = SLO_infantry_focus} 
+       relative_position_id = SLO_german_assistance
+       prerequisite = { focus = SLO_german_assistance} 
         x = -2
         y = 1
         cost = 5
@@ -1009,14 +1147,30 @@
         category = infantry_weapons
     } 
    }  
-  }      
+  }
+  
+    focus =  {  
+       id = SLO_german_assistance
+       icon = GFX_focus_chi_mission_to_germany
+       relative_position_id = SLO_fate_in_german_hands
+      prerequisite = { focus = SLO_fate_in_german_hands }
+	  	   available = { has_government = fascism }
 
-   #Arty modernization
+        x = 0
+        y = 1
+        cost = 5
+
+        completion_reward = {
+            add_ideas = total_mobilization
+            
+      } 
+    }
+    
     focus =  {  
        id = SLO_arty_3
        icon = GFX_goal_generic_army_artillery
-       relative_position_id = SLO_infantry_focus
-       prerequisite = { focus = SLO_infantry_focus}  
+       relative_position_id = SLO_german_assistance
+       prerequisite = { focus = SLO_german_assistance}  
         x = 2
         y = 1
         cost = 5
@@ -1036,224 +1190,7 @@
         category = cat_anti_tank
       }
     } 
-   }     
-      
-    #Soviet war
-    focus =  {  
-       id = SLO_soviet_war
-       icon = GFX_SLO_destroy_bolshevism
-       relative_position_id = SLO_mobilize_slovak_army
-       prerequisite = {  focus = SLO_mobilize_slovak_army} 
-       available = {
-			has_war_with = SOV
-		}
-		
-        x = -2
-        y = 1
-        cost = 5
-        ai_will_do = {
-           factor = 100}	
-        completion_reward = { 
-      add_ideas = SLO_soviet_war_idea
-	  every_state = { limit = { southern_russia_state = yes } add_dynamic_modifier = { modifier = SLO_sov_war scope = CZE } }
-    } 
-   }    
-   #Hlinka guard
-    focus =  {  
-       id = SLO_hlinka_chad
-       icon = GFX_SLO_hejho
-       relative_position_id = SLO_mobilize_slovak_army
-       prerequisite = { focus = SLO_mobilize_slovak_army }  
-	   available = { has_government = fascism }
-        x = 2
-        y = 1
-        cost = 5
-        ai_will_do = {
-           factor = 19}
-        completion_reward = { 	
-       add_ideas = SLO_hlinka_chad_idea 
-    } 
-   } 
-   
-  
-  #Lessons of the "Little War"
-   focus =  { 
-       id = SLO_lessons
-       icon = GFX_goal_generic_air_doctrine
-       relative_position_id = SLO_slovak_airforce
-        prerequisite = { focus = SLO_slovak_airforce}
-        x = 0
-        y = 1
-        cost = 5
-        completion_reward = {
-        army_experience = 75
-      
-   }
-  }
-  #Prepare our airforce
-   focus =  { 
-       id = SLO_prepare_our_airforce
-       icon = GFX_focus_YUG_ikarus
-       relative_position_id = SLO_slovak_airforce
-        prerequisite = { focus = SLO_slovak_airforce}
-        x = 2
-        y = 1
-        cost = 5
-
-        completion_reward = {
-      every_owned_state = {
-        set_building_level = {
-              type = air_base
-              level = 4
-              instant_build = yes
-            }
-          }
-
-        }
-       } 
-  #AA defense
-   focus =  {  
-       id = SLO_aa_defense
-       icon = GFX_GER_air_defence
-       relative_position_id = SLO_slovak_airforce
-        prerequisite = { focus = SLO_slovak_airforce}
-        x = -2
-        y = 1
-        cost = 5
-        ai_will_do = {
-           factor = 15}
-        completion_reward = {
-      every_owned_state = {
-        set_building_level = {
-              type = anti_air_building
-              level = 5
-              instant_build = yes
-            }
-          }
-     }
-    } 
-
-
-       #Life in new Slovakia
-       focus =  { 
-       id = SLO_life_in_new_slovakia
-       icon = GFX_SLO_sanctity_of_the_mother
-       relative_position_id = SLO_go_with_tiso
-        prerequisite = { focus = SLO_go_with_tiso}
-        x = 0
-        y = 1
-        cost = 5
-        completion_reward = {
-			add_ideas = SLO_life_in_new_slovakia
-       } 
-      }
-	  
-    focus =  { 
-       id = SLO_slovakian_christianity
-       icon = GFX_
-       relative_position_id = SLO_go_with_tiso
-        prerequisite = { focus = SLO_go_with_tiso}
-        x = -2
-        y = 1
-        cost = 5
-        completion_reward = {
-			
-       } 
-      }       
-      
-      #Special forces - Tiso
-    focus =  {	
-       id = SLO_memories_of_the_legion
-       icon = GFX_
-       relative_position_id = SLO_life_in_new_slovakia
-        prerequisite = { focus = SLO_life_in_new_slovakia}
-        x = -2
-        y = 1
-        cost = 5
-
-        completion_reward = {
-		add_ideas = SLO_legionary_fighters_1
-       } 
-    }
-    
-    focus =  {	
-       id = SLO_a_legion_of_our_own
-       icon = GFX_SLO_slovak_flag
-       relative_position_id = SLO_memories_of_the_legion
-        prerequisite = { focus = SLO_memories_of_the_legion }
-        x = 0
-        y = 1
-        cost = 5
-
-        completion_reward = {
-		swap_ideas = { remove_idea = SLO_legionary_fighters_1 add_idea = SLO_legionary_fighters_2 }
-       } 
-    }
-    
-    
-      
-    #Mass Mob - Tiso
-    focus =  {  
-       id = SLO_mass_mobilization_of_armed_forces
-       icon = GFX_
-       relative_position_id = SLO_life_in_new_slovakia
-        prerequisite = { focus = SLO_life_in_new_slovakia }
-        mutually_exclusive { focus = SLO_memories_of_the_legion }
-        x = 1
-        y = 1
-        cost = 5
-		
-        completion_reward = {
-		add_ideas = SLO_mass_mob_1
-       } 
-    }
-    
-  #Mass Mob - Inf
-    focus =  {  
-       id = SLO_mass_mob_inf
-       icon = GFX_
-       relative_position_id = SLO_mass_mobilization_of_armed_forces
-        prerequisite = { focus = SLO_mass_mobilization_of_armed_forces }
-        mutually_exclusive { focus = SLO_mass_cav }
-        x = 1
-        y = 1
-        cost = 2
-		
-        completion_reward = {
-		swap_ideas = { remove_idea = SLO_mass_mob_1 add_idea = SLO_mass_mob_2b  }
-    } 
-  }
-    #Mass Mob - Cav
-    focus =  {  
-       id = SLO_mass_mob_cav
-       icon = GFX_SLO_slava_slovensku
-       relative_position_id = SLO_mass_mobilization_of_armed_forces
-        prerequisite = { focus = SLO_mass_mobilization_of_armed_forces }
-        mutually_exclusive  { focus = SLO_mass_inf }
-        x = -1
-        y = 1
-        cost = 2
-		
-        completion_reward = {
-		swap_ideas = { remove_idea = SLO_mass_mob_1 add_idea = SLO_mass_mob_2a}
-    } 
-  }   
-  
-  #Fate in german hands
-      focus =  {  
-       id = SLO_fate_in_german_hands
-       icon = GFX_SLO_fate
-       relative_position_id = SLO_go_with_heydrich
-	    prerequisite = { focus = SLO_go_with_heydrich }
-				available = { GER = { has_completed_focus = GER_fate_of_czechoslovakia }}
-        x = 0
-        y = 1
-        cost = 5
-
-        completion_reward = {
-			complete_national_focus = SLO_industrial_enterprises
-      }
-     }  
+   }       
 
 }
 
