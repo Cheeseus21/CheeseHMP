@@ -172,6 +172,26 @@ ideas = {
 			}
 		}
         
+        #Mass Mob - Hungarian Ties
+        SLO_mass_mob_2a = {
+		
+			picture = GFX_SLO_durcanskys_ideas
+
+			allowed = {
+				original_tag = CZE
+			}
+			removal_cost = -1
+
+			modifier = {
+				conscription_factor = 0.85
+                army_speed_factor = 0.1
+                army_attack_factor = 0.2
+				army_defence_factor = 0.05
+                army_morale_factor = 0.35
+                cavalry_attack_factor = 0.15
+			}
+		}
+        
         #Mass Mob - Infantry
         SLO_mass_mob_1b = {
 		
@@ -190,7 +210,27 @@ ideas = {
 			}
 		}
         
-        #Special Forces - Tiso
+        #Mass Mob - Full Conscription
+        SLO_mass_mob_2b = {
+		
+			picture = GFX_SLO_durcanskys_ideas
+
+			allowed = {
+				original_tag = CZE
+			}
+			removal_cost = -1
+
+			modifier = {
+				conscription_factor = 1
+                army_org_Factor = 0.35
+				army_attack_factor = 0.05
+				army_defence_factor = 0.2
+                army_morale_factor = 0.35
+                dig_in_speed_factor = 0.50
+			}
+		}
+        
+        #Special Forces - Initial
         SLO_legionnaires_1 = {
 		
 			picture = GFX_SLO_durcanskys_ideas
@@ -201,15 +241,60 @@ ideas = {
 			removal_cost = -1
 
 			modifier = {
-				conscription_factor = -0.15
+				conscription_factor = 0.35
                 special_foces_min = 120
                 special_forces_attack_factor = 0.15
                 special_forces_defense_factor = 0.15
                 supply_consumption_factor = -0.15
 			}
-		}    
+		}
         
+        #Tiso SF
+        SLO_legionnaires_2a = {
 		
+			picture = GFX_SLO_durcanskys_ideas
+
+			allowed = {
+				original_tag = CZE
+			}
+			removal_cost = -1
+
+			modifier = {
+				conscription_factor = 0.35
+                special_foces_min = 120
+                special_forces_attack_factor = 0.15
+                special_forces_defense_factor = 0.15
+                supply_consumption_factor = -0.15
+                pocket_penalty = -0.25
+                dig_in_speed = 0.50
+                max_dig_in_factor = 0.15
+                army_morale_factor = 0.35
+			}
+		}
+        
+        #Heydrich SF
+        SLO_legionnaires_2b = {
+		
+			picture = GFX_SLO_durcanskys_ideas
+
+			allowed = {
+				original_tag = CZE
+			}
+			removal_cost = -1
+
+			modifier = {
+				conscription_factor = 0.35
+                special_foces_min = 120
+                special_forces_attack_factor = 0.15
+                special_forces_defense_factor = 0.15
+                supply_consumption_factor = -0.15
+                land_night_attack = 0.5
+                army_morale_factor = 0.15
+                planning_speed = 0.35
+			}
+		} 
+        
+		#Life in Slovakia; weekly manpower
 		SLO_life_in_new_slovakia = {
 		
 			picture = GFX_SLO_durcanskys_ideas
@@ -464,6 +549,76 @@ CZE_industrial_legacy_idea = {
         modifier = {
                 research_speed_factor = -0.15
                 stability_factor = 0.1
-                offensive_war_stability_factor = .20
+                offensive_war_stability_factor = .35
+            }
+    }
 
-    }    
+   SLO_prepartion_for_war = {
+    picture = generic_production_bonus
+    
+            allowed {
+                original_tag = CZE
+            }
+            
+            allowed {
+                always = no #Added via focus
+            }
+            removal_cost = - 1
+            
+        modifier = {
+                production_speed_arms_factory_factor = 0.25
+                conversion_cost_civ_to_mil_factor = 0.5
+                production_factory_efficiency_gain_factor = 0.15
+            }
+    }
+    
+    SLO_armor_buff_1 = {
+     picture = generic_production_bonus
+    
+            allowed {
+                original_tag = CZE
+            }
+            
+            allowed {
+                always = no #Added via focus
+            }
+            removal_cost = - 1
+            
+        modifier = {
+                army_armor_attack_factor = 0.1
+                army_armor_defence_factor = 0.1
+                army_armor_speed_factor = 0.05
+            }
+    }
+    
+    SLO_armor_buff_2 = {
+     picture = generic_production_bonus
+    
+            allowed {
+                original_tag = CZE
+            }
+            
+            allowed {
+                always = no #Added via focus
+            }
+            removal_cost = - 1
+            
+        modifier = {
+                army_armor_attack_factor = 0.1
+                army_armor_defence_factor = 0.1
+                army_armor_speed_factor = 0.05
+                
+            }
+            
+        equipment_bonus = {
+            armor = {
+				build_cost_ic = -0.1 instant = yes
+			}
+		}
+            
+    }
+    
+    
+    
+    
+               
