@@ -647,8 +647,8 @@
 
   }
   
-		#Telegram	
-        focus = {
+	#Telegram	
+    focus = {
 		id = SLO_telegram_to_berlin
 		icon = GFX_SLO_telegram_from_germany
 		available = { GER = { has_completed_focus = GER_demand_sudetenland }}
@@ -660,85 +660,84 @@
 
 		completion_reward = { 
 		        add_research_slot = 1
-       }
+        }
     }
     
 
     #Protection Zone 
-      focus = {
-		id = SLO_go_with_tiso
-		icon = GFX_SLO_president_tiso
-		relative_position_id = SLO_telegram_to_berlin
-		prerequisite = { focus = SLO_telegram_to_berlin }
-		x = -2
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 12
-		}
-		completion_reward = {
-		add_equipment_to_stockpile = { type = convoy  amount = 100  producer = CZE }
-     GER = {
-	 add_to_faction = CZE
-
-	 	set_autonomy = {
-		target = CZE
-		autonomous_state = autonomy_reichsprotectorate
-		freedom_level = 0.4
+    focus = {
+        id = SLO_go_with_tiso
+        icon = GFX_SLO_president_tiso
+        relative_position_id = SLO_telegram_to_berlin
+        prerequisite = { focus = SLO_telegram_to_berlin }
+        x = -2
+        y = 1
+        cost = 5
+        ai_will_do = {
+		factor = 12
+        }
+        completion_reward = {
+            add_equipment_to_stockpile = { type = convoy  amount = 100  producer = CZE }
+            GER = {
+                add_to_faction = CZE
+        
+                set_autonomy = {
+                target = CZE
+                autonomous_state = autonomy_reichsprotectorate
+                freedom_level = 0.4
+                }
+            }
+            set_cosmetic_tag = SLO_fascism
+        }
 	}
-
-}
-	set_cosmetic_tag = SLO_fascism
-	    }
-	  }
       
-        focus = {
-		id = SLO_go_with_heydrich
-		icon = GFX_
-		relative_position_id = SLO_telegram_to_berlin
-		prerequisite = { focus = SLO_telegram_to_berlin }
-		x = 3
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 12
-		}
-		completion_reward = {
-		add_equipment_to_stockpile = { type = convoy  amount = 100  producer = CZE }
-     GER = {
-	 add_to_faction = CZE
-
-	 	set_autonomy = {
-		target = CZE
-		autonomous_state = autonomy_reichskommissariat
-		freedom_level = 0.4
-	}
-
-}
-	set_cosmetic_tag = SLO_fascism
-	    }
-	  }
-       #German control over industry
-       focus = {
-       id = SLO_industrial_enterprises
-       icon = GFX_SLO_german_control
-       x = 0
-       y = 0
-       cost = 5
-		available =  { always = no }
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
+    focus = {
+        id = SLO_go_with_heydrich
+        icon = GFX_
+        relative_position_id = SLO_telegram_to_berlin
+        prerequisite = { focus = SLO_telegram_to_berlin }
+        x = 3
+        y = 1
+        cost = 5
+        
+        completion_reward = {
+            add_equipment_to_stockpile = { type = convoy  amount = 100  producer = CZE }
+            GER = {
+            add_to_faction = CZE
+    
+            set_autonomy = {
+            target = CZE
+            autonomous_state = autonomy_reichskommissariat
+            freedom_level = 0.4
+                }
+            }
+	
+            set_cosmetic_tag = SLO_fascism
+        }
+    }
+    
+    #German control over industry
+    focus = {
+      id = SLO_industrial_enterprises
+      icon = GFX_SLO_german_control
+      x = 0
+      y = 0
+      cost = 5
+      available =  { always = no }
+	  cancel_if_invalid = yes
+	  continue_if_invalid = no
+	  available_if_capitulated = yes
  
-      completion_reward =  {	
-      add_tech_bonus = {
-        name = SLO_industrial_enterprises
-        bonus = 1
-		uses = 3
-		category = industry
-        }     
+        completion_reward =  {	
+            add_tech_bonus = {
+            name = SLO_industrial_enterprises
+            bonus = 1
+            uses = 3
+            category = industry
+            }     
+        }  
     }  
-}  
+    
     #Appoint competent economists 
     focus = {
 		id = SLO_appoint_competent_economists
@@ -836,7 +835,7 @@
             }
         }
 
-        x = 3.5
+        x = 4
         y = 1
 
         cost = 5
@@ -894,7 +893,7 @@
        prerequisite = { focus = SLO_mobilize_slovak_army }
        mutually_exclusive = { focus = SLO_mass_mobilization_of_armed_forces }
        mutually_exclusive = { focus = SLO_following_german_model }
-       x = -3.5
+       x = -4
        y = 1
        cost = 5
        available = {
@@ -947,6 +946,30 @@
            swap_ideas = { remove_idea = SLO_legionnaires_1 add_idea = SLO_legionnaires_2a }
        } 
     }
+    
+    #Legion train
+    focus =  {	
+       id = SLO_a_new_Orlík
+       icon = GFX_focus_generic_railway_gun
+       relative_position_id = SLO_the_legion_remembers
+       prerequisite = { focus = SLO_the_legion_remembers }
+       x = 0
+       y = 1
+       cost = 5
+        
+  
+        completion_reward = {
+           set_technology {
+                railway_gun_equipment_1 = 1
+           }
+           create_railway_gun = {
+                equipment = railway_gun_equipment_1
+                name = Orlík
+                location = 11539
+            }
+        } 
+    }
+ 
     
     #SF buff behind Heydrich
     focus =  {	
@@ -1101,7 +1124,7 @@
        relative_position_id = SLO_mobilize_slovak_army
         prerequisite = { focus = SLO_mobilize_slovak_army }
         available = { SLO = is_puppet }
-        x = -8
+        x = -9
         y = 1.5
         cost = 5
         
@@ -1222,12 +1245,32 @@
               level = 4
               instant_build = yes
             }
+        set_building_level = {
+              type = anti_air
+              level = 5
+              instant_build = yes
+            }
           }
 
         }
        } 
     
-    #Life in new Slovakia
+    #War Propaganda
+    focus = {
+       id = SLO_war_propaganda
+       icon = GFX_focus_CZE_state_defense_guard
+        relative_position_id = { focus = SLO_go_with_tiso }
+        prerequisite = { focus = SLO_go_with_tiso }
+        x = 10
+        y = 6
+        cost = 5
+
+        completion_reward = {
+           add_war_support = 0.2
+           add_political_power = 100
+        }
+    }
+    #Life in new Slovakia; weekly 2000
     focus =  { 
        id = SLO_life_in_new_slovakia
        icon = GFX_SLO_sanctity_of_the_mother
@@ -1239,21 +1282,9 @@
         completion_reward = {
 			add_ideas = SLO_life_in_new_slovakia
        } 
-      }
-      
-    focus = {
-        id = SLO_war_propaganda
-        icon = GFX_focus_CZE_state_defense_guard
-        relative_position_id = { focus = SLO_go_with_tiso }
-        prerequisite = { focus = SLO_go_with_tiso }
-        x = 10
-        y = 6
-        cost = 5
-
-        completion_reward = {
-           add_ideas = war_economy
-        }
     }
+    
+   
 	  
     focus =  { 
        id = SLO_slovakian_christianity
@@ -1266,7 +1297,7 @@
        
         completion_reward = {
 			add_ideas = SLO_christianity
-       } 
+        } 
       }       
       
   
@@ -1289,8 +1320,8 @@
     focus =  {  
        id = SLO_submachine_guns
        icon = GFX_GER_new_weapons
-       relative_position_id = SLO_german_assistance
-       prerequisite = { focus = SLO_german_assistance} 
+       relative_position_id = SLO_cavalry_focus
+       prerequisite = { focus = SLO_cavalry_focus} 
         x = -2
         y = 1
         cost = 5
@@ -1308,25 +1339,25 @@
        id = SLO_german_assistance
        icon = GFX_focus_GER_integrated_economies
        relative_position_id = SLO_fate_in_german_hands
-      prerequisite = { focus = SLO_fate_in_german_hands }
-	  	   available = { has_government = fascism }
-
+       prerequisite = { focus = SLO_fate_in_german_hands }
         x = 0
         y = 1
-        cost = 5
+       cost = 5
+       
+       available = { has_government = fascism }
 
         completion_reward = {
-            add_ideas = total_mobilization
-            
-      } 
+            add_political_power = 50
+            research_speed_factor = 0.25   
+        } 
     }
     
     focus =  {  
        id = SLO_arty_3
        icon = GFX_goal_generic_army_artillery
-       relative_position_id = SLO_german_assistance
-       prerequisite = { focus = SLO_german_assistance}  
-        x = 2
+       relative_position_id = SLO_cavalry_focus
+       prerequisite = { focus = SLO_cavalry_focus}  
+        x = 0
         y = 1
         cost = 5
         ai_will_do = {
