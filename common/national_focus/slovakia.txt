@@ -959,14 +959,23 @@
         
   
         completion_reward = {
-           set_technology {
-                railway_gun_equipment_1 = 1
-           }
-           create_railway_gun = {
-                equipment = railway_gun_equipment_1
-                name = Orlík
-                location = 11539
+           if = {
+            limit = {
+                NOT = { has_tech = armored_train }
             }
+                set_technology = { armored_train = 1 }
+           }
+           if = {
+            limit = {
+                NOT = { has_tech = railway_gun }
+            }
+                set_technology = { railway_gun = 1 }
+            }
+          create_railway_gun = {
+            equipment = railway_gun_equipment_1
+            name = Orlík
+            location = 11539
+           }
         } 
     }
  
