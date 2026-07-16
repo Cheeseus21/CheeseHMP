@@ -71,35 +71,6 @@
 			add_timed_idea = { idea = CZE_czech_fascism days = 1095 }
 		}
 	}
-
-	focus = {
-		id = CZE_the_polish_question
-		icon = GFX_goal_generic_territory_or_war
-		prerequisite = { focus = SLO_prepare_for_coming_war  }
-		x = -4
-		y = 1
-		relative_position_id = SLO_prepare_for_coming_war
-    
-		cost = 6
-    
-		available = {
-			GER = { controls_state = 88}
-		}
-    
-    
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-    
-		completion_reward = {
-			71 = {
-				add_manpower = 120000
-			}
-			88 = {
-				add_manpower = -120000
-			}
-		}
-	}
 	
 	focus = {
 		id = CZE_military_research_institute
@@ -469,7 +440,7 @@
 		mutually_exclusive = { focus = CZE_balanced_3 }
 		x = -1
         y = 1
-        cost = 5
+        cost = 7
 
         completion_reward = {
 			70 = {
@@ -479,8 +450,17 @@
 					level = 2
 					instant_build = yes 
 				}
-			}
-        } 
+            }
+            71 = {
+                add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes 
+				}            
+            } 
+            
+        }
     }
     
 	focus = {
@@ -492,6 +472,32 @@
 		y = 1
 		relative_position_id = CZE_balanced_2
 
+		cost = 7
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			70 = {
+				add_extra_state_shared_building_slots = 4
+			}
+			71 = {
+				add_extra_state_shared_building_slots = 4
+			}		
+		}
+	}
+    
+    #Those who know....
+    focus = {
+		id = SLO_clear_the_slums
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = SLO_bata focus = CZE_balanced_3 }
+		x = -1
+		y = 1
+		relative_position_id = CZE_balanced_3
+
 		cost = 5
 
 		cancel_if_invalid = yes
@@ -501,13 +507,36 @@
 
 		completion_reward = {
 			70 = {
-				add_extra_state_shared_building_slots = 2
+                add_extra_state_shared_building_slots = 4
+                add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes 
+				}
+                remove_building = {
+                    type = industrial_complex
+                    level = 2
+                    instant_build = yes 
+                }
+                add_manpower = -15000
 			}
 			71 = {
-				add_extra_state_shared_building_slots = 2
-			}		
-		}
-	}
+                add_extra_state_shared_building_slots = 4
+                add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes 
+				}
+                remove_building = {
+                    type = industrial_complex
+                    level = 2
+                    instant_build = yes 
+                }
+                add_manpower = -15000                
+            }
+            
+        }
+    }
 
 	focus = {
 		id = CZE_arms_exports_1
@@ -603,6 +632,10 @@
 
 		completion_reward = { 
 		    add_research_slot = 1
+            
+            CZE = {
+                country_event = { id = slovakia.1 days = 7 }  
+            }
         }
     }
     
@@ -611,11 +644,11 @@
     focus = {
         id = SLO_go_with_tiso
         icon = GFX_SLO_president_tiso
-        prerequisite = { focus = SLO_telegram_to_berlin }
         x = -2
         y = 1
         cost = 5
         
+        available =  { always = no }
         relative_position_id = SLO_telegram_to_berlin
         
         ai_will_do = {
@@ -637,15 +670,15 @@
         }
 	}
     
-        #War Propaganda
+    #War Propaganda
     focus = {
        id = SLO_war_propaganda
        icon = GFX_focus_CZE_state_defense_guard
        prerequisite = { focus = SLO_go_with_tiso }
-       x = 10
-       y = 6
+       x = 0
+       y = 1
        cost = 5
-       relative_position_id =  focus = SLO_go_with_tiso 
+       relative_position_id = SLO_go_with_tiso 
 
        completion_reward = {
             add_war_support = 0.2
@@ -688,11 +721,12 @@
     focus = {
         id = SLO_go_with_heydrich
         icon = GFX_
-        prerequisite = { focus = SLO_telegram_to_berlin }
         x = 3
         y = 1
         cost = 5
+        available =  { always = no }
         relative_position_id = SLO_telegram_to_berlin
+        
         
         completion_reward = {
             add_equipment_to_stockpile = { type = convoy  amount = 100  producer = CZE }
@@ -793,7 +827,42 @@
 				}
 			}   
 		} 
-	}	      
+	}
+
+    focus = {
+       id = SLO_further_german_investments
+       icon = GFX_focus_generic_industry_3
+       prerequisite = { focus = SLO_factories }
+       x = 0
+       y = 2
+       cost = 10
+       
+       relative_position_id = SLO_factories
+       
+       available = {
+            OR {
+                NOT = { has_completed_focus = SLO_go_with_tiso }
+                has_completed_focus = SLO_factories
+            }
+        }
+
+       completion_reward = {
+        
+            every_state = { limit = { OR = { state = 70 state = 71 }}		    
+                add_extra_state_shared_building_slots = 6
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 2
+                    instant_build = yes 
+				}
+				add_building_construction = {
+                    type = arms_factory
+                    level = 4
+                    instant_build = yes 
+				}
+			}   
+		} 
+	}	
     
    	#Loans for economic recovery
     focus =  {	
@@ -1152,6 +1221,35 @@
             add_timed_idea = { idea = SLO_prepartion_for_war days = 547.5 }
         }
     }
+    
+    focus = {
+		id = CZE_the_polish_question
+		icon = GFX_goal_generic_territory_or_war
+		prerequisite = { focus = SLO_prepare_for_coming_war  }
+		x = -4
+		y = 1
+		relative_position_id = SLO_prepare_for_coming_war
+    
+		cost = 6
+    
+		available = {
+			GER = { controls_state = 88}
+		}
+    
+    
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+    
+		completion_reward = {
+			71 = {
+				add_manpower = 120000
+			}
+			88 = {
+				add_manpower = -120000
+			}
+		}
+	}
   
     #Continue production
     focus =  {  
