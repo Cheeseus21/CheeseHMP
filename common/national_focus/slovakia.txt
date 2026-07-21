@@ -679,7 +679,9 @@
 
        completion_reward = {
             add_war_support = 0.10
+            add_stability = 0.05
             add_political_power = 100
+            complete_national_focus = SLO_industrial_enterprises
         }
     }
     
@@ -788,11 +790,46 @@
         x = 0
         y = 1
         cost = 5
-       
-        available = { GER = { has_completed_focus = GER_fate_of_czechoslovakia }}
 
         completion_reward = {
 			complete_national_focus = SLO_industrial_enterprises
+            add_stability = -0.1
+            add_war_support = 0.2
+            add_political_power = 50
+        }
+    }
+    
+    #I think I'd be banned if I explain what this focus does  
+    focus =  {  
+       id = SLO_prepare_for_the_butcher
+       icon = GFX_focus_GER_integrated_economies
+       relative_position_id = SLO_fate_in_german_hands
+       prerequisite = { focus = SLO_fate_in_german_hands }
+        x = 0
+        y = 1
+       cost = 5
+       
+       available = { has_government = fascism }
+
+        completion_reward = {
+            add_timed_idea = { idea = SLO_cleansing days = 67 }
+        } 
+    }
+    
+    #Fixing manpower + he has arrived...
+    focus =  {  
+       id = SLO_the_butcher_arrives_in_prague
+       icon = GFX_focus_GER_integrated_economies
+       relative_position_id = SLO_prepare_for_the_butcher
+       prerequisite = { focus = SLO_prepare_for_the_butcher }
+        x = 0
+        y = 1
+       cost = 5
+       
+       available = { has_government = fascism }
+
+        completion_reward = {
+            promote_character = CZE_reinhard_heydrich
         }
     }
     
@@ -1428,22 +1465,7 @@
             } 
         }  
     }
-  
-    focus =  {  
-       id = SLO_german_assistance
-       icon = GFX_focus_GER_integrated_economies
-       relative_position_id = SLO_fate_in_german_hands
-       prerequisite = { focus = SLO_fate_in_german_hands }
-        x = 0
-        y = 1
-       cost = 5
-       
-       available = { has_government = fascism }
 
-        completion_reward = {
-            add_political_power = 50 
-        } 
-    }
     
     focus =  {  
        id = SLO_arty_3
