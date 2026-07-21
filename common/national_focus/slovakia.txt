@@ -518,7 +518,6 @@
                     level = 2
                     instant_build = yes 
                 }
-                add_manpower = -15000
 			}
 			71 = {
                 add_extra_state_shared_building_slots = 4
@@ -531,10 +530,8 @@
                     type = industrial_complex
                     level = 2
                     instant_build = yes 
-                }
-                add_manpower = -15000                
-            }
-            
+                }               
+            } 
         }
     }
 
@@ -681,7 +678,7 @@
        relative_position_id = SLO_go_with_tiso 
 
        completion_reward = {
-            add_war_support = 0.2
+            add_war_support = 0.10
             add_political_power = 100
         }
     }
@@ -702,6 +699,45 @@
         } 
     }
     
+    #Those who know...
+    focus =  { 
+        id = SLO_concessions_to_germany
+        icon = GFX_
+        prerequisite = { focus = SLO_life_in_new_slovakia}
+        x = 0
+        y = 1
+        cost = 5
+       
+        relative_position_id =  SLO_life_in_new_slovakia
+       
+        completion_reward = {
+            70 = {
+                add_manpower = -1500
+            }
+            71 = {
+                add_manpower = -1500
+            }
+            add_ideas = SLO_german_concessions
+        } 
+    }
+    
+    #Final Focus Buff for Tiso
+    focus =  { 
+        id = SLO_a_free_slovak_state
+        icon = GFX_
+        prerequisite = { focus = SLO_concessions_to_germany}
+        x = 0
+        y = 1
+        cost = 5
+       
+        relative_position_id =  SLO_concessions_to_germany
+       
+        completion_reward = {
+            swap_ideas = { remove_idea = SLO_german_concessions add_idea = SLO_german_concessions_2 } 
+        }
+    }
+    
+    #Slovak Christianity
     focus =  { 
        id = SLO_slovakian_christianity
        icon = GFX_focus_BEL_christian_corporatism
@@ -1405,8 +1441,7 @@
        available = { has_government = fascism }
 
         completion_reward = {
-            add_political_power = 50
-            research_speed_factor = 0.25   
+            add_political_power = 50 
         } 
     }
     
