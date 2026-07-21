@@ -631,7 +631,7 @@
 		    add_research_slot = 1
             
             CZE = {
-                country_event = { id = slovakia.1 days = 7 }  
+                country_event = { id = slovakia_events.1 days = 7 }  
             }
         }
     }
@@ -792,44 +792,79 @@
         cost = 5
 
         completion_reward = {
-			complete_national_focus = SLO_industrial_enterprises
             add_stability = -0.1
             add_war_support = 0.2
             add_political_power = 50
+            complete_national_focus = SLO_industrial_enterprises
         }
     }
     
     #I think I'd be banned if I explain what this focus does  
     focus =  {  
-       id = SLO_prepare_for_the_butcher
-       icon = GFX_focus_GER_integrated_economies
-       relative_position_id = SLO_fate_in_german_hands
-       prerequisite = { focus = SLO_fate_in_german_hands }
+        id = SLO_prepare_for_the_butcher
+        icon = GFX_focus_GER_integrated_economies
+        relative_position_id = SLO_fate_in_german_hands
+        prerequisite = { focus = SLO_fate_in_german_hands }
         x = 0
         y = 1
-       cost = 5
-       
-       available = { has_government = fascism }
+        cost = 5
 
         completion_reward = {
             add_timed_idea = { idea = SLO_cleansing days = 67 }
         } 
     }
     
-    #Fixing manpower + he has arrived...
+    #He has arrived...
     focus =  {  
-       id = SLO_the_butcher_arrives_in_prague
-       icon = GFX_focus_GER_integrated_economies
-       relative_position_id = SLO_prepare_for_the_butcher
-       prerequisite = { focus = SLO_prepare_for_the_butcher }
+        id = SLO_the_butcher_arrives_in_prague
+        icon = GFX_focus_GER_integrated_economies
+        relative_position_id = SLO_prepare_for_the_butcher
+        prerequisite = { focus = SLO_prepare_for_the_butcher }
         x = 0
         y = 1
-       cost = 5
-       
-       available = { has_government = fascism }
+        cost = 5
+        
+        completion_reward = {
+            
+            transfer_state = 9
+            transfer_state = 75
+            retire_country_leader = yes
+
+            if = {
+               limit = {
+                    AND = {
+                        has_completed_focus = SLO_prepare_for_the_butcher
+                    }
+                }
+                add_country_leader_role = {
+                    character = CZE_reinhard_heydrich
+                    promote_leader = yes
+                    country_leader = {
+                        ideology = nazism
+                        expire - "1965.1.1.1"
+                        traits = { GER_heydrich_leader }
+                    }
+                }
+                set_party_name = {
+                ideology = nazism
+                long_name = NSDAP
+                name = NSDAP
+                }
+            }
+        }
+    }
+    
+    focus =  {  
+        id = SLO_a_pure_state
+        icon = GFX_focus_GER_integrated_economies
+        relative_position_id = SLO_the_butcher_arrives_in_prague
+        prerequisite = { focus = SLO_the_butcher_arrives_in_prague }
+        x = 0
+        y = 1
+        cost = 2
 
         completion_reward = {
-            promote_character = CZE_reinhard_heydrich
+            add_ideas = SLO_ethnicly_pure_state
         }
     }
     
