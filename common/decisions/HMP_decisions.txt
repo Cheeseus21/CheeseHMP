@@ -7215,6 +7215,8 @@ HUN_gyor_program_initiatives_category = {
 GER_integration_of_the_foreign_economies_category = {
 	GER_integration_of_the_foreign_economies = {
 		icon = GFX_decision_generic_construction
+		
+		fire_only_once = yes
 
 		available = {
 			10 = { 
@@ -13029,132 +13031,125 @@ HMP_templates = {
 		remove_effect = { }
 	}
 	
-	HMP_rules = { 
-		allowed = {  normally_played_country = yes }
+	HMP_convert_templates = {
+		icon = GFX_divisions
+		
+		allowed = { normally_played_country = yes }
+		
 		fire_only_once = no
+		
 		complete_effect = {
-			country_event = { id = countrystartup.28  }
+			division_template = {
+				name = "Convert"
+				regiments = {
+					infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } infantry = { x = 3 y = 0 }     
+					infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 } infantry = { x = 3 y = 1 }
+					infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 } infantry = { x = 2 y = 2 } infantry = { x = 3 y = 2 }
+					infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 } infantry = { x = 2 y = 3 } infantry = { x = 3 y = 3 }
+					infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 } infantry = { x = 2 y = 4 } infantry = { x = 3 y = 4 }
+				}
+				support = { engineer = { x = 0 y = 0 } recon = { x = 0 y = 1 } }
+			}									
 		}
 	}
-	HMP_navy_tips = { 
-		icon = GFX_mapicon_port_strike_result_text
-		allowed = {  normally_played_country = yes }
-		fire_only_once = no
-		complete_effect = {
-			country_event = { id = countrystartup.29  }
-		}
-	}
-	HMP_tank_minor_tips = { 
-		icon = GFX_medium_tank_chassis_texticon
-		allowed = {  normally_played_country = yes }
-		fire_only_once = no
-		complete_effect = {
-			country_event = { id = countrystartup.115  }
-		}
-	}
-	HMP_infantry_minor_tips = { 
-		icon = GFX_motorized_texticon
-		allowed = {  normally_played_country = yes }
-		fire_only_once = no
-		complete_effect = {
-			country_event = { id = countrystartup.116  }
-		}
-	}
-	HMP_compass = { 
-		icon = GFX_infiltrate_state_texticon
-		allowed = {  normally_played_country = yes }
-		fire_only_once = no
-		complete_effect = {
-			country_event = { id = countrystartup.129  }
-		}
-	}
+	
 	HMP_templates_20w = {
 		icon = GFX_unit_category_all_infantry_icon_small
-		allowed = {  normally_played_country = yes }
+		
+		allowed = { normally_played_country = yes }
+		
 		fire_only_once = no
+		
 		complete_effect = {
 			division_template = {
-					name = "Anti-Infantry"
-					regiments = {
-						infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
-						infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
-						infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
-						infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
-						infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
-					}
-					support = { engineer = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   anti_tank = { x = 0 y = 4 } logistics_company = { x = 0 y = 5 } recon = { x = 0 y = 3 }    }
-				}					
+				name = "Anti-Infantry"
+				regiments = {
+					infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 }     
+					infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 }
+					infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 }	infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }
+					infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 }	infantry = { x = 2 y = 3 } artillery_brigade = { x = 3 y = 3 }
+					infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }	
+				}
+				support = { engineer = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   anti_tank = { x = 0 y = 4 } logistics_company = { x = 0 y = 5 } recon = { x = 0 y = 3 }    }
+			}					
 			division_template = {
-					name = "Anti-Tank"
-					regiments = {
-						infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } infantry = { x = 3 y = 0 } 	anti_tank_brigade = { x = 4 y = 0 }
-						infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 } infantry = { x = 3 y = 1 } 	anti_tank_brigade = { x = 4 y = 1 }
-						infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 } infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }  anti_tank_brigade = { x = 4 y = 2 }
-						infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 } 							 artillery_brigade = { x = 3 y = 3 }  anti_tank_brigade = { x = 4 y = 3 }
-						infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }																						
-					}
-					support = { engineer = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }  rocket_artillery = { x = 0 y = 3 }  logistics_company = { x = 0 y = 5 } recon = { x = 0 y = 4 }    }
-				}	
-				division_template = {
-					name = "Generalist"
-					regiments = {
-						infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 } anti_tank_brigade = { x = 4 y = 0 } 
-						infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 } anti_tank_brigade = { x = 4 y = 1 } 
-						infantry = { x = 0 y = 2 } 	infantry = { x = 1 y = 2 } infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 } anti_tank_brigade = { x = 4 y = 2 }
-						infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 } infantry = { x = 2 y = 3 }
-						infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 } 
-					}
-					support = { engineer = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   anti_tank = { x = 0 y = 4 } logistics_company = { x = 0 y = 5 } recon = { x = 0 y = 3 }    }
-				}				
-			}
+				name = "Anti-Tank"
+				regiments = {
+					infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } infantry = { x = 3 y = 0 } 	anti_tank_brigade = { x = 4 y = 0 }
+					infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 } infantry = { x = 3 y = 1 } 	anti_tank_brigade = { x = 4 y = 1 }
+					infantry = { x = 0 y = 2 } infantry = { x = 1 y = 2 } infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 }  anti_tank_brigade = { x = 4 y = 2 }
+					infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 } 							 artillery_brigade = { x = 3 y = 3 }  anti_tank_brigade = { x = 4 y = 3 }
+					infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 }																						
+				}
+				support = { engineer = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }  rocket_artillery = { x = 0 y = 3 }  logistics_company = { x = 0 y = 5 } recon = { x = 0 y = 4 }    }
+			}	
+			division_template = {
+				name = "Generalist"
+				regiments = {
+					infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } infantry = { x = 2 y = 0 } artillery_brigade = { x = 3 y = 0 } anti_tank_brigade = { x = 4 y = 0 } 
+					infantry = { x = 0 y = 1 } infantry = { x = 1 y = 1 } infantry = { x = 2 y = 1 } artillery_brigade = { x = 3 y = 1 } anti_tank_brigade = { x = 4 y = 1 } 
+					infantry = { x = 0 y = 2 } 	infantry = { x = 1 y = 2 } infantry = { x = 2 y = 2 } artillery_brigade = { x = 3 y = 2 } anti_tank_brigade = { x = 4 y = 2 }
+					infantry = { x = 0 y = 3 } infantry = { x = 1 y = 3 } infantry = { x = 2 y = 3 }
+					infantry = { x = 0 y = 4 } infantry = { x = 1 y = 4 } 
+				}
+				support = { engineer = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   anti_tank = { x = 0 y = 4 } logistics_company = { x = 0 y = 5 } recon = { x = 0 y = 3 }    }
+			}				
 		}
-		
+	}
+	
 	HMP_spec_ops = {
 		icon = GFX_unit_mountaineers_icon_small
-		allowed = {  normally_played_country = yes }
+		
+		allowed = { normally_played_country = yes }
+		
 		fire_only_once = no
+		
 		complete_effect = {
-				division_template = {
-					name = "Soft Attack Special Forces"
-					regiments = {
-						mountaineers = { x = 0 y = 0 } mountaineers = { x = 1 y = 0 } mountaineers = { x = 2 y = 0 } rocket_artillery_brigade = { x = 3 y = 0 }
-						mountaineers = { x = 0 y = 1 } mountaineers = { x = 1 y = 1 } mountaineers = { x = 2 y = 1 } rocket_artillery_brigade = { x = 3 y = 1 }
-						mountaineers = { x = 0 y = 2 } mountaineers = { x = 1 y = 2 } mountaineers = { x = 2 y = 2 } rocket_artillery_brigade = { x = 3 y = 2 }
-						mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } mountaineers = { x = 2 y = 3 } rocket_artillery_brigade = { x = 3 y = 3 }
-						mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
-					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 }  light_flame_tank = { x = 0 y = 2 }   }
-				}	
-				division_template = {
-					name = "All-Purpose Special Forces"
-					regiments = {
-						mountaineers = { x = 0 y = 0 } mountaineers = { x = 1 y = 0 } mountaineers = { x = 2 y = 0 } anti_tank_brigade = { x = 3 y = 0 } rocket_artillery_brigade = { x = 4 y = 0 }
-						mountaineers = { x = 0 y = 1 } mountaineers = { x = 1 y = 1 } mountaineers = { x = 2 y = 1 } anti_tank_brigade = { x = 3 y = 1 } rocket_artillery_brigade = { x = 4 y = 1 }
-						mountaineers = { x = 0 y = 2 } mountaineers = { x = 1 y = 2 } mountaineers = { x = 2 y = 2 } anti_tank_brigade = { x = 3 y = 2 } rocket_artillery_brigade = { x = 4 y = 2 }
-						mountaineers = { x = 0 y = 3 } 	mountaineers = { x = 1 y = 3 } 	mountaineers = { x = 2 y = 3 } 	
-						mountaineers = { x = 0 y = 4 } 	mountaineers = { x = 1 y = 4 }																			   
-					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 }   anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 2 }     }
-				}	
-				division_template = {
-					name = "Hard Attack Special Forces"
-					regiments = {
-						mountaineers = { x = 0 y = 0 } mountaineers = { x = 1 y = 0 } mountaineers = { x = 2 y = 0 } mountaineers = { x = 3 y = 0 } 	anti_tank_brigade = { x = 4 y = 0 }
-						mountaineers = { x = 0 y = 1 } mountaineers = { x = 1 y = 1 } mountaineers = { x = 2 y = 1 } mountaineers = { x = 3 y = 1 } 	anti_tank_brigade = { x = 4 y = 1 }
-						mountaineers = { x = 0 y = 2 } mountaineers = { x = 1 y = 2 } mountaineers = { x = 2 y = 2 } rocket_artillery_brigade = { x = 3 y = 2 }  anti_tank_brigade = { x = 4 y = 2 }
-						mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } 							 rocket_artillery_brigade = { x = 3 y = 3 }  anti_tank_brigade = { x = 4 y = 3 }
-						mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
-					}
-					support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 3 }     }
-				}				
-			}
+			division_template = {
+				name = "Soft Attack Special Forces"
+				regiments = {
+					mountaineers = { x = 0 y = 0 } mountaineers = { x = 1 y = 0 } mountaineers = { x = 2 y = 0 } rocket_artillery_brigade = { x = 3 y = 0 }
+					mountaineers = { x = 0 y = 1 } mountaineers = { x = 1 y = 1 } mountaineers = { x = 2 y = 1 } rocket_artillery_brigade = { x = 3 y = 1 }
+					mountaineers = { x = 0 y = 2 } mountaineers = { x = 1 y = 2 } mountaineers = { x = 2 y = 2 } rocket_artillery_brigade = { x = 3 y = 2 }
+					mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } mountaineers = { x = 2 y = 3 } rocket_artillery_brigade = { x = 3 y = 3 }
+					mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
+				}
+				support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 }  light_flame_tank = { x = 0 y = 2 }   }
+			}	
+			division_template = {
+				name = "All-Purpose Special Forces"
+				regiments = {
+					mountaineers = { x = 0 y = 0 } mountaineers = { x = 1 y = 0 } mountaineers = { x = 2 y = 0 } anti_tank_brigade = { x = 3 y = 0 } rocket_artillery_brigade = { x = 4 y = 0 }
+					mountaineers = { x = 0 y = 1 } mountaineers = { x = 1 y = 1 } mountaineers = { x = 2 y = 1 } anti_tank_brigade = { x = 3 y = 1 } rocket_artillery_brigade = { x = 4 y = 1 }
+					mountaineers = { x = 0 y = 2 } mountaineers = { x = 1 y = 2 } mountaineers = { x = 2 y = 2 } anti_tank_brigade = { x = 3 y = 2 } rocket_artillery_brigade = { x = 4 y = 2 }
+					mountaineers = { x = 0 y = 3 } 	mountaineers = { x = 1 y = 3 } 	mountaineers = { x = 2 y = 3 } 	
+					mountaineers = { x = 0 y = 4 } 	mountaineers = { x = 1 y = 4 }																			   
+				}
+				support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 }   anti_tank = { x = 0 y = 3 } logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 2 }     }
+			}	
+			division_template = {
+				name = "Hard Attack Special Forces"
+				regiments = {
+					mountaineers = { x = 0 y = 0 } mountaineers = { x = 1 y = 0 } mountaineers = { x = 2 y = 0 } mountaineers = { x = 3 y = 0 } 	anti_tank_brigade = { x = 4 y = 0 }
+					mountaineers = { x = 0 y = 1 } mountaineers = { x = 1 y = 1 } mountaineers = { x = 2 y = 1 } mountaineers = { x = 3 y = 1 } 	anti_tank_brigade = { x = 4 y = 1 }
+					mountaineers = { x = 0 y = 2 } mountaineers = { x = 1 y = 2 } mountaineers = { x = 2 y = 2 } rocket_artillery_brigade = { x = 3 y = 2 }  anti_tank_brigade = { x = 4 y = 2 }
+					mountaineers = { x = 0 y = 3 } mountaineers = { x = 1 y = 3 } 							 rocket_artillery_brigade = { x = 3 y = 3 }  anti_tank_brigade = { x = 4 y = 3 }
+					mountaineers = { x = 0 y = 4 } mountaineers = { x = 1 y = 4 }
+				}
+				support = { rocket_artillery = { x = 0 y = 0 } anti_air = { x = 0 y = 1 } artillery = { x = 0 y = 2 }   logistics_company = { x = 0 y = 4 } light_tank_recon = { x = 0 y = 5 } light_flame_tank = { x = 0 y = 3 }     }
+			}				
 		}
+	}
+		
 	HMP_templates_40w_tonk = {
 		icon = GFX_unit_category_tanks_icon_small
-		allowed = {  normally_played_country = yes }
+		
+		allowed = { normally_played_country = yes }
+		
 		fire_only_once = no
-			complete_effect = { 
-				division_template = {
+		
+		complete_effect = { 
+			division_template = {
 				name = "12/8 MEC MARM + ENG/MRC/LOGI"
 				regiments = {
 					medium_armor = { x = 0 y = 0 } medium_armor = { x = 1 y = 0 } medium_armor = { x = 2 y = 0 }                                                mechanized = { x = 3 y = 0 }	mechanized = { x = 4 y = 0 }
@@ -13167,205 +13162,7 @@ HMP_templates = {
 			}
 		} 
 	}
-		
-	HMP_plane_templates = {
-		icon = GFX_anti_air_texticon
-		allowed = {  normally_played_country = yes }
-		fire_only_once = no
-		visible = { OR = { has_tech = basic_small_airframe has_tech = basic_medium_airframe has_tech = basic_large_airframe} }
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_aircraft = yes
-		}
-	}
-	
-	# HMP_tank_templates = {
-		# allowed = { normally_played_country = yes }
-		# fire_only_once = no
-		# visible = { 
-		
-		# }
-		# visible = { always = yes } 
-		# complete_effect = {
-			# recommended_support_armor = yes
-		# }
-	# }
-	
-	HMP_decision_recommended_super_heavy_tank_templates = {
-        icon = GFX_unit_super_heavy_armor_icon_small_texticon
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_super_heavy_tank_templates = yes
-		}
-	}
-	
-	HMP_decision_recommended_armored_car_recon_templates = {
-        icon = GFX_unit_armored_car_recon_icon_small
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_armored_car_recon_templates = yes
-		}
-	}
-	
-	HMP_decision_recommended_lt_recon_templates = {
-        icon = GFX_unit_light_tank_recon_icon_small
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_lt_recon_templates = yes
-		}
-	}
-    
-    HMP_decision_recommended_flame_templates = {
-        icon = GFX_unit_light_flame_tank_icon_small
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		available = {
-			ROOT = {
-				is_special_project_completed = sp:sp_land_flamethrower_tank
-			}
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_flame_templates = yes
-		}
-	}
-    
-    HMP_decision_recommended_aa_tank_templates = {
-        icon = GFX_unit_light_sp_anti_air_brigade_icon_small
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_aa_tank_templates = yes
-		}
-	}
-    
-    HMP_decision_recommended_td_tank_templates = {
-        icon = GFX_unit_medium_tank_destroyer_brigade_icon_small
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_td_tank_templates = yes
-		}
-	}
-    
-    HMP_decision_recommended_spg_tank_templates = {
-        icon = GFX_unit_medium_sp_artillery_brigade_icon_small
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_spg_tank_templates = yes
-		}
-	}
-    
-    HMP_decision_recommended_light_tank_templates = {
-        icon = GFX_light_tank_chassis_texticon
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_light_tank_templates = yes
-		}
-	}
-    
-    HMP_decision_recommended_medium_tank_templates = {
-        icon = GFX_medium_tank_chassis_texticon
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_medium_tank_templates = yes
-		}
-	}
-    
-    HMP_decision_recommended_heavy_tank_templates = {
-        icon = GFX_heavy_tank_chassis_texticon
-		allowed = { normally_played_country = yes }
-		available = {
-			has_tech = armor_tech_1
-			has_tech = engine_tech_1
-		}
-		fire_only_once = no
-		visible = { 
-		
-		}
-		visible = { always = yes } 
-		complete_effect = {
-			recommended_heavy_tank_templates = yes
-		}
-	}
-	
+
 	dont_show_agency_warning = {
  		allowed = {
  			normally_played_country = yes
