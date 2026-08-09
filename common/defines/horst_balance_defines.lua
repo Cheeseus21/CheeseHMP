@@ -18,6 +18,17 @@ NDefines.NTechnology.BASE_RESEARCH_POINTS_SAVED = 10.0 -- Vanilla 30, reduced to
 NDefines.NNavy.SHORE_BOMBARDMENT_CAP = 0.3
 
 NDefines.NRailwayGun.BASE_CAPTURE_CHANCE = 1					-- The base chance of railway guns being captured during an overrrun. Will be further modified by the equipment capture chance of the capturing unit.
+
+NDefines.NMilitary.OUT_OF_SUPPLY_SPEED = -0.75                    -- max speed reduction from supply
+-----------------------------AIR SUPREMACY--------------------------------------
+NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.35           -- effect on defense due to enemy air superiorty
+-- Algorithm is a * (xp / (xp + b)) (see: https://www.desmos.com/calculator/4936qnyxqp)
+-- a = ENEMY_AIR_SUPERIORITY_DEFENSE
+-- b = ENEMY_AIR_SUPERIORITY_DEFENSE_STEEPNESS
+-- xp = anti_air ^ 1.5
+NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_DEFENSE = 0.7	       -- more AA attack will approach this amount of help (diminishing returns)
+NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_DEFENSE_STEEPNESS = 625  -- how quickly defense approaches the max impact diminishing returns curve
+NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_SPEED_IMPACT = -0.35      -- effect on speed due to enemy air superiority
 -----------------------------COAL ENERGY STUFF--------------------------------------
 NDefines.NGame.ENERGY_RESOURCE = "oil"						-- resource that will give country energy 
 NDefines.NProduction.RESOURCE_TO_ENERGY_COEFFICIENT = 10.0		-- How much energy per coal produces
@@ -46,7 +57,7 @@ NDefines.NDoctrines.THEATER_COMMANDER_UNITS_MASTERY_GAIN_FACTOR_PER_SKILL = 0  -
 ---------------------------------------------------------------------------------------
 NDefines.NTechnology.BASE_YEAR_AHEAD_PENALTY_FACTOR = 2.3 -- Base year ahead penalty
 
-NDefines.NMilitary.DAMAGE_SPLIT_ON_FIRST_TARGET = 0.50			--% of damage dealt to the first target in a combat. The rest will be split amongst subsequent targets. Modifiers can affect this up to a maximum of 0.9. That value must not be exposed as a define.
+NDefines.NMilitary.DAMAGE_SPLIT_ON_FIRST_TARGET = 0.35			--% of damage dealt to the first target in a combat. The rest will be split amongst subsequent targets. Modifiers can affect this up to a maximum of 0.9. That value must not be exposed as a define.
 
 NDefines.NMilitary.PLANNING_DECAY = 0.01
 NDefines.NMilitary.PLAYER_ORDER_PLANNING_DECAY = 0.03			-- Amount of planning lost due to player manual order
@@ -60,14 +71,14 @@ NDefines.NMilitary.UNIT_EXPERIENCE_PER_COMBAT_HOUR = 0.0005
 NDefines.NMilitary.RIVER_CROSSING_PENALTY = -0.25                 -- vanilla -0.30 | small river crossing
 NDefines.NMilitary.RIVER_CROSSING_PENALTY_LARGE = -0.325          -- vanilla -0.6 | large river crossing
 NDefines.NMilitary.RIVER_CROSSING_SPEED_PENALTY_LARGE = -0.4     -- vanilla 0.5	
-NDefines.NMilitary.EXPERIENCE_COMBAT_FACTOR = 0.08       -- WAS 0.25 
+NDefines.NMilitary.EXPERIENCE_COMBAT_FACTOR = 0.08     			  -- WAS 0.25 
 NDefines.NMilitary.ANTI_AIR_ATTACK_TO_AMOUNT = 0.006				-- WAS 0.005 | Balancing value to convert equipment stat anti_air_attack to the random % value of airplanes being hit.|
-NDefines.NMilitary.ARMOR_VS_AVERAGE = 0	    --vanilla 0.4  | eventually armor will be reworked when paradox finally releases their armor rework
-NDefines.NMilitary.PEN_VS_AVERAGE = 0		--vanilla 0.4
-NDefines.NMilitary.COMBAT_SUPPLY_LACK_ATTACKER_ATTACK = -0.15    -- vanilla -0.25 |  attack combat penalty for attacker if out of supply
-NDefines.NMilitary.COMBAT_SUPPLY_LACK_ATTACKER_DEFEND = -0.5    -- vanilla -0.65 | defend combat penalty for attacker if out of supply
-NDefines.NMilitary.COMBAT_SUPPLY_LACK_DEFENDER_ATTACK = -0.50     -- vanilla -0.35 | attack combat penalty for defender if out of supply
-NDefines.NMilitary.COMBAT_SUPPLY_LACK_DEFENDER_DEFEND = -0.25     -- vanilla -0.15 | defend combat penalty for defender if out of supply
+NDefines.NMilitary.ARMOR_VS_AVERAGE = 0	   		--vanilla 0.4  | eventually armor will be reworked when paradox finally releases their armor rework
+NDefines.NMilitary.PEN_VS_AVERAGE = 0			--vanilla 0.4
+NDefines.NMilitary.COMBAT_SUPPLY_LACK_ATTACKER_ATTACK = -0.25   	 -- vanilla -0.25 |  attack combat penalty for attacker if out of supply
+NDefines.NMilitary.COMBAT_SUPPLY_LACK_ATTACKER_DEFEND = -0.5   	 -- vanilla -0.65 |  defend combat penalty for attacker if out of supply
+NDefines.NMilitary.COMBAT_SUPPLY_LACK_DEFENDER_ATTACK = -0.4     -- vanilla -0.35 |  attack combat penalty for defender if out of supply
+NDefines.NMilitary.COMBAT_SUPPLY_LACK_DEFENDER_DEFEND = -0.15	 -- vanilla -0.15 |  defend combat penalty for defender if out of supply
 ---------------------------------------------------------------------------------------
 -------------------------------------- FUEL STUFF--------------------------------------
 ---------------------------------------------------------------------------------------
@@ -383,6 +394,8 @@ NDefines.NNavy.VISIBILITY_MULTIPLIER_FOR_SPOTTING = 0.05					-- multiplier for v
 NDefines.NNavy.DETECTION_CHANCE_MULT_BASE = 0.1								-- base multiplier value for hourly detection chance combined with the 2 defines beneath, the speed difference defines and the spotting value equation defines above (NOT THE BASE DEFINES)
 NDefines.NNavy.DETECTION_CHANCE_MULT_RADAR_BONUS = 0.2						-- bonus for hourly change detection from radar buildings (NOT BASE). vanilla is 0.1
 NDefines.NNavy.DETECTION_CHANCE_MULT_AIR_SUPERIORITY_BONUS = 0.25			-- bonus from air superiority in hourly change detection (NOT BASE); vanilla is 0.25
+
+NDefines.NNavy.NAVY_VISIBILITY_BONUS_ON_RETURN_FOR_REPAIR = 0.1			-- Multiplier for the surface/sub visiblity when the heavily damaged fleet is returning to the home base for reparation. 1.0 = no bonus. 0.0 = invisible.
 
 NDefines.NNavy.AIR_MISSION_SPOTTING_FACTORS = {								-- Multiplier for air-wings' spotting contribution per mission type; lower value means the 20% base detection chance is reached with more air wings! Vanilla
 	0.50, -- AIR_SUPERIORITY
