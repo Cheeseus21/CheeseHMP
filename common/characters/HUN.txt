@@ -2,58 +2,51 @@ characters={
 	HUN_miklos_horthy={
 		name="Miklos Horthy"
 		portraits={
-				navy = { #Can become Navy leader and therefore navy advisor
-					large = "GFX_Portrait_hungary_miklos_horthy_admiral"
-					small = "GFX_idea_HUN_miklos_horthy_admiral"
-				}
-				civilian = {
-					large = GFX_portrait_HUN_miklos_horthy
-					small = GFX_portrait_HUN_miklos_horthy_small
-				}
+			navy = { #Can become Navy leader and therefore navy advisor
+				large = "GFX_Portrait_hungary_miklos_horthy_admiral"
+				small = "GFX_idea_HUN_miklos_horthy_admiral"
+			}
+			civilian = {
+				large = GFX_portrait_HUN_miklos_horthy
+				small = GFX_portrait_HUN_miklos_horthy_small
+			}
 		}
 
-			country_leader = {
-				ideology = oligarchism
-				traits = { HUN_the_regent }
-				expire = "1965.1.1.1"
-				id = 500
+		country_leader = {
+			ideology = oligarchism
+			traits = { }
+			expire = "1965.1.1.1"
+			id = 500
+		}
+		
+		advisor = {
+			slot = navy_chief
+			idea_token = HUN_miklos_horthy
+			
+			allowed = {
+				original_tag = HUN
 			}
-			advisor = {
-
-				slot = navy_chief
-
-				idea_token = HUN_miklos_horthy
-
-				allowed = {
-					original_tag = HUN
-				}
-
-				available = {
-					has_completed_focus = wuw_HUN_reinstate_the_navy
-					NOT = {
-						OR = {
-							has_government = communism
-							has_government = fascism
-						}
-					}
-				}
-
-				traits = {
-					navy_chief_reform_2
-				}
-
-				cost = 100
+			
+			available = {
 
 			}
+			
+			visible = {
+				has_completed_focus = HUN_the_grand_regent_of_the_seas
+			}
+
+			traits = {
+				navy_chief_decisive_battle_2
+			}
+
+			cost = 75
+		}
 
 		navy_leader={
-			traits={ gunnery_expert navy_media_personality superior_tactician  blue_water_expert inshore_fighter seawolf navy_career_officer spotter lancer marksman  }
-							visible = {
-					OR = {
-						has_completed_focus = wuw_HUN_strengthen_horthys_reign
-						has_completed_focus = wuw_HUN_end_the_regency
-					}
-				}	
+			traits = { gunnery_expert navy_media_personality superior_tactician  blue_water_expert inshore_fighter seawolf navy_career_officer spotter lancer marksman }
+			visible = {
+				has_completed_focus = HUN_the_grand_regent_of_the_seas
+			}	
 			skill=6
 			attack_skill=6
 			defense_skill=2
@@ -62,28 +55,17 @@ characters={
 			legacy_id = 10000
 		}
 	}
-		HUN_franz_friedrich = { #Can be given country leader roles later
+	
+	HUN_franz_friedrich = { #Can be given country leader roles later
 		name = HUN_franz_friedrich
 		portraits = {
-			#army = {
-			#	large = "GFX_Portrait_hungary_friedrich_franz"
-			#}
 			civilian = {
-					large = GFX_portrait_HUN_franz_friedrich
-					small = GFX_portrait_HUN_franz_friedrich_small
-				}
+				large = GFX_portrait_HUN_franz_friedrich
+				small = GFX_portrait_HUN_franz_friedrich_small
+			}
 		}
-		
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	HUN_istvan_horthy = {
 
 		name = HUN_istvan_horthy
@@ -107,10 +89,7 @@ characters={
 
 			visible = {
 				NOT = {
-					OR = {
-						has_completed_focus = wuw_HUN_end_the_regency
-						has_completed_focus = wuw_HUN_undermine_the_admiral
-					}
+					has_completed_focus = wuw_HUN_undermine_the_admiral
 				}
 			}
 
@@ -408,44 +387,6 @@ characters={
 		}
 	}
 	
-	# HUN_gyorgy_jendrassik = {
-		# name = HUN_gyorgy_jendrassik
-
-		# portraits = {
-			# army = {
-				# large = GFX_portrait_HUN_gyorgy_jendrassik
-				# small = GFX_idea_HUN_gyorgy_jendrassik
-			# }
-		# }
-
-		# scientist = {
-			# traits = { scientist_trait_jet_expert }
-			# skills = {
-				# specialization_air = 2
-			# }
-		# }
-
-		# advisor = {
-			# cost = 100
-			# slot = theorist
-			# idea_token = HUN_gyorgy_jendrassik
-			# ledger = air
-			# allowed = {
-				# original_tag = HUN
-			# }
-			# available = {
-					# OR = {
-						# has_completed_focus = wuw_HUN_undercover_air_maneuvers
-						# wuw_HUN_does_not_have_trianon = yes
-					# }
-			# }
-			# traits = {
-				# air_warfare_theorist
-			# }
-		# }
-	# }
-	
-	
 	HUN_nicholas_straussler = {
 		name = HUN_nicholas_straussler
 		portraits = {
@@ -506,10 +447,9 @@ characters={
 				large = GFX_portrait_HUN_edward_teller
 			}
 		}
-
 	}
 
-		HUN_laszlo_varga = {
+	HUN_laszlo_varga = {
 		name = HUN_laszlo_varga
 		portraits = {
 			army = {
@@ -522,19 +462,9 @@ characters={
 			skills = {
 				specialization_air = 2
 			}
-
-			visible = {
-				owner = {
-					has_completed_focus = wuw_HUN_develop_laszlo_vargas_design
-				}
-			}
 		}
 	}
-	
-	
-	
-	
-	
+    
 	HUN_konstantin_lukash={
 		name="Konstantin Lukash"
 		portraits={
@@ -709,10 +639,10 @@ characters={
 			}
 
 			traits = {
-				air_chief_reform_2
+				air_chief_ground_support_2
 			}
 
-			cost = 100
+			cost = 75
 
 			ai_will_do = {
 				base = 2
@@ -724,39 +654,30 @@ characters={
 	
 	
 	HUN_sandor_magyarossy = {
-			name = HUN_sandor_magyarossy
+        name = HUN_sandor_magyarossy
 
-			portraits = {
-				army = {
-					small = "GFX_idea_HUN_sandor_magyarossy"
-				}
-			}
-			
-			advisor = {
+        portraits = {
+            army = {
+                small = "GFX_idea_HUN_sandor_magyarossy"
+            }
+        }
+        
+        advisor = {
 
-				slot = high_command
+            slot = high_command
 
-				idea_token = HUN_sandor_magyarossy
+            idea_token = HUN_sandor_magyarossy
 
-				allowed = {
-					original_tag = HUN
-				}
+            allowed = {
+                original_tag = HUN
+            }
 
-				available = {
-					OR = {
-						has_completed_focus = wuw_HUN_undercover_air_maneuvers
-						wuw_HUN_does_not_have_trianon = yes
-					}
-				}
+            traits = {
+                air_chief_all_weather_2
+            }
 
-				traits = {
-					air_air_combat_training_2
-				}
-
-				cost =  100
-
-
-			}
+            cost =  100
+        }
 	}
 	
 	
@@ -1028,7 +949,7 @@ characters={
 				army_infantry_2
 			}
 
-			cost = 100
+			cost = 75
 
 			ai_will_do = {
 				base = 1
@@ -1195,69 +1116,24 @@ characters={
 				small="GFX_idea_HUN_vilmos_roder"
 			}
 		}
-			advisor = {
-			
-				slot = army_chief
+        advisor = {
+            slot = army_chief
 
-				idea_token = HUN_vilmos_roder
+            idea_token = HUN_vilmos_roder
 
-				allowed = {
-					original_tag = HUN
-				}
+            allowed = {
+                original_tag = HUN
+            }
 
 
-				traits = {
-					army_chief_organizational_2
-				}
+            traits = {
+                army_chief_organizational_2
+            }
 
-				cost = 75
-
-				ai_will_do = {
-					base = 2
-				}
-
-			}
+            cost = 75
+        }
 	}
-
-	
-	HUN_gusztav_gratz = {
-
-		name = HUN_gusztav_gratz
-
-		portraits = {
-			army = {
-				small = "GFX_idea_HUN_gusztav_gratz"
-			}
-		}
-
-		advisor = {
-
-			slot = political_advisor
-
-			idea_token = HUN_gusztav_gratz
-
-			allowed = {
-				original_tag = HUN
-				has_dlc = "Death or Dishonor"
-			}
-
-			visible = {
-				NOT = {
-						has_completed_focus = wuw_HUN_continue_the_regency
-				}
-			}
-
-			available = {
-					has_completed_focus = wuw_HUN_end_the_regency
-			}
-
-			traits = {
-				staunch_monarchist 
-			}
-
-		}
-
-	}
+    
 	HUN_géza_lakatos={
 		name="Géza Lakatos"
 		portraits={
@@ -1375,7 +1251,6 @@ characters={
 		
 		
 	HUN_imre_kemeri_nagy = {
-
 		name = HUN_imre_kemeri_nagy
 
 		portraits = {
@@ -1384,68 +1259,43 @@ characters={
 				small = GFX_portrait_HUN_imre_kemeri_nagy_small
 			}
 		}
-		
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
+	}
+
 	HUN_kalman_daranyi={
+        name = HUN_kalman_daranyi
 
-			name = HUN_kalman_daranyi
+        portraits = {
+            army = {
+                small = "GFX_idea_HUN_kalman_daranyi"
+            }
+        }
 
-			portraits = {
-				army = {
-					small = "GFX_idea_HUN_kalman_daranyi"
-				}
-			}
+        advisor = {
+            slot = political_advisor
 
-			advisor = {
+            idea_token = HUN_kalman_daranyi
 
-				slot = political_advisor
+            allowed = {
+                original_tag = HUN
+            }
 
-				idea_token = HUN_kalman_daranyi
+            # visible = {
+                # NOT = {
+                    # OR = {
+                        # has_completed_focus = wuw_HUN_end_the_regency
+                        # has_completed_focus = wuw_HUN_undermine_the_admiral
+                    # }
+                # }
+            # }
 
-				allowed = {
-					original_tag = HUN
-				}
+            # available = {
+                # has_completed_focus = wuw_HUN_strengthen_horthys_reign
+            # }
 
-				visible = {
-					NOT = {
-						OR = {
-							has_completed_focus = wuw_HUN_end_the_regency
-							has_completed_focus = wuw_HUN_undermine_the_admiral
-						}
-					}
-				}
-
-				available = {
-					has_completed_focus = wuw_HUN_strengthen_horthys_reign
-				}
-
-				traits = {
-					HUN_moderate_authoritarian 
-				}
-
-				ai_will_do = {
-					base = 1
-				}
-				
-			}
+            traits = {
+                HUN_moderate_authoritarian 
+            }
+        }
 	}
 
 
@@ -1637,55 +1487,6 @@ HUN_istvan_friedrich = {
 
 			traits = {
 				captain_of_industry
-			}
-
-			ai_will_do = {
-				base = 1
-			}
-
-		}
-
-	}
-
-
-	HUN_magdolna_purgly = {
-
-		name = HUN_magdolna_purgly
-
-		portraits = {
-			civilian = {
-				small = "GFX_portrait_HUN_magdolna_purgly_small"
-			}
-		}
-
-		advisor = {
-
-			slot = political_advisor
-
-			idea_token = HUN_magdolna_purgly
-
-			allowed = {
-				original_tag = HUN
-			}
-
-			visible = {
-				NOT = {
-					OR = {
-						has_completed_focus = wuw_HUN_end_the_regency
-						has_completed_focus = wuw_HUN_undermine_the_admiral
-					}
-				}
-			}
-
-			available = {
-				NOT = {
-					has_government = communism
-				}
-				has_completed_focus = wuw_HUN_pass_statute_xix
-			}
-
-			traits = {
-				HUN_her_serene_highness
 			}
 
 			ai_will_do = {
@@ -1901,7 +1702,6 @@ HUN_imre_nagy = {
 	}
 
 	HUN_janos_kadar = {
-
 		name = HUN_janos_kadar
 
 		portraits = {
@@ -1909,48 +1709,8 @@ HUN_imre_nagy = {
 				small = "GFX_portrait_HUN_janos_kadar_small"
 			}
 		}
+    }
 
-
-}
-
-	HUN_jusztinian_seredi = {
-
-		name = HUN_jusztinian_seredi
-
-		portraits = {
-			civilian = {
-				small = "GFX_portrait_HUN_jusztinian_seredi_small"
-			}
-		}
-
-		advisor = {
-
-			slot = political_advisor
-
-			idea_token = HUN_jusztinian_seredi
-
-			allowed = {
-				original_tag = HUN
-			}
-
-			available = {
-				OR = {
-					has_completed_focus = wuw_HUN_end_the_regency
-					has_completed_focus = wuw_HUN_continue_the_regency
-				}
-			}
-
-			traits = {
-				HUN_archbishop_of_esztergom
-			}
-
-			ai_will_do = {
-				base = 1
-			}
-
-		}
-
-	}
 
 
 	HUN_hermann_pokorny = {
@@ -2185,22 +1945,20 @@ HUN_imre_nagy = {
 				small = GFX_portrait_HUN_kocsard_janky_small
 			}
 		}
-		
-
-
 	}
+	
 	HUN_ferenc_szombathelyi = {
-			name = HUN_ferenc_szombathelyi
+		name = HUN_ferenc_szombathelyi
 
-			portraits = {
-				army = {
-					large = GFX_portrait_HUN_ferenc_szombathelyi
-					small = GFX_portrait_HUN_ferenc_szombathelyi_small
-				}
+		portraits = {
+			army = {
+				large = GFX_portrait_HUN_ferenc_szombathelyi
+				small = GFX_portrait_HUN_ferenc_szombathelyi_small
 			}
+		}
 
-			# Can become a general through the military promotions focus
-			corps_commander={ #17/17
+		# Can become a general through the military promotions focus
+		corps_commander={ #17/17
 			traits={ trait_HUN_vitez bearer_of_artillery old_guard organizer infantry_leader infantry_expert trait_engineer ranger urban_assault_specialist  }
 			skill=6
 			attack_skill=3
@@ -2210,26 +1968,23 @@ HUN_imre_nagy = {
 			legacy_id=-1
 		}	
 
-			advisor = {
+		advisor = {
 
-				slot = army_chief
+			slot = army_chief
 
-				idea_token = HUN_ferenc_szombathelyi
+			idea_token = HUN_ferenc_szombathelyi
 
-				allowed = {
-					original_tag = HUN
-				}
+			allowed = {
+				original_tag = HUN
+			}
 
-				traits = {
-					army_chief_defensive_2
-				}
+			traits = {
+				army_chief_defensive_2
+			}
 
-				cost = 100
-
-
+			cost = 75
 		}
 	}
-
 
 	HUN_hugo_sonyi = {
 			name = HUN_hugo_sonyi
@@ -2326,27 +2081,23 @@ HUN_imre_nagy = {
 				navy_chief_commerce_raiding_2
 			}
 
-			cost = 50
+			cost = 75
 
 			ai_will_do = {
 				base = 1
 			}
-
 		}
-
 	}
 
-	
-		HUN_karoly_beregfy = { #REPLACES JOZEF TURANEC
+	HUN_karoly_beregfy = { #REPLACES JOZEF TURANEC
+		name = HUN_karoly_beregfy
 
-			name = HUN_karoly_beregfy
-
-			portraits = {
-				army = {
-					large = "GFX_Portrait_hungary_karoly_beregfy"
-					small = "GFX_idea_HUN_karoly_beregfy"
-				}
+		portraits = {
+			army = {
+				large = "GFX_Portrait_hungary_karoly_beregfy"
+				small = "GFX_idea_HUN_karoly_beregfy"
 			}
+		}
 			
 		corps_commander={ #17/17
 			traits={ fake_skilled_staffer old_guard infantry_leader ambusher winter_specialist ranger urban_assault_specialist guerilla_fighter }
@@ -2357,24 +2108,21 @@ HUN_imre_nagy = {
 			logistics_skill=5
 			legacy_id=-1
 		}
-			advisor = {
-				slot = army_chief
-				idea_token = HUN_karoly_beregfy
-				allowed = {
-					original_tag = HUN
-				}
-
-				traits = {
-					army_chief_drill_2
-				}
-				cost =  100
-	
+		advisor = {
+			slot = army_chief
+			idea_token = HUN_karoly_beregfy
+			allowed = {
+				original_tag = HUN
 			}
 
+			traits = {
+				army_chief_drill_2
+			}
+			cost =  75
+
+		}
 	}
 
-	
-	
 	HUN_backroom_backstabber={
 		name="Peter Veres"
 		portraits={
