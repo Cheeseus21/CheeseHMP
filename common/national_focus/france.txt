@@ -2216,7 +2216,26 @@
 		relative_position_id = FRA_army_of_the_third_republic
 
 		completion_reward = {
+			custom_effect_tooltip = fra_efr_navy_pool_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			add_offsite_building = { type = dockyard level = 5 }
+			
+			set_country_flag = fra_efr_navy_category_unlocked 
+			
+			if = {
+				limit = { 
+					NOT = { has_global_flag = fra_efr_navy_pool_initialized } 
+				}
+				set_global_flag = fra_efr_navy_pool_initialized
+				set_variable = { global.FRA_EFR_pool_bb = 7 }
+				set_variable = { global.FRA_EFR_pool_cv = 1 }
+				set_variable = { global.FRA_EFR_pool_ca = 7 }
+				set_variable = { global.FRA_EFR_pool_cl = 12 }
+				set_variable = { global.FRA_EFR_pool_dd = 70 }
+				set_variable = { global.FRA_EFR_pool_ss = 80 }
+			}
 		}
 	}
 	
