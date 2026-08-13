@@ -1746,33 +1746,94 @@ focus_tree = {
 			}
 		}
 	}
-    
-    # focus = { 
-		# id = SOV_leningrad_polytechnical_institute
-		# icon = GFX_SOV_extra_tech_slot_early 
-		# prerequisite = { focus = SOV_development_of_tankograd focus = SOV_pc_of_mortar_armament focus = SOV_soviet_artillery }
+	
+	focus = {
+		id = SOV_develop_air_detection_technologies
+		icon = GFX_goal_generic_radar
+        prerequisite = { focus = SOV_found_the_pcdi }
+		
+		x = -2
+		y = 1
         
-		# x = 3
-		# y = 1
-        
-		# relative_position_id = SOV_soviet_artillery
-        
-		# cost = 5
+        relative_position_id = SOV_found_the_pcdi
+		
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		
+		completion_reward = {
+            add_tech_bonus = {
+				name = SOV_develop_air_detection_technologies
+				bonus = 1.01
+				uses = 4
+				category = radar_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_improve_railway_network
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = SOV_found_the_pcdi }
+		
+		x = 2
+		y = 1
+		
+		relative_position_id = SOV_found_the_pcdi
+		
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			# Moscow - Rostov on Don
+			build_railway = {
+				path = { 9330 3356 6279 6230 6398 6341 413 3527 11475 11412 6591 3540 3519 11459 11450 11434 9417 }
+			}
+			# Stalingrad-Rostov on Don
+			build_railway = {  
+				path = { 3529 9504 533 9516 509 500 11459 } #(Stalingrad - Conjunction near Millerovo)
+			}
+			# Stalingrad-Mikhaylovka 
+			build_railway = {
+				path = { 9504 3582 9436 11485 3539 9564 11408 } #(Conjunction right next to Stalingrad - Conjunction in West Saratov)
+			}
+			# Stalingrad - Astrakhan   
+			build_railway = {
+				path = { 3529 12788 11474 520 6516 6486 9455 11429 6620 9753 }
+			}
+			# Tbilisi - Yerevan
+			build_railway = {
+				path = { 1599 9702 12441 3564 12320 }
+			}
 
-		# search_filters = {FOCUS_FILTER_RESEARCH}
-
-		# completion_reward = {
-			# add_research_slot = 1
-		# }
-	# }
-
+			#Supply Hub in Yerevan
+			230 = {
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					province = 12320
+					instant_build = yes
+				}
+			}
+			#Supply Hub in Kandalaksha
+			213 = {
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					province = 6181
+					instant_build = yes
+				}
+			}
+		}
+	}
 
     focus = {
 		id = SOV_transpolar_flights
 		icon = GFX_goal_generic_air_fighter2
         prerequisite = { focus = SOV_found_the_pcdi }
 		
-		x = 4
+		x = 5
 		y = 1
         
         relative_position_id = SOV_found_the_pcdi
@@ -1797,7 +1858,7 @@ focus_tree = {
 		icon = GFX_goal_generic_air_fighter
 		prerequisite = { focus = SOV_transpolar_flights }
 		
-		x = -1
+		x = -2
 		y = 1
 		
 		relative_position_id = SOV_transpolar_flights
@@ -1822,11 +1883,30 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_foster_flying_clubs
+		icon = GFX_focus_SOV_flying_clubs
+		prerequisite = { focus = SOV_transpolar_flights }
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = SOV_transpolar_flights
+		
+		cost = 5
+		
+		search_filters = {FOCUS_FILTER_AIR_XP}
+
+		completion_reward = {
+			air_experience = 100
+		}
+	}
+	
+	focus = {
 		id = SOV_long_range_aircraft
 		icon = GFX_goal_generic_air_bomber
 		prerequisite = { focus = SOV_transpolar_flights }
 		
-		x = 1
+		x = 2
 		y = 1
 		
 		relative_position_id = SOV_transpolar_flights
@@ -1852,15 +1932,146 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_expand_aviation_institutes
+		icon = GFX_SOV_expand_aviation_institutes_ccp_2d_sov_compatibility
+		prerequisite = { focus = SOV_transpolar_flights }
+		
+		x = -1
+		y = 2
+		
+		relative_position_id = SOV_transpolar_flights
+		
+		cost = 5
+		
+		available = {
+			has_war_with = GER
+		}
+		
+		search_filters = {FOCUS_FILTER_AIR_XP}
+
+		completion_reward = {
+			air_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = SOV_army_and_navy_tt	
+            add_to_variable = {
+                var = SOV_ran_air_mission_efficiency
+                value = 0.05
+                tooltip = air_mission_efficiency_tt
+            }
+		}
+	}
+	
+	focus = {
+		id = SOV_intensify_pilot_training_program
+		icon = GFX_SOV_intensify_pilot_training_program_ccp_2d_sov_compatibility
+		prerequisite = { focus = SOV_transpolar_flights }
+		
+		x = 1
+		y = 2
+		
+		relative_position_id = SOV_transpolar_flights
+		
+		cost = 5
+		
+		available = {
+			has_war_with = GER
+		}
+		
+		search_filters = {FOCUS_FILTER_AIR_XP}
+
+		completion_reward = {
+			air_experience = 50
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = SOV_army_and_navy_tt	
+            add_to_variable = {
+                var = SOV_ran_air_superiority_efficiency
+                value = 0.1
+                tooltip = air_superiority_efficiency_tt
+            }
+		}
+	}
+	
+	focus = {
+		id = SOV_flying_tanks
+		icon = GFX_focus_generic_tank_air_support
+		prerequisite = { focus = SOV_expand_aviation_institutes focus = SOV_intensify_pilot_training_program }
+		mutually_exclusive = { focus = SOV_lighter_airframes }
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = SOV_expand_aviation_institutes
+		
+		cost = 5
+		
+		search_filters = {FOCUS_FILTER_AIR_XP}
+
+		completion_reward = {
+			air_experience = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = SOV_army_and_navy_tt	
+            add_to_variable = {
+                var = SOV_ran_air_defence_factor
+                value = 0.1
+                tooltip = air_defence_factor_tt
+            }
+			add_to_variable = {
+                var = SOV_ran_air_range_factor
+                value = -0.1
+                tooltip = air_range_factor_tt
+            }
+		}
+	}
+	
+	focus = {
+		id = SOV_lighter_airframes
+		icon = GFX_focus_CZE_the_air_is_our_sea
+		prerequisite = { focus = SOV_expand_aviation_institutes focus = SOV_intensify_pilot_training_program }
+		mutually_exclusive = { focus = SOV_flying_tanks }
+		
+		x = 2
+		y = 1
+		
+		relative_position_id = SOV_expand_aviation_institutes
+		
+		cost = 5
+		
+		search_filters = {FOCUS_FILTER_AIR_XP}
+
+		completion_reward = {
+			air_experience = 25
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			custom_effect_tooltip = SOV_army_and_navy_tt	
+            add_to_variable = {
+                var = SOV_ran_air_defence_factor
+                value = -0.1
+                tooltip = air_defence_factor_tt
+            }
+			add_to_variable = {
+                var = SOV_ran_air_range_factor
+                value = 0.1
+                tooltip = air_range_factor_tt
+            }
+		}
+	}
+	
+	focus = {
 		id = SOV_the_modern_war_in_the_skies
 		icon = GFX_goal_generic_CAS
-		prerequisite = { focus = SOV_ground_support }
-        prerequisite = { focus = SOV_long_range_aircraft }
+		prerequisite = { focus = SOV_flying_tanks focus = SOV_lighter_airframes }
 		
 		x = 1
 		y = 1
 		
-		relative_position_id = SOV_ground_support
+		relative_position_id = SOV_flying_tanks
 		
 		cost = 10
 
@@ -1889,7 +2100,7 @@ focus_tree = {
 		id = SOV_strengthen_the_mobilization_plan
 		icon = GFX_focus_SOV_mobilization_plan
 		
-		x = 19
+		x = 21
 		y = 0
 		
 		relative_position_id = SOV_second_five_year_plan
