@@ -414,6 +414,69 @@ SAF_cabinet_decisions = {
 
 		ai_will_do = { base = 0 }
 	}
+
+	SAF_dismiss_stuttaford = {
+		icon = generic_political_actions
+		priority = 50
+
+		allowed = { original_tag = SAF }
+
+		visible = {
+			has_idea = SAF_richard_stuttaford
+			NOT = { has_country_flag = SAF_coalition_resolved }
+		}
+
+		cost = SAF_dismiss_cost
+
+		fire_only_once = no
+
+		complete_effect = {
+			remove_ideas = SAF_richard_stuttaford
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_dismissal_cost_smuts_bloc = yes
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_rein_in_the_radicals = {
+		icon = generic_political_actions
+		priority = 60
+
+		allowed = { original_tag = SAF }
+
+		visible = {
+			has_completed_focus = SAF_war_measures_act
+			OR = {
+				check_variable = { SAF_hertzog_debuff_level > 0 }
+				check_variable = { SAF_smuts_debuff_level > 0 }
+			}
+		}
+
+		cost = 100
+
+		days_re_enable = 180
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_rein_in_tt
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { SAF_hertzog_debuff_level > 0 } }
+					subtract_from_variable = { SAF_hertzog_debuff_level = 1 }
+					SAF_recalc_hertzog_debuff = yes
+				}
+				else_if = {
+					limit = { check_variable = { SAF_smuts_debuff_level > 0 } }
+					subtract_from_variable = { SAF_smuts_debuff_level = 1 }
+					SAF_recalc_smuts_debuff = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
 }
 
 SAF_greater_south_africa_decisions = {
