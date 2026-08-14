@@ -1,0 +1,413 @@
+add_namespace = SAF
+
+country_event = {
+	id = SAF.1
+	title = SAF.1.t
+	desc = SAF.1.d
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SAF.1.a
+
+		add_ideas = SAF_de_wet_governor_general
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		custom_effect_tooltip = SAF_de_wet_governor_general_effect_tt
+		set_temp_variable = { SAF_shift = 5 }
+		SAF_apply_shift_to_hertzog = yes
+
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 3
+				SAF_cabinet_favours_hertzog = yes
+			}
+		}
+	}
+
+	option = {
+		name = SAF.1.b
+
+		add_ideas = SAF_duncan_governor_general
+		set_country_flag = SAF_duncan_at_gg
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		custom_effect_tooltip = SAF_duncan_governor_general_effect_tt
+		set_temp_variable = { SAF_shift = 5 }
+		SAF_apply_shift_to_smuts = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		if = {
+			limit = { has_country_flag = SAF_duncan_seated }
+			custom_effect_tooltip = SAF_duncan_hands_over_tt
+			remove_ideas = SAF_sir_patrick_duncan
+			add_ideas = SAF_richard_stuttaford
+			SAF_hand_mines_to_stuttaford = yes
+		}
+
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 3
+				SAF_cabinet_favours_smuts = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = SAF.10
+	title = SAF.10.t
+	desc = SAF.10.d
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 7
+
+	option = {
+		name = SAF.10.a
+
+		complete_national_focus = SAF_continue_the_course
+	}
+}
+
+country_event = {
+	id = SAF.22
+	title = SAF.22.t
+
+	desc = {
+		text = SAF.22.d_resignation
+		trigger = { check_variable = { SAF_cabinet_gap < 20 } }
+	}
+	desc = {
+		text = SAF.22.d_refusal
+		trigger = { NOT = { check_variable = { SAF_cabinet_gap < 20 } } }
+	}
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_country_flag = SAF_duncan_stepped_in
+		SAF_refresh_cabinet_gap = yes
+	}
+
+	timeout_days = 7
+
+	option = {
+		name = SAF.22.a
+		trigger = { check_variable = { SAF_cabinet_gap < 20 } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { check_variable = { SAF_cabinet_gap < 20 } }
+			}
+		}
+
+		custom_effect_tooltip = SAF_duncan_no_recourse_tt
+		set_temp_variable = { SAF_shift = 10 }
+		SAF_apply_shift_to_smuts = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		complete_national_focus = SAF_continue_the_course
+	}
+
+	option = {
+		name = SAF.22.b
+		trigger = { NOT = { check_variable = { SAF_cabinet_gap < 20 } } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				check_variable = { SAF_cabinet_gap < 20 }
+			}
+		}
+
+		custom_effect_tooltip = SAF_duncan_refuses_tt
+		set_temp_variable = { SAF_shift = 10 }
+		SAF_apply_shift_to_smuts = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		complete_national_focus = SAF_continue_the_course
+	}
+}
+
+country_event = {
+	id = SAF.12
+	title = SAF.12.t
+	desc = SAF.12.d
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 12
+
+	option = {
+		name = SAF.12.a
+
+		SAF_bank_hertzog_bloc = yes
+		SAF_close_the_cabinet = yes
+	}
+}
+
+country_event = {
+	id = SAF.13
+	title = SAF.13.t
+	desc = SAF.13.d
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 12
+
+	option = {
+		name = SAF.13.a
+
+		SAF_bank_smuts_bloc = yes
+		SAF_close_the_cabinet = yes
+	}
+}
+
+country_event = {
+	id = SAF.23
+	title = SAF.23.t
+
+	desc = {
+		text = SAF.23.d_hertzog
+		trigger = { has_country_flag = SAF_walk_out_hertzog_won }
+	}
+	desc = {
+		text = SAF.23.d_smuts
+		trigger = { has_country_flag = SAF_walk_out_smuts_won }
+	}
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 12
+
+	option = {
+		name = SAF.23.a
+	}
+}
+
+country_event = {
+	id = SAF.16
+	title = SAF.16.t
+	desc = SAF.16.d
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 14
+
+	immediate = {
+		SAF_measure_cabinet_progress = yes
+	}
+
+	option = {
+		name = SAF.16.a
+
+		SAF_resolve_to_hertzog = yes
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				check_variable = {
+					var = SAF_smuts_progress
+					value = SAF_hertzog_progress
+					compare = greater_than
+				}
+			}
+			modifier = {
+				factor = 5
+				check_variable = {
+					var = SAF_smuts_progress
+					value = SAF_hertzog_progress
+					compare = equals
+				}
+				SAF_cabinet_favours_hertzog = yes
+			}
+		}
+	}
+
+	option = {
+		name = SAF.16.b
+
+		SAF_resolve_to_smuts = yes
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				check_variable = {
+					var = SAF_hertzog_progress
+					value = SAF_smuts_progress
+					compare = greater_than
+				}
+			}
+			modifier = {
+				factor = 5
+				check_variable = {
+					var = SAF_hertzog_progress
+					value = SAF_smuts_progress
+					compare = equals
+				}
+				SAF_cabinet_favours_smuts = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = SAF.20
+	hidden = yes
+
+	is_triggered_only = yes
+
+	option = {
+		SAF_refresh_cabinet_gap = yes
+		SAF_refresh_cabinet_spirit = yes
+
+		if = {
+			limit = {
+				has_country_flag = SAF_cabinet_open
+				NOT = { has_completed_focus = SAF_the_walk_out }
+				OR = {
+					check_variable = { SAF_cabinet_gap > 30 }
+					check_variable = { SAF_cabinet_gap < -30 }
+				}
+			}
+			SAF_begin_walk_out_countdown = yes
+		}
+		else = {
+			SAF_end_walk_out_countdown = yes
+		}
+
+		if = {
+			limit = {
+				has_country_flag = SAF_cabinet_open
+				OR = {
+					check_variable = { SAF_cabinet_spirit_now = 1 }
+					check_variable = { SAF_cabinet_spirit_now = 5 }
+				}
+			}
+			country_event = { id = SAF.20 days = 1 }
+		}
+		else = {
+			clr_country_flag = SAF_walk_out_watch
+		}
+	}
+}
+
+country_event = {
+	id = SAF.21
+	title = SAF.21.t
+	desc = SAF.21.d
+
+	picture = GFX_report_event_generic_parliament
+
+	is_triggered_only = yes
+
+	timeout_days = 1
+
+	option = {
+		name = SAF.21.a
+	}
+}
+
+country_event = {
+	id = SAF.30
+	title = SAF.30.t
+	desc = SAF.30.d
+
+	picture = GFX_report_event_generic_sign_treaty
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 7
+
+	option = {
+		name = SAF.30.a
+		ai_chance = {
+			factor = 100
+			modifier = { factor = 0 is_ai = yes }
+		}
+		SAF = {
+			add_timed_idea = { idea = SAF_british_loan_small days = 365 }
+		}
+	}
+
+	option = {
+		name = SAF.30.b
+		ai_chance = {
+			factor = 100
+			modifier = { factor = 0 is_ai = no }
+		}
+		add_timed_idea = { idea = SAF_south_african_loans days = 365 }
+		SAF = {
+			add_timed_idea = { idea = SAF_british_loan_large days = 365 }
+		}
+	}
+}
+
+country_event = {
+	id = SAF.31
+	title = SAF.31.t
+	desc = SAF.31.d
+
+	picture = GFX_report_event_generic_sign_treaty
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 7
+
+	option = {
+		name = SAF.31.a
+		ai_chance = {
+			factor = 100
+			modifier = { factor = 0 is_ai = yes }
+		}
+		SAF = {
+			add_timed_idea = { idea = SAF_american_loan_small days = 365 }
+		}
+	}
+
+	option = {
+		name = SAF.31.b
+		ai_chance = {
+			factor = 100
+			modifier = { factor = 0 is_ai = no }
+		}
+		add_timed_idea = { idea = SAF_south_african_loans days = 365 }
+		SAF = {
+			add_timed_idea = { idea = SAF_american_loan_large days = 365 }
+		}
+	}
+}

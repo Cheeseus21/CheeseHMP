@@ -1,0 +1,905 @@
+SAF_african_crisis_decisions = {
+
+	SAF_hac_show_tier_1 = {
+		icon = SAF_hac_tier_1
+		priority = 100
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 602
+				state = 452
+				state = 584
+				state = 410
+				state = 585
+				state = 447
+				state = 305
+				state = 456
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_hac_show_tier_2 = {
+		icon = SAF_hac_tier_2
+		priority = 99
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 424
+				state = 586
+				state = 436
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_hac_show_tier_3 = {
+		icon = SAF_hac_tier_3
+		priority = 98
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 588
+				state = 685
+				state = 587
+				state = 549
+				state = 601
+				state = 551
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_hac_show_tier_4 = {
+		icon = SAF_hac_tier_4
+		priority = 97
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 268
+				state = 269
+				state = 559
+				state = 611
+				state = 610
+				state = 612
+				state = 271
+				state = 38
+				state = 550
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_hac_show_tier_5 = {
+		icon = SAF_hac_tier_5
+		priority = 96
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 548
+				state = 547
+				state = 546
+				state = 690
+				state = 277
+				state = 687
+				state = 688
+				state = 689
+				state = 692
+				state = 295
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_hac_show_tier_6 = {
+		icon = SAF_hac_tier_6
+		priority = 95
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 510
+				state = 539
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_hac_show_tier_7 = {
+		icon = SAF_hac_tier_7
+		priority = 94
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 691
+				state = 292
+				state = 283
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_hac_show_tier_8 = {
+		icon = SAF_hac_tier_8
+		priority = 93
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 545
+				state = 542
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = SAF_hac_show_tt
+		}
+
+		ai_will_do = { base = 0 }
+	}
+}
+
+SAF_cabinet_decisions = {
+
+	SAF_cabinet_reshuffle = {
+		icon = generic_political_actions
+		priority = 100
+
+		allowed = {
+			original_tag = SAF
+		}
+
+		visible = {
+			has_completed_focus = SAF_the_abyssinian_crisis
+			NOT = { has_country_flag = SAF_coalition_resolved }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_reshuffle_once_a_year_tt
+				NOT = { has_country_flag = SAF_cabinet_reshuffle_cooldown }
+			}
+		}
+
+		cost = 0
+
+		days_remove = 28
+		days_re_enable = 180
+
+		modifier = {
+			political_advisor_cost_factor = -1
+		}
+
+		complete_effect = {
+			set_country_flag = SAF_cabinet_reshuffle_active
+			set_country_flag = SAF_cabinet_reshuffle_cooldown
+			set_variable = { SAF_dismiss_cost = 0 }
+
+			custom_effect_tooltip = SAF_reshuffle_open_tt
+		}
+
+		remove_effect = {
+			clr_country_flag = SAF_cabinet_reshuffle_active
+			set_variable = { SAF_dismiss_cost = 50 }
+
+			custom_effect_tooltip = SAF_reshuffle_closed_tt
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	SAF_cabinet_walk_out = {
+		icon = generic_political_actions
+		priority = 90
+
+		allowed = { original_tag = SAF }
+
+		activation = {
+			has_completed_focus = SAF_the_abyssinian_crisis
+			NOT = { has_country_flag = SAF_coalition_resolved }
+			NOT = { has_completed_focus = SAF_continue_the_course }
+			NOT = { has_completed_focus = SAF_force_the_issue }
+			NOT = { has_completed_focus = SAF_the_walk_out }
+			OR = {
+				check_variable = { SAF_cabinet_gap > 30 }
+				check_variable = { SAF_cabinet_gap < -30 }
+			}
+		}
+
+		available = {
+			always = no
+		}
+
+		days_mission_timeout = 60
+		is_good = no
+		fire_only_once = no
+
+		cancel_trigger = {
+			OR = {
+				AND = {
+					check_variable = { SAF_cabinet_gap < 30 }
+					check_variable = { SAF_cabinet_gap > -30 }
+				}
+				has_country_flag = SAF_coalition_resolved
+				has_completed_focus = SAF_continue_the_course
+				has_completed_focus = SAF_force_the_issue
+			}
+		}
+
+		cancel_effect = {
+			SAF_end_walk_out_countdown = yes
+		}
+
+		timeout_effect = {
+			complete_national_focus = SAF_the_walk_out
+			SAF_end_walk_out_countdown = yes
+		}
+	}
+
+	SAF_dismiss_havenga = {
+		icon = generic_political_actions
+		priority = 50
+
+		allowed = { original_tag = SAF }
+
+		visible = {
+			has_idea = SAF_nicolaas_havenga
+			NOT = { has_country_flag = SAF_coalition_resolved }
+		}
+
+		cost = SAF_dismiss_cost
+
+		fire_only_once = no
+
+		complete_effect = {
+			remove_ideas = SAF_nicolaas_havenga
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_dismissal_cost_hertzog_bloc = yes
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_dismiss_pirow = {
+		icon = generic_political_actions
+		priority = 50
+
+		allowed = { original_tag = SAF }
+
+		visible = {
+			has_idea = SAF_oswald_pirow
+			NOT = { has_country_flag = SAF_coalition_resolved }
+		}
+
+		cost = SAF_dismiss_cost
+
+		fire_only_once = no
+
+		complete_effect = {
+			remove_ideas = SAF_oswald_pirow
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_dismissal_cost_hertzog_bloc = yes
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_dismiss_hofmeyr = {
+		icon = generic_political_actions
+		priority = 50
+
+		allowed = { original_tag = SAF }
+
+		visible = {
+			has_idea = SAF_jan_hendrik_hofmeyr
+			NOT = { has_country_flag = SAF_coalition_resolved }
+		}
+
+		cost = SAF_dismiss_cost
+
+		fire_only_once = no
+
+		complete_effect = {
+			remove_ideas = SAF_jan_hendrik_hofmeyr
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_dismissal_cost_smuts_bloc = yes
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_dismiss_duncan = {
+		icon = generic_political_actions
+		priority = 50
+
+		allowed = { original_tag = SAF }
+
+		visible = {
+			has_idea = SAF_sir_patrick_duncan
+			NOT = { has_country_flag = SAF_coalition_resolved }
+		}
+
+		cost = SAF_dismiss_cost
+
+		fire_only_once = no
+
+		complete_effect = {
+			remove_ideas = SAF_sir_patrick_duncan
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_dismissal_cost_smuts_bloc = yes
+		}
+
+		ai_will_do = { base = 0 }
+	}
+}
+
+SAF_greater_south_africa_decisions = {
+
+	SAF_greater_south_africa_mission = {
+		icon = generic_political_actions
+		priority = 100
+
+		allowed = { original_tag = SAF }
+
+		activation = {
+			has_completed_focus = SAF_greater_south_africa
+			NOT = { has_country_flag = SAF_gsa_expired }
+		}
+
+		available = {
+			always = no
+		}
+
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = SAF_gsa_expired_tt
+			set_country_flag = SAF_gsa_expired
+			if = {
+				limit = { has_idea = SAF_gsa_window }
+				remove_ideas = SAF_gsa_window
+			}
+		}
+	}
+
+	SAF_gsa_transfer_rhodesia = {
+		icon = generic_political_actions
+		priority = 90
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 545
+				state = 542
+			}
+		}
+
+		visible = {
+			NOT = { has_country_flag = SAF_gsa_expired }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_need_civs_4_tt
+				num_of_civilian_factories > 3
+			}
+			545 = { is_fully_controlled_by = ENG }
+			542 = { is_fully_controlled_by = ENG }
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_political_power = -50
+
+			custom_effect_tooltip = SAF_gsa_pay_civs_4_tt
+			hidden_effect = {
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			transfer_state = 545
+			transfer_state = 542
+
+			545 = { add_extra_state_shared_building_slots = 2 }
+			542 = { add_extra_state_shared_building_slots = 2 }
+
+			hidden_effect = {
+				give_resource_rights = { receiver = ENG state = 545 }
+				give_resource_rights = { receiver = ENG state = 542 }
+				545 = { set_state_flag = SAF_gsa_new_territory }
+				542 = { set_state_flag = SAF_gsa_new_territory }
+				set_country_flag = SAF_gsa_rhodesia_done
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_gsa_transfer_zambia = {
+		icon = generic_political_actions
+		priority = 89
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 283
+				state = 292
+			}
+		}
+
+		visible = {
+			NOT = { has_country_flag = SAF_gsa_expired }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_after_rhodesia_tt
+				has_country_flag = SAF_gsa_rhodesia_done
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_need_civs_4_tt
+				num_of_civilian_factories > 3
+			}
+			283 = { is_fully_controlled_by = ENG }
+			292 = { is_fully_controlled_by = ENG }
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_political_power = -50
+
+			custom_effect_tooltip = SAF_gsa_pay_civs_4_tt
+			hidden_effect = {
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			transfer_state = 283
+			transfer_state = 292
+
+			283 = { add_extra_state_shared_building_slots = 2 }
+			292 = { add_extra_state_shared_building_slots = 2 }
+
+			hidden_effect = {
+				give_resource_rights = { receiver = ENG state = 283 }
+				give_resource_rights = { receiver = ENG state = 292 }
+				283 = { set_state_flag = SAF_gsa_new_territory }
+				292 = { set_state_flag = SAF_gsa_new_territory }
+				set_country_flag = SAF_gsa_zambia_done
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_gsa_transfer_east_africa = {
+		icon = generic_political_actions
+		priority = 88
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 546
+				state = 547
+				state = 548
+			}
+		}
+
+		visible = {
+			NOT = { has_country_flag = SAF_gsa_expired }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_after_zambia_tt
+				has_country_flag = SAF_gsa_zambia_done
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_need_civs_6_tt
+				num_of_civilian_factories > 5
+			}
+			546 = { is_fully_controlled_by = ENG }
+			547 = { is_fully_controlled_by = ENG }
+			548 = { is_fully_controlled_by = ENG }
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_political_power = -50
+
+			custom_effect_tooltip = SAF_gsa_pay_civs_6_tt
+			hidden_effect = {
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			transfer_state = 546
+			transfer_state = 547
+			transfer_state = 548
+
+			546 = { add_extra_state_shared_building_slots = 2 }
+			547 = { add_extra_state_shared_building_slots = 2 }
+			548 = { add_extra_state_shared_building_slots = 2 }
+
+			hidden_effect = {
+				give_resource_rights = { receiver = ENG state = 546 }
+				give_resource_rights = { receiver = ENG state = 547 }
+				give_resource_rights = { receiver = ENG state = 548 }
+				546 = { set_state_flag = SAF_gsa_new_territory }
+				547 = { set_state_flag = SAF_gsa_new_territory }
+				548 = { set_state_flag = SAF_gsa_new_territory }
+				set_country_flag = SAF_gsa_east_africa_done
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_gsa_transfer_somalia = {
+		icon = generic_political_actions
+		priority = 87
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 611
+				state = 610
+				state = 269
+				state = 559
+			}
+		}
+
+		visible = {
+			NOT = { has_country_flag = SAF_gsa_expired }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_after_east_africa_tt
+				has_country_flag = SAF_gsa_east_africa_done
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_need_civs_8_tt
+				num_of_civilian_factories > 7
+			}
+			611 = { is_fully_controlled_by = ENG }
+			610 = { is_fully_controlled_by = ENG }
+			269 = { is_fully_controlled_by = ENG }
+			559 = { is_fully_controlled_by = ENG }
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_political_power = -75
+
+			custom_effect_tooltip = SAF_gsa_pay_civs_8_tt
+			hidden_effect = {
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			transfer_state = 611
+			transfer_state = 610
+			transfer_state = 269
+			transfer_state = 559
+
+			611 = { add_extra_state_shared_building_slots = 2 }
+			610 = { add_extra_state_shared_building_slots = 2 }
+			269 = { add_extra_state_shared_building_slots = 2 }
+			559 = { add_extra_state_shared_building_slots = 2 }
+
+			hidden_effect = {
+				give_resource_rights = { receiver = ENG state = 611 }
+				give_resource_rights = { receiver = ENG state = 610 }
+				give_resource_rights = { receiver = ENG state = 269 }
+				give_resource_rights = { receiver = ENG state = 559 }
+				611 = { set_state_flag = SAF_gsa_new_territory }
+				610 = { set_state_flag = SAF_gsa_new_territory }
+				269 = { set_state_flag = SAF_gsa_new_territory }
+				559 = { set_state_flag = SAF_gsa_new_territory }
+				set_country_flag = SAF_gsa_somalia_done
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_gsa_transfer_abyssinia = {
+		icon = generic_political_actions
+		priority = 86
+
+		allowed = { original_tag = SAF }
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 612
+				state = 271
+				state = 38
+				state = 550
+			}
+		}
+
+		visible = {
+			NOT = { has_country_flag = SAF_gsa_expired }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_after_somalia_tt
+				has_country_flag = SAF_gsa_somalia_done
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_gsa_need_civs_8_tt
+				num_of_civilian_factories > 7
+			}
+			612 = { is_fully_controlled_by = ENG }
+			271 = { is_fully_controlled_by = ENG }
+			38 = { is_fully_controlled_by = ENG }
+			550 = { is_fully_controlled_by = ENG }
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_political_power = -100
+
+			custom_effect_tooltip = SAF_gsa_pay_civs_8_tt
+			hidden_effect = {
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+				SAF_gsa_pay_one_civ = yes
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			transfer_state = 612
+			transfer_state = 271
+			transfer_state = 38
+			transfer_state = 550
+
+			612 = { add_extra_state_shared_building_slots = 2 }
+			271 = { add_extra_state_shared_building_slots = 2 }
+			38 = { add_extra_state_shared_building_slots = 2 }
+			550 = { add_extra_state_shared_building_slots = 2 }
+
+			hidden_effect = {
+				give_resource_rights = { receiver = ENG state = 612 }
+				give_resource_rights = { receiver = ENG state = 271 }
+				give_resource_rights = { receiver = ENG state = 38 }
+				give_resource_rights = { receiver = ENG state = 550 }
+				612 = { set_state_flag = SAF_gsa_new_territory }
+				271 = { set_state_flag = SAF_gsa_new_territory }
+				38 = { set_state_flag = SAF_gsa_new_territory }
+				550 = { set_state_flag = SAF_gsa_new_territory }
+				set_country_flag = SAF_gsa_abyssinia_done
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	SAF_gsa_core_new_territory = {
+		icon = generic_political_actions
+		priority = 80
+
+		allowed = { original_tag = SAF }
+
+		visible = {
+			NOT = { has_country_flag = SAF_gsa_expired }
+		}
+
+		state_target = yes
+
+		on_map_mode = map_and_decisions_view
+
+		target_array = owned_states
+
+		target_trigger = {
+			FROM = {
+				has_state_flag = SAF_gsa_new_territory
+				NOT = { is_core_of = SAF }
+			}
+			OR = {
+				has_country_flag = SAF_gsa_iea_corable
+				NOT = {
+					FROM = {
+						OR = {
+							state = 559
+							state = 610
+							state = 611
+							state = 612
+							state = 271
+							state = 38
+							state = 550
+						}
+					}
+				}
+			}
+		}
+
+		cost = 25
+
+		fire_only_once = no
+
+		days_remove = SAF_gsa_core_days
+
+		complete_effect = {
+			add_stability = -0.02
+			if = {
+				limit = {
+					FROM = {
+						OR = {
+							state = 559
+							state = 610
+							state = 611
+							state = 612
+							state = 271
+							state = 38
+							state = 550
+						}
+					}
+				}
+				add_war_support = -0.02
+			}
+			add_days_mission_timeout = {
+				mission = SAF_greater_south_africa_mission
+				days = 10
+			}
+		}
+
+		remove_effect = {
+			FROM = {
+				add_core_of = SAF
+				if = {
+					limit = { ROOT = { has_country_flag = SAF_gsa_slots_upgraded } }
+					add_extra_state_shared_building_slots = 4
+				}
+				else = {
+					add_extra_state_shared_building_slots = 2
+				}
+				if = {
+					limit = { ROOT = { has_country_flag = SAF_gsa_grants_unlocked } }
+					add_dynamic_modifier = {
+						modifier = SAF_gsa_development_dm
+						days = 365
+					}
+				}
+				hidden_effect = {
+					set_state_flag = SAF_gsa_cored
+				}
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+}

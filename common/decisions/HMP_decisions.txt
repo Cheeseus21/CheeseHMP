@@ -7930,6 +7930,30 @@ GER_operations = {
             declare_war_on_all_allies = yes
 
             hidden_effect = {
+                if = {
+                    limit = {
+                        country_exists = SAF
+                        SAF = {
+                            has_completed_focus = SAF_the_abyssinian_crisis
+                            NOT = { has_country_flag = SAF_coalition_resolved }
+                        }
+                    }
+                    if = {
+                        limit = {
+                            SAF = {
+                                has_idea = SAF_duncan_governor_general
+                                NOT = { SAF_cabinet_favours_smuts = yes }
+                            }
+                        }
+                        SAF = { country_event = { id = SAF.22 days = 3 } }
+                    }
+                    else = {
+                        SAF = { country_event = { id = SAF.10 days = 3 } }
+                    }
+                }
+            }
+
+            hidden_effect = {
                 every_country = {
                     limit = { 
                         OR = { 
@@ -10592,11 +10616,10 @@ propaganda_effortsx = {
 		complete_effect = {	
 			add_ideas = SPR_vol_can2
 
-			hidden_effect = { 
-				SAF = { 
-					complete_national_focus = SAF_south_african_railways  
-					complete_national_focus = SAF_south_african_steel       
-				} 
+			hidden_effect = {
+				SAF = {
+					SAF_legacy_industrial_buildout = yes
+				}
 			}
 
 			every_state = { 
@@ -10654,8 +10677,7 @@ propaganda_effortsx = {
             
             hidden_effect = {
                 SAF = {
-                    complete_national_focus = SAF_south_african_railways
-                    complete_national_focus = SAF_south_african_steel
+                    SAF_legacy_industrial_buildout = yes
                 }
             }
             
@@ -11742,13 +11764,18 @@ propaganda_effortsx = {
     anti_fascist_raids = {
 		icon = generic_civil_support
 
-		allowed = { 
+		allowed = {
 			normally_played_country = yes
 		}
 
 		visible = {
-			NOT = { 
+			NOT = {
 				has_government = fascism
+			}
+			# SAF cannot raid parties while the Fusion Cabinet still sits.
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
 			}
 		}
 
@@ -11777,6 +11804,11 @@ propaganda_effortsx = {
 
 		visible = {
 			NOT = { has_government = democratic }
+			# SAF cannot raid parties while the Fusion Cabinet still sits.
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
+			}
 		}
 
 		allowed = { 
@@ -11808,6 +11840,11 @@ propaganda_effortsx = {
 
 		visible = {
 			NOT = { has_government = communism }
+			# SAF cannot raid parties while the Fusion Cabinet still sits.
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
+			}
 		}
 
 		allowed = { 
@@ -11838,6 +11875,11 @@ propaganda_effortsx = {
 
 		visible = {
 			NOT = { has_government = neutrality }
+			# SAF cannot raid parties while the Fusion Cabinet still sits.
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
+			}
 		}
 
 		allowed = { 
@@ -12030,79 +12072,6 @@ propaganda_effortsx = {
 	
 	
 	
-	SAF_rhodesia = {
-		allowed = { original_tag = SAF }
-
-		available = {
-			has_completed_focus = SAF_secure_interests_in_africa
-			545 = { is_fully_controlled_by = ENG }
-			542 = { is_fully_controlled_by = ENG }
-		}
-
-		cost = 0
-
-		complete_effect = {
-			transfer_state = 545 
-			transfer_state = 542 
-			545 = { add_extra_state_shared_building_slots = 2 }
-			542 = { add_extra_state_shared_building_slots = 2 }
-
-			hidden_effect = { 
-				country_event = { id = mtg_netherlands.332 days = 2 }
-			}
-		}
-	}
-	
-	SAF_zambia = {
-		allowed = { original_tag = SAF }
-
-		available = {
-			has_completed_focus = SAF_secure_interests_in_africa
-			283 = { is_fully_controlled_by = ENG }
-			292 = { is_fully_controlled_by = ENG }
-			545 = { is_fully_controlled_by = SAF }
-			542 = { is_fully_controlled_by = SAF }
-		}
-
-		cost = 0
-
-		complete_effect = {
-			transfer_state = 283 
-			transfer_state = 292
-			283 = { add_extra_state_shared_building_slots = 2 }
-			292 = { add_extra_state_shared_building_slots = 2 }
-
-			hidden_effect = { 
-				country_event = { id = mtg_netherlands.333 days = 2 } 
-			} 
-		}
-	}
-
-	SAF_east_africa = {
-		allowed = { original_tag = SAF }
-
-		available = {
-			has_completed_focus = SAF_secure_interests_in_africa
-			546 = { is_fully_controlled_by = ENG }
-			547 = { is_fully_controlled_by = ENG }
-			548 = { is_fully_controlled_by = ENG }
-			283 = { is_fully_controlled_by = SAF }
-			292 = { is_fully_controlled_by = SAF }
-		}
-
-		cost = 0
-
-		complete_effect = {
-			transfer_state = 546 
-			transfer_state = 547
-			transfer_state = 548 
-
-			546 = { add_extra_state_shared_building_slots = 2 }
-			547 = { add_extra_state_shared_building_slots = 2 }
-			548 = { add_extra_state_shared_building_slots = 2 } 
-		}
-	}
-
 	AST_annex_nzl = {
 		icon = generic_operation
 
