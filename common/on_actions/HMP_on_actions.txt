@@ -680,54 +680,6 @@ on_actions = {
 				set_variable = { focustree_background = 1 }
 			}
 		}
-
-		effect = {
-			SAF = {
-				set_variable = { 
-					var = SAF_month_tracker
-					value = 1
-				}
-
-				if = {
-					limit = { NOT = { has_country_flag = SAF_cabinet_vars_set } }
-					set_country_flag = SAF_cabinet_vars_set
-
-					set_variable = { SAF_mines_handover = 1 }
-
-					set_variable = { SAF_gsa_core_days = 90 }
-
-					set_variable = { SAF_hertzog_debuff_level = 0 }
-					set_variable = { SAF_smuts_debuff_level = 0 }
-					set_variable = { SAF_hzd_stability = 0 }
-					set_variable = { SAF_hzd_pp = 0 }
-					set_variable = { SAF_hzd_eff_base = 0 }
-					set_variable = { SAF_hzd_eff_cap = 0 }
-					set_variable = { SAF_hzd_ws = 0 }
-					set_variable = { SAF_smd_goods = 0 }
-					set_variable = { SAF_smd_mob = 0 }
-
-					set_variable = { SAF_hzd_inc_stab = -0.025 }
-					set_variable = { SAF_hzd_inc_ws = -0.05 }
-					set_variable = { SAF_hzd_inc_pp = -0.025 }
-					set_variable = { SAF_hzd_inc_effb = -0.025 }
-					set_variable = { SAF_hzd_inc_effc = -0.025 }
-					set_variable = { SAF_smd_inc_goods = 0.015 }
-					set_variable = { SAF_smd_inc_mob = -0.075 }
-
-				}
-
-				SAF_recalc_hertzog_debuff = yes
-				SAF_recalc_smuts_debuff = yes
-
-				SAF_recount_cabinet_impact = yes
-
-				if = {
-					limit = { has_country_flag = SAF_cabinet_frozen }
-					set_country_flag = SAF_hertzog_wing_frozen
-					set_country_flag = SAF_smuts_wing_frozen
-				}
-			}
-		}
 	}
 
 	on_capitulation = {	effect = { 	HMP_capitulations_on_actions = yes } }
@@ -799,11 +751,10 @@ on_actions = {
 	}	
 
 	on_state_control_changed = {
-		# ROOT = new controller / FROM = former controller / FROM.FROM = state
 		effect = {
 			if = {
 				limit = {
-					original_tag = JAP
+					original_tag = JAP 
 					NOT = { has_global_flag = china_war_ended }
 					has_game_rule = { 
 						rule = horst_china_war 
@@ -2092,110 +2043,8 @@ on_actions = {
 				}
 			}
 	    }
+	}
 	
-
-	}
-
-	on_monthly_SAF = {
-
-		effect = {
-			if = {
-				limit = {
-					has_completed_focus = SAF_the_abyssinian_crisis
-					NOT = { has_dynamic_modifier = { modifier = SAF_cabinet_balance_dm } }
-					NOT = { has_country_flag = SAF_coalition_resolved }
-				}
-				add_dynamic_modifier = { modifier = SAF_cabinet_balance_dm }
-			}
-			if = {
-				limit = {
-					has_completed_focus = SAF_the_abyssinian_crisis
-					NOT = { has_country_flag = SAF_cabinet_open }
-					NOT = { has_country_flag = SAF_coalition_resolved }
-				}
-				set_country_flag = SAF_cabinet_open
-			}
-		}
-
-		effect = {
-			add_to_variable = { SAF_month_tracker = 1 }
-		}
-
-		effect = {
-			if = {
-				limit = { check_variable  = { SAF_month_tracker > 12 } }
-				subtract_from_variable = {
-					var = SAF_month_tracker
-					value = 12
-				}
-				clr_country_flag = SAF_cabinet_havenga_cooldown
-				clr_country_flag = SAF_cabinet_pirow_cooldown
-				clr_country_flag = SAF_cabinet_hertzog_cooldown
-				clr_country_flag = SAF_cabinet_smuts_cooldown
-				clr_country_flag = SAF_cabinet_hofmeyr_cooldown
-				clr_country_flag = SAF_cabinet_duncan_cooldown
-
-				clr_country_flag = SAF_cabinet_reshuffle_cooldown
-			}
-		}
-
-		effect = {
-			if = {
-				limit = { has_dynamic_modifier = { modifier = SAF_hertzog_africa_crisis_dm } }
-				SAF_recount_africa_crisis = yes
-			}
-		}
-	}
-
-	on_weekly_SAF = {
-		effect = {
-			SAF_weekly_cabinet_drift = yes
-		}
-
-		effect = {
-			SAF_refresh_cabinet_gap = yes
-		}
-
-		effect = {
-			SAF_refresh_cabinet_spirit = yes
-		}
-
-		effect = {
-			if = {
-				limit = {
-					any_country = { the_axis = yes controls_state = 436 }
-				}
-				remove_ideas = SAF_answers_for_the_benches_idea
-			}
-			if = {
-				limit = {
-					any_country = { the_axis = yes controls_state = 551 }
-				}
-				remove_ideas = SAF_news_from_the_north_idea
-			}
-			if = {
-				limit = {
-					OR = {
-						any_country = { the_axis = yes controls_state = 688 }
-						any_country = { the_axis = yes controls_state = 690 }
-						any_country = { the_axis = yes controls_state = 546 }
-					}
-				}
-				remove_ideas = SAF_congo_expedition_idea
-			}
-			if = {
-				limit = {
-					OR = {
-						any_country = { the_axis = yes controls_state = 545 }
-						any_country = { the_axis = yes controls_state = 542 }
-					}
-				}
-				remove_ideas = SAF_limpopo_line_idea
-			}
-		}
-	}
-
-
 	on_monthly_GER = {
 		effect = { 
 		
