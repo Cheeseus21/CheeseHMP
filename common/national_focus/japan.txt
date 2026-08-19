@@ -2507,6 +2507,28 @@ focus_tree = {
 			}
 
             hidden_effect = {
+				if = { 
+					limit = { 
+						has_game_rule = { 
+							rule = horst_china_war 
+							option = horst_china_war_off
+						} 
+					}
+					custom_effect_tooltip = JAP_domestic_situation_tt
+					add_to_variable = { 
+						JAP_ds_industrial_capacity_factory = -0.2
+						tooltip = industrial_capacity_factory_tt 
+					}
+					add_to_variable = { 
+						JAP_ds_industrial_capacity_dockyard = -0.2
+						tooltip = industrial_capacity_dockyard_tt 
+					}
+					add_to_variable = { 
+						JAP_ds_production_speed_buildings_factor = -0.2
+						tooltip = production_speed_buildings_factor_tt 
+					}
+				}
+				
                 if = {
                     limit = {
                         has_completed_focus = JAP_nation_wide_autarky_preparations
