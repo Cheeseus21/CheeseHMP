@@ -2247,14 +2247,14 @@ focus_tree = {
 		completion_reward = {
             custom_effect_tooltip = SOV_army_and_navy_tt	
             add_to_variable = {
-                var = SOV_ran_army_attack_factor
+                var = SOV_ran_army_core_attack_factor
                 value = 0.1
-                tooltip = army_attack_factor_tt
+                tooltip = army_core_attack_factor_tt
             }
             add_to_variable = {
-                var = SOV_ran_army_defence_factor
+                var = SOV_ran_army_core_defence_factor
                 value = 0.1
-                tooltip = army_defence_factor_tt
+                tooltip = army_core_defence_factor_tt
             }
 		}
 	}
@@ -2829,19 +2829,27 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-			custom_effect_tooltip = SOV_an_adaptable_army_tt
-
-			hidden_effect = { 
-				every_character = { 
-						limit = { 
-						OR = { 
-							is_corps_commander = yes
-							is_field_marshal = yes
-						}  
-					} 
-					add_trait = { trait = SOV_adaptable }
-				}
-			}
+			custom_effect_tooltip = SOV_army_and_navy_tt
+			add_to_variable = {
+                var = SOV_ran_army_attack_factor
+                value = 0.1
+                tooltip = army_attack_factor_tt
+            }
+            add_to_variable = {
+                var = SOV_ran_army_defence_factor
+                value = 0.1
+                tooltip = army_defence_factor_tt
+            }
+            add_to_variable = {
+                var = SOV_ran_army_core_attack_factor
+                value = -0.1
+                tooltip = army_core_attack_factor_tt
+            }
+            add_to_variable = {
+                var = SOV_ran_army_core_defence_factor
+                value = -0.1
+                tooltip = army_core_defence_factor_tt
+            }
 		}
 	}
 	
