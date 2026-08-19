@@ -379,7 +379,7 @@ NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- 1,4,1 vanilla number of hours for a gun
 	1.0,	-- small guns
 }
 
-NDefines.NNavy.BASE_SPOTTING = 2											-- base detection chance upon which hourly change modifiers are calculated (base detection chance can get modified through other variables), 2%
+NDefines.NNavy.BASE_SPOTTING = 1											-- base detection chance upon which hourly change modifiers are calculated (base detection chance can get modified through other variables), 2%
 NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 10								-- base spotting percentage that comes from full radar coverage; vanilla is 5
 NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 15							-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
 NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SUB = 0.8							-- vanilla 1.0	-- task force sub spotting value is multiplied by this and added to spotting percentage every hour; sub spotting value is average sub detection * average sub visibility enemy; the positive part of the surface detection hourly change equation when against a sub fleet.
@@ -388,8 +388,8 @@ NDefines.NNavy.SPOTTING_ENEMY_SPOTTING_MULTIPLIER_FOR_RUNNING_AWAY = 0.8 	-- 0.8
 NDefines.NNavy.BASE_SPOTTING_FROM_NAVY = 10									-- 10 in vanilla, -- base spotting percentage that comes from task forces in area, add to base detection chance
 NDefines.NNavy.BASE_SPOTTING_FROM_AIR = 20									-- base spotting percentage that comes from air-wings in area, adds to base detection chance; 20 in vanilla
 NDefines.NNavy.DECRYPTION_SPOTTING_BONUS = 0.15								-- Paradox provides no description. I believe this is the factor which makes the daily decryption differences accumulate over time as a multiplier until the max of 15%. Vanilla is 0.2. So 0.15 * decryption difference each day until 15% is hit
-NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_RUNNING_AWAY = 0.5					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is faster; 0.5 in vanilla; higher means enemy fleets flees faster!
-NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_CATCHING_UP = 0.4					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is slower; 0.2 in vanilla; higher means friendly fleet catches up faster!
+NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_RUNNING_AWAY = 0.75					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is faster; 0.5 in vanilla; higher means enemy fleets flees faster!
+NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_CATCHING_UP = 0.25					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is slower; 0.2 in vanilla; higher means friendly fleet catches up faster!
 NDefines.NNavy.VISIBILITY_MULTIPLIER_FOR_SPOTTING = 0.05					-- multiplier for visibility stat in the spotting value equation to give more weight to surface detection modifiers! 0.1 in vanilla.
 NDefines.NNavy.DETECTION_CHANCE_MULT_BASE = 0.1								-- base multiplier value for hourly detection chance combined with the 2 defines beneath, the speed difference defines and the spotting value equation defines above (NOT THE BASE DEFINES)
 NDefines.NNavy.DETECTION_CHANCE_MULT_RADAR_BONUS = 0.2						-- bonus for hourly change detection from radar buildings (NOT BASE). vanilla is 0.1
