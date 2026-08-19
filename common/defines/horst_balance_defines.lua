@@ -20,6 +20,8 @@ NDefines.NNavy.SHORE_BOMBARDMENT_CAP = 0.3
 NDefines.NRailwayGun.BASE_CAPTURE_CHANCE = 1					-- The base chance of railway guns being captured during an overrrun. Will be further modified by the equipment capture chance of the capturing unit.
 
 NDefines.NMilitary.OUT_OF_SUPPLY_SPEED = -0.75                    -- max speed reduction from supply
+
+NDefines.NAir.MAX_QUICK_WING_SELECTION = 4		-- Max possible selection for airwing quick deploy
 -----------------------------AIR SUPREMACY--------------------------------------
 NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.35           -- effect on defense due to enemy air superiorty
 -- Algorithm is a * (xp / (xp + b)) (see: https://www.desmos.com/calculator/4936qnyxqp)

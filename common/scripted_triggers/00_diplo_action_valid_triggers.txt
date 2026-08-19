@@ -30,16 +30,119 @@ is_diplomatic_action_valid_REQUEST_EQUIPMENT_PURCHASE = { always = no }
   
 
 
-is_diplomatic_action_valid_REQUEST_ACCESS_TO_LICENCE_PRODUCTION = { 
-		#NOT = { ROOT = { tag = FIN } }
-		OR = { 
-			AND = { holnor = yes FROM = { normally_played_allies = yes }} 
-			AND = { normally_played_allies = yes FROM = { holnor = yes }}   
-			AND = { finefr = yes FROM = { the_axis_no_finefr = yes }} 
-			AND = { the_axis_no_finefr = yes FROM = { finefr = yes }} 
-			AND = { normally_played_allies = yes FROM = {  the_comintern = yes }}
+is_diplomatic_action_valid_REQUEST_ACCESS_TO_LICENCE_PRODUCTION = {
+	hidden_trigger = {
+		OR = {
+			# SCENARIO 1: The Allied Loop
+			# Both sender and receiver must be ENG or in a faction with ENG
+			AND = {
+				ROOT = {
+					OR = {
+						original_tag = ENG
+						original_tag = BEL
+						original_tag = HOL
+						original_tag = SOV
+						original_tag = MON
+						is_in_faction_with = ENG
+					}
+				}
+				FROM = {
+					OR = {
+						original_tag = ENG
+						original_tag = BEL
+						original_tag = HOL
+						original_tag = SOV
+						original_tag = MON
+						is_in_faction_with = ENG
+					}
+				}
+			}
+
+			# SCENARIO 2: The Axis Loop
+			# Both sender and receiver must be GER or in a faction with GER
+			AND = {
+				ROOT = {
+					OR = {
+						original_tag = GER
+						is_in_faction_with = GER
+					}
+				}
+				FROM = {
+					OR = {
+						original_tag = GER
+						is_in_faction_with = GER
+					}
+				}
+			}
+
+			# SCENARIO 3: The Co-Prosperity Loop
+			# Both sender and receiver must be JAP or in a faction with JAP
+			AND = {
+				ROOT = {
+					OR = {
+						original_tag = JAP
+						is_in_faction_with = JAP
+					}
+				}
+				FROM = {
+					OR = {
+						original_tag = JAP
+						is_in_faction_with = JAP
+					}
+				}
+			}
+
+			# SCENARIO 4: The Comintern Loop
+			# Both sender and receiver must be SOV or in a faction with SOV
+			AND = {
+				ROOT = {
+					OR = {
+						original_tag = ENG
+						original_tag = BEL
+						original_tag = HOL
+						original_tag = SOV
+						original_tag = MON
+						is_in_faction_with = SOV
+					}
+				}
+				FROM = {
+					OR = {
+						original_tag = ENG
+						original_tag = BEL
+						original_tag = HOL
+						original_tag = SOV
+						original_tag = MON
+						is_in_faction_with = SOV
+					}
+				}
+			}
+
+			# SCENARIO 5: The Rest of the World
+			AND = {
+				ROOT = {
+					NOT = { original_tag = ENG }
+					NOT = { is_in_faction_with = ENG }
+					NOT = { original_tag = GER }
+					NOT = { is_in_faction_with = GER }
+					NOT = { original_tag = JAP }
+					NOT = { is_in_faction_with = JAP }
+					NOT = { original_tag = SOV }
+					NOT = { is_in_faction_with = SOV }
+				}
+				FROM = {
+					NOT = { original_tag = ENG }
+					NOT = { is_in_faction_with = ENG }
+					NOT = { original_tag = GER }
+					NOT = { is_in_faction_with = GER }
+					NOT = { original_tag = JAP }
+					NOT = { is_in_faction_with = JAP }
+					NOT = { original_tag = SOV }
+					NOT = { is_in_faction_with = SOV }
+				}
+			}
 		}
 	}
+}
 
 #is_diplomatic_action_valid_war = { always = no } #
 #is_diplomatic_action_valid_RETURN_ATTACHE = { always = no }
