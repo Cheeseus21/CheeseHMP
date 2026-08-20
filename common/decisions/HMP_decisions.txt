@@ -1214,69 +1214,69 @@
             }
         }
         
-        GER_wacht_am_rhein = {
-            icon = GFX_decision_ger_reichskommissariats
+        # GER_wacht_am_rhein = {
+            # icon = GFX_decision_ger_reichskommissariats
             
-            fire_only_once = yes
+            # fire_only_once = yes
             
-            allowed = { tag = GER }
+            # allowed = { tag = GER }
             
-            available = {
-                custom_trigger_tooltip = {
-                    tooltip = tk_phase_3_or_higher_tt
-                    OR = {
-                        has_country_flag = totaler_krieg_decision_active_3
-                        has_country_flag = totaler_krieg_decision_active_4
-                        has_country_flag = totaler_krieg_decision_active_5
-                    }
-                }
+            # available = {
+                # custom_trigger_tooltip = {
+                    # tooltip = tk_phase_3_or_higher_tt
+                    # OR = {
+                        # has_country_flag = totaler_krieg_decision_active_3
+                        # has_country_flag = totaler_krieg_decision_active_4
+                        # has_country_flag = totaler_krieg_decision_active_5
+                    # }
+                # }
                 
-                custom_trigger_tooltip = {
-                    tooltip = ger_western_offensive_cooldown_tt
-                    OR = {
-                        NOT = { has_country_flag = ger_western_offensive_last_used }
-                        has_country_flag = {
-                            flag = ger_western_offensive_last_used
-                            days > 90
-                        }
-                    }
-                }
-            }
+                # custom_trigger_tooltip = {
+                    # tooltip = ger_western_offensive_cooldown_tt
+                    # OR = {
+                        # NOT = { has_country_flag = ger_western_offensive_last_used }
+                        # has_country_flag = {
+                            # flag = ger_western_offensive_last_used
+                            # days > 90
+                        # }
+                    # }
+                # }
+            # }
             
-            visible = {
-            }
+            # visible = {
+            # }
 
-            complete_effect = {
-                set_country_flag = ger_western_offensive_last_used
+            # complete_effect = {
+                # set_country_flag = ger_western_offensive_last_used
                 
-                custom_effect_tooltip = GER_wacht_am_rhein_tt
-                hidden_effect = {
-                    every_state = {
-                        limit = {
-                            OR = {
-                                is_core_of = FRA
-                                is_core_of = BEL
-                                is_core_of = HOL
-                                state = 42
-                                state = 50
-                                state = 51
-                                state = 55
-                                state = 56
-                                state = 57
-                                state = 59
-                                state = 60
-                                state = 54
-                                state = 52
-                                state = 53
-                            }
-                        }
-                        add_dynamic_modifier = {
-                            modifier = GER_attack_buff_15
-                            scope = GER
-                            days = 90
-                        }
-                    }
-                }
+                # custom_effect_tooltip = GER_wacht_am_rhein_tt
+                # hidden_effect = {
+                    # every_state = {
+                        # limit = {
+                            # OR = {
+                                # is_core_of = FRA
+                                # is_core_of = BEL
+                                # is_core_of = HOL
+                                # state = 42
+                                # state = 50
+                                # state = 51
+                                # state = 55
+                                # state = 56
+                                # state = 57
+                                # state = 59
+                                # state = 60
+                                # state = 54
+                                # state = 52
+                                # state = 53
+                            # }
+                        # }
+                        # add_dynamic_modifier = {
+                            # modifier = GER_attack_buff_15
+                            # scope = GER
+                            # days = 90
+                        # }
+                    # }
+                # }
                 
                 # custom_effect_tooltip = generic_skip_one_line_tt
                 
@@ -1287,14 +1287,14 @@
                     # tooltip = war_support_factor_tt
                 # }
             
-                add_to_variable = { GER_tk_level = 1 }
+                # add_to_variable = { GER_tk_level = 1 }
                 
-                if = {
-                    limit = { check_variable = { GER_tk_level > 5 } }
-                    set_variable = { GER_tk_level = 5 }
-                }
-            }
-        }
+                # if = {
+                    # limit = { check_variable = { GER_tk_level > 5 } }
+                    # set_variable = { GER_tk_level = 5 }
+                # }
+            # }
+        # }
         
         GER_unternehmen_nordwind = {
             icon = GFX_decision_ger_reichskommissariats
@@ -1512,42 +1512,42 @@
             }
         }
         
-        GER_battle_of_garfagnana = {
-            icon = GFX_decision_ger_reichskommissariats
+        # GER_battle_of_garfagnana = {
+            # icon = GFX_decision_ger_reichskommissariats
             
-            fire_only_once = yes
+            # fire_only_once = yes
             
-            allowed = { tag = GER }
+            # allowed = { tag = GER }
             
-            available = {
-                custom_trigger_tooltip = {
-                    tooltip = tk_phase_2_or_higher_tt
-                    OR = {
-                        has_country_flag = totaler_krieg_decision_active_2
-                        has_country_flag = totaler_krieg_decision_active_3
-                        has_country_flag = totaler_krieg_decision_active_4
-                        has_country_flag = totaler_krieg_decision_active_5
-                    }
-                }
-            }
+            # available = {
+                # custom_trigger_tooltip = {
+                    # tooltip = tk_phase_2_or_higher_tt
+                    # OR = {
+                        # has_country_flag = totaler_krieg_decision_active_2
+                        # has_country_flag = totaler_krieg_decision_active_3
+                        # has_country_flag = totaler_krieg_decision_active_4
+                        # has_country_flag = totaler_krieg_decision_active_5
+                    # }
+                # }
+            # }
             
-            visible = {
-            }
+            # visible = {
+            # }
 
-            complete_effect = {
-				custom_effect_tooltip = GER_battle_of_garfagnana_tt
-                hidden_effect = {
-                    every_state = {
-                        limit = {
-                            is_core_of = ITA
-                        }
-                        add_dynamic_modifier = {
-                            modifier = GER_attack_buff_1
-                            scope = GER
-                            days = 90
-                        }
-                    }
-                }
+            # complete_effect = {
+				# custom_effect_tooltip = GER_battle_of_garfagnana_tt
+                # hidden_effect = {
+                    # every_state = {
+                        # limit = {
+                            # is_core_of = ITA
+                        # }
+                        # add_dynamic_modifier = {
+                            # modifier = GER_attack_buff_1
+                            # scope = GER
+                            # days = 90
+                        # }
+                    # }
+                # }
                 
                 # custom_effect_tooltip = generic_skip_one_line_tt
                 
@@ -1558,51 +1558,51 @@
                     # tooltip = war_support_factor_tt
                 # }
             
-				add_to_variable = { GER_tk_level = 1 }
+				# add_to_variable = { GER_tk_level = 1 }
 				
-				if = {
-					limit = { check_variable = { GER_tk_level > 5 } }
-					set_variable = { GER_tk_level = 5 }
-				}
-            }
-        }
+				# if = {
+					# limit = { check_variable = { GER_tk_level > 5 } }
+					# set_variable = { GER_tk_level = 5 }
+				# }
+            # }
+        # }
         
-        GER_secure_greece = {
-            icon = GFX_decision_ger_reichskommissariats
+        # GER_secure_greece = {
+            # icon = GFX_decision_ger_reichskommissariats
             
-            fire_only_once = yes
+            # fire_only_once = yes
             
-            allowed = { tag = GER }
+            # allowed = { tag = GER }
             
-            available = {
-                custom_trigger_tooltip = {
-                    tooltip = tk_phase_2_or_higher_tt
-                    OR = {
-                        has_country_flag = totaler_krieg_decision_active_2
-                        has_country_flag = totaler_krieg_decision_active_3
-                        has_country_flag = totaler_krieg_decision_active_4
-                        has_country_flag = totaler_krieg_decision_active_5
-                    }
-                }
-            }
+            # available = {
+                # custom_trigger_tooltip = {
+                    # tooltip = tk_phase_2_or_higher_tt
+                    # OR = {
+                        # has_country_flag = totaler_krieg_decision_active_2
+                        # has_country_flag = totaler_krieg_decision_active_3
+                        # has_country_flag = totaler_krieg_decision_active_4
+                        # has_country_flag = totaler_krieg_decision_active_5
+                    # }
+                # }
+            # }
             
-            visible = {
-            }
+            # visible = {
+            # }
 
-            complete_effect = {
-				custom_effect_tooltip = GER_secure_greece_tt
-                hidden_effect = {
-                    every_state = {
-                        limit = {
-                            is_core_of = GRE
-                        }
-                        add_dynamic_modifier = {
-                            modifier = GER_attack_buff_1
-                            scope = GER
-                            days = 90
-                        }
-                    }
-                }
+            # complete_effect = {
+				# custom_effect_tooltip = GER_secure_greece_tt
+                # hidden_effect = {
+                    # every_state = {
+                        # limit = {
+                            # is_core_of = GRE
+                        # }
+                        # add_dynamic_modifier = {
+                            # modifier = GER_attack_buff_1
+                            # scope = GER
+                            # days = 90
+                        # }
+                    # }
+                # }
                 
                 # custom_effect_tooltip = generic_skip_one_line_tt
                 
@@ -1613,24 +1613,24 @@
                     # tooltip = war_support_factor_tt
                 # }
             
-				add_to_variable = { GER_tk_level = 1 }
+				# add_to_variable = { GER_tk_level = 1 }
 				
-				if = {
-					limit = { check_variable = { GER_tk_level > 5 } }
-					set_variable = { GER_tk_level = 5 }
-				}
-            }
-        }
+				# if = {
+					# limit = { check_variable = { GER_tk_level > 5 } }
+					# set_variable = { GER_tk_level = 5 }
+				# }
+            # }
+        # }
 		
-		GER_steiners_counter_offensive = {
-            icon = GFX_decision_ger_reichskommissariats
+		# GER_steiners_counter_offensive = {
+            # icon = GFX_decision_ger_reichskommissariats
             
-            fire_only_once = yes
+            # fire_only_once = yes
             
-            allowed = { tag = GER }
+            # allowed = { tag = GER }
             
-            available = {
-                has_country_flag = totaler_krieg_decision_active_5
+            # available = {
+                # has_country_flag = totaler_krieg_decision_active_5
                 
                 # custom_trigger_tooltip = {
                     # tooltip = ger_steiner_cooldown_tt
@@ -1651,34 +1651,34 @@
                         # }
                     # }
                 # }
-            }
+            # }
             
-            visible = {
-            }
+            # visible = {
+            # }
 
-            complete_effect = {
-                add_timed_idea = {
-                    idea = GER_steiner_idea
-                    days = 30
-                }
+            # complete_effect = {
+                # add_timed_idea = {
+                    # idea = GER_steiner_idea
+                    # days = 30
+                # }
                 
-                custom_effect_tooltip = generic_skip_one_line_tt
+                # custom_effect_tooltip = generic_skip_one_line_tt
                 
-                custom_effect_tooltip = GER_we_tt	
-                set_variable = {
-                    var = GER_we_industrial_capacity_factory
-                    value = 1
-                    tooltip = industrial_capacity_factory_tt
-                }
+                # custom_effect_tooltip = GER_we_tt	
+                # set_variable = {
+                    # var = GER_we_industrial_capacity_factory
+                    # value = 1
+                    # tooltip = industrial_capacity_factory_tt
+                # }
             
-                add_to_variable = { GER_tk_level = 1 }
+                # add_to_variable = { GER_tk_level = 1 }
                 
-                if = {
-                    limit = { check_variable = { GER_tk_level > 5 } }
-                    set_variable = { GER_tk_level = 5 }
-                }
-            }
-        }
+                # if = {
+                    # limit = { check_variable = { GER_tk_level > 5 } }
+                    # set_variable = { GER_tk_level = 5 }
+                # }
+            # }
+        # }
         
         GER_wir_sind_zuruch = {
             icon = GFX_decision_ger_reichskommissariats
@@ -1965,6 +1965,33 @@
                 }
             }
         }
+		
+		SOV_zhukovs_final_offensive = {
+            icon = GFX_decision_SOV_stalinist_state
+            priority = 102
+
+            allowed = { 
+                original_tag = SOV
+            }
+
+            available = {
+                surrender_progress > 0.9
+            }
+
+            visible = {
+            }
+
+            fire_only_once = yes
+            
+            cost = 25
+            
+            days_remove = 30
+
+            modifier = {
+                army_attack_factor = 0.25
+				army_attack_speed_factor = 0.25
+            }
+        }
         
         SOV_guerilla_tactics = {
             icon = GFX_decision_generic_military
@@ -1983,7 +2010,7 @@
 
             fire_only_once = yes
             
-            cost = 50
+            cost = 25
             
             days_remove = 120
 
@@ -2007,7 +2034,6 @@
             }
 
             available = {
-                has_completed_focus = SOV_order_227
                 date < 1942.11.23
                 date > 1942.6.23
             }
@@ -2018,7 +2044,7 @@
 
             fire_only_once = yes
             
-            cost = 50
+            cost = 25
             
             days_remove = 90
 
@@ -2041,7 +2067,6 @@
             }
 
             available = {
-                has_completed_focus = SOV_order_270
                 date < 1941.11.23
                 date > 1941.6.23
             }
@@ -2052,7 +2077,7 @@
 
             fire_only_once = yes
             
-            cost = 50
+            cost = 25
             
             days_remove = 90
 
@@ -9082,6 +9107,141 @@ propaganda_effortsx = {
 	
 
 	operations = {
+    
+        GER_steiners_counter_offensive = {
+            icon = GFX_decision_generic_GER_flag
+            priority = 102
+
+            allowed = { 
+                original_tag = GER
+            }
+
+            available = {
+                surrender_progress > 0.01
+            }
+
+            visible = {
+            }
+
+            fire_only_once = yes
+            
+            cost = 25
+            
+            days_remove = 30
+
+            modifier = {
+                army_attack_factor = 0.25
+				army_attack_speed_factor = 0.25
+            }
+        }
+
+        GER_wacht_am_rhein = {
+            icon = GFX_decision_ger_reichskommissariats
+            
+            fire_only_once = yes
+            
+            cost = 25
+            
+            allowed = { tag = GER }
+            
+            available = {
+                has_war_with = SOV
+            }
+            
+            complete_effect = {
+                set_country_flag = ger_western_offensive_last_used
+                
+                custom_effect_tooltip = GER_wacht_am_rhein_tt
+                hidden_effect = {
+                    every_state = {
+                        limit = {
+                            OR = {
+                                is_core_of = FRA
+                                is_core_of = BEL
+                                is_core_of = HOL
+                                state = 42
+                                state = 50
+                                state = 51
+                                state = 55
+                                state = 56
+                                state = 57
+                                state = 59
+                                state = 60
+                                state = 54
+                                state = 52
+                                state = 53
+                            }
+                        }
+                        add_dynamic_modifier = {
+                            modifier = GER_attack_buff_1
+                            scope = GER
+                            days = 90
+                        }
+                    }
+                }
+            }
+        }
+
+        GER_battle_of_garfagnana = {
+            icon = GFX_decision_ger_reichskommissariats
+            
+            fire_only_once = yes
+            
+            cost = 25
+            
+            allowed = { tag = GER }
+            
+            available = {
+                has_war_with = SOV
+            }
+
+            complete_effect = {
+				custom_effect_tooltip = GER_battle_of_garfagnana_tt
+                hidden_effect = {
+                    every_state = {
+                        limit = {
+                            is_core_of = ITA
+                        }
+                        add_dynamic_modifier = {
+                            modifier = GER_attack_buff_1
+                            scope = GER
+                            days = 90
+                        }
+                    }
+                }
+            }
+        }
+        
+        GER_secure_greece = {
+            icon = GFX_decision_ger_reichskommissariats
+            
+            fire_only_once = yes
+            
+            cost = 25
+            
+            allowed = { tag = GER }
+            
+            available = {
+                has_war_with = SOV
+            }
+
+            complete_effect = {
+				custom_effect_tooltip = GER_secure_greece_tt
+                hidden_effect = {
+                    every_state = {
+                        limit = {
+                            is_core_of = GRE
+                        }
+                        add_dynamic_modifier = {
+                            modifier = GER_attack_buff_1
+                            scope = GER
+                            days = 90
+                        }
+                    }
+                }
+            }
+        }
+        
 		GER_help_romania_out = {
 
 			icon = GFX_decision_oil
