@@ -359,17 +359,174 @@ SAF_absorb_to_smuts = {
 	}
 }
 
-SAF_clear_cabinet_spirit = {
-	effect_tooltip = {
-		remove_ideas = SAF_cabinet_deadlock
+SAF_refresh_army_and_navy = {
+	set_variable = { SAF_ran_conscription_factor = 0 }
+	set_variable = { SAF_ran_weekly_manpower = 0 }
+	set_variable = { SAF_ran_army_infantry_attack_factor = 0 }
+	set_variable = { SAF_ran_army_infantry_defence_factor = 0 }
+	set_variable = { SAF_ran_army_armor_attack_factor = 0 }
+	set_variable = { SAF_ran_army_armor_defence_factor = 0 }
+	set_variable = { SAF_ran_special_forces_attack_factor = 0 }
+	set_variable = { SAF_ran_special_forces_defence_factor = 0 }
+	set_variable = { SAF_ran_army_attack_factor = 0 }
+	set_variable = { SAF_ran_army_defence_factor = 0 }
+	set_variable = { SAF_ran_army_org_factor = 0 }
+	set_variable = { SAF_ran_army_strength_factor = 0 }
+	set_variable = { SAF_ran_out_of_supply_factor = 0 }
+	set_variable = { SAF_ran_industrial_capacity_factory = 0 }
+	set_variable = { SAF_ran_war_support_weekly = 0 }
+	set_variable = { SAF_ran_stability_weekly = 0 }
+
+	if = {
+		limit = { check_variable = { SAF_segregation_tier = 1 } }
+		subtract_from_variable = { SAF_ran_conscription_factor = 0.55 }
 	}
+	else_if = {
+		limit = { check_variable = { SAF_segregation_tier = 2 } }
+		subtract_from_variable = { SAF_ran_conscription_factor = 0.45 }
+	}
+	else_if = {
+		limit = { check_variable = { SAF_segregation_tier = 3 } }
+		subtract_from_variable = { SAF_ran_conscription_factor = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { SAF_cape_corps_tier = 1 } }
+		add_to_variable = { SAF_ran_weekly_manpower = 2500 }
+	}
+	else_if = {
+		limit = { check_variable = { SAF_cape_corps_tier = 2 } }
+		add_to_variable = { SAF_ran_weekly_manpower = 5000 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_asymmetric_warfare }
+		subtract_from_variable = { SAF_ran_out_of_supply_factor = 0.25 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_south_african_special_forces }
+		add_to_variable = { SAF_ran_special_forces_attack_factor = 0.08 }
+		add_to_variable = { SAF_ran_special_forces_defence_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_infantry_attack_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_infantry_defence_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_armor_attack_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_armor_defence_factor = 0.08 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_crisis_window }
+		if = {
+			limit = { check_variable = { SAF_crisis_rung = 1 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.005 }
+			add_to_variable = { SAF_ran_stability_weekly = 0.005 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_crisis_rung = 2 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.005 }
+			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.10 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_crisis_rung = 3 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.005 }
+			subtract_from_variable = { SAF_ran_stability_weekly = 0.005 }
+			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.25 }
+			add_to_variable = { SAF_ran_army_attack_factor = 0.10 }
+			add_to_variable = { SAF_ran_army_defence_factor = 0.10 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_crisis_rung = 4 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.01 }
+			subtract_from_variable = { SAF_ran_stability_weekly = 0.01 }
+			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.50 }
+			add_to_variable = { SAF_ran_army_attack_factor = 0.30 }
+			add_to_variable = { SAF_ran_army_defence_factor = 0.30 }
+			add_to_variable = { SAF_ran_army_org_factor = 0.30 }
+			add_to_variable = { SAF_ran_army_strength_factor = 0.30 }
+		}
+	}
+
+	force_update_dynamic_modifier = yes
+}
+
+SAF_refresh_domestic_situation = {
+	set_variable = { SAF_ds_consumer_goods_expected_value = 0 }
+	set_variable = { SAF_ds_industrial_factory_donations = 0 }
+	set_variable = { SAF_ds_production_factory_start_efficiency_factor = 0 }
+	set_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0 }
+	set_variable = { SAF_ds_production_factory_max_efficiency_factor = 0 }
+	set_variable = { SAF_ds_production_speed_arms_factory_factor = 0 }
+	set_variable = { SAF_ds_war_support_factor = 0 }
+	set_variable = { SAF_ds_political_power_factor = 0 }
+	set_variable = { SAF_ds_industrial_capacity_factory = 0 }
+	set_variable = { SAF_ds_industrial_capacity_dockyard = 0 }
+	set_variable = { SAF_ds_fascism_drift = 0 }
+
+	if = {
+		limit = { has_country_flag = SAF_ossewabrandwag }
+		subtract_from_variable = { SAF_ds_industrial_capacity_factory = 0.10 }
+		subtract_from_variable = { SAF_ds_industrial_capacity_dockyard = 0.10 }
+		add_to_variable = { SAF_ds_fascism_drift = 0.01 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_expand_the_rand_mines }
+		subtract_from_variable = { SAF_ds_consumer_goods_expected_value = 0.05 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_gsa_window }
+		add_to_variable = { SAF_ds_war_support_factor = 0.10 }
+		add_to_variable = { SAF_ds_political_power_factor = 0.10 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_drb_window }
+		add_to_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0.25 }
+		add_to_variable = { SAF_ds_production_factory_start_efficiency_factor = 0.25 }
+		subtract_from_variable = { SAF_ds_production_speed_arms_factory_factor = 0.1 }
+		subtract_from_variable = { SAF_ds_production_factory_max_efficiency_factor = 0.1 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_reserve_bank_repayment }
+		add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_british_loan_small }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 5 }
+	}
+	if = {
+		limit = { has_country_flag = SAF_british_loan_large }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 10 }
+	}
+	if = {
+		limit = { has_country_flag = SAF_american_loan_small }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 5 }
+	}
+	if = {
+		limit = { has_country_flag = SAF_american_loan_large }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 10 }
+	}
+
+	force_update_dynamic_modifier = yes
+}
+
+SAF_zero_cabinet_spirit = {
+	set_variable = { SAF_cab_stability_factor = 0 }
+	set_variable = { SAF_cab_war_support_factor = 0 }
+	set_variable = { SAF_cab_political_power_factor = 0 }
+	set_variable = { SAF_cab_conscription_factor = 0 }
+	set_variable = { SAF_cab_fascism_drift = 0 }
+}
+
+SAF_clear_cabinet_spirit = {
+	custom_effect_tooltip = SAF_cabinet_spirit_cleared_tt
 	hidden_effect = {
-		remove_ideas = SAF_cabinet_hertzog_dominant
-		remove_ideas = SAF_cabinet_hertzog_leaning
-		remove_ideas = SAF_cabinet_deadlock
-		remove_ideas = SAF_cabinet_smuts_leaning
-		remove_ideas = SAF_cabinet_smuts_dominant
+		SAF_zero_cabinet_spirit = yes
 		set_variable = { SAF_cabinet_spirit_now = 0 }
+		force_update_dynamic_modifier = yes
 	}
 }
 
@@ -401,13 +558,37 @@ SAF_refresh_cabinet_spirit = {
 			limit = {
 				NOT = { check_variable = { var = SAF_cabinet_spirit_now value = SAF_spirit_target compare = equals } }
 			}
-			SAF_clear_cabinet_spirit = yes
-			if = { limit = { check_variable = { SAF_spirit_target = 1 } } add_ideas = SAF_cabinet_hertzog_dominant }
-			if = { limit = { check_variable = { SAF_spirit_target = 2 } } add_ideas = SAF_cabinet_hertzog_leaning }
-			if = { limit = { check_variable = { SAF_spirit_target = 3 } } add_ideas = SAF_cabinet_deadlock }
-			if = { limit = { check_variable = { SAF_spirit_target = 4 } } add_ideas = SAF_cabinet_smuts_leaning }
-			if = { limit = { check_variable = { SAF_spirit_target = 5 } } add_ideas = SAF_cabinet_smuts_dominant }
+			SAF_zero_cabinet_spirit = yes
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 1 } }
+				set_variable = { SAF_cab_stability_factor = 0.10 }
+				set_variable = { SAF_cab_war_support_factor = -0.10 }
+				set_variable = { SAF_cab_conscription_factor = -0.10 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 2 } }
+				set_variable = { SAF_cab_stability_factor = 0.05 }
+				set_variable = { SAF_cab_political_power_factor = -0.10 }
+				set_variable = { SAF_cab_war_support_factor = -0.05 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 3 } }
+				set_variable = { SAF_cab_political_power_factor = -0.15 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 4 } }
+				set_variable = { SAF_cab_war_support_factor = 0.05 }
+				set_variable = { SAF_cab_political_power_factor = -0.10 }
+				set_variable = { SAF_cab_stability_factor = -0.05 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 5 } }
+				set_variable = { SAF_cab_war_support_factor = 0.10 }
+				set_variable = { SAF_cab_stability_factor = -0.10 }
+				set_variable = { SAF_cab_fascism_drift = 0.01 }
+			}
 			set_variable = { SAF_cabinet_spirit_now = SAF_spirit_target }
+			force_update_dynamic_modifier = yes
 		}
 
 		SAF_start_walk_out_watch = yes
@@ -617,8 +798,8 @@ SAF_walk_out_to_hertzog = {
 		clr_country_flag = SAF_cabinet_open
 		clr_country_flag = SAF_walk_out_watch
 		if = {
-			limit = { has_dynamic_modifier = { modifier = SAF_cabinet_balance_dm } }
-			remove_dynamic_modifier = { modifier = SAF_cabinet_balance_dm }
+			limit = { has_dynamic_modifier = { modifier = SAF_cabinet } }
+			remove_dynamic_modifier = { modifier = SAF_cabinet }
 		}
 		hidden_effect = {
 			country_event = { id = SAF.23 hours = 2 }
@@ -682,8 +863,8 @@ SAF_walk_out_to_smuts = {
 		clr_country_flag = SAF_cabinet_open
 		clr_country_flag = SAF_walk_out_watch
 		if = {
-			limit = { has_dynamic_modifier = { modifier = SAF_cabinet_balance_dm } }
-			remove_dynamic_modifier = { modifier = SAF_cabinet_balance_dm }
+			limit = { has_dynamic_modifier = { modifier = SAF_cabinet } }
+			remove_dynamic_modifier = { modifier = SAF_cabinet }
 		}
 		hidden_effect = {
 			country_event = { id = SAF.23 hours = 2 }
@@ -1267,19 +1448,38 @@ SAF_measure_cabinet_progress = {
 
 }
 
+SAF_sync_radicalised_cabinet_dm = {
+	if = {
+		limit = {
+			OR = {
+				check_variable = { SAF_hertzog_debuff_level > 0 }
+				check_variable = { SAF_smuts_debuff_level > 0 }
+			}
+		}
+		if = {
+			limit = { NOT = { has_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm } } }
+			add_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm }
+		}
+	}
+	else = {
+		if = {
+			limit = { has_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm } }
+			remove_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm }
+		}
+	}
+}
+
 SAF_recalc_hertzog_debuff = {
 	clamp_variable = { var = SAF_hertzog_debuff_level min = 0 max = 8 }
 
 	set_variable = { SAF_hzd_stability = SAF_hertzog_debuff_level }
 	multiply_variable = { SAF_hzd_stability = SAF_hzd_inc_stab }
-	set_variable = { SAF_hzd_pp = SAF_hertzog_debuff_level }
-	multiply_variable = { SAF_hzd_pp = SAF_hzd_inc_pp }
-	set_variable = { SAF_hzd_eff_base = SAF_hertzog_debuff_level }
-	multiply_variable = { SAF_hzd_eff_base = SAF_hzd_inc_effb }
-	set_variable = { SAF_hzd_eff_cap = SAF_hertzog_debuff_level }
-	multiply_variable = { SAF_hzd_eff_cap = SAF_hzd_inc_effc }
 	set_variable = { SAF_hzd_ws = SAF_hertzog_debuff_level }
 	multiply_variable = { SAF_hzd_ws = SAF_hzd_inc_ws }
+	set_variable = { SAF_hzd_pp = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_pp = SAF_hzd_inc_pp }
+	set_variable = { SAF_hzd_output = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_output = SAF_hzd_inc_output }
 
 	set_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
 	add_to_temp_variable = { SAF_prev = 1 }
@@ -1291,10 +1491,8 @@ SAF_recalc_hertzog_debuff = {
 	multiply_variable = { SAF_hzd_up_ws = SAF_hzd_inc_ws }
 	set_variable = { SAF_hzd_up_pp = SAF_prev }
 	multiply_variable = { SAF_hzd_up_pp = SAF_hzd_inc_pp }
-	set_variable = { SAF_hzd_up_effb = SAF_prev }
-	multiply_variable = { SAF_hzd_up_effb = SAF_hzd_inc_effb }
-	set_variable = { SAF_hzd_up_effc = SAF_prev }
-	multiply_variable = { SAF_hzd_up_effc = SAF_hzd_inc_effc }
+	set_variable = { SAF_hzd_up_output = SAF_prev }
+	multiply_variable = { SAF_hzd_up_output = SAF_hzd_inc_output }
 
 	set_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
 	add_to_temp_variable = { SAF_prev = -2 }
@@ -1306,24 +1504,10 @@ SAF_recalc_hertzog_debuff = {
 	multiply_variable = { SAF_hzd_dn_ws = SAF_hzd_inc_ws }
 	set_variable = { SAF_hzd_dn_pp = SAF_prev }
 	multiply_variable = { SAF_hzd_dn_pp = SAF_hzd_inc_pp }
-	set_variable = { SAF_hzd_dn_effb = SAF_prev }
-	multiply_variable = { SAF_hzd_dn_effb = SAF_hzd_inc_effb }
-	set_variable = { SAF_hzd_dn_effc = SAF_prev }
-	multiply_variable = { SAF_hzd_dn_effc = SAF_hzd_inc_effc }
+	set_variable = { SAF_hzd_dn_output = SAF_prev }
+	multiply_variable = { SAF_hzd_dn_output = SAF_hzd_inc_output }
 
-	if = {
-		limit = { check_variable = { SAF_hertzog_debuff_level > 0 } }
-		if = {
-			limit = { NOT = { has_dynamic_modifier = { modifier = SAF_hertzog_bloc_debuff_dm } } }
-			add_dynamic_modifier = { modifier = SAF_hertzog_bloc_debuff_dm }
-		}
-	}
-	else = {
-		if = {
-			limit = { has_dynamic_modifier = { modifier = SAF_hertzog_bloc_debuff_dm } }
-			remove_dynamic_modifier = { modifier = SAF_hertzog_bloc_debuff_dm }
-		}
-	}
+	SAF_sync_radicalised_cabinet_dm = yes
 
 	force_update_dynamic_modifier = yes
 }
@@ -1354,31 +1538,22 @@ SAF_recalc_smuts_debuff = {
 	set_variable = { SAF_smd_dn_mob = SAF_prev }
 	multiply_variable = { SAF_smd_dn_mob = SAF_smd_inc_mob }
 
-	if = {
-		limit = { check_variable = { SAF_smuts_debuff_level > 0 } }
-		if = {
-			limit = { NOT = { has_dynamic_modifier = { modifier = SAF_smuts_bloc_debuff_dm } } }
-			add_dynamic_modifier = { modifier = SAF_smuts_bloc_debuff_dm }
-		}
-	}
-	else = {
-		if = {
-			limit = { has_dynamic_modifier = { modifier = SAF_smuts_bloc_debuff_dm } }
-			remove_dynamic_modifier = { modifier = SAF_smuts_bloc_debuff_dm }
-		}
-	}
+	SAF_sync_radicalised_cabinet_dm = yes
 
 	force_update_dynamic_modifier = yes
 }
 
 SAF_hertzog_debuff_up = {
 	if = {
-		limit = { check_variable = { SAF_hertzog_debuff_level < 8 } }
-		custom_effect_tooltip = SAF_hertzog_resistance_up_tt
-	}
-	hidden_effect = {
-		add_to_variable = { SAF_hertzog_debuff_level = 1 }
-		SAF_recalc_hertzog_debuff = yes
+		limit = { NOT = { has_country_flag = SAF_walk_out_hertzog_won } }
+		if = {
+			limit = { check_variable = { SAF_hertzog_debuff_level < 8 } }
+			custom_effect_tooltip = SAF_hertzog_resistance_up_tt
+		}
+		hidden_effect = {
+			add_to_variable = { SAF_hertzog_debuff_level = 1 }
+			SAF_recalc_hertzog_debuff = yes
+		}
 	}
 }
 
@@ -1398,12 +1573,15 @@ SAF_hertzog_debuff_down = {
 
 SAF_smuts_debuff_up = {
 	if = {
-		limit = { check_variable = { SAF_smuts_debuff_level < 8 } }
-		custom_effect_tooltip = SAF_smuts_resistance_up_tt
-	}
-	hidden_effect = {
-		add_to_variable = { SAF_smuts_debuff_level = 1 }
-		SAF_recalc_smuts_debuff = yes
+		limit = { NOT = { has_country_flag = SAF_walk_out_smuts_won } }
+		if = {
+			limit = { check_variable = { SAF_smuts_debuff_level < 8 } }
+			custom_effect_tooltip = SAF_smuts_resistance_up_tt
+		}
+		hidden_effect = {
+			add_to_variable = { SAF_smuts_debuff_level = 1 }
+			SAF_recalc_smuts_debuff = yes
+		}
 	}
 }
 
@@ -2042,8 +2220,8 @@ SAF_close_the_cabinet = {
 	clr_country_flag = SAF_walk_out_watch
 	SAF_end_walk_out_countdown = yes
 	if = {
-		limit = { has_dynamic_modifier = { modifier = SAF_cabinet_balance_dm } }
-		remove_dynamic_modifier = { modifier = SAF_cabinet_balance_dm }
+		limit = { has_dynamic_modifier = { modifier = SAF_cabinet } }
+		remove_dynamic_modifier = { modifier = SAF_cabinet }
 	}
 	hidden_effect = {
 		remove_ideas = SAF_nicolaas_havenga

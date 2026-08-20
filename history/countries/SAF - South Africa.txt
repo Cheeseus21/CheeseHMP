@@ -14,7 +14,8 @@ set_variable = { ENG_fuck_saf_modifier = 0 }
 # ---- THE FUSION CABINET -----------------------------------------------------
 set_variable = { SAF_cabinet_gap = 0 }
 set_variable = { SAF_dismiss_cost = 50 }
-add_ideas = SAF_cabinet_deadlock
+add_dynamic_modifier = { modifier = SAF_cabinet }
+SAF_refresh_cabinet_spirit = yes
 
 country_event = { id = SAF.1 days = 453 }
 # -----------------------------------------------------------------------------
@@ -163,9 +164,16 @@ set_technology = {
     mtg_transport = 1
 }
 
-	add_ideas = SAF_ossewabrandwag
-	add_ideas = SAF_history_of_segregation
+	set_country_flag = SAF_ossewabrandwag
 	add_ideas = SAF_the_commonwealth
+
+	set_variable = { SAF_segregation_tier = 1 }
+	set_variable = { SAF_cape_corps_tier = 0 }
+	set_variable = { SAF_crisis_rung = 0 }
+	add_dynamic_modifier = { modifier = SAF_army_and_navy }
+	add_dynamic_modifier = { modifier = SAF_domestic_situation }
+	SAF_refresh_army_and_navy = yes
+	SAF_refresh_domestic_situation = yes
 	add_to_tech_sharing_group = commonwealth_research
 add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 3200 }
 add_equipment_to_stockpile = { type = support_equipment_1 amount = 50 }

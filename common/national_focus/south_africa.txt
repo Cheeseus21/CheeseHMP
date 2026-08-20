@@ -22,7 +22,6 @@ focus_tree = {
 		cost = 5
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			add_dynamic_modifier = { modifier = SAF_cabinet_balance_dm }
 			set_country_flag = SAF_cabinet_open
 		}
 	}
@@ -1043,7 +1042,12 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			remove_ideas = SAF_ossewabrandwag
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_industrial_capacity_factory = 0.10 tooltip = industrial_capacity_factory_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_industrial_capacity_dockyard = 0.10 tooltip = industrial_capacity_dockyard_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_fascism_drift = -0.01 tooltip = fascism_drift_tt } }
+			clr_country_flag = SAF_ossewabrandwag
+			SAF_refresh_domestic_situation = yes
 		}
 	}
 
@@ -1063,14 +1067,16 @@ focus_tree = {
 				limit = {
 					has_country_leader = { character = SAF_jan_smuts ruling_only = yes }
 				}
-				swap_ideas = {
-					remove_idea = SAF_history_of_segregation
-					add_idea = SAF_history_of_segregation_2
-				}
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_conscription_factor = 0.10 tooltip = conscription_factor_tt } }
+				set_variable = { SAF_segregation_tier = 2 }
 			}
 			else = {
-				add_ideas = SAF_cape_corps
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_weekly_manpower = 2500 tooltip = weekly_manpower_tt } }
+				set_variable = { SAF_cape_corps_tier = 1 }
 			}
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
@@ -1090,17 +1096,16 @@ focus_tree = {
 				limit = {
 					has_country_leader = { character = SAF_jan_smuts ruling_only = yes }
 				}
-				swap_ideas = {
-					remove_idea = SAF_history_of_segregation_2
-					add_idea = SAF_history_of_segregation_3
-				}
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_conscription_factor = 0.20 tooltip = conscription_factor_tt } }
+				set_variable = { SAF_segregation_tier = 3 }
 			}
 			else = {
-				swap_ideas = {
-					remove_idea = SAF_cape_corps
-					add_idea = SAF_cape_corps_2
-				}
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_weekly_manpower = 2500 tooltip = weekly_manpower_tt } }
+				set_variable = { SAF_cape_corps_tier = 2 }
 			}
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
@@ -1116,7 +1121,11 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			custom_effect_tooltip = SAF_greater_south_africa_unlock_tt
-			add_ideas = SAF_gsa_window
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_war_support_factor = 0.10 tooltip = war_support_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_political_power_factor = 0.10 tooltip = political_power_factor_tt } }
+			set_country_flag = SAF_gsa_window
+			SAF_refresh_domestic_situation = yes
 		}
 	}
 
@@ -1219,7 +1228,11 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			add_offsite_building = { type = industrial_complex level = 10 }
-			add_timed_idea = { idea = SAF_reserve_bank_repayment days = 365 }
+			custom_effect_tooltip = SAF_for_365_days_tt
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 tooltip = consumer_goods_expected_value_tt } }
+			set_country_flag = { flag = SAF_reserve_bank_repayment days = 365 value = 1 }
+			SAF_refresh_domestic_situation = yes
 		}
 	}
 
@@ -1308,10 +1321,14 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			add_timed_idea = {
-				idea = SAF_defence_resources_board_idea
-				days = 180
-			}
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0.25 tooltip = production_factory_efficiency_gain_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_production_factory_start_efficiency_factor = 0.25 tooltip = production_factory_start_efficiency_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_production_factory_max_efficiency_factor = -0.10 tooltip = production_factory_max_efficiency_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_production_speed_arms_factory_factor = -0.10 tooltip = production_speed_arms_factory_factor_tt } }
+			set_country_flag = { flag = SAF_drb_window days = 180 value = 1 }
+			SAF_refresh_domestic_situation = yes
 		}
 	}
 
@@ -1349,13 +1366,24 @@ focus_tree = {
 		y = 1
 		relative_position_id = SAF_hertzog_government
 		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_asyut_lost_tt
+				any_country = { the_axis = yes controls_state = 436 }
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
-			add_timed_idea = {
-				idea = SAF_answers_for_the_benches_idea
-				days = 180
-			}
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.005 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_stability_weekly = 0.005 tooltip = stability_weekly_tt } }
+			set_variable = { SAF_crisis_rung = 1 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
@@ -1370,17 +1398,26 @@ focus_tree = {
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SAF_no_answers_idea_tt
-				NOT = { has_idea = SAF_answers_for_the_benches_idea }
+				NOT = { has_country_flag = SAF_crisis_window }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_khartoum_lost_tt
+				any_country = { the_axis = yes controls_state = 551 }
 			}
 		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			add_stability = -0.05
-			add_timed_idea = {
-				idea = SAF_news_from_the_north_idea
-				days = 180
-			}
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.005 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_industrial_capacity_factory = 0.10 tooltip = industrial_capacity_factory_tt } }
+			set_variable = { SAF_crisis_rung = 2 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
@@ -1395,17 +1432,33 @@ focus_tree = {
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SAF_no_news_idea_tt
-				NOT = { has_idea = SAF_news_from_the_north_idea }
+				NOT = { has_country_flag = SAF_crisis_window }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_congo_lost_tt
+				OR = {
+					any_country = { the_axis = yes controls_state = 688 }
+					any_country = { the_axis = yes controls_state = 690 }
+					any_country = { the_axis = yes controls_state = 546 }
+				}
 			}
 		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
 			add_stability = -0.10
-			add_timed_idea = {
-				idea = SAF_congo_expedition_idea
-				days = 180
-			}
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.005 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_stability_weekly = -0.005 tooltip = stability_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_industrial_capacity_factory = 0.25 tooltip = industrial_capacity_factory_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_attack_factor = 0.10 tooltip = army_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_defence_factor = 0.10 tooltip = army_defence_factor_tt } }
+			set_variable = { SAF_crisis_rung = 3 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
@@ -1420,17 +1473,35 @@ focus_tree = {
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SAF_no_congo_idea_tt
-				NOT = { has_idea = SAF_congo_expedition_idea }
+				NOT = { has_country_flag = SAF_crisis_window }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_limpopo_approach_tt
+				OR = {
+					any_country = { the_axis = yes controls_state = 691 }
+					any_country = { the_axis = yes controls_state = 292 }
+					any_country = { the_axis = yes controls_state = 283 }
+				}
 			}
 		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
 			add_stability = -0.20
-			add_timed_idea = {
-				idea = SAF_limpopo_line_idea
-				days = 180
-			}
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.01 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_stability_weekly = -0.01 tooltip = stability_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_industrial_capacity_factory = 0.50 tooltip = industrial_capacity_factory_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_attack_factor = 0.30 tooltip = army_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_defence_factor = 0.30 tooltip = army_defence_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_org_factor = 0.30 tooltip = army_org_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_strength_factor = 0.30 tooltip = army_strength_factor_tt } }
+			set_variable = { SAF_crisis_rung = 4 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
@@ -1530,7 +1601,9 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = no
 		completion_reward = {
-			add_ideas = SAF_gold_exports
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_consumer_goods_expected_value = -0.05 tooltip = consumer_goods_expected_value_tt } }
+			SAF_refresh_domestic_situation = yes
 		}
 	}
 
@@ -1987,7 +2060,9 @@ focus_tree = {
 			every_army_leader = {
 				add_logistics = 1
 			}
-			add_ideas = SAF_bush_warfare
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_out_of_supply_factor = -0.25 tooltip = out_of_supply_factor_tt } }
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
@@ -2039,7 +2114,14 @@ focus_tree = {
 		relative_position_id = SAF_improve_infantry
 		cost = 5
 		completion_reward = {
-			add_ideas = SAF_theron_tradition
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_army_infantry_attack_factor = 0.08 tooltip = army_infantry_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_infantry_defence_factor = 0.08 tooltip = army_infantry_defence_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_armor_attack_factor = 0.08 tooltip = army_armor_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_armor_defence_factor = 0.08 tooltip = army_armor_defence_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_special_forces_attack_factor = 0.08 tooltip = special_forces_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_special_forces_defence_factor = 0.08 tooltip = special_forces_defence_factor_tt } }
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 

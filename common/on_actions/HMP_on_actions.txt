@@ -699,27 +699,53 @@ on_actions = {
 					set_variable = { SAF_hertzog_debuff_level = 0 }
 					set_variable = { SAF_smuts_debuff_level = 0 }
 					set_variable = { SAF_hzd_stability = 0 }
-					set_variable = { SAF_hzd_pp = 0 }
-					set_variable = { SAF_hzd_eff_base = 0 }
-					set_variable = { SAF_hzd_eff_cap = 0 }
 					set_variable = { SAF_hzd_ws = 0 }
+					set_variable = { SAF_hzd_pp = 0 }
+					set_variable = { SAF_hzd_output = 0 }
 					set_variable = { SAF_smd_goods = 0 }
 					set_variable = { SAF_smd_mob = 0 }
 
 					set_variable = { SAF_hzd_inc_stab = -0.025 }
-					set_variable = { SAF_hzd_inc_ws = -0.05 }
+					set_variable = { SAF_hzd_inc_ws = -0.025 }
 					set_variable = { SAF_hzd_inc_pp = -0.025 }
-					set_variable = { SAF_hzd_inc_effb = -0.025 }
-					set_variable = { SAF_hzd_inc_effc = -0.025 }
+					set_variable = { SAF_hzd_inc_output = -0.025 }
 					set_variable = { SAF_smd_inc_goods = 0.015 }
 					set_variable = { SAF_smd_inc_mob = -0.075 }
 
+				}
+
+				if = {
+					limit = { NOT = { has_country_flag = SAF_hzd_retune_2 } }
+					set_country_flag = SAF_hzd_retune_2
+					set_variable = { SAF_hzd_inc_stab = -0.025 }
+					set_variable = { SAF_hzd_inc_ws = -0.025 }
+					set_variable = { SAF_hzd_inc_pp = -0.025 }
+					set_variable = { SAF_hzd_inc_output = -0.025 }
+					clear_variable = SAF_hzd_inc_effb
+					clear_variable = SAF_hzd_inc_effc
+					clear_variable = SAF_hzd_eff_base
+					clear_variable = SAF_hzd_eff_cap
+					clear_variable = SAF_hzd_up_effb
+					clear_variable = SAF_hzd_up_effc
+					clear_variable = SAF_hzd_dn_effb
+					clear_variable = SAF_hzd_dn_effc
 				}
 
 				SAF_recalc_hertzog_debuff = yes
 				SAF_recalc_smuts_debuff = yes
 
 				SAF_recount_cabinet_impact = yes
+
+				if = {
+					limit = { NOT = { has_dynamic_modifier = { modifier = SAF_army_and_navy } } }
+					add_dynamic_modifier = { modifier = SAF_army_and_navy }
+				}
+				if = {
+					limit = { NOT = { has_dynamic_modifier = { modifier = SAF_domestic_situation } } }
+					add_dynamic_modifier = { modifier = SAF_domestic_situation }
+				}
+				SAF_refresh_army_and_navy = yes
+				SAF_refresh_domestic_situation = yes
 
 				if = {
 					limit = { has_country_flag = SAF_cabinet_frozen }
@@ -2102,10 +2128,10 @@ on_actions = {
 			if = {
 				limit = {
 					has_completed_focus = SAF_the_abyssinian_crisis
-					NOT = { has_dynamic_modifier = { modifier = SAF_cabinet_balance_dm } }
+					NOT = { has_dynamic_modifier = { modifier = SAF_cabinet } }
 					NOT = { has_country_flag = SAF_coalition_resolved }
 				}
-				add_dynamic_modifier = { modifier = SAF_cabinet_balance_dm }
+				add_dynamic_modifier = { modifier = SAF_cabinet }
 			}
 			if = {
 				limit = {
@@ -2161,37 +2187,8 @@ on_actions = {
 		}
 
 		effect = {
-			if = {
-				limit = {
-					any_country = { the_axis = yes controls_state = 436 }
-				}
-				remove_ideas = SAF_answers_for_the_benches_idea
-			}
-			if = {
-				limit = {
-					any_country = { the_axis = yes controls_state = 551 }
-				}
-				remove_ideas = SAF_news_from_the_north_idea
-			}
-			if = {
-				limit = {
-					OR = {
-						any_country = { the_axis = yes controls_state = 688 }
-						any_country = { the_axis = yes controls_state = 690 }
-						any_country = { the_axis = yes controls_state = 546 }
-					}
-				}
-				remove_ideas = SAF_congo_expedition_idea
-			}
-			if = {
-				limit = {
-					OR = {
-						any_country = { the_axis = yes controls_state = 545 }
-						any_country = { the_axis = yes controls_state = 542 }
-					}
-				}
-				remove_ideas = SAF_limpopo_line_idea
-			}
+			SAF_refresh_army_and_navy = yes
+			SAF_refresh_domestic_situation = yes
 		}
 	}
 
