@@ -41,6 +41,69 @@
 # ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 # ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 
+	GER_endsieg_calc = {
+		# 1. Reset variables and clear the array to ensure a fresh count
+		clear_variable = GER.GER_endsieg_controlled_states_count
+		clear_array = GER.GER_ENDSIEG_STATES
+
+		# 2. Loop through all states and check if Germany DOES NOT control them
+		every_state = {
+			limit = {
+				# QUICK FILTER: Only check these specific states
+				OR = {
+					# SOVIET STATES
+					#state = 228 state = 227 state = 200 state = 196 state = 137 state = 226 state = 197 state = 221 state = 259 state = 203 state = 240 state = 220 state = 225 state = 222 state = 223 state = 205 
+					#state = 242 state = 246 state = 263 state = 208 state = 224 state = 193 state = 243 state = 209 state = 13 state = 191 state = 12 state = 210 state = 190 state = 189 state = 11 state = 512 state = 96 
+					#state = 207 state = 241 state = 206 state = 95 state = 192 state = 287 state = 78 state = 198 state = 202 state = 199 state = 201 state = 194 state = 204 state = 94 state = 93 state = 91 state = 89 
+					#state = 80 state = 97 state = 245 state = 218 state = 234 state = 238 state = 217 state = 237 state = 235 state = 232 state = 233 state = 231 state = 230 state = 229 state = 236 state = 265 
+					#state = 260 state = 239 state = 258 state = 257 state = 254 state = 219 state = 247 state = 244 state = 264 state = 146 state = 216 state = 215 state = 213
+					
+					# Balkans + Central Europe (non-GER)
+					state = 186 state = 185 state = 47 state = 486 state = 44 state = 184 state = 106 state = 105 state = 212 state = 613 state = 48 state = 211 state = 293 state = 77 state = 46 state = 79 state = 108 state = 107 
+					state = 414 state = 45 state = 104 state = 103 state = 109 state = 163 state = 81 state = 82 state = 84 state = 83 state = 76 state = 73 state = 154 state = 43 state = 155 state = 514 state = 303 state = 71  
+					state = 578 state = 70 state = 102 state = 31 state = 22 state = 25 state = 33 state = 26 state = 20 state = 507 state = 314
+					
+					# ITALY
+					state = 115 state = 156 state = 117 state = 157 state = 2 state = 162 state = 161 state = 158 state = 313 state = 32 state = 21 state = 159 state = 39 state = 160
+					
+					# France + Benelux + Denmark + Poland
+					state = 19 state = 23 state = 30 state = 14 state = 15 state = 24 state = 27 state = 17 state = 18 state = 16 state = 267 state = 29 state = 34 state = 36 state = 7 state = 35 state = 6 state = 37 state = 99 
+					state = 88 state = 72 state = 75 state = 9 state = 90 state = 92 state = 10 state = 87 state = 86 state = 98 state = 553
+					
+					# German cores
+					state = 188 state = 330 state = 5 state = 556 state = 85 state = 63 state = 4 state = 152 state = 52 state = 153 state = 50 state = 28 state = 8 state = 42 state = 51 state = 55 state = 54 state = 53 state = 69 
+					state = 74 state = 67 state = 66 state = 68 state = 62 state = 64 state = 61 state = 58 state = 59 state = 56 state = 57 state = 65 state = 60
+				}
+				# CONTROLLER CHECK: Is it NOT controlled by GER, a subject, or an ally?
+				NOT = {
+					OR = {
+						is_controlled_by = GER
+						any_country = {
+							controls_state = PREV
+							OR = {
+								is_subject_of = GER
+								is_in_faction_with = GER
+							}
+						}
+					}
+				}
+			}
+			# If true (Germany DOES NOT control it), add the state to the array
+			add_to_array = { array = GER.GER_ENDSIEG_STATES value = THIS }
+		}
+		
+		# 3. Get the total number of states NOT controlled from the array's size
+		set_variable = { var = GER.GER_endsieg_controlled_states_count value = GER.GER_ENDSIEG_STATES^num }
+		
+		# ---------------------------------------------------------
+		# 4. APPLY THE MATH TO THE DYNAMIC MODIFIER VARIABLES
+		# ---------------------------------------------------------
+		
+		# FACTORY OUTPUT (+2.5% per state lost / not controlled)
+		set_variable = { var = GER.GER_endsieg_industrial_capacity_factory value = GER.GER_endsieg_controlled_states_count }
+		multiply_variable = { var = GER.GER_endsieg_industrial_capacity_factory value = 0.025 }
+	}
+
 	snapshot_chinese_pre_war_factories = {
 		every_state = {
 			limit = {
@@ -4757,11 +4820,21 @@ HMP_startup_on_actions = {
     every_country = {
         air_experience = 50
         navy_experience = 500
+		
         share_intel_effect = yes
+		
         every_character = {
             limit = { is_navy_leader = yes }
             add_dynamic_modifier = { modifier = fleet_overstack_dynamic_modifier  }
         }
+		
+		add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 5800 }
+		add_equipment_to_stockpile = { type = support_equipment_1 amount = 160 }
+		add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 320 }
+		add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 120 }
+		add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 380 }
+		add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 125 }
+		add_equipment_to_stockpile = { type = train_equipment_1 amount = 15 }
     }
     
     set_global_flag = blocking_pauses

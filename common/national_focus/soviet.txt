@@ -916,7 +916,7 @@ focus_tree = {
 			custom_effect_tooltip = SOV_domestic_situation_tt
             add_to_variable = {
                 var = SOV_ds_production_factory_max_efficiency_factor
-                value = 0.15
+                value = 0.1
                 tooltip = production_factory_max_efficiency_factor_tt
             }
             add_to_variable = {
@@ -2247,14 +2247,14 @@ focus_tree = {
 		completion_reward = {
             custom_effect_tooltip = SOV_army_and_navy_tt	
             add_to_variable = {
-                var = SOV_ran_army_attack_factor
+                var = SOV_ran_army_core_attack_factor
                 value = 0.1
-                tooltip = army_attack_factor_tt
+                tooltip = army_core_attack_factor_tt
             }
             add_to_variable = {
-                var = SOV_ran_army_defence_factor
+                var = SOV_ran_army_core_defence_factor
                 value = 0.1
-                tooltip = army_defence_factor_tt
+                tooltip = army_core_defence_factor_tt
             }
 		}
 	}
@@ -2269,7 +2269,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_war_preparations_focus
 		
-		cost = 2
+		cost = 1
 
 		available = {
 		}
@@ -2291,7 +2291,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_last_stand_on_moscow
 		
-		cost = 2
+		cost = 1
 
 		available = {
 		}
@@ -2379,7 +2379,7 @@ focus_tree = {
 		prerequisite = { focus = SOV_war_preparations_focus }
 		
 		x = 0
-		y = 1
+		y = 2
 		
 		relative_position_id = SOV_war_preparations_focus
 		
@@ -2398,47 +2398,47 @@ focus_tree = {
 		}
 	}
 	
-	focus = {
-		id = SOV_order_270
-		icon = GFX_focus_generic_spur_communist_revolutions
-		prerequisite = { focus = SOV_desperate_measures }
+	# focus = {
+		# id = SOV_order_270
+		# icon = GFX_focus_generic_spur_communist_revolutions
+		# prerequisite = { focus = SOV_desperate_measures }
 		
-		x = -1
-		y = 1
+		# x = -1
+		# y = 1
 		
-		relative_position_id = SOV_desperate_measures
+		# relative_position_id = SOV_desperate_measures
 		
-		cost = 2
+		# cost = 2
 
-		available = {
-            has_war_with = GER
-        }
+		# available = {
+            # has_war_with = GER
+        # }
 		
-		completion_reward = {
-			unlock_decision_tooltip = SOV_order_270_decision
-		}
-	}
+		# completion_reward = {
+			# unlock_decision_tooltip = SOV_order_270_decision
+		# }
+	# }
 	
-	focus = {
-		id = SOV_order_227
-		icon = GFX_focus_PRC_revolutionary_war_of_the_masses
-		prerequisite = { focus = SOV_desperate_measures }
+	# focus = {
+		# id = SOV_order_227
+		# icon = GFX_focus_PRC_revolutionary_war_of_the_masses
+		# prerequisite = { focus = SOV_desperate_measures }
 		
-		x = 1
-		y = 1
+		# x = 1
+		# y = 1
 		
-		relative_position_id = SOV_desperate_measures
+		# relative_position_id = SOV_desperate_measures
 		
-		cost = 2
+		# cost = 2
 
-		available = {
-            has_war_with = GER
-        }
+		# available = {
+            # has_war_with = GER
+        # }
 		
-		completion_reward = {
-			unlock_decision_tooltip = SOV_order_227_decision
-		}
-	}
+		# completion_reward = {
+			# unlock_decision_tooltip = SOV_order_227_decision
+		# }
+	# }
 	
 	focus = {
 		id = SOV_construction_of_defensive_lines
@@ -2518,7 +2518,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_war_preparations_focus
 		
-		cost = 2
+		cost = 1
 
 		available = {
 		}
@@ -2540,7 +2540,7 @@ focus_tree = {
 		
 		relative_position_id = SOV_last_stand_on_leningrad
 		
-		cost = 2
+		cost = 1
 
 		available = {
 		}
@@ -2829,19 +2829,27 @@ focus_tree = {
 		cost = 5
 
 		completion_reward = {
-			custom_effect_tooltip = SOV_an_adaptable_army_tt
-
-			hidden_effect = { 
-				every_character = { 
-						limit = { 
-						OR = { 
-							is_corps_commander = yes
-							is_field_marshal = yes
-						}  
-					} 
-					add_trait = { trait = SOV_adaptable }
-				}
-			}
+			custom_effect_tooltip = SOV_army_and_navy_tt
+			add_to_variable = {
+                var = SOV_ran_army_attack_factor
+                value = 0.1
+                tooltip = army_attack_factor_tt
+            }
+            add_to_variable = {
+                var = SOV_ran_army_defence_factor
+                value = 0.1
+                tooltip = army_defence_factor_tt
+            }
+            add_to_variable = {
+                var = SOV_ran_army_core_attack_factor
+                value = -0.1
+                tooltip = army_core_attack_factor_tt
+            }
+            add_to_variable = {
+                var = SOV_ran_army_core_defence_factor
+                value = -0.1
+                tooltip = army_core_defence_factor_tt
+            }
 		}
 	}
 	
