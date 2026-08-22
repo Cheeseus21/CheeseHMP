@@ -136,26 +136,6 @@ on_actions = {
 		}
 		
 		effect = {
-		
-			if = {
-				limit = { 
-					has_game_rule = { 
-						rule = horst_scw 
-						option = horst_scw_on
-					} 
-				}
-				
-				every_country = {
-					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 2900 }
-					add_equipment_to_stockpile = { type = support_equipment_1 amount = 80 }
-					#add_equipment_to_stockpile = { type = special_equipment_1 amount = 1400 }
-					add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 168 }
-					add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 40 }
-					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 240 }
-					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 35 }
-					add_equipment_to_stockpile = { type = train_equipment_1 amount = 7 }
-				}
-			}
 			
 			if = {
 				limit = { 
@@ -218,27 +198,7 @@ on_actions = {
 					add_dynamic_modifier = { modifier = JAP_china_war_supply_modifier }
 				}
 			}
-			
-			if = {
-				limit = { 
-					has_game_rule = { 
-						rule = horst_china_war 
-						option = horst_china_war_on
-					} 
-				}
-				
-				every_country = {
-					add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 2900 }
-					add_equipment_to_stockpile = { type = support_equipment_1 amount = 80 }
-					#add_equipment_to_stockpile = { type = special_equipment_1 amount = 1400 }
-					add_equipment_to_stockpile = { type = artillery_equipment_1 amount = 168 }
-					add_equipment_to_stockpile = { type = anti_air_equipment_1 amount = 40 }
-					add_equipment_to_stockpile = { type = anti_tank_equipment_1 amount = 240 }
-					add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 35 }
-					add_equipment_to_stockpile = { type = train_equipment_1 amount = 7 }
-				}
-			}
-			
+
             JAP = {
                 if = {
                     limit = { 
@@ -680,7 +640,7 @@ on_actions = {
 				set_variable = { focustree_background = 1 }
 			}
 		}
-
+		
 		effect = {
 			SAF = {
 				set_variable = { 
@@ -825,11 +785,10 @@ on_actions = {
 	}	
 
 	on_state_control_changed = {
-		# ROOT = new controller / FROM = former controller / FROM.FROM = state
 		effect = {
 			if = {
 				limit = {
-					original_tag = JAP
+					original_tag = JAP 
 					NOT = { has_global_flag = china_war_ended }
 					has_game_rule = { 
 						rule = horst_china_war 
@@ -1644,10 +1603,92 @@ on_actions = {
 			SWE = { on_daily_fuel = yes }
 		}
 	}
-
-
 	
+	on_monthly_SAF = {
+
+		effect = {
+			if = {
+				limit = {
+					has_completed_focus = SAF_the_abyssinian_crisis
+					NOT = { has_dynamic_modifier = { modifier = SAF_cabinet } }
+					NOT = { has_country_flag = SAF_coalition_resolved }
+				}
+				add_dynamic_modifier = { modifier = SAF_cabinet }
+			}
+			if = {
+				limit = {
+					has_completed_focus = SAF_the_abyssinian_crisis
+					NOT = { has_country_flag = SAF_cabinet_open }
+					NOT = { has_country_flag = SAF_coalition_resolved }
+				}
+				set_country_flag = SAF_cabinet_open
+			}
+		}
+
+		effect = {
+			add_to_variable = { SAF_month_tracker = 1 }
+		}
+
+		effect = {
+			if = {
+				limit = { check_variable  = { SAF_month_tracker > 12 } }
+				subtract_from_variable = {
+					var = SAF_month_tracker
+					value = 12
+				}
+				clr_country_flag = SAF_cabinet_havenga_cooldown
+				clr_country_flag = SAF_cabinet_pirow_cooldown
+				clr_country_flag = SAF_cabinet_hertzog_cooldown
+				clr_country_flag = SAF_cabinet_smuts_cooldown
+				clr_country_flag = SAF_cabinet_hofmeyr_cooldown
+				clr_country_flag = SAF_cabinet_duncan_cooldown
+
+				clr_country_flag = SAF_cabinet_reshuffle_cooldown
+			}
+		}
+
+		effect = {
+			if = {
+				limit = { has_dynamic_modifier = { modifier = SAF_hertzog_africa_crisis_dm } }
+				SAF_recount_africa_crisis = yes
+			}
+		}
+	}
+
+	on_weekly_SAF = {
+		effect = {
+			SAF_weekly_cabinet_drift = yes
+		}
+
+		effect = {
+			SAF_refresh_cabinet_gap = yes
+		}
+
+		effect = {
+			SAF_refresh_cabinet_spirit = yes
+		}
+
+		effect = {
+			SAF_refresh_army_and_navy = yes
+			SAF_refresh_domestic_situation = yes
+		}
+	}
+
 	on_weekly_SOV = {
+		effect = {
+            if = {
+                limit = {
+                    GER = {
+						has_completed_focus = GER_totaler_krieg
+					}
+                }
+                
+                if = {
+                    limit = { country_exists = GER }
+                    GER = { GER_endsieg_calc = yes }
+                }
+            }
+        }
 		effect = {
 			JAP = {
 				# 1. Clean the counting variables
@@ -2118,81 +2159,8 @@ on_actions = {
 				}
 			}
 	    }
+	}
 	
-
-	}
-
-	on_monthly_SAF = {
-
-		effect = {
-			if = {
-				limit = {
-					has_completed_focus = SAF_the_abyssinian_crisis
-					NOT = { has_dynamic_modifier = { modifier = SAF_cabinet } }
-					NOT = { has_country_flag = SAF_coalition_resolved }
-				}
-				add_dynamic_modifier = { modifier = SAF_cabinet }
-			}
-			if = {
-				limit = {
-					has_completed_focus = SAF_the_abyssinian_crisis
-					NOT = { has_country_flag = SAF_cabinet_open }
-					NOT = { has_country_flag = SAF_coalition_resolved }
-				}
-				set_country_flag = SAF_cabinet_open
-			}
-		}
-
-		effect = {
-			add_to_variable = { SAF_month_tracker = 1 }
-		}
-
-		effect = {
-			if = {
-				limit = { check_variable  = { SAF_month_tracker > 12 } }
-				subtract_from_variable = {
-					var = SAF_month_tracker
-					value = 12
-				}
-				clr_country_flag = SAF_cabinet_havenga_cooldown
-				clr_country_flag = SAF_cabinet_pirow_cooldown
-				clr_country_flag = SAF_cabinet_hertzog_cooldown
-				clr_country_flag = SAF_cabinet_smuts_cooldown
-				clr_country_flag = SAF_cabinet_hofmeyr_cooldown
-				clr_country_flag = SAF_cabinet_duncan_cooldown
-
-				clr_country_flag = SAF_cabinet_reshuffle_cooldown
-			}
-		}
-
-		effect = {
-			if = {
-				limit = { has_dynamic_modifier = { modifier = SAF_hertzog_africa_crisis_dm } }
-				SAF_recount_africa_crisis = yes
-			}
-		}
-	}
-
-	on_weekly_SAF = {
-		effect = {
-			SAF_weekly_cabinet_drift = yes
-		}
-
-		effect = {
-			SAF_refresh_cabinet_gap = yes
-		}
-
-		effect = {
-			SAF_refresh_cabinet_spirit = yes
-		}
-
-		effect = {
-			SAF_refresh_army_and_navy = yes
-			SAF_refresh_domestic_situation = yes
-		}
-	}
-
-
 	on_monthly_GER = {
 		effect = { 
 		
