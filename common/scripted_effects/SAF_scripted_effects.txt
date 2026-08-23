@@ -1,0 +1,2233 @@
+SAF_apply_shift_to_hertzog = {
+	set_temp_variable = { SAF_pop_non = party_popularity_100@neutrality }
+	set_temp_variable = { SAF_pop_dem = party_popularity_100@democratic }
+	set_temp_variable = { SAF_pop_fas = party_popularity_100@fascism }
+	set_temp_variable = { SAF_pop_com = party_popularity_100@communism }
+
+	if = {
+		limit = { check_variable = { var = SAF_shift value = SAF_pop_dem compare = greater_than } }
+		set_temp_variable = { SAF_shift = SAF_pop_dem }
+	}
+
+	set_temp_variable = { SAF_shift_frac = SAF_shift }
+	divide_temp_variable = { SAF_shift_frac = 100 }
+	effect_tooltip = {
+		add_popularity = { ideology = neutrality popularity = SAF_shift_frac }
+	}
+
+	hidden_effect = {
+		add_to_temp_variable = { SAF_pop_non = SAF_shift }
+		subtract_from_temp_variable = { SAF_pop_dem = SAF_shift }
+
+		set_popularities = {
+			neutrality = SAF_pop_non
+			democratic = SAF_pop_dem
+			fascism = SAF_pop_fas
+			communism = SAF_pop_com
+		}
+	}
+}
+
+SAF_apply_shift_to_smuts = {
+	set_temp_variable = { SAF_pop_non = party_popularity_100@neutrality }
+	set_temp_variable = { SAF_pop_dem = party_popularity_100@democratic }
+	set_temp_variable = { SAF_pop_fas = party_popularity_100@fascism }
+	set_temp_variable = { SAF_pop_com = party_popularity_100@communism }
+
+	if = {
+		limit = { check_variable = { var = SAF_shift value = SAF_pop_non compare = greater_than } }
+		set_temp_variable = { SAF_shift = SAF_pop_non }
+	}
+
+	set_temp_variable = { SAF_shift_frac = SAF_shift }
+	divide_temp_variable = { SAF_shift_frac = 100 }
+	effect_tooltip = {
+		add_popularity = { ideology = democratic popularity = SAF_shift_frac }
+	}
+
+	hidden_effect = {
+		add_to_temp_variable = { SAF_pop_dem = SAF_shift }
+		subtract_from_temp_variable = { SAF_pop_non = SAF_shift }
+
+		set_popularities = {
+			neutrality = SAF_pop_non
+			democratic = SAF_pop_dem
+			fascism = SAF_pop_fas
+			communism = SAF_pop_com
+		}
+	}
+}
+
+SAF_balance_to_hertzog = {
+	set_temp_variable = { SAF_shift = 4 }
+	SAF_apply_shift_to_hertzog = yes
+}
+
+SAF_balance_to_hertzog_small = {
+	set_temp_variable = { SAF_shift = 2 }
+	SAF_apply_shift_to_hertzog = yes
+}
+
+SAF_balance_to_hertzog_major = {
+	set_temp_variable = { SAF_shift = 6 }
+	SAF_apply_shift_to_hertzog = yes
+}
+
+SAF_balance_to_smuts = {
+	set_temp_variable = { SAF_shift = 4 }
+	SAF_apply_shift_to_smuts = yes
+}
+
+SAF_balance_to_smuts_small = {
+	set_temp_variable = { SAF_shift = 2 }
+	SAF_apply_shift_to_smuts = yes
+}
+
+SAF_balance_to_smuts_major = {
+	set_temp_variable = { SAF_shift = 6 }
+	SAF_apply_shift_to_smuts = yes
+}
+
+SAF_dismissal_cost_hertzog_bloc = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_cabinet_reshuffle_active } }
+		add_stability = -0.05
+		set_temp_variable = { SAF_shift = 5 }
+		SAF_apply_shift_to_smuts = yes
+	}
+}
+
+SAF_dismissal_cost_smuts_bloc = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_cabinet_reshuffle_active } }
+		add_stability = -0.05
+		set_temp_variable = { SAF_shift = 5 }
+		SAF_apply_shift_to_hertzog = yes
+	}
+}
+
+SAF_publish_cabinet_impact = {
+	set_variable = { SAF_drift_dem = SAF_gross_impact_dem }
+	set_variable = { SAF_drift_non = SAF_gross_impact_non }
+	set_variable = { SAF_drift_net = SAF_gross_impact_dem }
+	subtract_from_variable = { SAF_drift_net = SAF_gross_impact_non }
+	if = {
+		limit = { check_variable = { SAF_drift_net < 0 } }
+		multiply_variable = { SAF_drift_net = -1 }
+	}
+}
+
+SAF_recount_cabinet_impact = {
+	set_variable = { SAF_impact_havenga = 0.15 }
+	if = { limit = { has_completed_focus = SAF_insolvency_act } add_to_variable = { SAF_impact_havenga = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_farmers_assistance_act } add_to_variable = { SAF_impact_havenga = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_workmen_compensation_act } add_to_variable = { SAF_impact_havenga = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_pensions_act } add_to_variable = { SAF_impact_havenga = 0.15 } }
+
+	set_variable = { SAF_impact_pirow = 0.15 }
+	if = { limit = { has_completed_focus = SAF_national_roads_act } add_to_variable = { SAF_impact_pirow = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_iron_and_steel_industry_act } add_to_variable = { SAF_impact_pirow = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_defence_amendment_act } add_to_variable = { SAF_impact_pirow = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_appropriation_act } add_to_variable = { SAF_impact_pirow = 0.15 } }
+
+	set_variable = { SAF_impact_hofmeyr = 0.15 }
+	if = { limit = { has_completed_focus = SAF_broadcasting_act } add_to_variable = { SAF_impact_hofmeyr = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_unemployment_benefits_act } add_to_variable = { SAF_impact_hofmeyr = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_childrens_act } add_to_variable = { SAF_impact_hofmeyr = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_public_health_act } add_to_variable = { SAF_impact_hofmeyr = 0.15 } }
+
+	set_variable = { SAF_impact_duncan = 0.15 }
+	if = { limit = { has_completed_focus = SAF_gold_tax_act } add_to_variable = { SAF_impact_duncan = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_sugar_act } add_to_variable = { SAF_impact_duncan = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_mining_registration_act } add_to_variable = { SAF_impact_duncan = 0.15 } }
+	if = { limit = { has_completed_focus = SAF_land_bank_act } add_to_variable = { SAF_impact_duncan = 0.15 } }
+	set_variable = { SAF_impact_stuttaford = SAF_impact_duncan }
+
+	clr_country_flag = SAF_havenga_seated
+	clr_country_flag = SAF_pirow_seated
+	clr_country_flag = SAF_hofmeyr_seated
+	clr_country_flag = SAF_duncan_seated
+	clr_country_flag = SAF_stuttaford_seated
+	clr_country_flag = SAF_duncan_at_gg
+	if = { limit = { has_idea = SAF_duncan_governor_general } set_country_flag = SAF_duncan_at_gg }
+
+	set_variable = { SAF_gross_impact_non = 0 }
+	if = { limit = { has_idea = SAF_nicolaas_havenga } set_country_flag = SAF_havenga_seated add_to_variable = { SAF_gross_impact_non = SAF_impact_havenga } }
+	if = { limit = { has_idea = SAF_oswald_pirow } set_country_flag = SAF_pirow_seated add_to_variable = { SAF_gross_impact_non = SAF_impact_pirow } }
+
+	set_variable = { SAF_gross_impact_dem = 0 }
+	if = { limit = { has_idea = SAF_jan_hendrik_hofmeyr } set_country_flag = SAF_hofmeyr_seated add_to_variable = { SAF_gross_impact_dem = SAF_impact_hofmeyr } }
+	if = { limit = { has_idea = SAF_sir_patrick_duncan } set_country_flag = SAF_duncan_seated add_to_variable = { SAF_gross_impact_dem = SAF_impact_duncan } }
+	if = { limit = { has_idea = SAF_richard_stuttaford } set_country_flag = SAF_stuttaford_seated add_to_variable = { SAF_gross_impact_dem = SAF_impact_stuttaford } }
+
+	SAF_publish_cabinet_impact = yes
+
+	if = {
+		limit = { has_country_flag = SAF_coalition_resolved }
+		SAF_clear_cabinet_impact = yes
+	}
+}
+
+SAF_clear_cabinet_impact = {
+	set_variable = { SAF_impact_havenga = 0 }
+	set_variable = { SAF_impact_pirow = 0 }
+	set_variable = { SAF_impact_hofmeyr = 0 }
+	set_variable = { SAF_impact_duncan = 0 }
+	set_variable = { SAF_impact_stuttaford = 0 }
+	set_variable = { SAF_gross_impact_non = 0 }
+	set_variable = { SAF_gross_impact_dem = 0 }
+	SAF_publish_cabinet_impact = yes
+}
+
+SAF_weekly_cabinet_drift = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+
+		set_variable = { SAF_dc_drift = SAF_gross_impact_dem }
+		subtract_from_variable = { SAF_dc_drift = SAF_gross_impact_non }
+
+		set_variable = { SAF_dc_non = party_popularity_100@neutrality }
+		set_variable = { SAF_dc_dem = party_popularity_100@democratic }
+		set_variable = { SAF_dc_fas = party_popularity_100@fascism }
+
+		if = {
+			limit = {
+				check_variable = { SAF_dc_drift > 0 }
+				check_variable = { var = SAF_dc_drift value = SAF_dc_non compare = greater_than }
+			}
+			set_variable = { SAF_dc_drift = SAF_dc_non }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_dc_drift < 0 } }
+			set_variable = { SAF_dc_room = SAF_dc_dem }
+			multiply_variable = { SAF_dc_room = -1 }
+			if = {
+				limit = { check_variable = { var = SAF_dc_drift value = SAF_dc_room compare = less_than } }
+				set_variable = { SAF_dc_drift = SAF_dc_room }
+			}
+		}
+
+		if = {
+			limit = { NOT = { check_variable = { SAF_dc_drift = 0 } } }
+
+			add_to_variable = { SAF_dc_dem = SAF_dc_drift }
+			subtract_from_variable = { SAF_dc_non = SAF_dc_drift }
+
+			set_popularities = {
+				democratic = SAF_dc_dem
+				neutrality = SAF_dc_non
+				fascism = SAF_dc_fas
+			}
+		}
+	}
+}
+
+SAF_refresh_cabinet_gap = {
+	set_variable = { SAF_cabinet_gap = party_popularity_100@neutrality }
+	subtract_from_variable = { SAF_cabinet_gap = party_popularity_100@democratic }
+}
+
+SAF_flip_to_smuts = {
+	set_temp_variable = { SAF_flip_absorbed = party_popularity_100@neutrality }
+	set_temp_variable = { SAF_flip_bloc = party_popularity_100@democratic }
+	add_to_temp_variable = { SAF_flip_bloc = SAF_flip_absorbed }
+
+	set_temp_variable = { SAF_flip_fascism = party_popularity_100@fascism }
+	set_temp_variable = { SAF_flip_communism = party_popularity_100@communism }
+
+	set_temp_variable = { SAF_flip_shift = SAF_flip_absorbed }
+	divide_temp_variable = { SAF_flip_shift = 100 }
+	set_temp_variable = { SAF_flip_drain = SAF_flip_shift }
+	multiply_temp_variable = { SAF_flip_drain = -1 }
+
+	effect_tooltip = {
+		add_popularity = { ideology = democratic popularity = SAF_flip_shift }
+		add_popularity = { ideology = neutrality popularity = SAF_flip_drain }
+	}
+
+	hidden_effect = {
+		set_popularities = {
+			democratic = SAF_flip_bloc
+			fascism = SAF_flip_fascism
+			communism = SAF_flip_communism
+		}
+	}
+
+	set_temp_variable = { SAF_flip_cost = SAF_flip_absorbed }
+	if = {
+		limit = { check_variable = { SAF_flip_bloc > 0 } }
+		divide_temp_variable = { SAF_flip_cost = SAF_flip_bloc }
+	}
+	else = {
+		set_temp_variable = { SAF_flip_cost = 0 }
+	}
+	multiply_temp_variable = { SAF_flip_cost = -1 }
+
+	custom_effect_tooltip = SAF_flip_to_smuts_tt
+	add_stability = SAF_flip_cost
+}
+
+SAF_flip_to_hertzog = {
+	set_temp_variable = { SAF_flip_absorbed = party_popularity_100@democratic }
+	set_temp_variable = { SAF_flip_bloc = party_popularity_100@neutrality }
+	add_to_temp_variable = { SAF_flip_bloc = SAF_flip_absorbed }
+
+	set_temp_variable = { SAF_flip_fascism = party_popularity_100@fascism }
+	set_temp_variable = { SAF_flip_communism = party_popularity_100@communism }
+
+	set_temp_variable = { SAF_flip_shift = SAF_flip_absorbed }
+	divide_temp_variable = { SAF_flip_shift = 100 }
+	set_temp_variable = { SAF_flip_drain = SAF_flip_shift }
+	multiply_temp_variable = { SAF_flip_drain = -1 }
+
+	effect_tooltip = {
+		add_popularity = { ideology = neutrality popularity = SAF_flip_shift }
+		add_popularity = { ideology = democratic popularity = SAF_flip_drain }
+	}
+
+	hidden_effect = {
+		set_popularities = {
+			neutrality = SAF_flip_bloc
+			fascism = SAF_flip_fascism
+			communism = SAF_flip_communism
+		}
+	}
+
+	set_temp_variable = { SAF_flip_cost = SAF_flip_absorbed }
+	if = {
+		limit = { check_variable = { SAF_flip_bloc > 0 } }
+		divide_temp_variable = { SAF_flip_cost = SAF_flip_bloc }
+	}
+	else = {
+		set_temp_variable = { SAF_flip_cost = 0 }
+	}
+	multiply_temp_variable = { SAF_flip_cost = -1 }
+
+	custom_effect_tooltip = SAF_flip_to_hertzog_tt
+	add_war_support = SAF_flip_cost
+}
+
+SAF_absorb_to_hertzog = {
+	set_temp_variable = { SAF_flip_absorbed = party_popularity_100@democratic }
+	set_temp_variable = { SAF_flip_bloc = party_popularity_100@neutrality }
+	add_to_temp_variable = { SAF_flip_bloc = SAF_flip_absorbed }
+
+	set_temp_variable = { SAF_flip_fascism = party_popularity_100@fascism }
+	set_temp_variable = { SAF_flip_communism = party_popularity_100@communism }
+
+	set_temp_variable = { SAF_flip_shift = SAF_flip_absorbed }
+	divide_temp_variable = { SAF_flip_shift = 100 }
+	set_temp_variable = { SAF_flip_drain = SAF_flip_shift }
+	multiply_temp_variable = { SAF_flip_drain = -1 }
+	
+	effect_tooltip = {
+		add_popularity = { ideology = neutrality popularity = SAF_flip_shift }
+	}
+
+	hidden_effect = {
+		set_popularities = {
+			neutrality = SAF_flip_bloc
+			fascism = SAF_flip_fascism
+			communism = SAF_flip_communism
+		}
+	}
+}
+
+SAF_absorb_to_smuts = {
+	set_temp_variable = { SAF_flip_absorbed = party_popularity_100@neutrality }
+	set_temp_variable = { SAF_flip_bloc = party_popularity_100@democratic }
+	add_to_temp_variable = { SAF_flip_bloc = SAF_flip_absorbed }
+
+	set_temp_variable = { SAF_flip_fascism = party_popularity_100@fascism }
+	set_temp_variable = { SAF_flip_communism = party_popularity_100@communism }
+
+	set_temp_variable = { SAF_flip_shift = SAF_flip_absorbed }
+	divide_temp_variable = { SAF_flip_shift = 100 }
+	set_temp_variable = { SAF_flip_drain = SAF_flip_shift }
+	multiply_temp_variable = { SAF_flip_drain = -1 }
+
+	effect_tooltip = {
+		add_popularity = { ideology = democratic popularity = SAF_flip_shift }
+	}
+
+	hidden_effect = {
+		set_popularities = {
+			democratic = SAF_flip_bloc
+			fascism = SAF_flip_fascism
+			communism = SAF_flip_communism
+		}
+	}
+}
+
+SAF_refresh_army_and_navy = {
+	set_variable = { SAF_ran_conscription_factor = 0 }
+	set_variable = { SAF_ran_weekly_manpower = 0 }
+	set_variable = { SAF_ran_army_infantry_attack_factor = 0 }
+	set_variable = { SAF_ran_army_infantry_defence_factor = 0 }
+	set_variable = { SAF_ran_army_armor_attack_factor = 0 }
+	set_variable = { SAF_ran_army_armor_defence_factor = 0 }
+	set_variable = { SAF_ran_special_forces_attack_factor = 0 }
+	set_variable = { SAF_ran_special_forces_defence_factor = 0 }
+	set_variable = { SAF_ran_army_attack_factor = 0 }
+	set_variable = { SAF_ran_army_defence_factor = 0 }
+	set_variable = { SAF_ran_army_org_factor = 0 }
+	set_variable = { SAF_ran_army_strength_factor = 0 }
+	set_variable = { SAF_ran_out_of_supply_factor = 0 }
+	set_variable = { SAF_ran_industrial_capacity_factory = 0 }
+	set_variable = { SAF_ran_war_support_weekly = 0 }
+	set_variable = { SAF_ran_stability_weekly = 0 }
+
+	if = {
+		limit = { check_variable = { SAF_segregation_tier = 1 } }
+		subtract_from_variable = { SAF_ran_conscription_factor = 0.55 }
+	}
+	else_if = {
+		limit = { check_variable = { SAF_segregation_tier = 2 } }
+		subtract_from_variable = { SAF_ran_conscription_factor = 0.45 }
+	}
+	else_if = {
+		limit = { check_variable = { SAF_segregation_tier = 3 } }
+		subtract_from_variable = { SAF_ran_conscription_factor = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { SAF_cape_corps_tier = 1 } }
+		add_to_variable = { SAF_ran_weekly_manpower = 2500 }
+	}
+	else_if = {
+		limit = { check_variable = { SAF_cape_corps_tier = 2 } }
+		add_to_variable = { SAF_ran_weekly_manpower = 5000 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_asymmetric_warfare }
+		subtract_from_variable = { SAF_ran_out_of_supply_factor = 0.25 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_south_african_special_forces }
+		add_to_variable = { SAF_ran_special_forces_attack_factor = 0.08 }
+		add_to_variable = { SAF_ran_special_forces_defence_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_infantry_attack_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_infantry_defence_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_armor_attack_factor = 0.08 }
+		add_to_variable = { SAF_ran_army_armor_defence_factor = 0.08 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_crisis_window }
+		if = {
+			limit = { check_variable = { SAF_crisis_rung = 1 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.005 }
+			add_to_variable = { SAF_ran_stability_weekly = 0.005 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_crisis_rung = 2 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.005 }
+			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.10 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_crisis_rung = 3 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.005 }
+			subtract_from_variable = { SAF_ran_stability_weekly = 0.005 }
+			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.25 }
+			add_to_variable = { SAF_ran_army_attack_factor = 0.10 }
+			add_to_variable = { SAF_ran_army_defence_factor = 0.10 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_crisis_rung = 4 } }
+			add_to_variable = { SAF_ran_war_support_weekly = 0.01 }
+			subtract_from_variable = { SAF_ran_stability_weekly = 0.01 }
+			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.50 }
+			add_to_variable = { SAF_ran_army_attack_factor = 0.30 }
+			add_to_variable = { SAF_ran_army_defence_factor = 0.30 }
+			add_to_variable = { SAF_ran_army_org_factor = 0.30 }
+			add_to_variable = { SAF_ran_army_strength_factor = 0.30 }
+		}
+	}
+
+	force_update_dynamic_modifier = yes
+}
+
+SAF_refresh_domestic_situation = {
+	set_variable = { SAF_ds_consumer_goods_expected_value = 0 }
+	set_variable = { SAF_ds_industrial_factory_donations = 0 }
+	set_variable = { SAF_ds_production_factory_start_efficiency_factor = 0 }
+	set_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0 }
+	set_variable = { SAF_ds_production_factory_max_efficiency_factor = 0 }
+	set_variable = { SAF_ds_production_speed_arms_factory_factor = 0 }
+	set_variable = { SAF_ds_war_support_factor = 0 }
+	set_variable = { SAF_ds_political_power_factor = 0 }
+	set_variable = { SAF_ds_industrial_capacity_factory = 0 }
+	set_variable = { SAF_ds_industrial_capacity_dockyard = 0 }
+	set_variable = { SAF_ds_fascism_drift = 0 }
+
+	if = {
+		limit = { has_country_flag = SAF_ossewabrandwag }
+		subtract_from_variable = { SAF_ds_industrial_capacity_factory = 0.10 }
+		subtract_from_variable = { SAF_ds_industrial_capacity_dockyard = 0.10 }
+		add_to_variable = { SAF_ds_fascism_drift = 0.01 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_expand_the_rand_mines }
+		subtract_from_variable = { SAF_ds_consumer_goods_expected_value = 0.05 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_gsa_window }
+		add_to_variable = { SAF_ds_war_support_factor = 0.10 }
+		add_to_variable = { SAF_ds_political_power_factor = 0.10 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_drb_window }
+		add_to_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0.25 }
+		add_to_variable = { SAF_ds_production_factory_start_efficiency_factor = 0.25 }
+		subtract_from_variable = { SAF_ds_production_speed_arms_factory_factor = 0.1 }
+		subtract_from_variable = { SAF_ds_production_factory_max_efficiency_factor = 0.1 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_reserve_bank_repayment }
+		add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 }
+	}
+
+	if = {
+		limit = { has_country_flag = SAF_british_loan_small }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 5 }
+	}
+	if = {
+		limit = { has_country_flag = SAF_british_loan_large }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 10 }
+	}
+	if = {
+		limit = { has_country_flag = SAF_american_loan_small }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 5 }
+	}
+	if = {
+		limit = { has_country_flag = SAF_american_loan_large }
+		add_to_variable = { SAF_ds_industrial_factory_donations = 10 }
+	}
+
+	force_update_dynamic_modifier = yes
+}
+
+SAF_zero_cabinet_spirit = {
+	set_variable = { SAF_cab_stability_factor = 0 }
+	set_variable = { SAF_cab_war_support_factor = 0 }
+	set_variable = { SAF_cab_political_power_factor = 0 }
+	set_variable = { SAF_cab_conscription_factor = 0 }
+	set_variable = { SAF_cab_fascism_drift = 0 }
+}
+
+SAF_clear_cabinet_spirit = {
+	hidden_effect = {
+		SAF_zero_cabinet_spirit = yes
+		set_variable = { SAF_cabinet_spirit_now = 0 }
+		force_update_dynamic_modifier = yes
+	}
+}
+
+SAF_refresh_cabinet_spirit = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+
+		set_temp_variable = { SAF_spirit_target = 3 }
+		if = {
+			limit = { check_variable = { SAF_cabinet_gap > 20 } }
+			set_temp_variable = { SAF_spirit_target = 1 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_cabinet_gap > 10 } }
+			set_temp_variable = { SAF_spirit_target = 2 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_cabinet_gap > -10 } }
+			set_temp_variable = { SAF_spirit_target = 3 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_cabinet_gap > -20 } }
+			set_temp_variable = { SAF_spirit_target = 4 }
+		}
+		else = {
+			set_temp_variable = { SAF_spirit_target = 5 }
+		}
+		if = {
+			limit = {
+				NOT = { check_variable = { var = SAF_cabinet_spirit_now value = SAF_spirit_target compare = equals } }
+			}
+			SAF_zero_cabinet_spirit = yes
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 1 } }
+				set_variable = { SAF_cab_stability_factor = 0.10 }
+				set_variable = { SAF_cab_war_support_factor = -0.10 }
+				set_variable = { SAF_cab_conscription_factor = -0.10 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 2 } }
+				set_variable = { SAF_cab_stability_factor = 0.05 }
+				set_variable = { SAF_cab_political_power_factor = -0.10 }
+				set_variable = { SAF_cab_war_support_factor = -0.05 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 3 } }
+				set_variable = { SAF_cab_political_power_factor = -0.15 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 4 } }
+				set_variable = { SAF_cab_war_support_factor = 0.05 }
+				set_variable = { SAF_cab_political_power_factor = -0.10 }
+				set_variable = { SAF_cab_stability_factor = -0.05 }
+			}
+			if = {
+				limit = { check_variable = { SAF_spirit_target = 5 } }
+				set_variable = { SAF_cab_war_support_factor = 0.10 }
+				set_variable = { SAF_cab_stability_factor = -0.10 }
+				set_variable = { SAF_cab_fascism_drift = 0.01 }
+			}
+			set_variable = { SAF_cabinet_spirit_now = SAF_spirit_target }
+			force_update_dynamic_modifier = yes
+		}
+
+		SAF_start_walk_out_watch = yes
+	}
+}
+
+SAF_start_walk_out_watch = {
+	if = {
+		limit = {
+			NOT = { has_country_flag = SAF_walk_out_watch }
+			has_country_flag = SAF_cabinet_open
+			OR = {
+				check_variable = { SAF_cabinet_spirit_now = 1 }
+				check_variable = { SAF_cabinet_spirit_now = 5 }
+			}
+		}
+		set_country_flag = SAF_walk_out_watch
+		country_event = { id = SAF.20 days = 1 }
+	}
+}
+
+SAF_begin_walk_out_countdown = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_walk_out_countdown } }
+		set_country_flag = SAF_walk_out_countdown
+		add_ideas = SAF_walk_out_crisis
+		country_event = { id = SAF.21 }
+	}
+}
+
+SAF_end_walk_out_countdown = {
+	clr_country_flag = SAF_walk_out_countdown
+	hidden_effect = {
+		remove_ideas = SAF_walk_out_crisis
+	}
+}
+
+SAF_the_division = {
+	set_temp_variable = { SAF_flip_before_dem = party_popularity_100@democratic }
+	set_temp_variable = { SAF_flip_before_non = party_popularity_100@neutrality }
+
+	set_temp_variable = { SAF_flip_absorbed = SAF_flip_before_non }
+	set_temp_variable = { SAF_flip_bloc = SAF_flip_before_dem }
+	add_to_temp_variable = { SAF_flip_bloc = SAF_flip_absorbed }
+
+	set_temp_variable = { SAF_flip_fascism = party_popularity_100@fascism }
+	set_temp_variable = { SAF_flip_communism = party_popularity_100@communism }
+
+	set_temp_variable = { SAF_flip_shift = SAF_flip_absorbed }
+	divide_temp_variable = { SAF_flip_shift = 100 }
+	set_temp_variable = { SAF_flip_drain = SAF_flip_shift }
+	multiply_temp_variable = { SAF_flip_drain = -1 }
+
+	effect_tooltip = {
+		add_popularity = { ideology = democratic popularity = SAF_flip_shift }
+	}
+
+	hidden_effect = {
+		set_popularities = {
+			democratic = SAF_flip_bloc
+			fascism = SAF_flip_fascism
+			communism = SAF_flip_communism
+		}
+	}
+
+	set_temp_variable = { SAF_flip_cost = SAF_flip_absorbed }
+	if = {
+		limit = { check_variable = { SAF_flip_bloc > 0 } }
+		divide_temp_variable = { SAF_flip_cost = SAF_flip_bloc }
+	}
+	else = {
+		set_temp_variable = { SAF_flip_cost = 0 }
+	}
+	multiply_temp_variable = { SAF_flip_cost = -1 }
+
+	if = {
+		limit = {
+			check_variable = {
+				var = SAF_flip_before_non
+				value = SAF_flip_before_dem
+				compare = greater_than_or_equals
+			}
+		}
+		add_stability = SAF_flip_cost
+		add_war_support = SAF_flip_cost
+	}
+}
+
+SAF_resolve_to_hertzog = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+
+		set_country_flag = SAF_coalition_resolved
+		SAF_clear_cabinet_spirit = yes
+
+		SAF_flip_to_hertzog = yes
+
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		promote_character = {
+			character = SAF_jbm_hertzog
+			ideology = oligarchism
+		}
+
+		remove_ideas = SAF_smuts_deputy_prime_minister
+
+		set_variable = { SAF_smuts_debuff_level = 0 }
+		SAF_recalc_smuts_debuff = yes
+
+		custom_effect_tooltip = SAF_hertzog_prevails_warning_tt
+
+		add_dynamic_modifier = { modifier = SAF_hertzog_africa_crisis_dm }
+		SAF_recount_africa_crisis = yes
+
+		complete_national_focus = SAF_hertzog_government
+
+		country_event = { id = SAF.12 hours = 2 }
+	}
+}
+
+SAF_resolve_to_smuts = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+
+		set_country_flag = SAF_coalition_resolved
+		SAF_clear_cabinet_spirit = yes
+
+		SAF_flip_to_smuts = yes
+
+		promote_character = SAF_jan_smuts
+
+		remove_ideas = SAF_smuts_deputy_prime_minister
+		add_country_leader_trait = SAF_smuts_soldier_statesman_2
+
+		add_ideas = SAF_hertzog_in_opposition
+
+		set_variable = { SAF_hertzog_debuff_level = 0 }
+		SAF_recalc_hertzog_debuff = yes
+
+		complete_national_focus = SAF_smuts_government
+
+		country_event = { id = SAF.13 hours = 2 }
+	}
+}
+
+SAF_walk_out_to_hertzog = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+		set_country_flag = SAF_coalition_resolved
+		set_country_flag = SAF_walk_out_hertzog_won
+		SAF_clear_cabinet_spirit = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		SAF_clear_cabinet_impact = yes
+		SAF_refresh_cabinet_gap = yes
+		SAF_absorb_to_hertzog = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		remove_ideas = SAF_smuts_deputy_prime_minister
+		custom_effect_tooltip = generic_skip_one_line_tt
+		
+		effect_tooltip = {
+			remove_ideas = SAF_jan_hendrik_hofmeyr
+			remove_ideas = SAF_sir_patrick_duncan
+		}
+		hidden_effect = {
+			remove_ideas = SAF_jan_hendrik_hofmeyr
+			remove_ideas = SAF_sir_patrick_duncan
+			remove_ideas = SAF_richard_stuttaford
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_country_flag = SAF_smuts_wing_frozen
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		promote_character = {
+			character = SAF_jbm_hertzog
+			ideology = oligarchism
+		}
+		hidden_effect = {
+			set_can_be_fired_in_advisor_role = {
+				character = SAF_nicolaas_havenga
+				slot = political_advisor
+				value = yes
+			}
+			set_can_be_fired_in_advisor_role = {
+				character = SAF_oswald_pirow
+				slot = political_advisor
+				value = yes
+			}
+		}
+		set_variable = { SAF_hertzog_debuff_level = 8 }
+		SAF_recalc_hertzog_debuff = yes
+		set_variable = { SAF_smuts_debuff_level = 0 }
+		SAF_recalc_smuts_debuff = yes
+
+		custom_effect_tooltip = SAF_hertzog_prevails_warning_tt
+		add_dynamic_modifier = { modifier = SAF_hertzog_africa_crisis_dm }
+		SAF_recount_africa_crisis = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		complete_national_focus = SAF_hertzog_government
+		clr_country_flag = SAF_cabinet_open
+		clr_country_flag = SAF_walk_out_watch
+		if = {
+			limit = { has_dynamic_modifier = { modifier = SAF_cabinet } }
+			remove_dynamic_modifier = { modifier = SAF_cabinet }
+		}
+		hidden_effect = {
+			country_event = { id = SAF.23 hours = 2 }
+		}
+	}
+}
+
+SAF_walk_out_to_smuts = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+		set_country_flag = SAF_coalition_resolved
+		set_country_flag = SAF_walk_out_smuts_won
+		SAF_clear_cabinet_spirit = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		SAF_clear_cabinet_impact = yes
+		SAF_refresh_cabinet_gap = yes
+		SAF_absorb_to_smuts = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		remove_ideas = SAF_smuts_deputy_prime_minister
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		effect_tooltip = {
+			remove_ideas = SAF_nicolaas_havenga
+			remove_ideas = SAF_oswald_pirow
+		}
+		hidden_effect = {
+			remove_ideas = SAF_nicolaas_havenga
+			remove_ideas = SAF_oswald_pirow
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_country_flag = SAF_hertzog_wing_frozen
+		promote_character = SAF_jan_smuts
+		add_country_leader_trait = SAF_smuts_soldier_statesman
+		hidden_effect = {
+			set_can_be_fired_in_advisor_role = {
+				character = SAF_jan_hendrik_hofmeyr
+				slot = political_advisor
+				value = yes
+			}
+			set_can_be_fired_in_advisor_role = {
+				character = SAF_sir_patrick_duncan
+				slot = political_advisor
+				value = yes
+			}
+			set_can_be_fired_in_advisor_role = {
+				character = SAF_richard_stuttaford
+				slot = political_advisor
+				value = yes
+			}
+		}
+		set_variable = { SAF_smuts_debuff_level = 8 }
+		SAF_recalc_smuts_debuff = yes
+		set_variable = { SAF_hertzog_debuff_level = 0 }
+		SAF_recalc_hertzog_debuff = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		complete_national_focus = SAF_smuts_government
+		clr_country_flag = SAF_cabinet_open
+		clr_country_flag = SAF_walk_out_watch
+		if = {
+			limit = { has_dynamic_modifier = { modifier = SAF_cabinet } }
+			remove_dynamic_modifier = { modifier = SAF_cabinet }
+		}
+		hidden_effect = {
+			country_event = { id = SAF.23 hours = 2 }
+		}
+	}
+}
+
+SAF_legacy_industrial_buildout = {
+	275 = {
+		add_resource = {
+			type = steel
+			amount = 20
+		}
+	}
+
+	build_railway = { level = 2 path = { 1468 4556 12648 10400 } }
+	build_railway = { level = 2 path = { 1468 7576 } }
+	build_railway = { level = 2 path = { 4696 1833 } }
+	build_railway = { path = { 12589 10415 12692 12547 4696 } }
+	build_railway = { path = { 10697 5231 } }
+	build_railway = { path = { 10697 4822 4696 } }
+	build_railway = { path = { 1509 10697 } }
+	build_railway = { level = 2 path = { 2229 10963 } }
+	build_railway = { path = { 10963 4879 } }
+	build_railway = { path = { 10963 7605 5203 1509 } }
+	build_railway = { level = 2 path = { 8214 10668 5231 } }
+	build_railway = { level = 2 path = { 2213 10400 } }
+	build_railway = { level = 2 path = { 1688 5106 10400 } }
+	build_railway = { path = { 10929 1874 12963 8214 } }
+}
+
+SAF_recount_africa_crisis = {
+	set_variable = { SAF_hac_key_lost = 0 }
+	set_variable = { SAF_hac_lost = 0 }
+	if = {
+		limit = { has_war = yes }
+
+		if = { limit = { any_country = { the_axis = yes controls_state = 305 } } add_to_variable = { SAF_hac_key_lost = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 456 } } add_to_variable = { SAF_hac_key_lost = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 436 } } add_to_variable = { SAF_hac_key_lost = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 587 } } add_to_variable = { SAF_hac_key_lost = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 551 } } add_to_variable = { SAF_hac_key_lost = 1 } }
+
+		if = {
+			limit = { any_country = { the_axis = yes controls_state = 436 } }
+			if = {
+				limit = { NOT = { has_country_flag = SAF_aswan_lost_once } }
+				set_country_flag = SAF_aswan_lost_once
+				set_temp_variable = { SAF_hac_iea_first = 1 }
+			}
+		}
+
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 602 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 452 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 584 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 410 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 585 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 447 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 305 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 456 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_egypt = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 424 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 586 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 436 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_segypt = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 588 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 685 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 587 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_sudanf = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 549 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 601 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 551 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_ssudan = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 268 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 269 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_somali = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 548 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 547 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 546 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 690 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_eafrica = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 277 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 687 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 688 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 689 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 692 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 295 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_fafrica = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 510 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 539 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_congo = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 691 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 292 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 283 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_safrica = SAF_hac_g }
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 545 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 542 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_rhodesia = SAF_hac_g }
+
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 579 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 279 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 624 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 625 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 450 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 449 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 606 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 515 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 448 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		add_to_variable = { SAF_hac_lost = SAF_hac_g }
+		set_temp_variable = { SAF_hac_cur_libya = SAF_hac_g }
+
+		set_temp_variable = { SAF_hac_g = 0 }
+		if = { limit = { any_country = { the_axis = yes controls_state = 559 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 611 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 610 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 612 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 271 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 38 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		if = { limit = { any_country = { the_axis = yes controls_state = 550 } } add_to_temp_variable = { SAF_hac_g = 1 } }
+		set_temp_variable = { SAF_hac_cur_iea = SAF_hac_g }
+		if = {
+			limit = { has_country_flag = SAF_aswan_lost_once }
+			add_to_variable = { SAF_hac_lost = SAF_hac_g }
+			if = {
+				limit = { check_variable = { SAF_hac_iea_first = 1 } }
+				add_to_variable = { SAF_hac_lost_prev = SAF_hac_g }
+			}
+		}
+
+		if = {
+			limit = {
+				any_country = { the_axis = yes controls_state = 453 }
+				any_country = { the_axis = yes controls_state = 454 }
+				any_country = { the_axis = yes controls_state = 455 }
+				any_country = { the_axis = yes controls_state = 554 }
+				any_country = { the_axis = yes controls_state = 590 }
+				any_country = { the_axis = yes controls_state = 589 }
+				any_country = { the_axis = yes controls_state = 591 }
+				any_country = { the_axis = yes controls_state = 592 }
+				any_country = { the_axis = yes controls_state = 593 }
+				any_country = { the_axis = yes controls_state = 291 }
+				any_country = { the_axis = yes controls_state = 594 }
+			}
+			add_to_variable = { SAF_hac_lost = 1 }
+			set_temp_variable = { SAF_hac_me_lost = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			has_war = yes
+			NOT = { has_country_flag = SAF_hac_baseline_set }
+		}
+		set_country_flag = SAF_hac_baseline_set
+		set_variable = { SAF_hac_lost_prev = SAF_hac_lost }
+		set_variable = { SAF_hac_prev_libya = SAF_hac_cur_libya }
+	}
+	if = {
+		limit = { NOT = { has_war = yes } }
+		clr_country_flag = SAF_hac_baseline_set
+	}
+
+	set_temp_variable = { SAF_hac_delta = SAF_hac_lost }
+	subtract_from_temp_variable = { SAF_hac_delta = SAF_hac_lost_prev }
+	set_variable = { SAF_hac_lost_prev = SAF_hac_lost }
+
+	set_variable = { SAF_hac_tier = 0 }
+	if = {
+		limit = { has_war = yes }
+		if = {
+			limit = { check_variable = { SAF_hac_delta > 5 } }
+			set_variable = { SAF_hac_tier = 3 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_hac_delta > 2 } }
+			set_variable = { SAF_hac_tier = 2 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_hac_delta > 0 } }
+			set_variable = { SAF_hac_tier = 1 }
+		}
+	}
+
+	set_variable = { SAF_hac_mult = 1 }
+	if = {
+		limit = { check_variable = { SAF_hac_tier = 3 } }
+		set_variable = { SAF_hac_mult = 2 }
+	}
+	else_if = {
+		limit = { check_variable = { SAF_hac_tier = 2 } }
+		set_variable = { SAF_hac_mult = 1.5 }
+	}
+
+	set_temp_variable = { SAF_hac_new_w = 0 }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_egypt }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_egypt }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 0.5 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 0.5 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_egypt = SAF_hac_cur_egypt }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_segypt }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_segypt }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_segypt = SAF_hac_cur_segypt }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_sudanf }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_sudanf }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 1.25 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 1.25 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_sudanf = SAF_hac_cur_sudanf }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_ssudan }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_ssudan }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 1.25 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 1.25 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_ssudan = SAF_hac_cur_ssudan }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_somali }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_somali }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 1.5 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 1.5 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_somali = SAF_hac_cur_somali }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_eafrica }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_eafrica }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 2 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 2 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_eafrica = SAF_hac_cur_eafrica }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_fafrica }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_fafrica }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 2 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 2 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_fafrica = SAF_hac_cur_fafrica }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_congo }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_congo }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 2.5 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 2.5 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_congo = SAF_hac_cur_congo }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_safrica }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_safrica }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 3 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 3 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_safrica = SAF_hac_cur_safrica }
+
+	set_temp_variable = { SAF_hac_n = SAF_hac_cur_rhodesia }
+	subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_rhodesia }
+	if = {
+		limit = { check_variable = { SAF_hac_n > 0 } }
+		multiply_temp_variable = { SAF_hac_n = 5 }
+		add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_n < 0 }
+		}
+		multiply_temp_variable = { SAF_hac_n = 5 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+	}
+	set_variable = { SAF_hac_prev_rhodesia = SAF_hac_cur_rhodesia }
+
+	if = {
+		limit = {
+			has_war = yes
+			check_variable = { SAF_hac_me_lost = 1 }
+			NOT = { has_country_flag = SAF_hac_me_billed }
+		}
+		set_country_flag = SAF_hac_me_billed
+		add_to_variable = { SAF_hac_bank = 5 }
+	}
+
+	if = {
+		limit = { has_war = yes }
+		set_temp_variable = { SAF_hac_n = SAF_hac_cur_libya }
+		subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_libya }
+		multiply_temp_variable = { SAF_hac_n = 0.5 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+		set_variable = { SAF_hac_prev_libya = SAF_hac_cur_libya }
+	}
+
+	if = {
+		limit = { check_variable = { SAF_hac_iea_first = 1 } }
+		set_temp_variable = { SAF_hac_n = SAF_hac_cur_iea }
+		multiply_temp_variable = { SAF_hac_n = 1.5 }
+		add_to_variable = { SAF_hac_bank = SAF_hac_n }
+		set_variable = { SAF_hac_prev_iea = SAF_hac_cur_iea }
+	}
+	else_if = {
+		limit = {
+			has_war = yes
+			has_country_flag = SAF_aswan_lost_once
+		}
+		set_temp_variable = { SAF_hac_n = SAF_hac_cur_iea }
+		subtract_from_temp_variable = { SAF_hac_n = SAF_hac_prev_iea }
+		if = {
+			limit = { check_variable = { SAF_hac_n > 0 } }
+			multiply_temp_variable = { SAF_hac_n = 1.5 }
+			add_to_temp_variable = { SAF_hac_new_w = SAF_hac_n }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_hac_n < 0 } }
+			multiply_temp_variable = { SAF_hac_n = 1.5 }
+			add_to_variable = { SAF_hac_bank = SAF_hac_n }
+		}
+		set_variable = { SAF_hac_prev_iea = SAF_hac_cur_iea }
+	}
+
+	multiply_temp_variable = { SAF_hac_new_w = SAF_hac_mult }
+	add_to_variable = { SAF_hac_bank = SAF_hac_new_w }
+
+	if = {
+		limit = { has_completed_focus = SAF_news_from_the_north }
+
+		set_temp_variable = { SAF_hac_floor = 0 }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_egypt }
+		multiply_temp_variable = { SAF_hac_fw = 0.5 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_cur_segypt }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_sudanf }
+		multiply_temp_variable = { SAF_hac_fw = 1.25 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_ssudan }
+		multiply_temp_variable = { SAF_hac_fw = 1.25 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_somali }
+		multiply_temp_variable = { SAF_hac_fw = 1.5 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_eafrica }
+		multiply_temp_variable = { SAF_hac_fw = 2 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_fafrica }
+		multiply_temp_variable = { SAF_hac_fw = 2 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_congo }
+		multiply_temp_variable = { SAF_hac_fw = 2.5 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_safrica }
+		multiply_temp_variable = { SAF_hac_fw = 3 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_rhodesia }
+		multiply_temp_variable = { SAF_hac_fw = 5 }
+		add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		if = {
+			limit = { has_country_flag = SAF_aswan_lost_once }
+			set_temp_variable = { SAF_hac_fw = SAF_hac_cur_iea }
+			multiply_temp_variable = { SAF_hac_fw = 1.5 }
+			add_to_temp_variable = { SAF_hac_floor = SAF_hac_fw }
+		}
+
+		if = {
+			limit = {
+				check_variable = { SAF_hac_delta < 1 }
+				check_variable = { var = SAF_hac_bank value = SAF_hac_floor compare = greater_than }
+			}
+			subtract_from_variable = { SAF_hac_bank = 2.5 }
+			if = {
+				limit = { check_variable = { var = SAF_hac_bank value = SAF_hac_floor compare = less_than } }
+				set_variable = { SAF_hac_bank = SAF_hac_floor }
+			}
+		}
+	}
+
+	set_variable = { SAF_hac_stability = SAF_hac_key_lost }
+	multiply_variable = { SAF_hac_stability = -0.03 }
+	set_temp_variable = { SAF_hac_dyn = SAF_hac_bank }
+	multiply_temp_variable = { SAF_hac_dyn = -0.01 }
+	add_to_variable = { SAF_hac_stability = SAF_hac_dyn }
+	force_update_dynamic_modifier = yes
+}
+
+SAF_measure_cabinet_progress = {
+	set_variable = { SAF_hertzog_progress = 0 }
+	set_variable = { SAF_smuts_progress = 0 }
+
+	if = {
+		limit = { has_completed_focus = SAF_pensions_act }
+		add_to_variable = { SAF_hertzog_progress = 5 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_workmen_compensation_act }
+		add_to_variable = { SAF_hertzog_progress = 4 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_farmers_assistance_act }
+		add_to_variable = { SAF_hertzog_progress = 3 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_insolvency_act }
+		add_to_variable = { SAF_hertzog_progress = 2 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_the_havenga_pillar }
+		add_to_variable = { SAF_hertzog_progress = 1 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_appropriation_act }
+		add_to_variable = { SAF_hertzog_progress = 5 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_defence_amendment_act }
+		add_to_variable = { SAF_hertzog_progress = 4 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_iron_and_steel_industry_act }
+		add_to_variable = { SAF_hertzog_progress = 3 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_national_roads_act }
+		add_to_variable = { SAF_hertzog_progress = 2 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_the_pirow_program }
+		add_to_variable = { SAF_hertzog_progress = 1 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_public_health_act }
+		add_to_variable = { SAF_smuts_progress = 5 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_childrens_act }
+		add_to_variable = { SAF_smuts_progress = 4 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_unemployment_benefits_act }
+		add_to_variable = { SAF_smuts_progress = 3 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_broadcasting_act }
+		add_to_variable = { SAF_smuts_progress = 2 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_the_hofmeyr_interventions }
+		add_to_variable = { SAF_smuts_progress = 1 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_land_bank_act }
+		add_to_variable = { SAF_smuts_progress = 5 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_mining_registration_act }
+		add_to_variable = { SAF_smuts_progress = 4 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_sugar_act }
+		add_to_variable = { SAF_smuts_progress = 3 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_gold_tax_act }
+		add_to_variable = { SAF_smuts_progress = 2 }
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_the_duncan_boom }
+		add_to_variable = { SAF_smuts_progress = 1 }
+	}
+
+}
+
+SAF_sync_radicalised_cabinet_dm = {
+	if = {
+		limit = {
+			OR = {
+				check_variable = { SAF_hertzog_debuff_level > 0 }
+				check_variable = { SAF_smuts_debuff_level > 0 }
+			}
+		}
+		if = {
+			limit = { NOT = { has_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm } } }
+			add_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm }
+		}
+	}
+	else = {
+		if = {
+			limit = { has_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm } }
+			remove_dynamic_modifier = { modifier = SAF_radicalised_cabinet_dm }
+		}
+	}
+}
+
+SAF_recalc_hertzog_debuff = {
+	clamp_variable = { var = SAF_hertzog_debuff_level min = 0 max = 8 }
+
+	set_variable = { SAF_hzd_stability = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_stability = SAF_hzd_inc_stab }
+	set_variable = { SAF_hzd_ws = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_ws = SAF_hzd_inc_ws }
+	set_variable = { SAF_hzd_pp = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_pp = SAF_hzd_inc_pp }
+	set_variable = { SAF_hzd_output = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_output = SAF_hzd_inc_output }
+
+	set_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
+	add_to_temp_variable = { SAF_prev = 1 }
+	clamp_temp_variable = { var = SAF_prev min = 0 max = 8 }
+	subtract_from_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
+	set_variable = { SAF_hzd_up_stab = SAF_prev }
+	multiply_variable = { SAF_hzd_up_stab = SAF_hzd_inc_stab }
+	set_variable = { SAF_hzd_up_ws = SAF_prev }
+	multiply_variable = { SAF_hzd_up_ws = SAF_hzd_inc_ws }
+	set_variable = { SAF_hzd_up_pp = SAF_prev }
+	multiply_variable = { SAF_hzd_up_pp = SAF_hzd_inc_pp }
+	set_variable = { SAF_hzd_up_output = SAF_prev }
+	multiply_variable = { SAF_hzd_up_output = SAF_hzd_inc_output }
+
+	set_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
+	add_to_temp_variable = { SAF_prev = -2 }
+	clamp_temp_variable = { var = SAF_prev min = 0 max = 8 }
+	subtract_from_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
+	set_variable = { SAF_hzd_dn_stab = SAF_prev }
+	multiply_variable = { SAF_hzd_dn_stab = SAF_hzd_inc_stab }
+	set_variable = { SAF_hzd_dn_ws = SAF_prev }
+	multiply_variable = { SAF_hzd_dn_ws = SAF_hzd_inc_ws }
+	set_variable = { SAF_hzd_dn_pp = SAF_prev }
+	multiply_variable = { SAF_hzd_dn_pp = SAF_hzd_inc_pp }
+	set_variable = { SAF_hzd_dn_output = SAF_prev }
+	multiply_variable = { SAF_hzd_dn_output = SAF_hzd_inc_output }
+
+	SAF_sync_radicalised_cabinet_dm = yes
+
+	force_update_dynamic_modifier = yes
+}
+
+SAF_recalc_smuts_debuff = {
+	clamp_variable = { var = SAF_smuts_debuff_level min = 0 max = 8 }
+
+	set_variable = { SAF_smd_goods = SAF_smuts_debuff_level }
+	multiply_variable = { SAF_smd_goods = SAF_smd_inc_goods }
+	set_variable = { SAF_smd_mob = SAF_smuts_debuff_level }
+	multiply_variable = { SAF_smd_mob = SAF_smd_inc_mob }
+
+	set_temp_variable = { SAF_prev = SAF_smuts_debuff_level }
+	add_to_temp_variable = { SAF_prev = 1 }
+	clamp_temp_variable = { var = SAF_prev min = 0 max = 8 }
+	subtract_from_temp_variable = { SAF_prev = SAF_smuts_debuff_level }
+	set_variable = { SAF_smd_up_goods = SAF_prev }
+	multiply_variable = { SAF_smd_up_goods = SAF_smd_inc_goods }
+	set_variable = { SAF_smd_up_mob = SAF_prev }
+	multiply_variable = { SAF_smd_up_mob = SAF_smd_inc_mob }
+
+	set_temp_variable = { SAF_prev = SAF_smuts_debuff_level }
+	add_to_temp_variable = { SAF_prev = -2 }
+	clamp_temp_variable = { var = SAF_prev min = 0 max = 8 }
+	subtract_from_temp_variable = { SAF_prev = SAF_smuts_debuff_level }
+	set_variable = { SAF_smd_dn_goods = SAF_prev }
+	multiply_variable = { SAF_smd_dn_goods = SAF_smd_inc_goods }
+	set_variable = { SAF_smd_dn_mob = SAF_prev }
+	multiply_variable = { SAF_smd_dn_mob = SAF_smd_inc_mob }
+
+	SAF_sync_radicalised_cabinet_dm = yes
+
+	force_update_dynamic_modifier = yes
+}
+
+SAF_hertzog_debuff_up = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_walk_out_hertzog_won } }
+		if = {
+			limit = { check_variable = { SAF_hertzog_debuff_level < 8 } }
+			custom_effect_tooltip = SAF_hertzog_resistance_up_tt
+		}
+		hidden_effect = {
+			add_to_variable = { SAF_hertzog_debuff_level = 1 }
+			SAF_recalc_hertzog_debuff = yes
+		}
+	}
+}
+
+SAF_hertzog_debuff_down = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_walk_out_hertzog_won } }
+		if = {
+			limit = { check_variable = { SAF_hertzog_debuff_level > 0 } }
+			custom_effect_tooltip = SAF_hertzog_resistance_down_tt
+		}
+		hidden_effect = {
+			add_to_variable = { SAF_hertzog_debuff_level = -2 }
+			SAF_recalc_hertzog_debuff = yes
+		}
+	}
+}
+
+SAF_smuts_debuff_up = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_walk_out_smuts_won } }
+		if = {
+			limit = { check_variable = { SAF_smuts_debuff_level < 8 } }
+			custom_effect_tooltip = SAF_smuts_resistance_up_tt
+		}
+		hidden_effect = {
+			add_to_variable = { SAF_smuts_debuff_level = 1 }
+			SAF_recalc_smuts_debuff = yes
+		}
+	}
+}
+
+SAF_smuts_debuff_down = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_walk_out_smuts_won } }
+		if = {
+			limit = { check_variable = { SAF_smuts_debuff_level > 0 } }
+			custom_effect_tooltip = SAF_smuts_resistance_down_tt
+		}
+		hidden_effect = {
+			add_to_variable = { SAF_smuts_debuff_level = -2 }
+			SAF_recalc_smuts_debuff = yes
+		}
+	}
+}
+
+SAF_convert_one_civ_to_mil = {
+	random_owned_state = {
+		limit = {
+			is_core_of = ROOT
+			industrial_complex > 0
+		}
+		remove_building = {
+			type = industrial_complex
+			level = 1
+		}
+		add_building_construction = {
+			type = arms_factory
+			level = 1
+			instant_build = yes
+		}
+	}
+}
+
+SAF_gsa_pay_one_civ = {
+	random_owned_state = {
+		limit = { industrial_complex > 0 }
+		remove_building = {
+			type = industrial_complex
+			level = 1
+		}
+	}
+	ENG = {
+		add_offsite_building = { type = industrial_complex level = 1 }
+	}
+}
+
+SAF_havenga_tier_2 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_treasury_programme_1 add_idea = SAF_treasury_programme_2 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_1 slot = political_advisor }
+		add_trait    = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_2 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_havenga = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_havenga_tier_3 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_treasury_programme_2 add_idea = SAF_treasury_programme_3 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_2 slot = political_advisor }
+		add_trait    = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_3 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_havenga = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_havenga_tier_4 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_treasury_programme_3 add_idea = SAF_treasury_programme_4 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_3 slot = political_advisor }
+		add_trait    = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_4 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_havenga = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_havenga_tier_5 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_treasury_programme_4 add_idea = SAF_treasury_programme_5 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_4 slot = political_advisor }
+		add_trait    = { character = SAF_nicolaas_havenga trait = SAF_havenga_treasury_5 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_havenga = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_pirow_tier_2 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_defence_programme_1 add_idea = SAF_defence_programme_2 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_oswald_pirow trait = SAF_pirow_programme_1 slot = political_advisor }
+		add_trait    = { character = SAF_oswald_pirow trait = SAF_pirow_programme_2 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_pirow = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_pirow_tier_3 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_defence_programme_2 add_idea = SAF_defence_programme_3 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_oswald_pirow trait = SAF_pirow_programme_2 slot = political_advisor }
+		add_trait    = { character = SAF_oswald_pirow trait = SAF_pirow_programme_3 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_pirow = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_pirow_tier_4 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_defence_programme_3 add_idea = SAF_defence_programme_4 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_oswald_pirow trait = SAF_pirow_programme_3 slot = political_advisor }
+		add_trait    = { character = SAF_oswald_pirow trait = SAF_pirow_programme_4 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_pirow = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_pirow_tier_5 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_defence_programme_4 add_idea = SAF_defence_programme_5 }
+	}
+	custom_effect_tooltip = SAF_impact_step_non_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_oswald_pirow trait = SAF_pirow_programme_4 slot = political_advisor }
+		add_trait    = { character = SAF_oswald_pirow trait = SAF_pirow_programme_5 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_pirow = 0.15 }
+			add_to_variable = { SAF_gross_impact_non = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_hofmeyr_tier_2 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_interior_programme_1 add_idea = SAF_interior_programme_2 }
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_1 slot = political_advisor }
+		add_trait    = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_2 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_hofmeyr = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_hofmeyr_tier_3 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_interior_programme_2 add_idea = SAF_interior_programme_3 }
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_2 slot = political_advisor }
+		add_trait    = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_3 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_hofmeyr = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_hofmeyr_tier_4 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_interior_programme_3 add_idea = SAF_interior_programme_4 }
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_3 slot = political_advisor }
+		add_trait    = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_4 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_hofmeyr = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_hofmeyr_tier_5 = {
+	effect_tooltip = {
+		swap_ideas = { remove_idea = SAF_interior_programme_4 add_idea = SAF_interior_programme_5 }
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		remove_trait = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_4 slot = political_advisor }
+		add_trait    = { character = SAF_jan_hendrik_hofmeyr trait = SAF_hofmeyr_interventions_5 slot = political_advisor }
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_hofmeyr = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_mines_tier_2 = {
+	if = {
+		limit = { has_country_flag = SAF_duncan_at_gg }
+		if = {
+			limit = { check_variable = { SAF_mines_handover = 1 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_1_1 add_idea = SAF_mines_understudy_1_2 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_1 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_2 slot = political_advisor }
+			}
+		}
+	}
+	else = {
+		effect_tooltip = {
+			swap_ideas = { remove_idea = SAF_mines_programme_1 add_idea = SAF_mines_programme_2 }
+		}
+		hidden_effect = {
+			remove_trait = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_1 slot = political_advisor }
+			add_trait    = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_2 slot = political_advisor }
+		}
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_duncan = 0.15 }
+			add_to_variable = { SAF_impact_stuttaford = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_mines_tier_3 = {
+	if = {
+		limit = { has_country_flag = SAF_duncan_at_gg }
+		if = {
+			limit = { check_variable = { SAF_mines_handover = 1 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_1_2 add_idea = SAF_mines_understudy_1_3 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_2 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_3 slot = political_advisor }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { SAF_mines_handover = 2 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_2_2 add_idea = SAF_mines_understudy_2_3 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_2_2 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_2_3 slot = political_advisor }
+			}
+		}
+	}
+	else = {
+		effect_tooltip = {
+			swap_ideas = { remove_idea = SAF_mines_programme_2 add_idea = SAF_mines_programme_3 }
+		}
+		hidden_effect = {
+			remove_trait = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_2 slot = political_advisor }
+			add_trait    = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_3 slot = political_advisor }
+		}
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_duncan = 0.15 }
+			add_to_variable = { SAF_impact_stuttaford = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_mines_tier_4 = {
+	if = {
+		limit = { has_country_flag = SAF_duncan_at_gg }
+		if = {
+			limit = { check_variable = { SAF_mines_handover = 1 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_1_3 add_idea = SAF_mines_understudy_1_4 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_3 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_4 slot = political_advisor }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { SAF_mines_handover = 2 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_2_3 add_idea = SAF_mines_understudy_2_4 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_2_3 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_2_4 slot = political_advisor }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { SAF_mines_handover = 3 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_3_3 add_idea = SAF_mines_understudy_3_4 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_3_3 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_3_4 slot = political_advisor }
+			}
+		}
+	}
+	else = {
+		effect_tooltip = {
+			swap_ideas = { remove_idea = SAF_mines_programme_3 add_idea = SAF_mines_programme_4 }
+		}
+		hidden_effect = {
+			remove_trait = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_3 slot = political_advisor }
+			add_trait    = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_4 slot = political_advisor }
+		}
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_duncan = 0.15 }
+			add_to_variable = { SAF_impact_stuttaford = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_mines_tier_5 = {
+	if = {
+		limit = { has_country_flag = SAF_duncan_at_gg }
+		if = {
+			limit = { check_variable = { SAF_mines_handover = 1 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_1_4 add_idea = SAF_mines_understudy_1_5 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_4 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_5 slot = political_advisor }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { SAF_mines_handover = 2 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_2_4 add_idea = SAF_mines_understudy_2_5 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_2_4 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_2_5 slot = political_advisor }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { SAF_mines_handover = 3 } }
+			effect_tooltip = {
+				swap_ideas = { remove_idea = SAF_mines_understudy_3_4 add_idea = SAF_mines_understudy_3_5 }
+			}
+			hidden_effect = {
+				remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_3_4 slot = political_advisor }
+				add_trait    = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_3_5 slot = political_advisor }
+			}
+		}
+	}
+	else = {
+		effect_tooltip = {
+			swap_ideas = { remove_idea = SAF_mines_programme_4 add_idea = SAF_mines_programme_5 }
+		}
+		hidden_effect = {
+			remove_trait = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_4 slot = political_advisor }
+			add_trait    = { character = SAF_sir_patrick_duncan trait = SAF_duncan_boom_5 slot = political_advisor }
+		}
+	}
+	custom_effect_tooltip = SAF_impact_step_dem_tt
+	hidden_effect = {
+		if = {
+			limit = { NOT = { has_country_flag = SAF_coalition_resolved } }
+			add_to_variable = { SAF_impact_duncan = 0.15 }
+			add_to_variable = { SAF_impact_stuttaford = 0.15 }
+			add_to_variable = { SAF_gross_impact_dem = 0.15 }
+			SAF_publish_cabinet_impact = yes
+		}
+	}
+}
+
+SAF_appoint_mines_minister = {
+	if = {
+		limit = { NOT = { has_country_flag = SAF_duncan_at_gg } }
+		add_ideas = SAF_sir_patrick_duncan
+	}
+	else = {
+		add_ideas = SAF_richard_stuttaford
+		set_variable = { SAF_mines_handover = 1 }
+	}
+}
+
+SAF_hand_mines_to_stuttaford = {
+	hidden_effect = {
+		remove_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_1 slot = political_advisor }
+
+		if = {
+			limit = { has_completed_focus = SAF_sugar_act }
+			set_variable = { SAF_mines_handover = 3 }
+			add_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_3_3 slot = political_advisor }
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_gold_tax_act }
+			set_variable = { SAF_mines_handover = 2 }
+			add_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_2_2 slot = political_advisor }
+		}
+		else = {
+			set_variable = { SAF_mines_handover = 1 }
+			add_trait = { character = SAF_richard_stuttaford trait = SAF_stuttaford_apprenticeship_1_1 slot = political_advisor }
+		}
+	}
+}
+
+SAF_bank_treasury_programme = {
+	if = {
+		limit = { has_completed_focus = SAF_pensions_act }
+		add_ideas = SAF_treasury_programme_5
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_workmen_compensation_act }
+		add_ideas = SAF_treasury_programme_4
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_farmers_assistance_act }
+		add_ideas = SAF_treasury_programme_3
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_insolvency_act }
+		add_ideas = SAF_treasury_programme_2
+	}
+}
+
+SAF_bank_defence_programme = {
+	if = {
+		limit = { has_completed_focus = SAF_appropriation_act }
+		add_ideas = SAF_defence_programme_5
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_defence_amendment_act }
+		add_ideas = SAF_defence_programme_4
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_iron_and_steel_industry_act }
+		add_ideas = SAF_defence_programme_3
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_national_roads_act }
+		add_ideas = SAF_defence_programme_2
+	}
+}
+
+SAF_bank_interior_programme = {
+	if = {
+		limit = { has_completed_focus = SAF_public_health_act }
+		add_ideas = SAF_interior_programme_5
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_childrens_act }
+		add_ideas = SAF_interior_programme_4
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_unemployment_benefits_act }
+		add_ideas = SAF_interior_programme_3
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_broadcasting_act }
+		add_ideas = SAF_interior_programme_2
+	}
+}
+
+SAF_bank_mines_programme = {
+	if = {
+		limit = { has_completed_focus = SAF_land_bank_act }
+		add_ideas = SAF_mines_programme_5
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_mining_registration_act }
+		add_ideas = SAF_mines_programme_4
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_sugar_act }
+		add_ideas = SAF_mines_programme_3
+	}
+	else_if = {
+		limit = { has_completed_focus = SAF_gold_tax_act }
+		add_ideas = SAF_mines_programme_2
+	}
+}
+
+SAF_bank_mines_understudy = {
+	if = {
+		limit = { check_variable = { SAF_mines_handover = 1 } }
+		if = {
+			limit = { has_completed_focus = SAF_land_bank_act }
+			add_ideas = SAF_mines_understudy_1_5
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_mining_registration_act }
+			add_ideas = SAF_mines_understudy_1_4
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_sugar_act }
+			add_ideas = SAF_mines_understudy_1_3
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_gold_tax_act }
+			add_ideas = SAF_mines_understudy_1_2
+		}
+	}
+	else_if = {
+		limit = { check_variable = { SAF_mines_handover = 2 } }
+		if = {
+			limit = { has_completed_focus = SAF_land_bank_act }
+			add_ideas = SAF_mines_understudy_2_5
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_mining_registration_act }
+			add_ideas = SAF_mines_understudy_2_4
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_sugar_act }
+			add_ideas = SAF_mines_understudy_2_3
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_gold_tax_act }
+			add_ideas = SAF_mines_understudy_2_2
+		}
+	}
+	else_if = {
+		limit = { check_variable = { SAF_mines_handover = 3 } }
+		if = {
+			limit = { has_completed_focus = SAF_land_bank_act }
+			add_ideas = SAF_mines_understudy_3_5
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_mining_registration_act }
+			add_ideas = SAF_mines_understudy_3_4
+		}
+		else_if = {
+			limit = { has_completed_focus = SAF_sugar_act }
+			add_ideas = SAF_mines_understudy_3_3
+		}
+	}
+}
+
+SAF_bank_hertzog_bloc = {
+	SAF_bank_treasury_programme = yes
+	SAF_bank_defence_programme = yes
+}
+
+SAF_bank_smuts_bloc = {
+	SAF_bank_interior_programme = yes
+	if = {
+		limit = { has_country_flag = SAF_duncan_at_gg }
+		SAF_bank_mines_understudy = yes
+	}
+	else = {
+		SAF_bank_mines_programme = yes
+	}
+}
+
+SAF_bank_seated_ministers = {
+	if = { limit = { has_country_flag = SAF_havenga_seated } SAF_bank_treasury_programme = yes }
+	if = { limit = { has_country_flag = SAF_pirow_seated } SAF_bank_defence_programme = yes }
+	if = { limit = { has_country_flag = SAF_hofmeyr_seated } SAF_bank_interior_programme = yes }
+	if = { limit = { has_country_flag = SAF_duncan_seated } SAF_bank_mines_programme = yes }
+	if = { limit = { has_country_flag = SAF_stuttaford_seated } SAF_bank_mines_understudy = yes }
+}
+
+SAF_close_the_cabinet = {
+	set_country_flag = SAF_cabinet_frozen
+	set_country_flag = SAF_hertzog_wing_frozen
+	set_country_flag = SAF_smuts_wing_frozen
+	clr_country_flag = SAF_cabinet_open
+	clr_country_flag = SAF_walk_out_watch
+	SAF_end_walk_out_countdown = yes
+	if = {
+		limit = { has_dynamic_modifier = { modifier = SAF_cabinet } }
+		remove_dynamic_modifier = { modifier = SAF_cabinet }
+	}
+	hidden_effect = {
+		remove_ideas = SAF_nicolaas_havenga
+		remove_ideas = SAF_oswald_pirow
+		remove_ideas = SAF_jan_hendrik_hofmeyr
+		remove_ideas = SAF_sir_patrick_duncan
+		remove_ideas = SAF_richard_stuttaford
+		SAF_clear_cabinet_impact = yes
+	}
+}

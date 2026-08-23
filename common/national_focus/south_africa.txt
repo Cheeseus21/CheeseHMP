@@ -1,1393 +1,1974 @@
 focus_tree = {
 	id = south_african_focus
-	
+
 	country = {
 		factor = 0
-		modifier ={ 
+		modifier = {
 			add = 10
 			tag = SAF
 		}
 	}
-	
+
 	default = no
+	continuous_focus_position = { x = 50 y = 1250 }
 
-	############################
-	#### WAR PREP SECTION ######
-	############################
 	shared_focus = ALLIES_commonwealth_of_nations
-	
-	
-	
-	
-	
-	
+
 	focus = {
-		id = SAF_war_measures_act
-		icon = GFX_goal_generic_forceful_treaty   
-		x = 7
+		id = SAF_the_abyssinian_crisis
+		icon = GFX_focus_ETH_the_lion_stands_firm
+		x = 14
 		y = 0
-
-		cost = 5 
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			OR = {
-				threat > 0.2
-				#ENG = { has_completed_focus = ENG_no_further_appeasement }
-				has_completed_focus = SAF_force_parliament_debate
-			}
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
+		cost = 5
+		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			add_political_power = 120
+			set_country_flag = SAF_cabinet_open
 		}
 	}
 
 	focus = {
-		id = SAF_emergency_workers
-		icon = GFX_goal_generic_intelligence_exchange
-		prerequisite = { focus = SAF_war_measures_act }  
+		id = SAF_the_havenga_pillar
+		icon = GFX_focus_BEL_government_resigns
+		prerequisite = { focus = SAF_the_abyssinian_crisis }
+		available = {
+			SAF_has_a_free_cabinet_seat = yes
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = -5
+		y = 1
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_ideas = SAF_nicolaas_havenga
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog_small = yes
+		}
+	}
+
+	focus = {
+		id = SAF_insolvency_act
+		icon = GFX_focus_ARG_anti_corruption_policies
+		prerequisite = { focus = SAF_the_havenga_pillar }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_havenga_seated_tt
+				has_idea = SAF_nicolaas_havenga
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_the_havenga_pillar
+		cost = 3
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			SAF_havenga_tier_2 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+			set_country_flag = SAF_cabinet_havenga_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_havenga_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_farmers_assistance_act
+		icon = GFX_ROM_land_reform
+		prerequisite = { focus = SAF_insolvency_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_havenga_seated_tt
+				has_idea = SAF_nicolaas_havenga
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_havenga_cooldown
+				NOT = { has_country_flag = SAF_cabinet_havenga_cooldown }
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_insolvency_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			SAF_havenga_tier_3 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+			set_country_flag = SAF_cabinet_havenga_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_havenga_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_workmen_compensation_act
+		icon = GFX_focus_generic_soldier_salute
+		prerequisite = { focus = SAF_farmers_assistance_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_havenga_seated_tt
+				has_idea = SAF_nicolaas_havenga
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_havenga_cooldown
+				NOT = { has_country_flag = SAF_cabinet_havenga_cooldown }
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_farmers_assistance_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_havenga_tier_4 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+			set_country_flag = SAF_cabinet_havenga_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_havenga_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_pensions_act
+		icon = GFX_focus_SIA_crack_down_of_foreign_merchants
+		prerequisite = { focus = SAF_workmen_compensation_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_havenga_seated_tt
+				has_idea = SAF_nicolaas_havenga
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_havenga_cooldown
+				NOT = { has_country_flag = SAF_cabinet_havenga_cooldown }
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_workmen_compensation_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			SAF_havenga_tier_5 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+		}
+	}
+
+	focus = {
+		id = SAF_the_pirow_program
+		icon = GFX_focus_generic_reorient_production
+		prerequisite = { focus = SAF_the_abyssinian_crisis }
+		available = {
+			SAF_has_a_free_cabinet_seat = yes
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = -3
+		y = 1
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 3
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = SAF_oswald_pirow
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog_small = yes
+		}
+	}
+
+	focus = {
+		id = SAF_national_roads_act
+		icon = GFX_focus_generic_radio_communication
+		prerequisite = { focus = SAF_the_pirow_program }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_pirow_seated_tt
+				has_idea = SAF_oswald_pirow
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_the_pirow_program
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_pirow_tier_2 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+			set_country_flag = SAF_cabinet_pirow_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_pirow_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_iron_and_steel_industry_act
+		icon = GFX_focus_HOL_hoogoven
+		prerequisite = { focus = SAF_national_roads_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_pirow_seated_tt
+				has_idea = SAF_oswald_pirow
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_pirow_cooldown
+				NOT = { has_country_flag = SAF_cabinet_pirow_cooldown }
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_national_roads_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			SAF_pirow_tier_3 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+			set_country_flag = SAF_cabinet_pirow_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_pirow_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_defence_amendment_act
+		icon = GFX_focus_AST_all_for_one_one_for_all
+		prerequisite = { focus = SAF_iron_and_steel_industry_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_pirow_seated_tt
+				has_idea = SAF_oswald_pirow
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_pirow_cooldown
+				NOT = { has_country_flag = SAF_cabinet_pirow_cooldown }
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_iron_and_steel_industry_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_pirow_tier_4 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+			set_country_flag = SAF_cabinet_pirow_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_pirow_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_appropriation_act
+		icon = GFX_focus_ITA_cheap
+		prerequisite = { focus = SAF_defence_amendment_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_pirow_seated_tt
+				has_idea = SAF_oswald_pirow
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_pirow_cooldown
+				NOT = { has_country_flag = SAF_cabinet_pirow_cooldown }
+			}
+			SAF_hertzog_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_defence_amendment_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			SAF_pirow_tier_5 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_hertzog_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog = yes
+		}
+	}
+
+	focus = {
+		id = SAF_the_hertzog_bills
+		icon = GFX_goal_ita_cut_bureaucracy
+		prerequisite = { focus = SAF_the_abyssinian_crisis }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
 		x = -1
 		y = 1
-		relative_position_id = SAF_war_measures_act
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
 		completion_reward = {
-			add_ideas = SAF_emergency_workers
+			SAF_balance_to_hertzog_small = yes
+			add_country_leader_trait = SAF_hertzog_elder_statesman
 		}
 	}
 
 	focus = {
-		id = SAF_cape_garrison_artillery
-		icon = GFX_goal_generic_fortify_city
-		prerequisite = { focus = SAF_emergency_workers }
-		x = -1
+		id = SAF_native_representation_act
+		icon = GFX_focus_generic_vote
+		prerequisite = { focus = SAF_the_hertzog_bills }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_hertzog_tt
+				SAF_cabinet_favours_hertzog = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_the_hertzog_bills
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
+		completion_reward = {
+			SAF_hertzog_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog_major = yes
+			set_country_flag = SAF_cabinet_hertzog_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_hertzog_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_native_trust_and_land_act
+		icon = GFX_focus_generic_land_redistribution
+		prerequisite = { focus = SAF_native_representation_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_hertzog_tt
+				SAF_cabinet_favours_hertzog = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_hertzog_cooldown
+				NOT = { has_country_flag = SAF_cabinet_hertzog_cooldown }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_native_representation_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SAF_hertzog_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog_major = yes
+			set_country_flag = SAF_cabinet_hertzog_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_hertzog_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_coronation_oath_act
+		icon = GFX_focus_RAJ_the_crown_and_the_world
+		prerequisite = { focus = SAF_native_trust_and_land_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_hertzog_tt
+				SAF_cabinet_favours_hertzog = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_hertzog_cooldown
+				NOT = { has_country_flag = SAF_cabinet_hertzog_cooldown }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_native_trust_and_land_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
+		completion_reward = {
+			SAF_hertzog_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog_major = yes
+			set_country_flag = SAF_cabinet_hertzog_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_hertzog_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_south_africa_amendment_act
+		icon = GFX_ROM_form_the_front_of_national_rebirth
+		prerequisite = { focus = SAF_coronation_oath_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_hertzog_tt
+				SAF_cabinet_favours_hertzog = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_hertzog_cooldown
+				NOT = { has_country_flag = SAF_cabinet_hertzog_cooldown }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_coronation_oath_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
+		completion_reward = {
+			SAF_hertzog_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_hertzog_major = yes
+		}
+	}
+
+	focus = {
+		id = SAF_the_smuts_statutes
+		icon = GFX_focus_AUS_lawmaking_leniency
+		prerequisite = { focus = SAF_the_abyssinian_crisis }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 1
+		y = 1
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SAF_balance_to_smuts_small = yes
+			add_ideas = SAF_smuts_deputy_prime_minister
+		}
+	}
+
+	focus = {
+		id = SAF_general_law_act
+		icon = GFX_focus_generic_court
+		prerequisite = { focus = SAF_the_smuts_statutes }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_smuts_tt
+				SAF_cabinet_favours_smuts = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_the_smuts_statutes
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SAF_smuts_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts_major = yes
+			set_country_flag = SAF_cabinet_smuts_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_smuts_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_public_service_act
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = SAF_general_law_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_smuts_tt
+				SAF_cabinet_favours_smuts = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_smuts_cooldown
+				NOT = { has_country_flag = SAF_cabinet_smuts_cooldown }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_general_law_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNAL_AFFAIRS }
+		completion_reward = {
+			SAF_smuts_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts_major = yes
+			set_country_flag = SAF_cabinet_smuts_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_smuts_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_industrial_conciliation_act
+		icon = GFX_focus_GER_integrated_economies
+		prerequisite = { focus = SAF_public_service_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_smuts_tt
+				SAF_cabinet_favours_smuts = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_smuts_cooldown
+				NOT = { has_country_flag = SAF_cabinet_smuts_cooldown }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_public_service_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_smuts_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts_major = yes
+			set_country_flag = SAF_cabinet_smuts_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_smuts_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_senate_act
+		icon = GFX_focus_AST_a_democratic_bulwark
+		prerequisite = { focus = SAF_industrial_conciliation_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_favours_smuts_tt
+				SAF_cabinet_favours_smuts = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_smuts_cooldown
+				NOT = { has_country_flag = SAF_cabinet_smuts_cooldown }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_coalition_open_tt
+				NOT = { has_country_flag = SAF_coalition_resolved }
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_industrial_conciliation_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SAF_smuts_debuff_down = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts_major = yes
+		}
+	}
+
+	focus = {
+		id = SAF_the_hofmeyr_interventions
+		icon = GFX_focus_generic_approach_the_west
+		prerequisite = { focus = SAF_the_abyssinian_crisis }
+		available = {
+			SAF_has_a_free_cabinet_seat = yes
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 3
+		y = 1
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNAL_AFFAIRS }
+		completion_reward = {
+			add_ideas = SAF_jan_hendrik_hofmeyr
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts_small = yes
+		}
+	}
+
+	focus = {
+		id = SAF_broadcasting_act
+		icon = GFX_focus_SIA_sala_chaloem_thai_movie_theater
+		prerequisite = { focus = SAF_the_hofmeyr_interventions }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_hofmeyr_seated_tt
+				has_idea = SAF_jan_hendrik_hofmeyr
+			}
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_the_hofmeyr_interventions
+		cost = 3
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SAF_hofmeyr_tier_2 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+			set_country_flag = SAF_cabinet_hofmeyr_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_hofmeyr_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_unemployment_benefits_act
+		icon = GFX_focus_generic_welfare
+		prerequisite = { focus = SAF_broadcasting_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_hofmeyr_seated_tt
+				has_idea = SAF_jan_hendrik_hofmeyr
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_hofmeyr_cooldown
+				NOT = { has_country_flag = SAF_cabinet_hofmeyr_cooldown }
+			}
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_broadcasting_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_hofmeyr_tier_3 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+			set_country_flag = SAF_cabinet_hofmeyr_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_hofmeyr_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_childrens_act
+		icon = GFX_focus_generic_population_growth
+		prerequisite = { focus = SAF_unemployment_benefits_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_hofmeyr_seated_tt
+				has_idea = SAF_jan_hendrik_hofmeyr
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_hofmeyr_cooldown
+				NOT = { has_country_flag = SAF_cabinet_hofmeyr_cooldown }
+			}
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_unemployment_benefits_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			SAF_hofmeyr_tier_4 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+			set_country_flag = SAF_cabinet_hofmeyr_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_hofmeyr_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_public_health_act
+		icon = GFX_focus_generic_bad_medical
+		prerequisite = { focus = SAF_childrens_act }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_minister_hofmeyr_seated_tt
+				has_idea = SAF_jan_hendrik_hofmeyr
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_hofmeyr_cooldown
+				NOT = { has_country_flag = SAF_cabinet_hofmeyr_cooldown }
+			}
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_childrens_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			SAF_hofmeyr_tier_5 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+		}
+	}
+
+	focus = {
+		id = SAF_the_duncan_boom
+		dynamic = yes
+		icon = GFX_focus_generic_expand_gold_mining
+		prerequisite = { focus = SAF_the_abyssinian_crisis }
+		available = {
+			SAF_has_a_free_cabinet_seat = yes
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 5
+		y = 1
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_appoint_mines_minister = yes
+			SAF_balance_to_smuts_small = yes
+		}
+	}
+
+	focus = {
+		id = SAF_gold_tax_act
+		icon = GFX_gold_standart
+		prerequisite = { focus = SAF_the_duncan_boom }
+		available = {
+			SAF_mines_minister_seated = yes
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_the_duncan_boom
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_mines_tier_2 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+			set_country_flag = SAF_cabinet_duncan_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_duncan_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_sugar_act
+		icon = GFX_focus_AFG_sugar_factory
+		prerequisite = { focus = SAF_gold_tax_act }
+		available = {
+			SAF_mines_minister_seated = yes
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_duncan_cooldown
+				NOT = { has_country_flag = SAF_cabinet_duncan_cooldown }
+			}
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_gold_tax_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_mines_tier_3 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+			set_country_flag = SAF_cabinet_duncan_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_duncan_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_mining_registration_act
+		icon = GFX_focus_generic_public_works
+		prerequisite = { focus = SAF_sugar_act }
+		available = {
+			SAF_mines_minister_seated = yes
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_duncan_cooldown
+				NOT = { has_country_flag = SAF_cabinet_duncan_cooldown }
+			}
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_sugar_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_mines_tier_4 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+			set_country_flag = SAF_cabinet_duncan_cooldown
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_cabinet_duncan_cooldown_tt
+		}
+	}
+
+	focus = {
+		id = SAF_land_bank_act
+		icon = GFX_focus_generic_improve_the_administration
+		prerequisite = { focus = SAF_mining_registration_act }
+		available = {
+			SAF_mines_minister_seated = yes
+			custom_trigger_tooltip = {
+				tooltip = SAF_cabinet_duncan_cooldown
+				NOT = { has_country_flag = SAF_cabinet_duncan_cooldown }
+			}
+			SAF_smuts_wing_still_open = yes
+		}
+		x = 0
+		y = 1
+		relative_position_id = SAF_mining_registration_act
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_mines_tier_5 = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_smuts_debuff_up = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			SAF_balance_to_smuts = yes
+		}
+	}
+
+	focus = {
+		id = SAF_continue_the_course
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		mutually_exclusive = { focus = SAF_force_the_issue focus = SAF_the_walk_out }
+		x = -2
+		y = 6
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 10
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_ctc_tt
+				always = no
+			}
+		}
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_country_flag = SAF_coalition_resolved
+			SAF_clear_cabinet_spirit = yes
+			hidden_effect = {
+				SAF_bank_seated_ministers = yes
+			}
+			SAF_close_the_cabinet = yes
+			set_variable = { SAF_hertzog_debuff_level = 0 }
+			SAF_recalc_hertzog_debuff = yes
+			set_variable = { SAF_smuts_debuff_level = 0 }
+			SAF_recalc_smuts_debuff = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			set_temp_variable = { SAF_dem_ahead_at_division = 0 }
+			if = {
+				limit = { SAF_cabinet_favours_smuts = yes }
+				set_temp_variable = { SAF_dem_ahead_at_division = 1 }
+			}
+
+			SAF_the_division = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			promote_character = SAF_jan_smuts
+			add_country_leader_trait = SAF_smuts_soldier_statesman
+			remove_ideas = SAF_smuts_deputy_prime_minister
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			if = {
+				limit = {
+					has_country_flag = SAF_duncan_stepped_in
+					check_variable = { SAF_dem_ahead_at_division = 1 }
+				}
+				retire_character = SAF_jbm_hertzog
+			}
+			else = {
+				add_ideas = SAF_hertzog_in_opposition
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			complete_national_focus = SAF_smuts_government
+		}
+	}
+
+	focus = {
+		id = SAF_force_the_issue
+		icon = GFX_focus_generic_expropriate_industrialist
+		prerequisite = { focus = SAF_the_abyssinian_crisis }
+		mutually_exclusive = { focus = SAF_continue_the_course focus = SAF_the_walk_out }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = austria_flag
+				date > 1938.3.13
+			}
+		}
+		x = 0
+		y = 6
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 10
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = SAF_force_the_issue_tt
+			custom_effect_tooltip = generic_skip_one_line_tt
+			country_event = { id = SAF.16 hours = 6 }
+		}
+	}
+
+	focus = {
+		id = SAF_the_walk_out
+		icon = GFX_FRA_codex_du_industrie
+		mutually_exclusive = { focus = SAF_continue_the_course focus = SAF_force_the_issue }
+		x = 2
+		y = 6
+		relative_position_id = SAF_the_abyssinian_crisis
+		cost = 10
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_walkout_tt
+				always = no
+			}
+		}
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = { SAF_cabinet_favours_hertzog = yes }
+				SAF_walk_out_to_hertzog = yes
+			}
+			else = {
+				SAF_walk_out_to_smuts = yes
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_hertzog_government
+		icon = GFX_focus_AFG_promote_the_counter_elite
+		prerequisite = { focus = SAF_continue_the_course focus = SAF_force_the_issue focus = SAF_the_walk_out }
+		mutually_exclusive = { focus = SAF_smuts_government }
+		x = -2
+		y = 1
+		relative_position_id = SAF_continue_the_course
+		cost = 2
+		available = {
+			always = no
+		}
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+		}
+	}
+
+	focus = {
+		id = SAF_smuts_government
+		icon = GFX_focus_generic_industrialists
+		prerequisite = { focus = SAF_continue_the_course focus = SAF_force_the_issue focus = SAF_the_walk_out }
+		mutually_exclusive = { focus = SAF_hertzog_government }
+		x = 6
+		y = 1
+		relative_position_id = SAF_continue_the_course
+		cost = 2
+		available = {
+			always = no
+		}
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+		}
+	}
+
+	focus = {
+		id = SAF_war_measures_act
+		icon = GFX_focus_generic_treaty
+		prerequisite = { focus = SAF_hertzog_government focus = SAF_smuts_government }
+		x = 4
+		y = 1
+		relative_position_id = SAF_hertzog_government
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = SAF_war_measures_unlock_tt
+			if = {
+				limit = {
+					NOT = { has_idea = war_economy }
+					NOT = { has_idea = tot_economic_mobilisation }
+				}
+				add_ideas = war_economy
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_suppress_the_stormjaers
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = SAF_war_measures_act }
+		x = 1
 		y = 2
 		relative_position_id = SAF_war_measures_act
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			297  = {
-				add_building_construction = {
-					type = coastal_bunker
-					level = 3
-					province = 12589
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker 
-					level = 1
-					province = 12589
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = anti_air_building 
-					level = 2
-					instant_build = yes
-				}
-			}	
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_industrial_capacity_factory = 0.10 tooltip = industrial_capacity_factory_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_industrial_capacity_dockyard = 0.10 tooltip = industrial_capacity_dockyard_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_fascism_drift = -0.01 tooltip = fascism_drift_tt } }
+			clr_country_flag = SAF_ossewabrandwag
+			SAF_refresh_domestic_situation = yes
 		}
 	}
-	
+
 	focus = {
-		id = SAF_reconstitute_the_cape_corps 
-		icon = GFX_focus_generic_military_mission
-		prerequisite = { focus = SAF_cape_garrison_artillery}
-		x = -1
-		y = 3
+		id = SAF_reconstitute_the_cape_corps
+		icon = GFX_focus_AFG_mountain_training
+		prerequisite = { focus = SAF_war_measures_act }
+		x = 0
+		y = 1
 		relative_position_id = SAF_war_measures_act
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		dynamic = yes
 		available_if_capitulated = yes
-
+		search_filters = { FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = SAF_history_of_segregation
-				add_idea = SAF_history_of_segregation_2
+			if = {
+				limit = {
+					has_country_leader = { character = SAF_jan_smuts ruling_only = yes }
+				}
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_conscription_factor = 0.10 tooltip = conscription_factor_tt } }
+				set_variable = { SAF_segregation_tier = 2 }
 			}
+			else = {
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_weekly_manpower = 2500 tooltip = weekly_manpower_tt } }
+				set_variable = { SAF_cape_corps_tier = 1 }
+			}
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
 	focus = {
 		id = SAF_expand_the_cape_corps
-		icon = GFX_focus_secret_rearmament
+		icon = GFX_focus_generic_mountain_training
 		prerequisite = { focus = SAF_reconstitute_the_cape_corps }
-		x = -1
-		y = 4
-		relative_position_id = SAF_war_measures_act
-
+		x = 0
+		y = 2
+		relative_position_id = SAF_reconstitute_the_cape_corps
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		dynamic = yes
 		available_if_capitulated = yes
-
+		search_filters = { FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = SAF_history_of_segregation_2
-				add_idea = SAF_history_of_segregation_3
+			if = {
+				limit = {
+					has_country_leader = { character = SAF_jan_smuts ruling_only = yes }
+				}
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_conscription_factor = 0.20 tooltip = conscription_factor_tt } }
+				set_variable = { SAF_segregation_tier = 3 }
 			}
-		}
-	}
-	
-	focus = {
-		id = SAF_remove_segregation_shared
-		icon = GFX_focus_generic_little_entente
-		prerequisite = { focus = SAF_expand_the_cape_corps }  
-		x = -1
-		y = 5
-		relative_position_id = SAF_war_measures_act
- 
-		cost = 5
-
-		bypass = {
-		}
-
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			remove_ideas = SAF_history_of_segregation_3
-			add_ideas = SAF_rural_volunteers
-		}
-	}
-	
-	############################
-	# GO COMMONWEALTH SECTION ##
-	############################
-
-	focus = {
-		id = SAF_support_the_policy_of_appeasement
-		icon = GFX_goal_tfv_strengthen_commonwealth_ties
-		x = 17
-		y = 0
-
-		cost = 5
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_stability = 0.1
-			add_political_power =  120
-		}
-	}
-	
-	focus = {
-		id = SAF_support_appeasement
-		icon = GFX_goal_generic_national_unity
-		prerequisite = { focus = SAF_support_the_policy_of_appeasement }
-		mutually_exclusive = { focus = SAF_force_parliament_debate focus = SAF_hofmeyrs_reforms }
-		x = 1
-		y = 1
-		relative_position_id = SAF_support_the_policy_of_appeasement 
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-		    SAF_jan_smuts = {
-				promote_character  = yes
+			else = {
+				custom_effect_tooltip = SAF_army_and_navy_tt
+				effect_tooltip = { add_to_variable = { SAF_ran_weekly_manpower = 2500 tooltip = weekly_manpower_tt } }
+				set_variable = { SAF_cape_corps_tier = 2 }
 			}
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-            add_political_power = 150
-            
-            custom_effect_tooltip = generic_skip_one_line_tt
-            
-			add_ideas = SAF_civil_industrial_infrastructure
+			SAF_refresh_army_and_navy = yes
 		}
 	}
-	
+
 	focus = {
-		id = SAF_civil_investment
-		icon = GFX_goal_generic_consumer_goods
-		prerequisite = { focus = SAF_support_appeasement }
+		id = SAF_greater_south_africa
+		icon = GFX_focus_generic_africa_defense
+		prerequisite = { focus = SAF_smuts_government }
 		x = 0
 		y = 1
-		relative_position_id = SAF_support_appeasement
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
+		relative_position_id = SAF_smuts_government
+		cost = 10
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = SAF_greater_south_africa_unlock_tt
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_war_support_factor = 0.10 tooltip = war_support_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_political_power_factor = 0.10 tooltip = political_power_factor_tt } }
+			set_country_flag = SAF_gsa_window
+			SAF_refresh_domestic_situation = yes
 		}
+	}
 
+	focus = {
+		id = SAF_colonial_civil_service
+		icon = GFX_focus_por_luso_tropicalism
+		prerequisite = { focus = SAF_greater_south_africa }
+		x = -2
+		y = 1
+		relative_position_id = SAF_greater_south_africa
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = SAF_gsa_core_30_tt
+			hidden_effect = {
+				set_variable = { SAF_gsa_core_days = 30 }
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_mandate_over_the_horn
+		icon = GFX_focus_generic_africa_liberation
+		prerequisite = { focus = SAF_colonial_civil_service }
+		x = 0
+		y = 2
+		relative_position_id = SAF_colonial_civil_service
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = SAF_gsa_iea_corable_tt
+			hidden_effect = {
+				set_country_flag = SAF_gsa_iea_corable
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_development_corporations
+		icon = GFX_focus_generic_africa_factory
+		prerequisite = { focus = SAF_greater_south_africa }
+		x = 2
+		y = 1
+		relative_position_id = SAF_greater_south_africa
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = SAF_gsa_slots_up_tt
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_gsa_retro_tt
+			hidden_effect = {
+				set_country_flag = SAF_gsa_slots_upgraded
+				every_owned_state = {
+					limit = { has_state_flag = SAF_gsa_cored }
+					add_extra_state_shared_building_slots = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_development_grants
+		icon = GFX_focus_generic_africa_infrastructure
+		prerequisite = { focus = SAF_development_corporations }
+		x = 0
+		y = 2
+		relative_position_id = SAF_development_corporations
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = SAF_gsa_grants_on_tt
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = SAF_gsa_retro_tt
+			hidden_effect = {
+				set_country_flag = SAF_gsa_grants_unlocked
+				every_owned_state = {
+					limit = { has_state_flag = SAF_gsa_cored }
+					add_dynamic_modifier = {
+						modifier = SAF_gsa_development_dm
+						days = 365
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_reserve_bank_loan
+		icon = GFX_focus_generic_self_management
+		prerequisite = { focus = SAF_greater_south_africa }
+		x = 0
+		y = 1
+		relative_position_id = SAF_greater_south_africa
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 10 }
+			custom_effect_tooltip = SAF_for_365_days_tt
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 tooltip = consumer_goods_expected_value_tt } }
+			set_country_flag = { flag = SAF_reserve_bank_repayment days = 365 value = 1 }
+			SAF_refresh_domestic_situation = yes
+		}
+	}
+
+	focus = {
+		id = SAF_british_loan
+		icon = GFX_focus_ENG_imp_conference
+		prerequisite = { focus = SAF_reserve_bank_loan }
+		x = -1
+		y = 1
+		relative_position_id = SAF_reserve_bank_loan
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			ENG = { country_event = { id = SAF.30 days = 1 } }
+		}
+	}
+
+	focus = {
+		id = SAF_american_loan
+		icon = GFX_focus_generic_american_investments
+		prerequisite = { focus = SAF_reserve_bank_loan }
+		x = 1
+		y = 1
+		relative_position_id = SAF_reserve_bank_loan
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			USA = { country_event = { id = SAF.31 days = 1 } }
+		}
+	}
+
+	focus = {
+		id = SAF_natal_chromium_rights
+		icon = GFX_focus_generic_chromium
+		prerequisite = { focus = SAF_british_loan focus = SAF_american_loan }
+		x = 1
+		y = 1
+		relative_position_id = SAF_british_loan
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			give_resource_rights = { receiver = ENG state = 487 resources = { chromium } }
+			487 = {
+				add_extra_state_shared_building_slots = 10
+				add_building_construction = {
+					type = industrial_complex
+					level = 10
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_war_not_of_our_choosing
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = SAF_hertzog_government }
+		x = 2
+		y = 1
+		relative_position_id = SAF_hertzog_government
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SAF_jbm_hertzog = {
+				swap_country_leader_traits = {
+					remove = SAF_hertzog_promise_of_peace
+					add = SAF_hertzog_war_leader
+					ideology = oligarchism
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_defence_resources_board
+		icon = GFX_focus_generic_money_for_equipment
+		prerequisite = { focus = SAF_war_not_of_our_choosing }
+		x = 0
+		y = 1
+		relative_position_id = SAF_war_not_of_our_choosing
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0.25 tooltip = production_factory_efficiency_gain_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_production_factory_start_efficiency_factor = 0.25 tooltip = production_factory_start_efficiency_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_production_factory_max_efficiency_factor = -0.10 tooltip = production_factory_max_efficiency_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_production_speed_arms_factory_factor = -0.10 tooltip = production_speed_arms_factory_factor_tt } }
+			set_country_flag = { flag = SAF_drb_window days = 180 value = 1 }
+			SAF_refresh_domestic_situation = yes
+		}
+	}
+
+	focus = {
+		id = SAF_munitions_from_the_mines
+		icon = GFX_focus_BEL_poudreries_reunies_de_belgique
+		prerequisite = { focus = SAF_defence_resources_board }
+		x = 0
+		y = 1
+		relative_position_id = SAF_defence_resources_board
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			SAF_convert_one_civ_to_mil = yes
+			add_stability = -0.05
+			add_war_support = -0.05
+		}
+	}
+
+	focus = {
+		id = SAF_answers_for_the_benches
+		icon = GFX_focus_ARG_balancing_act
+		prerequisite = { focus = SAF_hertzog_government }
+		x = 0
+		y = 1
+		relative_position_id = SAF_hertzog_government
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_aswan_lost_tt
+				any_country = { the_axis = yes controls_state = 436 }
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.005 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_stability_weekly = 0.005 tooltip = stability_weekly_tt } }
+			set_variable = { SAF_crisis_rung = 1 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
+		}
+	}
+
+	focus = {
+		id = SAF_news_from_the_north
+		icon = GFX_focus_SWE_radiotjanst
+		prerequisite = { focus = SAF_answers_for_the_benches }
+		x = 0
+		y = 1
+		relative_position_id = SAF_answers_for_the_benches
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_no_answers_idea_tt
+				NOT = { has_country_flag = SAF_crisis_window }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_khartoum_lost_tt
+				any_country = { the_axis = yes controls_state = 551 }
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_stability = -0.05
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.005 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_industrial_capacity_factory = 0.10 tooltip = industrial_capacity_factory_tt } }
+			set_variable = { SAF_crisis_rung = 2 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
+		}
+	}
+
+	focus = {
+		id = SAF_congo_expedition
+		icon = GFX_focus_CONGO_chefs_coutumiers
+		prerequisite = { focus = SAF_news_from_the_north }
+		x = 0
+		y = 1
+		relative_position_id = SAF_news_from_the_north
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_no_news_idea_tt
+				NOT = { has_country_flag = SAF_crisis_window }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_congo_lost_tt
+				OR = {
+					any_country = { the_axis = yes controls_state = 688 }
+					any_country = { the_axis = yes controls_state = 690 }
+					any_country = { the_axis = yes controls_state = 546 }
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_stability = -0.10
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.005 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_stability_weekly = -0.005 tooltip = stability_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_industrial_capacity_factory = 0.25 tooltip = industrial_capacity_factory_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_attack_factor = 0.10 tooltip = army_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_defence_factor = 0.10 tooltip = army_defence_factor_tt } }
+			set_variable = { SAF_crisis_rung = 3 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
+		}
+	}
+
+	focus = {
+		id = SAF_limpopo_line
+		icon = GFX_focus_CZE_second_fortification_program
+		prerequisite = { focus = SAF_congo_expedition }
+		x = 0
+		y = 1
+		relative_position_id = SAF_congo_expedition
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_no_congo_idea_tt
+				NOT = { has_country_flag = SAF_crisis_window }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_limpopo_approach_tt
+				OR = {
+					any_country = { the_axis = yes controls_state = 691 }
+					any_country = { the_axis = yes controls_state = 292 }
+					any_country = { the_axis = yes controls_state = 283 }
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_stability = -0.20
+			custom_effect_tooltip = SAF_for_180_days_tt
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_war_support_weekly = 0.01 tooltip = war_support_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_stability_weekly = -0.01 tooltip = stability_weekly_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_industrial_capacity_factory = 0.50 tooltip = industrial_capacity_factory_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_attack_factor = 0.30 tooltip = army_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_defence_factor = 0.30 tooltip = army_defence_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_org_factor = 0.30 tooltip = army_org_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_strength_factor = 0.30 tooltip = army_strength_factor_tt } }
+			set_variable = { SAF_crisis_rung = 4 }
+			set_country_flag = { flag = SAF_crisis_window days = 180 value = 1 }
+			SAF_refresh_army_and_navy = yes
+		}
+	}
+
+	focus = {
+		id = SAF_magnetometer_survey
+		icon = GFX_goal_generic_scientific_exchange
+		x = 3
+		y = 0
+		cost = 5
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
 		completion_reward = {
-			add_stability = 0.1		
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+		id = SAF_bernard_price_institute
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = SAF_magnetometer_survey }
+		x = -3
+		y = 1
+		relative_position_id = SAF_magnetometer_survey
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_research_slot = 1
 			add_tech_bonus = {
-				name = SAF_civil_investment
+				name = SAF_bernard_price_institute
+				bonus = 1.0
+				uses = 2
+				category = electronics
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = SAF_bernard_price_institute
+		}
+	}
+
+	focus = {
+		id = SAF_klip_power_station
+		icon = GFX_focus_generic_electrification
+		prerequisite = { focus = SAF_bernard_price_institute }
+		x = 0
+		y = 1
+		relative_position_id = SAF_bernard_price_institute
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			every_owned_state = {
+				limit = { is_core_of = ROOT }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_rand_witbank_line
+		icon = GFX_focus_generic_railroad
+		prerequisite = { focus = SAF_klip_power_station }
+		x = 0
+		y = 1
+		relative_position_id = SAF_klip_power_station
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_expand_the_rand_mines
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		prerequisite = { focus = SAF_magnetometer_survey }
+		x = 0
+		y = 1
+		relative_position_id = SAF_magnetometer_survey
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			custom_effect_tooltip = SAF_domestic_situation_tt
+			effect_tooltip = { add_to_variable = { SAF_ds_consumer_goods_expected_value = -0.05 tooltip = consumer_goods_expected_value_tt } }
+			SAF_refresh_domestic_situation = yes
+		}
+	}
+
+	focus = {
+		id = SAF_pretoria_works
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = SAF_expand_the_rand_mines }
+		x = -1
+		y = 1
+		relative_position_id = SAF_expand_the_rand_mines
+		cost = 5
+		available = {
+			controls_state = 275
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			275 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_free_state_boreholes
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = SAF_expand_the_rand_mines }
+		x = 1
+		y = 1
+		relative_position_id = SAF_expand_the_rand_mines
+		cost = 5
+		available = {
+			controls_state = 538
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			538 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = SAF_south_african_railways
+		}
+	}
+
+	focus = {
+		id = SAF_gm_north_end_plant
+		icon = GFX_focus_generic_improve_roads
+		prerequisite = { focus = SAF_pretoria_works }
+		prerequisite = { focus = SAF_free_state_boreholes }
+		x = 1
+		y = 1
+		relative_position_id = SAF_pretoria_works
+		cost = 5
+		available = {
+			controls_state = 297
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			297 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_empire_exhibition
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = SAF_magnetometer_survey }
+		x = 3
+		y = 1
+		relative_position_id = SAF_magnetometer_survey
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_empire_exhibition
 				bonus = 1.0
 				uses = 2
 				category = industry
-			}	
-		}
-	}
-	
-	focus = {
-		id = SAF_yield_to_smuts
-		icon = GFX_focus_attack_germany
-		prerequisite = { focus = SAF_civil_investment }
-		x = 0
-		y = 1
-		relative_position_id = SAF_civil_investment
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		} 
-		
-		bypass = {
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-		    #add_country_leader_trait = rearmament_proponent 
-			#add_country_leader_trait = indomitable_perseverance 
-			#add_political_power = 150
-            
-            if = { limit = { NOT = { has_idea = partial_economic_mobilisation }}  add_ideas = partial_economic_mobilisation  }
-			else = { add_political_power = 150 }	
-		}
-	}
-	
-	focus = {
-		id = SAF_force_parliament_debate  
-		icon = GFX_goal_generic_forceful_treaty
-		prerequisite = { focus = SAF_support_the_policy_of_appeasement }
-		mutually_exclusive = { focus = SAF_support_appeasement focus = SAF_hofmeyrs_reforms } 
-		x = -1
-		y = 1
-		relative_position_id = SAF_support_the_policy_of_appeasement
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-			}	
-		}
-
-		available = {
-			NOT = { has_completed_focus = SAF_open_engineering_schools }
-		}
-
-		cancel_if_invalid = no
-		continue_if_invalid = yes
-		available_if_capitulated = no
-
-		completion_reward = {			
-				SAF_jan_smuts = {
-				promote_character  = yes
 			}
-			add_ideas = SAF_kickstarting_rearmament
 		}
 	}
-	
+
 	focus = {
-		id = SAF_begin_rearmament
-		icon = GFX_focus_generic_tank_production
-		prerequisite = { focus = SAF_force_parliament_debate } 
+		id = SAF_modderfontein
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = SAF_empire_exhibition }
 		x = 0
 		y = 1
-		relative_position_id = SAF_force_parliament_debate 
-
+		relative_position_id = SAF_empire_exhibition
 		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
 		available = {
-			#date > 1938.1.1
+			controls_state = 275
 		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
 		completion_reward = {
-			add_ideas = war_economy
-		}
-	}
-	
-	focus = {
-		id = SAF_propose_joint_exercises
-		icon = GFX_focus_generic_military_academy
-		prerequisite = { focus = SAF_begin_rearmament }
-		x = 0
-		y = 1 
-		relative_position_id = SAF_begin_rearmament  
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			army_experience = 100
-		} 
-	}
-	
-	focus = {
-		id = SAF_yield
-		icon = GFX_focus_generic_treaty
-		prerequisite = { focus = SAF_yield_to_smuts focus = SAF_propose_joint_exercises }
-		x = -1
-		y = 1
-		relative_position_id = SAF_yield_to_smuts
-
-		cost = 5
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {	
-            275 = { #ILLINOIS
+			275 = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-					type = industrial_complex
+					type = arms_factory
 					level = 2
 					instant_build = yes
 				}
-			}		
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = SAF_sasol
 		}
 	}
-	
+
 	focus = {
-		id = SAF_yield1
-		icon = GFX_goal_generic_oil_refinery
-		prerequisite = { focus = SAF_yield }
-		x = -1
+		id = SAF_south_african_steel
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = SAF_modderfontein }
+		x = 0
 		y = 1
-		relative_position_id = SAF_yield
-
+		relative_position_id = SAF_modderfontein
 		cost = 5
-
-		ai_will_do = {
-			factor = 2
+		available = {
+			controls_state = 275
 		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		completion_reward = {	
-			541 = {
+		completion_reward = {
+			275 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
 				add_resource = {
 					type = steel
-					amount = 10
+					amount = 20
 				}
-			}		
-			541 = {
-				add_resource = {
-					type = oil
-					amount = 10
-				}
-			}	
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = SAF_iscor
 		}
 	}
-	
+
 	focus = {
-		id = SAF_yield2
-		icon = GFX_focus_generic_steel
-		prerequisite = { focus = SAF_yield }
-		x = 1
+		id = SAF_university_of_pretoria
+		icon = GFX_focus_research
+		prerequisite = { focus = SAF_rand_witbank_line }
+		prerequisite = { focus = SAF_gm_north_end_plant }
+		prerequisite = { focus = SAF_south_african_steel }
+		x = 3
 		y = 1
-		relative_position_id = SAF_yield
-
+		relative_position_id = SAF_rand_witbank_line
 		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		completion_reward = {	
-			487 = {
-				add_resource = {
-					type = chromium
-					amount = 30
-				}
-			}					
-			275 = {
-				add_resource = {
-					type = tungsten
-					amount = 15
-				}
-			}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_research_slot = 1
 		}
 	}
-	
+
 	focus = {
-		id = SAF_yield3
-		icon = GFX_goal_generic_construct_mil_factory
-		prerequisite = { focus = SAF_yield1 }
-		prerequisite = { focus = SAF_yield2 }
-		x = 0
-		y = 2
-		relative_position_id = SAF_yield
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {	
-            add_offsite_building = { type = arms_factory level = 3 }	
-            add_offsite_building = { type = dockyard level = 2 }				
-		}
-	}
-	
-	###################
-	### ANC SECTION ###
-	###################
-	
-	focus = {
-		id = SAF_hofmeyrs_reforms
-		icon = GFX_goal_generic_major_alliance
-		prerequisite = { focus = SAF_support_the_policy_of_appeasement }
-		mutually_exclusive = { focus = SAF_support_appeasement focus = SAF_force_parliament_debate }
-		x = -4
+		id = SAF_vaal_dam
+		icon = GFX_NOR_hydro2
+		prerequisite = { focus = SAF_university_of_pretoria }
+		x = -2
 		y = 1
-		relative_position_id = SAF_support_the_policy_of_appeasement
-
+		relative_position_id = SAF_university_of_pretoria
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-			}
-		} 
-
 		available = {
-			AND = {
-				has_idea = SAF_jan_hendrik_hofmeyr
-				NOT = { has_completed_focus = SAF_native_representation_act }
-                #NOT = { has_idea = SAF_king_edward }				
-			}	  
+			controls_state = 275
 		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		completion_reward = {										
-			#add_political_power = 100
-			add_ideas = SAF_workforce
-		}
-	}
-	
-	# focus = {
-		# id = SAF_repeal_job_reservation_act
-		# icon = GFX_goal_generic_political_pressure 
-		# prerequisite = { focus = SAF_hofmeyrs_reforms }
-		# x = 1
-		# y = 1
-		# relative_position_id = SAF_hofmeyrs_reforms  
-
-		# cost = 5
-
-		# ai_will_do = {
-			# factor = 1
-		# }
-		
-		# bypass = {
-			# has_completed_focus = SAF_relax_worker_restrictions
-		# }
-
-		# cancel_if_invalid = yes
-		# continue_if_invalid = no
-		# available_if_capitulated = no
-
-		# completion_reward = {				
-			# remove_ideas = SAF_worker_restrictions
-		# }
-	# }
-	
-	focus = {
-		id = SAF_expand_cape_franchise
-		icon = GFX_focus_generic_treaty
-		prerequisite = { focus = SAF_hofmeyrs_reforms }
-		x = 0
-		y = 1
-		relative_position_id = SAF_hofmeyrs_reforms 
-
-		cost =  5
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
 		completion_reward = {
-			add_timed_idea = { idea = SAF_freedom_from_oppression days = 365 } 
-		}
-	}
-
-	focus = {
-		id = SAF_free_elections
-		icon = GFX_goal_support_democracy
-		prerequisite = { focus = SAF_expand_cape_franchise }
-		#prerequisite = { focus = SAF_repeal_job_reservation_act }
-		x = 0
-		y = 1
-		relative_position_id = SAF_expand_cape_franchise
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-		    #add_ideas = SAF_black_volunteers
-			#SAF_alfred_xuma = {
-			#	promote_character  = yes
-			#}
-			set_cosmetic_tag = SAF_ANC
-            add_political_power = 150
-		}
-	}
-	
-	# focus = {
-		# id = SAF_reconciliation
-		# icon = GFX_goal_generic_neutrality_focus
-		# prerequisite = { focus = SAF_free_elections } 
-		# x = 1
-		# y = 1 
-		# relative_position_id = SAF_free_elections
-
-		# cost = 5
-
-		# ai_will_do = {
-			# factor = 1
-		# }
-
-		# cancel_if_invalid = yes
-		# continue_if_invalid = no
-		# available_if_capitulated = yes
-
-		# completion_reward = {
-			# add_timed_idea = { idea = SAF_idea_reconciliation days = 365 }		 
-		# }
-	# }
-	
-	focus = { 
-		id = SAF_equal_worker_pay 
-		icon = GFX_focus_ETH_adopt_the_lira
-		prerequisite = { focus = SAF_free_elections }
-		x = 0
-		y = 1
-		relative_position_id = SAF_free_elections
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {		
-			add_ideas = SAF_expanding_workforce 
-		}
-	}
-	
-	focus = { 
-		id = SAF_economic_boom
-		icon = GFX_focus_generic_the_giant_wakes
-		prerequisite = { focus = SAF_equal_worker_pay } 
-		#prerequisite = { focus = SAF_reconciliation }
-		x = 0
-		y = 2
-		relative_position_id = SAF_free_elections
-
-		cost =  5
-
-		ai_will_do = {
-			factor = 2
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {	
-			275 = { 
-				add_extra_state_shared_building_slots = 4
+			275 = {
 				add_building_construction = {
-					type = industrial_complex
-					level = 4
+					type = dam
+					level = 1
+					province = 10400
 					instant_build = yes
 				}
 			}
-			
-		}
-	}
-	
-	focus = {
-		id = SAF_recruitment_drive
-		icon = GFX_focus_generic_military_mission
-		prerequisite = { focus = SAF_economic_boom }
-		x = 1
-		y = 1
-		relative_position_id = SAF_economic_boom 
-
-		cost =  5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = SAF_rural_recruitment  
-		}
-	}
-	
-	focus = {
-		id = SAF_promte_urbanisation
-		icon = GFX_focus_generic_industry_2
-		prerequisite = { focus = SAF_economic_boom }
-		x = -1
-		y = 1
-		relative_position_id = SAF_economic_boom
-
-		cost =  5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			275 = {
-				add_extra_state_shared_building_slots = 3
-			}
-			538 = {
-				add_extra_state_shared_building_slots = 3
-			}
-			297 = {
-				add_extra_state_shared_building_slots = 3
-			}
-			541 = {
-				add_extra_state_shared_building_slots = 3
+			custom_effect_tooltip = {
+				localization_key = building_state_modifier|dam
+				INDENT = "    "
 			}
 		}
 	}
 
 	focus = {
-		id = SAF_csir
-		icon = GFX_goal_tfv_generic_tech_sharing
-		prerequisite = { focus = SAF_war_measures_act }
-		prerequisite = { focus = SAF_support_the_policy_of_appeasement }
-		x = 2 	
-		y = 1
-		relative_position_id = SAF_war_measures_act
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			is_in_tech_sharing_group = commonwealth_research
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			SAF = {
-   				modify_tech_sharing_bonus = {
-         			id = commonwealth_research
-         			bonus = 0.1  # we get 20% higher bonus from this group
-    			}
-			}
-		}
-	}
-	
-	focus = {
-		id = SAF_peace_expansion_scheme
-		icon = GFX_goal_continuous_boost_freedom
-		prerequisite = { focus = SAF_csir }
+		id = SAF_urban_influx
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = SAF_university_of_pretoria }
 		x = 0
 		y = 1
-		relative_position_id = SAF_csir
-		
-		allow_branch = { always = no }
-
+		relative_position_id = SAF_university_of_pretoria
 		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		completion_reward = {			
-			add_ideas = SAF_armor_air_license
-		}
-	}
-	
-	focus = {
-		id = SAF_suppress_the_stormjaers
-		icon = GFX_focus_prc_infiltration
-		prerequisite = { focus = SAF_csir }
-		prerequisite = { focus = SAF_cape_garrison_artillery }
-		x = 0
-		y = 1
-		relative_position_id = SAF_peace_expansion_scheme
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
-		available = {
-			has_idea = SAF_ossewabrandwag
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
 		completion_reward = {
-			add_war_support = 0.1
-			remove_ideas = SAF_ossewabrandwag
-		}
-	}
-	
-	focus = {
-		id = SAF_joint_air_training_scheme
-		icon = GFX_goal_generic_air_fighter2
-		prerequisite = { focus = SAF_suppress_the_stormjaers }
-		x = 0
-		y = 1
-		relative_position_id = SAF_suppress_the_stormjaers
-		
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_ideas = SAF_joint_air_training_scheme
-		}
-	}
-	
-	focus = {
-		id = SAF_directorate_war_supplies
-		icon = GFX_focus_generic_truck
-		prerequisite = { focus = SAF_joint_air_training_scheme }
-		x = -1
-		y = 1
-		relative_position_id = SAF_joint_air_training_scheme
-		
-		available = { 
-			date > 1941.1.1
-		} 
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_ideas = SAF_war_supplies
-		}
-	}
-	
-	focus = {
-		id = SAF_desert_equipment
-		icon = GFX_focus_generic_camel_corps  
-		prerequisite = { focus = SAF_joint_air_training_scheme }
-		x = 1
-		y = 1
-		relative_position_id = SAF_joint_air_training_scheme
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_ideas = SAF_desert_equipment
-		}
-	}
-	
-	
-	
-	focus = { 
-		id = SAF_the_darkest_hour
-		icon = GFX_focus_generic_strike_at_democracy2
-		prerequisite = { focus = SAF_directorate_war_supplies focus = SAF_desert_equipment }
-		x = -1
-		y = 1
-		relative_position_id = SAF_desert_equipment 
-
-		cost = 5
-		
-		available = { 
-			date > 1941.1.1
-		} 
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = SAF_darkest_hour
-		}
-	}
-	
-	focus = { #unlocks decision for build slots maybe resources
-		id = SAF_secure_interests_in_africa
-		icon = GFX_goal_tfv_saf_secure_interests_in_africa
-		prerequisite = { focus = SAF_remove_segregation_shared }
-		x = 0
-		y = 1
-		relative_position_id = SAF_remove_segregation_shared
-
-		cost = 5
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-				unlock_decision_tooltip = { decision = SAF_zambia  }
-			unlock_decision_tooltip = { decision = SAF_rhodesia	 }
-			unlock_decision_tooltip = { decision = SAF_east_africa }
-		}
-	}
-	
-	
-	focus = {
-		id = SAF_native_representation_act
-		icon = GFX_focus_usa_voter_registration_act
-		prerequisite = { focus = SAF_support_the_policy_of_appeasement }
-		mutually_exclusive = { focus = SAF_open_engineering_schools }
-		x = 8
-		y = 1
-		relative_position_id = SAF_support_the_policy_of_appeasement
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 10
-				has_government = fascism
-				has_government = neutrality
-			}				
-		} 
-
-		available = {
-			NOT = { has_completed_focus = SAF_hofmeyrs_reforms }
-		}
-		
-		completion_reward = {
-			add_ideas = SAF_native_representation 
-		}
-	}
-	
-	focus = {
-		id = SAF_native_laws_amendment_act
-		icon = GFX_focus_CZE_german_puppet
-		prerequisite = { focus = SAF_native_representation_act }
-		x = 0
-		y = 1
-		relative_position_id = SAF_native_representation_act
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = SAF_cheap_labor_1
-		}
-	}	
-
-	focus = {
-		id = SAF_work_for_all_poor
-		icon = GFX_focus_generic_concessions
-		prerequisite = { focus = SAF_native_laws_amendment_act }
-		x = 0
-		y = 1
-		relative_position_id = SAF_native_laws_amendment_act
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = SAF_cheap_labor_1
-				add_idea = SAF_cheap_labor_2
-			}
-		}
-	}
-	
-	focus = {
-		id = SAF_wartime_worker_laws
-		icon = GFX_goal_generic_attack_allies
-		prerequisite = { focus = SAF_work_for_all_poor }
-		x = 0
-		y = 1
-		relative_position_id = SAF_work_for_all_poor
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			has_completed_focus = SAF_war_measures_act
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = SAF_cheap_labor_2
-				add_idea = SAF_cheap_labor_3
-			}
-			#remove_ideas = SAF_worker_restrictions
-		}
-	}
-	
-	# focus = {
-		# id = SAF_police_windhoek
-		# icon = GFX_goal_generic_construction
-		# prerequisite = { focus = SAF_support_the_policy_of_appeasement }
-		# x = 3
-		# y = 1
-		# relative_position_id = SAF_support_the_policy_of_appeasement
-		
-		# allow_branch = { always= no }
-
-		# cost = 5
-
-		# ai_will_do = {
-			# factor = 2
-		# }
-
-		# cancel_if_invalid = yes
-		# continue_if_invalid = no
-		# available_if_capitulated = no
-
-		# completion_reward = {	
-            # 541 = {		
-				# add_extra_state_shared_building_slots = 2
-				# add_building_construction = {
-					# type = industrial_complex
-					# level = 2
-					# instant_build = yes
-				# }
-            # }				
-		# }
-	# }
-	
-	focus = {
-		id = SAF_voortrekker_monument
-		icon = GFX_focus_SWI_establish_pro_helvetia
-		prerequisite = { focus = SAF_support_the_policy_of_appeasement }
-		x = 10
-		y = 1
-		relative_position_id = SAF_support_the_policy_of_appeasement
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = SAF_voortrekker_monument
-		}
-	}
-	
-	focus = {
-		id = SAF_celebrate_the_great_trek
-		icon = GFX_goal_generic_demand_territory
-		prerequisite = { focus = SAF_voortrekker_monument }
-		x = 0
-		y = 1
-		relative_position_id = SAF_voortrekker_monument
-
-		cost = 3
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_political_power = 50
-		}
-	}
-	
-	focus = {
-		id = SAF_commemorate_the_battle_of_blood_river
-		icon = GFX_goal_generic_secret_weapon
-		prerequisite = { focus = SAF_celebrate_the_great_trek } 
-		x = 0
-		y = 2
-		relative_position_id = SAF_voortrekker_monument
-
-		cost = 2
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = SAF_voortrekker_monument
-				add_idea = SAF_voortrekker_monument_2
-			}
-
-		}
-	}
-	focus = {
-		id = SAF_open_engineering_schools
-		icon = GFX_goal_generic_production2 
-		prerequisite = { focus = SAF_support_the_policy_of_appeasement } 
-		mutually_exclusive = { focus = SAF_native_representation_act }
-		x = 5
-		y = 1
-		relative_position_id = SAF_support_the_policy_of_appeasement
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		} 
-
-		available = {
-		    #NOT = { has_completed_focus = SAF_force_parliament_debate }
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {			
-			#add_ideas = SAF_stellenbosch_engineering_department
-			
-			custom_effect_tooltip = SAF_open_engineering_schools_tt
-			
-			if = { 
-				limit = { 
-					OR = {	
-						has_completed_focus = SAF_force_parliament_debate 
-						has_completed_focus = SAF_support_appeasement
-					}
-				}
-				add_tech_bonus = {
-					name = SAF_heavy_engineering
-					bonus = 1.0
-					uses = 2
-					category = industry
-				}
-			}
-			else_if = { 
-				limit = { 
-					has_completed_focus = SAF_hofmeyrs_reforms
-				}
-				275 = { 
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = industrial_complex
-						level = 2
-						instant_build = yes
-					}
-				}
-			}
-		}
-	}	
-	
-	focus = {
-		id = SAF_expand_gold_mining_operations
-		icon = GFX_focus_usa_reestablish_the_gold_standard
-		prerequisite = { focus = SAF_open_engineering_schools }
-		x = 1
-		y = 1
-		relative_position_id = SAF_open_engineering_schools
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		} 
-
-		available = {
-			has_completed_focus = SAF_expand_the_rand_mines
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {			
-			swap_ideas = {
-				remove_idea = SAF_gold_exports
-				add_idea = SAF_gold_exports_2
-			}
-		}
-	} 
-	
-	focus = {
-		id = SAF_vanderbijlpark_expansion_project
-		icon = GFX_focus_generic_africa_factory 
-		prerequisite = { focus = SAF_open_engineering_schools }
-		x = -1
-		y = 1
-		relative_position_id = SAF_open_engineering_schools
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 2
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {			
-			275 = {
+			every_owned_state = {
+				limit = { is_core_of = ROOT }
 				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
 			}
 		}
 	}
-	
-	# focus = {
-		# id = SAF_relax_worker_restrictions
-		# icon = GFX_focus_eng_concessions_to_the_trade_unions 
-		# prerequisite = { focus = SAF_vanderbijlpark_expansion_project } 
-		# prerequisite = { focus = SAF_expand_gold_mining_operations } 
-		# x = 0
-		# y = 2
-		# relative_position_id = SAF_open_engineering_schools
 
-		# cost = 5
+	focus = {
+		id = SAF_vela_incident
+		icon = GFX_focus_wonderweapons
+		prerequisite = { focus = SAF_university_of_pretoria }
+		x = 2
+		y = 1
+		relative_position_id = SAF_university_of_pretoria
+		cost = 10
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
+			}
+		}
+	}
 
-		# ai_will_do = {
-			# factor = 1
-			# modifier = {
-				# factor = 0
-				# has_government = fascism
-				# has_government = neutrality
-			# }	
-		# }
-		
-		# bypass = {
-			# has_completed_focus = SAF_repeal_job_reservation_act
-		# }
-
-		# cancel_if_invalid = yes
-		# continue_if_invalid = no
-		# available_if_capitulated = no
-
-		# completion_reward = {
-			# remove_ideas = SAF_worker_restrictions
-		# }
-	# }
-	
-	##### MILITARY SECTION ######
-	
 	focus = {
 		id = SAF_special_service_battalion
 		icon = GFX_goal_generic_army_doctrines
-		x = 30
+		x = 26
 		y = 0
-
 		cost = 5
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
-			#add_ideas = SAF_support_spain
 			army_experience = 50
 		}
 	}
-		
+
 	focus = {
-		id = SAF_improve_the_three_oh_three
-		icon = GFX_goal_generic_small_arms
+		id = SAF_sarc_mki
+		icon = GFX_focus_generic_armored_air_support
 		prerequisite = { focus = SAF_special_service_battalion }
-		x = 3
+		x = -4
 		y = 1
 		relative_position_id = SAF_special_service_battalion
-
 		cost = 5
-
-
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
 		completion_reward = {
 			add_tech_bonus = {
-				name = SAF_improve_the_three_oh_three
-				bonus = 0.5
+				name = SAF_sarc_mki
+				bonus = 1.0
 				uses = 2
-				category = infantry_weapons
+				category = cat_mechanized_equipment
 			}
 		}
 	}
-	
+
+	focus = {
+		id = SAF_armor_effort
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = SAF_sarc_mki }
+		x = 0
+		y = 1
+		relative_position_id = SAF_sarc_mki
+		cost = 5
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_armor_effort
+				bonus = 1.0
+				uses = 2
+				category = cat_1941_tanks
+				category = cat_1943_tanks
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_mechanization_effort
+		icon = GFX_goal_generic_build_tank
+		prerequisite = { focus = SAF_armor_effort }
+		x = 0
+		y = 1
+		relative_position_id = SAF_armor_effort
+		cost = 5
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_mechanization_effort
+				ahead_reduction = 2
+				bonus = 3.0
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_pretoria_metal_pressings
+		icon = GFX_UK_cordite_factory
+		prerequisite = { focus = SAF_special_service_battalion }
+		x = -2
+		y = 1
+		relative_position_id = SAF_special_service_battalion
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_pretoria_metal_pressings
+				bonus = 0.5
+				uses = 2
+				category = artillery
+			}
+			add_ideas = SAF_artillery_contracts
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = pretoria_metal_pressings
+		}
+	}
+
 	focus = {
 		id = SAF_equipment_effort
 		icon = GFX_goal_generic_army_artillery
-		prerequisite = { focus = SAF_improve_the_three_oh_three  }
+		prerequisite = { focus = SAF_pretoria_metal_pressings }
 		x = 0
 		y = 1
-		relative_position_id = SAF_improve_the_three_oh_three
-
+		relative_position_id = SAF_pretoria_metal_pressings
 		cost = 5
-	
-		completion_reward = {			
+		completion_reward = {
 			add_tech_bonus = {
 				name = SAF_equipment_effort
 				bonus = 0.5
@@ -1398,19 +1979,14 @@ focus_tree = {
 		}
 	}
 
-
-
 	focus = {
 		id = SAF_expand_the_south_african_artillery
 		icon = GFX_goal_generic_army_artillery2
-		prerequisite = { focus = SAF_equipment_effort  }
+		prerequisite = { focus = SAF_equipment_effort }
 		x = 0
-		y = 2
+		y = 1
 		relative_position_id = SAF_equipment_effort
-
 		cost = 5
-
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = SAF_expand_the_south_african_artillery
@@ -1420,65 +1996,21 @@ focus_tree = {
 			}
 		}
 	}
-	
-	focus = {
-		id = SAF_pretoria_metal_pressings
-		icon = GFX_goal_generic_military_sphere
-		prerequisite = { focus = SAF_special_service_battalion }
-		x = 1
-		y = 1
-		relative_position_id = SAF_special_service_battalion
 
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			army_experience = 5
-			275 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
-			add_tech_bonus = {
-				name = SAF_expand_the_south_african_artillery
-				bonus = 0.5
-				uses = 1
-				category = artillery
-			}
-		}
-	}
-	
 	focus = {
 		id = SAF_q_services_corps
 		icon = GFX_goal_generic_army_motorized
-		prerequisite = { focus = SAF_pretoria_metal_pressings }
-		x = 1
-		y = 2
+		prerequisite = { focus = SAF_special_service_battalion }
+		x = 0
+		y = 1
 		relative_position_id = SAF_special_service_battalion
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
 		completion_reward = {
 			add_tech_bonus = {
-				name = AST_fund_owen_gun_research
+				name = SAF_q_services_corps
 				bonus = 3.0
 				uses = 1
 				technology = tech_logistics_company3
@@ -1486,44 +2018,29 @@ focus_tree = {
 			}
 		}
 	}
-	
+
 	focus = {
-		id = SAF_the_sarc_mki
-		icon = GFX_goal_panzerwaffe
-		prerequisite = { focus = SAF_pretoria_metal_pressings focus = SAF_special_service_battalion }
-		x = -1
-		y = 2
-		relative_position_id = SAF_special_service_battalion
-
+		id = SAF_south_african_military_college
+		icon = GFX_focus_generic_pilot_training
+		prerequisite = { focus = SAF_q_services_corps }
+		prerequisite = { focus = SAF_sa_engineer_corps }
+		x = 1
+		y = 1
+		relative_position_id = SAF_q_services_corps
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
 		completion_reward = {
-			add_tech_bonus = {
-				name = SAF_q_services_corps
-				bonus = 1.0
-				uses = 2
-				category = cat_mechanized_equipment
-			}
+			army_experience = 50
 		}
 	}
-		focus = {
+
+	focus = {
 		id = SAF_sa_engineer_corps
-		icon = GFX_goal_generic_allies_build_infantry
-		prerequisite = { focus = SAF_q_services_corps focus = SAF_the_sarc_mki }
-		x = 0
-		y = 3
+		icon = GFX_focus_FIN_weapon_caches
+		prerequisite = { focus = SAF_special_service_battalion }
+		x = 2
+		y = 1
 		relative_position_id = SAF_special_service_battalion
-
 		cost = 5
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = SAF_sa_engineer_corps
@@ -1535,156 +2052,99 @@ focus_tree = {
 	}
 
 	focus = {
-		id = SAF_improve_infantry
-		icon = GFX_focus_chi_army_reform
-		prerequisite = { focus = SAF_q_services_corps }
-		x = 1
-		y = 4
-		relative_position_id = SAF_special_service_battalion
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
+		id = SAF_asymmetric_warfare
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = SAF_south_african_military_college }
+		x = 0
+		y = 1
+		relative_position_id = SAF_south_african_military_college
+		cost = 10
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		completion_reward = {
+			every_army_leader = {
+				add_logistics = 1
+			}
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_out_of_supply_factor = -0.25 tooltip = out_of_supply_factor_tt } }
+			SAF_refresh_army_and_navy = yes
+		}
+	}
 
+	focus = {
+		id = SAF_improve_the_three_oh_three
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = SAF_special_service_battalion }
+		x = 4
+		y = 1
+		relative_position_id = SAF_special_service_battalion
+		cost = 5
 		completion_reward = {
 			add_tech_bonus = {
-				name = SAFR_improve_infantry
+				name = SAF_improve_the_three_oh_three
 				bonus = 0.5
 				uses = 2
 				category = infantry_weapons
 			}
 		}
 	}
-		focus = {
+
+	focus = {
+		id = SAF_improve_infantry
+		icon = GFX_focus_chi_army_reform
+		prerequisite = { focus = SAF_improve_the_three_oh_three }
+		x = 0
+		y = 1
+		relative_position_id = SAF_improve_the_three_oh_three
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_improve_infantry
+				bonus = 0.5
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+
+	focus = {
 		id = SAF_south_african_special_forces
 		icon = GFX_goal_generic_special_forces
 		prerequisite = { focus = SAF_improve_infantry }
 		x = 0
-		y = 2
+		y = 1
 		relative_position_id = SAF_improve_infantry
-
 		cost = 5
-
 		completion_reward = {
-				add_doctrine_cost_reduction = {
-				name = SAF_south_african_special_forces
-				cost_reduction = 0.99
-				uses = 2
-				category = special_forces_doctrine
-			}	
+			custom_effect_tooltip = SAF_army_and_navy_tt
+			effect_tooltip = { add_to_variable = { SAF_ran_army_infantry_attack_factor = 0.08 tooltip = army_infantry_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_infantry_defence_factor = 0.08 tooltip = army_infantry_defence_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_armor_attack_factor = 0.08 tooltip = army_armor_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_army_armor_defence_factor = 0.08 tooltip = army_armor_defence_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_special_forces_attack_factor = 0.08 tooltip = special_forces_attack_factor_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ran_special_forces_defence_factor = 0.08 tooltip = special_forces_defence_factor_tt } }
+			SAF_refresh_army_and_navy = yes
 		}
 	}
 
-	focus = {
-		id = SAF_mechanization_effort
-		icon = GFX_goal_generic_build_tank
-		x = -3
-		y = 2
-		relative_position_id = SAF_q_services_corps
-		prerequisite = { focus = SAF_special_service_battalion }
-
-		cost = 5
-
-		completion_reward = {			
-			add_tech_bonus = {
-				name = SAF_mechanization_effort
-				ahead_reduction = 2
-				bonus = 3.0
-				uses = 1
-				category = cat_mechanized_equipment
-			}
-		}
-	}
-	
-	focus = {
-		id = SAF_armor_effort
-		icon = GFX_goal_generic_army_tanks
-		prerequisite = { focus = SAF_mechanization_effort  }
-		x = 0
-		y = 1
-		relative_position_id = SAF_mechanization_effort
-		cost = 5
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = SAF_armor_effort
-				bonus = 1.0
-				uses = 2
-				category = cat_1941_tanks
-				category = cat_1943_tanks			
-			}
-		}
-	}
-	
-	
-	focus = {
-		id = SAF__south_african_military_college
-		icon = GFX_goal_generic_military_sphere
-		prerequisite = { focus = SAF_equipment_effort focus = SAF_q_services_corps }
-		x = -1
-		y = 1
-		relative_position_id = SAF_equipment_effort
-
-		cost = 5
-
-		completion_reward = {
-			army_experience = 50
-		}
-	}
-
-	focus = {
-		id = SAF_asymmetric_warfare
-		icon = GFX_focus_generic_military_academy
-		prerequisite = { focus = SAF_mechanization_effort focus = SAF_improve_infantry } 
-		x = 0
-		y = 5
-		relative_position_id = SAF_special_service_battalion
-
-		cost = 10
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			every_army_leader = {
-			add_logistics = 1
-		}
-			add_ideas = SAF_bush_warfare
-		}
-	}
-	
 	focus = {
 		id = SAF_commit_to_the_five_year_plan
-		icon = GFX_goal_generic_air_doctrine
-		x = 37
+		icon = GFX_focus_generic_escort_efficiency
+		x = 34
 		y = 0	
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
 		completion_reward = {
 			air_experience = 100
 		}
 	}
-	
+
 	focus = {
 		id = SAF_replace_the_blenheim
 		icon = GFX_goal_generic_occupy_start_war
@@ -1692,14 +2152,11 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = SAF_commit_to_the_five_year_plan
-
 		cost = 10
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
         search_filters = { FOCUS_FILTER_RESEARCH }
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = SAF_replace_the_blenheim
@@ -1709,96 +2166,35 @@ focus_tree = {
 			}
 		}
 	}
-	
-	
-	# focus = {
-		# id = SAF_secure_the_cape_sea_route
-		# icon = GFX_goal_generic_air_bomber 
-		# prerequisite = {  focus = SAF_replace_the_blenheim }
-		# x = 0
-		# y = 1
-		# relative_position_id = SAF_replace_the_blenheim
 
-		# cost = 5
-
-		# cancel_if_invalid = yes
-		# continue_if_invalid = no
-		# available_if_capitulated = yes
-        # search_filters = { FOCUS_FILTER_RESEARCH }
-
-		# completion_reward = {
-		# air_experience = 25
-			# add_tech_bonus = {
-				# name = SAF_secure_the_cape_sea_route
-				# bonus = 1.0
-				# uses = 1
-				# category = heavy_air
-			# }
-		# }
-	# }
-
-	
 	focus = {
 		id = SAF_perfect_the_cab_rank_technique
-		icon = GFX_goal_generic_air_doctrine
+		icon = GFX_focus_CHI_positional_advantage
 		prerequisite = {  focus = SAF_commit_to_the_five_year_plan }
 		x = 0
 		y = 1
 		relative_position_id = SAF_commit_to_the_five_year_plan
-
 		cost =5
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
         search_filters = { FOCUS_FILTER_RESEARCH }
-
 		completion_reward = {
 			air_experience = 100
 		}
 	}
-    
-	focus = {
-		id = SAF_expand_artillery_aircraft_depot
-		icon = GFX_goal_continuous_air_production
-		prerequisite = { focus = SAF_perfect_the_cab_rank_technique }
-		x = 0
-		y = 1
-		relative_position_id = SAF_perfect_the_cab_rank_technique
 
-		cost = 5
-		
-		allow_branch = { always = no }
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-		    add_ideas = RAJ_aid_british_hardware_stockpiles_idea
-		}
-	}
-	
 	focus = {
 		id = SAF_flexible_airforce
 		icon = GFX_focus_usa_escort_fighters
 		prerequisite = { focus = SAF_perfect_the_cab_rank_technique  }
-		mutually_exclusive = { focus = SAF_specialised_airforce }
 		x = 0
 		y = 1	
 		relative_position_id = SAF_perfect_the_cab_rank_technique
-
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = SAFR_specialised_airforce
@@ -1808,77 +2204,70 @@ focus_tree = {
 			}
 		}
 	}
-	
+
 	focus = {
-		id = SAF_specialised_airforce
-		icon = GFX_focus_chi_flying_tigers
-		prerequisite = { focus = SAF_expand_artillery_aircraft_depot  } 
-		mutually_exclusive = { focus = SAF_flexible_airforce }
-		x = 1
-		y = 1	
-		relative_position_id = SAF_flexible_airforce 
-
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
+		id = SAF_sa_airforce_college
+		icon = GFX_focus_generic_long_range_aircraft
+		prerequisite = { focus = SAF_flexible_airforce }
+		x = 0
+		y = 1
+		relative_position_id = SAF_flexible_airforce  
+		cost = 10
 		cancel_if_invalid = yes
 		continue_if_invalid = no
-		available_if_capitulated = no
+		available_if_capitulated = yes
+		completion_reward = {
+            air_experience = 100
+		}
+	}
 
+	focus = {
+		id = SAF_retain_experienced_pilots
+		icon = GFX_focus_AST_no1_flying_training_school
+		prerequisite = { focus = SAF_sa_airforce_college  }
+		x = 0
+		y = 1
+		relative_position_id = SAF_sa_airforce_college
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+        search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			air_experience = 100
+		}
+	}
+
+	focus = {
+		id = SAF_saaf_coastal_command
+		icon = GFX_goal_generic_air_naval_bomber
+		prerequisite = { focus = SAF_commit_to_the_five_year_plan }
+		x = -2
+		y = 1
+		relative_position_id = SAF_commit_to_the_five_year_plan
+		cost = 5
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		completion_reward = {
 			add_tech_bonus = {
-				name = SAFR_expand_artillery_aircraft_depot
+				name = SAFR_specialised_airforce
 				bonus = 1.0
 				uses = 2
 				category = medium_air
 			}
 		}
 	}
-	
-	focus = {
-		id = SAF_sa_airforce_college
-		icon = GFX_focus_generic_long_range_aircraft
-		prerequisite = { focus = SAF_specialised_airforce focus = SAF_flexible_airforce } 
-		x = 0
-		y = 1
-		relative_position_id = SAF_flexible_airforce  
 
-		cost = 10
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-            air_experience = 100
-			#add_ideas = SAF_desert_airforce
-		}
-	}
-	
 	focus = {
 		id = SAF_seaward_defence_force
 		icon = GFX_goal_generic_navy_doctrines_tactics
-		x = 43
+		x = 40
 		y = 0		
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
 		completion_reward = {
 		 	297 = {
 				add_extra_state_shared_building_slots = 5
@@ -1899,79 +2288,6 @@ focus_tree = {
 		}
 	}
 
-	# focus = {
-		# id = SAF_desert_air_force
-		# icon = GFX_goal_generic_CAS
-		# prerequisite = { focus = SAF_flexible_airforce focus = SAF_sa_airforce_college }
-		# x = -1
-		# y = 1
-		# relative_position_id = SAF_sa_airforce_college
-
-		# cost = 5
-
-		# cancel_if_invalid = yes
-		# continue_if_invalid = no
-		# available_if_capitulated = yes
-        # search_filters = { FOCUS_FILTER_RESEARCH }
-
-		# completion_reward = {
-			# air_experience = 25
-			# add_tech_bonus = {
-				# name = SAF_desert_air_force
-				# bonus = 1.0
-				# uses = 1
-				# category = light_air
-			# }
-		# }
-	# }
-
-	focus = {
-		id = SAF_retain_experienced_pilots
-		icon = GFX_goal_generic_air_doctrine
-		prerequisite = { focus = SAF_sa_airforce_college  }
-		x = 0
-		y = 1
-		relative_position_id = SAF_sa_airforce_college
-
-		cost = 5
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-        search_filters = { FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-			air_experience = 100
-		}
-	}
-
-	focus = {
-		id = SAF_saaf_coastal_command
-		icon = GFX_goal_generic_air_naval_bomber
-		prerequisite = { focus = SAF_commit_to_the_five_year_plan }
-		x = -2
-		y = 1
-		relative_position_id = SAF_commit_to_the_five_year_plan
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = SAFR_specialised_airforce
-				bonus = 1.0
-				uses = 2
-				category = medium_air
-			}
-		}
-	}
-	
 	focus = {
 		id = SAF_protect_the_trade
 		icon = GFX_goal_generic_navy_cruiser
@@ -1979,46 +2295,31 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = SAF_seaward_defence_force
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 0.8
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = SAF_protect_the_trade
 				bonus = 1.0
-				#ahead_reduction = 2
 				uses = 2
 				category = dd_tech
 			}
 		}
 	}
-	
+
 	focus = {
 		id = SAF_protect_the_trade_2
 		icon = GFX_goal_generic_navy_anti_submarine
 		prerequisite = { focus = SAF_protect_the_trade }
-		x = -2
-		y = 2
-		relative_position_id = SAF_seaward_defence_force
-
+		x = 0
+		y = 1
+		relative_position_id = SAF_protect_the_trade
 		cost = 5
-
-		ai_will_do = {
-			factor = 0.8
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = SAF_protect_the_trade_2
@@ -2036,23 +2337,11 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = SAF_seaward_defence_force
-
 		cost = 5
-
-		ai_will_do = {
-			factor = 0.2
-			modifier = {
-				has_war_with = ENG
-				factor = 10
-			}
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
-
 			add_tech_bonus = {
 				name = SAF_submarine_warfare
 				bonus = 1.0
@@ -2061,29 +2350,18 @@ focus_tree = {
 			}
 		}
 	}
-	
+
 	focus = {
 		id = SAF_disrupt_the_trade_2
 		icon = GFX_goal_generic_navy_submarine
 		prerequisite = { focus = SAF_disrupt_the_trade }
 		x = 0
-		y = 2
-		relative_position_id = SAF_seaward_defence_force
-
+		y = 1
+		relative_position_id = SAF_disrupt_the_trade
 		cost = 5
-
-		ai_will_do = {
-			factor = 0.2
-			modifier = {
-				has_war_with = ENG
-				factor = 10
-			}
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = SAFR_submarine_warfare
@@ -2103,11 +2381,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = SAF_seaward_defence_force
-
 		cost = 5
-
-	
-
 		completion_reward = {
             297 = {
 				add_extra_state_shared_building_slots = 2
@@ -2119,7 +2393,7 @@ focus_tree = {
 			}
 		}
 	}
-		
+
 	focus = {
 		id = SAF_strengthen_the_cape_garrison_artillery
 		icon = GFX_goal_generic_construct_military
@@ -2127,9 +2401,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = SAF_expand_the_simons_town_base
-
 		cost = 5
-
 		completion_reward = {
 			every_owned_state = {
 				limit = {
@@ -2149,44 +2421,34 @@ focus_tree = {
 			}
 		}
 	}
+
 	focus = {
 		id = SAF_expand_repair_facilities
-		icon = GFX_goal_generic_amphibious_assault
+		icon = GFX_focus_generic_refit_civilian_ships
 		prerequisite = { focus = SAF_expand_the_simons_town_base }
-		x = 2
-		y = 2
-		relative_position_id = SAF_seaward_defence_force
-
+		x = 0
+		y = 1
+		relative_position_id = SAF_expand_the_simons_town_base
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
 			add_ideas = SAF_floating_dockyards	
 		}
 	}
 
-
 	focus = {
 		id = SAF_prepare_overseas_offensive
 		icon = GFX_goal_generic_amphibious_assault
 		prerequisite = { focus = SAF_expand_repair_facilities }
-		x = 3
-		y = 3
-		relative_position_id = SAF_seaward_defence_force
-
+		x = 1
+		y = 1
+		relative_position_id = SAF_expand_repair_facilities
 		cost = 5
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
             297 = {
 				add_extra_state_shared_building_slots = 2
@@ -2211,89 +2473,18 @@ focus_tree = {
 		}
 	}
 
-	# focus = {
-		# id = SAF_protect_cape_sea_route
-		# icon = GFX_focus_generic_coastal_fort
-		# prerequisite = { focus = SAF_protect_the_trade }
-		# x = -3
-		# y = 3
-		# relative_position_id = SAF_seaward_defence_force
-
-		# cost = 5
-
-		# ai_will_do = {
-			# factor = 1
-		# }
-
-		# cancel_if_invalid = yes
-		# continue_if_invalid = no
-		# available_if_capitulated = no
-
-		# completion_reward = {
-			# 681 = {
-				# add_building_construction = {
-					# type = coastal_bunker
-					# province = 12589
-					# level = 2
-					# instant_build = yes
-				# }
-				# add_building_construction = {
-					# type = radar_station					
-					# level = 1
-					# instant_build = yes
-				# }
-				# add_building_construction = {
-					# type = air_base					
-					# level = 2
-					# instant_build = yes
-				# }
-			# }
-			# 719 = {
-				# add_building_construction = {
-					# type = coastal_bunker
-					# province = 4696
-					# level = 2
-					# instant_build = yes
-				# }
-				# add_building_construction = {
-					# type = coastal_bunker
-					# province = 1468
-					# level = 2
-					# instant_build = yes
-				# }
-				# add_building_construction = {
-					# type = radar_station					
-					# level = 1
-					# instant_build = yes
-				# }
-				# add_building_construction = {
-					# type = air_base					
-					# level = 2
-					# instant_build = yes
-				# }
-			# }
-		# }
-	# }
-	
 	focus = { 
 		id = SAF_sa_naval_college
 		icon = GFX_focus_generic_africa_naval
 		prerequisite = { focus = SAF_disrupt_the_trade_2 focus = SAF_protect_the_trade_2 }
 		prerequisite = { focus = SAF_expand_repair_facilities }
-		x = 0
-		y = 3
-		relative_position_id = SAF_seaward_defence_force
-
+		x = 2
+		y = 1
+		relative_position_id = SAF_protect_the_trade_2
 		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-
 		completion_reward = {
 			add_tech_bonus = {
 				name = CAN_heavy_cruiser_effort
@@ -2301,14 +2492,12 @@ focus_tree = {
 				uses = 2
 				category = ca_tech
 			}
-            
             add_tech_bonus = {
 				name = CAN_habakkuk_carrier
 				bonus = 1.0
 				uses = 2
 				category = cv_tech
 			}
-            
             add_tech_bonus = {
                 name = GER_plan_z
                 bonus = 1.0
@@ -2318,477 +2507,5 @@ focus_tree = {
             }
 		}
 	}
-	
-	############################
-	##### INDUSTRY SECTION #####
-	############################
 
-	focus = {
-		id = SAF_south_african_railways
-		icon = GFX_goal_generic_construct_infrastructure   
-		x = 2
-		y = 0
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 15
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-		custom_effect_tooltip = available_designer
-			show_ideas_tooltip = SAF_south_african_railways		
-			hidden_effect = { 
-			build_railway = {  level  =2 
-				path = { 1468 4556 12648 10400  }
-			}
-			build_railway = { level  =2 
-				path = { 1468 7576  }
-			}	
-				build_railway = { level  =2 
-				path = { 4696 1833  }
-			}		
-						build_railway = { 
-				path = { 12589 10415 12692 12547 4696  }
-			}		
-						build_railway = {
-				path = {10697 5231  }
-			}		
-						build_railway = { 
-				path = { 10697 4822 4696  }
-			}		
-			build_railway = { 
-				path = { 1509 10697  }
-			}		
-				build_railway = { level  = 2
-				path = { 2229 10963   }
-			}		
-				build_railway = { 
-				path = { 10963 4879   }
-			}		
-				build_railway = { 
-				path = { 10963 7605 5203 1509 }
-			}		
-			build_railway = { level = 2
-				path = { 8214 10668 5231 }
-			}		
-				build_railway = { level = 2
-				path = { 2213 10400 }
-			}		
-				build_railway = { level = 2 
-				path = { 1688 5106 10400 }
-			}		
-			build_railway = { 
-				path = { 10929 1874 12963 8214 }
-			}		
-
-		build_railway = { level = 2
-				path = { 8214 12963 1874 7872 5199 }
-			}	
-				
-			}
-			custom_effect_tooltip =  "Our railway networks will be improved by 1-2 levels."
-		}
-	}
-
-	focus = {
-		id = SAF_expand_the_mining_industry
-		icon = GFX_goal_generic_construction
-		prerequisite = { focus = SAF_south_african_railways }
-		x = 0
-		y = 1
-		relative_position_id = SAF_south_african_railways
-
-		cost = 10
-
-
-		available = {
-			controls_state = 275
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			275 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
-			add_tech_bonus = {
-				name = SAF_expand_the_mining_industry
-				bonus = 1.0
-				uses = 2
-				technology = excavation1
-				technology = excavation2
-				technology = excavation3
-				technology = excavation4
-				technology = excavation5
-			}
-		}
-	}
-
-	focus = {
-		id = SAF_heavy_engineering
-		icon = GFX_goal_generic_production
-		prerequisite = { focus = SAF_south_african_railways }
-		x = -2
-		y = 1
-		relative_position_id = SAF_south_african_railways
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 20
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {			
-		    add_tech_bonus = {
-				name = SAF_heavy_engineering
-				bonus = 1.0
-				uses = 2
-				category = industry
-			}
-			# 275 = {
-				# add_extra_state_shared_building_slots = 2
-				# add_building_construction = {
-					# type = industrial_complex
-					# level = 2
-					# instant_build = yes
-				# }
-			# }
-		}
-	}
-	
-	focus = {
-		id = SAF_south_african_steel
-		icon = GFX_focus_generic_steel
-		prerequisite = { focus = SAF_south_african_railways }
-		x = 2
-		y = 1
-		relative_position_id = SAF_south_african_railways
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 15
-		}
-
-		available = {
-			controls_state = 275
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			275 = {
-				add_resource = {
-					type = steel
-					amount = 20
-				}
-			}
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = SAF_iscor
-		}
-	}
-	
-	
-	focus = {
-		id = SAF_expand_the_rand_mines
-		icon = GFX_focus_usa_reestablish_the_gold_standard
-		prerequisite = { focus = SAF_expand_the_mining_industry } 
-		#prerequisite = { focus = SAF_south_african_steel }
-		x = 1
-		y = 2
-		relative_position_id = SAF_south_african_railways
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 15
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_ideas = SAF_gold_exports
-		}
-	}
-	 
-	focus = {
-		id = SAF_infrastructure_effort
-		icon = GFX_focus_generic_africa_infrastructure
-		prerequisite = { focus = SAF_expand_the_rand_mines }
-		prerequisite = { focus = SAF_fund_the_university_of_south_africa }
-		x = 0
-		y = 3
-		relative_position_id = SAF_south_african_railways  
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 20
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-					275 = {
-						add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-									538 = {
-									add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-						487 = {
-							add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-	}	
-	
-	focus = {
-		id = SAF_pretoria_arms
-		icon = GFX_goal_generic_production2
-		prerequisite = { focus = SAF_heavy_engineering } 
-		x = -2
-		y = 3
-		relative_position_id = SAF_south_african_railways
-
-		cost = 5
-
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			275 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = SAF_armament_effort
-		icon = GFX_goal_generic_construct_mil_factory
-		prerequisite = { focus = SAF_pretoria_arms }
-		x = 0
-		y = 1
-		relative_position_id = SAF_pretoria_arms
-
-		cost = 5
-		completion_reward = {
-						487 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-	}
-	focus = {
-		id = SAF_fund_the_university_of_south_africa
-		icon = GFX_focus_research
-		prerequisite = { focus = SAF_expand_the_mining_industry } 
-		#prerequisite = { focus = SAF_heavy_engineering }
-		x = -1
-		y = 2
-		relative_position_id = SAF_south_african_railways
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 45
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_research_slot = 1
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = SAF_bernard_price_institute
-		}
-	}	
-	
-	
-	focus = {
-		id = SAF_establish_the_atomics_energy_board
-		icon = GFX_focus_wonderweapons
-		prerequisite = { focus = SAF_fund_the_university_of_south_africa }
-		x = 3
-		y = 1
-		relative_position_id = SAF_fund_the_university_of_south_africa
-
-		cost = 10
-
-		ai_will_do = {
-			factor = 5
-		}
-
-		available = {
-
-		}
-		
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-        search_filters = { FOCUS_FILTER_RESEARCH }
-
-		completion_reward = {
-				add_breakthrough_progress = {
-					specialization = specialization_nuclear
-					value = 0.75
-				}
-		}
-	}
-
-	focus = {
-		id = SAF_defense_collaboration_initiative
-		icon = GFX_goal_generic_scientific_exchange
-		prerequisite = { focus = SAF_infrastructure_effort }
-		x = 0
-		y = 1
-		relative_position_id = SAF_infrastructure_effort
-
-		cost = 10
-		
-		available = {
-			date > 1941.1.1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}
-	
-	focus = {
-		id = SAF_sasol_non_aligned
-		icon = GFX_goal_generic_oil_refinery
-		prerequisite = { focus = SAF_defense_collaboration_initiative }
-		x = 0
-		y = 5
-		relative_position_id = SAF_south_african_railways
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			has_tech = synth_oil_experiments 
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-
-		completion_reward = {
-			275 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = synthetic_refinery 
-					level = 2
-					instant_build = yes
-				}		
-				set_state_flag = SAFR_sasol_non_aligned_Ref
-			}
-			add_tech_bonus = {
-				name = SAFR_sasol_non_aligned
-				bonus = 1.0
-				uses = 1
-				category = synth_resources
-			}
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = SAF_sasol
-		}
-	}
-
-	
-	
-	focus = {
-		id = SAF_electronics_bonus
-		icon = GFX_goal_generic_radar
-		prerequisite = { focus = SAF_defense_collaboration_initiative }
-		x = 2
-		y = 5
-		relative_position_id = SAF_south_african_railways
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_tech_bonus = {
-				bonus = 1.0
-				uses = 1
-				category = electronics
-			}
-		}
-	}
-	
-	
-
-
-
-	
-
-
-
-}		
+}
