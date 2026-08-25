@@ -429,7 +429,6 @@ SAF_refresh_army_and_navy = {
 		else_if = {
 			limit = { check_variable = { SAF_crisis_rung = 3 } }
 			add_to_variable = { SAF_ran_war_support_weekly = 0.005 }
-			subtract_from_variable = { SAF_ran_stability_weekly = 0.005 }
 			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.25 }
 			add_to_variable = { SAF_ran_army_attack_factor = 0.10 }
 			add_to_variable = { SAF_ran_army_defence_factor = 0.10 }
@@ -437,7 +436,6 @@ SAF_refresh_army_and_navy = {
 		else_if = {
 			limit = { check_variable = { SAF_crisis_rung = 4 } }
 			add_to_variable = { SAF_ran_war_support_weekly = 0.01 }
-			subtract_from_variable = { SAF_ran_stability_weekly = 0.01 }
 			add_to_variable = { SAF_ran_industrial_capacity_factory = 0.50 }
 			add_to_variable = { SAF_ran_army_attack_factor = 0.30 }
 			add_to_variable = { SAF_ran_army_defence_factor = 0.30 }
@@ -451,7 +449,6 @@ SAF_refresh_army_and_navy = {
 
 SAF_refresh_domestic_situation = {
 	set_variable = { SAF_ds_consumer_goods_expected_value = 0 }
-	set_variable = { SAF_ds_industrial_factory_donations = 0 }
 	set_variable = { SAF_ds_production_factory_start_efficiency_factor = 0 }
 	set_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0 }
 	set_variable = { SAF_ds_production_factory_max_efficiency_factor = 0 }
@@ -491,23 +488,6 @@ SAF_refresh_domestic_situation = {
 	if = {
 		limit = { has_country_flag = SAF_reserve_bank_repayment }
 		add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 }
-	}
-
-	if = {
-		limit = { has_country_flag = SAF_british_loan_small }
-		add_to_variable = { SAF_ds_industrial_factory_donations = 5 }
-	}
-	if = {
-		limit = { has_country_flag = SAF_british_loan_large }
-		add_to_variable = { SAF_ds_industrial_factory_donations = 10 }
-	}
-	if = {
-		limit = { has_country_flag = SAF_american_loan_small }
-		add_to_variable = { SAF_ds_industrial_factory_donations = 5 }
-	}
-	if = {
-		limit = { has_country_flag = SAF_american_loan_large }
-		add_to_variable = { SAF_ds_industrial_factory_donations = 10 }
 	}
 
 	force_update_dynamic_modifier = yes
@@ -869,30 +849,6 @@ SAF_walk_out_to_smuts = {
 			country_event = { id = SAF.23 hours = 2 }
 		}
 	}
-}
-
-SAF_legacy_industrial_buildout = {
-	275 = {
-		add_resource = {
-			type = steel
-			amount = 20
-		}
-	}
-
-	build_railway = { level = 2 path = { 1468 4556 12648 10400 } }
-	build_railway = { level = 2 path = { 1468 7576 } }
-	build_railway = { level = 2 path = { 4696 1833 } }
-	build_railway = { path = { 12589 10415 12692 12547 4696 } }
-	build_railway = { path = { 10697 5231 } }
-	build_railway = { path = { 10697 4822 4696 } }
-	build_railway = { path = { 1509 10697 } }
-	build_railway = { level = 2 path = { 2229 10963 } }
-	build_railway = { path = { 10963 4879 } }
-	build_railway = { path = { 10963 7605 5203 1509 } }
-	build_railway = { level = 2 path = { 8214 10668 5231 } }
-	build_railway = { level = 2 path = { 2213 10400 } }
-	build_railway = { level = 2 path = { 1688 5106 10400 } }
-	build_railway = { path = { 10929 1874 12963 8214 } }
 }
 
 SAF_recount_africa_crisis = {
@@ -1617,11 +1573,18 @@ SAF_convert_one_civ_to_mil = {
 }
 
 SAF_gsa_pay_one_civ = {
-	random_owned_state = {
-		limit = { industrial_complex > 0 }
-		remove_building = {
-			type = industrial_complex
-			level = 1
+	if = {
+		limit = { check_variable = { SAF_gsa_offmap_civs > 0 } }
+		subtract_from_variable = { SAF_gsa_offmap_civs = 1 }
+		add_offsite_building = { type = industrial_complex level = -1 }
+	}
+	else = {
+		random_owned_state = {
+			limit = { industrial_complex > 0 }
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
 		}
 	}
 	ENG = {

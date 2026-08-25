@@ -10785,8 +10785,26 @@ propaganda_effortsx = {
 
 			hidden_effect = { 
 				SAF = { 
-					complete_national_focus = SAF_south_african_railways  
-					complete_national_focus = SAF_south_african_steel       
+					275 = {
+						add_resource = {
+							type = steel
+							amount = 20
+						}
+					}
+					build_railway = { level = 2 path = { 1468 4556 12648 10400 } }
+					build_railway = { level = 2 path = { 1468 7576 } }
+					build_railway = { level = 2 path = { 4696 1833 } }
+					build_railway = { path = { 12589 10415 12692 12547 4696 } }
+					build_railway = { path = { 10697 5231 } }
+					build_railway = { path = { 10697 4822 4696 } }
+					build_railway = { path = { 1509 10697 } }
+					build_railway = { level = 2 path = { 2229 10963 } }
+					build_railway = { path = { 10963 4879 } }
+					build_railway = { path = { 10963 7605 5203 1509 } }
+					build_railway = { level = 2 path = { 8214 10668 5231 } }
+					build_railway = { level = 2 path = { 2213 10400 } }
+					build_railway = { level = 2 path = { 1688 5106 10400 } }
+					build_railway = { path = { 10929 1874 12963 8214 } }
 				} 
 			}
 
@@ -10845,8 +10863,26 @@ propaganda_effortsx = {
             
             hidden_effect = {
                 SAF = {
-                    complete_national_focus = SAF_south_african_railways
-                    complete_national_focus = SAF_south_african_steel
+                    275 = {
+                        add_resource = {
+                            type = steel
+                            amount = 20
+                        }
+                    }
+                    build_railway = { level = 2 path = { 1468 4556 12648 10400 } }
+                    build_railway = { level = 2 path = { 1468 7576 } }
+                    build_railway = { level = 2 path = { 4696 1833 } }
+                    build_railway = { path = { 12589 10415 12692 12547 4696 } }
+                    build_railway = { path = { 10697 5231 } }
+                    build_railway = { path = { 10697 4822 4696 } }
+                    build_railway = { path = { 1509 10697 } }
+                    build_railway = { level = 2 path = { 2229 10963 } }
+                    build_railway = { path = { 10963 4879 } }
+                    build_railway = { path = { 10963 7605 5203 1509 } }
+                    build_railway = { level = 2 path = { 8214 10668 5231 } }
+                    build_railway = { level = 2 path = { 2213 10400 } }
+                    build_railway = { level = 2 path = { 1688 5106 10400 } }
+                    build_railway = { path = { 10929 1874 12963 8214 } }
                 }
             }
             
@@ -11938,12 +11974,16 @@ propaganda_effortsx = {
 		}
 
 		visible = {
-			NOT = { 
+			NOT = {
 				has_government = fascism
+			}
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
 			}
 		}
 
-		available = { 
+		available = {
 			fascism > 0.05
 		}
 
@@ -11968,13 +12008,17 @@ propaganda_effortsx = {
 
 		visible = {
 			NOT = { has_government = democratic }
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
+			}
 		}
 
-		allowed = { 
+		allowed = {
 			normally_played_country = yes
 		}
 
-		available = { 
+		available = {
 			democratic > 0.05
 		}
 
@@ -11999,13 +12043,17 @@ propaganda_effortsx = {
 
 		visible = {
 			NOT = { has_government = communism }
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
+			}
 		}
 
-		allowed = { 
+		allowed = {
 			normally_played_country = yes
 		}
 
-		available = { 
+		available = {
 			communism > 0.05
 		}
 
@@ -12029,13 +12077,17 @@ propaganda_effortsx = {
 
 		visible = {
 			NOT = { has_government = neutrality }
+			OR = {
+				NOT = { original_tag = SAF }
+				has_country_flag = SAF_coalition_resolved
+			}
 		}
 
-		allowed = { 
+		allowed = {
 			normally_played_country = yes
 		}
 
-		available = { 
+		available = {
 			neutrality > 0.05
 		}
 
