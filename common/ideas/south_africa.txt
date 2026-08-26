@@ -31,7 +31,7 @@ ideas = {
 			modifier = {
 				political_power_factor = 0.05
 				war_support_factor = 0.05
-				war_support_weekly = 0.0025
+				war_support_weekly = 0.001
 				experience_gain_army = 0.05
 			}
 		}
@@ -155,7 +155,8 @@ ideas = {
 			removal_cost = -1
 			picture = generic_political_advisor_europe_5
 			modifier = {
-				production_speed_arms_factory_factor = 0.15
+				production_speed_arms_factory_factor = 0.1
+				production_speed_industrial_complex_factor = 0.15
 				military_factory_donations = 2
 				production_speed_infrastructure_factor = 0.15
 				production_speed_rail_way_factor = 0.45
@@ -172,6 +173,7 @@ ideas = {
 				production_factory_max_efficiency_factor = 0.1
 				production_factory_start_efficiency_factor = 0.1
 				production_speed_arms_factory_factor = 0.3
+				production_speed_industrial_complex_factor = 0.15
 				production_speed_infrastructure_factor = 0.15
 				production_speed_rail_way_factor = 0.45
 			}
@@ -564,6 +566,7 @@ ideas = {
 			}
 		}
 
+
 	}
 
 	industrial_concern = {
@@ -572,7 +575,7 @@ ideas = {
 			available = { has_completed_focus = SAF_south_african_steel }
 			picture = generic_tank_manufacturer_3
 			research_bonus = {
-				industry = 0.15
+				industry = 0.3
 			}
 			traits = { industrial_concern }
 		}
@@ -592,7 +595,7 @@ ideas = {
 			available = { has_completed_focus = SAF_bernard_price_institute }
 			picture = generic_electronics_concern_2
 			research_bonus = {
-				electronics = 0.15
+				electronics = 0.3
 			}
 			traits = { electronics_concern }
 		}
@@ -607,6 +610,8 @@ ideas = {
 			}
 			traits = { railway_company }
 			modifier = {
+				production_cost_rail_way_factor = -0.2
+				production_cost_supply_node_factor = -0.2
 			}
 		}
 	}
@@ -637,16 +642,6 @@ ideas = {
 			modifier = { materiel_manufacturer_cost_factor = -0.33 }
 		}
 
-		pretoria_metal_pressings = {
-			allowed = { original_TAG = SAF }
-			available = { SAF = { has_completed_focus = SAF_pretoria_metal_pressings } }
-			picture = generic_artillery_manufacturer_1
-			research_bonus = {
-				artillery = 0.15
-			}
-			traits = { artillery_manufacturer }
-			modifier = { materiel_manufacturer_cost_factor = -0.33 }
-		}
 	}
 
 	tank_manufacturer = {

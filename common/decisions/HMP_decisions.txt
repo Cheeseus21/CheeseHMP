@@ -9023,6 +9023,13 @@ propaganda_effortsx = {
 		complete_effect = {
 			replace_civ_with_arms_factories = yes
 			add_war_support = -0.03
+			if = {
+				limit = {
+					original_tag = SAF
+					has_completed_focus = SAF_munitions_from_the_mines
+				}
+				add_offsite_building = { type = arms_factory level = 5 }
+			}
 		}
 	}
 
@@ -13930,6 +13937,15 @@ GRE_declare_for_gre = {
         cost = 75
         fire_only_once = no
 
+        visible = {
+            NOT = {
+                AND = {
+                    original_tag = SAF
+                    has_country_leader = { character = SAF_jan_smuts ruling_only = yes }
+                }
+            }
+        }
+
         available = {
             any_owned_state = {
             	is_fully_controlled_by = ROOT
@@ -13976,7 +13992,37 @@ GRE_declare_for_gre = {
 			}
 		}
 
+    war_building_slot2_saf = {
+
+    	icon = generic_construction
+
+        cost = 125
+        fire_only_once = no
+
+        allowed = { original_tag = SAF }
+
+        visible = {
+            has_country_leader = { character = SAF_jan_smuts ruling_only = yes }
+        }
+
+        available = {
+            any_owned_state = {
+            	is_fully_controlled_by = ROOT
+            }
+        }
+
+        fixed_random_seed = no
+
+        complete_effect = {
+            random_owned_state = {
+                limit = { OR = { date > 1941.4.1 AND = { date < 1941.4.1 NOT = { OR = { state = 287 state = 78 state = 80 state = 303 state = 102 state = 414 state = 108 state = 107 state = 106 state = 45 state = 514 state = 105 } } } } }
+                add_extra_state_shared_building_slots = 1
+            }
+        }
     }
+
+    }
+
 	
 	HMP_soviet_lend_lease_system = {
         HMP_ll_soviets_fighters2 = {  

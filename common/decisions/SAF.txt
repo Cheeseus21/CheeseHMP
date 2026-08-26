@@ -925,26 +925,32 @@ SAF_greater_south_africa_decisions = {
 		days_remove = SAF_gsa_core_days
 
 		complete_effect = {
-			add_stability = -0.02
 			if = {
-				limit = {
-					FROM = {
-						OR = {
-							state = 559
-							state = 610
-							state = 611
-							state = 612
-							state = 271
-							state = 38
-							state = 550
+				limit = { NOT = { FROM = { has_state_flag = SAF_gsa_integration_started } } }
+				add_stability = -0.02
+				if = {
+					limit = {
+						FROM = {
+							OR = {
+								state = 559
+								state = 610
+								state = 611
+								state = 612
+								state = 271
+								state = 38
+								state = 550
+							}
 						}
 					}
+					add_war_support = -0.02
 				}
-				add_war_support = -0.02
+				add_days_mission_timeout = {
+					mission = SAF_greater_south_africa_mission
+					days = 10
+				}
 			}
-			add_days_mission_timeout = {
-				mission = SAF_greater_south_africa_mission
-				days = 10
+			FROM = {
+				set_state_flag = SAF_gsa_integration_started
 			}
 		}
 
@@ -967,6 +973,7 @@ SAF_greater_south_africa_decisions = {
 				}
 				hidden_effect = {
 					set_state_flag = SAF_gsa_cored
+					clr_state_flag = SAF_gsa_integration_started
 				}
 			}
 		}

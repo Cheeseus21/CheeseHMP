@@ -451,13 +451,12 @@ SAF_refresh_domestic_situation = {
 	set_variable = { SAF_ds_consumer_goods_expected_value = 0 }
 	set_variable = { SAF_ds_production_factory_start_efficiency_factor = 0 }
 	set_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0 }
-	set_variable = { SAF_ds_production_factory_max_efficiency_factor = 0 }
-	set_variable = { SAF_ds_production_speed_arms_factory_factor = 0 }
 	set_variable = { SAF_ds_war_support_factor = 0 }
 	set_variable = { SAF_ds_political_power_factor = 0 }
 	set_variable = { SAF_ds_industrial_capacity_factory = 0 }
 	set_variable = { SAF_ds_industrial_capacity_dockyard = 0 }
 	set_variable = { SAF_ds_fascism_drift = 0 }
+	set_variable = { SAF_ds_research_speed_factor = 0 }
 
 	if = {
 		limit = { has_country_flag = SAF_ossewabrandwag }
@@ -478,16 +477,19 @@ SAF_refresh_domestic_situation = {
 	}
 
 	if = {
-		limit = { has_country_flag = SAF_drb_window }
+		limit = { has_completed_focus = SAF_defence_resources_board }
 		add_to_variable = { SAF_ds_production_factory_efficiency_gain_factor = 0.25 }
 		add_to_variable = { SAF_ds_production_factory_start_efficiency_factor = 0.25 }
-		subtract_from_variable = { SAF_ds_production_speed_arms_factory_factor = 0.1 }
-		subtract_from_variable = { SAF_ds_production_factory_max_efficiency_factor = 0.1 }
 	}
 
 	if = {
 		limit = { has_country_flag = SAF_reserve_bank_repayment }
 		add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SAF_magnetometer_survey }
+		add_to_variable = { SAF_ds_research_speed_factor = 0.05 }
 	}
 
 	force_update_dynamic_modifier = yes
