@@ -52,34 +52,13 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = BUL_expand_sofia_university_horst
-		icon = GFX_focus_research
-		prerequisite = { focus = BUL_heavily_agrarian_society }
-		
-		available = {
-			num_of_factories > 50
-		}
-
-		x = 0
-		y = 1
-        
-		relative_position_id = BUL_heavily_agrarian_society
-		
-		cost = 5
-
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}
-	
-	focus = {
 		id = BUL_independent_modernization_plan
 		icon = GFX_SOV_industrial_modernization_ccp_2d_sov_compatibility
 		prerequisite = { focus = BUL_heavily_agrarian_society }
 		mutually_exclusive = { focus = BUL_enter_the_german_economic_sphere }
 
 		x = -1
-		y = 2
+		y = 1
         
 		relative_position_id = BUL_heavily_agrarian_society
 		
@@ -367,7 +346,7 @@ focus_tree = {
 		mutually_exclusive = { focus = BUL_independent_modernization_plan }
 
 		x = 1
-		y = 2
+		y = 1
         
 		relative_position_id = BUL_heavily_agrarian_society
 		
@@ -400,7 +379,7 @@ focus_tree = {
         
 		relative_position_id = BUL_enter_the_german_economic_sphere
 		
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 			random_controlled_state = {
@@ -434,7 +413,7 @@ focus_tree = {
         
 		relative_position_id = BUL_the_clearing_system
 		
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 			custom_effect_tooltip = BUL_agricultural_exports_tt
@@ -455,7 +434,7 @@ focus_tree = {
         
 		relative_position_id = BUL_the_clearing_system
 		
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 			every_core_state = {
@@ -486,7 +465,7 @@ focus_tree = {
         
 		relative_position_id = BUL_contract_german_railway_companies
 		
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 			every_core_state = {
@@ -517,7 +496,7 @@ focus_tree = {
         
 		relative_position_id = BUL_contract_german_railway_companies
 		
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 			random_controlled_state = {
@@ -549,7 +528,7 @@ focus_tree = {
         
 		relative_position_id = BUL_german_industrial_machinery
 		
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 			random_controlled_state = {
@@ -583,7 +562,7 @@ focus_tree = {
         
 		relative_position_id = BUL_agricultural_exports
 		
-		cost = 10
+		cost = 5
 
 		completion_reward = {
 			custom_effect_tooltip = BUL_economic_colony_of_germany_tt
@@ -594,7 +573,7 @@ focus_tree = {
 				name = ENG_create_bef_bonus
 				bonus = 1
                 ahead_reduction = 2
-				uses = 2
+				uses = 4
                 category = industry
 			}
         
@@ -2058,18 +2037,18 @@ focus_tree = {
 		
 		completion_reward = {
 			random_controlled_state = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
-					level = 2
+					level = 1
 					instant_build = yes
 				}
 			}
 			random_controlled_state = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -2250,18 +2229,18 @@ focus_tree = {
         
         completion_reward = {
             random_controlled_state = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
-					level = 2
+					level = 1
 					instant_build = yes
 				}
 			}
 			random_controlled_state = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -2273,6 +2252,10 @@ focus_tree = {
         icon = GFX_goal_support_fascism
         prerequisite = { focus = BUL_approach_germany }
         prerequisite = { focus = BUL_cooperation_with_italy }
+		
+		available = {
+			num_of_factories > 49
+		}
 
         x = 1
         y = 1
@@ -2284,7 +2267,7 @@ focus_tree = {
         search_filters = {FOCUS_FILTER_ANNEXATION}
         
         completion_reward = {
-            add_political_power = 100
+			add_research_slot = 1
         }
     }
     

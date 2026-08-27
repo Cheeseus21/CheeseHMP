@@ -1399,19 +1399,28 @@ focus_tree = {
     focus = {
 		id = ENG_compass
 		icon = GFX_focus_chi_british_cooperation
+		prerequisite = { focus = ENG_churchill_takes_command }
+		
 		x = -3
 		y = 1
+		
 		relative_position_id = ENG_churchill_takes_command
-		cost = 0.2
+		
+		cost = 5
 
-		prerequisite = { focus = ENG_churchill_takes_command }
-
-		available = { always = no }
+		available = { 
+			NOT = {
+				controls_state = 584
+			}
+		}
 		
 		continue_if_invalid = yes
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		
+
 		completion_reward = { 
+			custom_effect_tooltip = "This focus is automatically completed once France capitulates."
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+		
 			every_country = { 
 				limit = { 
 					OR = { 
@@ -1802,9 +1811,7 @@ focus_tree = {
 		relative_position_id = ENG_churchill_takes_command
         
 		cost = 5
-        
-		search_filters = {FOCUS_FILTER_RESEARCH}	
-        
+
 		completion_reward = {
 			add_ideas = ENG_maintaining_imperial_integrity_idea
 		}

@@ -1041,14 +1041,7 @@
                 target = RAJ
                 transfer_troops = no
             }
-        }   
-        
-        hidden_effect = {
-            SIA = {
-                transfer_state = 609
-            }    
         }
-        
     }
 
     THIS_activate_propaganda = {		
@@ -6345,7 +6338,16 @@ horstorical_multiplayer_france_capitulation_script = {
 		transfer_state = 1
 	}
 	
-	ENG = { complete_national_focus = ENG_compass }
+	if = { 
+		limit = {
+			ENG = {
+				NOT = {
+					has_completed_focus = ENG_compass
+				}
+			}
+		}
+		ENG = { complete_national_focus = ENG_compass }
+	}
 }
 
 tp_divs_out_of_france = {

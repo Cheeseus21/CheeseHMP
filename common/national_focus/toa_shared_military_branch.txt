@@ -1006,47 +1006,6 @@ shared_focus = {
 }
 
 shared_focus = {
-	id = SMB_aircraft_carriers
-	icon = GFX_goal_generic_navy_carrier
-	prerequisite = { focus = SMB_blue_water_fleet }
-	x = 33
-	y = 5
-
-	cost = 5
-
-	available = {
-
-	}
-
-	bypass = {
-		
-	}
-
-	ai_will_do = {
-			factor = 20
-		}
-
-	completion_reward = {
-			add_breakthrough_progress = {
-			specialization = specialization_naval
-			value = 0.5
-		}
-		add_tech_bonus = {
-			name = SMB_aircraft_carriers
-			bonus = 1
-			uses = 2
-			category = cv_tech
-		}
-		JUNO_pick_navy_modifier_tt = yes
-		add_to_variable = {
-			ROOT.JUNO_navy_refit_speed = 0.1
-			tooltip = refit_speed_tt
-		}
-	}
-}
-
-
-shared_focus = {
 	id = SMB_joint_operative_command
 	icon = GFX_focus_generic_combined_arms
 	relative_position_id = SMB_air_defense
@@ -1267,6 +1226,37 @@ shared_focus = {
 }
 
 shared_focus = {
+	id = SMB_aircraft_carriers
+	icon = GFX_goal_generic_navy_carrier
+	prerequisite = { focus = SMB_blue_water_fleet }
+	
+	x = -1
+	y = 1
+	
+	relative_position_id = SMB_blue_water_fleet
+
+	cost = 5
+	
+	completion_reward = {
+			add_breakthrough_progress = {
+			specialization = specialization_naval
+			value = 0.5
+		}
+		add_tech_bonus = {
+			name = SMB_aircraft_carriers
+			bonus = 1
+			uses = 2
+			category = cv_tech
+		}
+		JUNO_pick_navy_modifier_tt = yes
+		add_to_variable = {
+			ROOT.JUNO_navy_refit_speed = 0.1
+			tooltip = refit_speed_tt
+		}
+	}
+}
+
+shared_focus = {
 	id = SMB_coastal_fleet
 	icon = GFX_focus_SWE_coastal_support
 	prerequisite = {focus = SMB_reescalate_the_naval_arms_race }
@@ -1357,31 +1347,6 @@ shared_focus = {
 }
 
 shared_focus = {
-	id = SMB_escort_fleet
-	icon = GFX_focus_generic_navy_battleship2
-	prerequisite = {focus = SMB_purchase_cruisers_and_dreadnoughts }
-	relative_position_id = SMB_purchase_cruisers_and_dreadnoughts
-	mutually_exclusive = { focus = SMB_raiding_fleet }
-	x = -2
-	y = 1
-
-	cost = 5
-    
-    allow_branch = { 
-		always = no
-	}
-
-	completion_reward = {
-		add_tech_bonus = {
-			name = SMB_escort_fleet
-			bonus = 0.25
-			uses = 2
-			category = dd_tech
-		}
-	}
-}
-
-shared_focus = {
 	id = SMB_raiding_fleet
 	icon = GFX_goal_generic_navy_submarine
 	prerequisite = {focus = SMB_blue_water_fleet focus = SMB_coastal_fleet }
@@ -1398,48 +1363,6 @@ shared_focus = {
 			uses = 2
 			#category = cl_tech
 			category = ss_tech
-		}
-	}
-}
-
-shared_focus = {
-	id = SMB_degaussing
-	icon = GFX_goal_generic_navy_anti_submarine
-	prerequisite = {focus = SMB_escort_fleet }
-	relative_position_id = SMB_escort_fleet
-	x = -1
-	y = 1
-
-	cost = 5
-
-	completion_reward = {
-		add_ideas = CAN_degauss_ship_hulls
-			if = {
-				limit = {
-					NOT = { has_tech = degaussing }
-				}
-				set_technology = {
-				    degaussing = 1
-				}
-			}
-	}	
-}
-
-shared_focus = {
-	id = SMB_naval_invasion
-	icon = GFX_goal_generic_amphibious_assault
-	prerequisite = {focus = SMB_escort_fleet }
-	relative_position_id = SMB_escort_fleet
-	x = 1
-	y = 1
-
-	cost = 5
-
-	completion_reward = {
-		JUNO_pick_navy_modifier_tt = yes
-		add_to_variable = { 
-			JUNO_navy_naval_invasion_capacity = 10 
-			tooltip = naval_invasion_capacity_tt
 		}
 	}
 }

@@ -1,7 +1,7 @@
 	FRA_EFR_navy_mechanic = {
         FRA_EFR_secure_carrier = {
             icon = generic_naval_carrier
-            cost = 50
+            cost = 25
             days_re_enable = 3
             
             available = {
@@ -23,7 +23,7 @@
         
 		FRA_EFR_secure_battleship = {
             icon = generic_naval_battleship
-            cost = 25
+            cost = 10
             days_re_enable = 3
             
             available = {
@@ -46,7 +46,7 @@
         
         FRA_EFR_secure_heavy_cruiser = {
             icon = generic_naval_cruiser
-            cost = 25
+            cost = 5
             days_re_enable = 3
             
             available = {
@@ -69,7 +69,7 @@
         
         FRA_EFR_secure_light_cruiser = {
             icon = generic_naval_cruiser
-            cost = 25
+            cost = 5
             days_re_enable = 2
             
             available = {
@@ -96,7 +96,7 @@
 
         FRA_EFR_secure_destroyer = {
             icon = generic_naval_destroyer
-            cost = 25
+            cost = 5
             days_re_enable = 1
             
             available = {
@@ -135,7 +135,7 @@
 
         FRA_EFR_secure_submarine = {
             icon = generic_naval_submarine
-            cost = 25
+            cost = 5
             days_re_enable = 1
             
             available = {
@@ -1740,148 +1740,6 @@
                 set_variable = { GER_tk_level = 0 }
             }
         }
-		
-		GER_barbarossa_mission_moscow = { 
-			icon = generic_operation
-			
-			allowed = {
-				always = no
-				OR = { 
-					original_tag = GER 
-					original_tag = SOV 
-				}
-			}
-			
-			available = {
-				GER = { has_war_with = SOV }
-				GER = { 
-					OR = { 
-						any_allied_country = { has_full_control_of_state = 219 }
-						has_full_control_of_state = 219 
-					}    
-				}
-			}
-			
-			days_mission_timeout = 547
-			
-			fire_only_once = yes
-			
-			activation = { }
-			
-			is_good = no
-			
-			complete_effect = {
-				if = { 
-					limit = { original_tag = GER } 
-					custom_effect_tooltip = GER_we_tt1	
-					add_to_variable = {
-						var = GER_we_war_support_factor
-						value = 0.1
-						tooltip = war_support_factor_tt
-					}
-				}
-				if = { 
-					limit = { original_tag = SOV } 
-					custom_effect_tooltip = barbarossa_mission_horst_sov_tt 
-				}            
-			}
-			
-			timeout_effect = { }
-		}
-
-		GER_barbarossa_mission_stalingrad = { 
-			icon = generic_operation
-			
-			allowed = {
-				always = no
-				OR = { 
-					original_tag = GER 
-					original_tag = SOV 
-				}
-			}
-			
-			available = {
-				GER = { has_war_with = SOV }
-				GER = { 
-					OR = { 
-						any_allied_country = { has_full_control_of_state = 217 }
-						has_full_control_of_state = 217 
-					}    
-				}
-			}
-			
-			days_mission_timeout = 547
-			
-			fire_only_once = yes
-			
-			activation = { }
-			
-			is_good = no
-			
-			complete_effect = {
-				if = { 
-					limit = { original_tag = GER } 
-					custom_effect_tooltip = GER_we_tt1	
-					add_to_variable = {
-						var = GER_we_war_support_factor
-						value = 0.1
-						tooltip = war_support_factor_tt
-					}
-				}
-				if = { 
-					limit = { original_tag = SOV } 
-					custom_effect_tooltip = barbarossa_mission_horst_sov_tt 
-				}            
-			}
-			timeout_effect = { }
-		}
-
-		GER_barbarossa_mission_leningrad = { 
-			icon = generic_operation
-			
-			allowed = {
-				always = no
-				OR = { 
-					original_tag = GER 
-					original_tag = SOV 
-				}
-			}
-			
-			available = {
-				GER = { has_war_with = SOV }
-				GER = { 
-					OR = { 
-						any_allied_country = { has_full_control_of_state = 195 }   
-						has_full_control_of_state = 195 
-					}    
-				}            
-			}
-			
-			days_mission_timeout = 547
-			
-			fire_only_once = yes
-			
-			activation = { }
-			
-			is_good = no
-			
-			complete_effect = {
-				if = { 
-					limit = { original_tag = GER } 
-					custom_effect_tooltip = GER_we_tt1	
-					add_to_variable = {
-						var = GER_we_war_support_factor
-						value = 0.1
-						tooltip = war_support_factor_tt
-					}
-				}
-				if = { 
-					limit = { original_tag = SOV } 
-					custom_effect_tooltip = barbarossa_mission_horst_sov_tt 
-				}            
-			}
-			timeout_effect = { }
-		}
     }
 	
 	SOV_capital_change_category = {
