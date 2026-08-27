@@ -902,19 +902,7 @@ SAF_greater_south_africa_decisions = {
 			}
 			OR = {
 				has_country_flag = SAF_gsa_iea_corable
-				NOT = {
-					FROM = {
-						OR = {
-							state = 559
-							state = 610
-							state = 611
-							state = 612
-							state = 271
-							state = 38
-							state = 550
-						}
-					}
-				}
+				NOT = { FROM = { SAF_gsa_hc_territory = yes } }
 			}
 		}
 
@@ -929,19 +917,7 @@ SAF_greater_south_africa_decisions = {
 				limit = { NOT = { FROM = { has_state_flag = SAF_gsa_integration_started } } }
 				add_stability = -0.02
 				if = {
-					limit = {
-						FROM = {
-							OR = {
-								state = 559
-								state = 610
-								state = 611
-								state = 612
-								state = 271
-								state = 38
-								state = 550
-							}
-						}
-					}
+					limit = { FROM = { SAF_gsa_hc_territory = yes } }
 					add_war_support = -0.02
 				}
 				add_days_mission_timeout = {
