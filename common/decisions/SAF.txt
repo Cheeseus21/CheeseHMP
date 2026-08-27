@@ -552,8 +552,8 @@ SAF_greater_south_africa_decisions = {
 
 		available = {
 			custom_trigger_tooltip = {
-				tooltip = SAF_gsa_need_civs_4_tt
-				num_of_civilian_factories > 3
+				tooltip = SAF_gsa_need_civs_2_tt
+				num_of_civilian_factories > 1
 			}
 			545 = { is_fully_controlled_by = ENG }
 			542 = { is_fully_controlled_by = ENG }
@@ -566,10 +566,8 @@ SAF_greater_south_africa_decisions = {
 		complete_effect = {
 			add_political_power = -50
 
-			custom_effect_tooltip = SAF_gsa_pay_civs_4_tt
+			custom_effect_tooltip = SAF_gsa_pay_civs_2_tt
 			hidden_effect = {
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 			}
@@ -617,8 +615,8 @@ SAF_greater_south_africa_decisions = {
 				has_country_flag = SAF_gsa_rhodesia_done
 			}
 			custom_trigger_tooltip = {
-				tooltip = SAF_gsa_need_civs_4_tt
-				num_of_civilian_factories > 3
+				tooltip = SAF_gsa_need_civs_2_tt
+				num_of_civilian_factories > 1
 			}
 			283 = { is_fully_controlled_by = ENG }
 			292 = { is_fully_controlled_by = ENG }
@@ -631,10 +629,8 @@ SAF_greater_south_africa_decisions = {
 		complete_effect = {
 			add_political_power = -50
 
-			custom_effect_tooltip = SAF_gsa_pay_civs_4_tt
+			custom_effect_tooltip = SAF_gsa_pay_civs_2_tt
 			hidden_effect = {
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 			}
@@ -683,8 +679,8 @@ SAF_greater_south_africa_decisions = {
 				has_country_flag = SAF_gsa_zambia_done
 			}
 			custom_trigger_tooltip = {
-				tooltip = SAF_gsa_need_civs_6_tt
-				num_of_civilian_factories > 5
+				tooltip = SAF_gsa_need_civs_3_tt
+				num_of_civilian_factories > 2
 			}
 			546 = { is_fully_controlled_by = ENG }
 			547 = { is_fully_controlled_by = ENG }
@@ -698,11 +694,8 @@ SAF_greater_south_africa_decisions = {
 		complete_effect = {
 			add_political_power = -50
 
-			custom_effect_tooltip = SAF_gsa_pay_civs_6_tt
+			custom_effect_tooltip = SAF_gsa_pay_civs_3_tt
 			hidden_effect = {
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
@@ -757,8 +750,8 @@ SAF_greater_south_africa_decisions = {
 				has_country_flag = SAF_gsa_east_africa_done
 			}
 			custom_trigger_tooltip = {
-				tooltip = SAF_gsa_need_civs_8_tt
-				num_of_civilian_factories > 7
+				tooltip = SAF_gsa_need_civs_4_tt
+				num_of_civilian_factories > 3
 			}
 			611 = { is_fully_controlled_by = ENG }
 			610 = { is_fully_controlled_by = ENG }
@@ -773,12 +766,8 @@ SAF_greater_south_africa_decisions = {
 		complete_effect = {
 			add_political_power = -75
 
-			custom_effect_tooltip = SAF_gsa_pay_civs_8_tt
+			custom_effect_tooltip = SAF_gsa_pay_civs_4_tt
 			hidden_effect = {
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
@@ -838,8 +827,8 @@ SAF_greater_south_africa_decisions = {
 				has_country_flag = SAF_gsa_somalia_done
 			}
 			custom_trigger_tooltip = {
-				tooltip = SAF_gsa_need_civs_8_tt
-				num_of_civilian_factories > 7
+				tooltip = SAF_gsa_need_civs_4_tt
+				num_of_civilian_factories > 3
 			}
 			612 = { is_fully_controlled_by = ENG }
 			271 = { is_fully_controlled_by = ENG }
@@ -854,12 +843,8 @@ SAF_greater_south_africa_decisions = {
 		complete_effect = {
 			add_political_power = -100
 
-			custom_effect_tooltip = SAF_gsa_pay_civs_8_tt
+			custom_effect_tooltip = SAF_gsa_pay_civs_4_tt
 			hidden_effect = {
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
-				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
 				SAF_gsa_pay_one_civ = yes
@@ -940,26 +925,32 @@ SAF_greater_south_africa_decisions = {
 		days_remove = SAF_gsa_core_days
 
 		complete_effect = {
-			add_stability = -0.02
 			if = {
-				limit = {
-					FROM = {
-						OR = {
-							state = 559
-							state = 610
-							state = 611
-							state = 612
-							state = 271
-							state = 38
-							state = 550
+				limit = { NOT = { FROM = { has_state_flag = SAF_gsa_integration_started } } }
+				add_stability = -0.02
+				if = {
+					limit = {
+						FROM = {
+							OR = {
+								state = 559
+								state = 610
+								state = 611
+								state = 612
+								state = 271
+								state = 38
+								state = 550
+							}
 						}
 					}
+					add_war_support = -0.02
 				}
-				add_war_support = -0.02
+				add_days_mission_timeout = {
+					mission = SAF_greater_south_africa_mission
+					days = 10
+				}
 			}
-			add_days_mission_timeout = {
-				mission = SAF_greater_south_africa_mission
-				days = 10
+			FROM = {
+				set_state_flag = SAF_gsa_integration_started
 			}
 		}
 
@@ -982,6 +973,7 @@ SAF_greater_south_africa_decisions = {
 				}
 				hidden_effect = {
 					set_state_flag = SAF_gsa_cored
+					clr_state_flag = SAF_gsa_integration_started
 				}
 			}
 		}
