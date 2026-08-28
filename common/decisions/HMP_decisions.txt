@@ -8864,10 +8864,59 @@ propaganda_effortsx = {
 
 	emergency_factory_conversion_defensive = {
 		icon = generic_industry
-		allowed = { AND = { normally_played_country = yes NOT = { tag = FRA } } }
+		allowed = {
+			OR = {
+				original_tag = ENG
+				original_tag = USA
+				original_tag = GER
+				original_tag = ITA
+				original_tag = SOV
+				original_tag = JAP
+			}
+		}
 
 		available = {
 			num_of_civilian_factories > 5 #Change this if amount of factories change
+		}
+
+		visible = { has_war = yes	}
+
+		fire_only_once = no
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {
+			replace_civ_with_arms_factories = yes
+			add_war_support = -0.03
+		}
+	}
+
+	emergency_factory_conversion_defensive_minor = {
+		icon = generic_industry
+		allowed = {
+			AND = {
+				normally_played_country = yes
+				NOT = {
+					OR = {
+						tag = FRA
+						original_tag = ENG
+						original_tag = USA
+						original_tag = GER
+						original_tag = ITA
+						original_tag = SOV
+						original_tag = JAP
+					}
+				}
+			}
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = HMP_conversion_onmap_civs_tt
+				check_variable = { num_of_civilian_factories_in_cores@ROOT > 5 } #on-map cores only: excludes trade/subject/donation/offsite civs
+			}
 		}
 
 		visible = { has_war = yes	}
