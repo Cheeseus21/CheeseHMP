@@ -484,7 +484,7 @@ SAF_refresh_domestic_situation = {
 
 	if = {
 		limit = { has_country_flag = SAF_reserve_bank_repayment }
-		add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 }
+		add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.05 }
 	}
 
 	if = {
@@ -620,8 +620,6 @@ SAF_the_division = {
 
 	set_temp_variable = { SAF_flip_shift = SAF_flip_absorbed }
 	divide_temp_variable = { SAF_flip_shift = 100 }
-	set_temp_variable = { SAF_flip_drain = SAF_flip_shift }
-	multiply_temp_variable = { SAF_flip_drain = -1 }
 
 	effect_tooltip = {
 		add_popularity = { ideology = democratic popularity = SAF_flip_shift }
@@ -635,16 +633,6 @@ SAF_the_division = {
 		}
 	}
 
-	set_temp_variable = { SAF_flip_cost = SAF_flip_absorbed }
-	if = {
-		limit = { check_variable = { SAF_flip_bloc > 0 } }
-		divide_temp_variable = { SAF_flip_cost = SAF_flip_bloc }
-	}
-	else = {
-		set_temp_variable = { SAF_flip_cost = 0 }
-	}
-	multiply_temp_variable = { SAF_flip_cost = -1 }
-
 	if = {
 		limit = {
 			check_variable = {
@@ -653,8 +641,8 @@ SAF_the_division = {
 				compare = greater_than_or_equals
 			}
 		}
-		add_stability = SAF_flip_cost
-		add_war_support = SAF_flip_cost
+		add_stability = -0.2
+		add_war_support = -0.2
 	}
 }
 
@@ -1579,6 +1567,14 @@ SAF_gsa_pay_one_civ = {
 		limit = { check_variable = { SAF_gsa_offmap_civs > 0 } }
 		subtract_from_variable = { SAF_gsa_offmap_civs = 1 }
 		add_offsite_building = { type = industrial_complex level = -1 }
+		if = {
+			limit = { check_variable = { SAF_eng_loan_civs > 0 } }
+			subtract_from_variable = { SAF_eng_loan_civs = 1 }
+		}
+		else_if = {
+			limit = { check_variable = { SAF_usa_loan_civs > 0 } }
+			subtract_from_variable = { SAF_usa_loan_civs = 1 }
+		}
 	}
 	else = {
 		random_owned_state = {
@@ -1591,6 +1587,79 @@ SAF_gsa_pay_one_civ = {
 	}
 	ENG = {
 		add_offsite_building = { type = industrial_complex level = 1 }
+	}
+}
+
+SAF_reclaim_one_eng_loan_civ = {
+	if = {
+		limit = { check_variable = { SAF_eng_loan_civs > 0 } }
+		add_offsite_building = { type = industrial_complex level = -1 }
+		subtract_from_variable = { SAF_gsa_offmap_civs = 1 }
+		subtract_from_variable = { SAF_eng_loan_civs = 1 }
+	}
+}
+
+SAF_reclaim_one_usa_loan_civ = {
+	if = {
+		limit = { check_variable = { SAF_usa_loan_civs > 0 } }
+		add_offsite_building = { type = industrial_complex level = -1 }
+		subtract_from_variable = { SAF_gsa_offmap_civs = 1 }
+		subtract_from_variable = { SAF_usa_loan_civs = 1 }
+	}
+}
+
+SAF_expire_loan_civs = {
+	if = {
+		limit = {
+			NOT = { has_country_flag = SAF_eng_loan_expiry }
+			check_variable = { SAF_eng_loan_civs > 0 }
+		}
+		if = {
+			limit = {
+				check_variable = {
+					var = SAF_eng_loan_civs
+					value = SAF_gsa_offmap_civs
+					compare = greater_than
+				}
+			}
+			set_variable = { SAF_eng_loan_civs = SAF_gsa_offmap_civs }
+		}
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+		SAF_reclaim_one_eng_loan_civ = yes
+	}
+	if = {
+		limit = {
+			NOT = { has_country_flag = SAF_usa_loan_expiry }
+			check_variable = { SAF_usa_loan_civs > 0 }
+		}
+		if = {
+			limit = {
+				check_variable = {
+					var = SAF_usa_loan_civs
+					value = SAF_gsa_offmap_civs
+					compare = greater_than
+				}
+			}
+			set_variable = { SAF_usa_loan_civs = SAF_gsa_offmap_civs }
+		}
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
+		SAF_reclaim_one_usa_loan_civ = yes
 	}
 }
 
@@ -2166,14 +2235,6 @@ SAF_bank_smuts_bloc = {
 	else = {
 		SAF_bank_mines_programme = yes
 	}
-}
-
-SAF_bank_seated_ministers = {
-	if = { limit = { has_country_flag = SAF_havenga_seated } SAF_bank_treasury_programme = yes }
-	if = { limit = { has_country_flag = SAF_pirow_seated } SAF_bank_defence_programme = yes }
-	if = { limit = { has_country_flag = SAF_hofmeyr_seated } SAF_bank_interior_programme = yes }
-	if = { limit = { has_country_flag = SAF_duncan_seated } SAF_bank_mines_programme = yes }
-	if = { limit = { has_country_flag = SAF_stuttaford_seated } SAF_bank_mines_understudy = yes }
 }
 
 SAF_close_the_cabinet = {

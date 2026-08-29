@@ -84,15 +84,7 @@ country_event = {
 country_event = {
 	id = SAF.22
 	title = SAF.22.t
-
-	desc = {
-		text = SAF.22.d_resignation
-		trigger = { check_variable = { SAF_cabinet_gap < 20 } }
-	}
-	desc = {
-		text = SAF.22.d_refusal
-		trigger = { NOT = { check_variable = { SAF_cabinet_gap < 20 } } }
-	}
+	desc = SAF.22.d
 
 	picture = GFX_report_event_generic_parliament
 
@@ -101,49 +93,19 @@ country_event = {
 
 	immediate = {
 		set_country_flag = SAF_duncan_stepped_in
-		SAF_refresh_cabinet_gap = yes
 	}
 
 	timeout_days = 7
 
 	option = {
 		name = SAF.22.a
-		trigger = { check_variable = { SAF_cabinet_gap < 20 } }
-		ai_chance = {
-			factor = 1
-			modifier = {
-				factor = 0
-				NOT = { check_variable = { SAF_cabinet_gap < 20 } }
-			}
-		}
 
-		custom_effect_tooltip = SAF_duncan_no_recourse_tt
-		set_temp_variable = { SAF_shift = 10 }
-		SAF_apply_shift_to_smuts = yes
+		complete_national_focus = SAF_continue_the_course
 
 		custom_effect_tooltip = generic_skip_one_line_tt
 
-		complete_national_focus = SAF_continue_the_course
-	}
-
-	option = {
-		name = SAF.22.b
-		trigger = { NOT = { check_variable = { SAF_cabinet_gap < 20 } } }
-		ai_chance = {
-			factor = 1
-			modifier = {
-				factor = 0
-				check_variable = { SAF_cabinet_gap < 20 }
-			}
-		}
-
-		custom_effect_tooltip = SAF_duncan_refuses_tt
-		set_temp_variable = { SAF_shift = 10 }
-		SAF_apply_shift_to_smuts = yes
-
-		custom_effect_tooltip = generic_skip_one_line_tt
-
-		complete_national_focus = SAF_continue_the_course
+		add_stability = 0.2
+		add_war_support = 0.2
 	}
 }
 
@@ -373,9 +335,24 @@ country_event = {
 			modifier = { factor = 0 is_ai = yes }
 		}
 		SAF = {
-			add_offsite_building = { type = industrial_complex level = 3 }
+			custom_effect_tooltip = SAF_for_365_days_tt
+			if = {
+				limit = { has_completed_focus = SAF_continue_the_course }
+				add_offsite_building = { type = industrial_complex level = 5 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 5 }
+					set_variable = { SAF_eng_loan_civs = 5 }
+				}
+			}
+			else = {
+				add_offsite_building = { type = industrial_complex level = 3 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 3 }
+					set_variable = { SAF_eng_loan_civs = 3 }
+				}
+			}
 			hidden_effect = {
-				add_to_variable = { SAF_gsa_offmap_civs = 3 }
+				set_country_flag = { flag = SAF_eng_loan_expiry days = 365 value = 1 }
 			}
 		}
 	}
@@ -388,9 +365,12 @@ country_event = {
 		}
 		add_timed_idea = { idea = SAF_south_african_loans days = 365 }
 		SAF = {
+			custom_effect_tooltip = SAF_for_365_days_tt
 			add_offsite_building = { type = industrial_complex level = 10 }
 			hidden_effect = {
 				add_to_variable = { SAF_gsa_offmap_civs = 10 }
+				set_variable = { SAF_eng_loan_civs = 10 }
+				set_country_flag = { flag = SAF_eng_loan_expiry days = 365 value = 1 }
 			}
 		}
 	}
@@ -415,9 +395,24 @@ country_event = {
 			modifier = { factor = 0 is_ai = yes }
 		}
 		SAF = {
-			add_offsite_building = { type = industrial_complex level = 3 }
+			custom_effect_tooltip = SAF_for_365_days_tt
+			if = {
+				limit = { has_completed_focus = SAF_continue_the_course }
+				add_offsite_building = { type = industrial_complex level = 5 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 5 }
+					set_variable = { SAF_usa_loan_civs = 5 }
+				}
+			}
+			else = {
+				add_offsite_building = { type = industrial_complex level = 3 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 3 }
+					set_variable = { SAF_usa_loan_civs = 3 }
+				}
+			}
 			hidden_effect = {
-				add_to_variable = { SAF_gsa_offmap_civs = 3 }
+				set_country_flag = { flag = SAF_usa_loan_expiry days = 365 value = 1 }
 			}
 		}
 	}
@@ -430,9 +425,12 @@ country_event = {
 		}
 		add_timed_idea = { idea = SAF_south_african_loans days = 365 }
 		SAF = {
+			custom_effect_tooltip = SAF_for_365_days_tt
 			add_offsite_building = { type = industrial_complex level = 10 }
 			hidden_effect = {
 				add_to_variable = { SAF_gsa_offmap_civs = 10 }
+				set_variable = { SAF_usa_loan_civs = 10 }
+				set_country_flag = { flag = SAF_usa_loan_expiry days = 365 value = 1 }
 			}
 		}
 	}

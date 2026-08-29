@@ -915,14 +915,14 @@ SAF_greater_south_africa_decisions = {
 		complete_effect = {
 			if = {
 				limit = { NOT = { FROM = { has_state_flag = SAF_gsa_integration_started } } }
-				add_stability = -0.02
+				add_stability = -0.01
 				if = {
 					limit = { FROM = { SAF_gsa_hc_territory = yes } }
 					add_war_support = -0.02
 				}
 				add_days_mission_timeout = {
 					mission = SAF_greater_south_africa_mission
-					days = 10
+					days = 20
 				}
 			}
 			FROM = {
@@ -941,6 +941,18 @@ SAF_greater_south_africa_decisions = {
 					add_extra_state_shared_building_slots = 2
 				}
 				if = {
+					limit = {
+						ROOT = {
+							has_country_flag = SAF_gsa_grants_unlocked
+							has_completed_focus = SAF_continue_the_course
+						}
+					}
+					add_dynamic_modifier = {
+						modifier = SAF_gsa_development_dm
+						days = 730
+					}
+				}
+				else_if = {
 					limit = { ROOT = { has_country_flag = SAF_gsa_grants_unlocked } }
 					add_dynamic_modifier = {
 						modifier = SAF_gsa_development_dm

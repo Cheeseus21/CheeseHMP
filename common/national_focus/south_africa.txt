@@ -891,7 +891,8 @@ focus_tree = {
 			set_country_flag = SAF_coalition_resolved
 			SAF_clear_cabinet_spirit = yes
 			hidden_effect = {
-				SAF_bank_seated_ministers = yes
+				SAF_bank_hertzog_bloc = yes
+				SAF_bank_smuts_bloc = yes
 			}
 			SAF_close_the_cabinet = yes
 			set_variable = { SAF_hertzog_debuff_level = 0 }
@@ -900,25 +901,16 @@ focus_tree = {
 			SAF_recalc_smuts_debuff = yes
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			set_temp_variable = { SAF_dem_ahead_at_division = 0 }
-			if = {
-				limit = { SAF_cabinet_favours_smuts = yes }
-				set_temp_variable = { SAF_dem_ahead_at_division = 1 }
-			}
-
 			SAF_the_division = yes
 			custom_effect_tooltip = generic_skip_one_line_tt
-			
+
 			promote_character = SAF_jan_smuts
-			add_country_leader_trait = SAF_smuts_soldier_statesman
+			add_country_leader_trait = SAF_smuts_fusion_victor
 			remove_ideas = SAF_smuts_deputy_prime_minister
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			if = {
-				limit = {
-					has_country_flag = SAF_duncan_stepped_in
-					check_variable = { SAF_dem_ahead_at_division = 1 }
-				}
+				limit = { has_country_flag = SAF_duncan_stepped_in }
 				retire_character = SAF_jbm_hertzog
 			}
 			else = {
@@ -1148,12 +1140,12 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		available = { SAF_gsa_window_open = yes }
 		completion_reward = {
-			custom_effect_tooltip = SAF_gsa_core_30_tt
+			custom_effect_tooltip = SAF_gsa_core_10_tt
 			hidden_effect = {
-				set_variable = { SAF_gsa_core_days = 30 }
+				set_variable = { SAF_gsa_core_days = 10 }
 				every_owned_state = {
 					limit = {
-						has_state_flag = { flag = SAF_gsa_integration_started days < 60 }
+						has_state_flag = { flag = SAF_gsa_integration_started days < 50 }
 					}
 					ROOT = {
 						remove_targeted_decision = { target = PREV decision = SAF_gsa_core_new_territory }
@@ -1193,7 +1185,6 @@ focus_tree = {
 		cost = 5
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_INDUSTRY }
-		available = { SAF_gsa_window_open = yes }
 		completion_reward = {
 			custom_effect_tooltip = SAF_gsa_slots_up_tt
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -1218,7 +1209,6 @@ focus_tree = {
 		cost = 5
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_INDUSTRY }
-		available = { SAF_gsa_window_open = yes }
 		completion_reward = {
 			custom_effect_tooltip = SAF_gsa_grants_on_tt
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -1227,9 +1217,18 @@ focus_tree = {
 				set_country_flag = SAF_gsa_grants_unlocked
 				every_owned_state = {
 					limit = { has_state_flag = SAF_gsa_cored }
-					add_dynamic_modifier = {
-						modifier = SAF_gsa_development_dm
-						days = 365
+					if = {
+						limit = { ROOT = { has_completed_focus = SAF_continue_the_course } }
+						add_dynamic_modifier = {
+							modifier = SAF_gsa_development_dm
+							days = 730
+						}
+					}
+					else = {
+						add_dynamic_modifier = {
+							modifier = SAF_gsa_development_dm
+							days = 365
+						}
 					}
 				}
 			}
@@ -1248,13 +1247,22 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		available = { SAF_gsa_window_open = yes }
 		completion_reward = {
-			add_offsite_building = { type = industrial_complex level = 5 }
-			hidden_effect = {
-				add_to_variable = { SAF_gsa_offmap_civs = 5 }
+			if = {
+				limit = { has_completed_focus = SAF_continue_the_course }
+				add_offsite_building = { type = industrial_complex level = 10 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 10 }
+				}
+			}
+			else = {
+				add_offsite_building = { type = industrial_complex level = 5 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 5 }
+				}
 			}
 			custom_effect_tooltip = SAF_for_365_days_tt
 			custom_effect_tooltip = SAF_domestic_situation_tt
-			effect_tooltip = { add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.10 tooltip = consumer_goods_expected_value_tt } }
+			effect_tooltip = { add_to_variable = { SAF_ds_consumer_goods_expected_value = 0.05 tooltip = consumer_goods_expected_value_tt } }
 			set_country_flag = { flag = SAF_reserve_bank_repayment days = 365 value = 1 }
 			SAF_refresh_domestic_situation = yes
 		}
@@ -1305,9 +1313,18 @@ focus_tree = {
 		available = { SAF_gsa_window_open = yes }
 		completion_reward = {
 			give_resource_rights = { receiver = ENG state = 487 resources = { chromium } }
-			add_offsite_building = { type = industrial_complex level = 5 }
-			hidden_effect = {
-				add_to_variable = { SAF_gsa_offmap_civs = 5 }
+			if = {
+				limit = { has_completed_focus = SAF_continue_the_course }
+				add_offsite_building = { type = industrial_complex level = 10 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 10 }
+				}
+			}
+			else = {
+				add_offsite_building = { type = industrial_complex level = 5 }
+				hidden_effect = {
+					add_to_variable = { SAF_gsa_offmap_civs = 5 }
+				}
 			}
 		}
 	}
