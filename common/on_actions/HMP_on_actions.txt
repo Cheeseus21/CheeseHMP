@@ -669,6 +669,8 @@ on_actions = {
 					set_variable = { SAF_hzd_inc_ws = -0.025 }
 					set_variable = { SAF_hzd_inc_pp = -0.025 }
 					set_variable = { SAF_hzd_inc_output = -0.025 }
+					set_variable = { SAF_hzd_inc_effcap = -0.025 }
+					set_variable = { SAF_hzd_inc_effbase = -0.0125 }
 					set_variable = { SAF_smd_inc_goods = 0.02 }
 					set_variable = { SAF_smd_inc_mob = -0.075 }
 
@@ -695,6 +697,13 @@ on_actions = {
 					limit = { NOT = { has_country_flag = SAF_smd_retune_1 } }
 					set_country_flag = SAF_smd_retune_1
 					set_variable = { SAF_smd_inc_goods = 0.02 }
+				}
+
+				if = {
+					limit = { NOT = { has_country_flag = SAF_hzd_retune_3 } }
+					set_country_flag = SAF_hzd_retune_3
+					set_variable = { SAF_hzd_inc_effcap = -0.025 }
+					set_variable = { SAF_hzd_inc_effbase = -0.0125 }
 				}
 
 				SAF_recalc_hertzog_debuff = yes

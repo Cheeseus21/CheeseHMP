@@ -905,7 +905,13 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			promote_character = SAF_jan_smuts
-			add_country_leader_trait = SAF_smuts_fusion_victor
+			if = {
+				limit = { has_completed_focus = SAF_the_smuts_statutes }
+				add_country_leader_trait = SAF_smuts_fusion_victor_2
+			}
+			else = {
+				add_country_leader_trait = SAF_smuts_fusion_victor
+			}
 			remove_ideas = SAF_smuts_deputy_prime_minister
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -1348,6 +1354,15 @@ focus_tree = {
 					remove = SAF_hertzog_promise_of_peace
 					add = SAF_hertzog_war_leader
 					ideology = oligarchism
+				}
+			}
+			if = {
+				limit = { has_completed_focus = SAF_the_hertzog_bills }
+				SAF_jbm_hertzog = {
+					remove_country_leader_trait = {
+						ideology = oligarchism
+						trait = SAF_hertzog_elder_statesman
+					}
 				}
 			}
 		}

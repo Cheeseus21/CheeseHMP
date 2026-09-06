@@ -663,6 +663,15 @@ SAF_resolve_to_hertzog = {
 			character = SAF_jbm_hertzog
 			ideology = oligarchism
 		}
+		if = {
+			limit = { has_completed_focus = SAF_the_hertzog_bills }
+			SAF_jbm_hertzog = {
+				add_country_leader_trait = {
+					ideology = oligarchism
+					trait = SAF_hertzog_elder_statesman
+				}
+			}
+		}
 
 		remove_ideas = SAF_smuts_deputy_prime_minister
 
@@ -691,8 +700,14 @@ SAF_resolve_to_smuts = {
 
 		promote_character = SAF_jan_smuts
 
+		if = {
+			limit = { has_completed_focus = SAF_the_smuts_statutes }
+			add_country_leader_trait = SAF_smuts_soldier_statesman_2
+		}
+		else = {
+			add_country_leader_trait = SAF_smuts_soldier_statesman
+		}
 		remove_ideas = SAF_smuts_deputy_prime_minister
-		add_country_leader_trait = SAF_smuts_soldier_statesman_2
 
 		add_ideas = SAF_hertzog_in_opposition
 
@@ -740,6 +755,15 @@ SAF_walk_out_to_hertzog = {
 		promote_character = {
 			character = SAF_jbm_hertzog
 			ideology = oligarchism
+		}
+		if = {
+			limit = { has_completed_focus = SAF_the_hertzog_bills }
+			SAF_jbm_hertzog = {
+				add_country_leader_trait = {
+					ideology = oligarchism
+					trait = SAF_hertzog_elder_statesman
+				}
+			}
 		}
 		hidden_effect = {
 			set_can_be_fired_in_advisor_role = {
@@ -804,7 +828,13 @@ SAF_walk_out_to_smuts = {
 
 		set_country_flag = SAF_hertzog_wing_frozen
 		promote_character = SAF_jan_smuts
-		add_country_leader_trait = SAF_smuts_soldier_statesman
+		if = {
+			limit = { has_completed_focus = SAF_the_smuts_statutes }
+			add_country_leader_trait = SAF_smuts_soldier_statesman_2
+		}
+		else = {
+			add_country_leader_trait = SAF_smuts_soldier_statesman
+		}
 		hidden_effect = {
 			set_can_be_fired_in_advisor_role = {
 				character = SAF_jan_hendrik_hofmeyr
@@ -1244,7 +1274,7 @@ SAF_recount_africa_crisis = {
 	add_to_variable = { SAF_hac_bank = SAF_hac_new_w }
 
 	if = {
-		limit = { has_completed_focus = SAF_news_from_the_north }
+		limit = { has_completed_focus = SAF_answers_for_the_benches }
 
 		set_temp_variable = { SAF_hac_floor = 0 }
 		set_temp_variable = { SAF_hac_fw = SAF_hac_cur_egypt }
@@ -1425,6 +1455,10 @@ SAF_recalc_hertzog_debuff = {
 	multiply_variable = { SAF_hzd_pp = SAF_hzd_inc_pp }
 	set_variable = { SAF_hzd_output = SAF_hertzog_debuff_level }
 	multiply_variable = { SAF_hzd_output = SAF_hzd_inc_output }
+	set_variable = { SAF_hzd_effcap = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_effcap = SAF_hzd_inc_effcap }
+	set_variable = { SAF_hzd_effbase = SAF_hertzog_debuff_level }
+	multiply_variable = { SAF_hzd_effbase = SAF_hzd_inc_effbase }
 
 	set_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
 	add_to_temp_variable = { SAF_prev = 1 }
@@ -1438,6 +1472,10 @@ SAF_recalc_hertzog_debuff = {
 	multiply_variable = { SAF_hzd_up_pp = SAF_hzd_inc_pp }
 	set_variable = { SAF_hzd_up_output = SAF_prev }
 	multiply_variable = { SAF_hzd_up_output = SAF_hzd_inc_output }
+	set_variable = { SAF_hzd_up_effcap = SAF_prev }
+	multiply_variable = { SAF_hzd_up_effcap = SAF_hzd_inc_effcap }
+	set_variable = { SAF_hzd_up_effbase = SAF_prev }
+	multiply_variable = { SAF_hzd_up_effbase = SAF_hzd_inc_effbase }
 
 	set_temp_variable = { SAF_prev = SAF_hertzog_debuff_level }
 	add_to_temp_variable = { SAF_prev = -2 }
@@ -1451,6 +1489,10 @@ SAF_recalc_hertzog_debuff = {
 	multiply_variable = { SAF_hzd_dn_pp = SAF_hzd_inc_pp }
 	set_variable = { SAF_hzd_dn_output = SAF_prev }
 	multiply_variable = { SAF_hzd_dn_output = SAF_hzd_inc_output }
+	set_variable = { SAF_hzd_dn_effcap = SAF_prev }
+	multiply_variable = { SAF_hzd_dn_effcap = SAF_hzd_inc_effcap }
+	set_variable = { SAF_hzd_dn_effbase = SAF_prev }
+	multiply_variable = { SAF_hzd_dn_effbase = SAF_hzd_inc_effbase }
 
 	SAF_sync_radicalised_cabinet_dm = yes
 
