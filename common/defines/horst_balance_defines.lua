@@ -22,6 +22,9 @@ NDefines.NRailwayGun.BASE_CAPTURE_CHANCE = 1					-- The base chance of railway g
 NDefines.NMilitary.OUT_OF_SUPPLY_SPEED = -0.75                    -- max speed reduction from supply
 
 NDefines.NAir.MAX_QUICK_WING_SELECTION = 4		-- Max possible selection for airwing quick deploy
+-----------------------------GENERALS N STUFF--------------------------------------
+NDefines.NMilitary.PLANNING_CAP_NO_HQ_SCALING = 1								-- Scaling applied to planning cap when there's no HQ (no leader or leader not deployed or not the same root order)
+NDefines.NMilitary.PLANNING_SPEED_NO_HQ_SCALING = 1								-- Same as PLANNING_CAP_NO_HQ_SCALING but for planning speed
 -----------------------------AIR SUPREMACY--------------------------------------
 NDefines.NMilitary.ENEMY_AIR_SUPERIORITY_IMPACT = -0.35           -- effect on defense due to enemy air superiorty
 -- Algorithm is a * (xp / (xp + b)) (see: https://www.desmos.com/calculator/4936qnyxqp)
