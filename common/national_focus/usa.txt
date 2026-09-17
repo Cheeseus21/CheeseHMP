@@ -2801,7 +2801,7 @@ focus_tree = {
 		icon = GFX_focus_generic_military_mission
 		prerequisite = { focus = USA_war_department }
 		
-		x = -5
+		x = -6
 		y = 1
 		
 		relative_position_id = USA_war_department
@@ -2846,11 +2846,58 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = USA_louisiana_maneuvers
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = USA_selective_training_act }
+		
+		x = -2
+		y = 1
+		
+		relative_position_id = USA_selective_training_act
+		
+		cost = 5
+
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		available_if_capitulated = no
+
+		completion_reward = {
+			army_experience = 75
+		}
+	}
+	
+	focus = {
+		id = USA_airborne_divisions
+		icon = GFX_america_goal_screaming_eagles
+		prerequisite = { focus = USA_louisiana_maneuvers }
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = USA_louisiana_maneuvers
+		
+		cost = 5
+
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = GER_paratroop_tt
+            
+			hidden_effect = {
+                add_to_variable = { paratrooper_div_cap = 4 }
+                set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
+            }
+		}
+	}
+	
+	focus = {
 		id = USA_armored_infantry
 		icon = GFX_goal_generic_build_tank
 		prerequisite = { focus = USA_selective_training_act }
 		
-		x = -2
+		x = 0
 		y = 1
 		
 		relative_position_id = USA_selective_training_act
@@ -2915,49 +2962,32 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = USA_louisiana_maneuvers
-		icon = GFX_goal_generic_cavalry
-		prerequisite = { focus = USA_selective_training_act }
+		id = USA_main_battle_tanks
+		icon = GFX_focus_generic_combined_arms
+		prerequisite = { focus = USA_tank_experiments }
 		
 		x = 0
 		y = 1
 		
-		relative_position_id = USA_selective_training_act
+		relative_position_id = USA_tank_experiments
 		
 		cost = 5
 
-		cancel_if_invalid = no
-		continue_if_invalid = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
 		available_if_capitulated = no
 
 		completion_reward = {
-			army_experience = 75
-		}
-	}
-	
-	focus = {
-		id = USA_airborne_divisions
-		icon = GFX_america_goal_screaming_eagles
-		prerequisite = { focus = USA_louisiana_maneuvers }
-		
-		x = 0
-		y = 1
-		
-		relative_position_id = USA_louisiana_maneuvers
-		
-		cost = 5
-
-		cancel_if_invalid = no
-		continue_if_invalid = yes
-		available_if_capitulated = no
-
-		completion_reward = {
-			custom_effect_tooltip = GER_paratroop_tt
-            
-			hidden_effect = {
-                add_to_variable = { paratrooper_div_cap = 4 }
-                set_division_template_cap = {  division_template = "Paratroopers" division_cap = paratrooper_div_cap }
-            }
+			add_tech_bonus = {
+				name = GER_standardpanzer
+				bonus = 0.75
+				uses = 1
+				technology = main_battle_tank_chassis
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			USA_congress_small_oppositiona = yes
 		}
 	}
 	
@@ -3047,12 +3077,47 @@ focus_tree = {
 		cancel_if_invalid = no
 		continue_if_invalid = yes
 		available_if_capitulated = no
+		
+		available = {
+			date > 1941.9.11
+		}
 
 		completion_reward = {
-			custom_effect_tooltip = USA_army_and_navy_tt
-			add_to_variable = { 
-				USA_ran_experience_gain_army_factor = 0.1
-				tooltip = experience_gain_army_factor_tt
+			every_navy_leader = {
+				add_attack = 1
+				add_defense = 1
+				add_coordination = 1
+				add_maneuver = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_department_of_defense
+		icon = GFX_focus_ARG_defense_and_democracy
+		prerequisite = { focus = USA_build_the_pentagon }
+		
+		x = 0
+		y = 1
+		
+		relative_position_id = USA_build_the_pentagon
+		
+		cost = 5
+
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		available_if_capitulated = no
+		
+		available = {
+			date > 1942.1.1
+		}
+
+		completion_reward = {
+			every_army_leader = {
+				add_attack = 1
+				add_defense = 1
+				add_planning = 1
+				add_logistics = 1
 			}
 		}
 	}
@@ -3081,7 +3146,7 @@ focus_tree = {
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
-			USA_congress_small_oppositiona = yes
+			custom_effect_tooltip = USA_air_war_plans_division_tt
 		}
 	}
 
@@ -3115,10 +3180,6 @@ focus_tree = {
 				technology = advanced_small_airframe
 				technology = improved_small_airframe
 			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-			USA_congress_small_oppositiona = yes
 		}
 	}
 
@@ -3152,10 +3213,114 @@ focus_tree = {
 				category = medium_air
 				category = heavy_air
 			}
+		}
+	}
+	
+	focus = {
+		id = USA_us_army_airforce
+		icon = GFX_focus_generic_strike_at_democracy1
+		
+		x = 0
+		y = 2
+		
+		prerequisite = { focus = USA_air_support }
+		
+		relative_position_id = USA_air_support
+		
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		search_filters = {FOCUS_FILTER_RESEARCH}
+
+		completion_reward = {
+			custom_effect_tooltip = USA_airforce_prio_tt
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
-			USA_congress_small_oppositiona = yes
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = USA_us_air_force
+					}
+				}
+				custom_effect_tooltip = USA_army_and_navy_tt
+				add_to_variable = {
+					USA_ran_air_attack_factor = 0.1
+					tooltip = air_attack_factor_tt
+				}
+				add_to_variable = {
+					USA_ran_air_defence_factor = 0.1
+					tooltip = air_defence_factor_tt
+				}
+				add_to_variable = {
+					USA_ran_air_mission_efficiency = 0.05
+					tooltip = air_mission_efficiency_tt
+				}
+				add_to_variable = {
+					USA_ran_air_superiority_efficiency = 0.1
+					tooltip = air_superiority_efficiency_tt
+				}
+			}
+			else = {
+				air_experience = 150
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_us_air_force
+		icon = GFX_goal_generic_build_airforce
+		
+		x = 0
+		y = 2
+		
+		prerequisite = { focus = USA_strategic_bombing }
+		
+		relative_position_id = USA_strategic_bombing
+		
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		search_filters = {FOCUS_FILTER_RESEARCH}
+
+		completion_reward = {
+			custom_effect_tooltip = USA_airforce_prio_tt
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = USA_us_army_airforce
+					}
+				}
+				custom_effect_tooltip = USA_army_and_navy_tt
+				add_to_variable = {
+					USA_ran_air_range_factor = 0.2
+					tooltip = air_range_factor_tt
+				}
+				add_to_variable = {
+					USA_ran_ground_attack_factor = 0.2
+					tooltip = ground_attack_factor_tt
+				}
+				add_to_variable = {
+					USA_ran_air_mission_efficiency = 0.05
+					tooltip = air_mission_efficiency_tt
+				}
+				add_to_variable = {
+					USA_ran_air_superiority_efficiency = 0.1
+					tooltip = air_superiority_efficiency_tt
+				}
+			}
+			else = {
+				air_experience = 150
+			}
 		}
 	}
 
@@ -3189,10 +3354,6 @@ focus_tree = {
 				bonus = 1
 				category = cat_air_bombs
 			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-			USA_congress_small_oppositiona = yes
 		}
 	}
 	
@@ -3227,10 +3388,6 @@ focus_tree = {
 				bonus = 1
 				category = cat_air_guns
 			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-			USA_congress_small_oppositiona = yes
 		}
 	}
 	
@@ -3263,10 +3420,6 @@ focus_tree = {
 				bonus = 2
 				category = heavy_air
 			}
-			
-			custom_effect_tooltip = generic_skip_one_line_tt
-			
-			USA_congress_small_oppositiona = yes
 		}
 	}
 
