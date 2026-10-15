@@ -11773,7 +11773,7 @@ NOR_set_prepare_variables_historical = {
 
 NOR_set_variables_alt_dem = {
 	set_variable = { NOR_prep_alt_dem_remove_days = 35 }
-	set_variable = { NOR_prep_alt_dem_convoy_cost = 50 }
+	set_variable = { NOR_prep_alt_dem_convoy_cost = 10 }
 	set_variable = { NOR_prep_alt_dem_convoy_cost_remove = 0 }
 	set_variable = { NOR_prep_alt_dem_pp_cost = 70 }
 	set_variable = { NOR_prep_alt_dem_pp_cost_remove = 0 }
@@ -15143,5 +15143,1215 @@ JAP_add_or_modify_rounouha_modifier = {
 	}
 }
 
+	# ░█████╗░██╗░░░██╗░██████╗████████╗██████╗░░█████╗░██╗░░░░░██╗░█████╗░
+	# ██╔══██╗██║░░░██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║░░░░░██║██╔══██╗
+	# ███████║██║░░░██║╚█████╗░░░░██║░░░██████╔╝███████║██║░░░░░██║███████║
+	# ██╔══██║██║░░░██║░╚═══██╗░░░██║░░░██╔══██╗██╔══██║██║░░░░░██║██╔══██║
+	# ██║░░██║╚██████╔╝██████╔╝░░░██║░░░██║░░██║██║░░██║███████╗██║██║░░██║
+	# ╚═╝░░╚═╝░╚═════╝░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝╚═╝╚═╝░░╚═╝
 
+### Cabinet Trust ###
+
+AST_cabinet_trust_change = { #Will swap Cabinet Trust State /AND/ Call for function that swaps ideas
+
+	IF = {
+		limit = {
+			has_country_flag = AST_cabinet_trust_increase #Is set in AST_cabinet_trust_cat decisions
+			check_variable = {
+	            var = AST_cabinet_trust_state
+	            value = 5
+	            compare = less_than
+	        }
+		}
+		add_to_variable = {
+		var = AST_cabinet_trust_state
+		value = 1
+		}
+		AST_cabinet_trust_swap_idea = yes
+	}
+
+	ELSE_IF = {
+		limit = {
+			has_country_flag = AST_cabinet_trust_decrease #Is set in AST_cabinet_trust_cat decisions
+			check_variable = {
+	            var = AST_cabinet_trust_state
+	            value = 1
+	            compare = greater_than
+	        }
+		}
+		add_to_variable = {
+			var = AST_cabinet_trust_state
+			value = -1
+		}
+		AST_cabinet_trust_swap_idea = yes
+	}
+
+	clr_country_flag = AST_cabinet_trust_increase
+	clr_country_flag = AST_cabinet_trust_decrease
+
+}
+
+AST_cabinet_trust_swap_idea = { #Will swap ideas that represent the correct Cabinet Trust State 
+
+	IF = { #Remove old idea 
+
+		IF = {
+			limit = {
+				has_idea = AST_cabinet_trust_state_1_idea
+				OR = {
+					NOT = {
+						check_variable = {
+						var = AST_cabinet_trust_state
+						value = 1
+						compare = equals
+						}
+					}
+					NOT = {
+						has_country_flag = AST_canberra_air_disaster_flag
+					}
+				}
+			}
+			remove_ideas = AST_cabinet_trust_state_1_idea
+		}
+
+		ELSE_IF = {
+			limit = {
+				has_idea = AST_cabinet_trust_state_2_idea
+				OR = {
+					NOT = {
+						check_variable = {
+						var = AST_cabinet_trust_state
+						value = 2
+						compare = equals
+						}
+					}
+					NOT = {
+						has_country_flag = AST_canberra_air_disaster_flag
+					}
+				}
+			}
+			remove_ideas = AST_cabinet_trust_state_2_idea
+		}
+
+		ELSE_IF = {
+			limit = {
+				has_idea = AST_cabinet_trust_state_3_idea
+				OR = {
+					NOT = {
+						check_variable = {
+						var = AST_cabinet_trust_state
+						value = 3
+						compare = equals
+						}
+					}
+					NOT = {
+						has_country_flag = AST_canberra_air_disaster_flag
+					}
+				}
+			}
+			remove_ideas = AST_cabinet_trust_state_3_idea
+		}
+
+		ELSE_IF = {
+			limit = {
+				has_idea = AST_cabinet_trust_state_4_idea
+				OR = {
+					NOT = {
+						check_variable = {
+						var = AST_cabinet_trust_state
+						value = 4
+						compare = equals
+						}
+					}
+					NOT = {
+						has_country_flag = AST_canberra_air_disaster_flag
+					}
+				}
+			}
+			remove_ideas = AST_cabinet_trust_state_4_idea
+		}
+
+		ELSE_IF = {
+			limit = {
+				has_idea = AST_cabinet_trust_state_5_idea
+				OR = {
+					NOT = {
+						check_variable = {
+						var = AST_cabinet_trust_state
+						value = 5
+						compare = equals
+						}
+					}
+					NOT = {
+						has_country_flag = AST_canberra_air_disaster_flag
+					}
+				}
+			}
+			remove_ideas = AST_cabinet_trust_state_5_idea
+		}
+
+	}
+
+	IF = { #Add new idea 
+		limit = {
+			NOT = {
+				OR = {
+					has_country_flag = AST_cabinet_trust_complete_1_flag
+					has_country_flag = AST_cabinet_trust_complete_2_flag
+					has_country_flag = AST_cabinet_trust_complete_3_flag
+					has_country_flag = AST_cabinet_trust_complete_4_flag
+				}
+			}
+		}
+
+		IF = {
+			limit = {
+				check_variable = {
+		            var = AST_cabinet_trust_state
+		            value = 1
+		            compare = equals
+		        }
+			}
+			add_ideas = AST_cabinet_trust_state_1_idea
+		}
+
+		ELSE_IF = {
+			limit = {
+				check_variable = {
+		            var = AST_cabinet_trust_state
+		            value = 2
+		            compare = equals
+		        }
+			}
+			add_ideas = AST_cabinet_trust_state_2_idea
+		}
+
+		ELSE_IF = {
+			limit = {
+				check_variable = {
+		            var = AST_cabinet_trust_state
+		            value = 3
+		            compare = equals
+		        }
+			}
+			add_ideas = AST_cabinet_trust_state_3_idea
+		}
+		
+		ELSE_IF = {
+			limit = {
+				check_variable = {
+		            var = AST_cabinet_trust_state
+		            value = 4
+		            compare = equals
+		        }
+			}
+			add_ideas = AST_cabinet_trust_state_4_idea
+		}
+
+		ELSE_IF = {
+			limit = {
+				check_variable = {
+		            var = AST_cabinet_trust_state
+		            value = 5
+		            compare = equals
+		        }
+			}
+			add_ideas = AST_cabinet_trust_state_5_idea
+		}
+	}
+
+}
+
+AST_uap_5_time_discount_effect = {
+
+		reduce_focus_completion_cost = {
+			focus = AST_solidarity_by_the_empire
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_wool_agreement
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_australian_war_cabinet
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_singapore_strategy
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_british_war_cabinet
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_british_pacific_fleet
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_all_dressed_up
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_overseas_loyalties
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_the_ultimate_overseas_duty
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_eastern_focus
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_australian_command
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_inevitably_independent
+			cost = 1
+		}
+
+		IF = { #Shared focuses
+			limit = {
+				NOT = {
+					has_completed_focus = AST_bring_on_the_giant
+				}
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_equal_training
+				cost = 1
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_reclaim_the_lost_territory
+				cost = 1
+			}
+		}
+
+}
+
+AST_uap_5_time_discount_effect_reverse = {
+
+		reduce_focus_completion_cost = {
+			focus = AST_solidarity_by_the_empire
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_wool_agreement
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_australian_war_cabinet
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_singapore_strategy
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_british_war_cabinet
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_british_pacific_fleet
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_all_dressed_up
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_overseas_loyalties
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_the_ultimate_overseas_duty
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_eastern_focus
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_australian_command
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_inevitably_independent
+			cost = -1
+		}
+
+		IF = { #Shared focuses
+			limit = {
+				NOT = {
+					has_completed_focus = AST_bring_on_the_giant
+				}
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_equal_training
+				cost = -1
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_reclaim_the_lost_territory
+				cost = -1
+			}
+		}
+
+}
+
+AST_alp_5_time_discount_effect = {
+
+		reduce_focus_completion_cost = {
+			focus = AST_no_foreign_battlefields
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_aerial_defense
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_ratify_westminster_adoption_act
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_administer_the_mandate
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_a_rational_request
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_volunteers
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_until_the_tide_of_battle_swings
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_walls_and_whispers
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_united_states_as_our_keystone
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_liberty_loans
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_bring_on_the_giant
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_conscription_at_last
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_pleading_britain
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_reinforcements
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_ending_overseas_conscription
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_an_uncle_for_father_figure
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_we_endured
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_seven_million_britishers
+			cost = 1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_its_fight_work_or_perish
+			cost = 1
+		}
+
+		IF = { #Shared focuses
+			limit = {
+				NOT = {
+					has_completed_focus = AST_inevitably_independent
+				}
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_equal_training
+				cost = 1
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_reclaim_the_lost_territory
+				cost = 1
+			}
+		}
+}
+
+AST_alp_5_time_discount_effect_reverse = {
+
+		reduce_focus_completion_cost = {
+			focus = AST_no_foreign_battlefields
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_aerial_defense
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_ratify_westminster_adoption_act
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_administer_the_mandate
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_a_rational_request
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_volunteers
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_until_the_tide_of_battle_swings
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_walls_and_whispers
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_united_states_as_our_keystone
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_liberty_loans
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_bring_on_the_giant
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_conscription_at_last
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_pleading_britain
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_reinforcements
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_ending_overseas_conscription
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_an_uncle_for_father_figure
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_we_endured
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_seven_million_britishers
+			cost = -1
+		}
+		reduce_focus_completion_cost = {
+			focus = AST_its_fight_work_or_perish
+			cost = -1
+		}
+
+		IF = { #Shared focuses
+			limit = {
+				NOT = {
+					has_completed_focus = AST_inevitably_independent
+				}
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_equal_training
+				cost = 1
+			}
+			reduce_focus_completion_cost = {
+				focus = AST_reclaim_the_lost_territory
+				cost = -1
+			}
+		}
+}
+
+AST_democratic_votes_increase_5_effect = {
+
+	IF = {
+		limit = {
+			has_government = democratic
+			has_completed_focus = AST_war_is_coming
+			check_variable = { #UAP is current government
+				var = AST_ruling_party
+				value = 0
+				compare = equals
+			}
+		}
+		add_to_variable = { #Edit AST_country_party_influence_uap_tt if changed
+			var = AST_uap_votes_var
+			value = 5.00 
+		}
+		add_to_variable = {
+			var = AST_alp_votes_var
+			value = -5.00 
+		}
+		clamp_variable = {
+			var = AST_uap_votes_var
+			min = 0
+			max = 100
+		}
+		clamp_variable = {
+			var = AST_alp_votes_var
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = AST_uap_popularity_increase_5
+	}
+
+	ELSE_IF = {
+		limit = {
+			has_government = democratic
+			has_completed_focus = AST_war_is_coming
+			check_variable = { #ALP is current government
+				var = AST_ruling_party
+				value = 1
+				compare = equals
+			}
+		}
+		add_to_variable = { #Edit AST_country_party_influence_alp_tt if changed
+			var = AST_alp_votes_var
+			value = 5.00 
+		}
+		add_to_variable = {
+			var = AST_uap_votes_var
+			value = -5.00 
+		}
+		clamp_variable = {
+			var = AST_alp_votes_var
+			min = 0
+			max = 100
+		}
+		clamp_variable = {
+			var = AST_uap_votes_var
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = AST_alp_popularity_increase_5
+	}
+
+}
+
+AST_democratic_votes_decrease_5_effect = {
+
+	IF = {
+		limit = {
+			has_government = democratic
+			has_completed_focus = AST_war_is_coming
+			check_variable = { #UAP is current government
+				var = AST_ruling_party
+				value = 0
+				compare = equals
+			}
+		}
+		add_to_variable = {
+			var = AST_uap_votes_var
+			value = -5.00 
+		}
+		add_to_variable = {
+			var = AST_alp_votes_var
+			value = 5.00 
+		}
+		clamp_variable = {
+			var = AST_uap_votes_var
+			min = 0
+			max = 100
+		}
+		clamp_variable = {
+			var = AST_alp_votes_var
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = AST_uap_popularity_decrease_5
+	}
+
+	ELSE_IF = {
+		limit = {
+			has_government = democratic
+			has_completed_focus = AST_war_is_coming
+			check_variable = { #ALP is current government
+				var = AST_ruling_party
+				value = 1
+				compare = equals
+			}
+		}
+		add_to_variable = {
+			var = AST_alp_votes_var
+			value = -5.00 
+		}
+		add_to_variable = {
+			var = AST_uap_votes_var
+			value = 5.00 
+		}
+		clamp_variable = {
+			var = AST_alp_votes_var
+			min = 0
+			max = 100
+		}
+		clamp_variable = {
+			var = AST_uap_votes_var
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = AST_alp_popularity_decrease_5
+	}
+
+}
+
+AST_democratic_votes_decrease_10_effect = {
+
+	IF = {
+		limit = {
+			has_government = democratic
+			has_completed_focus = AST_war_is_coming
+			check_variable = { #UAP is current government
+				var = AST_ruling_party
+				value = 0
+				compare = equals
+			}
+		}
+		add_to_variable = {
+			var = AST_uap_votes_var
+			value = -10.00 
+		}
+		add_to_variable = {
+			var = AST_alp_votes_var
+			value = 10.00 
+		}
+		clamp_variable = {
+			var = AST_uap_votes_var
+			min = 0
+			max = 100
+		}
+		clamp_variable = {
+			var = AST_alp_votes_var
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = AST_uap_popularity_decrease_10
+	}
+
+	ELSE_IF = {
+		limit = {
+			has_government = democratic
+			has_completed_focus = AST_war_is_coming
+			check_variable = { #ALP is current government
+				var = AST_ruling_party
+				value = 1
+				compare = equals
+			}
+		}
+		add_to_variable = {
+			var = AST_alp_votes_var
+			value = -10.00 
+		}
+		add_to_variable = {
+			var = AST_uap_votes_var
+			value = 10.00 
+		}
+		clamp_variable = {
+			var = AST_alp_votes_var
+			min = 0
+			max = 100
+		}
+		clamp_variable = {
+			var = AST_uap_votes_var
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = AST_alp_popularity_decrease_10
+	}
+
+}
+
+AST_votes_change_effect = {
+
+	set_variable = {
+		var = AST_uap_votes_change_var
+		value = AST_uap_votes_daily_var
+	}
+
+	subtract_from_variable = {
+		var = AST_uap_votes_change_var
+		value = AST_alp_votes_daily_var 
+	}
+
+	set_variable = {
+		var = AST_alp_votes_change_var
+		value = AST_alp_votes_daily_var
+	}
+
+	subtract_from_variable = {
+		var = AST_alp_votes_change_var
+		value = AST_uap_votes_daily_var 
+	}
+
+	set_variable = {
+		var = AST_uap_votes_daily_impact_var
+		value = AST_uap_votes_daily_var
+	}
+
+	multiply_variable = {
+		var = AST_uap_votes_daily_impact_var
+		value = -1
+	}
+
+	set_variable = {
+		var = AST_alp_votes_daily_impact_var
+		value = AST_alp_votes_daily_var
+	}
+
+	multiply_variable = {
+		var = AST_alp_votes_daily_impact_var
+		value = -1
+	}
+	
+}
+
+AST_divide_the_pacific_effect = {
+	#Join each other faction if either has on, otherwise enacts JAP/AST non-agression pact if there is no current one
+	IF = {	
+		limit = {
+			OR = {
+				NOT = {
+					JAP = {
+						is_in_faction_with = AST
+					}
+				}
+				AST = { has_country_flag = AST_jap_join_ast_faction }
+				AST = { has_country_flag = AST_ast_join_jap_faction }
+				AST = { has_country_flag = AST_non_agression_pact_jap }
+			}
+		}
+
+		IF = {
+			limit = {
+				OR = {
+					AST = {
+						is_in_faction = yes
+					}
+					AST = {
+						has_country_flag = AST_jap_join_ast_faction 
+					}
+				}
+			}
+			AST = {
+				set_country_flag = AST_jap_join_ast_faction
+				faction_leader = {
+					add_to_faction = JAP
+				}
+			}
+		}
+
+		ELSE_IF = {
+			limit = {
+				OR = {
+					JAP = {
+						is_in_faction = yes
+					}
+					AST = {
+						has_country_flag = AST_ast_join_jap_faction 
+					}
+				}
+			}
+			AST = { 
+				set_country_flag = AST_ast_join_jap_faction
+			}
+			JAP = {
+				faction_leader = {
+					add_to_faction = AST
+				}
+			}
+		}
+
+		ELSE_IF = {
+			limit = { 
+				OR = {
+					NOT = {
+						JAP = {
+							has_non_aggression_pact_with = AST
+						}
+					}
+					AST = {
+						has_country_flag = AST_non_agression_pact_jap
+					}	
+				}
+			}
+			AST = { 
+				set_country_flag = AST_non_agression_pact_jap 
+			}
+			JAP = { 
+				diplomatic_relation = { 
+					country = AST 
+					relation = non_aggression_pact 
+				} 
+			}
+		}
+	}
+
+	custom_effect_tooltip = generic_skip_one_line_tt
+	SIA = {
+		every_core_state = {
+			limit = { 
+				NOT = {
+					is_controlled_by = AST
+					is_controlled_by = JAP				
+				}
+			}
+		set_state_flag = AST_claims_to_ast
+		add_claim_by = ast 
+		}
+	}
+
+	JAP = {
+		add_ai_strategy = {
+			type = avoid_starting_wars
+			id = SIA
+			value = 150
+		}
+	}
+
+	custom_effect_tooltip = generic_skip_one_line_tt
+	every_state = {
+		limit = {
+			OR = {
+				#French Indochina = {
+					state = 286 
+					state = 670 
+					state = 671 
+					state = 741 
+					state = 1017 
+					state = 1066 
+					state = 1067 
+					state = 1068 
+					state = 1069 
+				#}
+			}
+			NOT = {
+				is_controlled_by = AST
+				is_controlled_by = JAP
+			}
+		}
+		set_state_flag = AST_claims_to_jap
+		add_claim_by = JAP 
+	}
+	
+	every_state = {
+		limit = {
+			is_controlled_by = AST
+			OR = {
+				#French Indochina = {
+					state = 286 
+					state = 670 
+					state = 671 
+					state = 741 
+					state = 1017 
+					state = 1066 
+					state = 1067 
+					state = 1068 
+					state = 1069 
+				#}
+			}
+		}
+		set_state_flag = AST_transfer_to_jap
+		transfer_state_to = JAP
+	}
+}
+
+AST_nauru_pact_effect = {
+
+	IF = {
+		limit = {
+			original_tag = GER
+			ROOT = {
+				has_idea = AST_the_promise_of_nauru
+			}
+		}
+		remove_ideas = {
+			AST_the_promise_of_nauru
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+	}
+
+	725 = { #Nauru
+		transfer_state_to = GER
+	}
+
+	IF = {
+		limit = {
+			GER = {
+				OR = { 
+					has_country_flag = AST_ast_to_ger_faction_flag #tt reasons
+					AND = {
+						is_in_faction = yes
+						is_faction_leader = yes
+					}
+				} 
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+		IF = {
+			limit = {
+				AST = {
+					is_subject = no
+				}
+			}
+			effect_tooltip = {
+				set_autonomy = {
+					target = AST
+					autonomy_state = autonomy_free
+				}
+			}
+		}
+		GER = {
+			add_to_faction = AST 
+			set_country_flag = AST_ast_to_ger_faction_flag #tt reasons
+		}
+	}
+	ELSE = {
+		custom_effect_tooltip = generic_skip_one_line_tt
+		IF = {
+			limit = {
+				AST = {
+					OR = {
+						has_country_flag = AST_nauru_pact_leave_faction_flag #tt reasons
+						is_in_faction_with = ROOT.OVERLORD
+					}
+				}
+			}
+			AST = {
+				ROOT.OVERLORD = {
+					set_autonomy = {
+						target = AST
+						autonomy_state = autonomy_free
+					}
+					remove_from_faction = AST
+				}
+				set_country_flag = AST_nauru_pact_leave_faction_flag
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+		}
+		ELSE_IF = {
+			limit = {
+				AST = {
+					OR = {
+						has_country_flag = AST_nauru_pact_autonomy_free_flag #tt reasons
+						is_subject = yes
+					}
+				}
+			}
+			AST = {
+				ROOT.OVERLORD = {
+					set_autonomy = {
+						target = AST
+						autonomy_state = autonomy_free
+					}
+				}
+				set_country_flag = AST_nauru_pact_autonomy_free_flag
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+		}
+		GER = { 
+			give_guarantee = AST 
+		}
+	}
+}
+
+AST_broken_nauru_pact_effect = {
+
+	IF = {
+		limit = {
+			ROOT = {
+				has_idea = AST_the_promise_of_nauru
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+		remove_ideas = {
+			AST_the_promise_of_nauru
+		}
+	}
+
+	725 = { #Nauru
+		add_claim_by = GER
+	}
+	634 = { #Solomons
+		add_claim_by = GER
+	}
+}
+
+AST_the_pacific_garrison_effect = {
+
+	IF = { #If not in faction
+		limit = {
+			AST = {
+				NOT = {
+					is_in_faction_with = ENG
+					has_military_access_to = ENG
+				}
+			}
+		}
+		AST = {
+			diplomatic_relation = {
+			  	country = ENG
+			 	relation = military_access
+			  	active = yes
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+	}
+
+	ENG = {
+		add_ideas = {
+			AST_the_pacific_garrison_eng
+		}
+	}
+
+	custom_effect_tooltip = generic_skip_one_line_tt
+	effect_tooltip = {
+		AST = {
+			add_ideas = {
+				AST_the_pacific_garrison_1
+			}
+		}
+	}
+	
+}
+
+AST_vichy_out_of_africa_effect = {
+	IF = { #If not in faction
+		limit = {
+			AST = {
+				OR = {
+					NOT = {
+						is_in_faction_with = ENG
+						has_military_access_to = ENG
+					}
+					has_country_flag = AST_military_access_eng
+				}
+			}
+		}
+		AST = {
+			diplomatic_relation = {
+			  	country = ENG
+			 	relation = military_access
+			  	active = yes
+			}
+			set_country_flag = AST_military_access_eng
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+	}
+	
+	AST = {
+		set_country_flag = AST_vichy_pact_flag
+	}
+}
+
+AST_new_guard_spirit_modify_effect = {
+	custom_effect_tooltip = AST_new_guard_spirit_modify
+	add_to_variable = {
+		var = AST_ng_members_var
+		value = 2500 #Edit tt if changed
+	}
+	add_to_variable = {
+		var = AST_ng_daily_var
+		value = 10 #Edit tt if changed
+	}
+}
+
+# Conscription laws
+
+AST_conscription_level_scripted_effect = {
+	add_to_variable = { AST_conscription_level_allowed = 1 }
+}
+
+
+AST_instigate_civil_war_in_target = {
+	start_civil_war = {
+		ideology = communism
+		size = civil_war_size_var
+		set_country_flag = AST_instigated_communist_civil_war
+		for_each_scope_loop = {
+			array = PREV.owned_controlled_core_states_cw_start
+			add_to_array = {
+				array = PREV.owned_controlled_core_states_cw_start
+				value = THIS
+			}
+		}
+		save_event_target_as = AST_instigated_communist_civil_war_country
+		set_variable = {
+			var = AST_communist_civil_war_enemy_country
+			value = PREV
+		}
+		PREV = {
+			set_variable = {
+				var = AST_communist_civil_war_enemy_country
+				value = PREV
+			}
+		}
+		ROOT = {
+			add_to_array = {
+				array = AST_union_control_target_array
+				value = event_target:AST_instigated_communist_civil_war_country
+			}
+		}
+	}
+}
+
+# Resolves a union-control civil war where the faction-protected loyalist capitulates but is never annexed. Runs on the loyalist.
+AST_resolve_stuck_union_control_civil_war = {
+	save_event_target_as = AST_stuck_union_control_loyalist
+	if = {
+		limit = {
+			any_country = {
+				has_country_flag = AST_instigated_communist_civil_war
+				check_variable = { AST_communist_civil_war_enemy_country = event_target:AST_stuck_union_control_loyalist }
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = AST_instigated_communist_civil_war
+				check_variable = { AST_communist_civil_war_enemy_country = event_target:AST_stuck_union_control_loyalist }
+			}
+			save_event_target_as = AST_stuck_union_control_rebel
+		}
+
+		event_target:AST_stuck_union_control_rebel = {
+			annex_country = { target = PREV transfer_troops = yes }
+			# Annexing the loyalist makes the rebel inherit its overlord; free it before AST can puppet it.
+			if = {
+				limit = { is_subject = yes }
+				overlord = { end_puppet = PREV }
+			}
+		}
+		AST = {
+			puppet = { target = event_target:AST_stuck_union_control_rebel }
+		}
+	}
+}
 
