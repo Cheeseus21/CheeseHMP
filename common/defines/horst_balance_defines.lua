@@ -384,25 +384,31 @@ NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- 1,4,1 vanilla number of hours for a gun
 	1.0,	-- small guns
 }
 
+-- Force spotting progress to decay rapidly once a fleet breaks contact
+NDefines.NMilitary.SPOTTING_QUALITY_DROP_HOURS = 1 				-- Vanilla 4. Each X hours the intel quality drops after unit was spotted.
+NDefines.NMilitary.SPOTTING_QUALITY_NAVAL_RECON_DROP_HOURS = 2 	-- Vanilla 12. Each X hours the intel quality drops after unit was spotted by naval recon air mission.
+NDefines.NIntel.NAVAL_SPOT_DECAY = 5							-- Vanilla 1. Speeds up naval spot decay in NIntel.
+
 NDefines.NNavy.BASE_SPOTTING = 1											-- base detection chance upon which hourly change modifiers are calculated (base detection chance can get modified through other variables), 2%
-NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 10								-- base spotting percentage that comes from full radar coverage; vanilla is 5
-NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 15							-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
+NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 5								-- base spotting percentage that comes from full radar coverage; vanilla is 5
+NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 10							-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
 NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SUB = 0.8							-- vanilla 1.0	-- task force sub spotting value is multiplied by this and added to spotting percentage every hour; sub spotting value is average sub detection * average sub visibility enemy; the positive part of the surface detection hourly change equation when against a sub fleet.
 NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SURFACE = 1.1						-- vanilla 1.0	-- task force surface spotting value is multiplied by this and added to spotting percentage every hour; spotting value is average surface detection * average surface visibility enemy; the positive part of the surface detection hourly change equation.
-NDefines.NNavy.SPOTTING_ENEMY_SPOTTING_MULTIPLIER_FOR_RUNNING_AWAY = 0.75 	-- 0.8 in vanilla, is this dead? NO | enemy spotting is multiplied by this value to simulate running away; the native part of the spotting value equation
+NDefines.NNavy.SPOTTING_ENEMY_SPOTTING_MULTIPLIER_FOR_RUNNING_AWAY = 0.20 	-- 0.8 in vanilla, is this dead? NO | enemy spotting is multiplied by this value to simulate running away; the native part of the spotting value equation
 NDefines.NNavy.BASE_SPOTTING_FROM_NAVY = 10									-- 10 in vanilla, -- base spotting percentage that comes from task forces in area, add to base detection chance
 NDefines.NNavy.BASE_SPOTTING_FROM_AIR = 20									-- base spotting percentage that comes from air-wings in area, adds to base detection chance; 20 in vanilla
 NDefines.NNavy.DECRYPTION_SPOTTING_BONUS = 0.15								-- Paradox provides no description. I believe this is the factor which makes the daily decryption differences accumulate over time as a multiplier until the max of 15%. Vanilla is 0.2. So 0.15 * decryption difference each day until 15% is hit
-NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_RUNNING_AWAY = 0.75					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is faster; 0.5 in vanilla; higher means enemy fleets flees faster!
-NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_CATCHING_UP = 0.25					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is slower; 0.2 in vanilla; higher means friendly fleet catches up faster!
+NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_RUNNING_AWAY = 1.25					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is faster; 0.5 in vanilla; higher means enemy fleets flees faster!
+NDefines.NNavy.SPOTTING_SPEED_MULT_FOR_CATCHING_UP = 0.10					-- multiplier thhrough which the average speed difference between two fleets is calculated in the hourly spotting change when the enemy fleet is slower; 0.2 in vanilla; higher means friendly fleet catches up faster!
 NDefines.NNavy.VISIBILITY_MULTIPLIER_FOR_SPOTTING = 0.05					-- multiplier for visibility stat in the spotting value equation to give more weight to surface detection modifiers! 0.1 in vanilla.
 NDefines.NNavy.DETECTION_CHANCE_MULT_BASE = 0.1								-- base multiplier value for hourly detection chance combined with the 2 defines beneath, the speed difference defines and the spotting value equation defines above (NOT THE BASE DEFINES)
-NDefines.NNavy.DETECTION_CHANCE_MULT_RADAR_BONUS = 0.2						-- bonus for hourly change detection from radar buildings (NOT BASE). vanilla is 0.1
+NDefines.NNavy.DETECTION_CHANCE_MULT_RADAR_BONUS = 0.1						-- bonus for hourly change detection from radar buildings (NOT BASE). vanilla is 0.1
 NDefines.NNavy.DETECTION_CHANCE_MULT_AIR_SUPERIORITY_BONUS = 0.25			-- bonus from air superiority in hourly change detection (NOT BASE); vanilla is 0.25
 
-NDefines.NNavy.NAVY_VISIBILITY_BONUS_ON_RETURN_FOR_REPAIR = 0.1			-- Multiplier for the surface/sub visiblity when the heavily damaged fleet is returning to the home base for reparation. 1.0 = no bonus. 0.0 = invisible.
+NDefines.NNavy.NAVY_VISIBILITY_BONUS_ON_RETURN_FOR_REPAIR = 0.25			-- Multiplier for the surface/sub visiblity when the heavily damaged fleet is returning to the home base for reparation. 1.0 = no bonus. 0.0 = invisible.
 
-NDefines.NNavy.AIR_MISSION_SPOTTING_FACTORS = {								-- Multiplier for air-wings' spotting contribution per mission type; lower value means the 20% base detection chance is reached with more air wings! Vanilla
+-- Fix 1.17 array length (18 entries) for AIR_MISSION_SPOTTING_FACTORS
+NDefines.NNavy.AIR_MISSION_SPOTTING_FACTORS = {
 	0.50, -- AIR_SUPERIORITY
 	0, -- CAS
 	0.25, -- INTERCEPTION
@@ -419,6 +425,8 @@ NDefines.NNavy.AIR_MISSION_SPOTTING_FACTORS = {								-- Multiplier for air-win
 	0.50, -- NAVAL_MINES_SWEEPING
 	1.00, -- RECON
 	1.50, -- NAVAL_PATROL
+	0, -- BARRAGE
+	0, -- SAM
 }
 
 NDefines.NNavy.NAVY_SPOTTER_DETECTION_FACTOR = 0					-- multiplier for task forces' detection value before logistic transform
@@ -427,7 +435,10 @@ NDefines.NNavy.NAVAL_RANGE_TO_INGAME_DISTANCE = 0.080 				-- Scale the ship stat
 ---POSITIONING CHANGES---
 NDefines.NNavy.POSITIONING_PENALTY_FOR_SHIPS_JOINED_COMBAT_AFTER_IT_STARTS = 0 		-- Vanilla 0.01, 	-- each ship that joins the combat will have this penalty to be added into positioning
 NDefines.NNavy.POSITIONING_PENALTY_HOURLY_DECAY_FOR_NEWLY_JOINED_SHIPS = 0 			-- Vanilla0.05,		-- the accumulated penalty from new ships will decay hourly by this value
-NDefines.NNavy.SCREENING_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING = 0 				-- Vanilla 0.5, 	-- screening efficiency (screen to capital ratio) at 0% positioning
+
+-- Restore positioning impact on screening efficiency (since screening_efficiency is fixed)
+NDefines.NNavy.SCREENING_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING = 0.35 -- was 0 (Vanilla 0.5)		-- Vanilla 0.5, 	-- screening efficiency (screen to capital ratio) at 0% positioning
+
 NDefines.NNavy.AA_EFFICIENCY_PENALTY_ON_MINIMUM_POSITIONING	= 0 					-- Vanilla 0.7, 	-- AA penalty at 0% positioning
 NDefines.NNavy.HIGHER_SHIP_RATIO_POSITIONING_PENALTY_FACTOR = 0.375 				-- Vanilla 0.25, 	-- if one side has more ships than the other, that side will get this penalty for each +100% ship ratio it has
 NDefines.NNavy.DAMAGE_PENALTY_ON_MINIMUM_POSITIONING = 0.7 							-- Vanilla 0.5,	    -- damage penalty at 0% positioning 
@@ -436,8 +447,9 @@ NDefines.NNavy.SPEED_TO_ESCAPE_SPEED = 1.5											-- ratio to converstion fro
 NDefines.NNavy.HIT_PROFILE_SPEED_FACTOR = 0.4										-- factors speed value when determining it profile (Vis * HIT_PROFILE_MULT * Ship Hit Profile Mult)
 NDefines.NNavy.HIT_PROFILE_MULT = 65  												-- multiplies hit profile of every ship
 
-NDefines.NNavy.GUN_HIT_PROFILES = { -- hit profiles for guns, if target ih profile is lower the gun will have lower accuracy
-	80.0,	-- big guns
+-- Lower big gun hit profile so Battleships/Battlecruisers reliably hit Heavy Cruisers
+NDefines.NNavy.GUN_HIT_PROFILES = {
+	65.0,	-- big guns (was 80.0)
 	83.0,	-- torpedoes
 	45.0,	-- small guns
 }
@@ -446,9 +458,14 @@ NDefines.NNavy.COMBAT_RETREAT_DECISION_CHANCE = 0               	-- VANILLA 0.22
 
 NDefines.NNavy.REPAIR_AND_RETURN_UNIT_DYING_STR = 0.1      			--  VANILLA 0.2 | Str below this point is considering a single ship "dying", and a high priority to send to repair.
 
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_LOW = 0.75					-- % of total Strength. When below, navy will go to home base to repair.
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_MEDIUM = 0.5 					-- % of total Strength. When below, navy will go to home base to repair.
-NDefines.NNavy.REPAIR_AND_RETURN_PRIO_HIGH = 0.25					-- % of total Strength. When below, navy will go to home base to repair.
+-- Fix repair thresholds so fleets returning to repair actually trigger NAVY_VISIBILITY_BONUS_ON_RETURN_FOR_REPAIR (0.1)
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_LOW = 0.25				-- Vanilla 0.45 (Horst had 0.75)
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_MEDIUM = 0.50				-- Vanilla 0.65 (Horst had 0.50)
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_HIGH = 0.75				-- Vanilla 0.90 (Horst had 0.25)
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_LOW_COMBAT = 0.25			-- Vanilla 0.90
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_MEDIUM_COMBAT = 0.50		-- Vanilla 0.60
+NDefines.NNavy.REPAIR_AND_RETURN_PRIO_HIGH_COMBAT = 0.75		-- Vanilla 0.40
+
 --When X value is damage, send the whole navy to repair (not individuals ships), but only if the navy is out of combat; pair with visibility on returning to repair to avoid re-engage
 
 NDefines.NNavy.AGGRESION_MULTIPLIER_FOR_COMBAT = 3	-- ships are more aggresive in combat
