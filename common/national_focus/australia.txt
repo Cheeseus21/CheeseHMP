@@ -438,6 +438,7 @@ focus_tree = {
 	
 		completion_reward = {
 			add_manpower = 100000
+			add_offsite_building = { type = arms_factory level = 2 }
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -459,6 +460,8 @@ focus_tree = {
 	
 		completion_reward = {
 			add_political_power = 150
+			add_stability = 0.15
+			add_war_support = 0.15
             
 			custom_effect_tooltip = generic_skip_one_line_tt
             
@@ -1017,10 +1020,6 @@ focus_tree = {
 	
 		cost = 5
 
-		available = {
-			has_war = yes
-		}
-
 		available_if_capitulated = no
 	
 		completion_reward = {
@@ -1423,10 +1422,6 @@ focus_tree = {
 		y = 1
 	
 		cost = 5
-
-		available = {
-			is_in_faction = yes
-		}
 
 		available_if_capitulated = no
 	
@@ -2911,6 +2906,12 @@ focus_tree = {
 				category = cat_1941_tanks
                 category = cat_1943_tanks
 			}
+			add_tech_bonus = {
+				name = AST_sentinel_tank_development
+				bonus = 1
+				uses = 2
+				category = cat_mechanized_equipment
+			}
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -2931,6 +2932,10 @@ focus_tree = {
 		available_if_capitulated = no
 	
 		completion_reward = {
+			army_experience = 50
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			custom_effect_tooltip = AST_army_and_navy_tt
 			add_to_variable = {
 				AST_ran_army_core_attack_factor = 0.05
@@ -3107,6 +3112,10 @@ focus_tree = {
 		available_if_capitulated = no
 	
 		completion_reward = {
+			army_experience = 75
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			
 			custom_effect_tooltip = AST_army_and_navy_tt
 			add_to_variable = {
 				AST_ran_army_infantry_attack_factor = 0.08
@@ -3245,6 +3254,12 @@ focus_tree = {
 				uses = 2
 				category = artillery
 			}
+			add_tech_bonus = {
+				name = AST_yeramba
+				bonus = 0.51
+				uses = 2
+				category = cat_anti_tank
+			}
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -3267,7 +3282,7 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = AST_army_inventions_directorate_taog 
-				bonus = 1
+				bonus = 1.01
 				uses = 2
 				category = armor 
 			}
@@ -3297,7 +3312,7 @@ focus_tree = {
 		available_if_capitulated = no
 	
 		completion_reward = {
-			army_experience = 50
+			army_experience = 100
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -3447,7 +3462,7 @@ focus_tree = {
 	focus = {
 		id = AST_yeramba
 		icon = GFX_focus_generic_self_propelled_gun
-		prerequisite = { focus = AST_sentinel_tank_development }
+		prerequisite = { focus = AST_sentinel_tank_development focus = AST_department_of_supply_and_development_taog }
         
 		relative_position_id = AST_sentinel_tank_development
 		x = 0
