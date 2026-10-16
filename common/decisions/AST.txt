@@ -829,18 +829,7 @@ AST_cabinet_trust_cat = {
 		}
 
 		available = {  
-			IF = {
-				limit = {
-					NOT = { has_idea = AST_new_guard_spirit }
-				}
-				has_country_flag = AST_cabinet_trust_complete_not_tt
-			}
-			ELSE = {
-				#limit = {
-				#	has_idea = AST_new_guard_spirit
-				#}
-				has_country_flag = AST_cabinet_trust_complete_crown_flag
-			}	
+			has_country_flag = AST_cabinet_trust_complete_not_tt	
 		}
 
 		activation = { #Triggers by event
@@ -853,7 +842,6 @@ AST_cabinet_trust_cat = {
 
 		timeout_effect = {
 			custom_effect_tooltip = AST_cabinet_trust_remove_tt
-			
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			IF = {
@@ -868,12 +856,23 @@ AST_cabinet_trust_cat = {
 					}
 				}
 			}
+			ELSE_IF = {
+				limit = { 
+					NOT = {
+						has_government = communism
+					}
+				}
+				country_event = { id = AST_canberra_air_disaster_events.3 hours = 1 }
+				custom_effect_tooltip = AST_castle_crumbling_mission_event_tt
+				event_option_tooltip = AST_canberra_air_disaster_events.3.a
+			}
 
 			set_country_flag = AST_cabinet_trust_complete_3_flag
 			hidden_effect = {
 				clr_country_flag = AST_canberra_air_disaster_flag
 				AST_cabinet_trust_swap_idea = yes #Removes Cabinet Trust Ideas 
 			}
+			custom_effect_tooltip = generic_skip_one_line_tt
 		}
 
 		complete_effect = {
@@ -887,11 +886,13 @@ AST_cabinet_trust_cat = {
 				remove_ideas = AST_monarchist_intervention_spirit
 				custom_effect_tooltip = generic_skip_one_line_tt
 			}
-			country_event = { id = AST_canberra_air_disaster_events.7 hours = 1 }
-			set_country_flag = AST_cabinet_trust_complete_4_flag
+			
+			country_event = { id = AST_canberra_air_disaster_events.2 hours = 1 }
+			custom_effect_tooltip = AST_castle_crumbling_mission_event_tt
+			event_option_tooltip = AST_canberra_air_disaster_events.2.a
 			hidden_effect = {
 				clr_country_flag = AST_canberra_air_disaster_flag
-				AST_cabinet_trust_swap_idea = yes #Removes Cabinet Trust Ideas
+				AST_cabinet_trust_swap_idea = yes #Removes Cabinet Trust Ideas 
 			}
 		}
 	}

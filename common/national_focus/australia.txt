@@ -73,7 +73,7 @@ focus_tree = {
 							has_country_flag = AST_1939_start
 						}
 					}
-					country_event = { id = AST_election_events.2 days = 3 }
+					country_event = { id = AST_election_events.2 }
 				}	
 				remove_trait = {
 					character = AST_james_scullin
@@ -935,7 +935,7 @@ focus_tree = {
 	focus = {
 		id = AST_the_ultimate_overseas_duty
 		icon = GFX_focus_AST_the_ultimate_overseas_duty_uap
-		#overlay = GFX_focus_election_overlay_blue_3
+		overlay = GFX_focus_election_overlay_blue_3
 		mutually_exclusive = { focus = AST_pleading_britain focus = AST_inevitably_independent focus = AST_bring_on_the_giant }
 		
 		x = -8
@@ -1323,7 +1323,7 @@ focus_tree = {
 		
 		relative_position_id = AST_pleading_britain
 		
-		#overlay = GFX_focus_fast_overlay_conscription_election_red_1_blue_1
+		overlay = GFX_focus_fast_overlay_conscription_election_red_1_blue_1
 		
 		dynamic = yes
 		
@@ -2111,10 +2111,15 @@ focus_tree = {
 		available_if_capitulated = no
 	
 		completion_reward = {
-			add_research_slot = 1
-
+			add_tech_bonus = {
+				name = ENG_create_bef_bonus
+				bonus = 1
+				uses = 2
+				category = industry
+			}
+			
 			custom_effect_tooltip = generic_skip_one_line_tt
-
+			
 			custom_effect_tooltip = {
 				localization_key = available_scientist_one_line_tt
 				CHARACTER = AST_jack_piddington
@@ -2561,7 +2566,7 @@ focus_tree = {
 				tooltip = stability_factor_tt
 			}
 			add_to_variable = {
-				AST_ds_weekly_manpower = 1000
+				AST_ds_weekly_manpower = 500
 				tooltip = weekly_manpower_tt
 			}
 		}
@@ -2677,7 +2682,7 @@ focus_tree = {
 				tooltip = stability_factor_tt
 			}
 			add_to_variable = {
-				AST_ds_non_core_manpower = 0.1
+				AST_ds_non_core_manpower = 0.25
 				tooltip = non_core_manpower_tt
 			}
 		}
@@ -2707,7 +2712,7 @@ focus_tree = {
 				tooltip = stability_factor_tt
 			}
 			add_to_variable = {
-				AST_ds_non_core_manpower = 0.25
+				AST_ds_non_core_manpower = 1
 				tooltip = non_core_manpower_tt
 			}
 		}
@@ -2900,14 +2905,14 @@ focus_tree = {
 	
 		completion_reward = {
 			add_tech_bonus = {
-				name = AST_sentinel_tank_development
+				name = AST_dingo_scout_car
 			    bonus = 1
 			    uses = 2
 				category = cat_1941_tanks
                 category = cat_1943_tanks
 			}
 			add_tech_bonus = {
-				name = AST_sentinel_tank_development
+				name = AST_dingo_scout_car
 				bonus = 1
 				uses = 2
 				category = cat_mechanized_equipment
@@ -3281,10 +3286,10 @@ focus_tree = {
 	
 		completion_reward = {
 			add_tech_bonus = {
-				name = AST_army_inventions_directorate_taog 
+				name = AST_sentinel_tank_development 
 				bonus = 1.01
 				uses = 2
-				category = armor 
+				category = armor_upgrade
 			}
 		}
 
