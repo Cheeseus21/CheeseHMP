@@ -385,12 +385,12 @@ NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- 1,4,1 vanilla number of hours for a gun
 }
 
 -- Force spotting progress to decay rapidly once a fleet breaks contact
-NDefines.NMilitary.SPOTTING_QUALITY_DROP_HOURS = 1 				-- Vanilla 4. Each X hours the intel quality drops after unit was spotted.
-NDefines.NMilitary.SPOTTING_QUALITY_NAVAL_RECON_DROP_HOURS = 2 	-- Vanilla 12. Each X hours the intel quality drops after unit was spotted by naval recon air mission.
-NDefines.NIntel.NAVAL_SPOT_DECAY = 5							-- Vanilla 1. Speeds up naval spot decay in NIntel.
+NDefines.NMilitary.SPOTTING_QUALITY_DROP_HOURS = 4 				-- Vanilla 4. Each X hours the intel quality drops after unit was spotted.
+NDefines.NMilitary.SPOTTING_QUALITY_NAVAL_RECON_DROP_HOURS = 12 	-- Vanilla 12. Each X hours the intel quality drops after unit was spotted by naval recon air mission.
+NDefines.NIntel.NAVAL_SPOT_DECAY = 1							-- Vanilla 1. Speeds up naval spot decay in NIntel.
 
 NDefines.NNavy.BASE_SPOTTING = 1											-- base detection chance upon which hourly change modifiers are calculated (base detection chance can get modified through other variables), 2%
-NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 5								-- base spotting percentage that comes from full radar coverage; vanilla is 5
+NDefines.NNavy.BASE_SPOTTING_FROM_RADAR = 5									-- base spotting percentage that comes from full radar coverage; vanilla is 5
 NDefines.NNavy.BASE_SPOTTING_FROM_DECRYPTION = 10							-- base spotting percentage that comes from decryption, can go negative (enemy decryption is subtracted); vanilla is 10; I think generated decryption power per day is used!
 NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SUB = 0.8							-- vanilla 1.0	-- task force sub spotting value is multiplied by this and added to spotting percentage every hour; sub spotting value is average sub detection * average sub visibility enemy; the positive part of the surface detection hourly change equation when against a sub fleet.
 NDefines.NNavy.SPOTTING_MULTIPLIER_FOR_SURFACE = 1.1						-- vanilla 1.0	-- task force surface spotting value is multiplied by this and added to spotting percentage every hour; spotting value is average surface detection * average surface visibility enemy; the positive part of the surface detection hourly change equation.
